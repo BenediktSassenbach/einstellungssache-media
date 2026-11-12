@@ -1,0 +1,209 @@
+{
+ "id": "V001",
+ "titel": "iPhone Akku schnell leer? 3 Einstellungen prüfen",
+ "accent": "#FFB02E",
+ "quelle": "Langversion von Post 003, Tipps von Benedikt am iPhone bestätigt (12.11.2026)",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Dein Akku ist nicht alt. Er wird *ausgenutzt*.",
+   "sticker": "3 Einstellungen",
+   "lines": [
+    {
+     "t": "Dein Akku ist schon mittags leer?",
+     "mood": "sleepy",
+     "ev": "drain"
+    },
+    {
+     "t": "Dann ist er wahrscheinlich nicht kaputt.",
+     "mood": "happy"
+    },
+    {
+     "t": "Er wird ausgenutzt.",
+     "mood": "angry",
+     "ev": "mark"
+    },
+    {
+     "t": "Drei Einstellungen am iPhone, die du heute prüfen solltest.",
+     "mood": "happy",
+     "ev": "sticker"
+    },
+    {
+     "t": "Nummer drei dauert zwei Sekunden.",
+     "mood": "wink"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Apps im Hintergrund bremsen",
+   "panel": "apps",
+   "quip": "Wer hat euch das erlaubt?",
+   "path": [
+    "Einstellungen",
+    "Allgemein",
+    "Hintergrundaktualisierung"
+   ],
+   "lines": [
+    {
+     "t": "Erstens: die Hintergrundaktualisierung.",
+     "mood": "happy"
+    },
+    {
+     "t": "Viele Apps laden ständig neue Inhalte, auch wenn du sie gar nicht offen hast.",
+     "mood": "angry",
+     "ev": "panel"
+    },
+    {
+     "t": "Geh in die Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "dann auf Allgemein",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und auf Hintergrundaktualisierung.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Schalte dort alle Apps aus, die du selten nutzt.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Den Akkufresser finden",
+   "panel": "usage",
+   "quip": "Ertappt.",
+   "path": [
+    "Einstellungen",
+    "Batterie",
+    "Nach unten scrollen"
+   ],
+   "lines": [
+    {
+     "t": "Zweitens: Finde den Akkufresser.",
+     "mood": "happy"
+    },
+    {
+     "t": "Öffne die Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "tippe auf Batterie",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und scrolle nach unten.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Dort siehst du, welche App wie viel Akku verbraucht hat.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Steht ganz oben eine App, die du kaum benutzt?",
+     "mood": "shock",
+     "ev": "act"
+    },
+    {
+     "t": "Dann weißt du, wer schuld ist.",
+     "mood": "angry",
+     "ev": "act2"
+    }
+   ],
+   "quipAt": 6
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Stromsparmodus früher nutzen",
+   "panel": "lowpower",
+   "quip": "Läuft. Länger.",
+   "path": [
+    "Einstellungen",
+    "Batterie"
+   ],
+   "lines": [
+    {
+     "t": "Drittens: der Stromsparmodus.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Den musst du nicht erst bei zwanzig Prozent einschalten.",
+     "mood": "wink"
+    },
+    {
+     "t": "Du kannst ihn jederzeit selbst aktivieren,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "unter Einstellungen, Batterie.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Er drosselt die Hintergrundaktivität, bis du wieder lädst.",
+     "mood": "cool",
+     "ev": "act"
+    },
+    {
+     "t": "Noch schneller geht es über das Kontrollzentrum.",
+     "mood": "wink",
+     "ev": "act2"
+    }
+   ],
+   "quipAt": 4
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "checks": [
+    "Hintergrund-Apps bremsen",
+    "Akkufresser finden",
+    "Stromsparmodus früher nutzen"
+   ],
+   "lines": [
+    {
+     "t": "Also: Hintergrund-Apps bremsen,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Akkufresser finden,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "Stromsparmodus früher nutzen.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Speicher dir das Video, damit du es wiederfindest.",
+     "mood": "happy",
+     "ev": "save"
+    },
+    {
+     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
+     "mood": "wink",
+     "ev": "follow"
+    }
+   ]
+  }
+ ]
+}
