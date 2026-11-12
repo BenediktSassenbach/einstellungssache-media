@@ -1,6 +1,7 @@
 // Video-Generator Einstellungssache (Schalti, 1080x1920, 30 fps)
-// node tools/video.js videos/V001/script.json <Ausgabeordner> [--frames 3.5,20,40] [--audio stimme.mp3]
-// Zeiten: videos/VNNN/zeiten.json ({"dauer":[Sekunden pro Zeile]}) falls vorhanden, sonst Schaetzung nach Zeichenzahl.
+// node tools/video.js videos/V001/script.json <Ausgabeordner> [--frames 3.5,20,40]
+// Mit Stimme: audio/1.mp3 ... (eine Datei pro Szene) ablegen, python3 tools/zeiten.py videos/V001 ausfuehren, dann rendern.
+// Ohne zeiten.json werden die Sprechzeiten nach Zeichenzahl geschaetzt und das Video bleibt stumm.
 const fs = require('fs'), path = require('path'), { spawn, execFileSync } = require('child_process');
 const { chromium } = require('playwright');
 const FPS = 30, W = 1080, H = 1920, GAP = 0.22, CPS = 14.5;
@@ -9,19 +10,20 @@ const scriptPath = args[0], out = args[1];
 const opt = k => { const i = args.indexOf(k); return i > 0 ? args[i + 1] : null; };
 const S = JSON.parse(fs.readFileSync(scriptPath, 'utf8'));
 const zeitenPath = path.join(path.dirname(scriptPath), 'zeiten.json');
-const zeiten = fs.existsSync(zeitenPath) ? JSON.parse(fs.readFileSync(zeitenPath, 'utf8')).dauer : null;
+const zeiten = fs.existsSync(zeitenPath) ? JSON.parse(fs.readFileSync(zeitenPath, 'utf8')).szenen : null;
 
 // ---- Zeitplan: jede Zeile bekommt Start und Ende, jede Szene eine ganze Zahl an Frames
 let t = 0, li = 0;
-for (const sc of S.scenes) {
-  sc.start = t; t += 0.35;
-  for (const l of sc.lines) {
-    const d = zeiten ? zeiten[li] : Math.max(0.9, l.t.length / CPS);
+S.scenes.forEach((sc, si) => {
+  sc.start = t; t += 0.35; sc.audioAt = t;
+  if (zeiten) { sc.lines.forEach((l, k) => { l.start = t + zeiten[si].zeilen[k][0]; l.end = t + zeiten[si].zeilen[k][1]; }); t += zeiten[si].dauer; }
+  else for (const l of sc.lines) {
+    const d = Math.max(0.9, l.t.length / CPS);
     l.start = t; l.end = t + d; t = l.end + GAP; li++;
   }
   t += sc.type === 'outro' ? 1.6 : 0.45;
   t = Math.round(t * FPS) / FPS; sc.end = t;
-}
+});
 S.total = t;
 
 // ---- Seite: draw(t) zeichnet den Zustand zur Zeit t
@@ -155,8 +157,11 @@ function ff(a) { return new Promise((res, rej) => { const p = spawn('ffmpeg', a,
   await br.close();
   const list = path.join(out, 'liste.txt'); fs.writeFileSync(list, S.scenes.map((_, i) => "file 'szene_" + i + ".mp4'").join('\n'));
   const stumm = path.join(out, 'stumm.mp4'); execFileSync('ffmpeg', ['-y', '-f', 'concat', '-safe', '0', '-i', list, '-c', 'copy', stumm], { stdio: 'ignore' });
-  const audio = opt('--audio'); const ziel = path.join(out, S.id + '.mp4');
-  if (audio) execFileSync('ffmpeg', ['-y', '-i', stumm, '-i', audio, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', ziel], { stdio: 'ignore' });
-  else fs.copyFileSync(stumm, ziel);
+  const ziel = path.join(out, S.id + '.mp4'); const adir = path.join(path.dirname(scriptPath), 'audio');
+  if (zeiten) { // Szenen-Audios an ihre Startzeit setzen und mischen
+    const ins = [], fl = []; S.scenes.forEach((sc, i) => { ins.push('-i', path.join(adir, (i + 1) + '.mp3')); fl.push('[' + (i + 1) + ':a]adelay=' + Math.round(sc.audioAt * 1000) + ':all=1[a' + i + ']'); });
+    const fc = fl.join(';') + ';' + S.scenes.map((_, i) => '[a' + i + ']').join('') + 'amix=inputs=' + S.scenes.length + ':normalize=0,apad[a]';
+    execFileSync('ffmpeg', ['-y', '-i', stumm, ...ins, '-filter_complex', fc, '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-ar', '44100', '-shortest', ziel], { stdio: 'ignore' });
+  } else fs.copyFileSync(stumm, ziel);
   console.log('fertig', ziel);
 })();
