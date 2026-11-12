@@ -1,0 +1,7 @@
+{"id":"2026-11-test-001","slides":[
+{"type":"cover","title":"3 iPhone-Einstellungen, die du *jetzt prüfen* solltest","sub":"Dauert zwei Minuten. Schützt deine Daten und dein Gerät."},
+{"type":"tip","num":"1","title":"App-Tracking abschalten","path":["Einstellungen","Datenschutz & Sicherheit","Tracking"],"action":"„Apps erlauben, Tracking anzufordern“ aus","why":"Apps fragen dann gar nicht mehr, ob sie dich über andere Apps und Websites verfolgen dürfen. Jede Anfrage gilt als abgelehnt."},
+{"type":"tip","num":"2","title":"Genauen Standort begrenzen","path":["Einstellungen","Datenschutz & Sicherheit","Ortungsdienste","App auswählen"],"action":"„Genauer Standort“ aus","why":"Die App sieht nur noch ungefähr, wo du bist. Für Wetter reicht das, für Navigation lässt du es an."},
+{"type":"tip","num":"3","title":"Diebstahlschutz prüfen","path":["Einstellungen","Face ID & Code","Schutz für gestohlene Geräte"],"action":"Einschalten, falls noch aus","why":"Unterwegs braucht dein iPhone für heikle Änderungen Face ID und teils eine Stunde Wartezeit. Ab iOS 17.3."},
+{"type":"outro","title":"*Speichern*, bevor du es vergisst.","sub":"Jeden Tag ein Handy- oder KI-Tipp, den du sofort umsetzen kannst."}
+]}
