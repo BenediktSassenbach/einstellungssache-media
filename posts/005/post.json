@@ -1,0 +1,64 @@
+{
+ "id": "005",
+ "accent": "#C6FF3D",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Neues iPhone? Mach *das* zuerst.",
+   "sub": "3 Dinge, die fast jeder aufschiebt und später bereut.",
+   "mood": "happy",
+   "quip": "Auspacken kann warten."
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Notfallpass anlegen",
+   "path": [
+    "App „Health“ öffnen",
+    "Oben rechts auf dein Profilbild",
+    "Notfallpass"
+   ],
+   "action": "Notfallkontakt und wichtige Angaben eintragen",
+   "why": "Helfer können ihn im Notfall vom Sperrbildschirm aus aufrufen, ohne deinen Code.",
+   "mood": "shock",
+   "quip": "Hoffentlich nie nötig."
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "„Wo ist?“ einschalten",
+   "path": [
+    "Einstellungen",
+    "Dein Name ganz oben",
+    "Wo ist?",
+    "Mein iPhone suchen"
+   ],
+   "action": "Einschalten",
+   "why": "Nur dann kannst du ein verlorenes iPhone orten, sperren oder löschen.",
+   "mood": "angry",
+   "quip": "Wo bin ich?!"
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Updates automatisch laden",
+   "path": [
+    "Einstellungen",
+    "Allgemein",
+    "Softwareupdate",
+    "Automatische Updates"
+   ],
+   "action": "Einschalten",
+   "why": "Sicherheitslücken werden geschlossen, ohne dass du daran denken musst.",
+   "mood": "sleepy",
+   "quip": "Erledigt sich im Schlaf."
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "sub": "Jeden Tag ein Handy- oder KI-Tipp, den du sofort umsetzen kannst.",
+   "mood": "wink",
+   "quip": "Folgen kostet nix."
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "id": "006",
+ "accent": "#B18CFF",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Dein Sperrbildschirm *plaudert* alles aus.",
+   "sub": "3 Einstellungen für mehr Privatsphäre.",
+   "mood": "shock",
+   "quip": "Das war privat!"
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Nachrichten verstecken",
+   "path": [
+    "Einstellungen",
+    "Mitteilungen",
+    "Vorschauen zeigen"
+   ],
+   "action": "„Wenn entsperrt“ wählen",
+   "why": "Auf dem Sperrbildschirm steht dann nur noch, dass etwas kam. Nicht mehr, was drinsteht.",
+   "mood": "wink",
+   "quip": "Geht keinen was an."
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Analysedaten behalten",
+   "path": [
+    "Einstellungen",
+    "Datenschutz & Sicherheit",
+    "Analyse & Verbesserungen"
+   ],
+   "action": "„iPhone-Analyse teilen“ aus",
+   "why": "Dein iPhone schickt dann keine täglichen Nutzungs- und Diagnosedaten mehr an Apple.",
+   "mood": "cool",
+   "quip": "Bleibt unter uns."
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Werbung weniger persönlich",
+   "path": [
+    "Einstellungen",
+    "Datenschutz & Sicherheit",
+    "Apple-Werbung"
+   ],
+   "action": "„Personalisierte Werbung“ aus",
+   "why": "Werbung im App Store siehst du weiter, sie wird aber nicht mehr auf dich zugeschnitten.",
+   "mood": "happy",
+   "quip": "Kenn ich dich?"
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "sub": "Jeden Tag ein Handy- oder KI-Tipp, den du sofort umsetzen kannst.",
+   "mood": "wink",
+   "quip": "Folgen kostet nix."
+  }
+ ]
+}

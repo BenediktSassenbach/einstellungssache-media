@@ -1,0 +1,61 @@
+{
+ "id": "003",
+ "accent": "#FFB02E",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Dein Akku ist nicht alt. Er wird *ausgenutzt*.",
+   "sub": "3 Einstellungen, die du heute prüfen solltest.",
+   "mood": "sleepy",
+   "quip": "Schon wieder 12 %."
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Apps im Hintergrund bremsen",
+   "path": [
+    "Einstellungen",
+    "Allgemein",
+    "Hintergrundaktualisierung"
+   ],
+   "action": "Für Apps ausschalten, die du selten nutzt",
+   "why": "Diese Apps laden dann nichts mehr nach, während du sie gar nicht offen hast.",
+   "mood": "angry",
+   "quip": "Wer hat euch das erlaubt?"
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Den Akkufresser finden",
+   "path": [
+    "Einstellungen",
+    "Batterie",
+    "Nach unten scrollen"
+   ],
+   "action": "Verbrauch pro App ansehen",
+   "why": "Hier steht schwarz auf weiß, welche App am meisten zieht. Meist ist es die, die du vermutest.",
+   "mood": "shock",
+   "quip": "Ertappt."
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Stromsparmodus früher nutzen",
+   "path": [
+    "Einstellungen",
+    "Batterie"
+   ],
+   "action": "„Stromsparmodus“ einschalten",
+   "why": "Er drosselt Hintergrundaktivität, bis du wieder lädst. Geht auch schneller über das Kontrollzentrum.",
+   "mood": "cool",
+   "quip": "Läuft. Länger."
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "sub": "Jeden Tag ein Handy- oder KI-Tipp, den du sofort umsetzen kannst.",
+   "mood": "wink",
+   "quip": "Folgen kostet nix."
+  }
+ ]
+}

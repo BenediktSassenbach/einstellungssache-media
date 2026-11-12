@@ -1,0 +1,63 @@
+{
+ "id": "008",
+ "accent": "#4DE3FF",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Speicher voll? *Nicht* gleich Fotos löschen.",
+   "sub": "3 Einstellungen, die Platz schaffen.",
+   "mood": "angry",
+   "quip": "Kein Platz. Schon wieder."
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Nachsehen, was Platz frisst",
+   "path": [
+    "Einstellungen",
+    "Allgemein",
+    "iPhone-Speicher"
+   ],
+   "action": "Liste nach Größe ansehen",
+   "why": "Oft sind es zwei oder drei Apps mit Daten, an die du nie gedacht hättest.",
+   "mood": "shock",
+   "quip": "Du bist SO groß?"
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Ungenutzte Apps auslagern",
+   "path": [
+    "Einstellungen",
+    "Apps",
+    "App Store"
+   ],
+   "action": "„Unbenutzte Apps auslagern“ ein",
+   "why": "Selten genutzte Apps verschwinden, ihre Daten bleiben. Ein Tipp aufs Symbol lädt sie neu.",
+   "mood": "sleepy",
+   "quip": "Nur ein Nickerchen."
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Fotos in voller Größe auslagern",
+   "path": [
+    "Einstellungen",
+    "Dein Name ganz oben",
+    "iCloud",
+    "Fotos"
+   ],
+   "action": "„iPhone-Speicher optimieren“ wählen",
+   "why": "Auf dem iPhone liegen dann kleinere Versionen, die Originale in iCloud. Braucht iCloud-Fotos und genug iCloud-Platz.",
+   "mood": "cool",
+   "quip": "Wolke 7."
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "sub": "Jeden Tag ein Handy- oder KI-Tipp, den du sofort umsetzen kannst.",
+   "mood": "wink",
+   "quip": "Folgen kostet nix."
+  }
+ ]
+}

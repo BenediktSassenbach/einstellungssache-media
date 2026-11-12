@@ -1,0 +1,76 @@
+{
+ "id": "007",
+ "accent": "#FFB02E",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "4 Gesten, die dein iPhone *heimlich* kann",
+   "sub": "Nr. 3 kennt fast niemand im Freundeskreis. Teste es.",
+   "mood": "wink",
+   "quip": "Psst."
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Auf die Rückseite tippen",
+   "path": [
+    "Einstellungen",
+    "Bedienungshilfen",
+    "Tippen",
+    "Auf Rückseite tippen"
+   ],
+   "action": "Doppeltippen mit „Bildschirmfoto“ belegen",
+   "why": "Zweimal hinten aufs Gehäuse klopfen und der Screenshot ist da.",
+   "mood": "shock",
+   "quip": "Wer klopft da?"
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Sofort ganz nach oben",
+   "path": [
+    "Du bist weit unten in einer Liste",
+    "Ganz oben auf die Uhrzeit tippen"
+   ],
+   "action": "Seite springt an den Anfang",
+   "why": "Funktioniert in fast jeder App. Kein endloses Hochwischen mehr.",
+   "mood": "cool",
+   "quip": "Aufzug statt Treppe."
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Im Rechner eine Ziffer löschen",
+   "path": [
+    "Rechner öffnen",
+    "Zahl falsch eingetippt",
+    "Über die Zahl wischen"
+   ],
+   "action": "Nur die letzte Ziffer verschwindet",
+   "why": "Du musst nicht mehr alles löschen und von vorn rechnen.",
+   "mood": "happy",
+   "quip": "Mathe wird nicht leichter."
+  },
+  {
+   "type": "tip",
+   "num": "4",
+   "title": "Text aus Fotos kopieren",
+   "path": [
+    "Foto mit Text öffnen",
+    "Finger auf den Text halten",
+    "Text markieren"
+   ],
+   "action": "„Kopieren“ wählen",
+   "why": "Klappt mit Schildern, Rechnungen und Tafelbildern. Abtippen war gestern.",
+   "mood": "wink",
+   "quip": "Danke, Mitschrift."
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "sub": "Jeden Tag ein Handy- oder KI-Tipp, den du sofort umsetzen kannst.",
+   "mood": "wink",
+   "quip": "Folgen kostet nix."
+  }
+ ]
+}

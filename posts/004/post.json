@@ -1,0 +1,73 @@
+{
+ "id": "004",
+ "accent": "#4DE3FF",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "4 Kamera-Tricks, die du *sofort* brauchst",
+   "sub": "Alle ohne zusätzliche App.",
+   "mood": "cool",
+   "quip": "Bitte lächeln."
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Auslösen ohne Wackeln",
+   "path": [
+    "Kamera öffnen",
+    "Handy ruhig halten",
+    "Lautstärketaste drücken"
+   ],
+   "action": "Foto wird ausgelöst",
+   "why": "Du musst nicht mehr auf den Bildschirm tippen und verwackelst weniger.",
+   "mood": "happy",
+   "quip": "Klick."
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Video ohne Umschalten",
+   "path": [
+    "Kamera im Foto-Modus",
+    "Auslöser gedrückt halten"
+   ],
+   "action": "Video läuft, solange du hältst",
+   "why": "Für Momente, die schneller vorbei sind als der Wechsel in den Video-Modus.",
+   "mood": "shock",
+   "quip": "Zu spät gibt es nicht."
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Serienbild mit einem Wisch",
+   "path": [
+    "Kamera im Foto-Modus",
+    "Auslöser nach links ziehen und halten"
+   ],
+   "action": "iPhone schießt viele Fotos hintereinander",
+   "why": "Danach suchst du dir in Ruhe das eine Bild aus, auf dem alle gut aussehen.",
+   "mood": "wink",
+   "quip": "Einer blinzelt immer."
+  },
+  {
+   "type": "tip",
+   "num": "4",
+   "title": "Raster für gerade Bilder",
+   "path": [
+    "Einstellungen",
+    "Kamera"
+   ],
+   "action": "„Raster“ einschalten",
+   "why": "Die Hilfslinien zeigen dir sofort, ob der Horizont schief ist.",
+   "mood": "cool",
+   "quip": "Endlich gerade."
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "sub": "Jeden Tag ein Handy- oder KI-Tipp, den du sofort umsetzen kannst.",
+   "mood": "wink",
+   "quip": "Folgen kostet nix."
+  }
+ ]
+}

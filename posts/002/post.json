@@ -1,0 +1,9 @@
+{"id":"002","accent":"#FF5CA8","slides":[
+{"type":"cover","title":"5 Tastatur-Tricks, die dein iPhone dir *verschweigt*","sub":"Nach Nr. 1 tippst du nie wieder daneben.","mood":"shock","quip":"Warum sagt mir das keiner?!"},
+{"type":"tip","num":"1","title":"Leertaste wird zum Trackpad","path":["Tastatur öffnen","Leertaste gedrückt halten","Finger hin und her schieben"],"action":"Cursor landet genau da, wo du willst","why":"Nie wieder zehnmal auf dieselbe Stelle tippen, um einen Buchstaben zu treffen.","mood":"cool","quip":"Ich bin jetzt eine Maus."},
+{"type":"tip","num":"2","title":"Kürzel statt ganzer Sätze","path":["Einstellungen","Allgemein","Tastatur","Textersetzung"],"action":"Kürzel anlegen, z. B. „mfg“","why":"Du tippst drei Buchstaben, dein iPhone schreibt den ganzen Satz.","mood":"wink","quip":"Faul, aber mit System."},
+{"type":"tip","num":"3","title":"Vertippt? Wisch es weg","path":["Text ist falsch","Mit drei Fingern nach links wischen"],"action":"Letzte Eingabe ist rückgängig","why":"Nach rechts wischen holt sie zurück. Schütteln geht auch, sieht in der Bahn aber komisch aus.","mood":"happy","quip":"Strg+Z für die Hosentasche."},
+{"type":"tip","num":"4","title":"Tastatur für eine Hand","path":["Tastatur öffnen","Emoji- oder Globus-Taste gedrückt halten","Linke oder rechte Tastatur wählen"],"action":"Tasten rücken zu deinem Daumen","why":"Praktisch, wenn die andere Hand gerade den Döner hält.","mood":"happy","quip":"Prioritäten."},
+{"type":"tip","num":"5","title":"Punkt in Lichtgeschwindigkeit","path":["Satz zu Ende schreiben","Zweimal schnell auf die Leertaste"],"action":"Punkt und Leerzeichen erscheinen","why":"Klappt, solange der „.“-Kurzbefehl in den Tastatur-Einstellungen an ist.","mood":"cool","quip":"Zack. Punkt."},
+{"type":"outro","title":"*Speichern*, sonst ist es morgen weg.","sub":"Jeden Tag ein Handy- oder KI-Tipp, den du sofort umsetzen kannst.","mood":"wink","quip":"Folgen kostet nix."}
+]}
