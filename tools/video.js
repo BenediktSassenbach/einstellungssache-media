@@ -52,7 +52,13 @@ h2{font-size:74px;line-height:1.03;font-weight:900;letter-spacing:-.035em}
 .sw{margin-left:auto;width:92px;height:52px;border-radius:26px;background:#C9CFDD;position:relative;flex:none}.sw i{position:absolute;top:5px;left:5px;width:42px;height:42px;border-radius:50%;background:#fff}
 .bar{height:26px;border-radius:13px;background:#0B1020;margin-left:auto}.pct{width:110px;text-align:right;font-weight:900}
 .stick{position:absolute;font-size:40px;font-weight:900;color:#0B1020;background:#fff;padding:14px 28px;border-radius:18px;box-shadow:8px 8px 0 var(--a)}
-#cap{position:absolute;left:60px;width:900px;top:1215px;height:170px;display:flex;align-items:center;justify-content:center}
+.step{position:relative}.tap{position:absolute;right:-34px;top:26px;font-size:74px;z-index:3}.ring{position:absolute;right:-10px;top:50%;border:6px solid var(--a);border-radius:50%;translate:50% -50%}
+.ld{width:30px;height:30px;border-radius:50%;border:5px solid #C9CFDD;border-top-color:#0B1020;display:inline-block}
+.row{position:relative}.stamp{position:absolute;right:26px;bottom:26px;font-size:54px;font-weight:900;color:#E5383B;border:8px solid #E5383B;border-radius:16px;padding:4px 18px;background:#fff}
+.popx{position:absolute;width:250px;background:#fff;border-radius:40px;box-shadow:10px 10px 0 var(--a);text-align:center;padding:10px 10px 18px;color:#0B1020;z-index:4}.popx span{font-size:118px;line-height:1.15;display:block;font-family:'Noto Color Emoji'}.popx em{font-style:normal;font-size:33px;font-weight:900;display:block;line-height:1.05}
+#fx{position:absolute;inset:0}#wipe{position:absolute;left:-20%;top:0;width:140%;height:100%;background:var(--a);z-index:9;display:none}
+#stage{transform-origin:50% 40%}
+#cap{position:absolute;z-index:6;left:60px;width:900px;top:1215px;height:170px;display:flex;align-items:center;justify-content:center}
 #cap div{font-size:66px;font-weight:900;line-height:1.1;text-align:center;letter-spacing:-.02em;background:#0B1020;border:5px solid #26335E;border-radius:30px;padding:16px 30px}
 #cap span.w{color:var(--a)}
 #masc{position:absolute;left:70px;top:1395px}
@@ -61,7 +67,7 @@ h2{font-size:74px;line-height:1.03;font-weight:900;letter-spacing:-.035em}
 .chk s{flex:none;width:64px;height:64px;border-radius:50%;background:var(--a);color:#0B1020;font-size:40px;font-weight:900;display:flex;align-items:center;justify-content:center;text-decoration:none}
 </style><body><div class="blob b1"></div><div class="blob b2"></div>
 <div class="brand"><span class="tg"><i></i></span>Einstellungssache</div><div class="prog"><i id="pg"></i></div>
-<div id="stage"></div><div id="cap"></div><div id="masc"></div><div id="bub"></div>
+<div id="fx"></div><div id="stage"></div><div id="wipe"></div><div id="cap"></div><div id="masc"></div><div id="bub"></div>
 <script>
 const S=${JSON.stringify(S)};const A=S.accent,BG='#0B1020';document.body.style.setProperty('--a',A);
 const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
@@ -84,57 +90,87 @@ function mascot(m,open,blink,w){
  const e=(blink&&(m==='happy'||m==='shock'||m==='angry'))?arcs:eyes[m];
  const mouth=open>0.08?'<ellipse cx="212" cy="'+(m==='cool'?126:125)+'" rx="'+(8+3*open)+'" ry="'+(2.5+10*open)+'" fill="#fff"/>':rest[m];
  return '<svg width="'+w+'" viewBox="-10 0 320 235" xmlns="http://www.w3.org/2000/svg"><path d="M112 150 L104 205 M190 150 L198 205" stroke="'+A+'" stroke-width="12" stroke-linecap="round"/><path d="M84 207 L108 207 M194 207 L218 207" stroke="'+A+'" stroke-width="12" stroke-linecap="round"/><path d="M40 86 Q10 70 6 40" stroke="'+A+'" stroke-width="12" stroke-linecap="round" fill="none"/><rect x="30" y="40" width="240" height="120" rx="60" fill="'+A+'"/><circle cx="212" cy="100" r="54" fill="'+BG+'"/>'+e+mouth+'</svg>';}
-function sw(k){k=ease(k);const c=k>0.5?A:'#C9CFDD';return '<span class="sw" style="background:'+c+'"><i style="left:'+(5+40*k)+'px"></i></span>';}
+function sw(k,nm){k=ease(k);const c=k>0.5?A:'#C9CFDD';return '<span class="sw" style="background:'+c+(nm?';margin-left:0':'')+'"><i style="left:'+(5+40*k)+'px"></i></span>';}
 function chunks(l){const ws=l.t.split(' ');const cs=[];let cur=[];let n=0;
  for(const w of ws){if(cur.length&&(n+w.length>20||cur.length>=4)){cs.push(cur);cur=[];n=0}cur.push(w);n+=w.length+1}if(cur.length)cs.push(cur);
  const tot=l.t.length;let pos=0;const d=l.end-l.start;
  return cs.map(c=>c.map(w=>{const a=l.start+d*pos/tot;pos+=w.length+1;return{w,a,b:l.start+d*Math.min(pos,tot)/tot}}));}
+const rnd=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)};
+function confetti(e,x,y,n){if(e===undefined||e>1.5)return '';let s='';const cols=[A,'#fff','#7C5CFF','#3DB8FF','#FF7A59'];
+ for(let i=0;i<n;i++){const a=rnd(i+x)*6.283,v=240+rnd(i*3+y)*460;const px=x+Math.cos(a)*v*e,py=y+Math.sin(a)*v*e*0.8-200*e+560*e*e;
+  s+='<i style="position:absolute;left:'+px+'px;top:'+py+'px;width:18px;height:'+(10+rnd(i)*16)+'px;background:'+cols[i%5]+';border-radius:4px;opacity:'+cl(1.7-e*1.3)+';transform:rotate('+(e*700*(rnd(i*7)-.5))+'deg)"></i>';}
+ return s;}
 function draw(t){
- const sc=S.scenes.find(s=>t<s.end)||S.scenes[S.scenes.length-1];const lt=t-sc.start;
+ const si=Math.max(0,S.scenes.findIndex(s=>t<s.end));const sc=S.scenes[si<0?S.scenes.length-1:si];const lt=t-sc.start;
  const ev={};let line=null,last=sc.lines[0];
  for(const l of sc.lines){if(t>=l.start){last=l;if(l.ev)ev[l.ev]=t-l.start}if(t>=l.start&&t<l.end+0.05)line=l}
- const E=(n,d=0.45)=>ev[n]===undefined?0:cl(ev[n]/d);
+ const E=(n,d=0.45)=>ev[n]===undefined?0:cl(ev[n]/d);const tl=t-last.start;
  document.getElementById('pg').style.width=(100*t/S.total)+'%';
+ // Hintergrund in Bewegung
+ document.querySelector('.b1').style.transform='translate('+(Math.sin(t*.5)*50)+'px,'+(Math.cos(t*.4)*40)+'px) scale('+(1+0.04*Math.sin(t*.7))+')';
+ document.querySelector('.b2').style.transform='translate('+(Math.cos(t*.45)*40)+'px,'+(Math.sin(t*.6)*50)+'px)';
+ let f='';for(let i=0;i<18;i++){const x=rnd(i)*1040,sp=40+rnd(i+50)*70,y=1920-((t*sp+rnd(i+9)*2000)%2060),sz=14+rnd(i+3)*26;
+  f+=i%3===0?'<b style="position:absolute;left:'+x+'px;top:'+y+'px;font-size:'+(sz*2.2)+'px;font-weight:900;color:#22305A;transform:rotate('+(t*50*(rnd(i)-.5))+'deg)">+</b>':'<i style="position:absolute;left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;border-radius:50%;background:#1B2748"></i>';}
+ document.getElementById('fx').innerHTML=f;
+ // Szenenwechsel: Akzentfläche wischt weg
+ const wp=document.getElementById('wipe');if(si>0&&lt<0.42){const k=ease(lt/0.42);wp.style.display='block';wp.style.transform='translateX('+(k*135)+'%) skewX(-12deg)'}else wp.style.display='none';
  let h='';const k0=lt/0.45;
  if(sc.type==='hook'){
-  const dr=ev.drain===undefined?100:Math.round(100-88*ease(ev.drain/2.2));
+  const dr=ev.drain===undefined?100:Math.round(100-88*ease(ev.drain/1.5));const low=dr<=25;
   const col=dr>40?'#F4F6FB':(dr>20?A:'#FF5A5A');
-  h+='<h1 style="margin-top:20px;'+rise(k0)+'">'+(E('mark')?esc(sc.title):esc(sc.title).replace('<b>','<i style="font-style:normal">').replace('</b>','</i>'))+'</h1>';
-  h+='<div style="position:absolute;left:0;top:560px;display:flex;align-items:center;gap:36px;'+rise(k0-0.3)+'"><svg width="420" height="200" viewBox="0 0 420 200"><rect x="6" y="6" width="370" height="188" rx="44" fill="none" stroke="#F4F6FB" stroke-width="12"/><rect x="386" y="66" width="26" height="68" rx="10" fill="#F4F6FB"/><rect x="28" y="28" width="'+(326*dr/100)+'" height="144" rx="26" fill="'+col+'"/></svg><div style="font-size:150px;font-weight:900;letter-spacing:-.04em;color:'+col+'">'+dr+' %</div></div>';
-  if(E('sticker'))h+='<div class="stick" style="left:0;top:820px;font-size:56px;'+pop(E('sticker'),'left center')+'rotate:-4deg">'+esc(sc.sticker)+' 👇</div>';
+  h+='<h1 style="margin-top:20px">'+sc.title.split(' ').map((w,i)=>{const k=cl((lt-0.05-i*0.07)/0.22);const m=/\\*/.test(w);const x=esc(w.replace(/\\*/g,''));
+   const inner=m?(E('mark')?'<b style="transform:rotate(-2deg) scale('+(1+0.35*(1-ease(ev.mark/0.4)))+')">'+x.replace('.','')+'</b>.':x):x;
+   return '<span style="display:inline-block;opacity:'+cl(k*3)+';transform:scale('+(0.4+0.6*back(k))+')">'+inner+'</span>'}).join(' ')+'</h1>';
+  h+='<div style="position:absolute;left:0;top:560px;display:flex;align-items:center;gap:36px;'+rise(k0-0.3)+(low?'transform:translate('+(Math.sin(t*55)*5)+'px,'+(Math.cos(t*47)*3)+'px);':'')+'"><svg width="420" height="200" viewBox="0 0 420 200" style="'+(low?'filter:drop-shadow(0 0 '+(14+12*Math.sin(t*9))+'px #FF5A5A)':'')+'"><rect x="6" y="6" width="370" height="188" rx="44" fill="none" stroke="#F4F6FB" stroke-width="12"/><rect x="386" y="66" width="26" height="68" rx="10" fill="#F4F6FB"/><rect x="28" y="28" width="'+(326*dr/100)+'" height="144" rx="26" fill="'+col+'"/></svg><div style="font-size:150px;font-weight:900;letter-spacing:-.04em;color:'+col+';transform:scale('+(low?1+0.05*Math.sin(t*10):1)+')">'+dr+' %</div></div>';
+  if(E('sticker'))h+='<div class="stick" style="left:0;top:820px;font-size:56px;'+pop(E('sticker'),'left center')+'rotate:'+(-4+2*Math.sin(t*6))+'deg">'+esc(sc.sticker)+' 👇</div>';
  }
  if(sc.type==='tip'){
-  h+='<div class="top" style="'+rise(k0)+'"><div class="num">'+sc.num+'</div><h2>'+esc(sc.title)+'</h2></div><div class="path">';
-  sc.path.forEach((p,i)=>{const k=E('p'+(i+1),0.4);const cur=ev['p'+(i+1)]!==undefined&&ev['p'+(i+2)]===undefined&&ev.act===undefined;
-   h+='<div class="step'+(cur?' on':'')+'" style="'+pop(k,'left center')+'"><s>'+(i+1)+'</s>'+esc(p)+'</div>'});
-  h+='</div>';const pk=E('panel',0.5)||(ev.panel===undefined&&ev.act!==undefined?1:0);
+  const nk=cl((lt-0.3)/0.3);
+  h+='<div class="top"><div class="num" style="opacity:'+cl(nk*4)+';transform:scale('+(1+1.8*(1-ease(nk)))+') rotate('+(-8*(1-ease(nk)))+'deg)">'+sc.num+'</div><h2 style="'+rise(k0-0.6)+'">'+esc(sc.title)+'</h2></div><div class="path">';
+  sc.path.forEach((p,i)=>{const e=ev['p'+(i+1)];const k=E('p'+(i+1),0.4);const cur=e!==undefined&&ev['p'+(i+2)]===undefined&&ev.act===undefined;
+   const tap=e!==undefined&&e<0.75?'<span class="tap" style="transform:translateY('+(-26*Math.abs(Math.sin(e*8)))+'px)">👆</span><span class="ring" style="width:'+(60+e*260)+'px;height:'+(60+e*260)+'px;opacity:'+cl(1-e/0.6)+'"></span>':'';
+   h+='<div class="step'+(cur?' on':'')+'" style="'+(e===undefined?'opacity:'+(0.3*cl(k0-1))+';':pop(k,'left center'))+'"><s>'+(i+1)+'</s>'+esc(p)+tap+'</div>'});
+  h+='</div>';
   if(sc.panel==='apps'){const apps=[['Shopping-App','#FF7A59',1],['Spiele-App','#7C5CFF',1],['Wetter-App','#3DB8FF',1],['Nachrichten-App','#2ECC71',0]];
-   h+='<div class="panel" style="'+rise(E('panel',0.5))+'"><div class="ph"><span>Hintergrundaktualisierung</span><span>Beispiel</span></div>'+apps.map((a,i)=>'<div class="row"><span class="ic" style="background:'+a[1]+'"></span>'+a[0]+sw(a[2]&&ev.act!==undefined?1-cl((ev.act-0.5-i*0.5)/0.3):1)+'</div>').join('')+'</div>';}
+   h+='<div class="panel" style="'+rise(E('panel',0.5))+'"><div class="ph"><span>Hintergrundaktualisierung</span><span>Beispiel</span></div>'+apps.map((a,i)=>{const on=a[2]&&ev.act!==undefined?1-cl((ev.act-0.5-i*0.5)/0.3):1;
+    const ind=on>0.5?'<span class="ld" style="transform:rotate('+(t*420+i*90)+'deg)"></span><span style="font-size:26px;color:#5A6686;width:86px">lädt'+'.'.repeat(1+Math.floor(t*3+i)%3)+'</span>':'<span style="font-size:40px;transform:scale('+(0.5+0.5*back(cl((ev.act-0.8-i*0.5)/0.3)))+')">💤</span>';
+    return '<div class="row"><span class="ic" style="background:'+a[1]+';transform:translateY('+(on>0.5?Math.sin(t*9+i*2)*5:0)+'px)"></span>'+a[0]+'<span style="margin-left:auto;display:flex;align-items:center;gap:14px">'+ind+sw(on,1)+'</span></div>'}).join('')+'</div>';}
   if(sc.panel==='usage'){const apps=[['Spiele-App','#7C5CFF',41],['Video-App','#FF7A59',23],['Shopping-App','#3DB8FF',12],['Wetter-App','#2ECC71',4]];
-   h+='<div class="panel" style="'+rise(E('panel',0.5))+'"><div class="ph"><span>Batterie · Verbrauch pro App</span><span>Beispielwerte</span></div>'+apps.map((a,i)=>{const g=ease(((ev.panel||0)-0.3-i*0.15)/0.7);const hot=i===0&&ev.act!==undefined;
-    return '<div class="row" style="'+(hot?'background:'+A+';margin:0 -18px;padding:0 18px;border-radius:18px;border-color:transparent':'')+'"><span class="ic" style="background:'+a[1]+'"></span>'+a[0]+'<span class="bar" style="width:'+(a[2]*5.2*g)+'px"></span><span class="pct">'+Math.round(a[2]*g)+' %</span></div>'}).join('')+'</div>';
-}
+   const scan=ev.panel!==undefined&&ev.panel>1.1&&ev.act===undefined?Math.floor((ev.panel-1.1)*2.4)%4:-1;
+   const shk=ev.act!==undefined&&ev.act<0.6?Math.sin(ev.act*70)*12*(1-ev.act/0.6):0;
+   h+='<div class="panel" style="'+rise(E('panel',0.5))+'"><div class="ph"><span>Batterie · Verbrauch pro App</span><span>Beispielwerte</span></div>'+apps.map((a,i)=>{const g=ev.bars===undefined?0:ease((ev.bars-0.1-i*0.15)/0.7);const hot=i===0&&ev.act!==undefined;
+    return '<div class="row" style="'+(hot?'background:'+A+';margin:0 -18px;padding:0 18px;border-radius:18px;border-color:transparent;transform:translateX('+shk+'px) scale('+(1+0.03*Math.sin(t*8))+')':(i===scan?'background:'+A+'44;margin:0 -18px;padding:0 18px;border-radius:18px':''))+'"><span class="ic" style="background:'+a[1]+'"></span>'+a[0]+'<span class="bar" style="width:'+(a[2]*5.2*g)+'px"></span><span class="pct">'+(ev.bars===undefined?'?':Math.round(a[2]*g)+' %')+'</span></div>'}).join('')
+    +(E('act2')?'<div class="stamp" style="opacity:'+cl(ev.act2*6)+';transform:rotate(-10deg) scale('+(1+2*(1-ease(ev.act2/0.25)))+')">SCHULDIG</div>':'')+'</div>';}
   if(sc.panel==='lowpower'){const on=E('act',0.35);const col=on>0.5?'#FFCC00':'#0B1020';
-   h+='<div class="panel" style="'+rise(E('panel',0.5))+'"><div class="ph"><span>Batterie</span><span>Beispiel</span></div><div class="row" style="height:96px;font-size:44px">Stromsparmodus'+sw(on)+'</div><div class="row" style="height:150px;gap:30px"><svg width="190" height="90" viewBox="0 0 420 200"><rect x="6" y="6" width="370" height="188" rx="44" fill="none" stroke="#0B1020" stroke-width="14"/><rect x="386" y="66" width="26" height="68" rx="10" fill="#0B1020"/><rect x="28" y="28" width="210" height="144" rx="26" fill="'+col+'"/></svg><span style="font-size:34px;line-height:1.2;color:#5A6686">'+(on>0.5?'Akkusymbol wird gelb:<br>Stromsparmodus ist an':'64 %')+'</span></div></div>';
-   if(E('act2'))h+='<div class="stick" style="right:0;bottom:375px;'+pop(E('act2'),'center')+'rotate:4deg">Kontrollzentrum ⚡</div>';}
+   h+='<div class="panel" style="'+rise(E('panel',0.5))+'"><div class="ph"><span>Batterie</span><span>Beispiel</span></div><div class="row" style="height:96px;font-size:44px">Stromsparmodus'+(ev.act!==undefined&&ev.act<0.7?'<span class="tap" style="right:60px;top:60px;transform:translateY('+(-26*Math.abs(Math.sin(ev.act*8)))+'px)">👆</span>':'')+sw(on)+'</div><div class="row" style="height:150px;gap:30px"><svg width="190" height="90" viewBox="0 0 420 200" style="overflow:visible;'+(on>0.5?'filter:drop-shadow(0 0 '+(10+10*Math.sin(t*7))+'px #FFCC00);transform:scale('+(1+0.05*Math.sin(t*7))+')':'')+'"><rect x="6" y="6" width="370" height="188" rx="44" fill="none" stroke="#0B1020" stroke-width="14"/><rect x="386" y="66" width="26" height="68" rx="10" fill="#0B1020"/><rect x="28" y="28" width="'+(on>0.5?210:210-18*Math.abs(Math.sin(t*1.5)))+'" height="144" rx="26" fill="'+col+'"/></svg><span style="font-size:34px;line-height:1.2;color:#5A6686">'+(on>0.5?'Akkusymbol wird gelb:<br>Stromsparmodus ist an':'64 %')+'</span></div></div>';
+   if(E('act2'))h+='<div class="stick" style="right:0;bottom:375px;'+pop(E('act2'),'center')+'rotate:'+(4+3*Math.sin(t*6))+'deg">Kontrollzentrum ⚡</div>';}
  }
  if(sc.type==='outro'){
-  sc.checks.forEach((c,i)=>{h+='<div class="chk" style="'+pop(E('c'+(i+1),0.4),'left center')+'"><s>✓</s>'+esc(c)+'</div>'});
-  if(E('save'))h+='<h1 style="margin-top:60px;font-size:104px;'+rise(E('save',0.5))+'">'+esc(sc.title)+'</h1>';
-  if(E('follow'))h+='<div class="stick" style="left:0;bottom:0;font-size:52px;'+pop(E('follow'),'left center')+'rotate:-3deg">@einstellungssache</div>';
+  sc.checks.forEach((c,i)=>{const e=ev['c'+(i+1)];h+='<div class="chk" style="'+pop(E('c'+(i+1),0.4),'left center')+'"><s style="transform:scale('+(e!==undefined?1+0.8*(1-ease(e/0.4)):1)+')">✓</s>'+esc(c)+'</div>'+confetti(e,120,70+i*135,14)});
+  if(E('save'))h+='<h1 style="margin-top:60px;font-size:104px;'+rise(E('save',0.5))+'">'+esc(sc.title).replace('<b>','<b style="transform:rotate(-2deg) scale('+(1+0.06*Math.sin(t*8))+')">')+'</h1>'+confetti(ev.save,430,560,30);
+  if(E('follow'))h+='<div class="stick" style="left:0;bottom:0;font-size:52px;'+pop(E('follow'),'left center')+'rotate:'+(-3+2*Math.sin(t*7))+'deg">@einstellungssache</div>';
  }
- document.getElementById('stage').innerHTML=h;
+ // Emoji-Sticker pro Satz
+ const P=last.pop;if(P&&tl>0.1&&t<last.end+0.28){const k=cl((tl-0.1)/0.3),o=cl((last.end+0.28-t)/0.16);
+  const pos=sc.type==='tip'?'right:-14px;top:232px':sc.type==='hook'?'right:0;top:790px':'right:0;bottom:6px';
+  h+='<div class="popx" style="'+pos+';transform:scale('+(back(k)*o)+') rotate('+(7*Math.sin(t*5))+'deg)"><span style="transform:translateY('+(-10*Math.abs(Math.sin(t*6)))+'px)">'+P[0]+'</span>'+(P[1]?'<em>'+esc(P[1])+'</em>':'')+'</div>';}
+ const stage=document.getElementById('stage');stage.innerHTML=h;
+ // Bild-Impuls bei jedem Satz, Wackler beim Einschlag der Nummer
+ let shx=0,shy=0;if(sc.type==='tip'&&lt>0.45&&lt<0.85){const d=1-(lt-0.45)/0.4;shx=Math.sin(lt*95)*12*d;shy=Math.cos(lt*75)*9*d}
+ stage.style.transform='translate('+shx+'px,'+shy+'px) scale('+(1+0.035*(1-ease(tl/0.3))+0.012*cl(tl/3))+')';
  // Untertitel
  let c='';if(line){const ch=chunks(line);let cur=ch[0];for(const x of ch){if(t>=x[0].a)cur=x}
-  const k=cl((t-cur[0].a)/0.12);c='<div style="transform:scale('+(0.9+0.1*back(k))+')">'+cur.map(x=>'<span'+(t>=x.a&&t<x.b?' class="w"':'')+'>'+esc(x.w)+'</span>').join(' ')+'</div>';}
+  const k=cl((t-cur[0].a)/0.12);c='<div style="transform:scale('+(0.85+0.15*back(k))+') rotate('+(1.5*Math.sin(cur[0].a*40))+'deg)">'+cur.map(x=>'<span'+(t>=x.a&&t<x.b?' class="w"':'')+'>'+esc(x.w)+'</span>').join(' ')+'</div>';}
  document.getElementById('cap').innerHTML=c;
- // Schalti
+ // Schalti: spricht, hüpft bei jedem Satz, dreht sich bei den Höhepunkten
  const talking=line&&t<line.end-0.08;const open=talking?cl(0.15+0.55*Math.abs(Math.sin(t*17.3))+0.3*Math.abs(Math.sin(t*6.1+1))):0;
  const blink=(t%3.4)<0.12;const mood=last.mood||'happy';const big=sc.type==='hook'||sc.type==='outro';
+ const hop=tl>0&&tl<0.34?Math.sin(Math.PI*tl/0.34):0;let spin=0,jump=0;
+ for(const n of ['act','act2','mark','save','follow','sticker']){const e=ev[n];if(e!==undefined&&e<0.55){spin=360*ease(e/0.55);jump=Math.sin(Math.PI*e/0.55)*70}}
  const m=document.getElementById('masc');m.innerHTML=mascot(mood,open,blink,big?360:340);
- m.style.transform='translateY('+(Math.sin(t*2.6)*7-(talking?open*5:0))+'px) rotate('+(Math.sin(t*1.7)*2.5)+'deg)';
+ m.style.transform='translate('+(Math.sin(t*1.1)*10)+'px,'+(Math.sin(t*2.6)*7-(talking?open*5:0)-hop*44-jump)+'px) rotate('+(Math.sin(t*1.7)*3+spin)+'deg) scale('+(1-0.05*hop)+','+(1+0.08*hop)+')';
  const b=document.getElementById('bub');const q=sc.quip;const qs=sc.lines[sc.quipAt||1].start;
- if(q&&t>=qs){b.style.display='block';b.textContent=q;b.style.transform='rotate(3deg) scale('+(0.5+0.5*back((t-qs)/0.35))+')';b.style.opacity=cl((t-qs)/0.15)}else b.style.display='none';
+ if(q&&t>=qs){b.style.display='block';b.textContent=q;b.style.transform='rotate('+(3+2*Math.sin(t*4))+'deg) scale('+(0.5+0.5*back((t-qs)/0.35))+')';b.style.opacity=cl((t-qs)/0.15)}else b.style.display='none';
 }
 </script></body>`;
 

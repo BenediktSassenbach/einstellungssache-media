@@ -12,25 +12,45 @@
     {
      "t": "Dein Akku ist schon mittags leer?",
      "mood": "sleepy",
-     "ev": "drain"
+     "ev": "drain",
+     "pop": [
+      "🔋",
+      "Schon leer?"
+     ]
     },
     {
      "t": "Dann ist er wahrscheinlich nicht kaputt.",
-     "mood": "happy"
+     "mood": "happy",
+     "pop": [
+      "✅",
+      "Nicht kaputt"
+     ]
     },
     {
      "t": "Er wird ausgenutzt.",
      "mood": "angry",
-     "ev": "mark"
+     "ev": "mark",
+     "pop": [
+      "😤",
+      "Ausgenutzt!"
+     ]
     },
     {
      "t": "Drei Einstellungen am iPhone, die du heute prüfen solltest.",
      "mood": "happy",
-     "ev": "sticker"
+     "ev": "sticker",
+     "pop": [
+      "📱",
+      ""
+     ]
     },
     {
      "t": "Nummer drei dauert zwei Sekunden.",
-     "mood": "wink"
+     "mood": "wink",
+     "pop": [
+      "⏱️",
+      "2 Sekunden"
+     ]
     }
    ]
   },
@@ -48,32 +68,56 @@
    "lines": [
     {
      "t": "Erstens: die Hintergrundaktualisierung.",
-     "mood": "happy"
+     "mood": "happy",
+     "pop": [
+      "🔄",
+      ""
+     ],
+     "ev": "panel"
     },
     {
      "t": "Viele Apps laden ständig neue Inhalte, auch wenn du sie gar nicht offen hast.",
      "mood": "angry",
-     "ev": "panel"
+     "pop": [
+      "📥",
+      "Lädt heimlich"
+     ]
     },
     {
      "t": "Geh in die Einstellungen,",
      "mood": "happy",
-     "ev": "p1"
+     "ev": "p1",
+     "pop": [
+      "⚙️",
+      ""
+     ]
     },
     {
      "t": "dann auf Allgemein",
      "mood": "happy",
-     "ev": "p2"
+     "ev": "p2",
+     "pop": [
+      "👉",
+      ""
+     ]
     },
     {
      "t": "und auf Hintergrundaktualisierung.",
      "mood": "happy",
-     "ev": "p3"
+     "ev": "p3",
+     "pop": [
+      "👉",
+      ""
+     ]
     },
     {
      "t": "Schalte dort alle Apps aus, die du selten nutzt.",
      "mood": "cool",
-     "ev": "act"
+     "ev": "act",
+     "pop": [
+      "🚫",
+      "Aus damit"
+     ]
     }
    ]
   },
@@ -91,37 +135,66 @@
    "lines": [
     {
      "t": "Zweitens: Finde den Akkufresser.",
-     "mood": "happy"
+     "mood": "happy",
+     "pop": [
+      "🔍",
+      "Wer war's?"
+     ],
+     "ev": "panel"
     },
     {
      "t": "Öffne die Einstellungen,",
      "mood": "happy",
-     "ev": "p1"
+     "ev": "p1",
+     "pop": [
+      "⚙️",
+      ""
+     ]
     },
     {
      "t": "tippe auf Batterie",
      "mood": "happy",
-     "ev": "p2"
+     "ev": "p2",
+     "pop": [
+      "🔋",
+      ""
+     ]
     },
     {
      "t": "und scrolle nach unten.",
      "mood": "happy",
-     "ev": "p3"
+     "ev": "p3",
+     "pop": [
+      "👇",
+      ""
+     ]
     },
     {
      "t": "Dort siehst du, welche App wie viel Akku verbraucht hat.",
      "mood": "happy",
-     "ev": "panel"
+     "ev": "bars",
+     "pop": [
+      "📊",
+      ""
+     ]
     },
     {
      "t": "Steht ganz oben eine App, die du kaum benutzt?",
      "mood": "shock",
-     "ev": "act"
+     "ev": "act",
+     "pop": [
+      "🤨",
+      "Kaum benutzt?"
+     ]
     },
     {
      "t": "Dann weißt du, wer schuld ist.",
      "mood": "angry",
-     "ev": "act2"
+     "ev": "act2",
+     "pop": [
+      "🚨",
+      "Erwischt"
+     ]
     }
    ],
    "quipAt": 6
@@ -140,31 +213,55 @@
     {
      "t": "Drittens: der Stromsparmodus.",
      "mood": "happy",
-     "ev": "panel"
+     "ev": "panel",
+     "pop": [
+      "🔋",
+      ""
+     ]
     },
     {
      "t": "Den musst du nicht erst bei zwanzig Prozent einschalten.",
-     "mood": "wink"
+     "mood": "wink",
+     "pop": [
+      "❌",
+      "Nicht erst bei 20 %"
+     ]
     },
     {
      "t": "Du kannst ihn jederzeit selbst aktivieren,",
      "mood": "happy",
-     "ev": "p1"
+     "ev": "p1",
+     "pop": [
+      "👍",
+      "Jederzeit"
+     ]
     },
     {
      "t": "unter Einstellungen, Batterie.",
      "mood": "happy",
-     "ev": "p2"
+     "ev": "p2",
+     "pop": [
+      "⚙️",
+      ""
+     ]
     },
     {
      "t": "Er drosselt die Hintergrundaktivität, bis du wieder lädst.",
      "mood": "cool",
-     "ev": "act"
+     "ev": "act",
+     "pop": [
+      "🐢",
+      "Drosselt"
+     ]
     },
     {
      "t": "Noch schneller geht es über das Kontrollzentrum.",
      "mood": "wink",
-     "ev": "act2"
+     "ev": "act2",
+     "pop": [
+      "⚡",
+      "Noch schneller"
+     ]
     }
    ],
    "quipAt": 4
@@ -196,12 +293,20 @@
     {
      "t": "Speicher dir das Video, damit du es wiederfindest.",
      "mood": "happy",
-     "ev": "save"
+     "ev": "save",
+     "pop": [
+      "🔖",
+      "Speichern"
+     ]
     },
     {
      "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
      "mood": "wink",
-     "ev": "follow"
+     "ev": "follow",
+     "pop": [
+      "➕",
+      "Folgen"
+     ]
     }
    ]
   }
