@@ -15,34 +15,23 @@
     {
      "t": "Warum wird dein Handy beim Laden warm?",
      "mood": "shock",
-     "ev": "mark",
-     "pop": [
-      "🔥",
-      ""
-     ]
+     "ev": "mark"
     },
     {
      "t": "Physik nie verstanden?",
-     "mood": "happy",
-     "pop": [
-      "🤯",
-      "Physik"
-     ]
+     "mood": "happy"
     },
     {
      "t": "Gib mir 60 Sekunden.",
      "mood": "wink",
-     "ev": "sticker",
-     "pop": [
-      "⏱️",
-      ""
-     ]
+     "ev": "sticker"
     },
     {
      "t": "Und wann du dir wirklich Sorgen machen solltest.",
      "mood": "cool"
     }
-   ]
+   ],
+   "world": "hotphone"
   },
   {
    "type": "tip",
@@ -60,17 +49,14 @@
     },
     "result": "Viel Strom = viel Wärme",
     "kind": "touch",
-    "big": true
+    "big": true,
+    "theme": "kupfer"
    },
    "lines": [
     {
      "t": "Erstens: Strom ist ein Gedränge.",
      "mood": "happy",
-     "ev": "panel",
-     "pop": [
-      "🚌",
-      ""
-     ]
+     "ev": "panel"
     },
     {
      "t": "Beim Laden schieben sich unzählige Elektronen durch Kabel und Leitungen.",
@@ -92,7 +78,8 @@
      "mood": "cool",
      "ev": "act"
     }
-   ]
+   ],
+   "world": "viz"
   },
   {
    "type": "tip",
@@ -110,17 +97,14 @@
     },
     "result": "Noch mehr Wärme",
     "kind": "touch",
-    "big": true
+    "big": true,
+    "theme": "akku"
    },
    "lines": [
     {
      "t": "Zweitens: Im Akku wird es eng.",
      "mood": "happy",
-     "ev": "panel",
-     "pop": [
-      "🔋",
-      ""
-     ]
+     "ev": "panel"
     },
     {
      "t": "Beim Laden wandern Lithium-Ionen von einer Seite auf die andere.",
@@ -142,7 +126,8 @@
      "mood": "shock",
      "ev": "act2"
     }
-   ]
+   ],
+   "world": "viz"
   },
   {
    "type": "tip",
@@ -173,7 +158,8 @@
     ],
     "result": "Nur warm? Hülle ab, kühl hinlegen",
     "kind": "touch",
-    "big": true
+    "big": true,
+    "theme": "alarm"
    },
    "lines": [
     {
@@ -211,7 +197,8 @@
      "mood": "cool",
      "ev": "act"
     }
-   ]
+   ],
+   "world": "viz"
   },
   {
    "type": "outro",
@@ -250,7 +237,9 @@
      "mood": "wink",
      "ev": "save"
     }
-   ]
+   ],
+   "world": "plain",
+   "theme": "alarm"
   }
  ]
 }

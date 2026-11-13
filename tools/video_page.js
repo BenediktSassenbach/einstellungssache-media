@@ -360,7 +360,7 @@ function draw(t) {
     h += '</div>';
     }
     const ph = showPop ? popAt(big ? 'right:-14px;bottom:-26px' : 'right:-16px;top:-150px') : '';
-    if (big) h += bigViz(sc.panel, ev, t, E, ph); else
+    if (big && !sc.world) h += bigViz(sc.panel, ev, t, E, ph); else if (big) {} else
     if (typeof sc.panel === 'string') h += legacyPanel(sc.panel, ev, t, E, ph);
     else if (sc.panel && sc.panel.kind === 'card') h += cardPanel(sc.panel, ev, t, E, ph);
     else if (sc.panel && sc.panel.kind === 'touch') h += touchPanel(sc.panel, ev, t, E, ph);
@@ -393,7 +393,7 @@ function draw(t) {
   performance_t = t; const m = document.getElementById('masc'); m.innerHTML = mascot(mood, open, blink, 300);
   m.style.transform = 'translate(' + (Math.sin(t * 1.1) * 10) + 'px,' + (Math.sin(t * 2.6) * 7 - (talking ? open * 5 : 0) - jump) + 'px) rotate(' + (Math.sin(t * 1.7) * 3 + spin) + 'deg)';
   // Pilot P005: Schalti bewegt sich durch die Welt und haelt Requisiten
-  const pose = sc.world && typeof WMASC !== 'undefined' && WMASC[sc.world] ? WMASC[sc.world](ev, t, lt) : null;
+  const pose = sc.world && typeof WMASC !== 'undefined' && WMASC[sc.world] ? WMASC[sc.world](ev, t, lt, sc) : null;
   if (pose) { const s0 = pose.s, hop = pose.walk ? Math.abs(Math.sin(t * 11)) * 22 * s0 : 0;
     m.style.left = (pose.f[0] - 150) + 'px'; m.style.top = (pose.f[1] - 225) + 'px'; m.style.transformOrigin = '50% 100%';
     m.style.transform = 'translate(0px,' + (-hop - jump * s0 + Math.sin(t * 2.6) * 4) + 'px) rotate(' + ((pose.r || 0) + spin + Math.sin(t * 1.7) * 3) + 'deg) scale(' + (pose.flip ? -s0 : s0) + ',' + s0 + ')';

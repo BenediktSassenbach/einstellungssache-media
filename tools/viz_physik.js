@@ -1,3 +1,4 @@
+let WMODE = false; // true, wenn eine Grafik als Vollbild-Welt gezeichnet wird (Schalti uebernimmt dann Figuren)
 // Weitere grosse Erklaer-Grafiken fuer die Physik-Serie (P002 bis P004). Flaeche 812 x 520.
 // Jede Funktion bekommt (p, ev, t, E, L) und liefert [svg, html].
 const lerp = (a, b, k) => a + (b - a) * k;
@@ -7,7 +8,7 @@ const vresB = (k, txt, style) => '<div class="vres" style="left:26px;bottom:26px
 // Zeigt nur das Etikett der zuletzt erreichten Stufe
 function stageChip(ev, L, order, x, y) { for (let i = order.length - 1; i >= 0; i--) { const n = order[i]; if (ev[n] !== undefined && L[n]) return vchip(ev, n, x, y, L[n], n === 'act2' || n === 'metall' || n === 'schief' || n === 'blaeh' ? 'red' : (n === 'act' ? 'hot' : '')); } return ''; }
 function aidCards(p, ev, t, E) {
-  let g = '<rect x="0" y="0" width="812" height="520" fill="#0B1020" opacity="' + (.8 * E('p1', .3)) + '"/>', o = '';
+  let g = WMODE ? '' : '<rect x="0" y="0" width="812" height="520" fill="#0B1020" opacity="' + (.8 * E('p1', .3)) + '"/>', o = '';
   (p.cards || []).forEach((c, i) => { const e = ev['p' + (i + 1)]; if (e === undefined) return; const cur = ev['p' + (i + 2)] === undefined && ev.act === undefined;
     o += '<div class="vcard' + (cur ? ' on' : '') + '" style="left:' + (28 + i * 262) + 'px;top:' + (ev.act !== undefined ? 40 : 130) + 'px;' + pop(cl(e / 0.35)) + '"><span style="transform:translateY(' + (-12 * Math.abs(Math.sin(e * 6))) + 'px)">' + c[0] + '</span><em>' + esc(c[1]) + '</em></div>'; });
   if (ev.act !== undefined) o += '<div class="vres" style="left:50%;bottom:40px;font-size:44px;translate:-50% 0;white-space:nowrap;' + pop(cl(ev.act / 0.35)) + 'rotate:' + (-3 + 2 * Math.sin(t * 6)) + 'deg">' + esc(p.result) + '</div>';
@@ -58,7 +59,7 @@ function vAkku(p, ev, t, E, L) {
 function vHeiss(p, ev, t, E, L) {
   let g = '', o = ''; const T = ev.panel === undefined ? 0 : ev.panel;
   if (ev.p1 !== undefined) { // Seitenansicht bleibt dunkel im Hintergrund
-    const r = aidCards(p, ev, t, E); g += sideBulge(1, t) + r[0]; return [g, r[1]];
+    const r = aidCards(p, ev, t, E); g += (WMODE ? '' : sideBulge(1, t)) + r[0]; return [g, r[1]];
   }
   if (ev.blaeh !== undefined) {
     const k = ease(ev.blaeh / 1.2); g += sideBulge(k, t);
@@ -101,10 +102,10 @@ function phoneSlab(cx, cy, col) { return '<ellipse cx="' + cx + '" cy="' + (cy +
 function vInduktion(p, ev, t, E, L) {
   let g = '', o = ''; const cx = 406, cy = 430, sgn = Math.sin(t * 4) >= 0 ? 1 : -1;
   const down = ev.p1 === undefined ? 0 : ease(ev.p1 / .8), lift = ev.act2 === undefined ? 0 : ease(ev.act2 / .8);
-  const py = lerp(-120, 250, down) - 170 * lift, fk = down * (1 - lift);
+  const py = lerp(WMODE ? 60 : -120, 250, down) - 170 * lift, fk = down * (1 - lift);
   g += pad(cx, cy) + coil(cx, cy, 50, 206, .26, '#E08A3C', 8) + coilDots(cx, cy, 50, 206, .26, t, sgn, '#FFE14D', 3);
   g += fieldLines(cx, cy - 8, Math.max(60, py - 80), 4, t, .35 + .65 * fk, sgn);
-  g += phoneSlab(cx, py) + coil(cx, py, 40, 144, .26, '#E08A3C', 6);
+  g += '<g opacity="' + (WMODE ? cl(down * 3) : 1) + '">' + phoneSlab(cx, py) + coil(cx, py, 40, 144, .26, '#E08A3C', 6) + '</g>';
   if (ev.p2 !== undefined && fk > .5) g += coilDots(cx, py, 40, 144, .26, t, -sgn, '#FFE14D', 2);
   const q = ev.p3 === undefined ? .3 : Math.min(1, .3 + (ev.act2 === undefined ? ev.p3 : 2) * .12);
   if (down > .9) { g += '<rect x="660" y="' + (py - 34) + '" width="100" height="56" rx="12" fill="#0B1020" stroke="#fff" stroke-width="5"/><rect x="668" y="' + (py - 26) + '" width="' + (84 * q) + '" height="40" rx="7" fill="#2ECC71"/>'; if (ev.p3 !== undefined && !lift) o += '<span class="vemo" style="left:690px;top:' + (py - 100 - 8 * Math.abs(Math.sin(t * 6))) + 'px;font-size:54px">⚡</span>'; }
@@ -114,7 +115,7 @@ function vInduktion(p, ev, t, E, L) {
 }
 function vQiFehler(p, ev, t, E, L) {
   let g = '', o = ''; const cx = 406, cy = 270;
-  if (ev.p1 !== undefined) { const r = aidCards(p, ev, t, E); g += topPad(cx, cy, 0, t) + r[0]; return [g, r[1]]; }
+  if (ev.p1 !== undefined) { const r = aidCards(p, ev, t, E); g += (WMODE ? '' : topPad(cx, cy, 0, t)) + r[0]; return [g, r[1]]; }
   const met = ev.metall !== undefined, sk = ev.schief === undefined ? 0 : ease(ev.schief / .7), off = met ? 0 : 230 * sk;
   g += topPad(cx, cy, 1, t);
   g += '<rect x="' + (cx - 120 + off) + '" y="' + (cy - 230) + '" width="240" height="460" rx="44" fill="#3A4A7A" stroke="#fff" stroke-width="7" opacity=".93"/>' + [40, 66, 92].map(r => '<circle cx="' + (cx + off) + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="#E08A3C" stroke-width="6"/>').join('');
@@ -158,7 +159,7 @@ function vStreuung(p, ev, t, E, L) {
     const pts = photonPath(i, blue, bounce), s = (t * (bounce ? .16 : .32) + rnd(i + 40)) % 1, a = along(pts, s), b = along(pts, Math.max(0, s - (bounce ? .025 : .05)));
     g += '<line x1="' + b[0] + '" y1="' + b[1] + '" x2="' + a[0] + '" y2="' + a[1] + '" stroke="' + col + '" stroke-width="9" stroke-linecap="round"/><circle cx="' + a[0] + '" cy="' + a[1] + '" r="9" fill="' + (blue ? '#BFE0FF' : '#fff') + '"/>';
   }
-  if (ev.act !== undefined) { const k = cl(ev.act / .4); for (let i = 0; i < 7; i++) { const a = Math.PI * (1.08 + .84 * i / 6), r = 170 + 10 * Math.sin(t * 5 + i); g += '<line x1="' + (406 + Math.cos(a) * r) + '" y1="' + (470 + Math.sin(a) * r) + '" x2="' + (406 + Math.cos(a) * 60) + '" y2="' + (470 + Math.sin(a) * 60) + '" stroke="#3B8BFF" stroke-width="9" stroke-linecap="round" opacity="' + k + '"/>'; } o += '<span class="vemo" style="left:366px;top:420px;font-size:80px;' + pop(k) + '">😎</span>'; }
+  if (ev.act !== undefined) { const k = cl(ev.act / .4); for (let i = 0; i < 7; i++) { const a = Math.PI * (1.08 + .84 * i / 6), r = 170 + 10 * Math.sin(t * 5 + i); g += '<line x1="' + (406 + Math.cos(a) * r) + '" y1="' + (470 + Math.sin(a) * r) + '" x2="' + (406 + Math.cos(a) * 60) + '" y2="' + (470 + Math.sin(a) * 60) + '" stroke="#3B8BFF" stroke-width="9" stroke-linecap="round" opacity="' + k + '"/>'; } if (!WMODE) o += '<span class="vemo" style="left:366px;top:420px;font-size:80px;' + pop(k) + '">😎</span>'; }
   if (ev.mit !== undefined && ev.p3 === undefined) g += lupe(ev, t);
   o += stageChip(ev, L, ['p1', 'mit', 'p2', 'p3'], 30, 30);
   if (ev.act !== undefined) o += '<div class="vres" style="right:26px;top:26px;' + pop(cl(ev.act / .35), 'right center') + '">' + esc(p.result) + '</div>';
@@ -185,7 +186,7 @@ function vAbend(p, ev, t, E, L) {
   g += '<line x1="' + sunP[0] + '" y1="' + sunP[1] + '" x2="' + ax + '" y2="' + ay + '" stroke="#fff" stroke-width="8" opacity=".7"/><line x1="' + ax + '" y1="' + ay + '" x2="' + ox + '" y2="' + oy + '" stroke="' + beam + '" stroke-width="' + (weg ? 16 + 3 * Math.sin(t * 6) : 12) + '" stroke-linecap="round"/>';
   if (bl) for (let i = 0; i < 16; i++) { const s = (t * .5 + rnd(i)) % 1, k = rnd(i + 3) * .9, bx = lerp(ax, ox, k), by = lerp(ay, oy, k), a = rnd(i + 8) * 6.283; g += '<circle cx="' + (bx + Math.cos(a) * 160 * s) + '" cy="' + (by + Math.sin(a) * 160 * s) + '" r="8" fill="#3B8BFF" opacity="' + bl * (1 - s) + '"/>'; }
   g += sun(sunP[0], sunP[1], 34, t, lc('#FFD93B', '#FF7A30', rot));
-  g += '<circle cx="' + ox + '" cy="' + (oy - 14) + '" r="14" fill="#fff"/><rect x="' + (ox - 8) + '" y="' + oy + '" width="16" height="10" fill="#fff"/>';
+  if (!WMODE) g += '<circle cx="' + ox + '" cy="' + (oy - 14) + '" r="14" fill="#fff"/><rect x="' + (ox - 8) + '" y="' + oy + '" width="16" height="10" fill="#fff"/>';
   if (weg) o += '<div class="vlab" style="left:' + Math.min(560, (ax + ox) / 2 - 60) + 'px;top:' + ((ay + oy) / 2 - 80) + 'px;' + pop(cl(ev.weg / .35)) + '">' + esc(L.weg) + '</div>';
   if (ev.act2 !== undefined) { const k = ease(ev.act2 / .6); [[180, 140], [560, 110]].forEach((c, i) => { g += '<g opacity="' + k + '" transform="translate(' + (c[0] + 10 * Math.sin(t + i)) + ' ' + c[1] + ')"><circle cx="0" cy="0" r="40" fill="#fff"/><circle cx="45" cy="-15" r="50" fill="#fff"/><circle cx="95" cy="5" r="38" fill="#fff"/><rect x="0" y="0" width="95" height="40" fill="#fff"/></g>'; }); o += '<div class="vlab" style="left:30px;bottom:26px;' + pop(cl(ev.act2 / .35), 'left center') + '">' + esc(L.act2) + '</div>'; }
   else { o += ev.tief === undefined ? '<div class="vlab" style="left:30px;top:30px">' + esc(L.mittag || 'Mittags: kurzer Weg') + '</div>' : stageChip(ev, L, ['tief', 'blau'], 30, 30); if (ev.act !== undefined) o += vresB(ev.act, p.result); }

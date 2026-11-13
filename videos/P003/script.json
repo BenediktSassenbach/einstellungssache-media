@@ -15,34 +15,23 @@
     {
      "t": "Wie kommt Strom ohne Kabel in dein Handy?",
      "mood": "shock",
-     "ev": "mark",
-     "pop": [
-      "🪄",
-      ""
-     ]
+     "ev": "mark"
     },
     {
      "t": "Physik nie verstanden?",
-     "mood": "happy",
-     "pop": [
-      "🤯",
-      "Physik"
-     ]
+     "mood": "happy"
     },
     {
      "t": "Gib mir 60 Sekunden.",
      "mood": "wink",
-     "ev": "sticker",
-     "pop": [
-      "⏱️",
-      ""
-     ]
+     "ev": "sticker"
     },
     {
      "t": "Und was du tust, wenn es plötzlich nicht mehr lädt.",
      "mood": "cool"
     }
-   ]
+   ],
+   "world": "padhook"
   },
   {
    "type": "tip",
@@ -60,17 +49,14 @@
     },
     "result": "Nur auf kurze Distanz",
     "kind": "touch",
-    "big": true
+    "big": true,
+    "theme": "magnet"
    },
    "lines": [
     {
      "t": "Erstens: In der Ladematte steckt eine Spule aus Kupferdraht.",
      "mood": "happy",
-     "ev": "panel",
-     "pop": [
-      "🌀",
-      ""
-     ]
+     "ev": "panel"
     },
     {
      "t": "Durch sie fließt Wechselstrom, also Strom, der ständig die Richtung wechselt.",
@@ -87,7 +73,8 @@
      "mood": "cool",
      "ev": "act"
     }
-   ]
+   ],
+   "world": "viz"
   },
   {
    "type": "tip",
@@ -106,17 +93,14 @@
     },
     "result": "Induktion",
     "kind": "touch",
-    "big": true
+    "big": true,
+    "theme": "magnet"
    },
    "lines": [
     {
      "t": "Zweitens: Im Handy sitzt eine zweite Spule.",
      "mood": "happy",
-     "ev": "panel",
-     "pop": [
-      "📱",
-      ""
-     ]
+     "ev": "panel"
     },
     {
      "t": "Legst du das Handy auf, geht das kippende Magnetfeld durch diese Spule.",
@@ -143,7 +127,8 @@
      "mood": "angry",
      "ev": "act2"
     }
-   ]
+   ],
+   "world": "viz"
   },
   {
    "type": "tip",
@@ -174,7 +159,8 @@
     ],
     "result": "Sonst: prüfen lassen",
     "kind": "touch",
-    "big": true
+    "big": true,
+    "theme": "magnet"
    },
    "lines": [
     {
@@ -212,7 +198,8 @@
      "mood": "cool",
      "ev": "act"
     }
-   ]
+   ],
+   "world": "viz"
   },
   {
    "type": "outro",
@@ -251,7 +238,9 @@
      "mood": "wink",
      "ev": "save"
     }
-   ]
+   ],
+   "world": "plain",
+   "theme": "magnet"
   }
  ]
 }

@@ -15,34 +15,23 @@
     {
      "t": "Warum ist der Himmel eigentlich blau?",
      "mood": "shock",
-     "ev": "mark",
-     "pop": [
-      "🌤️",
-      ""
-     ]
+     "ev": "mark"
     },
     {
      "t": "Physik nie verstanden?",
-     "mood": "happy",
-     "pop": [
-      "🤯",
-      "Physik"
-     ]
+     "mood": "happy"
     },
     {
      "t": "Gib mir 60 Sekunden.",
      "mood": "wink",
-     "ev": "sticker",
-     "pop": [
-      "⏱️",
-      ""
-     ]
+     "ev": "sticker"
     },
     {
      "t": "Und warum wird er abends rot?",
      "mood": "cool"
     }
-   ]
+   ],
+   "world": "skyhook"
   },
   {
    "type": "tip",
@@ -60,26 +49,19 @@
     },
     "result": "Kurz = Blau",
     "kind": "touch",
-    "big": true
+    "big": true,
+    "theme": "licht"
    },
    "lines": [
     {
      "t": "Erstens: Sonnenlicht ist gar nicht einfach weiß.",
      "mood": "happy",
-     "ev": "panel",
-     "pop": [
-      "☀️",
-      ""
-     ]
+     "ev": "panel"
     },
     {
      "t": "Es ist eine Mischung aus allen Farben.",
      "mood": "happy",
-     "ev": "p1",
-     "pop": [
-      "🌈",
-      ""
-     ]
+     "ev": "p1"
     },
     {
      "t": "Rotes Licht schwingt in langen Wellen,",
@@ -96,7 +78,8 @@
      "mood": "cool",
      "ev": "act"
     }
-   ]
+   ],
+   "world": "viz"
   },
   {
    "type": "tip",
@@ -115,7 +98,9 @@
     },
     "result": "Himmel = Blau",
     "kind": "touch",
-    "big": true
+    "big": true,
+    "theme": "himmel",
+    "window": true
    },
    "lines": [
     {
@@ -148,7 +133,8 @@
      "mood": "cool",
      "ev": "act"
     }
-   ]
+   ],
+   "world": "viz"
   },
   {
    "type": "tip",
@@ -168,17 +154,15 @@
     },
     "result": "Übrig: Orange und Rot",
     "kind": "touch",
-    "big": true
+    "big": true,
+    "theme": "abend",
+    "window": true
    },
    "lines": [
     {
      "t": "Drittens: Und warum ist der Sonnenuntergang rot?",
      "mood": "happy",
-     "ev": "panel",
-     "pop": [
-      "🌅",
-      ""
-     ]
+     "ev": "panel"
     },
     {
      "t": "Abends steht die Sonne tief.",
@@ -205,7 +189,8 @@
      "mood": "happy",
      "ev": "act2"
     }
-   ]
+   ],
+   "world": "viz"
   },
   {
    "type": "outro",
@@ -244,7 +229,9 @@
      "mood": "wink",
      "ev": "save"
     }
-   ]
+   ],
+   "world": "plain",
+   "theme": "himmel"
   }
  ]
 }
