@@ -1,0 +1,220 @@
+{
+ "id": "P005",
+ "titel": "Wie funktioniert GPS?",
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "quelle": "gps.gov (Höhe 20.200 km, zweimal am Tag um die Erde, Atomuhren), NOAA (über 30 Satelliten), ESA Navipedia (mindestens 4 von überall in Sicht), ESA und DLR (Laufzeit, mindestens vier Satelliten; 1 Millisekunde Uhrfehler = 300 km), SRF Einstein (Lichtgeschwindigkeit, Satellitenuhren rund 40 Mikrosekunden pro Tag schneller, Uhren entsprechend langsamer eingestellt), wissenschaft.de (Gravitation schwächer, Uhren schneller, ohne Korrektur rund 11 km pro Tag), FH Wedel und TU Wien (vierter Satellit für die Empfängeruhr). Rechnung 20.200 km / 300.000 km/s = 0,067 s selbst gerechnet.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Woher weiß dein Handy, wo du *bist*?",
+   "emoji": "🛰️",
+   "world": "zoom",
+   "lines": [
+    {
+     "t": "Woher weiß dein Handy eigentlich, wo du bist?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und warum dein Navi ohne Einstein kilometerweit danebenliegen würde.",
+     "mood": "cool"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Über 30 Satelliten",
+   "quip": "Ganz schön voll da oben.",
+   "quipAt": 2,
+   "path": [],
+   "world": "orbit",
+   "lines": [
+    {
+     "t": "Erstens: Über dir kreisen mehr als 30 GPS-Satelliten.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Sie fliegen in rund 20.200 Kilometern Höhe,",
+     "mood": "happy",
+     "ev": "hoehe"
+    },
+    {
+     "t": "und jeder umrundet die Erde zweimal am Tag.",
+     "mood": "shock",
+     "ev": "runde"
+    },
+    {
+     "t": "Sie sind so verteilt, dass fast überall mindestens vier gleichzeitig am Himmel stehen.",
+     "mood": "happy",
+     "ev": "vier"
+    },
+    {
+     "t": "Und jeder hat Atomuhren an Bord.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Funk mit Lichtspeed",
+   "quip": "Schneller als jeder Lieferdienst.",
+   "quipAt": 2,
+   "path": [],
+   "world": "signal",
+   "lines": [
+    {
+     "t": "Zweitens: Jeder Satellit funkt ständig seine Position und die genaue Uhrzeit.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Das Signal rast mit Lichtgeschwindigkeit zu dir, rund 300.000 Kilometer pro Sekunde.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Dein Handy misst, wie lange es unterwegs war.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Laufzeit mal Lichtgeschwindigkeit ergibt den Abstand zum Satelliten.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Schon eine tausendstel Sekunde Fehler macht 300 Kilometer aus.",
+     "mood": "angry",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Kreise schneiden",
+   "quip": "Geometrie, aber cool.",
+   "quipAt": 2,
+   "path": [],
+   "world": "kreise",
+   "lines": [
+    {
+     "t": "Drittens: Ein Abstand allein reicht nicht.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Mit einem Satelliten weiß dein Handy nur: Ich bin irgendwo auf diesem Kreis.",
+     "mood": "happy",
+     "ev": "k1"
+    },
+    {
+     "t": "Mit einem zweiten bleiben zwei mögliche Punkte.",
+     "mood": "happy",
+     "ev": "k2"
+    },
+    {
+     "t": "Mit dem dritten nur noch einer.",
+     "mood": "happy",
+     "ev": "k3"
+    },
+    {
+     "t": "Aber die Uhr in deinem Handy ist ungenau. Der vierte Satellit gleicht das aus. Deshalb braucht es mindestens vier.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "4",
+   "title": "Einstein fährt mit",
+   "quip": "Zeit ist relativ, Bro.",
+   "quipAt": 3,
+   "path": [],
+   "world": "einstein",
+   "lines": [
+    {
+     "t": "Und jetzt wird's verrückt: Die Uhren in den Satelliten laufen schneller als deine.",
+     "mood": "shock",
+     "ev": "panel"
+    },
+    {
+     "t": "Da oben ist die Schwerkraft schwächer, und dadurch vergeht die Zeit schneller.",
+     "mood": "happy",
+     "ev": "grav"
+    },
+    {
+     "t": "Das hat Einstein vorhergesagt: fast 40 Millionstel Sekunden pro Tag.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Ohne Korrektur läge dein Navi jeden Tag rund elf Kilometer weiter daneben.",
+     "mood": "angry",
+     "ev": "drift"
+    },
+    {
+     "t": "Darum sind die Satellitenuhren extra etwas langsamer eingestellt.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "checks": [
+    "Satelliten funken Ort + Zeit",
+    "4 Laufzeiten = dein Punkt",
+    "Ohne Einstein 11 km daneben"
+   ],
+   "lines": [
+    {
+     "t": "Also: Satelliten funken Position und Uhrzeit,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "aus der Laufzeit von mindestens vier Signalen berechnet dein Handy, wo du bist,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und ohne Einstein läge es jeden Tag kilometerweit daneben.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ],
+   "world": "outro"
+  }
+ ]
+}

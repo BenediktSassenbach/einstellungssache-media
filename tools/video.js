@@ -32,10 +32,10 @@ S.total = t;
 
 // ---- Seite: CSS und Zeichencode liegen in video_page.css und video_page.js
 const page = '<!doctype html><meta charset="utf-8"><style>' + fs.readFileSync(path.join(__dirname, 'video_page.css'), 'utf8') + '</style><body>'
-  + '<div class="blob b1"></div><div class="blob b2"></div><div id="fx"></div>'
+  + '<div class="blob b1"></div><div class="blob b2"></div><div id="fx"></div><div id="world"></div>'
   + '<div class="brand"><span class="tg"><i></i></span>Einstellungssache' + (S.serie ? '<em>' + S.serie + '</em>' : '') + '</div><div class="prog"><i id="pg"></i></div>'
   + '<div id="stage"></div><div id="wipe"></div><div id="cap"></div><div id="masc"></div><div id="bub"></div>'
-  + '<script>const S=' + JSON.stringify(S).replace(/</g, '\\u003c') + ';\n' + fs.readFileSync(path.join(__dirname, 'video_page.js'), 'utf8') + '\n' + (fs.existsSync(path.join(__dirname, 'viz_physik.js')) ? fs.readFileSync(path.join(__dirname, 'viz_physik.js'), 'utf8') : '') + '</script></body>';
+  + '<script>const S=' + JSON.stringify(S).replace(/</g, '\\u003c') + ';\n' + fs.readFileSync(path.join(__dirname, 'video_page.js'), 'utf8') + '\n' + fs.readdirSync(__dirname).filter(f => /^viz_.*\.js$/.test(f)).sort((x, y) => (x === 'viz_physik.js' ? -1 : y === 'viz_physik.js' ? 1 : x.localeCompare(y))).map(f => fs.readFileSync(path.join(__dirname, f), 'utf8')).join('\n') + '</script></body>';
 
 function ff(a) { return new Promise((res, rej) => { const p = spawn('ffmpeg', a, { stdio: ['pipe', 'ignore', 'pipe'] }); let e = ''; p.stderr.on('data', d => e += d); p.on('close', c => c === 0 ? res() : rej(new Error(e.slice(-600)))); ff.last = p; }); }
 (async () => {

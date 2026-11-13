@@ -314,6 +314,10 @@ function draw(t) {
     f += i % 3 === 0 ? '<b style="position:absolute;left:' + x + 'px;top:' + y + 'px;font-size:' + (sz * 2.2) + 'px;font-weight:900;color:#22305A;transform:rotate(' + (t * 50 * (rnd(i) - .5)) + 'deg)">+</b>' : '<i style="position:absolute;left:' + x + 'px;top:' + y + 'px;width:' + sz + 'px;height:' + sz + 'px;border-radius:50%;background:#1B2748"></i>';
   }
   document.getElementById('fx').innerHTML = f;
+  // Vollbild-Welt (Pilot P005): ersetzt den Standard-Hintergrund
+  const wd = document.getElementById('world'), hasW = sc.world && typeof WORLD !== 'undefined' && WORLD[sc.world];
+  wd.innerHTML = hasW ? WORLD[sc.world](sc, ev, t, lt, (n, d = 0.45) => ev[n] === undefined ? 0 : cl(ev[n] / d)) : '';
+  document.querySelector('.b1').style.display = document.querySelector('.b2').style.display = document.getElementById('fx').style.display = hasW ? 'none' : '';
   // Szenenwechsel: Akzentflaeche wischt weg
   const wp = document.getElementById('wipe'); if (si > 0 && lt < 0.42) { const k = ease(lt / 0.42); wp.style.display = 'block'; wp.style.transform = 'translateX(' + (k * 135) + '%) skewX(-12deg)'; } else wp.style.display = 'none';
 
@@ -330,7 +334,7 @@ function draw(t) {
       const inner = m ? (E('mark') ? '<b style="transform:rotate(-2deg) scale(' + (1 + 0.35 * (1 - ease(ev.mark / 0.4))) + ')">' + core + '</b>' + tail : x) : x;
       return '<span style="display:inline-block;opacity:' + cl(k * 3) + ';transform:scale(' + (0.4 + 0.6 * back(k)) + ')">' + inner + '</span>';
     }).join(' ') + '</h1>';
-    if (!sc.emoji) { // Akku-Visual aus V001
+    if (sc.world) {} else if (!sc.emoji) { // Akku-Visual aus V001
       const dr = ev.drain === undefined ? 100 : Math.round(100 - 88 * ease(ev.drain / 1.5)); const low = dr <= 25;
       const col = dr > 40 ? '#F4F6FB' : (dr > 20 ? A : '#FF5A5A');
       h += '<div style="position:absolute;left:0;top:340px;display:flex;align-items:center;gap:30px;' + rise(k0 - 0.3) + (low ? 'transform:translate(' + (Math.sin(t * 55) * 5) + 'px,' + (Math.cos(t * 47) * 3) + 'px);' : '') + '"><svg width="380" height="180" viewBox="0 0 420 200" style="' + (low ? 'filter:drop-shadow(0 0 ' + (14 + 12 * Math.sin(t * 9)) + 'px #FF5A5A)' : '') + '"><rect x="6" y="6" width="370" height="188" rx="44" fill="none" stroke="#F4F6FB" stroke-width="12"/><rect x="386" y="66" width="26" height="68" rx="10" fill="#F4F6FB"/><rect x="28" y="28" width="' + (326 * dr / 100) + '" height="144" rx="26" fill="' + col + '"/></svg><div style="font-size:136px;font-weight:900;letter-spacing:-.04em;color:' + col + ';transform:scale(' + (low ? 1 + 0.05 * Math.sin(t * 10) : 1) + ')">' + dr + ' %</div></div>';
