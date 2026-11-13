@@ -55,8 +55,8 @@ WORLD.p4streu = function (sc, ev, t, lt) {
   if (zoom) { const k = ease(cl(ev.p1 / .8)), R = 110 * k; s += waveP(60, 400, 905, 40, 120, t * 9, '#FFE14D', 8, k);
     s += atom(560, 905, Math.max(1, R), 1.2, 30 * k, ev.p2 !== undefined ? 300 * cl(ev.p2 / .6) : 0, '#FFE14D');
     if (ev.p2 !== undefined) for (let i = 0; i < 8; i++) { const a = i * .785 + .3, c = (t * .8 + i * .13) % 1, r = 150 + 140 * c; s += '<line x1="' + (560 + r * Math.cos(a)) + '" y1="' + (905 + r * .75 * Math.sin(a)) + '" x2="' + (560 + (r + 40) * Math.cos(a)) + '" y2="' + (905 + (r + 40) * .75 * Math.sin(a)) + '" stroke="#FFE14D" stroke-width="8" stroke-linecap="round" opacity="' + (1 - c) + '"/>'; } }
-  if (two) { s += svgT(80, 800, 'Rot', 38, '#FF5A5A', 'start') + waveP(170, 430, 790, 32, 140, t * 5, '#FF3B3B', 7) + atom(600, 790, 60, .6, 14, 50, '#FF8A8A');
-    s += svgT(80, 1035, 'Blau', 38, '#3BB8FF', 'start') + waveP(190, 430, 1025, 32, 90, t * 12, '#3B8BFF', 7) + atom(600, 1030, 60, 1.4, 24, 160, '#3BB8FF'); }
+  if (two) { s += svgT(80, 785, 'Rot', 38, '#FF5A5A', 'start') + waveP(170, 430, 775, 32, 140, t * 5, '#FF3B3B', 7) + atom(600, 775, 60, .6, 14, 45, '#FF8A8A');
+    s += svgT(80, 1050, 'Blau', 38, '#3BB8FF', 'start') + waveP(190, 430, 1040, 32, 90, t * 12, '#3B8BFF', 7) + atom(600, 1040, 60, 1.4, 24, 105, '#3BB8FF'); }
   h += slot(ev, [['panel', 'Luft: Stickstoff + Sauerstoff'], ['p1', 'Licht bringt Ladungen zum Schwingen'], ['p2', 'Streuung: in alle Richtungen', 'hot'], ['p3', 'Schneller = stärker gestreut', 'hot'], ['act', 'Von überall kommt Blau', 'hot']], 600);
   return W(s + topShade(), h);
 };
@@ -126,3 +126,11 @@ WORLD.p4outro = function (sc, ev, t) {
   s += '<path d="M0 1120 Q 540 1060 1080 1120 L1080 1920 L0 1920 Z" fill="#123A2A"/>';
   return W(s + topShade());
 };
+
+// ---------- v5: Teil 1 kombiniert (Licht ist gemischt + Luft streut Blau) ----------
+const p4map = ev => { const m = {}; const e = ev.panel, w = ev.wellen, st = ev.streu, a = ev.act;
+  if (st !== undefined || a !== undefined) { if (st !== undefined) m.p3 = st; if (a !== undefined) m.act = a; return ['s', m]; }
+  if (w !== undefined) { m.p2 = w; m.p3 = Math.max(0, w - .001); return ['l', m]; }
+  if (e !== undefined) { m.panel = e; if (e > .9) m.p1 = e - .9; } return ['l', m]; };
+WORLD.p4mix = function (sc, ev, t, lt) { const r = p4map(ev); return r[0] === 's' ? WORLD.p4streu(sc, r[1], t, lt) : WORLD.p4licht(sc, r[1], t, lt); };
+WMASC.p4mix = (ev, t, lt, sc) => { const r = p4map(ev); return r[0] === 's' ? WMASC.p4streu(r[1], t) : WMASC.p4licht(r[1], t); };
