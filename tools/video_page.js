@@ -400,6 +400,6 @@ function draw(t) {
     if (pose.prop) m.innerHTML += '<span style="position:absolute;left:-46px;top:-40px;font-size:100px;line-height:1;font-family:Noto Color Emoji;transform:scale(' + (pose.flip ? -1 : 1) + ',1) rotate(' + (10 * Math.sin(t * 4)) + 'deg)">' + pose.prop + '</span>';
   } else { m.style.left = '70px'; m.style.top = '1312px'; m.style.transformOrigin = ''; }
   const b = document.getElementById('bub'); const q = sc.quip;
-  if (pose) { b.style.left = '120px'; b.style.top = '1340px'; } // Sprechblase unten im freien Bereich, damit sie nichts verdeckt else { b.style.left = ''; b.style.top = ''; } const qs = sc.lines[Math.min(sc.quipAt || 1, sc.lines.length - 1)].start;
+  if (pose) { b.style.left = '120px'; b.style.top = '1340px'; } /* Sprechblase unten im freien Bereich */ else { b.style.left = ''; b.style.top = ''; } const qs = sc.lines[Math.min(sc.quipAt || 1, sc.lines.length - 1)].start;
   if (q && t >= qs) { b.style.display = 'block'; b.textContent = q; b.style.transform = 'rotate(' + (3 + 2 * Math.sin(t * 4)) + 'deg) scale(' + (0.5 + 0.5 * back((t - qs) / 0.35)) + ')'; b.style.opacity = cl((t - qs) / 0.15); } else b.style.display = 'none';
 }
