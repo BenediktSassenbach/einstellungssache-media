@@ -194,9 +194,13 @@
     "title": "Wenn es knackt",
     "frage": "Der Schaden",
     "labels": {
-     "crack": "Nur das Glas: Touch geht oft noch",
-     "ghost": "Gitter defekt: Geistertipper",
-     "tot": "tote Zone"
+     "hit": "Runtergefallen",
+     "glas": "Glas: gerissen",
+     "heil": "Gitter heil",
+     "crack": "Touch geht oft noch",
+     "defekt": "Gitter defekt",
+     "tot": "Keine Reaktion",
+     "ghost": "Tippt von allein"
     },
     "result": "Backup + Reparatur",
     "big": true,
@@ -219,11 +223,7 @@
     {
      "t": "Drittens: Was, wenn das Display kaputt ist?",
      "mood": "shock",
-     "ev": "panel",
-     "pop": [
-      "💥",
-      ""
-     ]
+     "ev": "panel"
     },
     {
      "t": "Ein Riss im Glas ist oft nur Optik, das Gitter liegt ja darunter.",

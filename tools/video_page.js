@@ -160,11 +160,75 @@ function touchPanel(p, ev, t, E, popHtml) {
     : '<div class="cres" style="opacity:' + (0.55 + 0.25 * Math.sin(t * 4)) + '"><em>' + esc(p.frage || 'Was passiert?') + '</em>' + '•'.repeat(1 + Math.floor(t * 3) % 3) + '</div>';
   return '<div class="panel" style="' + rise(E('panel', 0.5)) + '"><div class="ph"><span>' + esc(p.title || 'Im Display') + '</span><span>' + esc(p.tag || 'Schema') + '</span></div><div class="card" style="gap:36px"><div class="tbox" style="transform:translateX(' + shk + 'px)"><svg width="400" height="228" viewBox="0 0 400 228"><rect x="10" y="8" width="380" height="212" rx="26" fill="#0B1020"/>' + g + '</svg>' + over + '</div>' + res + '</div>' + popHtml + '</div>';
 }
+// Teil "Display kaputt": Sturz, dann Schichten (Glas gerissen, Gitter heil), dann Gitter defekt, dann Erste Hilfe
+function kaputtViz(p, ev, t, E) {
+  let g = '', over = ''; const L = p.labels || {}, T = ev.panel === undefined ? 0 : ev.panel, HIT = 1.25;
+  const aid = ev.p1 !== undefined, lay2 = ev.crack !== undefined, brk = ev.ghost !== undefined;
+  const cracksUV = [[[.42, .45], [.3, .3], [.2, .34], [.05, .08]], [[.42, .45], [.52, .25], [.56, .02]], [[.42, .45], [.6, .6], [.66, .8], [.9, .97]], [[.42, .45], [.32, .7], [.36, .84], [.2, .98]], [[.42, .45], [.68, .42], [.8, .2], [.98, .3]], [[.42, .45], [.2, .55], [.03, .7]]];
+  if (!lay2) { // Phase 1: Handy faellt und schlaegt auf
+    const k = cl((T - 0.35) / (HIT - 0.35)), y = -420 + 500 * k * k, rot = -28 + 34 * k, hit = T - HIT;
+    const sq = hit > 0 && hit < 0.25 ? 1 - 0.12 * Math.sin(Math.PI * hit / 0.25) : 1;
+    let ph = '<rect x="-110" y="0" width="220" height="400" rx="34" fill="#0B1020" stroke="#F4F6FB" stroke-width="10"/>'; const cols = ['#FF7A59', '#7C5CFF', '#3DB8FF', '#2ECC71', '#FFCC00', '#FF5A8A'];
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 5; j++) ph += '<rect x="' + (-84 + i * 60) + '" y="' + (34 + j * 68) + '" width="46" height="46" rx="12" fill="' + cols[(i + j * 2) % 6] + '"/>';
+    if (hit > 0) { const kk = cl(hit / 0.3); for (const c of cracksUV) ph += '<polyline points="' + c.map(q => (-110 + q[0] * 220) + ',' + (q[1] * 400)).join(' ') + '" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round" pathLength="1" stroke-dasharray="' + kk + ' 1"/>'; }
+    g += '<ellipse cx="406" cy="500" rx="' + (60 + 130 * k) + '" ry="14" fill="#0B1020" opacity="' + (.3 + .5 * k) + '"/><g transform="translate(406 ' + (y + (hit > 0 ? 0 : 0)) + ') rotate(' + (hit > 0 ? 6 + 3 * Math.sin(hit * 20) * Math.exp(-hit * 4) : rot) + ' 0 400) scale(1 ' + sq + ')">' + ph + '</g>';
+    if (k < 1 && T > 0.35) for (let i = 0; i < 4; i++) g += '<line x1="' + (300 + i * 70) + '" y1="' + (y - 20 - i * 14) + '" x2="' + (300 + i * 70) + '" y2="' + (y - 110 - i * 20) + '" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".5"/>';
+    if (hit > 0) {
+      if (hit < 0.9) for (let i = 0; i < 16; i++) { const a = -Math.PI * (0.08 + 0.84 * rnd(i + 3)), v = 260 + 420 * rnd(i + 11), x = 406 + Math.cos(a) * v * hit, yy = 440 + Math.sin(a) * v * hit + 700 * hit * hit, sz = 10 + 16 * rnd(i); g += '<polygon points="' + x + ',' + yy + ' ' + (x + sz) + ',' + (yy + sz * .4) + ' ' + (x + sz * .3) + ',' + (yy + sz) + '" fill="#fff" opacity="' + cl(1.4 - hit * 1.5) + '" transform="rotate(' + (hit * 600 * (rnd(i) - .5)) + ' ' + x + ' ' + yy + ')"/>'; }
+      if (hit < 0.35) g += '<rect x="0" y="0" width="812" height="520" fill="#fff" opacity="' + (.7 * (1 - hit / 0.35)) + '"/>';
+      over += '<span class="vemo" style="left:560px;top:250px;font-size:170px;transform:scale(' + back(cl(hit / 0.3)) + ') rotate(' + (8 * Math.sin(t * 6)) + 'deg)">💥</span><div class="vlab red" style="left:30px;top:30px;font-size:44px;' + pop(cl(hit / 0.3), 'left center') + '">' + esc(L.hit || 'Autsch') + '</div>';
+    }
+    return [g, over];
+  }
+  // Phase 2 und 3: Schichten
+  const lay = oy => (u, v) => [62 + u * 370 + v * 165, 262 + oy - u * 105 + v * 108];
+  const poly = (f, pts) => pts.map(q => f(q[0], q[1]).map(n => n.toFixed(1)).join(',')).join(' '), sq = [[0, 0], [1, 0], [1, 1], [0, 1]];
+  const slab = (oy, fill, stroke, sw) => '<polygon points="' + poly(lay(oy + 14), sq) + '" fill="' + stroke + '" opacity=".4"/><polygon points="' + poly(lay(oy), sq) + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '" stroke-linejoin="round"/>';
+  const k = ease(cl(ev.crack / 0.6)), oD = 46 + 118 * k, oG = 40, oT = 34 - 118 * k + 5 * Math.sin(t * 2.2), B = 0.56, bk = brk ? cl(ev.ghost / 0.35) : 0;
+  const fd = lay(oD), fg = lay(oG), ft = lay(oT), cols = ['#FF7A59', '#7C5CFF', '#3DB8FF', '#2ECC71', '#FFCC00', '#FF5A8A'];
+  g += slab(oD, '#1B2748', '#3A4A7A', 5);
+  for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) { const u = .1 + i * .22, v = .12 + j * .28; g += '<polygon points="' + poly(fd, [[u, v], [u + .14, v], [u + .14, v + .19], [u, v + .19]]) + '" fill="' + cols[(i + j * 2) % 6] + '"/>'; }
+  g += slab(oG, 'rgba(92,225,255,.13)', A, 4);
+  if (bk) g += '<polygon points="' + poly(fg, [[B, 0], [1, 0], [1, 1], [B, 1]]) + '" fill="#FF5A5A" opacity="' + (.22 * bk + .08 * Math.sin(t * 12)) + '"/>';
+  for (let i = 1; i < 8; i++) { const u = i / 8, off = bk && u > B, a = fg(u, 0), b = fg(u, 1); g += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="' + (off ? '#56618A' : A) + '" stroke-width="4"' + (off ? ' stroke-dasharray="10 12"' : '') + '/>'; if (!off) { const c = fg(u, (t * .4 + rnd(i)) % 1); g += '<circle cx="' + c[0] + '" cy="' + c[1] + '" r="7" fill="#fff"/>'; } }
+  for (let j = 1; j < 5; j++) { const v = j / 5, a = fg(0, v), m = fg(bk ? B : 1, v), b = fg(1, v); g += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + m[0] + '" y2="' + m[1] + '" stroke="' + A + '" stroke-width="4"/>'; if (bk) g += '<line x1="' + m[0] + '" y1="' + m[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="#56618A" stroke-width="4" stroke-dasharray="10 12"/>'; const c = fg((bk ? B : 1) * ((t * .3 + rnd(j + 30)) % 1), v); g += '<circle cx="' + c[0] + '" cy="' + c[1] + '" r="7" fill="#fff"/>'; }
+  if (bk) { // Bruchkante im Gitter mit Funken
+    const zz = []; for (let n = 0; n <= 8; n++) zz.push([B + (n % 2 ? .035 : -.035), n / 8]);
+    g += '<polyline points="' + poly(fg, zz) + '" fill="none" stroke="#FF5A5A" stroke-width="8" stroke-linejoin="round" pathLength="1" stroke-dasharray="' + bk + ' 1"/>';
+    for (let n = 0; n < 3; n++) { const q = fg(B, .15 + .35 * n), on = Math.sin(t * 23 + n * 2.1) > 0.2; if (on) over += '<span class="vemo" style="left:' + (q[0] - 22) + 'px;top:' + (q[1] - 50) + 'px;font-size:46px">⚡</span>'; }
+  }
+  // Glas mit Rissen
+  g += slab(oT, 'rgba(255,255,255,.26)', '#fff', 5);
+  for (const c of cracksUV) g += '<polyline points="' + poly(ft, c) + '" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>';
+  const ell = (q, c, col) => '<ellipse cx="' + q[0] + '" cy="' + q[1] + '" rx="' + (14 + c * 90) + '" ry="' + (6 + c * 38) + '" fill="none" stroke="' + col + '" stroke-width="7" opacity="' + (1 - c) + '"/>';
+  const fing = (q, press) => '<span class="vemo" style="left:' + (q[0] - 50) + 'px;top:' + (q[1] - 6 + (press ? 0 : 26)) + 'px;font-size:118px;transform:scale(' + (press ? .9 : 1) + ')">👆</span>';
+  const pt = ft(1, .45), pgl = fg(1, .55);
+  if (!aid) {
+    over += '<div class="vlab" style="left:' + (pt[0] + 30) + 'px;top:' + (pt[1] - 26) + 'px;' + pop(cl((ev.crack - .4) / 0.3), 'left center') + '">' + esc(L.glas || 'Glas: gerissen') + '</div>';
+    if (!brk) { // Gitter heil: Finger tippt, es reagiert
+      const e = ev.crack - 0.9; if (e > 0) { const c = (e % 1.3) / 1.3, q = fg(.45, .5); g += ell(q, cl(c / .7), A) + ell(q, cl((c - .2) / .7), A); over += fing(q, c < .18); }
+      over += '<div class="vlab hot" style="left:' + (pgl[0] + 30) + 'px;top:' + (pgl[1] - 4) + 'px;' + pop(cl((ev.crack - .9) / 0.3), 'left center') + '">✓ ' + esc(L.heil || 'Gitter heil') + '</div><div class="vres" style="left:26px;bottom:26px;' + pop(cl((ev.crack - 1.5) / 0.35), 'left center') + '">' + esc(L.crack) + '</div>';
+    } else { // Gitter defekt: tote Zone ohne Reaktion, Geistertipper im Rest
+      over += '<div class="vlab red" style="right:18px;top:' + (pgl[1] + 2) + 'px;' + pop(bk, 'right center') + '">✗ ' + esc(L.defekt || 'Gitter defekt') + '</div>';
+      const e = ev.ghost - 0.5; if (e > 0) { const n = Math.floor(e / 1.5), c = (e % 1.5) / 1.5;
+        if (n % 2 === 0) { const q = fg(.8, .5); over += fing(q, c < .2 || (c > .4 && c < .6)); if (c > .25) { g += '<path d="M' + (q[0] - 34) + ' ' + (q[1] - 30) + ' l68 60 m0 -60 l-68 60" stroke="#FF5A5A" stroke-width="14" stroke-linecap="round"/>'; } over += '<div class="vres" style="left:26px;bottom:26px;background:#FF5A5A;color:#fff;' + pop(cl(c / .25), 'left center') + '">' + esc(L.tot || 'Keine Reaktion') + '</div>'; }
+        else { const q = fg(.12 + .3 * rnd(n + 4), .2 + .6 * rnd(n + 8)); g += ell(q, cl(c / .7), '#FF5A5A') + ell(q, cl((c - .25) / .7), '#FF5A5A'); over += '<span class="vemo" style="left:' + (q[0] - 50) + 'px;top:' + (q[1] - 96 - 10 * Math.sin(t * 7)) + 'px;font-size:100px;transform:scale(' + back(cl(c / .25)) + ')">👻</span><div class="vres" style="left:26px;bottom:26px;background:#FF5A5A;color:#fff;' + pop(cl(c / .25), 'left center') + '">' + esc(L.ghost || 'Tippt von allein') + '</div>'; }
+      }
+    }
+  } else {
+    g += '<rect x="0" y="0" width="812" height="520" fill="#0B1020" opacity="' + (.78 * E('p1', .3)) + '"/>';
+    (p.cards || []).forEach((c, i) => { const e = ev['p' + (i + 1)]; if (e === undefined) return; const cur = ev['p' + (i + 2)] === undefined && ev.act === undefined;
+      over += '<div class="vcard' + (cur ? ' on' : '') + '" style="left:' + (28 + i * 262) + 'px;top:' + (ev.act !== undefined ? 40 : 130) + 'px;' + pop(cl(e / 0.35)) + '"><span style="transform:' + (i === 0 ? 'rotate(' + (e * 300) + 'deg)' : 'translateY(' + (-12 * Math.abs(Math.sin(e * 6))) + 'px)') + '">' + c[0] + '</span><em>' + esc(c[1]) + '</em></div>'; });
+    if (ev.act !== undefined) over += '<div class="vres" style="left:50%;bottom:44px;font-size:52px;translate:-50% 0;white-space:nowrap;' + pop(cl(ev.act / 0.35)) + 'rotate:' + (-3 + 2 * Math.sin(t * 6)) + 'deg">🛠️ ' + esc(p.result) + '</div>';
+  }
+  return [g, over];
+}
 // Grosse Erklaer-Grafik (Serie Physik): fuellt die Flaeche unter dem Titel, ersetzt die Schrittliste
 function bigViz(p, ev, t, E, popHtml) {
   const md = p.mode, L = p.labels || {}; let g = '', over = '';
   const chip = (n, x, y, txt, cls) => ev[n] === undefined || !txt ? '' : '<div class="vlab ' + (cls || '') + '" style="left:' + x + 'px;top:' + y + 'px;' + pop(cl(ev[n] / 0.35), 'left center') + '">' + esc(txt) + '</div>';
-  if (md === 'gitter') {
+  if (md === 'kaputt') { const r = kaputtViz(p, ev, t, E); g = r[0]; over = r[1]; }
+  else if (md === 'gitter') {
     const k1 = ease(E('p1', 0.7)), k2 = ease(E('p2', 0.7)), k3 = E('p3', 0.5), done = ev.act !== undefined;
     const lay = oy => (u, v) => [62 + u * 370 + v * 165, 262 + oy - u * 105 + v * 108];
     const poly = (f, pts) => pts.map(q => f(q[0], q[1]).map(n => n.toFixed(1)).join(',')).join(' ');
@@ -203,21 +267,8 @@ function bigViz(p, ev, t, E, popHtml) {
       over += gl ? chip('act2', 30, 30, L.act2, 'red') : lock ? '<div class="vlab hot" style="left:30px;top:30px;' + pop(cl((ev.p3 - .9) / 0.3), 'left center') + '">' + esc(L.p3) + '</div>' : scan ? '<div class="vlab" style="left:30px;top:30px">' + esc(L.scan || 'Chip sucht') + '.'.repeat(1 + Math.floor(t * 6) % 3) + '</div>' : ev.p2 !== undefined ? chip('p2', 30, 30, L.p2) : chip('p1', 30, 30, L.p1);
       if (ev.act !== undefined && !gl) over += '<div class="vres" style="left:26px;bottom:26px;' + pop(cl(ev.act / 0.35), 'left center') + '">🎯 ' + esc(p.result) + '</div>' + confetti(ev.act, X, Y, 26);
     }
-    if (md === 'kaputt') {
-      const k = E('crack', 0.4), aid = ev.p1 !== undefined;
-      if (k) { for (const d of ['M300 170 l-90 -70 l-56 12 l-100 -84', 'M300 170 l70 -52 l20 -90', 'M300 170 l104 70 l24 80 l110 96', 'M300 170 l-62 96 l14 70 l-80 110', 'M300 170 l140 -14 l96 -70 l120 30', 'M300 170 l-150 30 l-90 70']) g += '<path d="' + d + '" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" pathLength="1" stroke-dasharray="' + k + ' 1"/>'; g += '<circle cx="300" cy="170" r="' + (14 + 60 * (1 - k)) + '" fill="#fff" opacity="' + (.4 + .6 * k) + '"/>'; }
-      if (dead && !aid) { const n = Math.floor(ev.ghost * 2.4), c = (ev.ghost * 2.4) % 1, gx = 110 + rnd(n + 5) * 380, gy = 90 + rnd(n + 9) * 330; g += '<circle cx="' + gx + '" cy="' + gy + '" r="' + (16 + c * 110) + '" fill="none" stroke="#FF5A5A" stroke-width="10" opacity="' + (1 - c) + '"/>'; over += '<span class="vemo" style="left:' + (gx - 46) + 'px;top:' + (gy - 60) + 'px;font-size:96px;opacity:' + cl(1.3 - c) + ';transform:scale(' + (0.6 + 0.5 * back(c * 3)) + ')">👻</span>'; }
-      if (dead && !aid) over += '<div class="vlab red" style="right:30px;top:30px;' + pop(cl(ev.ghost / 0.35), 'right center') + '">' + esc(L.tot || 'tote Zone') + '</div>';
-      if (!aid) over += dead ? chip('ghost', 30, 440, L.ghost, 'red') : chip('crack', 30, 440, L.crack, 'hot');
-      if (aid) {
-        g += '<rect x="6" y="6" width="800" height="508" rx="40" fill="#0B1020" opacity="' + (.72 * E('p1', .3)) + '"/>';
-        (p.cards || []).forEach((c, i) => { const e = ev['p' + (i + 1)]; if (e === undefined) return; const cur = ev['p' + (i + 2)] === undefined && ev.act === undefined;
-          over += '<div class="vcard' + (cur ? ' on' : '') + '" style="left:' + (28 + i * 262) + 'px;top:' + (ev.act !== undefined ? 40 : 130) + 'px;' + pop(cl(e / 0.35)) + '"><span style="transform:' + (i === 0 ? 'rotate(' + (e * 300) + 'deg)' : 'translateY(' + (-12 * Math.abs(Math.sin(e * 6))) + 'px)') + '">' + c[0] + '</span><em>' + esc(c[1]) + '</em></div>'; });
-        if (ev.act !== undefined) over += '<div class="vres" style="left:50%;bottom:44px;font-size:52px;translate:-50% 0;white-space:nowrap;' + pop(cl(ev.act / 0.35)) + 'rotate:' + (-3 + 2 * Math.sin(t * 6)) + 'deg">🛠️ ' + esc(p.result) + '</div>';
-      }
-    }
   }
-  const shk = md === 'kaputt' && ev.crack !== undefined && ev.crack < 0.5 ? Math.sin(ev.crack * 80) * 16 * (1 - ev.crack / 0.5) : 0;
+  const hitT = md === 'kaputt' && ev.panel !== undefined ? ev.panel - 1.25 : -1, shk = hitT > 0 && hitT < 0.5 ? Math.sin(hitT * 80) * 22 * (1 - hitT / 0.5) : (md === 'kaputt' && ev.ghost !== undefined && ev.ghost < 0.5 ? Math.sin(ev.ghost * 80) * 16 * (1 - ev.ghost / 0.5) : 0);
   return '<div class="viz" style="' + rise(E('panel', 0.5)) + '"><div class="vin" style="transform:translate(' + shk + 'px,' + (shk * .6) + 'px)"><svg width="812" height="520" viewBox="0 0 812 520">' + g + '</svg>' + over + '</div>' + popHtml + '</div>';
 }
 // Alte Panels aus V001 (Akku)
