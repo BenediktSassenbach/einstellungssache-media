@@ -1,0 +1,190 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P003",
+ "titel": "Wie lädt dein Handy ohne Kabel?",
+ "quelle": "IQB HU Berlin Lernaufgabe Induktive Kopplung (Wechselstrom in der Spule polt Nord- und Südpol ständig um, Zahnbürste, Handy), wissen.de (Senderspule aus Kupferdraht mit Wechselstrom in der Ladestation), wissenschaft.de (Induktion, Faraday 1831, Zahnbürste), Uni Jena MINT (Feld durchsetzt die Spule im Handstück, induzierter Strom lädt den Akku, möglichst nah). Apple Support (dicke Hüllen und Metall entfernen, mittig auflegen, empfohlenes Netzteil).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Wie lädt dein Handy *ohne* Kabel?",
+   "emoji": "⚡",
+   "world": "h6p3",
+   "lines": [
+    {
+     "t": "Wie kommt Strom ohne Kabel in dein Handy?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und was hilft, wenn’s nicht lädt.",
+     "mood": "shock",
+     "ev": "nicht"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Der unsichtbare Magnet",
+   "quip": "Magie? Nein, Physik.",
+   "quipAt": 2,
+   "path": [],
+   "world": "p3spule6",
+   "lines": [
+    {
+     "t": "Erstens: In der Matte liegt eine Spule aus Kupferdraht.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Durch sie fließt Wechselstrom, also ständig hin und her.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Das macht ein Magnetfeld,",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "das ständig umpolt. Nord, Süd, Nord, Süd.",
+     "mood": "happy",
+     "ev": "p3"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Die zweite Spule",
+   "quip": "Strom per Luftpost.",
+   "quipAt": 2,
+   "path": [],
+   "world": "p3induk6",
+   "lines": [
+    {
+     "t": "Zweitens: Im Handy steckt eine zweite Spule.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Das umpolende Feld schiebt dort Elektronen an,",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "und schon fließt Strom in den Akku. Das ist Induktion.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Handy hoch? Feld zu schwach, Laden stoppt.",
+     "mood": "angry",
+     "ev": "heben"
+    },
+    {
+     "t": "Entdeckt hat das Michael Faraday, schon 1831.",
+     "mood": "shock",
+     "ev": "act"
+    },
+    {
+     "t": "Spoiler: Deine Zahnbürste lädt genauso.",
+     "mood": "wink",
+     "ev": "act2"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Lädt nicht?",
+   "quip": "Zielen hilft.",
+   "quipAt": 5,
+   "path": [],
+   "world": "p3fehler6",
+   "lines": [
+    {
+     "t": "Drittens: Lädt nicht? Liegt es schief, verfehlen sich die Spulen.",
+     "mood": "shock",
+     "ev": "schief"
+    },
+    {
+     "t": "Dicke Hüllen oder Metall blocken das Feld.",
+     "mood": "angry",
+     "ev": "metall"
+    },
+    {
+     "t": "Also: mittig drauf,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Hülle weg,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "empfohlenes Netzteil.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Sonst: prüfen lassen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p3outro",
+   "checks": [
+    "Wechselstrom = umpolendes Feld",
+    "Feld schiebt Strom im Handy",
+    "Mittig drauf, Metall weg"
+   ],
+   "lines": [
+    {
+     "t": "Also: Wechselstrom macht ein umpolendes Feld,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "das schiebt im Handy Strom an,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und wenn’s hakt: mittig drauf, Metall weg.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
