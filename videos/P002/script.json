@@ -13,8 +13,17 @@
    "sticker": "60 Sekunden",
    "lines": [
     {
-     "t": "Physik nie verstanden?",
+     "t": "Warum wird dein Handy beim Laden warm?",
      "mood": "shock",
+     "ev": "mark",
+     "pop": [
+      "🔥",
+      ""
+     ]
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy",
      "pop": [
       "🤯",
       "Physik"
@@ -28,11 +37,6 @@
       "⏱️",
       ""
      ]
-    },
-    {
-     "t": "Heute: Warum wird dein Handy beim Laden warm?",
-     "mood": "happy",
-     "ev": "mark"
     },
     {
      "t": "Und wann du dir wirklich Sorgen machen solltest.",

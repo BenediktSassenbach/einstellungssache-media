@@ -13,8 +13,17 @@
    "sticker": "60 Sekunden",
    "lines": [
     {
-     "t": "Physik nie verstanden?",
+     "t": "Wie kommt Strom ohne Kabel in dein Handy?",
      "mood": "shock",
+     "ev": "mark",
+     "pop": [
+      "🪄",
+      ""
+     ]
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy",
      "pop": [
       "🤯",
       "Physik"
@@ -28,11 +37,6 @@
       "⏱️",
       ""
      ]
-    },
-    {
-     "t": "Heute: Wie kommt Strom ohne Kabel in dein Handy?",
-     "mood": "happy",
-     "ev": "mark"
     },
     {
      "t": "Und was du tust, wenn es plötzlich nicht mehr lädt.",

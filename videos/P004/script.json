@@ -13,8 +13,17 @@
    "sticker": "60 Sekunden",
    "lines": [
     {
-     "t": "Physik nie verstanden?",
+     "t": "Warum ist der Himmel eigentlich blau?",
      "mood": "shock",
+     "ev": "mark",
+     "pop": [
+      "🌤️",
+      ""
+     ]
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy",
      "pop": [
       "🤯",
       "Physik"
@@ -28,11 +37,6 @@
       "⏱️",
       ""
      ]
-    },
-    {
-     "t": "Heute: Warum ist der Himmel eigentlich blau?",
-     "mood": "happy",
-     "ev": "mark"
     },
     {
      "t": "Und warum wird er abends rot?",
