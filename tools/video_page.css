@@ -83,4 +83,6 @@ h2{font-size:60px;line-height:1.03;font-weight:900;letter-spacing:-.035em}
 .vcard.on{background:var(--a)}
 .vcard span{font-family:'Noto Color Emoji';font-size:110px;line-height:1;display:block}
 .vcard em{font-style:normal;font-size:30px;font-weight:900;line-height:1.05;padding:0 10px}
-#world{position:absolute;inset:0;overflow:hidden}
+#world{position:absolute;inset:0;overflow:hidden;z-index:1}
+#stage{z-index:2}#masc{z-index:5}#bub{z-index:5}#cap{z-index:6}
+.brand,.prog{z-index:2}

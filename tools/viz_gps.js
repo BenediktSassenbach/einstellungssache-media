@@ -54,15 +54,15 @@ WORLD.orbit = function (sc, ev, t, lt, E) {
   }
   s += back + earth(CX, CY, R, t, 1) + front;
   // Hoehe 20.200 km
-  if (ev.hoehe !== undefined) { const k = ease(cl(ev.hoehe / 1.4)), y1 = CY - R, y2 = y1 - 260 * k; s += '<line x1="' + (CX + 250) + '" y1="' + y1 + '" x2="' + (CX + 250) + '" y2="' + y2 + '" stroke="#fff" stroke-width="6"/><path d="M' + (CX + 235) + ' ' + (y2 + 16) + ' L' + (CX + 250) + ' ' + y2 + ' L' + (CX + 265) + ' ' + (y2 + 16) + '" stroke="#fff" stroke-width="6" fill="none"/>' + satIcon(CX + 250, y2 - 30, 1.1, '#FFE14D'); }
+  if (ev.hoehe !== undefined) { const k = ease(cl(ev.hoehe / 1.4)), y1 = CY - R, y2 = y1 - 130 * k; s += '<line x1="' + (CX + 250) + '" y1="' + y1 + '" x2="' + (CX + 250) + '" y2="' + y2 + '" stroke="#fff" stroke-width="6"/><path d="M' + (CX + 235) + ' ' + (y2 + 16) + ' L' + (CX + 250) + ' ' + y2 + ' L' + (CX + 265) + ' ' + (y2 + 16) + '" stroke="#fff" stroke-width="6" fill="none"/>' + satIcon(CX + 250, y2 - 30, 1.1, '#FFE14D'); }
   const km = ev.hoehe === undefined ? 0 : Math.round(20200 * ease(cl(ev.hoehe / 1.4)) / 100) * 100;
-  let h = ev.hoehe !== undefined && ev.runde === undefined ? '<div class="vlab hot" style="left:600px;top:620px;font-size:52px;' + pop(cl(ev.hoehe / .3), 'left center') + '">' + km.toLocaleString('de-DE') + ' km</div>' : '';
-  if (ev.runde !== undefined) { const k = ev.runde, hrs = Math.min(24, k * 6), a = hrs / 12 * 6.283; const p = orbitPos(CX, CY, 400, 120, -75 * Math.PI / 180, a - 1.2);
+  let h = ev.hoehe !== undefined && ev.runde === undefined ? '<div class="vlab hot" style="left:560px;top:1060px;font-size:50px;' + pop(cl(ev.hoehe / .3), 'left center') + '">' + km.toLocaleString('de-DE') + ' km</div>' : '';
+  if (ev.runde !== undefined) { const k = ev.runde, hrs = Math.min(24, k * 6), a = hrs / 12 * 6.283; const p = orbitPos(CX, CY, 400, 120, -15 * Math.PI / 180, a - 1.2);
     s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="40" fill="none" stroke="#FFE14D" stroke-width="6"/>' + satIcon(p[0], p[1], 1.2, '#FFE14D');
-    s += '<g transform="translate(860 660)"><circle r="70" fill="#fff"/><line x1="0" y1="0" x2="' + (Math.sin(hrs / 12 * 6.283) * 50) + '" y2="' + (-Math.cos(hrs / 12 * 6.283) * 50) + '" stroke="#0B1020" stroke-width="8" stroke-linecap="round"/><circle r="8" fill="#0B1020"/></g>';
-    h += '<div class="vlab" style="left:770px;top:750px;font-size:38px">' + Math.floor(hrs) + ' h</div><div class="vlab hot" style="left:60px;top:620px;font-size:46px">Runde ' + Math.min(2, Math.floor(hrs / 12) + 1) + ' von 2</div>'; }
-  if (hi) { h = wlab(60, 620, 'Mindestens 4 in Sicht', cl(ev.vier / .35), 'hot', 46); s += '<circle cx="' + CX + '" cy="' + (CY - R) + '" r="14" fill="#FF5A5A" stroke="#fff" stroke-width="5"/>'; }
-  if (ev.act !== undefined) { const k = cl(ev.act / .35); h = wlab(60, 620, '⚛️ Atomuhren an Bord', k, 'hot', 46); for (let i = 0; i < 4; i++) { const a = t * .35 + i * 1.5, p = orbitPos(CX, CY, 400, 120, (i * 30 - 75) * Math.PI / 180, a); h += '<span class="vemo" style="left:' + (p[0] - 30) + 'px;top:' + (p[1] - 90 - 8 * Math.abs(Math.sin(t * 6 + i))) + 'px;font-size:56px;' + pop(k) + '">⏱️</span>'; } }
+    s += '<g transform="translate(860 1040)"><circle r="70" fill="#fff"/><text y="52" text-anchor="middle" font-size="26" font-weight="900" fill="#0B1020" font-family="Inter Display">' + Math.floor(hrs) + ' h</text><line x1="0" y1="0" x2="' + (Math.sin(hrs / 12 * 6.283) * 50) + '" y2="' + (-Math.cos(hrs / 12 * 6.283) * 50) + '" stroke="#0B1020" stroke-width="8" stroke-linecap="round"/><circle r="8" fill="#0B1020"/></g>';
+    h += '<div class="vlab hot" style="left:60px;top:610px;font-size:42px">Runde ' + Math.min(2, Math.floor(hrs / 12) + 1) + ' von 2</div>'; }
+  if (hi) { h = wlab(60, 610, 'Mindestens 4 in Sicht', cl(ev.vier / .35), 'hot', 42); s += '<circle cx="' + CX + '" cy="' + (CY - R) + '" r="14" fill="#FF5A5A" stroke="#fff" stroke-width="5"/>'; }
+  if (ev.act !== undefined) { const k = cl(ev.act / .35); h = wlab(60, 610, '⚛️ Atomuhren an Bord', k, 'hot', 42); for (let i = 0; i < 4; i++) { const a = t * .35 + i * 1.5, p = orbitPos(CX, CY, 400, 120, (i * 30 - 75) * Math.PI / 180, a); h += '<span class="vemo" style="left:' + (p[0] - 30) + 'px;top:' + (p[1] - 90 - 8 * Math.abs(Math.sin(t * 6 + i))) + 'px;font-size:56px;' + pop(k) + '">⏱️</span>'; } }
   return W(s + topShade(), h);
 };
 // Teil 2: Signal mit Lichtgeschwindigkeit, Stoppuhr, Rechnung
@@ -80,10 +80,9 @@ WORLD.signal = function (sc, ev, t, lt) {
     for (let i = 0; i < 8; i++) { const c = ((T * 1.6) + i / 8) % 1; s += '<line x1="' + (SX + 160 + i * 3) + '" y1="' + (SY + 80 + 300 * c) + '" x2="' + (SX + 160 + i * 3) + '" y2="' + (SY + 130 + 300 * c) + '" stroke="#fff" stroke-width="4" opacity="' + (.5 * (1 - c)) + '"/>'; }
     if (ev.p2 === undefined) h += wlab(540, 800, '300.000 km/s', cl(T / .35), 'hot', 52) + '<span class="vemo" style="left:600px;top:880px;font-size:90px">⚡</span>'; }
   if (ev.p2 !== undefined) { const k = cl(ev.p2 / 1.6), sec = (0.0673 * ease(k)).toFixed(3).replace('.', ','), a = k * 6.283 * 3;
-    s += '<g transform="translate(760 880)"><circle r="120" fill="#fff" stroke="#FF5A5A" stroke-width="12"/><rect x="-18" y="-152" width="36" height="34" rx="6" fill="#FF5A5A"/>';
+    s += '<g transform="translate(760 830)"><circle r="120" fill="#fff" stroke="#FF5A5A" stroke-width="12"/><rect x="-18" y="-152" width="36" height="34" rx="6" fill="#FF5A5A"/>';
     for (let i = 0; i < 12; i++) s += '<line x1="' + (Math.sin(i * .5236) * 92) + '" y1="' + (-Math.cos(i * .5236) * 92) + '" x2="' + (Math.sin(i * .5236) * 106) + '" y2="' + (-Math.cos(i * .5236) * 106) + '" stroke="#0B1020" stroke-width="6"/>';
-    s += '<line x1="0" y1="0" x2="' + (Math.sin(a) * 86) + '" y2="' + (-Math.cos(a) * 86) + '" stroke="#FF5A5A" stroke-width="8" stroke-linecap="round"/><circle r="10" fill="#0B1020"/></g>';
-    h += '<div class="vlab" style="left:640px;top:1020px;font-size:46px">' + sec + ' s</div>'; }
+    s += '<text y="62" text-anchor="middle" font-size="38" font-weight="900" fill="#0B1020" font-family="Inter Display">' + sec + ' s</text><line x1="0" y1="0" x2="' + (Math.sin(a) * 86) + '" y2="' + (-Math.cos(a) * 86) + '" stroke="#FF5A5A" stroke-width="8" stroke-linecap="round"/><circle r="10" fill="#0B1020"/></g>'; }
   if (ev.p3 !== undefined) { const k = cl(ev.p3 / .4); h = '<div class="vres" style="left:60px;top:600px;font-size:44px;' + pop(k, 'left center') + '">0,067 s × 300.000 km/s<br>= 20.200 km Abstand</div>';
     s += '<line x1="' + (SX - 150) + '" y1="' + (SY + 40) + '" x2="' + (PX - 150) + '" y2="' + (PY - 80) + '" stroke="#5CE1FF" stroke-width="8" stroke-dasharray="' + (k * 400) + ' 400"/>'; }
   if (ev.act !== undefined) { const k = ease(cl(ev.act / 1)), off = 380 * k;
@@ -144,34 +143,34 @@ WORLD.outro = function (sc, ev, t, lt) {
 const go = (a, b, k) => [lerp(a[0], b[0], k), lerp(a[1], b[1], k)];
 const WMASC = {};
 WMASC.zoom = (ev, t, lt) => { const k = ease(cl((lt - 1.0) / 3.2)), sp = ease(cl((lt - 3.6) / 1.4));
-  if (k <= 0) return { f: [300, 1060], s: .8, prop: '👉', walk: false };
-  const f = go([300, 1060], [540, 752], ease(cl((k - .1) / .9))); return { f, s: lerp(.8, .42, k), r: k < 1 ? 360 * k : 0, prop: sp > .3 ? '🔭' : '', walk: false };
+  if (k <= 0) return { f: [300, 1070], s: .8 };
+  return { f: go([300, 1070], [540, 752], ease(cl((k - .1) / .9))), s: lerp(.8, .42, k), r: k < 1 ? 360 * k : 0, prop: sp > .3 ? '🔭' : '' };
 };
-WMASC.orbit = (ev, t) => { const CX = 540, CY = 860, top = [CX, 712];
-  if (ev.act !== undefined) return { f: top, s: .42, prop: '⏱️' };
-  if (ev.vier !== undefined) return { f: top, s: .42, prop: '🔭' };
-  if (ev.runde !== undefined) { const hrs = Math.min(24, ev.runde * 6), a = hrs / 12 * 6.283, p = orbitPos(CX, CY, 400, 120, -75 * Math.PI / 180, a - 1.2); const k = ease(cl(ev.runde / .6)); return { f: go([790, 450], [p[0], p[1] - 14], k), s: .34, r: 15 * Math.sin(t * 3), prop: '🤠' }; }
-  if (ev.hoehe !== undefined) { const k = ease(cl(ev.hoehe / 1.4)); return { f: [745, 712 - 262 * k], s: .34, r: 0, prop: '', walk: k < 1 }; }
-  return { f: top, s: .42, prop: '👋' };
+WMASC.orbit = (ev, t) => { const CX = 540, CY = 860, sh = [636, 748];
+  if (ev.vier !== undefined && ev.act === undefined) return { f: sh, s: .42, prop: '🔭' };
+  if (ev.act !== undefined) return { f: sh, s: .42 };
+  if (ev.runde !== undefined) { const hrs = Math.min(24, ev.runde * 6), a = hrs / 12 * 6.283, p = orbitPos(CX, CY, 400, 120, -15 * Math.PI / 180, a - 1.2); const k = ease(cl(ev.runde / .6)); return { f: go([745, 600], [p[0], p[1] - 14], k), s: .34, r: 15 * Math.sin(t * 3) }; }
+  if (ev.hoehe !== undefined) { const k = ease(cl(ev.hoehe / 1.4)); return { f: [745, 712 - 80 * k], s: .32, walk: k < 1 }; }
+  return { f: sh, s: .42 };
 };
 WMASC.signal = (ev, t) => {
-  if (ev.act !== undefined) { const off = 380 * ease(cl(ev.act / 1)); return { f: [130 + off * .85, 1010], s: .5, prop: '', walk: ev.act < 1.1 }; }
-  if (ev.p3 !== undefined) return { f: [640, 1112], s: .62, flip: true, prop: '👉' };
-  if (ev.p2 !== undefined) { const k = ease(cl(ev.p2 / .6)); return { f: go([580, 1112], [780, 1112], k), s: .62, prop: k >= 1 ? '👆' : '', walk: k < 1 }; }
-  if (ev.p1 !== undefined) return { f: [590 + 10 * Math.sin(t * 25), 1112], s: .66, r: -8 + 4 * Math.sin(t * 20), prop: '😵' };
-  return { f: [580, 1112], s: .66, prop: '📡' };
+  if (ev.act !== undefined) { const off = 380 * ease(cl(ev.act / 1)); return { f: [130 + off * .85, 1085], s: .5, walk: ev.act < 1.1 }; }
+  if (ev.p3 !== undefined) return { f: [620, 1112], s: .58, prop: '👈' };
+  if (ev.p2 !== undefined) { const k = ease(cl(ev.p2 / .6)); return { f: go([580, 1112], [770, 1112], k), s: .55, walk: k < 1 }; }
+  if (ev.p1 !== undefined) return { f: [590 + 10 * Math.sin(t * 25), 1112], s: .6, r: -8 + 4 * Math.sin(t * 20) };
+  return { f: [580, 1112], s: .6 };
 };
-WMASC.kreise = (ev, t) => { const P = [520, 880], C0 = [140, 640], r = Math.hypot(C0[0] - P[0], C0[1] - P[1]);
-  if (ev.act !== undefined) { if (ev.act > 2.4) return { f: [P[0] + 80, P[1] + 30], s: .45, prop: '🎉' }; const k = ease(cl(ev.act / .6)); return { f: go([P[0] + 80, P[1] + 30], [860, 790], k), s: .45, r: 6 * Math.sin(t * 14), prop: k >= 1 ? '😤' : '', walk: k < 1 }; }
-  if (ev.k3 !== undefined) return { f: [P[0] + 80, P[1] + 30], s: .45, prop: ev.k3 > .9 ? '🚩' : '' };
-  if (ev.k2 !== undefined) { const Q = [[P[0], P[1]], [662, 1016]], n = Math.floor(ev.k2 / .9) % 2, c = (ev.k2 % .9) / .9, a = Q[n], b = Q[1 - n]; const hop = c > .7 ? ease((c - .7) / .3) : 0; return { f: go([a[0], a[1] + 4], [b[0], b[1] + 4], hop), s: .4, prop: '🤔', walk: hop > 0 }; }
-  if (ev.k1 !== undefined) { const a = 0.25 + 0.45 * (0.5 - 0.5 * Math.cos(ev.k1 * 0.9)); return { f: [C0[0] + Math.cos(a) * r, C0[1] + Math.sin(a) * r + 4], s: .4, prop: '❓', walk: true }; }
-  return { f: [200, 1110], s: .6, prop: '🗺️' };
+WMASC.kreise = (ev, t) => { const P = [520, 880], C0 = [140, 640], r = Math.hypot(C0[0] - P[0], C0[1] - P[1]), done = [640, 940];
+  if (ev.act !== undefined) { if (ev.act > 2.4) return { f: done, s: .45 }; const k = ease(cl(ev.act / .6)); return { f: go(done, [870, 830], k), s: .45, r: 6 * Math.sin(t * 14), walk: k < 1 }; }
+  if (ev.k3 !== undefined) return { f: done, s: .45, prop: ev.k3 > .9 ? '🚩' : '' };
+  if (ev.k2 !== undefined) { const Q = [[P[0] + 40, P[1] + 30], [700, 1040]], n = Math.floor(ev.k2 / .9) % 2, c = (ev.k2 % .9) / .9, hop = c > .7 ? ease((c - .7) / .3) : 0; return { f: go(Q[n], Q[1 - n], hop), s: .4, walk: hop > 0 }; }
+  if (ev.k1 !== undefined) { const a = 0.3 + 0.4 * (0.5 - 0.5 * Math.cos(ev.k1 * 0.9)); return { f: [C0[0] + Math.cos(a) * r, C0[1] + Math.sin(a) * r + 4], s: .4, walk: true }; }
+  return { f: [200, 1110], s: .6 };
 };
-WMASC.einstein = (ev, t) => {
-  if (ev.act !== undefined) { const back = ease(cl((ev.act - 1.5) / .8)); return back >= 1 ? { f: [300, 1000], s: .5, prop: '🎉' } : { f: [820, 800], s: .5, r: -10 * Math.sin(ev.act * 6), prop: '' }; }
-  if (ev.drift !== undefined) { const k = cl(ev.drift / 3.5), off = 600 * k; return { f: [90 + off * .85, 1010], s: .5, prop: '', walk: true }; }
-  if (ev.p2 !== undefined) return { f: [780, 1112], s: .55, prop: '💭' };
-  if (ev.grav !== undefined) { const k = ease(cl(ev.grav / 1.2)); return { f: go([250, 1112], [250, 860], k), s: .48, r: 20 * Math.sin(t * 1.5) * k, prop: '' }; }
-  return { f: [250, 1112], s: .5, prop: '👀' };
+WMASC.einstein = (ev, t) => { const home = [875, 1125];
+  if (ev.act !== undefined) { const back = ease(cl((ev.act - 1.5) / .8)); return back >= 1 ? { f: [340, 1070], s: .5 } : { f: [850, 840], s: .48, r: -10 * Math.sin(ev.act * 6) }; }
+  if (ev.drift !== undefined) { const k = cl(ev.drift / 3.5), off = 600 * k; return { f: [90 + off * .85, 1070], s: .48, walk: true }; }
+  if (ev.p2 !== undefined) return { f: home, s: .5 };
+  if (ev.grav !== undefined) { const k = ease(cl(ev.grav / 1.2)); return { f: go(home, [880, 830], k), s: .46, r: 20 * Math.sin(t * 1.5) * k }; }
+  return { f: home, s: .5 };
 };
