@@ -105,7 +105,7 @@ function draw(t){
  const ev={};let line=null,last=sc.lines[0];
  for(const l of sc.lines){if(t>=l.start){last=l;if(l.ev)ev[l.ev]=t-l.start}if(t>=l.start&&t<l.end+0.05)line=l}
  const E=(n,d=0.45)=>ev[n]===undefined?0:cl(ev[n]/d);const tl=t-last.start;
- document.getElementById('pg').style.width=(100*t/S.total)+'%';
+ document.getElementById('pg').style.width=(100*(1-Math.pow(1-t/S.total,2.2)))+'%';
  // Hintergrund in Bewegung
  document.querySelector('.b1').style.transform='translate('+(Math.sin(t*.5)*50)+'px,'+(Math.cos(t*.4)*40)+'px) scale('+(1+0.04*Math.sin(t*.7))+')';
  document.querySelector('.b2').style.transform='translate('+(Math.cos(t*.45)*40)+'px,'+(Math.sin(t*.6)*50)+'px)';
@@ -165,7 +165,7 @@ function draw(t){
  // Schalti: spricht, hüpft bei jedem Satz, dreht sich bei den Höhepunkten
  const talking=line&&t<line.end-0.08;const open=talking?cl(0.15+0.55*Math.abs(Math.sin(t*17.3))+0.3*Math.abs(Math.sin(t*6.1+1))):0;
  const blink=(t%3.4)<0.12;const mood=last.mood||'happy';const big=sc.type==='hook'||sc.type==='outro';
- const hop=tl>0&&tl<0.34?Math.sin(Math.PI*tl/0.34):0;let spin=0,jump=0;
+ const hop=0;let spin=0,jump=0;
  for(const n of ['act','act2','mark','save','follow','sticker']){const e=ev[n];if(e!==undefined&&e<0.55){spin=360*ease(e/0.55);jump=Math.sin(Math.PI*e/0.55)*70}}
  const m=document.getElementById('masc');m.innerHTML=mascot(mood,open,blink,big?360:340);
  m.style.transform='translate('+(Math.sin(t*1.1)*10)+'px,'+(Math.sin(t*2.6)*7-(talking?open*5:0)-hop*44-jump)+'px) rotate('+(Math.sin(t*1.7)*3+spin)+'deg) scale('+(1-0.05*hop)+','+(1+0.08*hop)+')';
