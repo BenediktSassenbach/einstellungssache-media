@@ -1,0 +1,190 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P002",
+ "titel": "Warum wird dein Handy beim Laden warm?",
+ "quelle": "Joulesche Wärme und P = I²R: Spektrum Lexikon der Physik, Uni Gießen (doppelter Strom bei gleichem Widerstand = vierfache Wärmeleistung, eigene Rechnung aus dem Gesetz). Ionenwanderung durch den Separator: wissenschaft.de, TÜV Nord. Stiftung Warentest: kabelloses Laden braucht im Schnitt rund 50 Prozent mehr Energie. Apple Support (Thermally Limited Charging, 108805, 105105): bei Wärme langsamer oder Pause, Begrenzung über 80 Prozent, Hülle ab, kühler Ort. Umweltbundesamt: aufgeblähte Akkus nicht mehr laden, nicht öffnen.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum wird dein Handy beim Laden *warm*?",
+   "emoji": "🔥",
+   "world": "p2hook",
+   "lines": [
+    {
+     "t": "Warum wird dein Handy beim Laden warm?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und ab wann es wirklich gefährlich wird.",
+     "mood": "cool",
+     "ev": "gefahr"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Elektronen im Gedränge",
+   "quip": "Wie im Bus um sieben.",
+   "quipAt": 2,
+   "path": [],
+   "world": "p2draht",
+   "lines": [
+    {
+     "t": "Erstens: Strom heißt, Elektronen wandern durchs Kabel.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Dabei rempeln sie ständig gegen die Atome im Metall.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Jeder Rempler bringt die Atome stärker zum Zittern, und dieses Zittern spürst du als Wärme.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Und jetzt kommt’s: Doppelt so viel Strom durch denselben Draht macht nicht doppelt, sondern viermal so viel Wärme.",
+     "mood": "shock",
+     "ev": "p3"
+    },
+    {
+     "t": "Darum wird alles warm, wo beim Laden viel Strom fließt.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Stau im Akku",
+   "quip": "Bitte nicht drängeln.",
+   "quipAt": 2,
+   "path": [],
+   "world": "p2akku",
+   "lines": [
+    {
+     "t": "Zweitens: Im Akku wird’s richtig eng.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Beim Laden wandern Lithium-Ionen von der einen Seite durch eine dünne Trennschicht auf die andere.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Auch sie kommen nicht ohne Widerstand durch, und auch das macht Wärme.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Kabellos ist es noch wärmer: Laut Stiftung Warentest braucht es im Schnitt rund 50 Prozent mehr Energie, und der Rest wird zu Wärme.",
+     "mood": "angry",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Ab wann gefährlich?",
+   "quip": "Warm ja, dick nein.",
+   "quipAt": 6,
+   "path": [],
+   "world": "p2gefahr",
+   "lines": [
+    {
+     "t": "Drittens: Ab wann musst du dir Sorgen machen?",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Warm ist normal. Wird das iPhone zu warm, bremst es das Laden selbst oder hört bei 80 Prozent auf.",
+     "mood": "cool",
+     "ev": "warm"
+    },
+    {
+     "t": "Gefährlich wird’s, wenn sich das Gehäuse wölbt oder das Display abhebt. Dann ist der Akku wahrscheinlich aufgebläht.",
+     "mood": "shock",
+     "ev": "blaeh"
+    },
+    {
+     "t": "Dann: Stecker raus,",
+     "mood": "angry",
+     "ev": "p1"
+    },
+    {
+     "t": "auf keinen Fall öffnen,",
+     "mood": "angry",
+     "ev": "p2"
+    },
+    {
+     "t": "und ab zum Reparaturservice.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Ist es nur warm: Hülle runter und an einen kühleren Ort legen.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p2outro",
+   "checks": [
+    "Elektronen rempeln = Wärme",
+    "Ionen drängeln im Akku",
+    "Aufgebläht: nicht mehr laden"
+   ],
+   "lines": [
+    {
+     "t": "Also: Elektronen rempeln, das macht Wärme,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "im Akku drängeln die Ionen,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und ein aufgeblähter Akku wird nicht mehr geladen.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

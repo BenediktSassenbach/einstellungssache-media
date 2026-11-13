@@ -1,0 +1,226 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P004",
+ "titel": "Warum ist der Himmel blau?",
+ "quelle": "Wetterdienst.de und Uni Münster (PhiuZ 6/2005, Rote Sonne): Sonnenlicht enthält alle Farben, Rayleigh-Streuung an Luftmolekülen, kurzwellig stärker gestreut, abends langer Weg, Blau herausgestreut, Wolken streuen alle Farben ähnlich (Mie). Tagesspiegel und Uni Münster: Violett wird noch stärker gestreut, macht aber nur einen kleinen Teil des Sonnenspektrums aus, und das Auge ist für Blau empfindlicher. Physik-Lehrbuch Wellen: Streuung wächst mit der vierten Potenz der Frequenz; Balkenhöhen Rot, Blau, Violett aus 700, 450, 400 nm selbst gerechnet (Verhältnis gerundet). Luft vor allem Stickstoff und Sauerstoff: Umweltbundesamt.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum ist der Himmel *blau*?",
+   "emoji": "🌤️",
+   "world": "p4hook",
+   "lines": [
+    {
+     "t": "Warum ist der Himmel eigentlich blau?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und warum wird er abends rot?",
+     "mood": "cool",
+     "ev": "abend"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Weiß ist ein Mix",
+   "quip": "Weiß ist geschummelt.",
+   "quipAt": 2,
+   "path": [],
+   "world": "p4licht",
+   "lines": [
+    {
+     "t": "Erstens: Sonnenlicht sieht weiß aus, steckt aber voller Farben.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Ein Prisma zeigt’s: Es fächert das Licht zum Regenbogen auf.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Jede Farbe ist eine Welle. Rot schwingt in langen Wellen,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Blau in kürzeren. Blau schwingt also öfter pro Sekunde.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Und genau das entscheidet gleich über die Farbe des Himmels.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Luft wirft Blau herum",
+   "quip": "Blau ist überall.",
+   "quipAt": 4,
+   "path": [],
+   "world": "p4streu",
+   "lines": [
+    {
+     "t": "Zweitens: Die Luft besteht aus winzigen Teilchen, vor allem Stickstoff und Sauerstoff.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Trifft Licht darauf, bringt es die Ladungen in den Teilchen zum Mitschwingen.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Die schwingenden Teilchen senden das Licht in alle Richtungen weiter. Das heißt Streuung.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Je schneller eine Welle schwingt, desto stärker wird sie gestreut. Blau also viel stärker als Rot.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "So fliegt Blau kreuz und quer über den Himmel, und von überall kommt Blau bei dir an.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Warum nicht lila?",
+   "quip": "Lila? Knapp daneben.",
+   "quipAt": 2,
+   "path": [],
+   "world": "p4lila",
+   "lines": [
+    {
+     "t": "Drittens: Violett schwingt sogar noch schneller und wird noch stärker gestreut.",
+     "mood": "shock",
+     "ev": "panel"
+    },
+    {
+     "t": "Warum ist der Himmel dann nicht lila?",
+     "mood": "angry",
+     "ev": "p1"
+    },
+    {
+     "t": "Im Sonnenlicht steckt weniger Violett,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und unsere Augen sind für Blau viel empfindlicher als für Violett.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Darum sehen wir: Blau.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "4",
+   "title": "Und abends rot?",
+   "quip": "Golden Hour.",
+   "quipAt": 4,
+   "path": [],
+   "world": "p4abend",
+   "lines": [
+    {
+     "t": "Viertens: Und warum ist der Sonnenuntergang rot?",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Abends steht die Sonne tief.",
+     "mood": "happy",
+     "ev": "tief"
+    },
+    {
+     "t": "Ihr Licht muss jetzt einen viel längeren Weg durch die Luft nehmen.",
+     "mood": "shock",
+     "ev": "weg"
+    },
+    {
+     "t": "Unterwegs wird fast das ganze Blau zur Seite weggestreut.",
+     "mood": "happy",
+     "ev": "blau"
+    },
+    {
+     "t": "Bei dir kommen vor allem Orange und Rot an.",
+     "mood": "cool",
+     "ev": "act"
+    },
+    {
+     "t": "Und Wolken? Ihre Tröpfchen streuen alle Farben ähnlich stark, darum sind sie weiß.",
+     "mood": "wink",
+     "ev": "act2"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p4outro",
+   "checks": [
+    "Sonnenlicht = alle Farben",
+    "Blau wird am stärksten gestreut",
+    "Abends: langer Weg, Rot bleibt"
+   ],
+   "lines": [
+    {
+     "t": "Also: Sonnenlicht hat alle Farben,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Blau wird in der Luft am stärksten gestreut, und wir sehen es besser als Violett,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und abends bleibt auf dem langen Weg vor allem Rot übrig.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

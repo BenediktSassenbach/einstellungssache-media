@@ -44,6 +44,27 @@ function ff(a) { return new Promise((res, rej) => { const p = spawn('ffmpeg', a,
   console.log('Laenge', S.total.toFixed(2), 's');
   const br = await chromium.launch();
   const mk = async () => { const pg = await br.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 }); await pg.setContent(page); await pg.evaluate(() => document.fonts.ready); return pg; };
+  if (args.includes('--check')) { // Ueberlappungs-Pruefung: Text auf Text, Schalti oder Emoji auf Text
+    const pg = await mk(); const hits = {};
+    for (let x = 0.1; x < S.total; x += 0.2) {
+      await pg.evaluate(t => draw(t), x);
+      const r = await pg.evaluate(() => {
+        const vis = e => { for (let n = e; n && n !== document.body; n = n.parentElement) { const c = getComputedStyle(n); if (c.display === 'none' || c.visibility === 'hidden' || +c.opacity < 0.15) return false; } return true; };
+        const BOX0 = 0; const BOX = '.vlab,.vres,.vcard,#cap>div,#bub,.brand,.chk,.chk2,.cbox,.tbox,.hcard,.card,.stick,.num,.top,.lbl';
+        const set = new Set();
+        for (const e of document.querySelectorAll('body *')) { if (e.closest('#masc') || e.classList.contains('vemo')) continue; const own = [...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim()); if (!own) continue; set.add(e.closest(BOX) || e); }
+        const T = [...set].filter(vis).map(e => { const b = e.getBoundingClientRect(); return { n: (e.id ? '#' + e.id : e.className && e.className.baseVal === undefined ? '.' + String(e.className).split(' ')[0] : e.tagName) + ':' + e.textContent.trim().slice(0, 22), e, b }; }).filter(o => o.b.width > 4 && o.b.height > 4);
+        const O = [];
+        const m = document.getElementById('masc'); if (m && vis(m)) { const b = m.getBoundingClientRect(), sx = b.width * .18, sy = b.height * .12; O.push({ n: 'SCHALTI', b: { left: b.left + sx, right: b.right - sx, top: b.top + sy, bottom: b.bottom - sy } }); }
+        for (const e of document.querySelectorAll('.vemo')) if (vis(e)) { const b = e.getBoundingClientRect(); if (b.width > 4) O.push({ n: 'EMOJI' + e.textContent.trim(), b: { left: b.left + b.width * .15, right: b.right - b.width * .15, top: b.top + b.height * .15, bottom: b.bottom - b.height * .15 } }); }
+        const ov = (a, b) => { const w = Math.min(a.right, b.right) - Math.max(a.left, b.left), h = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top); return w > 6 && h > 6 ? w * h : 0; };
+        const out = [];
+        for (let i = 0; i < T.length; i++) { for (let j = i + 1; j < T.length; j++) if (!T[i].e.contains(T[j].e) && !T[j].e.contains(T[i].e) && ov(T[i].b, T[j].b)) out.push(T[i].n + ' <> ' + T[j].n); for (const o of O) if (ov(T[i].b, o.b)) out.push(o.n + ' auf ' + T[i].n); }
+        for (const e of T) if (e.b.right > 1000 || e.b.left < 20) out.push('RAND ' + e.n);
+        return out; });
+      for (const k of r) { if (!hits[k]) hits[k] = [x, x, 0]; hits[k][1] = x; hits[k][2]++; }
+    }
+    const ks = Object.keys(hits); console.log(ks.length ? ks.map(k => hits[k][0].toFixed(1) + '-' + hits[k][1].toFixed(1) + 's (' + hits[k][2] + 'x) ' + k).join('\n') : 'KEINE UEBERLAPPUNG'); await br.close(); return; }
   const fr = opt('--frames');
   if (fr) { const pg = await mk(); for (const x of fr.split(',')) { await pg.evaluate(t => draw(t), +x); await pg.screenshot({ path: path.join(out, 'frame_' + x + '.jpg'), type: 'jpeg', quality: 80 }); } await br.close(); return; }
   const nur = opt('--szenen') ? opt('--szenen').split(',').map(x => +x - 1) : null; // nur diese Szenen neu rendern, Rest wiederverwenden

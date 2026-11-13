@@ -1,0 +1,205 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P003",
+ "titel": "Wie lädt dein Handy ohne Kabel?",
+ "quelle": "IQB HU Berlin Lernaufgabe Induktive Kopplung (Wechselstrom in der Spule polt Nord- und Südpol ständig um, Zahnbürste, Handy), wissen.de (Senderspule aus Kupferdraht mit Wechselstrom in der Ladestation), wissenschaft.de (Induktion, Faraday 1831, Zahnbürste), Uni Jena MINT (Feld durchsetzt die Spule im Handstück, induzierter Strom lädt den Akku, möglichst nah). Apple Support (dicke Hüllen und Metall entfernen, mittig auflegen, empfohlenes Netzteil).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Wie lädt dein Handy *ohne* Kabel?",
+   "emoji": "⚡",
+   "world": "p3hook",
+   "lines": [
+    {
+     "t": "Wie kommt Strom ohne Kabel in dein Handy?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und was du tust, wenn es plötzlich nicht mehr lädt.",
+     "mood": "cool",
+     "ev": "nicht"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Der unsichtbare Magnet",
+   "quip": "Magie? Nein, Physik.",
+   "quipAt": 3,
+   "path": [],
+   "world": "p3spule",
+   "lines": [
+    {
+     "t": "Erstens: In der Ladematte liegt eine Spule, also Kupferdraht, ganz eng im Kreis gewickelt.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Durch sie fließt Wechselstrom. Der Strom wechselt ständig die Richtung, hin und her.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Um jeden Strom herum entsteht ein Magnetfeld.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Und weil der Strom hin und her wechselt, polt sich auch das Feld ständig um. Wie ein Magnet, der dauernd Nord und Süd tauscht.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Aber das Feld ist schwach und reicht nur ein kleines Stück nach oben.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Die zweite Spule",
+   "quip": "Strom per Luftpost.",
+   "quipAt": 3,
+   "path": [],
+   "world": "p3induk",
+   "lines": [
+    {
+     "t": "Zweitens: Im Handy steckt eine zweite Spule.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Legst du es auf, geht das umpolende Feld genau durch diese Spule.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Und ein Magnetfeld, das sich ändert, schiebt die Elektronen im Draht an.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "So fließt im Handy wieder Strom, direkt in den Akku.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Hebst du das Handy an, kommt kaum noch Feld an, und das Laden stoppt.",
+     "mood": "angry",
+     "ev": "heben"
+    },
+    {
+     "t": "Das Ganze heißt Induktion, und entdeckt hat es Michael Faraday schon 1831.",
+     "mood": "shock",
+     "ev": "act"
+    },
+    {
+     "t": "Deine elektrische Zahnbürste lädt übrigens genauso.",
+     "mood": "wink",
+     "ev": "act2"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Lädt nicht?",
+   "quip": "Zielen hilft.",
+   "quipAt": 6,
+   "path": [],
+   "world": "p3fehler",
+   "lines": [
+    {
+     "t": "Drittens: Und wenn es plötzlich nicht lädt?",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Liegt das Handy schief, treffen sich die zwei Spulen nicht.",
+     "mood": "shock",
+     "ev": "schief"
+    },
+    {
+     "t": "Dicke Hüllen oder Metall dazwischen stören das Feld.",
+     "mood": "angry",
+     "ev": "metall"
+    },
+    {
+     "t": "Also: Handy mittig auflegen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Hülle oder Metall weg,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und das empfohlene Netzteil nutzen.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Lädt es dann immer noch nicht, lass Handy und Ladegerät prüfen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p3outro",
+   "checks": [
+    "Wechselstrom = umpolendes Feld",
+    "Feld schiebt Strom im Handy",
+    "Mittig auflegen, Metall weg"
+   ],
+   "lines": [
+    {
+     "t": "Also: Wechselstrom in der Spule macht ein umpolendes Magnetfeld,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "das Feld schiebt im Handy wieder Strom an,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und wenn’s hakt: mittig auflegen, Metall weg.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
