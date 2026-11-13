@@ -1,0 +1,303 @@
+{
+ "id": "V005",
+ "titel": "Dein Sperrbildschirm plaudert alles aus",
+ "accent": "#B18CFF",
+ "quelle": "Langversion von Post 006, Tipps von Benedikt am iPhone bestätigt (12.11.2026)",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Dein Sperrbildschirm *plaudert* alles aus.",
+   "emoji": "🔓",
+   "sticker": "3 Einstellungen",
+   "lines": [
+    {
+     "t": "Jeder, der auf dein Handy schaut, liest mit?",
+     "mood": "shock",
+     "pop": [
+      "👀",
+      ""
+     ]
+    },
+    {
+     "t": "Dein Sperrbildschirm plaudert gerade alles aus.",
+     "mood": "angry",
+     "ev": "mark",
+     "pop": [
+      "🗣️",
+      "Petze"
+     ]
+    },
+    {
+     "t": "Mit diesen drei Einstellungen holst du dir deine Privatsphäre zurück.",
+     "mood": "happy",
+     "ev": "sticker",
+     "pop": [
+      "🔒",
+      "Privat"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Nachrichten verstecken",
+   "quip": "Geht keinen was an.",
+   "quipAt": 5,
+   "path": [
+    "Einstellungen",
+    "Mitteilungen",
+    "Vorschauen zeigen"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Vorschauen zeigen",
+    "tag": "So sieht es aus",
+    "pick": [
+     0,
+     1
+    ],
+    "rows": [
+     {
+      "t": "Immer"
+     },
+     {
+      "t": "Wenn entsperrt"
+     },
+     {
+      "t": "Nie"
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Erstens: Versteck deine Nachrichten.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "💬",
+      ""
+     ]
+    },
+    {
+     "t": "Geh in die Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "auf Mitteilungen",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und Vorschauen zeigen.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Wähle dort „Wenn entsperrt“.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "✅",
+      ""
+     ]
+    },
+    {
+     "t": "Auf dem Sperrbildschirm steht dann nur noch, dass etwas kam. Nicht mehr, was drinsteht.",
+     "mood": "wink",
+     "pop": [
+      "🤐",
+      "Geheim"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Analysedaten behalten",
+   "quip": "Bleibt unter uns.",
+   "quipAt": 4,
+   "path": [
+    "Einstellungen",
+    "Datenschutz & Sicherheit",
+    "Analyse & Verbesserungen"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Analyse & Verbesserungen",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "iPhone-Analyse teilen",
+      "sw": 1,
+      "flip": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Zweitens: Behalte deine Analysedaten für dich.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "📊",
+      ""
+     ]
+    },
+    {
+     "t": "Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Datenschutz und Sicherheit",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und Analyse und Verbesserungen.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Schalte „iPhone-Analyse teilen“ aus.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "🚫",
+      "Aus"
+     ]
+    },
+    {
+     "t": "Dein iPhone schickt dann keine täglichen Nutzungs- und Diagnosedaten mehr an Apple.",
+     "mood": "cool",
+     "pop": [
+      "📡",
+      "Funkstille"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Werbung weniger persönlich",
+   "quip": "Kenn ich dich?",
+   "quipAt": 4,
+   "path": [
+    "Einstellungen",
+    "Datenschutz & Sicherheit",
+    "Apple-Werbung"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Apple-Werbung",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "Personalisierte Werbung",
+      "sw": 1,
+      "flip": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Drittens: Mach Werbung weniger persönlich.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "📣",
+      ""
+     ]
+    },
+    {
+     "t": "Wieder in die Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Datenschutz und Sicherheit",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und Apple-Werbung.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Schalte „Personalisierte Werbung“ aus.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "🎯",
+      "Kein Ziel"
+     ]
+    },
+    {
+     "t": "Werbung im App Store siehst du weiter, sie wird aber nicht mehr auf dich zugeschnitten.",
+     "mood": "happy",
+     "pop": [
+      "🛍️",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "checks": [
+    "Vorschau nur entsperrt",
+    "Analyse nicht teilen",
+    "Keine persönliche Werbung"
+   ],
+   "lines": [
+    {
+     "t": "Also: Vorschau nur entsperrt,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Analyse nicht teilen",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und keine persönliche Werbung.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Schick das Video jemandem, bei dem jeder die Nachrichten auf dem Sperrbildschirm mitlesen kann.",
+     "mood": "wink",
+     "pop": [
+      "📤",
+      "Teilen"
+     ]
+    },
+    {
+     "t": "Speicher dir das Video, damit du es wiederfindest.",
+     "mood": "happy",
+     "ev": "save",
+     "pop": [
+      "🔖",
+      "Speichern"
+     ]
+    },
+    {
+     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
+     "mood": "wink",
+     "ev": "follow",
+     "pop": [
+      "➕",
+      "Folgen"
+     ]
+    }
+   ]
+  }
+ ]
+}

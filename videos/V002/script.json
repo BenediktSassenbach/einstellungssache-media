@@ -1,0 +1,419 @@
+{
+ "id": "V002",
+ "titel": "5 Tastatur-Tricks, die dein iPhone dir verschweigt",
+ "accent": "#FF5CA8",
+ "quelle": "Langversion von Post 002, Tipps von Benedikt am iPhone bestätigt (12.11.2026)",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "5 Tastatur-Tricks, die dein iPhone dir *verschweigt*",
+   "emoji": "⌨️",
+   "sticker": "5 Tricks",
+   "lines": [
+    {
+     "t": "Du tippst jeden Tag auf deinem iPhone?",
+     "mood": "happy",
+     "pop": [
+      "📱",
+      ""
+     ]
+    },
+    {
+     "t": "Dann verschenkst du gerade richtig viel Zeit.",
+     "mood": "angry",
+     "ev": "mark",
+     "pop": [
+      "⏳",
+      "Zeit weg"
+     ]
+    },
+    {
+     "t": "Hier sind fünf Tastatur-Tricks, die dir keiner verrät.",
+     "mood": "happy",
+     "ev": "sticker",
+     "pop": [
+      "🤫",
+      "Geheim"
+     ]
+    },
+    {
+     "t": "Nach Nummer eins tippst du nie wieder daneben.",
+     "mood": "wink",
+     "pop": [
+      "🎯",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Leertaste wird zum Trackpad",
+   "quip": "Ich bin jetzt eine Maus.",
+   "quipAt": 5,
+   "path": [
+    "Tastatur öffnen",
+    "Leertaste gedrückt halten",
+    "Finger hin und her schieben"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "⌨️",
+    "gesture": "drag",
+    "result": "Cursor landet genau da, wo du willst"
+   },
+   "lines": [
+    {
+     "t": "Nummer eins: Die Leertaste wird zum Trackpad.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🖱️",
+      "Trackpad"
+     ]
+    },
+    {
+     "t": "Öffne die Tastatur,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "halte die Leertaste gedrückt",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und schieb den Finger hin und her.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Der Cursor landet genau da, wo du willst.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "🎯",
+      "Treffer"
+     ]
+    },
+    {
+     "t": "Nie wieder zehnmal auf dieselbe Stelle tippen.",
+     "mood": "wink",
+     "pop": [
+      "🙌",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Kürzel statt ganzer Sätze",
+   "quip": "Faul, aber mit System.",
+   "quipAt": 6,
+   "path": [
+    "Einstellungen",
+    "Allgemein",
+    "Tastatur",
+    "Textersetzung"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Textersetzung",
+    "tag": "Beispiel",
+    "rows": [
+     {
+      "t": "mfg",
+      "v": "Mit freundlichen Grüßen",
+      "hot": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Nummer zwei: Kürzel statt ganzer Sätze.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "✍️",
+      "Kürzel"
+     ]
+    },
+    {
+     "t": "Geh in die Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "auf Allgemein,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Tastatur",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "und Textersetzung.",
+     "mood": "happy",
+     "ev": "p4"
+    },
+    {
+     "t": "Dort legst du ein Kürzel an, zum Beispiel M F G.",
+     "mood": "wink",
+     "ev": "act",
+     "pop": [
+      "🔤",
+      ""
+     ]
+    },
+    {
+     "t": "Du tippst drei Buchstaben, und dein iPhone schreibt den ganzen Satz.",
+     "mood": "cool",
+     "pop": [
+      "⚡",
+      "Zack"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Vertippt? Wisch es weg",
+   "quip": "Strg+Z für die Hosentasche.",
+   "quipAt": 4,
+   "path": [
+    "Text ist falsch",
+    "Mit drei Fingern nach links wischen"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "✍️",
+    "gesture": "swipe",
+    "result": "Letzte Eingabe ist rückgängig"
+   },
+   "lines": [
+    {
+     "t": "Nummer drei: Vertippt? Wisch es einfach weg.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🫣",
+      ""
+     ]
+    },
+    {
+     "t": "Wenn dein Text falsch ist,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "wischst du mit drei Fingern nach links.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Schon ist die letzte Eingabe rückgängig.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "↩️",
+      "Rückgängig"
+     ]
+    },
+    {
+     "t": "Nach rechts wischen holt sie zurück.",
+     "mood": "happy",
+     "pop": [
+      "↪️",
+      "Zurück"
+     ]
+    },
+    {
+     "t": "Schütteln geht auch, sieht in der Bahn aber komisch aus.",
+     "mood": "wink",
+     "pop": [
+      "🚋",
+      "Peinlich"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "4",
+   "title": "Tastatur für eine Hand",
+   "quip": "Prioritäten.",
+   "quipAt": 5,
+   "path": [
+    "Tastatur öffnen",
+    "Emoji- oder Globus-Taste gedrückt halten",
+    "Linke oder rechte Tastatur wählen"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "🌐",
+    "gesture": "hold",
+    "result": "Tasten rücken zu deinem Daumen"
+   },
+   "lines": [
+    {
+     "t": "Nummer vier: die Tastatur für eine Hand.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "✋",
+      "Eine Hand"
+     ]
+    },
+    {
+     "t": "Öffne die Tastatur,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "halte die Emoji- oder Globus-Taste gedrückt",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und wähle die linke oder rechte Tastatur.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Die Tasten rücken zu deinem Daumen.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "👍",
+      "Daumen"
+     ]
+    },
+    {
+     "t": "Praktisch, wenn die andere Hand gerade den Döner hält.",
+     "mood": "wink",
+     "pop": [
+      "🥙",
+      "Döner"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "5",
+   "title": "Punkt in Lichtgeschwindigkeit",
+   "quip": "Zack. Punkt.",
+   "quipAt": 3,
+   "path": [
+    "Satz zu Ende schreiben",
+    "Zweimal schnell auf die Leertaste"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "⚡",
+    "gesture": "double",
+    "result": "Punkt und Leerzeichen erscheinen"
+   },
+   "lines": [
+    {
+     "t": "Und Nummer fünf: der Punkt in Lichtgeschwindigkeit.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🚀",
+      ""
+     ]
+    },
+    {
+     "t": "Schreib deinen Satz zu Ende",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "und tippe zweimal schnell auf die Leertaste.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Zack, Punkt und Leerzeichen sind da.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "💥",
+      "Zack"
+     ]
+    },
+    {
+     "t": "Klappt, solange der Punkt-Kurzbefehl in den Tastatur-Einstellungen an ist.",
+     "mood": "wink",
+     "pop": [
+      "⚙️",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "checks": [
+    "Leertaste als Trackpad",
+    "Kürzel anlegen",
+    "Drei Finger wischen",
+    "Einhand-Tastatur",
+    "Doppelte Leertaste"
+   ],
+   "lines": [
+    {
+     "t": "Also: Leertaste als Trackpad,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Kürzel anlegen,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "mit drei Fingern wischen,",
+     "mood": "happy",
+     "ev": "c3"
+    },
+    {
+     "t": "Einhand-Tastatur",
+     "mood": "happy",
+     "ev": "c4"
+    },
+    {
+     "t": "und doppelte Leertaste.",
+     "mood": "cool",
+     "ev": "c5"
+    },
+    {
+     "t": "Speicher dir das Video, damit du es wiederfindest.",
+     "mood": "happy",
+     "ev": "save",
+     "pop": [
+      "🔖",
+      "Speichern"
+     ]
+    },
+    {
+     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
+     "mood": "wink",
+     "ev": "follow",
+     "pop": [
+      "➕",
+      "Folgen"
+     ]
+    }
+   ]
+  }
+ ]
+}

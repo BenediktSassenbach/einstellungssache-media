@@ -1,0 +1,325 @@
+{
+ "id": "V003",
+ "titel": "4 Kamera-Tricks, die du sofort brauchst",
+ "accent": "#4DE3FF",
+ "quelle": "Langversion von Post 004, Tipps von Benedikt am iPhone bestätigt (12.11.2026)",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "4 Kamera-Tricks, die du *sofort* brauchst",
+   "emoji": "📸",
+   "sticker": "4 Tricks",
+   "lines": [
+    {
+     "t": "Du machst Fotos mit deinem iPhone?",
+     "mood": "happy",
+     "pop": [
+      "📸",
+      ""
+     ]
+    },
+    {
+     "t": "Dann brauchst du diese vier Tricks sofort.",
+     "mood": "wink",
+     "ev": "mark",
+     "pop": [
+      "⚡",
+      "Sofort"
+     ]
+    },
+    {
+     "t": "Und alle funktionieren ohne zusätzliche App.",
+     "mood": "cool",
+     "ev": "sticker",
+     "pop": [
+      "🚫",
+      "Keine App"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Auslösen ohne Wackeln",
+   "quip": "Klick.",
+   "quipAt": 4,
+   "path": [
+    "Kamera öffnen",
+    "Handy ruhig halten",
+    "Lautstärketaste drücken"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "📷",
+    "gesture": "side",
+    "result": "Foto wird ausgelöst"
+   },
+   "lines": [
+    {
+     "t": "Nummer eins: Auslösen ohne Wackeln.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🫨",
+      "Wackelfrei"
+     ]
+    },
+    {
+     "t": "Öffne die Kamera,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "halte dein Handy ruhig",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und drück einfach die Lautstärketaste.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Das Foto wird ausgelöst.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "✨",
+      "Klick"
+     ]
+    },
+    {
+     "t": "Du musst nicht mehr auf den Bildschirm tippen und verwackelst weniger.",
+     "mood": "happy",
+     "pop": [
+      "🙌",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Video ohne Umschalten",
+   "quip": "Zu spät gibt es nicht.",
+   "quipAt": 4,
+   "path": [
+    "Kamera im Foto-Modus",
+    "Auslöser gedrückt halten"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "🎬",
+    "gesture": "hold",
+    "result": "Video läuft, solange du hältst"
+   },
+   "lines": [
+    {
+     "t": "Nummer zwei: Video ohne Umschalten.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🎥",
+      ""
+     ]
+    },
+    {
+     "t": "Du bist im Foto-Modus",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "und hältst einfach den Auslöser gedrückt.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Das Video läuft, solange du hältst.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "🔴",
+      "Aufnahme"
+     ]
+    },
+    {
+     "t": "Perfekt für Momente, die schneller vorbei sind als der Wechsel in den Video-Modus.",
+     "mood": "shock",
+     "pop": [
+      "⏱️",
+      "Schnell"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Serienbild mit einem Wisch",
+   "quip": "Einer blinzelt immer.",
+   "quipAt": 4,
+   "path": [
+    "Kamera im Foto-Modus",
+    "Auslöser nach links ziehen und halten"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "📸",
+    "gesture": "swipe",
+    "result": "Viele Fotos hintereinander"
+   },
+   "lines": [
+    {
+     "t": "Nummer drei: Serienbild mit einem Wisch.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🎞️",
+      "Serie"
+     ]
+    },
+    {
+     "t": "Im Foto-Modus",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "ziehst du den Auslöser nach links und hältst ihn fest.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Dein iPhone schießt viele Fotos hintereinander.",
+     "mood": "shock",
+     "ev": "act",
+     "pop": [
+      "📸",
+      "Klick klick"
+     ]
+    },
+    {
+     "t": "Danach suchst du dir in Ruhe das eine Bild aus, auf dem alle gut aussehen.",
+     "mood": "wink",
+     "pop": [
+      "😎",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "4",
+   "title": "Raster für gerade Bilder",
+   "quip": "Endlich gerade.",
+   "quipAt": 4,
+   "path": [
+    "Einstellungen",
+    "Kamera"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Kamera",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "Raster",
+      "sw": 0,
+      "flip": true
+     }
+    ],
+    "grid": true
+   },
+   "lines": [
+    {
+     "t": "Und Nummer vier: das Raster für gerade Bilder.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "📐",
+      ""
+     ]
+    },
+    {
+     "t": "Geh in die Einstellungen",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "und auf Kamera.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Dort schaltest du das Raster ein.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "#️⃣",
+      "Raster an"
+     ]
+    },
+    {
+     "t": "Die Hilfslinien zeigen dir sofort, ob der Horizont schief ist.",
+     "mood": "happy",
+     "pop": [
+      "🌅",
+      "Gerade"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "checks": [
+    "Lautstärketaste zum Auslösen",
+    "Halten für Video",
+    "Nach links für Serienbild",
+    "Raster einschalten"
+   ],
+   "lines": [
+    {
+     "t": "Also: Lautstärketaste zum Auslösen,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "halten für Video,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "nach links ziehen für Serienbild",
+     "mood": "happy",
+     "ev": "c3"
+    },
+    {
+     "t": "und Raster einschalten.",
+     "mood": "cool",
+     "ev": "c4"
+    },
+    {
+     "t": "Speicher dir das Video, damit du es wiederfindest.",
+     "mood": "happy",
+     "ev": "save",
+     "pop": [
+      "🔖",
+      "Speichern"
+     ]
+    },
+    {
+     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
+     "mood": "wink",
+     "ev": "follow",
+     "pop": [
+      "➕",
+      "Folgen"
+     ]
+    }
+   ]
+  }
+ ]
+}

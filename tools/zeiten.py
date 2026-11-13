@@ -1,10 +1,27 @@
-# Sprechzeiten aus den Szenen-Audios ableiten: python3 tools/zeiten.py videos/V001
-# Erwartet audio/1.mp3 ... audio/N.mp3 (eine Datei pro Szene), schreibt zeiten.json.
+# Sprechzeiten pro Zeile und Wort ermitteln: python3 tools/zeiten.py videos/V001
+# Erwartet audio/1.mp3 ... audio/N.mp3 (eine Datei pro Szene) und schreibt zeiten.json.
+# Liegt neben der MP3 eine N.json mit ElevenLabs-Zeitstempeln (vom Skript "Audio holen"), werden die exakten
+# Zeiten jedes Wortes genutzt. Sonst werden die Zeilenwechsel an den Sprechpausen geschaetzt.
 import json, re, subprocess, sys, os
-d = sys.argv[1]; S = json.load(open(os.path.join(d, 'script.json'), encoding='utf8')); out = []
-for i, sc in enumerate(S['scenes']):
-    f = os.path.join(d, 'audio', f'{i+1}.mp3')
-    dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f], capture_output=True, text=True).stdout)
+
+def dauer(f):
+    return float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f], capture_output=True, text=True).stdout)
+
+def aus_alignment(sc, al, dur):
+    chars = al['characters']; st = al['character_start_times_seconds']; en = al['character_end_times_seconds']
+    text = ''.join(chars); soll = ' '.join(l['t'] for l in sc['lines'])
+    if text != soll:
+        return None
+    zeilen, woerter, pos = [], [], 0
+    for l in sc['lines']:
+        ws, p = [], pos
+        for w in l['t'].split(' '):
+            a, b = p, p + len(w) - 1
+            ws.append([round(st[a], 3), round(en[b], 3)]); p = b + 2
+        zeilen.append([ws[0][0], ws[-1][1]]); woerter.append(ws); pos += len(l['t']) + 1
+    return {'dauer': round(dur, 3), 'zeilen': zeilen, 'woerter': woerter, 'quelle': 'elevenlabs'}
+
+def aus_pausen(sc, f, dur):
     log = subprocess.run(['ffmpeg', '-hide_banner', '-i', f, '-af', 'silencedetect=noise=-32dB:d=0.18', '-f', 'null', '-'], capture_output=True, text=True).stderr
     st = [float(x) for x in re.findall(r'silence_start: ([\d.]+)', log)]; en = [float(x) for x in re.findall(r'silence_end: ([\d.]+)', log)]
     sil = [(a, b) for a, b in zip(st, en) if a > 0.2 and b < dur - 0.1]
@@ -24,6 +41,14 @@ for i, sc in enumerate(S['scenes']):
     z = []; a = 0.0
     for c in cuts: z.append([round(a, 3), round(c[0], 3)]); a = c[1]
     z.append([round(a, 3), round(end_voice, 3)])
-    out.append({'dauer': round(dur, 3), 'zeilen': z})
-    print(i + 1, round(dur, 2), [(x[0], x[1]) for x in z])
+    return {'dauer': round(dur, 3), 'zeilen': z, 'quelle': 'pausen'}
+
+d = sys.argv[1]; S = json.load(open(os.path.join(d, 'script.json'), encoding='utf8')); out = []
+for i, sc in enumerate(S['scenes']):
+    f = os.path.join(d, 'audio', f'{i+1}.mp3'); j = os.path.join(d, 'audio', f'{i+1}.json'); dur = dauer(f); z = None
+    if os.path.exists(j):
+        z = aus_alignment(sc, json.load(open(j, encoding='utf-8-sig'))['alignment'], dur)
+        if z is None: print(f'Szene {i+1}: Text in {j} passt nicht zum Skript, nutze Pausen')
+    if z is None: z = aus_pausen(sc, f, dur)
+    out.append(z); print(i + 1, z['quelle'], round(dur, 2), 's')
 json.dump({'szenen': out}, open(os.path.join(d, 'zeiten.json'), 'w'), indent=1)

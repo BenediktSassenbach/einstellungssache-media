@@ -1,0 +1,343 @@
+{
+ "id": "V006",
+ "titel": "4 Gesten, die dein iPhone heimlich kann",
+ "accent": "#FF8A3D",
+ "quelle": "Langversion von Post 007, Tipps von Benedikt am iPhone bestätigt (12.11.2026)",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "4 Gesten, die dein iPhone *heimlich* kann",
+   "emoji": "🤌",
+   "sticker": "4 Gesten",
+   "lines": [
+    {
+     "t": "Dein iPhone kann Sachen, von denen du nichts weißt.",
+     "mood": "wink",
+     "ev": "mark",
+     "pop": [
+      "🤫",
+      ""
+     ]
+    },
+    {
+     "t": "Hier sind vier Gesten, die es heimlich kann.",
+     "mood": "happy",
+     "ev": "sticker",
+     "pop": [
+      "👆",
+      "Gesten"
+     ]
+    },
+    {
+     "t": "Nummer drei kennt fast niemand im Freundeskreis.",
+     "mood": "shock",
+     "pop": [
+      "🤯",
+      "Teste es"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Auf die Rückseite tippen",
+   "quip": "Wer klopft da?",
+   "quipAt": 6,
+   "path": [
+    "Einstellungen",
+    "Bedienungshilfen",
+    "Tippen",
+    "Auf Rückseite tippen"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Auf Rückseite tippen",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "Doppeltippen",
+      "v": "›",
+      "vAfter": "Bildschirmfoto",
+      "hot": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Nummer eins: auf die Rückseite tippen.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "📱",
+      ""
+     ]
+    },
+    {
+     "t": "Geh in die Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Bedienungshilfen,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Tippen",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "und Auf Rückseite tippen.",
+     "mood": "happy",
+     "ev": "p4"
+    },
+    {
+     "t": "Belege Doppeltippen mit Bildschirmfoto.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "📸",
+      "Screenshot"
+     ]
+    },
+    {
+     "t": "Dann klopfst du zweimal hinten aufs Gehäuse, und der Screenshot ist da.",
+     "mood": "shock",
+     "pop": [
+      "✊",
+      "Klopf klopf"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Sofort ganz nach oben",
+   "quip": "Aufzug statt Treppe.",
+   "quipAt": 4,
+   "path": [
+    "Du bist weit unten in einer Liste",
+    "Ganz oben auf die Uhrzeit tippen"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "🕐",
+    "gesture": "tap",
+    "result": "Seite springt an den Anfang"
+   },
+   "lines": [
+    {
+     "t": "Nummer zwei: sofort ganz nach oben.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "⬆️",
+      ""
+     ]
+    },
+    {
+     "t": "Du bist weit unten in einer Liste?",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Tippe ganz oben auf die Uhrzeit.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Die Seite springt an den Anfang.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "🚀",
+      "Hoch"
+     ]
+    },
+    {
+     "t": "Funktioniert in fast jeder App. Kein endloses Hochwischen mehr.",
+     "mood": "cool",
+     "pop": [
+      "🛗",
+      "Aufzug"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Im Rechner eine Ziffer löschen",
+   "quip": "Mathe wird nicht leichter.",
+   "quipAt": 5,
+   "path": [
+    "Rechner öffnen",
+    "Zahl falsch eingetippt",
+    "Über die Zahl wischen"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "🧮",
+    "gesture": "swipe",
+    "result": "Nur die letzte Ziffer verschwindet"
+   },
+   "lines": [
+    {
+     "t": "Nummer drei: im Rechner eine Ziffer löschen.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🔢",
+      ""
+     ]
+    },
+    {
+     "t": "Öffne den Rechner.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Zahl falsch eingetippt?",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Wisch einfach über die Zahl.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Nur die letzte Ziffer verschwindet.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "✂️",
+      "Weg"
+     ]
+    },
+    {
+     "t": "Du musst nicht mehr alles löschen und von vorn rechnen.",
+     "mood": "happy",
+     "pop": [
+      "😌",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "4",
+   "title": "Text aus Fotos kopieren",
+   "quip": "Danke, Mitschrift.",
+   "quipAt": 4,
+   "path": [
+    "Foto mit Text öffnen",
+    "Finger auf den Text halten",
+    "Text markieren"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "🖼️",
+    "gesture": "hold",
+    "result": "„Kopieren“ wählen"
+   },
+   "lines": [
+    {
+     "t": "Und Nummer vier: Text aus Fotos kopieren.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "📷",
+      ""
+     ]
+    },
+    {
+     "t": "Öffne ein Foto mit Text,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "halte den Finger auf den Text",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und markiere ihn.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Dann wählst du Kopieren.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "📋",
+      "Kopiert"
+     ]
+    },
+    {
+     "t": "Klappt mit Schildern, Rechnungen und Tafelbildern. Abtippen war gestern.",
+     "mood": "wink",
+     "pop": [
+      "📝",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "checks": [
+    "Rückseite antippen",
+    "Uhrzeit antippen",
+    "Im Rechner wischen",
+    "Text aus Fotos kopieren"
+   ],
+   "lines": [
+    {
+     "t": "Also: Rückseite antippen,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Uhrzeit antippen,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "im Rechner wischen",
+     "mood": "happy",
+     "ev": "c3"
+    },
+    {
+     "t": "und Text aus Fotos kopieren.",
+     "mood": "cool",
+     "ev": "c4"
+    },
+    {
+     "t": "Speicher dir das Video, damit du es wiederfindest.",
+     "mood": "happy",
+     "ev": "save",
+     "pop": [
+      "🔖",
+      "Speichern"
+     ]
+    },
+    {
+     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
+     "mood": "wink",
+     "ev": "follow",
+     "pop": [
+      "➕",
+      "Folgen"
+     ]
+    }
+   ]
+  }
+ ]
+}

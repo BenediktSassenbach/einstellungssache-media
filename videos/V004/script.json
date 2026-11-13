@@ -1,0 +1,317 @@
+{
+ "id": "V004",
+ "titel": "Neues iPhone? Mach das zuerst.",
+ "accent": "#C6FF3D",
+ "quelle": "Langversion von Post 005, Tipps von Benedikt am iPhone bestätigt (12.11.2026)",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Neues iPhone? Mach *das* zuerst.",
+   "emoji": "📦",
+   "sticker": "3 Dinge",
+   "lines": [
+    {
+     "t": "Du hast ein neues iPhone?",
+     "mood": "happy",
+     "pop": [
+      "🎁",
+      ""
+     ]
+    },
+    {
+     "t": "Dann mach das hier zuerst.",
+     "mood": "wink",
+     "ev": "mark",
+     "pop": [
+      "☝️",
+      "Zuerst"
+     ]
+    },
+    {
+     "t": "Drei Dinge, die fast jeder aufschiebt",
+     "mood": "happy",
+     "ev": "sticker",
+     "pop": [
+      "🐌",
+      "Später"
+     ]
+    },
+    {
+     "t": "und später bereut.",
+     "mood": "shock",
+     "pop": [
+      "😬",
+      "Bereut"
+     ]
+    },
+    {
+     "t": "Ich bin Schalti, und ich zeig dir, was du sofort einstellen solltest.",
+     "mood": "happy",
+     "pop": [
+      "👋",
+      "Schalti"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Notfallpass anlegen",
+   "quip": "Hoffentlich nie nötig.",
+   "quipAt": 5,
+   "path": [
+    "App „Health“ öffnen",
+    "Oben rechts auf dein Profilbild",
+    "Notfallpass"
+   ],
+   "panel": {
+    "kind": "card",
+    "emoji": "🆘",
+    "gesture": "tap",
+    "result": "Notfallkontakt und wichtige Angaben eintragen"
+   },
+   "lines": [
+    {
+     "t": "Erstens: Leg deinen Notfallpass an.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🪪",
+      "Notfallpass"
+     ]
+    },
+    {
+     "t": "Öffne die App Health,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "tippe oben rechts auf dein Profilbild",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und dann auf Notfallpass.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Trag dort deinen Notfallkontakt und wichtige Angaben ein.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "📝",
+      "Eintragen"
+     ]
+    },
+    {
+     "t": "Helfer können ihn im Notfall vom Sperrbildschirm aus aufrufen, ohne deinen Code.",
+     "mood": "shock",
+     "pop": [
+      "🔓",
+      "Ohne Code"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "„Wo ist?“ einschalten",
+   "quip": "Wo bin ich?!",
+   "quipAt": 6,
+   "path": [
+    "Einstellungen",
+    "Dein Name ganz oben",
+    "Wo ist?",
+    "Mein iPhone suchen"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Mein iPhone suchen",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "Mein iPhone suchen",
+      "sw": 0,
+      "flip": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Zweitens: Schalte „Wo ist?“ ein.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "📍",
+      ""
+     ]
+    },
+    {
+     "t": "Geh in die Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "tippe ganz oben auf deinen Namen,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "dann auf „Wo ist?“",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "und auf Mein iPhone suchen.",
+     "mood": "happy",
+     "ev": "p4"
+    },
+    {
+     "t": "Schalte es ein.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "✅",
+      "An"
+     ]
+    },
+    {
+     "t": "Nur dann kannst du ein verlorenes iPhone orten, sperren oder löschen.",
+     "mood": "angry",
+     "pop": [
+      "🗺️",
+      "Orten"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Updates automatisch laden",
+   "quip": "Erledigt sich im Schlaf.",
+   "quipAt": 6,
+   "path": [
+    "Einstellungen",
+    "Allgemein",
+    "Softwareupdate",
+    "Automatische Updates"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Automatische Updates",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "Automatisch laden und installieren",
+      "sw": 0,
+      "flip": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Drittens: Lass Updates automatisch laden.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🔄",
+      ""
+     ]
+    },
+    {
+     "t": "Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Allgemein,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Softwareupdate",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "und Automatische Updates.",
+     "mood": "happy",
+     "ev": "p4"
+    },
+    {
+     "t": "Einschalten, fertig.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "✅",
+      "Fertig"
+     ]
+    },
+    {
+     "t": "Sicherheitslücken werden geschlossen, ohne dass du daran denken musst.",
+     "mood": "sleepy",
+     "pop": [
+      "🔒",
+      "Sicher"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "checks": [
+    "Notfallpass anlegen",
+    "„Wo ist?“ einschalten",
+    "Automatische Updates an"
+   ],
+   "lines": [
+    {
+     "t": "Also: Notfallpass anlegen,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "„Wo ist?“ einschalten",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und automatische Updates an.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Schick das Video jemandem, der gerade ein neues iPhone ausgepackt hat.",
+     "mood": "wink",
+     "pop": [
+      "📤",
+      "Teilen"
+     ]
+    },
+    {
+     "t": "Speicher dir das Video, damit du es wiederfindest.",
+     "mood": "happy",
+     "ev": "save",
+     "pop": [
+      "🔖",
+      "Speichern"
+     ]
+    },
+    {
+     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
+     "mood": "wink",
+     "ev": "follow",
+     "pop": [
+      "➕",
+      "Folgen"
+     ]
+    }
+   ]
+  }
+ ]
+}

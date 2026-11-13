@@ -1,0 +1,339 @@
+{
+ "id": "V007",
+ "titel": "Speicher voll? Nicht gleich Fotos löschen.",
+ "accent": "#5CE1A0",
+ "quelle": "Langversion von Post 008, Tipps von Benedikt am iPhone bestätigt (12.11.2026)",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Speicher voll? *Nicht* gleich Fotos löschen.",
+   "emoji": "💾",
+   "sticker": "3 Einstellungen",
+   "lines": [
+    {
+     "t": "Dein iPhone sagt schon wieder: Speicher voll?",
+     "mood": "angry",
+     "pop": [
+      "😤",
+      ""
+     ]
+    },
+    {
+     "t": "Lösch jetzt nicht gleich deine Fotos.",
+     "mood": "shock",
+     "ev": "mark",
+     "pop": [
+      "🛑",
+      "Stopp"
+     ]
+    },
+    {
+     "t": "Diese drei Einstellungen schaffen Platz.",
+     "mood": "happy",
+     "ev": "sticker",
+     "pop": [
+      "📦",
+      "Platz"
+     ]
+    },
+    {
+     "t": "Ich bin Schalti, und ich zeig dir, wie du Platz schaffst, ohne ein einziges Foto zu verlieren.",
+     "mood": "happy",
+     "pop": [
+      "👋",
+      "Schalti"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Nachsehen, was Platz frisst",
+   "quip": "Du bist SO groß?",
+   "quipAt": 5,
+   "path": [
+    "Einstellungen",
+    "Allgemein",
+    "iPhone-Speicher"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "iPhone-Speicher",
+    "tag": "Beispielwerte",
+    "rows": [
+     {
+      "t": "Video-App",
+      "v": "8,4 GB",
+      "bar": 1,
+      "hot": true
+     },
+     {
+      "t": "Chat-App",
+      "v": "5,1 GB",
+      "bar": 0.61
+     },
+     {
+      "t": "Spiele-App",
+      "v": "3,2 GB",
+      "bar": 0.38
+     },
+     {
+      "t": "Musik-App",
+      "v": "1,0 GB",
+      "bar": 0.12
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Erstens: Sieh nach, was Platz frisst.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🔍",
+      ""
+     ]
+    },
+    {
+     "t": "Geh in die Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "auf Allgemein",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und iPhone-Speicher.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Dort siehst du die Liste nach Größe.",
+     "mood": "happy",
+     "ev": "bars",
+     "pop": [
+      "📊",
+      ""
+     ]
+    },
+    {
+     "t": "Oft sind es zwei oder drei Apps mit Daten, an die du nie gedacht hättest.",
+     "mood": "shock",
+     "ev": "act",
+     "pop": [
+      "😳",
+      "So groß?"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Ungenutzte Apps auslagern",
+   "quip": "Nur ein Nickerchen.",
+   "quipAt": 4,
+   "path": [
+    "Einstellungen",
+    "Apps",
+    "App Store"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "App Store",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "Unbenutzte Apps auslagern",
+      "sw": 0,
+      "flip": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Zweitens: Lagere ungenutzte Apps aus.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "📲",
+      ""
+     ]
+    },
+    {
+     "t": "In den Einstellungen",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "auf Apps",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und App Store.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Schalte „Unbenutzte Apps auslagern“ ein.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "💤",
+      "Nickerchen"
+     ]
+    },
+    {
+     "t": "Selten genutzte Apps verschwinden, ihre Daten bleiben. Ein Tipp aufs Symbol lädt sie neu.",
+     "mood": "sleepy",
+     "pop": [
+      "🔁",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Fotos in voller Größe auslagern",
+   "quip": "Wolke 7.",
+   "quipAt": 6,
+   "path": [
+    "Einstellungen",
+    "Dein Name ganz oben",
+    "iCloud",
+    "Fotos"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Fotos",
+    "tag": "So sieht es aus",
+    "pick": [
+     1,
+     0
+    ],
+    "rows": [
+     {
+      "t": "iPhone-Speicher optimieren"
+     },
+     {
+      "t": "Laden und Originale behalten"
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Drittens: Lagere Fotos in voller Größe aus.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🖼️",
+      ""
+     ]
+    },
+    {
+     "t": "Einstellungen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "ganz oben auf deinen Namen,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "iCloud",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "und Fotos.",
+     "mood": "happy",
+     "ev": "p4"
+    },
+    {
+     "t": "Wähle „iPhone-Speicher optimieren“.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "☁️",
+      "Wolke"
+     ]
+    },
+    {
+     "t": "Auf dem iPhone liegen dann kleinere Versionen, die Originale in iCloud.",
+     "mood": "happy",
+     "pop": [
+      "📱",
+      ""
+     ]
+    },
+    {
+     "t": "Dafür brauchst du iCloud-Fotos und genug iCloud-Platz.",
+     "mood": "wink",
+     "pop": [
+      "ℹ️",
+      "Wichtig"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "*Speichern*, sonst ist es morgen weg.",
+   "checks": [
+    "Speicher-Liste checken",
+    "Unbenutzte Apps auslagern",
+    "Fotos optimieren"
+   ],
+   "lines": [
+    {
+     "t": "Also: Speicher-Liste checken,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "unbenutzte Apps auslagern",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und Fotos optimieren.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Schick das Video jemandem, dessen Speicher ständig voll ist.",
+     "mood": "wink",
+     "pop": [
+      "📤",
+      "Teilen"
+     ]
+    },
+    {
+     "t": "Speicher dir das Video, damit du es wiederfindest.",
+     "mood": "happy",
+     "ev": "save",
+     "pop": [
+      "🔖",
+      "Speichern"
+     ]
+    },
+    {
+     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
+     "mood": "wink",
+     "ev": "follow",
+     "pop": [
+      "➕",
+      "Folgen"
+     ]
+    }
+   ]
+  }
+ ]
+}
