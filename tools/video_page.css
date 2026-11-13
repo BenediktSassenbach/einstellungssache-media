@@ -72,3 +72,14 @@ h2{font-size:60px;line-height:1.03;font-weight:900;letter-spacing:-.035em}
 .tfing{position:absolute;font-size:76px;line-height:1;font-family:'Noto Color Emoji';z-index:3}
 .tdead{position:absolute;right:22px;top:14px;font-size:24px;font-weight:900;color:#fff;background:#FF5A5A;border-radius:10px;padding:2px 10px}
 .brand em{font-style:normal;color:#0B1020;background:var(--a);border-radius:12px;padding:2px 14px;font-weight:900}
+/* Grosse Erklaer-Grafik */
+.viz{position:absolute;left:0;right:0;bottom:0;height:548px;background:#F4F6FB;border-radius:44px;padding:14px;box-shadow:10px 10px 0 var(--a)}
+.vin{position:relative;width:812px;height:520px;border-radius:34px;background:#131C38;overflow:hidden}
+.vemo{position:absolute;font-family:'Noto Color Emoji';line-height:1;z-index:3}
+.vlab{position:absolute;z-index:4;font-size:34px;font-weight:900;color:#0B1020;background:#fff;border-radius:16px;padding:8px 18px;white-space:nowrap}
+.vlab.hot{background:var(--a)}.vlab.red{background:#FF5A5A;color:#fff}.vlab.dim{background:#26335E;color:#AEB9D6;font-size:28px}
+.vres{position:absolute;z-index:5;font-size:44px;font-weight:900;color:#0B1020;background:var(--a);border-radius:20px;padding:12px 24px;box-shadow:6px 6px 0 #fff}
+.vcard{position:absolute;z-index:4;width:240px;height:250px;border-radius:30px;background:#F4F6FB;color:#0B1020;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.vcard.on{background:var(--a)}
+.vcard span{font-family:'Noto Color Emoji';font-size:110px;line-height:1;display:block}
+.vcard em{font-style:normal;font-size:30px;font-weight:900;line-height:1.05;padding:0 10px}

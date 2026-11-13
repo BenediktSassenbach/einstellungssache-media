@@ -12,11 +12,42 @@
    "emoji": "📱",
    "sticker": "60 Sekunden",
    "lines": [
-    {"t": "Physik nie verstanden?", "mood": "shock", "pop": ["🤯", "Physik"]},
-    {"t": "Gib mir 60 Sekunden.", "mood": "wink", "ev": "sticker", "pop": ["⏱️", ""]},
-    {"t": "Heute: Woher weiß dein Handy, wo dein Finger ist?", "mood": "happy", "ev": "mark", "pop": ["👆", "Touch"]},
-    {"t": "Und was du tun kannst, wenn das Display spinnt.", "mood": "cool", "pop": ["💥", "Kaputt?"]}
-   ]
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "shock",
+     "pop": [
+      "🤯",
+      "Physik"
+     ]
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker",
+     "pop": [
+      "⏱️",
+      ""
+     ]
+    },
+    {
+     "t": "Heute: Woher weiß dein Handy, wo dein Finger ist?",
+     "mood": "happy",
+     "ev": "mark",
+     "pop": [
+      "👆",
+      "Touch"
+     ]
+    },
+    {
+     "t": "Und was du tun kannst, wenn das Display spinnt.",
+     "mood": "cool",
+     "pop": [
+      "💥",
+      "Kaputt?"
+     ]
+    }
+   ],
+   "tap": true
   },
   {
    "type": "tip",
@@ -24,14 +55,55 @@
    "title": "Unsichtbares Gitter",
    "quip": "Siehst du nicht? Eben.",
    "quipAt": 3,
-   "path": ["Oben: hartes Glas", "Darunter: durchsichtige Leiterbahnen", "Darauf: winzige Ladung"],
-   "panel": {"kind": "touch", "mode": "gitter", "title": "Blick ins Display", "frage": "Schicht für Schicht", "labels": {"p1": "Glas", "p2": "Leiterbahnen", "p3": "Ladung"}, "result": "Gitter + Ladung = Sensor"},
+   "path": [
+    "Oben: hartes Glas",
+    "Darunter: durchsichtige Leiterbahnen",
+    "Darauf: winzige Ladung"
+   ],
+   "panel": {
+    "kind": "touch",
+    "mode": "gitter",
+    "title": "Blick ins Display",
+    "frage": "Schicht für Schicht",
+    "labels": {
+     "p1": "Glas",
+     "p2": "Leiterbahnen",
+     "p3": "Ladung",
+     "display": "Bildschirm"
+    },
+    "result": "Gitter + Ladung = Sensor",
+    "big": true
+   },
    "lines": [
-    {"t": "Erstens: Unter dem Glas liegt ein unsichtbares Gitter.", "mood": "happy", "ev": "panel", "pop": ["🔍", ""]},
-    {"t": "Ganz oben ist nur hartes Glas.", "mood": "happy", "ev": "p1"},
-    {"t": "Darunter liegen hauchdünne, durchsichtige Leiterbahnen, längs und quer.", "mood": "happy", "ev": "p2"},
-    {"t": "Auf diesem Gitter sitzt ständig eine winzige elektrische Ladung.", "mood": "wink", "ev": "p3", "pop": ["⚡", "Ladung"]},
-    {"t": "Dein Display steht also die ganze Zeit ein bisschen unter Spannung.", "mood": "shock", "ev": "act", "pop": ["😳", "Immer"]}
+    {
+     "t": "Erstens: Unter dem Glas liegt ein unsichtbares Gitter.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🔍",
+      ""
+     ]
+    },
+    {
+     "t": "Ganz oben ist nur hartes Glas.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Darunter liegen hauchdünne, durchsichtige Leiterbahnen, längs und quer.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Auf diesem Gitter sitzt ständig eine winzige elektrische Ladung.",
+     "mood": "wink",
+     "ev": "p3"
+    },
+    {
+     "t": "Dein Display steht also die ganze Zeit ein bisschen unter Spannung.",
+     "mood": "shock",
+     "ev": "act"
+    }
    ]
   },
   {
@@ -40,15 +112,69 @@
    "title": "Dein Finger leitet Strom",
    "quip": "Du bist das Kabel.",
    "quipAt": 3,
-   "path": ["Finger kommt ans Glas", "Elektrisches Feld ändert sich", "Chip erkennt die Kreuzung"],
-   "panel": {"kind": "touch", "mode": "finger", "title": "Was beim Tippen passiert", "frage": "Im Gitter", "labels": {"p1": "Finger da", "p2": "Feld ändert sich", "p3": "Spalte 4, Zeile 2", "act2": "Handschuh: nichts"}, "result": "Position erkannt"},
+   "path": [
+    "Finger kommt ans Glas",
+    "Elektrisches Feld ändert sich",
+    "Chip erkennt die Kreuzung"
+   ],
+   "panel": {
+    "kind": "touch",
+    "mode": "finger",
+    "title": "Was beim Tippen passiert",
+    "frage": "Im Gitter",
+    "labels": {
+     "p1": "Finger am Glas",
+     "p2": "Feld verbiegt sich",
+     "scan": "Chip sucht",
+     "p3": "Spalte 5, Zeile 3",
+     "act2": "Handschuh isoliert"
+    },
+    "result": "Position erkannt",
+    "big": true
+   },
    "lines": [
-    {"t": "Zweitens: Dein Finger leitet Strom.", "mood": "happy", "ev": "panel", "pop": ["🔌", ""]},
-    {"t": "Kommt er ans Glas,", "mood": "happy", "ev": "p1"},
-    {"t": "verändert er genau dort das elektrische Feld.", "mood": "shock", "ev": "p2"},
-    {"t": "Ein Chip misst viele Male pro Sekunde, an welcher Kreuzung sich etwas ändert.", "mood": "happy", "ev": "p3"},
-    {"t": "So weiß dein Handy, wo du tippst.", "mood": "cool", "ev": "act", "pop": ["🎯", "Treffer"]},
-    {"t": "Darum klappt es mit dicken Handschuhen nicht.", "mood": "angry", "ev": "act2", "pop": ["🧤", "Kein Touch"]}
+    {
+     "t": "Zweitens: Dein Finger leitet Strom.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🔌",
+      ""
+     ]
+    },
+    {
+     "t": "Kommt er ans Glas,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "verändert er genau dort das elektrische Feld.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Ein Chip misst viele Male pro Sekunde, an welcher Kreuzung sich etwas ändert.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "So weiß dein Handy, wo du tippst.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "🎯",
+      "Treffer"
+     ]
+    },
+    {
+     "t": "Darum klappt es mit dicken Handschuhen nicht.",
+     "mood": "angry",
+     "ev": "act2",
+     "pop": [
+      "🧤",
+      "Kein Touch"
+     ]
+    }
    ]
   },
   {
@@ -57,28 +183,117 @@
    "title": "Display kaputt?",
    "quip": "Erst testen, dann zahlen.",
    "quipAt": 4,
-   "path": ["Handy neu starten", "Display sauber und trocken wischen", "Hülle und Schutzfolie abnehmen"],
-   "panel": {"kind": "touch", "mode": "kaputt", "title": "Wenn es knackt", "frage": "Der Schaden", "labels": {"crack": "Riss: Touch geht oft noch", "ghost": "Gitter defekt", "p1": "Neustart", "p2": "Sauber + trocken", "p3": "Folie ab"}, "result": "Sonst: Backup + Reparatur"},
+   "path": [
+    "Handy neu starten",
+    "Display sauber und trocken wischen",
+    "Hülle und Schutzfolie abnehmen"
+   ],
+   "panel": {
+    "kind": "touch",
+    "mode": "kaputt",
+    "title": "Wenn es knackt",
+    "frage": "Der Schaden",
+    "labels": {
+     "crack": "Nur das Glas: Touch geht oft noch",
+     "ghost": "Gitter defekt: Geistertipper",
+     "tot": "tote Zone"
+    },
+    "result": "Backup + Reparatur",
+    "big": true,
+    "cards": [
+     [
+      "🔄",
+      "Neustart"
+     ],
+     [
+      "💧",
+      "Sauber + trocken"
+     ],
+     [
+      "📱",
+      "Hülle + Folie ab"
+     ]
+    ]
+   },
    "lines": [
-    {"t": "Drittens: Was, wenn das Display kaputt ist?", "mood": "shock", "ev": "panel", "pop": ["💥", ""]},
-    {"t": "Ein Riss im Glas ist oft nur Optik, das Gitter liegt ja darunter.", "mood": "happy", "ev": "crack"},
-    {"t": "Ist das Gitter selbst beschädigt, reagieren Stellen gar nicht oder das Handy tippt von allein.", "mood": "angry", "ev": "ghost", "pop": ["👻", "Geistertipper"]},
-    {"t": "Dann zuerst: Handy neu starten,", "mood": "happy", "ev": "p1"},
-    {"t": "Display sauber und trocken wischen,", "mood": "happy", "ev": "p2"},
-    {"t": "Hülle und Schutzfolie abnehmen.", "mood": "happy", "ev": "p3"},
-    {"t": "Hilft das nicht: Backup machen und reparieren lassen.", "mood": "cool", "ev": "act", "pop": ["🛠️", "Reparatur"]}
+    {
+     "t": "Drittens: Was, wenn das Display kaputt ist?",
+     "mood": "shock",
+     "ev": "panel",
+     "pop": [
+      "💥",
+      ""
+     ]
+    },
+    {
+     "t": "Ein Riss im Glas ist oft nur Optik, das Gitter liegt ja darunter.",
+     "mood": "happy",
+     "ev": "crack"
+    },
+    {
+     "t": "Ist das Gitter selbst beschädigt, reagieren Stellen gar nicht oder das Handy tippt von allein.",
+     "mood": "angry",
+     "ev": "ghost"
+    },
+    {
+     "t": "Dann zuerst: Handy neu starten,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Display sauber und trocken wischen,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Hülle und Schutzfolie abnehmen.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Hilft das nicht: Backup machen und reparieren lassen.",
+     "mood": "cool",
+     "ev": "act"
+    }
    ]
   },
   {
    "type": "outro",
    "title": "Ist halt ’ne *Einstellungssache*",
-   "checks": ["Gitter unter dem Glas", "Finger verändert das Feld", "Kaputt? Erst neu starten"],
+   "checks": [
+    "Gitter unter dem Glas",
+    "Finger verändert das Feld",
+    "Kaputt? Erst neu starten"
+   ],
    "lines": [
-    {"t": "Also: Unter dem Glas liegt ein Gitter,", "mood": "happy", "ev": "c1"},
-    {"t": "dein Finger verändert das Feld,", "mood": "happy", "ev": "c2"},
-    {"t": "und bei Problemen erst neu starten, dann reparieren.", "mood": "cool", "ev": "c3"},
-    {"t": "Physik verstehen?", "mood": "happy", "pop": ["🧠", ""]},
-    {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}
+    {
+     "t": "Also: Unter dem Glas liegt ein Gitter,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "dein Finger verändert das Feld,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und bei Problemen erst neu starten, dann reparieren.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
    ]
   }
  ]

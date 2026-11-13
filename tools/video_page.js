@@ -160,6 +160,66 @@ function touchPanel(p, ev, t, E, popHtml) {
     : '<div class="cres" style="opacity:' + (0.55 + 0.25 * Math.sin(t * 4)) + '"><em>' + esc(p.frage || 'Was passiert?') + '</em>' + '•'.repeat(1 + Math.floor(t * 3) % 3) + '</div>';
   return '<div class="panel" style="' + rise(E('panel', 0.5)) + '"><div class="ph"><span>' + esc(p.title || 'Im Display') + '</span><span>' + esc(p.tag || 'Schema') + '</span></div><div class="card" style="gap:36px"><div class="tbox" style="transform:translateX(' + shk + 'px)"><svg width="400" height="228" viewBox="0 0 400 228"><rect x="10" y="8" width="380" height="212" rx="26" fill="#0B1020"/>' + g + '</svg>' + over + '</div>' + res + '</div>' + popHtml + '</div>';
 }
+// Grosse Erklaer-Grafik (Serie Physik): fuellt die Flaeche unter dem Titel, ersetzt die Schrittliste
+function bigViz(p, ev, t, E, popHtml) {
+  const md = p.mode, L = p.labels || {}; let g = '', over = '';
+  const chip = (n, x, y, txt, cls) => ev[n] === undefined || !txt ? '' : '<div class="vlab ' + (cls || '') + '" style="left:' + x + 'px;top:' + y + 'px;' + pop(cl(ev[n] / 0.35), 'left center') + '">' + esc(txt) + '</div>';
+  if (md === 'gitter') {
+    const k1 = ease(E('p1', 0.7)), k2 = ease(E('p2', 0.7)), k3 = E('p3', 0.5), done = ev.act !== undefined;
+    const lay = oy => (u, v) => [62 + u * 370 + v * 165, 262 + oy - u * 105 + v * 108];
+    const poly = (f, pts) => pts.map(q => f(q[0], q[1]).map(n => n.toFixed(1)).join(',')).join(' ');
+    const sq = [[0, 0], [1, 0], [1, 1], [0, 1]];
+    const slab = (oy, fill, stroke, sw, op) => { const f = lay(oy), f2 = lay(oy + 14); return '<polygon points="' + poly(f2, sq) + '" fill="' + stroke + '" opacity="' + (op * .45) + '"/><polygon points="' + poly(f, sq) + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '" stroke-linejoin="round" opacity="' + op + '"/>'; };
+    const oD = 46 + 118 * k2, oG = 40 + 0 * k2, oT = 34 - 118 * k1 + 5 * Math.sin(t * 2.2) * k1;
+    // unten: Bildschirm mit App-Symbolen
+    g += slab(oD, '#1B2748', '#3A4A7A', 5, 1); const fd = lay(oD), cols = ['#FF7A59', '#7C5CFF', '#3DB8FF', '#2ECC71', '#FFCC00', '#FF5A8A'];
+    for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) { const u = .1 + i * .22, v = .12 + j * .28; g += '<polygon points="' + poly(fd, [[u, v], [u + .14, v], [u + .14, v + .19], [u, v + .19]]) + '" fill="' + cols[(i + j * 2) % 6] + '" opacity="' + (.35 + .65 * k2) + '"/>'; }
+    // Mitte: Gitter aus Leiterbahnen
+    const fg = lay(oG); g += slab(oG, 'rgba(92,225,255,.13)', A, done ? 6 + 4 * Math.sin(t * 8) : 4, k1);
+    for (let i = 1; i < 8; i++) { const a = fg(i / 8, 0), b = fg(i / 8, k2); g += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="' + A + '" stroke-width="4" opacity="' + k1 + '"/>'; if (k3) { const c = fg(i / 8, (t * .4 + rnd(i)) % 1); g += '<circle cx="' + c[0] + '" cy="' + c[1] + '" r="' + (7 + 2 * Math.sin(t * 9 + i)) + '" fill="#fff" opacity="' + k3 + '"/>'; } }
+    for (let j = 1; j < 5; j++) { const a = fg(0, j / 5), b = fg(k2, j / 5); g += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="' + A + '" stroke-width="4" opacity="' + k1 + '"/>'; if (k3) { const c = fg((t * .3 + rnd(j + 30)) % 1, j / 5); g += '<circle cx="' + c[0] + '" cy="' + c[1] + '" r="7" fill="#fff" opacity="' + k3 + '"/>'; } }
+    // oben: Glas mit wanderndem Glanz
+    const ft = lay(oT), sh = (t * .45) % 1.4 - .2; g += slab(oT, 'rgba(255,255,255,' + (.92 - .68 * k1) + ')', '#fff', 5, 1);
+    if (sh > 0 && sh < .86) g += '<polygon points="' + poly(ft, [[sh, 0], [sh + .14, 0], [sh + .14, 1], [sh, 1]]) + '" fill="#fff" opacity=".35"/>';
+    if (k3) for (let i = 0; i < 3; i++) { const c = fg(.2 + .3 * i, .5); over += '<span class="vemo" style="left:' + (c[0] - 26) + 'px;top:' + (c[1] - 70 - 14 * Math.abs(Math.sin(t * 5 + i))) + 'px;font-size:52px;opacity:' + k3 + '">⚡</span>'; }
+    const pt = lay(oT)(1, .45), pg = fg(1, .55), pd = fd(1, .6);
+    over += chip('p1', pt[0] + 36, pt[1] - 20, L.p1) + chip('p2', pg[0] + 36, pg[1] - 6, L.p2) + chip('p3', 560, 420, L.p3, 'hot') + (k2 ? '<div class="vlab dim" style="left:' + (pd[0] + 36) + 'px;top:' + (pd[1] + 6) + 'px;opacity:' + k2 + '">' + esc(L.display || 'Bildschirm') + '</div>' : '');
+    if (done) over += '<div class="vres" style="left:26px;bottom:26px;' + pop(cl(ev.act / 0.35), 'left center') + '">✓ ' + esc(p.result) + '</div>';
+  } else {
+    const X = 406, Y = 218, cx = i => 60 + i * 86.5, cy = j => 50 + j * 84, gl = ev.act2 !== undefined;
+    const bend = md === 'finger' && ev.p2 !== undefined && !gl ? ease(ev.p2 / 0.4) * (0.34 + 0.05 * Math.sin(t * 7)) : 0;
+    const dp = (x, y) => { if (!bend) return [x, y]; const d2 = (x - X) * (x - X) + (y - Y) * (y - Y), w = bend * Math.exp(-d2 / 26000); return [x + (X - x) * w, y + (Y - y) * w]; };
+    const dead = md === 'kaputt' && ev.ghost !== undefined, lock = md === 'finger' && ev.p3 !== undefined && ev.p3 > 0.9 && !gl, scan = md === 'finger' && ev.p3 !== undefined && ev.p3 <= 0.9 && !gl;
+    g += '<rect x="6" y="6" width="800" height="508" rx="40" fill="#0B1020"/>';
+    if (scan) { const n = Math.floor(ev.p3 * 14); g += '<rect x="' + (cx(n % 9) - 30) + '" y="14" width="60" height="492" fill="' + A + '" opacity=".28"/><rect x="14" y="' + (cy(n % 6) - 28) + '" width="784" height="56" fill="' + A + '" opacity=".28"/>'; }
+    for (let i = 0; i < 9; i++) { const off = dead && i >= 6, hl = lock && i === 4; let d = ''; for (let y = 20; y <= 500; y += 20) { const q = dp(cx(i), y); d += (y === 20 ? 'M' : 'L') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); } g += '<path d="' + d + '" fill="none" stroke="' + (off ? '#2A355C' : hl ? '#fff' : A) + '" stroke-width="' + (hl ? 9 : 4) + '" opacity="' + (hl || off ? 1 : .65) + '"/>'; if (!off) { const q = dp(cx(i), 20 + 480 * ((t * .33 + rnd(i + 2)) % 1)); g += '<circle cx="' + q[0] + '" cy="' + q[1] + '" r="7" fill="#fff"/>'; } }
+    for (let j = 0; j < 6; j++) { const hl = lock && j === 2, xe = dead ? cx(5) + 40 : 792; let d = ''; for (let x = 20; x <= xe; x += 20) { const q = dp(x, cy(j)); d += (x === 20 ? 'M' : 'L') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); } g += '<path d="' + d + '" fill="none" stroke="' + (hl ? '#fff' : A) + '" stroke-width="' + (hl ? 9 : 4) + '" opacity="' + (hl ? 1 : .65) + '"/>'; if (dead) g += '<line x1="' + xe + '" y1="' + cy(j) + '" x2="792" y2="' + cy(j) + '" stroke="#2A355C" stroke-width="4"/>'; const q = dp(20 + (xe - 20) * ((t * .27 + rnd(j + 20)) % 1), cy(j)); g += '<circle cx="' + q[0] + '" cy="' + q[1] + '" r="7" fill="#fff"/>'; }
+    if (md === 'finger') {
+      const e1 = gl ? ev.act2 : ev.p1;
+      if (ev.p2 !== undefined && !gl) for (const o of [0, .33, .66]) { const c = (ev.p2 * .9 + o) % 1; g += '<circle cx="' + X + '" cy="' + Y + '" r="' + (20 + c * 190) + '" fill="none" stroke="' + A + '" stroke-width="7" opacity="' + (1 - c) + '"/>'; }
+      if (lock) g += '<circle cx="' + X + '" cy="' + Y + '" r="' + (26 + 6 * Math.sin(t * 10)) + '" fill="#fff"/>';
+      if (gl && ev.act2 > 0.45) g += '<path d="M' + (X - 60) + ' ' + (Y - 60) + ' l120 120 m0 -120 l-120 120" stroke="#FF5A5A" stroke-width="24" stroke-linecap="round" opacity="' + cl((ev.act2 - .45) * 6) + '"/>';
+      if (e1 !== undefined) { const k = ease(e1 / 0.5); over += '<span class="vemo" style="left:' + (X - 96) + 'px;top:' + (Y - 4 + 320 * (1 - k) + (k >= 1 ? 6 * Math.sin(t * 9) : 0)) + 'px;font-size:220px">' + (gl ? '🧤' : '👆') + '</span>'; }
+      over += gl ? chip('act2', 30, 30, L.act2, 'red') : lock ? '<div class="vlab hot" style="left:30px;top:30px;' + pop(cl((ev.p3 - .9) / 0.3), 'left center') + '">' + esc(L.p3) + '</div>' : scan ? '<div class="vlab" style="left:30px;top:30px">' + esc(L.scan || 'Chip sucht') + '.'.repeat(1 + Math.floor(t * 6) % 3) + '</div>' : ev.p2 !== undefined ? chip('p2', 30, 30, L.p2) : chip('p1', 30, 30, L.p1);
+      if (ev.act !== undefined && !gl) over += '<div class="vres" style="left:26px;bottom:26px;' + pop(cl(ev.act / 0.35), 'left center') + '">🎯 ' + esc(p.result) + '</div>' + confetti(ev.act, X, Y, 26);
+    }
+    if (md === 'kaputt') {
+      const k = E('crack', 0.4), aid = ev.p1 !== undefined;
+      if (k) { for (const d of ['M300 170 l-90 -70 l-56 12 l-100 -84', 'M300 170 l70 -52 l20 -90', 'M300 170 l104 70 l24 80 l110 96', 'M300 170 l-62 96 l14 70 l-80 110', 'M300 170 l140 -14 l96 -70 l120 30', 'M300 170 l-150 30 l-90 70']) g += '<path d="' + d + '" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" pathLength="1" stroke-dasharray="' + k + ' 1"/>'; g += '<circle cx="300" cy="170" r="' + (14 + 60 * (1 - k)) + '" fill="#fff" opacity="' + (.4 + .6 * k) + '"/>'; }
+      if (dead && !aid) { const n = Math.floor(ev.ghost * 2.4), c = (ev.ghost * 2.4) % 1, gx = 110 + rnd(n + 5) * 380, gy = 90 + rnd(n + 9) * 330; g += '<circle cx="' + gx + '" cy="' + gy + '" r="' + (16 + c * 110) + '" fill="none" stroke="#FF5A5A" stroke-width="10" opacity="' + (1 - c) + '"/>'; over += '<span class="vemo" style="left:' + (gx - 46) + 'px;top:' + (gy - 60) + 'px;font-size:96px;opacity:' + cl(1.3 - c) + ';transform:scale(' + (0.6 + 0.5 * back(c * 3)) + ')">👻</span>'; }
+      if (dead && !aid) over += '<div class="vlab red" style="right:30px;top:30px;' + pop(cl(ev.ghost / 0.35), 'right center') + '">' + esc(L.tot || 'tote Zone') + '</div>';
+      if (!aid) over += dead ? chip('ghost', 30, 440, L.ghost, 'red') : chip('crack', 30, 440, L.crack, 'hot');
+      if (aid) {
+        g += '<rect x="6" y="6" width="800" height="508" rx="40" fill="#0B1020" opacity="' + (.72 * E('p1', .3)) + '"/>';
+        (p.cards || []).forEach((c, i) => { const e = ev['p' + (i + 1)]; if (e === undefined) return; const cur = ev['p' + (i + 2)] === undefined && ev.act === undefined;
+          over += '<div class="vcard' + (cur ? ' on' : '') + '" style="left:' + (28 + i * 262) + 'px;top:' + (ev.act !== undefined ? 40 : 130) + 'px;' + pop(cl(e / 0.35)) + '"><span style="transform:' + (i === 0 ? 'rotate(' + (e * 300) + 'deg)' : 'translateY(' + (-12 * Math.abs(Math.sin(e * 6))) + 'px)') + '">' + c[0] + '</span><em>' + esc(c[1]) + '</em></div>'; });
+        if (ev.act !== undefined) over += '<div class="vres" style="left:50%;bottom:44px;font-size:52px;translate:-50% 0;white-space:nowrap;' + pop(cl(ev.act / 0.35)) + 'rotate:' + (-3 + 2 * Math.sin(t * 6)) + 'deg">🛠️ ' + esc(p.result) + '</div>';
+      }
+    }
+  }
+  const shk = md === 'kaputt' && ev.crack !== undefined && ev.crack < 0.5 ? Math.sin(ev.crack * 80) * 16 * (1 - ev.crack / 0.5) : 0;
+  return '<div class="viz" style="' + rise(E('panel', 0.5)) + '"><div class="vin" style="transform:translate(' + shk + 'px,' + (shk * .6) + 'px)"><svg width="812" height="520" viewBox="0 0 812 520">' + g + '</svg>' + over + '</div>' + popHtml + '</div>';
+}
 // Alte Panels aus V001 (Akku)
 function legacyPanel(name, ev, t, E, popHtml) {
   let h = '';
@@ -225,7 +285,7 @@ function draw(t) {
       if (E('sticker')) h += '<div class="stick" style="left:0;top:580px;font-size:50px;' + pop(E('sticker'), 'left center') + 'rotate:' + (-4 + 2 * Math.sin(t * 6)) + 'deg">' + esc(sc.sticker) + ' 👇</div>';
     } else {
       const kc = cl((lt - 0.4) / 0.4), mk = ev.mark === undefined ? 0 : ev.mark;
-      h += '<div class="hcard" style="left:0;top:345px;opacity:' + cl(kc * 3) + ';transform:scale(' + (back(kc) * (1 + 0.08 * Math.sin(t * 3.4))) + ') rotate(' + (6 * Math.sin(t * 2.3) + (mk < 0.5 ? 25 * Math.sin(mk * 30) * (1 - mk / 0.5) : 0)) + 'deg)"><span style="transform:translateY(' + (-10 * Math.abs(Math.sin(t * 3))) + 'px)">' + sc.emoji + '</span></div>';
+      h += '<div class="hcard" style="left:0;top:345px;opacity:' + cl(kc * 3) + ';transform:scale(' + (back(kc) * (1 + 0.08 * Math.sin(t * 3.4))) + ') rotate(' + (6 * Math.sin(t * 2.3) + (mk < 0.5 ? 25 * Math.sin(mk * 30) * (1 - mk / 0.5) : 0)) + 'deg)"><span style="transform:translateY(' + (-10 * Math.abs(Math.sin(t * 3))) + 'px)">' + sc.emoji + '</span>' + (sc.tap ? ring(125, 110, (lt % 0.9) / 0.6) + ring(125, 110, ((lt + .3) % 0.9) / 0.6) + '<span class="fing" style="left:104px;top:110px;font-size:110px;transform:scale(' + ((lt % 0.9) < 0.14 ? 0.82 : 1) + ')">👆</span>' : '') + '</div>';
       h += confetti(ev.mark, 125, 470, 20);
       if (E('sticker')) h += '<div class="stick" style="left:300px;top:420px;font-size:50px;' + pop(E('sticker'), 'left center') + 'rotate:' + (-4 + 2 * Math.sin(t * 6)) + 'deg">' + esc(sc.sticker) + ' 👇</div>';
     }
@@ -233,14 +293,18 @@ function draw(t) {
   }
   if (sc.type === 'tip') {
     const nk = cl((lt - 0.3) / 0.3);
-    h += '<div class="top"><div class="num" style="opacity:' + cl(nk * 4) + ';transform:scale(' + (1 + 1.8 * (1 - ease(nk))) + ') rotate(' + (-8 * (1 - ease(nk))) + 'deg)">' + sc.num + '</div><h2 style="' + rise(k0 - 0.6) + '">' + esc(sc.title) + '</h2></div><div class="path">';
+    h += '<div class="top"><div class="num" style="opacity:' + cl(nk * 4) + ';transform:scale(' + (1 + 1.8 * (1 - ease(nk))) + ') rotate(' + (-8 * (1 - ease(nk))) + 'deg)">' + sc.num + '</div><h2 style="' + rise(k0 - 0.6) + '">' + esc(sc.title) + '</h2></div>';
+    const big = sc.panel && sc.panel.big;
+    if (!big) { h += '<div class="path">';
     sc.path.forEach((p, i) => {
       const e = ev['p' + (i + 1)]; const k = E('p' + (i + 1), 0.4); const cur = e !== undefined && ev['p' + (i + 2)] === undefined && ev.act === undefined;
       const tap = e !== undefined && e < 0.75 ? '<span class="tap" style="transform:translateY(' + (-24 * Math.abs(Math.sin(e * 8))) + 'px)">👆</span><span class="ring" style="width:' + (60 + e * 240) + 'px;height:' + (60 + e * 240) + 'px;opacity:' + cl(1 - e / 0.6) + '"></span>' : '';
       h += '<div class="step' + (cur ? ' on' : '') + '" style="' + (e === undefined ? 'opacity:' + (0.3 * cl(k0 - 1)) + ';' : pop(k, 'left center')) + '"><s>' + (i + 1) + '</s>' + esc(p) + tap + '</div>';
     });
     h += '</div>';
-    const ph = showPop ? popAt('right:-16px;top:-150px') : '';
+    }
+    const ph = showPop ? popAt(big ? 'right:-14px;bottom:-26px' : 'right:-16px;top:-150px') : '';
+    if (big) h += bigViz(sc.panel, ev, t, E, ph); else
     if (typeof sc.panel === 'string') h += legacyPanel(sc.panel, ev, t, E, ph);
     else if (sc.panel && sc.panel.kind === 'card') h += cardPanel(sc.panel, ev, t, E, ph);
     else if (sc.panel && sc.panel.kind === 'touch') h += touchPanel(sc.panel, ev, t, E, ph);
