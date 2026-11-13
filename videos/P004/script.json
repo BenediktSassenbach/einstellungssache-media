@@ -4,7 +4,7 @@
  "accent": "#5CE1FF",
  "id": "P004",
  "titel": "Warum ist der Himmel blau?",
- "quelle": "Rayleigh-Streuung: kurzwelliges blaues Licht wird an Luftmolekülen stärker gestreut, etwa 16-mal stärker als rotes (wetterdienst.de, Spektrum). Abendrot durch längeren Weg durch die Atmosphäre (Spektrum, wetterdienst.de). Wolken weiß durch Mie-Streuung, alle Farben ähnlich stark (wetterdienst.de).",
+ "quelle": "Rayleigh-Streuung proportional zu 1/λ⁴ (Spektrum Lexikon der Geowissenschaften, wetterdienst.de); Abendrot durch längeren Weg (Spektrum, wetterdienst.de); Wolken weiß durch Mie-Streuung (wetterdienst.de). Hinweis: Die oft genannte Zahl '16-mal' gilt nicht für Blau gegen Rot (eher 4- bis 6-mal), deshalb ohne Zahl.",
  "scenes": [
   {
    "type": "hook",
@@ -105,7 +105,7 @@
     "mode": "streuung",
     "labels": {
      "p1": "Licht wird gestreut",
-     "p2": "Blau: ca. 16× stärker",
+     "p2": "Blau: viel stärker",
      "p3": "Blau überall"
     },
     "result": "Himmel = Blau",
@@ -124,7 +124,7 @@
      "ev": "p1"
     },
     {
-     "t": "Blaues Licht wird dabei viel stärker gestreut als rotes, etwa sechzehnmal so stark.",
+     "t": "Blaues Licht wird dabei viel stärker gestreut als rotes.",
      "mood": "shock",
      "ev": "p2"
     },

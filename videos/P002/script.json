@@ -4,7 +4,7 @@
  "accent": "#5CE1FF",
  "id": "P002",
  "titel": "Warum wird dein Handy beim Laden warm?",
- "quelle": "Apple Support (laut iphone-ticker und Apple Community): bei zu hoher Temperatur wird das Laden langsamer oder stoppt bei 80 Prozent; Hülle beim Laden abnehmen, kühler Ort. Kabellos entsteht mehr Wärme (Apple Community, Vodafone). Ionenwanderung gegen Widerstand (wissenschaft.de). Aufgeblähter Akku: nicht mehr laden, nicht eindrücken, Fachbetrieb (netzwelt, pcwelt, refurbed).",
+ "quelle": "Apple Support (Thermally Limited Charging, 108805, 105105): Laden wird bei Wärme langsamer oder pausiert, Software kann bei über 80 Prozent begrenzen, Hülle abnehmen, kühler Ort. Stiftung Warentest: induktives Laden braucht im Schnitt rund 50 Prozent mehr Energie. Umweltbundesamt: aufgeblähte Akkus nicht mehr benutzen, nicht öffnen. Joulesche Wärme: Spektrum Lexikon der Physik, Uni Gießen. Ionenwanderung: wissenschaft.de, TÜV Nord.",
  "scenes": [
   {
    "type": "hook",
@@ -134,7 +134,7 @@
      "ev": "act"
     },
     {
-     "t": "Beim kabellosen Laden wird noch mehr Energie zu Wärme, deshalb wird es da oft wärmer.",
+     "t": "Kabelloses Laden braucht mehr Energie als per Kabel, und der Rest wird zu Wärme.",
      "mood": "shock",
      "ev": "act2"
     }
@@ -150,7 +150,7 @@
    "panel": {
     "mode": "heiss",
     "labels": {
-     "warm": "Ladestopp bei 80 %",
+     "warm": "Laden gebremst",
      "blaeh": "Akku aufgebläht"
     },
     "cards": [
@@ -159,12 +159,12 @@
       "Nicht mehr laden"
      ],
      [
-      "✋",
-      "Nicht eindrücken"
+      "🚫",
+      "Nicht öffnen"
      ],
      [
       "🛠️",
-      "Ab zum Fachbetrieb"
+      "Zum Reparaturservice"
      ]
     ],
     "result": "Nur warm? Hülle ab, kühl hinlegen",
@@ -178,7 +178,7 @@
      "ev": "panel"
     },
     {
-     "t": "Wird das iPhone zu warm, lädt es langsamer oder stoppt bei 80 Prozent, bis es abgekühlt ist.",
+     "t": "Wird das iPhone zu warm, lädt es langsamer, pausiert oder hört bei 80 Prozent auf, bis es abgekühlt ist.",
      "mood": "happy",
      "ev": "warm"
     },
@@ -193,12 +193,12 @@
      "ev": "p1"
     },
     {
-     "t": "nicht eindrücken,",
+     "t": "nicht öffnen,",
      "mood": "happy",
      "ev": "p2"
     },
     {
-     "t": "und ab zum Fachbetrieb.",
+     "t": "und zum Reparaturservice bringen.",
      "mood": "happy",
      "ev": "p3"
     },

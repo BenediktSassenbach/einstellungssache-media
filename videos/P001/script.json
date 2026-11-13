@@ -4,7 +4,7 @@
  "serie": "Physik",
  "kostuem": "professor",
  "accent": "#5CE1FF",
- "quelle": "Kapazitiver Touchscreen: Friedrich Verlag (Physikunterricht, kapazitive Berührungsmessung), LMU-Essay Touch-Screen-Technologien. Fehlerbehebung: Apple Support Artikel 102567 (Neustart, Bildschirm sauber und trocken, Hülle und Schutzfolie entfernen).",
+ "quelle": "Funktionsweise: Friedrich Verlag (Physikunterricht), LMU-Essay, teltarif/netzwelt (Handschuhe). Display kaputt: Apple Support 102567 (Neustart, sauber und trocken, Zubehör, Hülle und Schutzfolie ab, sonst Service) und Apple Sicherheitsinformationen (iPhone mit gesprungenem Glas nicht benutzen, Verletzungsgefahr).",
  "scenes": [
   {
    "type": "hook",
@@ -181,7 +181,7 @@
    "type": "tip",
    "num": "3",
    "title": "Display kaputt?",
-   "quip": "Erst testen, dann zahlen.",
+   "quip": "Erst testen, dann reparieren.",
    "quipAt": 4,
    "path": [
     "Handy neu starten",
@@ -195,11 +195,11 @@
     "frage": "Der Schaden",
     "labels": {
      "hit": "Runtergefallen",
-     "glas": "Glas: gerissen",
-     "heil": "Gitter heil",
-     "crack": "Touch geht oft noch",
-     "defekt": "Gitter defekt",
-     "tot": "Keine Reaktion",
+     "glas": "Glas gesprungen",
+     "heil": "",
+     "crack": "Splitter: Verletzungsgefahr",
+     "defekt": "Touch spinnt",
+     "tot": "Reagiert nur manchmal",
      "ghost": "Tippt von allein"
     },
     "result": "Backup + Reparatur",
@@ -226,17 +226,17 @@
      "ev": "panel"
     },
     {
-     "t": "Ein Riss im Glas ist oft nur Optik, das Gitter liegt ja darunter.",
+     "t": "Ist das Glas gesprungen, nutz es besser nicht weiter, an Splittern kannst du dich schneiden.",
      "mood": "happy",
      "ev": "crack"
     },
     {
-     "t": "Ist das Gitter selbst beschädigt, reagieren Stellen gar nicht oder das Handy tippt von allein.",
+     "t": "Reagiert der Bildschirm nur manchmal oder tippt von allein,",
      "mood": "angry",
      "ev": "ghost"
     },
     {
-     "t": "Dann zuerst: Handy neu starten,",
+     "t": "dann zuerst: Handy neu starten,",
      "mood": "happy",
      "ev": "p1"
     },

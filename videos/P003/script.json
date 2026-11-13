@@ -4,7 +4,7 @@
  "accent": "#5CE1FF",
  "id": "P003",
  "titel": "Wie lädt dein Handy ohne Kabel?",
- "quelle": "Induktion mit zwei Spulen, Wechselstrom, Magnetfeld (Anker, Macwelt, t3n, logitel). Feld nur auf kurze Distanz (inside-digital). Fehlerbehebung: mittig auflegen, Hülle oder Metall entfernen, anderes Netzteil oder Kabel testen, Ladegerät mit anderem Gerät prüfen (Coolblue, Anker, Apple Community).",
+ "quelle": "Apple Support 108377 und Qi-Anleitung: mittig auflegen, dicke oder Metall-Hülle entfernen, empfohlenes Netzteil. Apple Sicherheitsinformationen: Metallgegenstände können das Laden stören. Induktion mit zwei Spulen und Wechselstrom: PC-Welt, Macwelt, Anker. Geringe Reichweite: inside-digital, channelpartner.",
  "scenes": [
   {
    "type": "hook",
@@ -165,10 +165,10 @@
      ],
      [
       "🔌",
-      "Anderes Netzteil"
+      "Empfohlenes Netzteil"
      ]
     ],
-    "result": "Sonst: Ladegerät gegenprüfen",
+    "result": "Sonst: prüfen lassen",
     "kind": "touch",
     "big": true
    },
@@ -199,12 +199,12 @@
      "ev": "p2"
     },
     {
-     "t": "und ein anderes Netzteil oder Kabel testen.",
+     "t": "und das vom Hersteller empfohlene Netzteil nutzen.",
      "mood": "happy",
      "ev": "p3"
     },
     {
-     "t": "Lädt es immer noch nicht, probier das Ladegerät mit einem anderen Handy.",
+     "t": "Lädt es dann immer noch nicht, lass Handy und Ladegerät prüfen.",
      "mood": "cool",
      "ev": "act"
     }
