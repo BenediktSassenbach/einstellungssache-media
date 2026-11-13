@@ -4,7 +4,7 @@
  "accent": "#5CE1FF",
  "id": "P004",
  "titel": "Warum ist der Himmel blau?",
- "quelle": "Rayleigh-Streuung proportional zu 1/λ⁴ (Spektrum Lexikon der Geowissenschaften, wetterdienst.de); Abendrot durch längeren Weg (Spektrum, wetterdienst.de); Wolken weiß durch Mie-Streuung (wetterdienst.de). Hinweis: Die oft genannte Zahl '16-mal' gilt nicht für Blau gegen Rot (eher 4- bis 6-mal), deshalb ohne Zahl.",
+ "quelle": "Rayleigh-Streuung proportional zu 1/λ⁴ (Spektrum Lexikon der Geowissenschaften, wetterdienst.de); Abendrot durch längeren Weg (Spektrum, wetterdienst.de); Wolken weiß durch Mie-Streuung (wetterdienst.de). Hinweis: Die oft genannte Zahl '16-mal' gilt nicht für Blau gegen Rot (eher 4- bis 6-mal), deshalb ohne Zahl. Warum Blau stärker gestreut wird: Licht regt die Ladungen in den Luftmolekülen zum Schwingen an, die abgestrahlte Leistung ist proportional zu ω⁴ (Physik-Lehrbuch Wellen, Rayleigh-Streuung; Spektrum Lexikon: Streukoeffizient proportional zu λ⁻⁴).",
  "scenes": [
   {
    "type": "hook",
@@ -52,7 +52,7 @@
     "labels": {
      "p1": "Alle Farben",
      "p2": "Rot: lange Wellen",
-     "p3": "Blau: kurze Wellen"
+     "p3": "Blau: kurz = öfter"
     },
     "result": "Kurz = Blau",
     "kind": "touch",
@@ -83,7 +83,7 @@
      "ev": "p2"
     },
     {
-     "t": "blaues Licht in ganz kurzen.",
+     "t": "blaues Licht in ganz kurzen, es schwingt also viel öfter pro Sekunde.",
      "mood": "happy",
      "ev": "p3"
     },
@@ -99,14 +99,15 @@
    "num": "2",
    "title": "Blau prallt ab",
    "quip": "Blau ist überall.",
-   "quipAt": 3,
+   "quipAt": 4,
    "path": [],
    "panel": {
     "mode": "streuung",
     "labels": {
      "p1": "Licht wird gestreut",
-     "p2": "Blau: viel stärker",
-     "p3": "Blau überall"
+     "p2": "Schneller = stärker gestreut",
+     "p3": "Blau überall",
+     "mit": "Teilchen schwingt mit"
     },
     "result": "Himmel = Blau",
     "kind": "touch",
@@ -124,12 +125,17 @@
      "ev": "p1"
     },
     {
-     "t": "Blaues Licht wird dabei viel stärker gestreut als rotes.",
+     "t": "Das Licht bringt die Ladungen in den Teilchen zum Mitschwingen, und die senden es in alle Richtungen weiter.",
      "mood": "shock",
+     "ev": "mit"
+    },
+    {
+     "t": "Blau schwingt viel schneller, und je schneller, desto stärker wird es gestreut.",
+     "mood": "happy",
      "ev": "p2"
     },
     {
-     "t": "Es fliegt kreuz und quer über den ganzen Himmel.",
+     "t": "Darum fliegt Blau kreuz und quer über den ganzen Himmel.",
      "mood": "happy",
      "ev": "p3"
     },

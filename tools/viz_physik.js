@@ -135,8 +135,8 @@ function vLicht(p, ev, t, E, L) {
   g += '<polygon points="150,148 ' + lerp(150, 330, 1) + ',' + (148) + ' 330,160 150,160" fill="#fff" opacity=".95"/>';
   g += '<polygon points="330,60 400,230 260,230" fill="rgba(255,255,255,.25)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>';
   if (sp) RB.forEach((c, i) => { const y2 = 70 + i * 26 + 4 * Math.sin(t * 3 + i); g += '<polygon points="345,155 345,165 ' + lerp(345, 790, sp) + ',' + (lerp(160, y2 + 22, sp)) + ' ' + lerp(345, 790, sp) + ',' + lerp(160, y2, sp) + '" fill="' + c + '" opacity=".95"/>'; });
-  if (ev.p2 !== undefined) { const k = cl(ev.p2 / .6); g += '<g opacity="' + k + '">' + wave(220, 790, 340, 34, 230, t * 6, '#FF3B3B', 9) + '</g>'; o += '<div class="vlab" style="left:30px;top:316px;background:#FF3B3B;color:#fff;' + pop(k) + '">' + esc(L.p2) + '</div>'; }
-  if (ev.p3 !== undefined) { const k = cl(ev.p3 / .6); g += '<g opacity="' + k + '">' + wave(220, 790, 450, 30, 58, t * 14, '#3B8BFF', 9) + '</g>'; o += '<div class="vlab" style="left:30px;top:426px;background:#3B8BFF;color:#fff;' + pop(k) + '">' + esc(L.p3) + '</div>'; }
+  if (ev.p2 !== undefined) { const k = cl(ev.p2 / .6); g += '<g opacity="' + k + '">' + wave(220, 790, 340, 34, 230, t * 6, '#FF3B3B', 9) + '<circle cx="760" cy="' + (340 + 34 * Math.sin((760 - 220) / 230 * 6.283 - t * 6)) + '" r="14" fill="#fff" stroke="#FF3B3B" stroke-width="6"/>' + '</g>'; o += '<div class="vlab" style="left:30px;top:316px;background:#FF3B3B;color:#fff;' + pop(k) + '">' + esc(L.p2) + '</div>'; }
+  if (ev.p3 !== undefined) { const k = cl(ev.p3 / .6); g += '<g opacity="' + k + '">' + wave(220, 790, 450, 30, 58, t * 23.8, '#3B8BFF', 9) + '<circle cx="760" cy="' + (450 + 30 * Math.sin((760 - 220) / 58 * 6.283 - t * 23.8)) + '" r="14" fill="#fff" stroke="#3B8BFF" stroke-width="6"/>' + '</g>'; o += '<div class="vlab" style="left:30px;top:426px;background:#3B8BFF;color:#fff;' + pop(k) + '">' + esc(L.p3) + '</div>'; }
   o += vchip(ev, 'p1', 30, 30, L.p1);
   if (ev.act !== undefined) o += '<div class="vres" style="right:26px;top:26px;' + pop(cl(ev.act / .35), 'right center') + '">' + esc(p.result) + '</div>';
   return [g, o];
@@ -159,9 +159,18 @@ function vStreuung(p, ev, t, E, L) {
     g += '<line x1="' + b[0] + '" y1="' + b[1] + '" x2="' + a[0] + '" y2="' + a[1] + '" stroke="' + col + '" stroke-width="9" stroke-linecap="round"/><circle cx="' + a[0] + '" cy="' + a[1] + '" r="9" fill="' + (blue ? '#BFE0FF' : '#fff') + '"/>';
   }
   if (ev.act !== undefined) { const k = cl(ev.act / .4); for (let i = 0; i < 7; i++) { const a = Math.PI * (1.08 + .84 * i / 6), r = 170 + 10 * Math.sin(t * 5 + i); g += '<line x1="' + (406 + Math.cos(a) * r) + '" y1="' + (470 + Math.sin(a) * r) + '" x2="' + (406 + Math.cos(a) * 60) + '" y2="' + (470 + Math.sin(a) * 60) + '" stroke="#3B8BFF" stroke-width="9" stroke-linecap="round" opacity="' + k + '"/>'; } o += '<span class="vemo" style="left:366px;top:420px;font-size:80px;' + pop(k) + '">😎</span>'; }
-  o += stageChip(ev, L, ['p1', 'p2', 'p3'], 30, 30);
+  if (ev.mit !== undefined && ev.p3 === undefined) g += lupe(ev, t);
+  o += stageChip(ev, L, ['p1', 'mit', 'p2', 'p3'], 30, 30);
   if (ev.act !== undefined) o += '<div class="vres" style="right:26px;top:26px;' + pop(cl(ev.act / .35), 'right center') + '">' + esc(p.result) + '</div>';
   return [g, o];
+}
+function lupe(ev, t) { // vergroessertes Luftteilchen: Rot laesst es langsam, Blau schnell schwingen
+  const k = ease(cl(ev.mit / .5)), blue = ev.p2 !== undefined, col = blue ? '#3B8BFF' : '#FF3B3B', w = blue ? 23.8 : 6, len = blue ? 58 : 230, amp = blue ? 26 : 10;
+  const X = 560, Y = 300; let s = '<g opacity="' + k + '"><rect x="300" y="150" width="490" height="340" rx="30" fill="#0B1020" stroke="#fff" stroke-width="6"/>';
+  s += wave(320, X - 60, Y, 22, len, t * w, col, 7);
+  const dy = amp * Math.sin(t * w); s += '<circle cx="' + X + '" cy="' + Y + '" r="46" fill="#26335E" stroke="#AEB9D6" stroke-width="5"/><circle cx="' + X + '" cy="' + (Y + dy) + '" r="16" fill="#FFE14D"/>';
+  for (let i = 0; i < 4; i++) { const c = ((t * (blue ? 2.2 : .8)) + i / 4) % 1; s += '<circle cx="' + X + '" cy="' + Y + '" r="' + (56 + c * 160) + '" fill="none" stroke="' + col + '" stroke-width="' + (blue ? 8 : 4) + '" opacity="' + (blue ? 1 : .45) * (1 - c) + '"/>'; }
+  return s + '<text x="330" y="470" font-size="26" font-weight="800" fill="#AEB9D6" font-family="Inter Display">Luftteilchen, stark vergrößert</text></g>';
 }
 function vAbend(p, ev, t, E, L) {
   let g = '', o = ''; const tief = ev.tief === undefined ? 0 : ease(ev.tief / 1.4), weg = ev.weg !== undefined, bl = ev.blau === undefined ? 0 : ease(ev.blau / 1.5), rot = Math.max(bl, ev.act !== undefined ? 1 : 0);
