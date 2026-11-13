@@ -227,7 +227,8 @@ function kaputtViz(p, ev, t, E) {
 function bigViz(p, ev, t, E, popHtml) {
   const md = p.mode, L = p.labels || {}; let g = '', over = '';
   const chip = (n, x, y, txt, cls) => ev[n] === undefined || !txt ? '' : '<div class="vlab ' + (cls || '') + '" style="left:' + x + 'px;top:' + y + 'px;' + pop(cl(ev[n] / 0.35), 'left center') + '">' + esc(txt) + '</div>';
-  if (md === 'kaputt') { const r = kaputtViz(p, ev, t, E); g = r[0]; over = r[1]; }
+  if (typeof VIZ !== 'undefined' && VIZ[md]) { const r = VIZ[md](p, ev, t, E, L); g = r[0]; over = r[1]; }
+  else if (md === 'kaputt') { const r = kaputtViz(p, ev, t, E); g = r[0]; over = r[1]; }
   else if (md === 'gitter') {
     const k1 = ease(E('p1', 0.7)), k2 = ease(E('p2', 0.7)), k3 = E('p3', 0.5), done = ev.act !== undefined;
     const lay = oy => (u, v) => [62 + u * 370 + v * 165, 262 + oy - u * 105 + v * 108];

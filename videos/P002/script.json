@@ -1,0 +1,252 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P002",
+ "titel": "Warum wird dein Handy beim Laden warm?",
+ "quelle": "Apple Support (laut iphone-ticker und Apple Community): bei zu hoher Temperatur wird das Laden langsamer oder stoppt bei 80 Prozent; Hülle beim Laden abnehmen, kühler Ort. Kabellos entsteht mehr Wärme (Apple Community, Vodafone). Ionenwanderung gegen Widerstand (wissenschaft.de). Aufgeblähter Akku: nicht mehr laden, nicht eindrücken, Fachbetrieb (netzwelt, pcwelt, refurbed).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum wird dein Handy beim Laden *warm*?",
+   "emoji": "🔥",
+   "sticker": "60 Sekunden",
+   "lines": [
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "shock",
+     "pop": [
+      "🤯",
+      "Physik"
+     ]
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker",
+     "pop": [
+      "⏱️",
+      ""
+     ]
+    },
+    {
+     "t": "Heute: Warum wird dein Handy beim Laden warm?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Und wann du dir wirklich Sorgen machen solltest.",
+     "mood": "cool"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Strom ist ein Gedränge",
+   "quip": "Wie im Bus um sieben.",
+   "quipAt": 3,
+   "path": [],
+   "panel": {
+    "mode": "draht",
+    "labels": {
+     "p1": "Elektronen fließen",
+     "p2": "Stoß gegen Atome",
+     "p3": "Zittern = Wärme"
+    },
+    "result": "Viel Strom = viel Wärme",
+    "kind": "touch",
+    "big": true
+   },
+   "lines": [
+    {
+     "t": "Erstens: Strom ist ein Gedränge.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🚌",
+      ""
+     ]
+    },
+    {
+     "t": "Beim Laden schieben sich unzählige Elektronen durch Kabel und Leitungen.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Dabei stoßen sie ständig gegen die Atome im Material.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Die Atome fangen an zu zittern, und dieses Zittern ist Wärme.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Darum wird alles warm, wo viel Strom fließt.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Rush Hour im Akku",
+   "quip": "Bitte nicht drängeln.",
+   "quipAt": 2,
+   "path": [],
+   "panel": {
+    "mode": "akku",
+    "labels": {
+     "p1": "Ionen wandern",
+     "p2": "Gegen Widerstand",
+     "act2": "Kabellos: noch wärmer"
+    },
+    "result": "Noch mehr Wärme",
+    "kind": "touch",
+    "big": true
+   },
+   "lines": [
+    {
+     "t": "Zweitens: Im Akku wird es eng.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🔋",
+      ""
+     ]
+    },
+    {
+     "t": "Beim Laden wandern Lithium-Ionen von einer Seite auf die andere.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Auch sie müssen sich gegen Widerstand durchkämpfen.",
+     "mood": "angry",
+     "ev": "p2"
+    },
+    {
+     "t": "Und auch das macht Wärme.",
+     "mood": "cool",
+     "ev": "act"
+    },
+    {
+     "t": "Beim kabellosen Laden wird noch mehr Energie zu Wärme, deshalb wird es da oft wärmer.",
+     "mood": "shock",
+     "ev": "act2"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Wann wird's gefährlich?",
+   "quip": "Warm ja, dick nein.",
+   "quipAt": 4,
+   "path": [],
+   "panel": {
+    "mode": "heiss",
+    "labels": {
+     "warm": "Ladestopp bei 80 %",
+     "blaeh": "Akku aufgebläht"
+    },
+    "cards": [
+     [
+      "🔌",
+      "Nicht mehr laden"
+     ],
+     [
+      "✋",
+      "Nicht eindrücken"
+     ],
+     [
+      "🛠️",
+      "Ab zum Fachbetrieb"
+     ]
+    ],
+    "result": "Nur warm? Hülle ab, kühl hinlegen",
+    "kind": "touch",
+    "big": true
+   },
+   "lines": [
+    {
+     "t": "Drittens: Wann wird's gefährlich?",
+     "mood": "shock",
+     "ev": "panel"
+    },
+    {
+     "t": "Wird das iPhone zu warm, lädt es langsamer oder stoppt bei 80 Prozent, bis es abgekühlt ist.",
+     "mood": "happy",
+     "ev": "warm"
+    },
+    {
+     "t": "Wölbt sich das Handy oder hebt sich das Display, ist der Akku wahrscheinlich aufgebläht.",
+     "mood": "angry",
+     "ev": "blaeh"
+    },
+    {
+     "t": "Dann: nicht mehr laden,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "nicht eindrücken,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und ab zum Fachbetrieb.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Ist es nur warm, hilft oft schon: Hülle ab und kühler hinlegen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "checks": [
+    "Strom = Gedränge = Wärme",
+    "Akku: Ionen gegen Widerstand",
+    "Aufgebläht? Nicht mehr laden"
+   ],
+   "lines": [
+    {
+     "t": "Also: Strom ist ein Gedränge, und das macht Wärme,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "im Akku kämpfen die Ionen gegen Widerstand,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und ein aufgeblähter Akku wird nicht mehr geladen.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

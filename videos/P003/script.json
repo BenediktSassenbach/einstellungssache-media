@@ -1,0 +1,253 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P003",
+ "titel": "Wie lädt dein Handy ohne Kabel?",
+ "quelle": "Induktion mit zwei Spulen, Wechselstrom, Magnetfeld (Anker, Macwelt, t3n, logitel). Feld nur auf kurze Distanz (inside-digital). Fehlerbehebung: mittig auflegen, Hülle oder Metall entfernen, anderes Netzteil oder Kabel testen, Ladegerät mit anderem Gerät prüfen (Coolblue, Anker, Apple Community).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Wie lädt dein Handy *ohne* Kabel?",
+   "emoji": "🪄",
+   "sticker": "60 Sekunden",
+   "lines": [
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "shock",
+     "pop": [
+      "🤯",
+      "Physik"
+     ]
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker",
+     "pop": [
+      "⏱️",
+      ""
+     ]
+    },
+    {
+     "t": "Heute: Wie kommt Strom ohne Kabel in dein Handy?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Und was du tust, wenn es plötzlich nicht mehr lädt.",
+     "mood": "cool"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Spule in der Matte",
+   "quip": "Magie? Nein, Physik.",
+   "quipAt": 3,
+   "path": [],
+   "panel": {
+    "mode": "spule",
+    "labels": {
+     "p1": "Wechselstrom",
+     "p2": "Magnetfeld kippt",
+     "dir": "wechselt"
+    },
+    "result": "Nur auf kurze Distanz",
+    "kind": "touch",
+    "big": true
+   },
+   "lines": [
+    {
+     "t": "Erstens: In der Ladematte steckt eine Spule aus Kupferdraht.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🌀",
+      ""
+     ]
+    },
+    {
+     "t": "Durch sie fließt Wechselstrom, also Strom, der ständig die Richtung wechselt.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Dadurch entsteht ein Magnetfeld, das genauso schnell hin und her kippt.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Das Feld ist aber schwach und reicht nur ganz kurz.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Zweite Spule im Handy",
+   "quip": "Strom per Luftpost.",
+   "quipAt": 3,
+   "path": [],
+   "panel": {
+    "mode": "induktion",
+    "labels": {
+     "p1": "Handy drauf",
+     "p2": "Feld schiebt Elektronen",
+     "p3": "Strom in den Akku",
+     "act2": "Zu weit weg: kein Laden"
+    },
+    "result": "Induktion",
+    "kind": "touch",
+    "big": true
+   },
+   "lines": [
+    {
+     "t": "Zweitens: Im Handy sitzt eine zweite Spule.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "📱",
+      ""
+     ]
+    },
+    {
+     "t": "Legst du das Handy auf, geht das kippende Magnetfeld durch diese Spule.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Und ein kippendes Magnetfeld schiebt dort die Elektronen an.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Es fließt wieder Strom, direkt in den Akku.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Das nennt man Induktion.",
+     "mood": "cool",
+     "ev": "act"
+    },
+    {
+     "t": "Hebst du das Handy an, ist das Feld zu schwach und das Laden stoppt.",
+     "mood": "angry",
+     "ev": "act2"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Lädt nicht?",
+   "quip": "Zielen hilft.",
+   "quipAt": 4,
+   "path": [],
+   "panel": {
+    "mode": "qifehler",
+    "labels": {
+     "schief": "Spulen verfehlt",
+     "metall": "Metall blockt das Feld"
+    },
+    "cards": [
+     [
+      "🎯",
+      "Mittig auflegen"
+     ],
+     [
+      "📱",
+      "Hülle oder Metall ab"
+     ],
+     [
+      "🔌",
+      "Anderes Netzteil"
+     ]
+    ],
+    "result": "Sonst: Ladegerät gegenprüfen",
+    "kind": "touch",
+    "big": true
+   },
+   "lines": [
+    {
+     "t": "Drittens: Was, wenn es nicht lädt?",
+     "mood": "shock",
+     "ev": "panel"
+    },
+    {
+     "t": "Liegt das Handy schief, treffen sich die Spulen nicht.",
+     "mood": "happy",
+     "ev": "schief"
+    },
+    {
+     "t": "Dicke Hüllen oder Metall dazwischen stören das Feld.",
+     "mood": "angry",
+     "ev": "metall"
+    },
+    {
+     "t": "Dann: Handy mittig auflegen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Hülle oder Metall entfernen,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und ein anderes Netzteil oder Kabel testen.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Lädt es immer noch nicht, probier das Ladegerät mit einem anderen Handy.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "checks": [
+    "Spule + Wechselstrom = Magnetfeld",
+    "Zweite Spule macht wieder Strom",
+    "Lädt nicht? Mittig, ohne Metall"
+   ],
+   "lines": [
+    {
+     "t": "Also: Spule plus Wechselstrom gibt ein kippendes Magnetfeld,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "die Spule im Handy macht daraus wieder Strom,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und wenn's nicht lädt: mittig auflegen und Metall weg.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
