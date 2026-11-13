@@ -9,6 +9,7 @@ const pop = (k, o = 'center') => 'opacity:' + cl(k * 3) + ';transform:scale(' + 
 const rise = k => 'opacity:' + ease(k) + ';transform:translateY(' + (40 * (1 - ease(k))) + 'px);';
 const rnd = i => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
 
+let performance_t = 0;
 function mascot(m, open, blink, w) {
   const arcs = '<path d="M181 96 Q194 106 207 96" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M217 96 Q230 106 243 96" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>';
   const eyes = {
@@ -26,7 +27,23 @@ function mascot(m, open, blink, w) {
   };
   const e = (blink && (m === 'happy' || m === 'shock' || m === 'angry')) ? arcs : eyes[m];
   const mouth = open > 0.08 ? '<ellipse cx="212" cy="' + (m === 'cool' ? 126 : 125) + '" rx="' + (8 + 3 * open) + '" ry="' + (2.5 + 10 * open) + '" fill="#fff"/>' : rest[m];
-  return '<svg width="' + w + '" viewBox="-10 0 320 235" xmlns="http://www.w3.org/2000/svg"><path d="M112 150 L104 205 M190 150 L198 205" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/><path d="M84 207 L108 207 M194 207 L218 207" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/><path d="M40 86 Q10 70 6 40" stroke="' + A + '" stroke-width="12" stroke-linecap="round" fill="none"/><rect x="30" y="40" width="240" height="120" rx="60" fill="' + A + '"/><circle cx="212" cy="100" r="54" fill="' + BG + '"/>' + e + mouth + '</svg>';
+  // Kostuem "professor" (Erklaer-Serie): weisser Kittel, wilde weisse Haare
+  const prof = S.kostuem === 'professor'; let hair = '', coat = '', arm = '<path d="M40 86 Q10 70 6 40" stroke="' + A + '" stroke-width="12" stroke-linecap="round" fill="none"/>';
+  if (prof) {
+    const n = 13, a0 = -172, a1 = 18, wob = Math.sin(performance_t * 3.1) * 2.5; let d = '';
+    for (let i = 0; i <= n; i++) { // flauschige Bueschel rund um den Kopf, oben am dichtesten
+      const a = (a0 + (a1 - a0) * i / n) * Math.PI / 180, r = 60 + 8 * rnd(i + 40) + (i % 2 ? wob : -wob), rr = 17 + 9 * rnd(i + 70);
+      d += '<circle cx="' + (212 + Math.cos(a) * r).toFixed(1) + '" cy="' + (100 + Math.sin(a) * r).toFixed(1) + '" r="' + rr.toFixed(1) + '" fill="#fff"/>';
+    }
+    for (const [ang, len] of [[-150, 44], [-118, 52], [-84, 46], [-52, 56], [-20, 46], [8, 40]]) { // abstehende Straehnen
+      const a = ang * Math.PI / 180, x = 212 + Math.cos(a) * 66, y = 100 + Math.sin(a) * 66, c = a + 0.5;
+      d += '<path d="M' + x.toFixed(1) + ' ' + y.toFixed(1) + ' q' + (Math.cos(a) * len * .6 + Math.cos(c) * 14).toFixed(1) + ' ' + (Math.sin(a) * len * .6 + Math.sin(c) * 14).toFixed(1) + ' ' + (Math.cos(a) * len + wob * 2).toFixed(1) + ' ' + (Math.sin(a) * len).toFixed(1) + '" stroke="#fff" stroke-width="11" stroke-linecap="round" fill="none"/>';
+    }
+    hair = d;
+    coat = '<clipPath id="pl"><rect x="30" y="40" width="240" height="120" rx="60"/></clipPath><g clip-path="url(#pl)"><path d="M30 40 H86 L104 84 L122 40 H150 L134 160 H30 Z" fill="#fff"/><path d="M104 84 L104 160" stroke="#C9CFDD" stroke-width="4"/><circle cx="104" cy="108" r="5" fill="' + BG + '"/><circle cx="104" cy="134" r="5" fill="' + BG + '"/><rect x="50" y="104" width="34" height="30" rx="5" fill="none" stroke="#C9CFDD" stroke-width="4"/><path d="M60 96 L60 114" stroke="' + A + '" stroke-width="6" stroke-linecap="round"/><path d="M72 98 L72 114" stroke="#FF5A5A" stroke-width="6" stroke-linecap="round"/></g>';
+    arm = '<path d="M40 86 Q10 70 6 40" stroke="#fff" stroke-width="14" stroke-linecap="round" fill="none"/><circle cx="6" cy="38" r="9" fill="' + A + '"/>';
+  }
+  return '<svg width="' + w + '" viewBox="-10 -12 320 247" xmlns="http://www.w3.org/2000/svg" style="overflow:visible"><path d="M112 150 L104 205 M190 150 L198 205" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/><path d="M84 207 L108 207 M194 207 L218 207" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/>' + arm + '<rect x="30" y="40" width="240" height="120" rx="60" fill="' + A + '"/>' + coat + hair + '<circle cx="212" cy="100" r="54" fill="' + BG + '"/>' + e + mouth + '</svg>';
 }
 function sw(k, nm) { k = ease(k); const c = k > 0.5 ? A : '#C9CFDD'; return '<span class="sw" style="background:' + c + (nm ? ';margin-left:0' : '') + '"><i style="left:' + (5 + 38 * k) + 'px"></i></span>'; }
 
@@ -112,6 +129,37 @@ function listPanel(p, ev, t, E, popHtml) {
   }
   return '<div class="panel" style="' + rise(E('panel', 0.5)) + '"><div class="ph"><span>' + esc(p.title) + '</span><span>' + esc(p.tag || '') + '</span></div>' + rows + popHtml + '</div>';
 }
+// Erklaer-Panel Touchscreen (Serie Physik): Gitter, Finger, Defekt
+function touchPanel(p, ev, t, E, popHtml) {
+  const md = p.mode, cx = i => 40 + i * 53.3, cy = j => 44 + j * 46.7, done = ev.act !== undefined;
+  const gk = md === 'gitter' ? ease(E('p2', 0.9)) : 1, ck = md === 'gitter' ? E('p3', 0.5) : 1, dead = md === 'kaputt' && ev.ghost !== undefined;
+  const hit = md === 'finger' && ev.p3 !== undefined && ev.act2 === undefined;
+  let g = '', over = '';
+  for (let i = 0; i < 7; i++) { const off = dead && i >= 5, hl = hit && i === 3; g += '<line x1="' + cx(i) + '" y1="20" x2="' + cx(i) + '" y2="' + (20 + 188 * gk) + '" stroke="' + (off ? '#3A4466' : hl ? '#fff' : A) + '" stroke-width="' + (hl ? 7 : 3) + '" opacity="' + (hl ? 1 : .6) + '"/>'; if (!off && ck) g += '<circle cx="' + cx(i) + '" cy="' + (20 + 188 * ((t * 0.33 + rnd(i + 2)) % 1)) + '" r="5" fill="#fff" opacity="' + ck + '"/>'; }
+  for (let j = 0; j < 4; j++) { const hl = hit && j === 1, x2 = dead ? cx(4) + 20 : 380; g += '<line x1="20" y1="' + cy(j) + '" x2="' + (20 + (x2 - 20) * gk) + '" y2="' + cy(j) + '" stroke="' + (hl ? '#fff' : A) + '" stroke-width="' + (hl ? 7 : 3) + '" opacity="' + (hl ? 1 : .6) + '"/>'; if (dead) g += '<line x1="' + x2 + '" y1="' + cy(j) + '" x2="380" y2="' + cy(j) + '" stroke="#3A4466" stroke-width="3"/>'; if (ck) g += '<circle cx="' + (20 + (x2 - 20) * ((t * 0.27 + rnd(j + 20)) % 1)) + '" cy="' + cy(j) + '" r="5" fill="#fff" opacity="' + ck + '"/>'; }
+  if (md === 'gitter' && ev.p1 !== undefined) { const k = (ev.p1 % 1.6) / 1.6; g += '<path d="M' + (-80 + 560 * k) + ' 8 l60 0 l-70 212 l-60 0 Z" fill="#fff" opacity="' + (ev.p2 === undefined ? .28 : .1) + '"/>'; }
+  if (md === 'gitter' && done) g += '<rect x="10" y="8" width="380" height="212" rx="26" fill="none" stroke="' + A + '" stroke-width="' + (6 + 4 * Math.sin(t * 8)) + '"/>';
+  if (md === 'finger') {
+    const X = cx(3), Y = cy(1), gl = ev.act2 !== undefined, e1 = gl ? ev.act2 : ev.p1;
+    if (ev.p2 !== undefined && !gl) for (const o of [0, .5]) { const c = (ev.p2 + o) % 1; g += '<circle cx="' + X + '" cy="' + Y + '" r="' + (10 + c * 70) + '" fill="none" stroke="' + A + '" stroke-width="5" opacity="' + (1 - c) + '"/>'; }
+    if (hit) g += '<circle cx="' + X + '" cy="' + Y + '" r="' + (13 + 3 * Math.sin(t * 10)) + '" fill="#fff"/>';
+    if (gl && ev.act2 > 0.45) g += '<path d="M' + (X - 22) + ' ' + (Y - 22) + ' l44 44 m0 -44 l-44 44" stroke="#FF5A5A" stroke-width="10" stroke-linecap="round"/>';
+    if (e1 !== undefined) { const k = ease(e1 / 0.45); over += '<span class="tfing" style="left:' + (X - 38) + 'px;top:' + (Y - 6 + 110 * (1 - k) + (k >= 1 ? 4 * Math.sin(t * 9) : 0)) + 'px;opacity:' + cl(e1 * 6) + '">' + (gl ? '🧤' : '👆') + '</span>'; }
+  }
+  if (md === 'kaputt') {
+    const k = E('crack', 0.35);
+    if (k) { for (const d of ['M150 70 l-38 -30 l-24 6 l-40 -34', 'M150 70 l30 -22 l8 -30', 'M150 70 l44 30 l10 34 l46 40', 'M150 70 l-26 40 l6 30 l-34 44', 'M150 70 l60 -6 l40 -30']) g += '<path d="' + d + '" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round" pathLength="1" stroke-dasharray="' + k + ' 1"/>'; g += '<circle cx="150" cy="70" r="7" fill="#fff"/>'; }
+    if (dead) { const n = Math.floor(ev.ghost * 2.2), c = (ev.ghost * 2.2) % 1, gx = 60 + rnd(n + 5) * 200, gy = 46 + rnd(n + 9) * 140; g += '<circle cx="' + gx + '" cy="' + gy + '" r="' + (8 + c * 46) + '" fill="none" stroke="#FF5A5A" stroke-width="6" opacity="' + (1 - c) + '"/><circle cx="' + gx + '" cy="' + gy + '" r="8" fill="#FF5A5A" opacity="' + (1 - c) + '"/>'; over += '<span class="tdead" style="opacity:' + cl(ev.ghost * 4) + '">tot</span>'; }
+  }
+  const shk = md === 'kaputt' && ev.crack !== undefined && ev.crack < 0.4 ? Math.sin(ev.crack * 80) * 10 * (1 - ev.crack / 0.4) : 0;
+  const stage = ['p3', 'p2', 'p1', 'ghost', 'crack'].find(n => ev[n] !== undefined); const L = p.labels || {};
+  const lbl = ev.act2 !== undefined && L.act2 ? L.act2 : L[stage];
+  const res = done && ev.act2 === undefined || (done && !L.act2)
+    ? '<div class="cres" style="' + pop(cl(ev.act / 0.35), 'left center') + '"><s>✓</s><br>' + esc(p.result) + '</div>'
+    : lbl ? '<div class="cres"><em>' + esc(p.frage || 'Was passiert?') + '</em><span style="display:inline-block;transform:scale(' + (1 + 0.25 * (1 - ease((ev.act2 !== undefined ? ev.act2 : ev[stage]) / 0.3))) + ');transform-origin:left center">' + esc(lbl) + '</span></div>'
+    : '<div class="cres" style="opacity:' + (0.55 + 0.25 * Math.sin(t * 4)) + '"><em>' + esc(p.frage || 'Was passiert?') + '</em>' + '•'.repeat(1 + Math.floor(t * 3) % 3) + '</div>';
+  return '<div class="panel" style="' + rise(E('panel', 0.5)) + '"><div class="ph"><span>' + esc(p.title || 'Im Display') + '</span><span>' + esc(p.tag || 'Schema') + '</span></div><div class="card" style="gap:36px"><div class="tbox" style="transform:translateX(' + shk + 'px)"><svg width="400" height="228" viewBox="0 0 400 228"><rect x="10" y="8" width="380" height="212" rx="26" fill="#0B1020"/>' + g + '</svg>' + over + '</div>' + res + '</div>' + popHtml + '</div>';
+}
 // Alte Panels aus V001 (Akku)
 function legacyPanel(name, ev, t, E, popHtml) {
   let h = '';
@@ -195,6 +243,7 @@ function draw(t) {
     const ph = showPop ? popAt('right:-16px;top:-150px') : '';
     if (typeof sc.panel === 'string') h += legacyPanel(sc.panel, ev, t, E, ph);
     else if (sc.panel && sc.panel.kind === 'card') h += cardPanel(sc.panel, ev, t, E, ph);
+    else if (sc.panel && sc.panel.kind === 'touch') h += touchPanel(sc.panel, ev, t, E, ph);
     else if (sc.panel) h += listPanel(sc.panel, ev, t, E, ph);
   }
   if (sc.type === 'outro') {
@@ -221,7 +270,7 @@ function draw(t) {
   const blink = (t % 3.4) < 0.12; const mood = last.mood || 'happy';
   let spin = 0, jump = 0;
   for (const n of ['act', 'act2', 'mark', 'save', 'follow', 'sticker']) { const e = ev[n]; if (e !== undefined && e < 0.55) { spin = 360 * ease(e / 0.55); jump = Math.sin(Math.PI * e / 0.55) * 60; } }
-  const m = document.getElementById('masc'); m.innerHTML = mascot(mood, open, blink, 300);
+  performance_t = t; const m = document.getElementById('masc'); m.innerHTML = mascot(mood, open, blink, 300);
   m.style.transform = 'translate(' + (Math.sin(t * 1.1) * 10) + 'px,' + (Math.sin(t * 2.6) * 7 - (talking ? open * 5 : 0) - jump) + 'px) rotate(' + (Math.sin(t * 1.7) * 3 + spin) + 'deg)';
   const b = document.getElementById('bub'); const q = sc.quip; const qs = sc.lines[Math.min(sc.quipAt || 1, sc.lines.length - 1)].start;
   if (q && t >= qs) { b.style.display = 'block'; b.textContent = q; b.style.transform = 'rotate(' + (3 + 2 * Math.sin(t * 4)) + 'deg) scale(' + (0.5 + 0.5 * back((t - qs) / 0.35)) + ')'; b.style.opacity = cl((t - qs) / 0.15); } else b.style.display = 'none';

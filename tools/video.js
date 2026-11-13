@@ -33,7 +33,7 @@ S.total = t;
 // ---- Seite: CSS und Zeichencode liegen in video_page.css und video_page.js
 const page = '<!doctype html><meta charset="utf-8"><style>' + fs.readFileSync(path.join(__dirname, 'video_page.css'), 'utf8') + '</style><body>'
   + '<div class="blob b1"></div><div class="blob b2"></div><div id="fx"></div>'
-  + '<div class="brand"><span class="tg"><i></i></span>Einstellungssache</div><div class="prog"><i id="pg"></i></div>'
+  + '<div class="brand"><span class="tg"><i></i></span>Einstellungssache' + (S.serie ? '<em>' + S.serie + '</em>' : '') + '</div><div class="prog"><i id="pg"></i></div>'
   + '<div id="stage"></div><div id="wipe"></div><div id="cap"></div><div id="masc"></div><div id="bub"></div>'
   + '<script>const S=' + JSON.stringify(S).replace(/</g, '\\u003c') + ';\n' + fs.readFileSync(path.join(__dirname, 'video_page.js'), 'utf8') + '</script></body>';
 
