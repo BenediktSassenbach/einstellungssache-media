@@ -263,7 +263,7 @@
   },
   {
    "type": "outro",
-   "title": "*Speichern*, sonst ist es morgen weg.",
+   "title": "Ist halt ’ne *Einstellungssache*",
    "checks": [
     "Notfallpass anlegen",
     "„Wo ist?“ einschalten",
@@ -286,30 +286,9 @@
      "ev": "c3"
     },
     {
-     "t": "Schick das Video jemandem, der gerade ein neues iPhone ausgepackt hat.",
+     "t": "Ist halt ’ne Einstellungssache.",
      "mood": "wink",
-     "pop": [
-      "📤",
-      "Teilen"
-     ]
-    },
-    {
-     "t": "Speicher dir das Video, damit du es wiederfindest.",
-     "mood": "happy",
-     "ev": "save",
-     "pop": [
-      "🔖",
-      "Speichern"
-     ]
-    },
-    {
-     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
-     "mood": "wink",
-     "ev": "follow",
-     "pop": [
-      "➕",
-      "Folgen"
-     ]
+     "ev": "save"
     }
    ]
   }

@@ -285,7 +285,7 @@
   },
   {
    "type": "outro",
-   "title": "*Speichern*, sonst ist es morgen weg.",
+   "title": "Ist halt ’ne *Einstellungssache*",
    "checks": [
     "Speicher-Liste checken",
     "Unbenutzte Apps auslagern",
@@ -308,30 +308,9 @@
      "ev": "c3"
     },
     {
-     "t": "Schick das Video jemandem, dessen Speicher ständig voll ist.",
+     "t": "Ist halt ’ne Einstellungssache.",
      "mood": "wink",
-     "pop": [
-      "📤",
-      "Teilen"
-     ]
-    },
-    {
-     "t": "Speicher dir das Video, damit du es wiederfindest.",
-     "mood": "happy",
-     "ev": "save",
-     "pop": [
-      "🔖",
-      "Speichern"
-     ]
-    },
-    {
-     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
-     "mood": "wink",
-     "ev": "follow",
-     "pop": [
-      "➕",
-      "Folgen"
-     ]
+     "ev": "save"
     }
    ]
   }

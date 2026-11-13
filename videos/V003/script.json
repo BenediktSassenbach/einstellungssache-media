@@ -273,7 +273,7 @@
   },
   {
    "type": "outro",
-   "title": "*Speichern*, sonst ist es morgen weg.",
+   "title": "Ist halt ’ne *Einstellungssache*",
    "checks": [
     "Lautstärketaste zum Auslösen",
     "Halten für Video",
@@ -302,22 +302,9 @@
      "ev": "c4"
     },
     {
-     "t": "Speicher dir das Video, damit du es wiederfindest.",
-     "mood": "happy",
-     "ev": "save",
-     "pop": [
-      "🔖",
-      "Speichern"
-     ]
-    },
-    {
-     "t": "Und folge Einstellungssache für jeden Tag einen neuen Handy-Tipp.",
+     "t": "Ist halt ’ne Einstellungssache.",
      "mood": "wink",
-     "ev": "follow",
-     "pop": [
-      "➕",
-      "Folgen"
-     ]
+     "ev": "save"
     }
    ]
   }

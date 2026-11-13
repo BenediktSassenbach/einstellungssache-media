@@ -1,5 +1,5 @@
 // Video-Generator Einstellungssache (Schalti, 1080x1920, 30 fps)
-// node tools/video.js videos/V001/script.json <Ausgabeordner> [--frames 3.5,20,40]
+// node tools/video.js videos/V001/script.json <Ausgabeordner> [--frames 3.5,20,40] [--szenen 6,7]
 // Mit Stimme: audio/1.mp3 ... (eine Datei pro Szene, dazu 1.json mit ElevenLabs-Zeitstempeln falls vorhanden) ablegen,\n// python3 tools/zeiten.py videos/V001 ausfuehren, dann rendern.
 // Ohne zeiten.json werden die Sprechzeiten nach Zeichenzahl geschaetzt und das Video bleibt stumm.
 const fs = require('fs'), path = require('path'), { spawn, execFileSync } = require('child_process');
@@ -46,7 +46,9 @@ function ff(a) { return new Promise((res, rej) => { const p = spawn('ffmpeg', a,
   const mk = async () => { const pg = await br.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 }); await pg.setContent(page); await pg.evaluate(() => document.fonts.ready); return pg; };
   const fr = opt('--frames');
   if (fr) { const pg = await mk(); for (const x of fr.split(',')) { await pg.evaluate(t => draw(t), +x); await pg.screenshot({ path: path.join(out, 'frame_' + x + '.jpg'), type: 'jpeg', quality: 80 }); } await br.close(); return; }
+  const nur = opt('--szenen') ? opt('--szenen').split(',').map(x => +x - 1) : null; // nur diese Szenen neu rendern, Rest wiederverwenden
   await Promise.all(S.scenes.map(async (sc, i) => {
+    if (nur && !nur.includes(i) && fs.existsSync(path.join(out, 'szene_' + i + '.mp4'))) return;
     const pg = await mk(); const tmp = path.join(out, 'tmp_' + i + '.mp4'), fin = path.join(out, 'szene_' + i + '.mp4');
     const done = ff(['-y', '-f', 'image2pipe', '-c:v', 'mjpeg', '-framerate', String(FPS), '-i', '-', '-c:v', 'libx264', '-crf', '18', '-preset', 'veryfast', '-pix_fmt', 'yuv420p', '-r', String(FPS), tmp]); const proc = ff.last;
     const n = Math.round((sc.end - sc.start) * FPS);
