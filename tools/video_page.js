@@ -183,7 +183,7 @@ function bigViz(p, ev, t, E, popHtml) {
     if (sh > 0 && sh < .86) g += '<polygon points="' + poly(ft, [[sh, 0], [sh + .14, 0], [sh + .14, 1], [sh, 1]]) + '" fill="#fff" opacity=".35"/>';
     if (k3) for (let i = 0; i < 3; i++) { const c = fg(.2 + .3 * i, .5); over += '<span class="vemo" style="left:' + (c[0] - 26) + 'px;top:' + (c[1] - 70 - 14 * Math.abs(Math.sin(t * 5 + i))) + 'px;font-size:52px;opacity:' + k3 + '">⚡</span>'; }
     const pt = lay(oT)(1, .45), pg = fg(1, .55), pd = fd(1, .6);
-    over += chip('p1', pt[0] + 36, pt[1] - 20, L.p1) + chip('p2', pg[0] + 36, pg[1] - 6, L.p2) + chip('p3', 560, 420, L.p3, 'hot') + (k2 ? '<div class="vlab dim" style="left:' + (pd[0] + 36) + 'px;top:' + (pd[1] + 6) + 'px;opacity:' + k2 + '">' + esc(L.display || 'Bildschirm') + '</div>' : '');
+    over += chip('p1', pt[0] + 36, pt[1] - 20, L.p1) + chip('p2', pg[0] + 36, pg[1] - 6, L.p2) + chip('p3', 30, 30, '⚡ ' + L.p3, 'hot') + (k2 ? '<div class="vlab dim" style="left:' + (pd[0] + 36) + 'px;top:' + (pd[1] + 6) + 'px;opacity:' + k2 + '">' + esc(L.display || 'Bildschirm') + '</div>' : '');
     if (done) over += '<div class="vres" style="left:26px;bottom:26px;' + pop(cl(ev.act / 0.35), 'left center') + '">✓ ' + esc(p.result) + '</div>';
   } else {
     const X = 406, Y = 218, cx = i => 60 + i * 86.5, cy = j => 50 + j * 84, gl = ev.act2 !== undefined;
