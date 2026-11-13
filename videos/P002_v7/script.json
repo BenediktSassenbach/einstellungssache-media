@@ -1,0 +1,175 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P002",
+ "titel": "Warum wird dein Handy beim Laden warm?",
+ "quelle": "Joulesche Wärme und P = I²R: Spektrum Lexikon der Physik, Uni Gießen (doppelter Strom bei gleichem Widerstand = vierfache Wärmeleistung, eigene Rechnung aus dem Gesetz). Ionenwanderung durch den Separator: wissenschaft.de, TÜV Nord. Stiftung Warentest: kabelloses Laden braucht im Schnitt rund 50 Prozent mehr Energie. Apple Support (Thermally Limited Charging, 108805, 105105): bei Wärme langsamer oder Pause, Begrenzung über 80 Prozent, Hülle ab, kühler Ort. Umweltbundesamt: aufgeblähte Akkus nicht mehr laden, nicht öffnen.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum wird dein Handy beim Laden *warm*?",
+   "emoji": "🔥",
+   "world": "h7p2",
+   "lines": [
+    {
+     "t": "Warum wird dein Handy beim Laden warm?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und ab wann’s gefährlich wird.",
+     "mood": "shock",
+     "ev": "gefahr"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Elektronen im Gedränge",
+   "quip": "Wie im Bus um sieben.",
+   "quipAt": 1,
+   "path": [],
+   "world": "p2draht6",
+   "lines": [
+    {
+     "t": "Erstens: Strom sind Elektronen, die durchs Kabel drängeln.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Sie rempeln ständig gegen Atome,",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "die Atome zittern, und Zittern ist Wärme.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Krass: Doppelter Strom im selben Kabel macht viermal so viel Wärme.",
+     "mood": "shock",
+     "ev": "p3"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Stau im Akku",
+   "quip": "Bitte nicht drängeln.",
+   "quipAt": 1,
+   "path": [],
+   "world": "p2akku6",
+   "lines": [
+    {
+     "t": "Zweitens: Im Akku quetschen sich Lithium-Ionen durch eine dünne Trennschicht.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Widerstand, also wieder Wärme.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Und kabellos? Laut Stiftung Warentest rund 50 Prozent mehr Energie. Der Rest wird Wärme.",
+     "mood": "angry",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Ab wann gefährlich?",
+   "quip": "Warm ja, dick nein.",
+   "quipAt": 4,
+   "path": [],
+   "world": "p2gefahr6",
+   "lines": [
+    {
+     "t": "Drittens: Warm ist normal. Zu warm? Dann bremst das iPhone das Laden selbst.",
+     "mood": "cool",
+     "ev": "warm"
+    },
+    {
+     "t": "Wölbt sich aber das Handy, ist der Akku wahrscheinlich aufgebläht.",
+     "mood": "shock",
+     "ev": "blaeh"
+    },
+    {
+     "t": "Dann: Stecker raus,",
+     "mood": "angry",
+     "ev": "p1"
+    },
+    {
+     "t": "nicht öffnen,",
+     "mood": "angry",
+     "ev": "p2"
+    },
+    {
+     "t": "ab zur Reparatur.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Nur warm? Hülle ab, kühler hinlegen.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p2outro",
+   "checks": [
+    "Elektronen rempeln = Wärme",
+    "Ionen drängeln im Akku",
+    "Aufgebläht: Finger weg"
+   ],
+   "lines": [
+    {
+     "t": "Also: Rempeln macht Wärme,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Ionen drängeln,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und aufgebläht heißt: Finger weg.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

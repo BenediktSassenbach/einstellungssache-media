@@ -1,0 +1,170 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P004",
+ "titel": "Warum ist der Himmel blau?",
+ "quelle": "Wetterdienst.de und Uni Münster (PhiuZ 6/2005, Rote Sonne): Sonnenlicht enthält alle Farben, Rayleigh-Streuung an Luftmolekülen, kurzwellig stärker gestreut, abends langer Weg, Blau herausgestreut, Wolken streuen alle Farben ähnlich (Mie). Tagesspiegel und Uni Münster: Violett wird noch stärker gestreut, macht aber nur einen kleinen Teil des Sonnenspektrums aus, und das Auge ist für Blau empfindlicher. Physik-Lehrbuch Wellen: Streuung wächst mit der vierten Potenz der Frequenz; Balkenhöhen Rot, Blau, Violett aus 700, 450, 400 nm selbst gerechnet (Verhältnis gerundet). Luft vor allem Stickstoff und Sauerstoff: Umweltbundesamt.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum ist der Himmel *blau*?",
+   "emoji": "🌤️",
+   "world": "h7p4",
+   "lines": [
+    {
+     "t": "Warum ist der Himmel eigentlich blau?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und warum abends rot?",
+     "mood": "shock",
+     "ev": "abend"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Blau prallt ab",
+   "quip": "Blau ist überall.",
+   "quipAt": 3,
+   "path": [],
+   "world": "p4mix6",
+   "lines": [
+    {
+     "t": "Erstens: Sonnenlicht ist ein Mix aus allen Farben.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Jede Farbe ist eine Welle, und Blau schwingt öfter als Rot.",
+     "mood": "happy",
+     "ev": "wellen"
+    },
+    {
+     "t": "Luftteilchen streuen schnelle Wellen viel stärker in alle Richtungen.",
+     "mood": "shock",
+     "ev": "streu"
+    },
+    {
+     "t": "Darum fliegt Blau kreuz und quer, und von überall kommt Blau bei dir an.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Warum nicht lila?",
+   "quip": "Lila? Knapp daneben.",
+   "quipAt": 2,
+   "path": [],
+   "world": "p4lila6",
+   "lines": [
+    {
+     "t": "Zweitens: Violett wird sogar noch stärker gestreut.",
+     "mood": "shock",
+     "ev": "panel"
+    },
+    {
+     "t": "Warum ist der Himmel dann nicht lila?",
+     "mood": "angry",
+     "ev": "p1"
+    },
+    {
+     "t": "Im Sonnenlicht steckt weniger Violett,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und deine Augen sind für Blau viel empfindlicher.",
+     "mood": "wink",
+     "ev": "p3"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Und abends rot?",
+   "quip": "Golden Hour.",
+   "quipAt": 3,
+   "path": [],
+   "world": "p4abend6",
+   "lines": [
+    {
+     "t": "Drittens: Abends steht die Sonne tief.",
+     "mood": "happy",
+     "ev": "tief"
+    },
+    {
+     "t": "Ihr Licht nimmt einen viel längeren Weg durch die Luft.",
+     "mood": "shock",
+     "ev": "weg"
+    },
+    {
+     "t": "Unterwegs wird das Blau weggestreut,",
+     "mood": "happy",
+     "ev": "blau"
+    },
+    {
+     "t": "übrig bleiben Orange und Rot.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p4outro",
+   "checks": [
+    "Blau wird am stärksten gestreut",
+    "Violett sehen wir schlechter",
+    "Abends: langer Weg, Rot bleibt"
+   ],
+   "lines": [
+    {
+     "t": "Also: Blau wird am stärksten gestreut,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Violett sehen wir schlechter,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und abends bleibt Rot übrig.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
