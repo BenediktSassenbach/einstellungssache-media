@@ -138,3 +138,40 @@ WORLD.outro = function (sc, ev, t, lt) {
     for (let j = 0; j < 3; j++) { const p = orbitPos(CX, CY, 320, 90, ang, t * .4 + j * 2.1 + i), sat = satIcon(p[0], p[1], .6, null, t * 30); if (p[2] < 0) back += sat; else front += sat; } }
   return W(s + back + earth(CX, CY, R, t, .9) + front + topShade());
 };
+
+// ---------- Schalti spielt mit (Pilot P005) ----------
+// Jede Funktion liefert die Fusspunkte (fx, fy), Groesse s, Drehung r, Spiegeln, Requisite und ob er gerade laeuft.
+const go = (a, b, k) => [lerp(a[0], b[0], k), lerp(a[1], b[1], k)];
+const WMASC = {};
+WMASC.zoom = (ev, t, lt) => { const k = ease(cl((lt - 1.0) / 3.2)), sp = ease(cl((lt - 3.6) / 1.4));
+  if (k <= 0) return { f: [300, 1060], s: .8, prop: '👉', walk: false };
+  const f = go([300, 1060], [540, 752], ease(cl((k - .1) / .9))); return { f, s: lerp(.8, .42, k), r: k < 1 ? 360 * k : 0, prop: sp > .3 ? '🔭' : '', walk: false };
+};
+WMASC.orbit = (ev, t) => { const CX = 540, CY = 860, top = [CX, 712];
+  if (ev.act !== undefined) return { f: top, s: .42, prop: '⏱️' };
+  if (ev.vier !== undefined) return { f: top, s: .42, prop: '🔭' };
+  if (ev.runde !== undefined) { const hrs = Math.min(24, ev.runde * 6), a = hrs / 12 * 6.283, p = orbitPos(CX, CY, 400, 120, -75 * Math.PI / 180, a - 1.2); const k = ease(cl(ev.runde / .6)); return { f: go([790, 450], [p[0], p[1] - 14], k), s: .34, r: 15 * Math.sin(t * 3), prop: '🤠' }; }
+  if (ev.hoehe !== undefined) { const k = ease(cl(ev.hoehe / 1.4)); return { f: [745, 712 - 262 * k], s: .34, r: 0, prop: '', walk: k < 1 }; }
+  return { f: top, s: .42, prop: '👋' };
+};
+WMASC.signal = (ev, t) => {
+  if (ev.act !== undefined) { const off = 380 * ease(cl(ev.act / 1)); return { f: [130 + off * .85, 1010], s: .5, prop: '', walk: ev.act < 1.1 }; }
+  if (ev.p3 !== undefined) return { f: [640, 1112], s: .62, flip: true, prop: '👉' };
+  if (ev.p2 !== undefined) { const k = ease(cl(ev.p2 / .6)); return { f: go([580, 1112], [780, 1112], k), s: .62, prop: k >= 1 ? '👆' : '', walk: k < 1 }; }
+  if (ev.p1 !== undefined) return { f: [590 + 10 * Math.sin(t * 25), 1112], s: .66, r: -8 + 4 * Math.sin(t * 20), prop: '😵' };
+  return { f: [580, 1112], s: .66, prop: '📡' };
+};
+WMASC.kreise = (ev, t) => { const P = [520, 880], C0 = [140, 640], r = Math.hypot(C0[0] - P[0], C0[1] - P[1]);
+  if (ev.act !== undefined) { if (ev.act > 2.4) return { f: [P[0] + 80, P[1] + 30], s: .45, prop: '🎉' }; const k = ease(cl(ev.act / .6)); return { f: go([P[0] + 80, P[1] + 30], [860, 790], k), s: .45, r: 6 * Math.sin(t * 14), prop: k >= 1 ? '😤' : '', walk: k < 1 }; }
+  if (ev.k3 !== undefined) return { f: [P[0] + 80, P[1] + 30], s: .45, prop: ev.k3 > .9 ? '🚩' : '' };
+  if (ev.k2 !== undefined) { const Q = [[P[0], P[1]], [662, 1016]], n = Math.floor(ev.k2 / .9) % 2, c = (ev.k2 % .9) / .9, a = Q[n], b = Q[1 - n]; const hop = c > .7 ? ease((c - .7) / .3) : 0; return { f: go([a[0], a[1] + 4], [b[0], b[1] + 4], hop), s: .4, prop: '🤔', walk: hop > 0 }; }
+  if (ev.k1 !== undefined) { const a = 0.25 + 0.45 * (0.5 - 0.5 * Math.cos(ev.k1 * 0.9)); return { f: [C0[0] + Math.cos(a) * r, C0[1] + Math.sin(a) * r + 4], s: .4, prop: '❓', walk: true }; }
+  return { f: [200, 1110], s: .6, prop: '🗺️' };
+};
+WMASC.einstein = (ev, t) => {
+  if (ev.act !== undefined) { const back = ease(cl((ev.act - 1.5) / .8)); return back >= 1 ? { f: [300, 1000], s: .5, prop: '🎉' } : { f: [820, 800], s: .5, r: -10 * Math.sin(ev.act * 6), prop: '' }; }
+  if (ev.drift !== undefined) { const k = cl(ev.drift / 3.5), off = 600 * k; return { f: [90 + off * .85, 1010], s: .5, prop: '', walk: true }; }
+  if (ev.p2 !== undefined) return { f: [780, 1112], s: .55, prop: '💭' };
+  if (ev.grav !== undefined) { const k = ease(cl(ev.grav / 1.2)); return { f: go([250, 1112], [250, 860], k), s: .48, r: 20 * Math.sin(t * 1.5) * k, prop: '' }; }
+  return { f: [250, 1112], s: .5, prop: '👀' };
+};

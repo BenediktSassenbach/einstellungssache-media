@@ -392,6 +392,14 @@ function draw(t) {
   for (const n of ['act', 'mark', 'save']) { const e = ev[n]; if (e !== undefined && e < 0.55) { spin = 360 * ease(e / 0.55); jump = Math.sin(Math.PI * e / 0.55) * 40; } } // weniger Saltos: nicht mehr bei Sticker und act2
   performance_t = t; const m = document.getElementById('masc'); m.innerHTML = mascot(mood, open, blink, 300);
   m.style.transform = 'translate(' + (Math.sin(t * 1.1) * 10) + 'px,' + (Math.sin(t * 2.6) * 7 - (talking ? open * 5 : 0) - jump) + 'px) rotate(' + (Math.sin(t * 1.7) * 3 + spin) + 'deg)';
-  const b = document.getElementById('bub'); const q = sc.quip; const qs = sc.lines[Math.min(sc.quipAt || 1, sc.lines.length - 1)].start;
+  // Pilot P005: Schalti bewegt sich durch die Welt und haelt Requisiten
+  const pose = sc.world && typeof WMASC !== 'undefined' && WMASC[sc.world] ? WMASC[sc.world](ev, t, lt) : null;
+  if (pose) { const s0 = pose.s, hop = pose.walk ? Math.abs(Math.sin(t * 11)) * 22 * s0 : 0;
+    m.style.left = (pose.f[0] - 150) + 'px'; m.style.top = (pose.f[1] - 225) + 'px'; m.style.transformOrigin = '50% 100%';
+    m.style.transform = 'translate(0px,' + (-hop - jump * s0 + Math.sin(t * 2.6) * 4) + 'px) rotate(' + ((pose.r || 0) + spin + Math.sin(t * 1.7) * 3) + 'deg) scale(' + (pose.flip ? -s0 : s0) + ',' + s0 + ')';
+    if (pose.prop) m.innerHTML += '<span style="position:absolute;left:-46px;top:-40px;font-size:100px;line-height:1;font-family:Noto Color Emoji;transform:scale(' + (pose.flip ? -1 : 1) + ',1) rotate(' + (10 * Math.sin(t * 4)) + 'deg)">' + pose.prop + '</span>';
+  } else { m.style.left = '70px'; m.style.top = '1312px'; m.style.transformOrigin = ''; }
+  const b = document.getElementById('bub'); const q = sc.quip;
+  if (pose) { b.style.left = '120px'; b.style.top = '1340px'; } // Sprechblase unten im freien Bereich, damit sie nichts verdeckt else { b.style.left = ''; b.style.top = ''; } const qs = sc.lines[Math.min(sc.quipAt || 1, sc.lines.length - 1)].start;
   if (q && t >= qs) { b.style.display = 'block'; b.textContent = q; b.style.transform = 'rotate(' + (3 + 2 * Math.sin(t * 4)) + 'deg) scale(' + (0.5 + 0.5 * back((t - qs) / 0.35)) + ')'; b.style.opacity = cl((t - qs) / 0.15); } else b.style.display = 'none';
 }
