@@ -1,0 +1,174 @@
+{
+ "serie": "Informatik",
+ "kostuem": "hacker",
+ "accent": "#7C5CFF",
+ "id": "I006",
+ "titel": "Hört dein Handy dich wirklich ab?",
+ "quelle": "Northeastern University, Studie Panoptispy (2018): 17.260 Android-Apps untersucht, keine hat heimlich das Mikrofon eingeschaltet und Ton verschickt (Berichte: it-daily.net, Northeastern News, USA Today; Datenverkehr über ein Jahr überwacht). GIGA und Dr. Web (30.10.2026): bisher keine handfesten Beweise für dauerhaftes Mithören zu Werbezwecken; US-Handelsbehörde FTC: das beworbene Active Listening hörte nie mit. Verbraucherzentrale (Stand 02.03.2026, App-Tracking abschalten): auf jedem Smartphone gibt es eine Werbe-ID, fast alles am Smartphone kann darüber gesammelt werden und Werbenetzwerken helfen; Werbe-ID lässt sich löschen. netzpolitik.org (Databroker Files): Werbe-ID funktioniert wie ein Nummernschild, oft mit Standort; iOS: Einstellungen, Datenschutz, Tracking. netzwelt: personalisierte Werbung beruht überwiegend auf Tracking und Profilen aus Suchverhalten, App-Nutzung, sozialen Kontakten. t3n mit BR Puls: Frequenz-Bias, Dinge fallen häufiger auf, nachdem man sie bemerkt hat. Apple Support (orangefarbene und grüne Statusanzeigen): orangefarbener Punkt heißt, eine App nutzt das Mikrofon. teltarif und inside-digital: Android ab Version 12 zeigt einen grünen Punkt für Kamera oder Mikrofon. Bewusst weggelassen: Sprachassistenten (hören auf ihr Aktivierungswort), Screenshots durch Apps aus derselben Studie.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Handy *hört* mit?",
+   "emoji": "🎙️",
+   "world": "h7i6",
+   "lines": [
+    {
+     "t": "Hört dein Handy dich wirklich ab?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Informatik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Die Wahrheit ist fast noch gruseliger.",
+     "mood": "shock",
+     "ev": "werbung"
+    }
+   ],
+   "pause": 0.8
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Kein Beweis",
+   "quip": "Null. Nada.",
+   "quipAt": 3,
+   "path": [],
+   "world": "i6test",
+   "lines": [
+    {
+     "t": "Erstens: Du redest über Pizza, und zack: Pizza-Werbung.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Forscher haben über 17.000 Android-Apps getestet.",
+     "mood": "happy",
+     "ev": "apps"
+    },
+    {
+     "t": "Ein Jahr lang haben sie den Datenverkehr überwacht.",
+     "mood": "shock",
+     "ev": "jahr"
+    },
+    {
+     "t": "Krass: Keine einzige App hat heimlich Ton verschickt.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "pause": 0.8
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Deine Datenspuren",
+   "quip": "Die kennen dich.",
+   "quipAt": 3,
+   "path": [],
+   "world": "i6spur",
+   "lines": [
+    {
+     "t": "Zweitens: Werbenetzwerke brauchen kein Mikro. Sie haben deine Datenspuren.",
+     "mood": "happy",
+     "ev": "spur"
+    },
+    {
+     "t": "Jedes Handy hat eine Werbe-ID, wie ein Nummernschild.",
+     "mood": "happy",
+     "ev": "id"
+    },
+    {
+     "t": "Darüber kann fast alles, was du am Handy machst, in einem Profil landen.",
+     "mood": "shock",
+     "ev": "profil"
+    },
+    {
+     "t": "Die Werbung rät nur. Aber Treffer fallen dir auf, Fehlschüsse nicht.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "pause": 0.8
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Kontrolle zurück",
+   "quip": "Schalter um!",
+   "quipAt": 3,
+   "path": [],
+   "world": "i6check",
+   "lines": [
+    {
+     "t": "Drittens: Dein Handy zeigt dir, wenn das Mikro läuft.",
+     "mood": "happy",
+     "ev": "punkt"
+    },
+    {
+     "t": "Beim iPhone ein oranger Punkt, bei Android ein grüner.",
+     "mood": "happy",
+     "ev": "farben"
+    },
+    {
+     "t": "Unter Datenschutz siehst du, welche App ans Mikro darf.",
+     "mood": "happy",
+     "ev": "rechte"
+    },
+    {
+     "t": "Und dort verbietest du das Tracking oder löschst die Werbe-ID.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "pause": 0.8
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i6outro",
+   "checks": [
+    "Kein Beleg fürs Mithören",
+    "Datenspuren reichen völlig",
+    "Punkt und Rechte prüfen"
+   ],
+   "lines": [
+    {
+     "t": "Also: Fürs heimliche Mithören gibt es keinen Beleg,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "deine Datenspuren reichen völlig,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und der Punkt zeigt dir, wann das Mikro läuft.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

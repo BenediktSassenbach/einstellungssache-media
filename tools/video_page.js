@@ -69,6 +69,14 @@ function mascot(m, open, blink, w) {
     top = '<g transform="rotate(' + wb + ' 212 46)"><path d="M212 46 L212 4" stroke="#fff" stroke-width="6"/><path d="M212 4 L180 -18 M212 4 L244 -18" stroke="#fff" stroke-width="6"/><circle cx="212" cy="4" r="16" fill="#FF4D4D"/><circle cx="180" cy="-18" r="11" fill="#fff"/><circle cx="244" cy="-18" r="11" fill="#fff"/><circle cx="207" cy="-1" r="4" fill="#fff" opacity=".7"/></g>';
     hand = '<g transform="translate(6 40)"><g transform="rotate(-8)"><path d="M-6 -20 L-6 -44 M6 -20 L6 -44" stroke="#fff" stroke-width="4"/><circle cx="0" cy="-62" r="22" fill="rgba(255,255,255,.15)" stroke="#fff" stroke-width="4"/><path d="M-20 -58 Q0 -50 20 -58 A22 22 0 0 1 -20 -58 Z" fill="' + (S.kolben || '#3BB8FF') + '"/></g><circle cx="0" cy="0" r="15" fill="#FFD23F"/><path d="M-12 -6 Q-22 -14 -14 -20" stroke="#FFD23F" stroke-width="8" fill="none" stroke-linecap="round"/></g>';
   }
+  // Kostuem "hacker" (Informatik I1): Kapuze, Spiegelbrille mit gruenem Code, Laptop, Code-Zeichen auf dem Bauch
+  if (S.kostuem === 'hacker') {
+    hair = '<circle cx="212" cy="100" r="70" fill="#1E2742"/><circle cx="212" cy="100" r="70" fill="none" stroke="' + A + '" stroke-width="6"/>';
+    coat = '<text x="62" y="118" font-size="40" font-weight="900" fill="#fff" font-family="Inter Display">&lt;/&gt;</text>';
+    const up = m === 'shock' ? -36 : 0, sc2 = (performance_t * 14) % 12; // bei Schreck rutscht die Brille auf die Stirn, der Code laeuft
+    top = '<g transform="translate(0 ' + up + ')"><rect x="172" y="80" width="80" height="26" rx="10" fill="#05140B" stroke="#fff" stroke-width="4"/><path d="M178 88 H194 M200 88 H210 M218 88 H236 M178 98 H188 M194 98 H214 M222 98 H246" stroke="#3DFF7A" stroke-width="3" stroke-dasharray="9 3" stroke-dashoffset="' + sc2.toFixed(1) + '"/></g>';
+    hand = '<g transform="translate(6 40)"><g transform="rotate(-14)"><rect x="-34" y="-50" width="68" height="44" rx="6" fill="#2A3350" stroke="#fff" stroke-width="4"/><path d="M-24 -38 H0 M-24 -28 H14 M-24 -18 H-4" stroke="#3DFF7A" stroke-width="3"/><path d="M-42 -4 H42 L36 4 H-36 Z" fill="#fff"/></g></g>';
+  }
   return '<svg width="' + w + '" viewBox="-10 -12 320 247" xmlns="http://www.w3.org/2000/svg" style="overflow:visible"><path d="M112 150 L104 205 M190 150 L198 205" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/><path d="M84 207 L108 207 M194 207 L218 207" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/>' + arm + '<rect x="30" y="40" width="240" height="120" rx="60" fill="' + A + '"/>' + coat + hair + '<circle cx="212" cy="100" r="54" fill="' + BG + '"/>' + e + mouth + top + hand + '</svg>';
 }
 function sw(k, nm) { k = ease(k); const c = k > 0.5 ? A : '#C9CFDD'; return '<span class="sw" style="background:' + c + (nm ? ';margin-left:0' : '') + '"><i style="left:' + (5 + 38 * k) + 'px"></i></span>'; }
