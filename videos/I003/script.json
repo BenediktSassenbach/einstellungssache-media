@@ -172,5 +172,8 @@
     }
    ]
   }
- ]
+ ],
+ "sprich": {
+  "eins zwei drei vier fünf sechs": "123456"
+ }
 }
