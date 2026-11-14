@@ -6,7 +6,7 @@
  "titel": "Wie schnell knackt ein Hacker dein Passwort?",
  "quelle": "Hive Systems Password Table 2026 (hivesystems.com/password, Pressemitteilung 14.07.2026) und GameStar dazu: Annahme 16 Grafikkarten RTX 5090, Passwörter als bcrypt-Hash, Durchprobieren aller Kombinationen (Brute Force); 8 Zeichen nur Ziffern sofort, nur Kleinbuchstaben etwa 2 Wochen, Groß- und Kleinbuchstaben etwa 12 Jahre, dazu Ziffern etwa 50 Jahre, dazu Sonderzeichen etwa 132 Jahre (2025 noch 164 Jahre); Knacken wird jedes Jahr schneller; Empfehlung Passwort-Manager. Eigene Rechnung: Jedes weitere Zeichen multipliziert die Zahl der Kombinationen mit der Größe des Zeichenvorrats, bei Kleinbuchstaben mal 26, also aus 2 Wochen bei 8 Zeichen rund 1 Jahr bei 9 und rund 26 Jahre bei 10 Zeichen. BSI (Sichere Passwörter erstellen): je länger, desto besser; keine Namen, Geburtsdaten oder einfachen Zahlenfolgen; für jeden Account ein eigenes Passwort; Passwort-Manager; Zwei-Faktor-Authentisierung nutzen; Merksatz-Methode. Die Tabelle gilt für zufällige, nicht geleakte Passwörter. Nur erklärend, keine Anleitung.",
  "gagTag": "[groans] [dizzy]",
- "gagDelay": 0.5,
+ "gagDelay": 0.1,
  "scenes": [
   {
    "type": "hook",
