@@ -1,0 +1,87 @@
+{
+ "serie": "Chemie",
+ "kostuem": "explosion",
+ "kolben": "#3BB8FF",
+ "accent": "#FF6BD6",
+ "id": "C001",
+ "titel": "Warum darf man brennendes Fett nie mit Wasser löschen?",
+ "quelle": "TÜV-Verband (Dr. Hermann Dinkler, über dpa/utopia): Fett raucht ab 180 °C, kann sich ab 280 °C entzünden. Feuerwehr Dassel: Selbstentzündung bei rund 200 bis 300 °C. Freiwillige Feuerwehr Aufhausen (feuerwehren.bayern): Wasser sinkt ins heiße Fett ein, verdampft schlagartig, 1 Liter Wasser ergibt 1700 Liter Dampf; Deckel, Raum verlassen, Tür schließen, 112. Planet Wissen (WDR): Feuer braucht Brennstoff, Wärme, Sauerstoff; 1 Liter Wasser ergibt 1,7 Kubikmeter Dampf; Deckel nimmt den Sauerstoff. wissenschaft.de mit Prof. Heinz Pitsch, RWTH Aachen (11.08.2017): Dampf reißt Öl mit, Oberfläche wird viel größer, reagiert besser mit Sauerstoff, Verbrennung nimmt schlagartig zu; Herd aus, Deckel drauf, Fett kühlt unter die Zündtemperatur ab. Bayerisches Innenministerium (Merkblatt Fett und Öl): nie mit Wasser, Energiezufuhr abschalten, sonst 112.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Fettbrand mit *Wasser* löschen?",
+   "emoji": "🔥",
+   "world": "h7c1",
+   "lines": [
+    { "t": "Warum darfst du brennendes Fett nie mit Wasser löschen?", "mood": "shock", "ev": "mark" },
+    { "t": "Chemie nie verstanden?", "mood": "happy" },
+    { "t": "Gib mir 60 Sekunden.", "mood": "wink", "ev": "sticker" },
+    { "t": "Sonst passiert nämlich das hier.", "mood": "shock", "ev": "bumm" }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Viel zu heiß",
+   "quip": "Autsch, 280 Grad.",
+   "quipAt": 3,
+   "path": [],
+   "world": "c1heiss",
+   "lines": [
+    { "t": "Erstens: Fett in der Pfanne wird extrem heiß.", "mood": "happy", "ev": "panel" },
+    { "t": "Ab etwa 280 Grad kann es sich selbst entzünden.", "mood": "shock", "ev": "grad" },
+    { "t": "Wasser kocht aber schon bei 100 Grad.", "mood": "happy", "ev": "wasser" },
+    { "t": "Für Wasser ist das Fett also viel zu heiß.", "mood": "cool", "ev": "act" }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Dampf-Explosion",
+   "quip": "Fettexplosion!",
+   "quipAt": 4,
+   "path": [],
+   "world": "c1dampf",
+   "lines": [
+    { "t": "Zweitens: Das Wasser sinkt ins heiße Fett ein.", "mood": "happy", "ev": "sinkt" },
+    { "t": "Dort verdampft es schlagartig.", "mood": "shock", "ev": "dampf" },
+    { "t": "Krass: Aus einem Liter Wasser werden 1700 Liter Dampf.", "mood": "shock", "ev": "liter" },
+    { "t": "Der Dampf schießt hoch und reißt brennendes Fett mit.", "mood": "angry", "ev": "hoch" },
+    { "t": "Als feine Tröpfchen brennt es auf einen Schlag: Stichflamme.", "mood": "shock", "ev": "act" }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "So geht’s richtig",
+   "quip": "Deckel drauf. Fertig.",
+   "quipAt": 2,
+   "path": [],
+   "world": "c1deckel",
+   "lines": [
+    { "t": "Drittens: Feuer braucht Sauerstoff.", "mood": "happy", "ev": "o2" },
+    { "t": "Also: Herd aus und Deckel drauf.", "mood": "wink", "ev": "deckel" },
+    { "t": "Ohne Luft erstickt die Flamme.", "mood": "cool", "ev": "erstickt" },
+    { "t": "Deckel drauflassen, bis alles abgekühlt ist.", "mood": "happy", "ev": "kalt" },
+    { "t": "Klappt das nicht: raus, Tür zu, 112 rufen.", "mood": "shock", "ev": "act" }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c1outro",
+   "checks": [
+    "Fett brennt ab etwa 280 Grad",
+    "Wasser wird schlagartig zu Dampf",
+    "Herd aus, Deckel drauf"
+   ],
+   "lines": [
+    { "t": "Also: Fett brennt ab etwa 280 Grad,", "mood": "happy", "ev": "c1" },
+    { "t": "Wasser wird darin schlagartig zu Dampf,", "mood": "happy", "ev": "c2" },
+    { "t": "und der Deckel erstickt das Feuer.", "mood": "cool", "ev": "c3" },
+    { "t": "Chemie verstehen?", "mood": "happy", "pop": ["🧠", ""] },
+    { "t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save" }
+   ]
+  }
+ ]
+}

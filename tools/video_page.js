@@ -43,7 +43,18 @@ function mascot(m, open, blink, w) {
     coat = '<clipPath id="pl"><rect x="30" y="40" width="240" height="120" rx="60"/></clipPath><g clip-path="url(#pl)"><path d="M30 40 H86 L104 84 L122 40 H150 L134 160 H30 Z" fill="#fff"/><path d="M104 84 L104 160" stroke="#C9CFDD" stroke-width="4"/><circle cx="104" cy="108" r="5" fill="' + BG + '"/><circle cx="104" cy="134" r="5" fill="' + BG + '"/><rect x="50" y="104" width="34" height="30" rx="5" fill="none" stroke="#C9CFDD" stroke-width="4"/><path d="M60 96 L60 114" stroke="' + A + '" stroke-width="6" stroke-linecap="round"/><path d="M72 98 L72 114" stroke="#FF5A5A" stroke-width="6" stroke-linecap="round"/></g>';
     arm = '<path d="M40 86 Q10 70 6 40" stroke="#fff" stroke-width="14" stroke-linecap="round" fill="none"/><circle cx="6" cy="38" r="9" fill="' + A + '"/>';
   }
-  return '<svg width="' + w + '" viewBox="-10 -12 320 247" xmlns="http://www.w3.org/2000/svg" style="overflow:visible"><path d="M112 150 L104 205 M190 150 L198 205" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/><path d="M84 207 L108 207 M194 207 L218 207" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/>' + arm + '<rect x="30" y="40" width="240" height="120" rx="60" fill="' + A + '"/>' + coat + hair + '<circle cx="212" cy="100" r="54" fill="' + BG + '"/>' + e + mouth + '</svg>';
+  // Kostuem "explosion" (Chemie C2): Rauch-Frisur, Russflecken, Schutzbrille auf der Stirn, Erlenmeyerkolben
+  let top = '', hand = '';
+  if (S.kostuem === 'explosion') {
+    const wob = Math.sin(performance_t * 2.7) * 2; let d = '';
+    for (const [an, r, rr] of [[-160, 62, 22], [-135, 70, 26], [-105, 72, 28], [-75, 74, 30], [-45, 70, 26], [-15, 64, 22], [10, 60, 18], [-120, 96, 18], [-60, 98, 20]]) d += '<circle cx="' + (212 + Math.cos(an * Math.PI / 180) * r).toFixed(1) + '" cy="' + (100 + Math.sin(an * Math.PI / 180) * r + (rr > 24 ? wob : -wob)).toFixed(1) + '" r="' + rr + '" fill="#6E7891"/>';
+    for (let i = 0; i < 3; i++) { const c = (performance_t * .45 + i / 3) % 1; d += '<circle cx="' + (196 + 34 * c + 6 * Math.sin(performance_t * 2 + i)) + '" cy="' + (14 - 62 * c) + '" r="' + (8 + 9 * c) + '" fill="#8A93A8" opacity="' + (.8 * (1 - c)) + '"/>'; }
+    hair = d;
+    coat = '<ellipse cx="80" cy="70" rx="18" ry="10" fill="#1B2238" opacity=".55"/><ellipse cx="140" cy="132" rx="22" ry="11" fill="#1B2238" opacity=".5"/><ellipse cx="62" cy="128" rx="10" ry="7" fill="#1B2238" opacity=".5"/>';
+    top = '<g transform="translate(0 -8)"><path d="M160 52 Q212 30 264 52" stroke="#3A4566" stroke-width="8" fill="none"/><rect x="176" y="36" width="36" height="26" rx="11" fill="rgba(155,231,255,.25)" stroke="#9BE7FF" stroke-width="5"/><rect x="212" y="36" width="36" height="26" rx="11" fill="rgba(155,231,255,.25)" stroke="#9BE7FF" stroke-width="5"/></g>';
+    hand = '<g transform="translate(6 40) rotate(-10)"><path d="M-8 -60 L-8 -38 L-30 2 Q-32 10 -24 10 L24 10 Q32 10 30 2 L8 -38 L8 -60 Z" fill="rgba(255,255,255,.15)" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M-22 -10 L22 -10 L28 2 Q30 8 24 8 L-24 8 Q-30 8 -28 2 Z" fill="' + (S.kolben || A) + '"/></g>';
+  }
+  return '<svg width="' + w + '" viewBox="-10 -12 320 247" xmlns="http://www.w3.org/2000/svg" style="overflow:visible"><path d="M112 150 L104 205 M190 150 L198 205" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/><path d="M84 207 L108 207 M194 207 L218 207" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/>' + arm + '<rect x="30" y="40" width="240" height="120" rx="60" fill="' + A + '"/>' + coat + hair + '<circle cx="212" cy="100" r="54" fill="' + BG + '"/>' + e + mouth + top + hand + '</svg>';
 }
 function sw(k, nm) { k = ease(k); const c = k > 0.5 ? A : '#C9CFDD'; return '<span class="sw" style="background:' + c + (nm ? ';margin-left:0' : '') + '"><i style="left:' + (5 + 38 * k) + 'px"></i></span>'; }
 
