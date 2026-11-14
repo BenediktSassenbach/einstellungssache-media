@@ -175,5 +175,10 @@
     }
    ]
   }
- ]
+ ],
+ "gagTag": "[groans] [dizzy]",
+ "gagDelay": 0.55,
+ "sprich": {
+  "Werbe-I-D": "Werbe-ID"
+ }
 }
