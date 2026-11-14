@@ -13,10 +13,25 @@
    "emoji": "🔥",
    "world": "h7c1",
    "lines": [
-    { "t": "Warum darfst du brennendes Fett nie mit Wasser löschen?", "mood": "shock", "ev": "mark" },
-    { "t": "Chemie nie verstanden?", "mood": "happy" },
-    { "t": "Gib mir 60 Sekunden.", "mood": "wink", "ev": "sticker" },
-    { "t": "Sonst passiert nämlich das hier.", "mood": "shock", "ev": "bumm" }
+    {
+     "t": "Warum darfst du brennendes Fett nie mit Wasser löschen?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Chemie nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Sonst passiert nämlich das hier.",
+     "mood": "shock",
+     "ev": "bumm"
+    }
    ]
   },
   {
@@ -28,10 +43,26 @@
    "path": [],
    "world": "c1heiss",
    "lines": [
-    { "t": "Erstens: Fett in der Pfanne wird extrem heiß.", "mood": "happy", "ev": "panel" },
-    { "t": "Ab etwa 280 Grad kann es sich selbst entzünden.", "mood": "shock", "ev": "grad" },
-    { "t": "Wasser kocht aber schon bei 100 Grad.", "mood": "happy", "ev": "wasser" },
-    { "t": "Für Wasser ist das Fett also viel zu heiß.", "mood": "cool", "ev": "act" }
+    {
+     "t": "Erstens: Fett in der Pfanne wird extrem heiß.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Ab etwa 280 Grad kann es sich selbst entzünden.",
+     "mood": "shock",
+     "ev": "grad"
+    },
+    {
+     "t": "Wasser kocht aber schon bei 100 Grad.",
+     "mood": "happy",
+     "ev": "wasser"
+    },
+    {
+     "t": "Für Wasser ist das Fett also viel zu heiß.",
+     "mood": "cool",
+     "ev": "act"
+    }
    ]
   },
   {
@@ -43,11 +74,31 @@
    "path": [],
    "world": "c1dampf",
    "lines": [
-    { "t": "Zweitens: Das Wasser sinkt ins heiße Fett ein.", "mood": "happy", "ev": "sinkt" },
-    { "t": "Dort verdampft es schlagartig.", "mood": "shock", "ev": "dampf" },
-    { "t": "Krass: Aus einem Liter Wasser werden 1700 Liter Dampf.", "mood": "shock", "ev": "liter" },
-    { "t": "Der Dampf schießt hoch und reißt brennendes Fett mit.", "mood": "angry", "ev": "hoch" },
-    { "t": "Als feine Tröpfchen brennt es auf einen Schlag: Stichflamme.", "mood": "shock", "ev": "act" }
+    {
+     "t": "Zweitens: Das Wasser sinkt ins heiße Fett ein.",
+     "mood": "happy",
+     "ev": "sinkt"
+    },
+    {
+     "t": "Dort verdampft es schlagartig.",
+     "mood": "shock",
+     "ev": "dampf"
+    },
+    {
+     "t": "Krass: Aus einem Liter Wasser werden 1700 Liter Dampf.",
+     "mood": "shock",
+     "ev": "liter"
+    },
+    {
+     "t": "Der Dampf schießt hoch und reißt brennendes Fett mit.",
+     "mood": "angry",
+     "ev": "hoch"
+    },
+    {
+     "t": "Als feine Tröpfchen brennt es auf einen Schlag: Stichflamme.",
+     "mood": "shock",
+     "ev": "act"
+    }
    ]
   },
   {
@@ -59,11 +110,31 @@
    "path": [],
    "world": "c1deckel",
    "lines": [
-    { "t": "Drittens: Feuer braucht Sauerstoff.", "mood": "happy", "ev": "o2" },
-    { "t": "Also: Herd aus und Deckel drauf.", "mood": "wink", "ev": "deckel" },
-    { "t": "Ohne Luft erstickt die Flamme.", "mood": "cool", "ev": "erstickt" },
-    { "t": "Deckel drauflassen, bis alles abgekühlt ist.", "mood": "happy", "ev": "kalt" },
-    { "t": "Klappt das nicht: raus, Tür zu, 112 rufen.", "mood": "shock", "ev": "act" }
+    {
+     "t": "Drittens: Feuer braucht Sauerstoff.",
+     "mood": "happy",
+     "ev": "o2"
+    },
+    {
+     "t": "Also: Herd aus und Deckel drauf.",
+     "mood": "wink",
+     "ev": "deckel"
+    },
+    {
+     "t": "Ohne Luft erstickt die Flamme.",
+     "mood": "cool",
+     "ev": "erstickt"
+    },
+    {
+     "t": "Deckel drauflassen, bis alles abgekühlt ist.",
+     "mood": "happy",
+     "ev": "kalt"
+    },
+    {
+     "t": "Klappt das nicht: raus, Tür zu, 112 rufen.",
+     "mood": "shock",
+     "ev": "act"
+    }
    ]
   },
   {
@@ -76,12 +147,39 @@
     "Herd aus, Deckel drauf"
    ],
    "lines": [
-    { "t": "Also: Fett brennt ab etwa 280 Grad,", "mood": "happy", "ev": "c1" },
-    { "t": "Wasser wird darin schlagartig zu Dampf,", "mood": "happy", "ev": "c2" },
-    { "t": "und der Deckel erstickt das Feuer.", "mood": "cool", "ev": "c3" },
-    { "t": "Chemie verstehen?", "mood": "happy", "pop": ["🧠", ""] },
-    { "t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save" }
+    {
+     "t": "Also: Fett brennt ab etwa 280 Grad,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Wasser wird darin schlagartig zu Dampf,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und der Deckel erstickt das Feuer.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
    ]
   }
- ]
+ ],
+ "sprich": {
+  "eins eins zwei": "112"
+ },
+ "gagDelay": 0.14
 }
