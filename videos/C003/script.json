@@ -31,7 +31,8 @@
      "mood": "shock",
      "ev": "plopp"
     }
-   ]
+   ],
+   "pause": 1.0
   },
   {
    "type": "tip",
@@ -62,7 +63,8 @@
      "mood": "shock",
      "ev": "act"
     }
-   ]
+   ],
+   "pause": 1.0
   },
   {
    "type": "tip",
@@ -93,7 +95,8 @@
      "mood": "angry",
      "ev": "act"
     }
-   ]
+   ],
+   "pause": 1.0
   },
   {
    "type": "tip",
@@ -124,7 +127,8 @@
      "mood": "cool",
      "ev": "act"
     }
-   ]
+   ],
+   "pause": 1.0
   },
   {
    "type": "outro",

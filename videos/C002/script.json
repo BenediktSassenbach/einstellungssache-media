@@ -31,7 +31,8 @@
      "mood": "shock",
      "ev": "platsch"
     }
-   ]
+   ],
+   "pause": 0.8
   },
   {
    "type": "tip",
@@ -62,7 +63,8 @@
      "mood": "cool",
      "ev": "act"
     }
-   ]
+   ],
+   "pause": 0.8
   },
   {
    "type": "tip",
@@ -98,7 +100,8 @@
      "mood": "wink",
      "ev": "act"
     }
-   ]
+   ],
+   "pause": 0.8
   },
   {
    "type": "tip",
@@ -129,7 +132,8 @@
      "mood": "cool",
      "ev": "act"
     }
-   ]
+   ],
+   "pause": 0.8
   },
   {
    "type": "outro",

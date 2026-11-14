@@ -25,7 +25,7 @@ S.scenes.forEach((sc, si) => {
     const d = Math.max(0.9, l.t.length / CPS);
     l.start = t; l.end = t + d; t = l.end + GAP; li++;
   }
-  t += sc.type === 'outro' ? 1.6 : 0.45;
+  t += sc.pause !== undefined ? sc.pause : (sc.type === 'outro' ? 1.6 : 0.45); // "pause" im Skript: laengere Atempause nach der Szene (z. B. um ueber 60 s zu kommen)
   t = Math.round(t * FPS) / FPS; sc.end = t;
 });
 S.total = t;
