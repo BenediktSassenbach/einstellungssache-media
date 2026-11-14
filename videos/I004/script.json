@@ -1,0 +1,176 @@
+{
+ "serie": "Informatik",
+ "kostuem": "gamer",
+ "accent": "#7C5CFF",
+ "id": "I004",
+ "titel": "Warum laggt dein Spiel?",
+ "quelle": "GameStar (Ping, Latenz und Packet Loss erklärt): Ping ist die Zeit, die ein Datenpaket vom PC zum Server und zurück braucht (Latenz), ist sie zu hoch, nennt man das Lag; für Shooter grob höchstens etwa 50 Millisekunden, andere Genres auch mit 60 bis 100; Paketverlust zeigt sich durch teleportierende Gegner oder verschluckte Kommandos; die Bandbreite spielt eine untergeordnete Rolle, wenige MBit/s reichen, solange man die Leitung für sich hat. Fritz (Hersteller, Gaming-Ratgeber) und netzwelt dazu: Ping in Millisekunden; LAN-Kabel ist die zuverlässigste Verbindung, weder Wände noch Nachbar-WLANs stören; ein Server auf einem anderen Kontinent bedeutet höhere Latenz; Ping ist nicht gleich Bandbreite. gameswelt: Kabel hält die Latenz konstanter als WLAN. Ping-Werte in den Grafiken (38, 250, 20, 180 Millisekunden, Serverliste) sind Beispielwerte.",
+ "gagTag": "[stammering, shaking]",
+ "gagDelay": 0.55,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum *laggt* dein Spiel?",
+   "emoji": "🎮",
+   "world": "h7i4",
+   "lines": [
+    {
+     "t": "Warum laggt dein Spiel eigentlich?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Informatik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Schnelleres Internet hilft dabei kaum.",
+     "mood": "shock",
+     "ev": "lag"
+    }
+   ],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Ping statt Tempo",
+   "quip": "Zu spät!",
+   "quipAt": 3,
+   "world": "i4ping",
+   "lines": [
+    {
+     "t": "Erstens: Jede Eingabe reist als Datenpaket zum Server und zurück.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Die Zeit dafür heißt Ping, gemessen in Millisekunden.",
+     "mood": "happy",
+     "ev": "ping"
+    },
+    {
+     "t": "Ist der Ping hoch, siehst du alles verspätet. Das ist Lag.",
+     "mood": "shock",
+     "ev": "lag"
+    },
+    {
+     "t": "Krass: Für Shooter sollten es höchstens etwa 50 Millisekunden sein.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Am Tarif liegt es selten",
+   "quip": "Der Weg zählt.",
+   "quipAt": 3,
+   "world": "i4band",
+   "lines": [
+    {
+     "t": "Zweitens: Am Tempo deines Tarifs liegt es selten.",
+     "mood": "happy",
+     "ev": "tarif"
+    },
+    {
+     "t": "Spiele brauchen wenig Bandbreite. Schon ein paar Megabit reichen.",
+     "mood": "happy",
+     "ev": "wenig"
+    },
+    {
+     "t": "Wichtiger ist der Weg: Steht der Server weit weg, steigt der Ping.",
+     "mood": "shock",
+     "ev": "weg"
+    },
+    {
+     "t": "Und gehen Pakete verloren, teleportieren Gegner plötzlich.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Das hilft wirklich",
+   "quip": "Kabel rein!",
+   "quipAt": 3,
+   "world": "i4fix",
+   "lines": [
+    {
+     "t": "Drittens: Nimm ein LAN-Kabel statt WLAN.",
+     "mood": "happy",
+     "ev": "lan"
+    },
+    {
+     "t": "Funk wird von Wänden und Nachbar-WLANs gestört, ein Kabel nicht.",
+     "mood": "shock",
+     "ev": "stoer"
+    },
+    {
+     "t": "Wähl im Spiel einen Server in deiner Nähe.",
+     "mood": "happy",
+     "ev": "server"
+    },
+    {
+     "t": "Und pausiere Downloads und Streams im selben Netz.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i4outro",
+   "checks": [
+    "Lag ist ein zu hoher Ping",
+    "Schnellerer Tarif hilft kaum",
+    "Kabel und naher Server"
+   ],
+   "lines": [
+    {
+     "t": "Also: Lag ist ein zu hoher Ping,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "ein schnellerer Tarif hilft kaum,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "aber Kabel und ein naher Server schon.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
