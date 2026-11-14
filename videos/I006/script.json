@@ -4,7 +4,7 @@
  "accent": "#7C5CFF",
  "id": "I006",
  "titel": "Hört dein Handy dich wirklich ab?",
- "quelle": "Northeastern University, Studie Panoptispy (2018): 17.260 Android-Apps untersucht, keine hat heimlich das Mikrofon eingeschaltet und Ton verschickt (Berichte: it-daily.net, Northeastern News, USA Today; Datenverkehr über ein Jahr überwacht). GIGA und Dr. Web (30.10.2026): bisher keine handfesten Beweise für dauerhaftes Mithören zu Werbezwecken; US-Handelsbehörde FTC: das beworbene Active Listening hörte nie mit. Verbraucherzentrale (Stand 02.03.2026, App-Tracking abschalten): auf jedem Smartphone gibt es eine Werbe-ID, fast alles am Smartphone kann darüber gesammelt werden und Werbenetzwerken helfen; Werbe-ID lässt sich löschen. netzpolitik.org (Databroker Files): Werbe-ID funktioniert wie ein Nummernschild, oft mit Standort; iOS: Einstellungen, Datenschutz, Tracking. netzwelt: personalisierte Werbung beruht überwiegend auf Tracking und Profilen aus Suchverhalten, App-Nutzung, sozialen Kontakten. t3n mit BR Puls: Frequenz-Bias, Dinge fallen häufiger auf, nachdem man sie bemerkt hat. Apple Support (orangefarbene und grüne Statusanzeigen): orangefarbener Punkt heißt, eine App nutzt das Mikrofon. teltarif und inside-digital: Android ab Version 12 zeigt einen grünen Punkt für Kamera oder Mikrofon. Bewusst weggelassen: Sprachassistenten (hören auf ihr Aktivierungswort), Screenshots durch Apps aus derselben Studie.",
+ "quelle": "Northeastern University, Studie Panoptispy (2018): 17.260 Android-Apps untersucht, keine hat heimlich das Mikrofon eingeschaltet und Ton verschickt (Berichte: it-daily.net, Northeastern News, USA Today; Datenverkehr über ein Jahr überwacht). GIGA und Dr. Web (30.10.2026): bisher keine handfesten Beweise für dauerhaftes Mithören zu Werbezwecken; US-Handelsbehörde FTC: das beworbene Active Listening hörte nie mit. Verbraucherzentrale (Stand 02.03.2026, App-Tracking abschalten): auf jedem Smartphone gibt es eine Werbe-ID, fast alles am Smartphone kann darüber gesammelt werden und Werbenetzwerken helfen; Werbe-ID lässt sich löschen. netzpolitik.org (Databroker Files): Werbe-ID funktioniert wie ein Nummernschild, oft mit Standort; iOS: Einstellungen, Datenschutz, Tracking. netzwelt: personalisierte Werbung beruht überwiegend auf Tracking und Profilen aus Suchverhalten, App-Nutzung, sozialen Kontakten. t3n mit BR Puls: Frequenz-Bias, Dinge fallen häufiger auf, nachdem man sie bemerkt hat. Apple Support (orangefarbene und grüne Statusanzeigen): orangefarbener Punkt heißt, eine App nutzt das Mikrofon. teltarif und inside-digital: Android ab Version 12 zeigt einen grünen Punkt für Kamera oder Mikrofon. Bewusst weggelassen: Sprachassistenten (hören auf ihr Aktivierungswort), Screenshots durch Apps aus derselben Studie. Viraler X-Beitrag des Kontos starmex vom 26.10.2026 (rund 850.000 Aufrufe): angeblich 347 + 211 + 189 + 94 = 841 heimliche Mikrofon-Zugriffe von vier Apps, per KI-Werkzeug ausgelesen; nicht unabhängig bestätigt, Faktencheck Dr. Web (30.10.2026): jeder Zugriff hätte die Statusanzeige ausgelöst. Im Video ohne App-Namen, nur als Behauptung.",
  "scenes": [
   {
    "type": "hook",
@@ -86,12 +86,12 @@
      "ev": "id"
     },
     {
-     "t": "Darüber kann fast alles, was du am Handy machst, in einem Profil landen.",
+     "t": "Darüber kann fast alles vom Handy in einem Profil landen.",
      "mood": "shock",
      "ev": "profil"
     },
     {
-     "t": "Die Werbung rät nur. Aber Treffer fallen dir auf, Fehlschüsse nicht.",
+     "t": "Die Werbung rät nur. Treffer fallen dir auf, Fehlschüsse nicht.",
      "mood": "cool",
      "ev": "act"
     }
@@ -108,13 +108,18 @@
    "world": "i6check",
    "lines": [
     {
-     "t": "Drittens: Dein Handy zeigt dir, wenn das Mikro läuft.",
+     "t": "Drittens: Aber Moment! Ein viraler Post behauptet: Apps schalten 841 Mal heimlich das Mikro ein.",
+     "mood": "shock",
+     "ev": "viral"
+    },
+    {
+     "t": "Nur: Läuft das Mikro, zeigt dein Handy oben einen Punkt.",
      "mood": "happy",
      "ev": "punkt"
     },
     {
-     "t": "Beim iPhone ein oranger Punkt, bei Android ein grüner.",
-     "mood": "happy",
+     "t": "Beim iPhone orange, bei Android grün. Das wäre aufgefallen.",
+     "mood": "cool",
      "ev": "farben"
     },
     {

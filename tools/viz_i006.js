@@ -149,7 +149,11 @@ WORLD.i6check = function (sc, ev, t, lt) {
   const p = ev.punkt === undefined ? 0 : ev.punkt, fa = ev.farben, re = ev.rechte, a = ev.act;
   const dot = (x, y, r, col) => { let d = ''; for (let i = 0; i < 2; i++) { const c = (t * .9 + i * .5) % 1; d += '<circle cx="' + x + '" cy="' + y + '" r="' + (r + 46 * c) + '" fill="none" stroke="' + col + '" stroke-width="6" opacity="' + (1 - c) + '"/>'; } return d + '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + col + '"/>'; };
   if (re === undefined && a === undefined) {
-    if (fa === undefined) { // ein grosses Handy: Mikro laeuft, Punkt oben
+    if (fa === undefined && ev.punkt === undefined) { // viraler Post als Aufhaenger: 841 Mal heimlich Mikro an?
+      const v = ev.viral === undefined ? 0 : ev.viral, k = back(cl(v / .4)), n = Math.round(841 * ease(cl((v - .5) / 1.3)));
+      [[185, 800], [895, 815], [170, 1050], [905, 1040]].forEach((q, i) => { const c = cl((v - 1 - i * .35) / .3); if (c > 0) s += '<g transform="translate(' + q[0] + ' ' + q[1] + ') scale(' + (back(c) * (1 + .08 * Math.sin(t * 9 + i))) + ')"><circle r="58" fill="#3A1216" stroke="#FF4D4D" stroke-width="6"/>' + mic6(0, 2, .62, '#FF7A9A') + '</g>'; });
+      s += '<g transform="translate(540 925) rotate(' + (-3 + 1.5 * Math.sin(t * 3)) + ') scale(' + k + ')"><rect x="-250" y="-195" width="500" height="390" rx="34" fill="#F4F6FB" stroke="#0B1020" stroke-width="6"/><circle cx="-200" cy="-145" r="28" fill="#AEB9D6"/><rect x="-158" y="-162" width="170" height="16" rx="8" fill="#AEB9D6"/><rect x="-158" y="-136" width="110" height="14" rx="7" fill="#DDE2EE"/><rect x="112" y="-168" width="116" height="46" rx="23" fill="#E5383B"/>' + svgT(170, -135, 'VIRAL', 28, '#fff') + mic6(-160, 12, 1.2, '#0B1020') + svgT(60, 44, n + '×', 120, '#E5383B') + svgT(0, 152, 'heimlich Mikro an?', 40, '#0B1020') + '</g>';
+    } else if (fa === undefined) { // ein grosses Handy: Mikro laeuft, Punkt oben
       s += phoneF(300, 725, 440, 405, '#1B2748') + svgT(350, 800, '12:00', 36, '#fff', 'start') + batt(640, 772, 62, 32, .7);
       s += mic6(520, 960, 1.5, '#fff'); for (let i = 0; i < 3; i++) { const c = (t * .8 + i / 3) % 1; s += '<path d="M' + (590 + 60 * c) + ' ' + (880 - 30 * c) + ' Q' + (640 + 80 * c) + ' 950 ' + (590 + 60 * c) + ' ' + (1020 + 30 * c) + '" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" opacity="' + (1 - c) + '"/><path d="M' + (450 - 60 * c) + ' ' + (880 - 30 * c) + ' Q' + (400 - 80 * c) + ' 950 ' + (450 - 60 * c) + ' ' + (1020 + 30 * c) + '" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" opacity="' + (1 - c) + '"/>'; }
       const k = cl((p - .7) / .3); if (k > 0) { s += '<g opacity="' + k + '">' + dot(566, 788, 18, '#FF9A2A') + '</g>'; }
@@ -158,7 +162,7 @@ WORLD.i6check = function (sc, ev, t, lt) {
         s += '<g transform="translate(' + q[0] + ' 900) scale(' + k + ') translate(' + (-q[0]) + ' -900)">' + phoneF(q[0] - 125, 725, 250, 320, '#1B2748') + dot(q[0] + 64, 782, 20, q[1]) + mic6(q[0], 920, 1, '#AEB9D6') + '</g>' + (k > .6 ? svgT(q[0], 1100, q[2], 40, '#fff') : ''); });
     }
   } else { // Einstellungen: Mikro-Rechte, grosser Schalter links, darunter Tracking und Werbe-ID
-    const D = D6(sc, 2), g = a === undefined ? i6flip(re, D, t) : { off: 1 }, k = back(cl((a === undefined ? re : 1) / .35));
+    const D = D6(sc, 3), g = a === undefined ? i6flip(re, D, t) : { off: 1 }, k = back(cl((a === undefined ? re : 1) / .35));
     s += '<g transform="translate(630 842) scale(' + k + ') translate(-630 -842)"><rect x="350" y="722" width="560" height="240" rx="28" fill="#F4F6FB" stroke="#0B1020" stroke-width="6"/>' + svgT(378, 766, 'Datenschutz  ›  Mikrofon', 28, '#5A6686', 'start');
     ['Spiele-App', 'Video-App', 'Chat-App'].forEach((n, i) => { const y = 812 + i * 54; s += '<line x1="372" y1="' + (y - 27) + '" x2="888" y2="' + (y - 27) + '" stroke="#DDE2EE" stroke-width="3"/><rect x="376" y="' + (y - 17) + '" width="34" height="34" rx="9" fill="' + A6C[[5, 0, 2][i]] + '"/>' + svgT(426, y + 12, n, 34, '#0B1020', 'start') + tog6(836, y, 78, i === 0 ? g.off : 0); });
     s += '</g>';
@@ -169,12 +173,12 @@ WORLD.i6check = function (sc, ev, t, lt) {
       s += '<g transform="translate(836 1088)"><circle r="24" fill="' + (dn > 0 ? '#3DFF7A' : '#DDE2EE') + '" stroke="#0B1020" stroke-width="4"/>' + (dn > 0 ? '<path d="M-11 0 L-3 9 L12 -8" stroke="#0B1020" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="scale(' + back(dn) + ')"/>' : '') + '</g></g>';
       if (a > .6 && a < 1.3) s += '<circle cx="' + lerp(868, 804, off) + '" cy="1022" r="' + (30 + 40 * cl((a - .6) / .7)) + '" fill="none" stroke="#7C5CFF" stroke-width="6" opacity="' + (1 - cl((a - .6) / .7)) + '"/>'; }
   }
-  h += slot(ev, [['punkt', 'Punkt oben: Mikro läuft'], ['farben', 'iPhone orange, Android grün', 'hot'], ['rechte', 'Mikro-Rechte pro App prüfen'], ['act', 'Tracking aus, Werbe-ID löschen', 'hot']]);
+  h += slot(ev, [['viral', 'Viraler Post: 841 Mal Mikro an?', 'red'], ['punkt', 'Punkt oben: Mikro läuft'], ['farben', 'iPhone orange, Android grün', 'hot'], ['rechte', 'Mikro-Rechte pro App prüfen'], ['act', 'Tracking aus, Werbe-ID löschen', 'hot']]);
   return W(s + topShade(), h);
 };
 WMASC.i6check = (ev, t, lt, sc) => {
   if (ev.act !== undefined) return BIG();
-  if (ev.rechte !== undefined) return i6flip(ev.rechte, D6(sc, 2), t).m;
+  if (ev.rechte !== undefined) return i6flip(ev.rechte, D6(sc, 3), t).m;
   return BIG();
 };
 
