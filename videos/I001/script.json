@@ -1,0 +1,176 @@
+{
+ "serie": "Informatik",
+ "kostuem": "roboter",
+ "accent": "#7C5CFF",
+ "id": "I001",
+ "titel": "Wie denkt ChatGPT eigentlich?",
+ "quelle": "PC-Welt (Generative KI: Funktionsweise): Sprachmodelle wandeln Text in Token um; die KI weiß, mit welcher Wahrscheinlichkeit ein Wort auf das nächste folgt; Beispiel 'Der Himmel ist…' wird mit hoher Wahrscheinlichkeit mit 'blau' fortgesetzt; Training mit riesigen Datenmengen. Computerwoche (Was sind LLMs, 09.03.2026): LLMs sagen das nächstfolgende Wort vorher; es gibt keine hundertprozentig richtige Antwort, nur eine datenbasierte Wahrscheinlichkeit; Halluzinationen, weil kein Konzept von Faktenwissen vorliegt. BSI (Generative KI-Modelle, Chancen und Risiken; Stellungnahme im Bundestag): Modelle erlernen im Training Muster aus Daten; Risiko fehlende Faktizität ('Halluzinieren'). Beispiel Hauptstadt Australiens: Canberra, nicht Sydney (Allgemeinwissen, als erfundenes Beispiel einer falschen KI-Antwort gekennzeichnet). Balkenwerte in Teil 1 sind Beispielwerte. Vereinfacht: 'Wort' statt Token, im Etikett richtiggestellt; Websuche mancher Chatbots bewusst nur mit 'von allein' angedeutet.",
+ "gagTag": "[groans] [dizzy]",
+ "gagDelay": 0.5,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Wie *denkt* ChatGPT?",
+   "emoji": "🤖",
+   "world": "h7i1",
+   "lines": [
+    {
+     "t": "Wie denkt eine KI wie ChatGPT eigentlich?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Informatik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Spoiler: Sie denkt gar nicht.",
+     "mood": "shock",
+     "ev": "regen"
+    }
+   ],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Wort für Wort",
+   "quip": "Reines Raten.",
+   "quipAt": 3,
+   "world": "i1wort",
+   "lines": [
+    {
+     "t": "Erstens: ChatGPT rät immer nur das nächste Wort.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Für jedes mögliche Wort berechnet es eine Wahrscheinlichkeit.",
+     "mood": "happy",
+     "ev": "wahr"
+    },
+    {
+     "t": "Meist nimmt es das wahrscheinlichste, hängt es an und rät weiter.",
+     "mood": "shock",
+     "ev": "weiter"
+    },
+    {
+     "t": "Krass: So entsteht jede Antwort, ein Wort nach dem anderen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Gelernt, nicht gewusst",
+   "quip": "Nur Muster!",
+   "quipAt": 3,
+   "world": "i1lern",
+   "lines": [
+    {
+     "t": "Zweitens: Woher kennt es die Wahrscheinlichkeiten? Aus riesigen Mengen Text.",
+     "mood": "happy",
+     "ev": "text"
+    },
+    {
+     "t": "Beim Training hat es gelernt, welche Wörter oft aufeinander folgen.",
+     "mood": "shock",
+     "ev": "muster"
+    },
+    {
+     "t": "Von allein schlägt es nichts nach. Es setzt Muster fort.",
+     "mood": "happy",
+     "ev": "lexikon"
+    },
+    {
+     "t": "Es weiß nicht, was stimmt. Nur, was wahrscheinlich klingt.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Immer gegenprüfen",
+   "quip": "Erst prüfen!",
+   "quipAt": 3,
+   "world": "i1check",
+   "lines": [
+    {
+     "t": "Drittens: Deshalb klingt jede Antwort sicher, auch wenn sie falsch ist.",
+     "mood": "happy",
+     "ev": "sicher"
+    },
+    {
+     "t": "Das nennt man Halluzination.",
+     "mood": "shock",
+     "ev": "hallu"
+    },
+    {
+     "t": "Also: Zahlen, Namen und Quellen immer gegenprüfen.",
+     "mood": "happy",
+     "ev": "pruefen"
+    },
+    {
+     "t": "Trick: Lass dir die Quellen zeigen und klick sie wirklich an.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i1outro",
+   "checks": [
+    "Rät das nächste Wort",
+    "Muster aus riesigen Textmengen",
+    "Wichtiges gegenprüfen"
+   ],
+   "lines": [
+    {
+     "t": "Also: Die KI rät Wort für Wort,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "nach Mustern aus riesigen Textmengen,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und du prüfst, was wichtig ist.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
