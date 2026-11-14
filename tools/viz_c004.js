@@ -101,7 +101,7 @@ function c4slip(q, t, see) { const edge = 920 - 395 * ease(cl(see / 2.2)) + 70;
 WMASC.c4see = (ev, t) => {
   if (ev.see === undefined || ev.see < .35) return BIG();
   if (ev.act === undefined) return c4slip(ev.see - .35, t, ev.see);
-  const p = c4slip(ev.see - .35, t, ev.see), up = ease(cl((ev.act - .5) / .6)); return { f: [p.f[0], p.f[1] - 30 * Math.sin(Math.PI * up)], s: .62, r: p.r * (1 - up) + (up >= 1 ? 5 * Math.sin(t * 3) : 0), flip: true };
+  const p = c4slip(ev.see - .35, t, ev.see), up = ease(cl((ev.act - .5) / .6)); return { f: [p.f[0], p.f[1]], s: .62, r: p.r * (1 - up) + (up >= 1 ? 5 * Math.sin(t * 3) : 0), flip: true };
 };
 
 // ---------- Schluss ----------
