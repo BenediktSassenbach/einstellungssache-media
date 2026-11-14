@@ -171,5 +171,7 @@
     }
    ]
   }
- ]
+ ],
+ "gagDelay": 0.12,
+ "gagTag": "[stammering, shaking]"
 }

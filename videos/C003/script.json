@@ -167,5 +167,7 @@
    ]
   }
  ],
- "kolben": "#FFD23F"
+ "kolben": "#FFD23F",
+ "gagDelay": 0.14,
+ "gagTag": "[groans] [dizzy]"
 }

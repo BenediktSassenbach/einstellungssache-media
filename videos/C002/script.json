@@ -172,5 +172,7 @@
    ]
   }
  ],
- "kolben": "#8BD450"
+ "kolben": "#8BD450",
+ "gagDelay": 0.12,
+ "gagTag": "[coughs] [disgusted]"
 }

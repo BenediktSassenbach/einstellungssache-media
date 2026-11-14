@@ -181,5 +181,6 @@
  "sprich": {
   "eins eins zwei": "112"
  },
- "gagDelay": 0.14
+ "gagDelay": 0.14,
+ "gagDumpf": true
 }
