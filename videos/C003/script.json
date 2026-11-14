@@ -1,0 +1,171 @@
+{
+ "serie": "Chemie",
+ "kostuem": "labor",
+ "accent": "#FF6BD6",
+ "id": "C003",
+ "titel": "Warum bläht sich ein alter Handy-Akku auf?",
+ "quelle": "Stiftung Warentest (test.de, 13.07.2016): aufgeblähter Akku ist defekt, nicht weiterverwenden; Ursache sind chemische Reaktionen im Inneren, die Gase freisetzen; solange die Hülle dicht ist keine unmittelbare Gefahr, bei beschädigter Hülle kann er sich entzünden. heise Tipps und Tricks 9212623: Gas sammelt sich, erzeugt Druck; Ursachen Hitze, Beschädigung (Sturz), Alterung, Herstellerfehler; Anzeichen Beulen, Rückseite löst sich; ausschalten, nicht laden, nie durchstechen, fern von Brennbarem, zum Fachmann. GDV Die Versicherer (20.04.2026): bei zu warmen Temperaturen zersetzt sich der Elektrolyt, der für den Energiefluss verantwortlich ist, bei hoher Hitze entstehen Gase; Akku nicht öffnen. Umweltbundesamt: keine aufgeblähten Akkus verwenden, zur Sammelstelle bringen.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Akku plötzlich *dick*?",
+   "emoji": "🔋",
+   "world": "h7c3",
+   "lines": [
+    {
+     "t": "Warum bläht sich ein alter Handy-Akku auf?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Chemie nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und was du dann nie tun darfst.",
+     "mood": "shock",
+     "ev": "plopp"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Chemie im Akku",
+   "quip": "Da blubbert was.",
+   "quipAt": 3,
+   "path": [],
+   "world": "c3chemie",
+   "lines": [
+    {
+     "t": "Erstens: Im Akku steckt eine Flüssigkeit, der Elektrolyt.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Durch ihn wandern die Lithium-Ionen hin und her.",
+     "mood": "happy",
+     "ev": "ionen"
+    },
+    {
+     "t": "Durch Alter, Hitze oder einen Sturz kann er sich zersetzen.",
+     "mood": "shock",
+     "ev": "zersetzt"
+    },
+    {
+     "t": "Und dabei entsteht Gas.",
+     "mood": "shock",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Kein Ausweg",
+   "quip": "Wie ein Kissen.",
+   "quipAt": 2,
+   "path": [],
+   "world": "c3druck",
+   "lines": [
+    {
+     "t": "Zweitens: Der Akku ist dicht verpackt.",
+     "mood": "happy",
+     "ev": "dicht"
+    },
+    {
+     "t": "Das Gas kann also nicht raus.",
+     "mood": "shock",
+     "ev": "gas"
+    },
+    {
+     "t": "Der Druck steigt, der Akku wird zum Kissen.",
+     "mood": "shock",
+     "ev": "kissen"
+    },
+    {
+     "t": "Er drückt Display oder Rückseite nach außen.",
+     "mood": "angry",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Finger weg",
+   "quip": "Nicht anstechen!",
+   "quipAt": 2,
+   "path": [],
+   "world": "c3finger",
+   "lines": [
+    {
+     "t": "Drittens: Ein aufgeblähter Akku ist defekt.",
+     "mood": "shock",
+     "ev": "defekt"
+    },
+    {
+     "t": "Wird die Hülle verletzt, kann er Feuer fangen.",
+     "mood": "shock",
+     "ev": "feuer"
+    },
+    {
+     "t": "Also: nie drücken, nie anstechen, nicht mehr laden.",
+     "mood": "angry",
+     "ev": "nie"
+    },
+    {
+     "t": "Ausschalten und ab zur Reparatur oder zur Sammelstelle.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c3outro",
+   "checks": [
+    "Elektrolyt zersetzt sich zu Gas",
+    "Gas bläht den Akku auf",
+    "Nicht drücken, nicht laden"
+   ],
+   "lines": [
+    {
+     "t": "Also: Der Elektrolyt zersetzt sich zu Gas,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "das Gas bläht den Akku auf,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und du lässt die Finger davon.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ],
+ "kolben": "#FFD23F"
+}

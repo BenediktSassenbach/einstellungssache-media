@@ -1,0 +1,175 @@
+{
+ "serie": "Chemie",
+ "kostuem": "molekuel",
+ "accent": "#FF6BD6",
+ "id": "C004",
+ "titel": "Warum schwimmt Eis?",
+ "quelle": "Lernhelfer Schülerlexikon Chemie, Anomalie des Wassers: Wasser 4 °C rund 1 g/cm³, Eis bei 0 °C 0,92 g/cm³, deshalb schwimmt Eis; Volumenzunahme beim Gefrieren 9 %; weitmaschiges Gitter mit sechseckigen Hohlräumen, Wasserstoffbrückenbindungen; Eisberg etwa 9/10 unter und 1/10 über Wasser. wissen.de: Sechsecke, Kristallgitter mit Hohlräumen, etwa 9 % mehr Volumen; Gewässer gefrieren zuerst an der Oberfläche, unten 4 °C. Studyflix Anomalie des Wassers: See friert von oben zu, Eis schützt das Wasser darunter, Fische überleben. RAAbits Physik 2020: Im Gegensatz zu fast allen anderen Stoffen ist Wasser flüssig dichter als fest.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum schwimmt *Eis*?",
+   "emoji": "🧊",
+   "world": "h7c4",
+   "lines": [
+    {
+     "t": "Warum schwimmt Eis eigentlich oben?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Chemie nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Eigentlich müsste es nämlich untergehen.",
+     "mood": "shock",
+     "ev": "bonk"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Wasser tickt anders",
+   "quip": "Wasser, du Rebell.",
+   "quipAt": 2,
+   "path": [],
+   "world": "c4dichte",
+   "lines": [
+    {
+     "t": "Erstens: Fast jeder Stoff ist fest dichter als flüssig und sinkt.",
+     "mood": "happy",
+     "ev": "sinkt"
+    },
+    {
+     "t": "Wasser macht es genau andersrum.",
+     "mood": "wink",
+     "ev": "wasser"
+    },
+    {
+     "t": "Eis ist leichter als flüssiges Wasser.",
+     "mood": "happy",
+     "ev": "leicht"
+    },
+    {
+     "t": "Darum schwimmt es oben.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Gitter mit Löchern",
+   "quip": "Lauter Sechsecke.",
+   "quipAt": 3,
+   "path": [],
+   "world": "c4gitter",
+   "lines": [
+    {
+     "t": "Zweitens: Im flüssigen Wasser wuseln die Moleküle dicht durcheinander.",
+     "mood": "happy",
+     "ev": "fluessig"
+    },
+    {
+     "t": "Beim Gefrieren halten sie sich über feste Brücken auf Abstand.",
+     "mood": "happy",
+     "ev": "bruecken"
+    },
+    {
+     "t": "Es entsteht ein Gitter aus Sechsecken, mit Löchern drin.",
+     "mood": "shock",
+     "ev": "gitter"
+    },
+    {
+     "t": "Krass: Eis braucht rund 9 Prozent mehr Platz.",
+     "mood": "shock",
+     "ev": "platz"
+    },
+    {
+     "t": "Gleiche Masse, mehr Platz: also leichter.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Zum Glück",
+   "quip": "Fische sagen Danke.",
+   "quipAt": 3,
+   "path": [],
+   "world": "c4see",
+   "lines": [
+    {
+     "t": "Drittens: Ein Eisberg zeigt nur etwa ein Zehntel.",
+     "mood": "happy",
+     "ev": "berg"
+    },
+    {
+     "t": "Der Rest steckt unter Wasser.",
+     "mood": "shock",
+     "ev": "rest"
+    },
+    {
+     "t": "Und Seen frieren von oben zu.",
+     "mood": "happy",
+     "ev": "see"
+    },
+    {
+     "t": "Darunter bleibt es flüssig, und die Fische überleben.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c4outro",
+   "checks": [
+    "Eis ist leichter als Wasser",
+    "Gitter mit Löchern",
+    "Seen frieren von oben zu"
+   ],
+   "lines": [
+    {
+     "t": "Also: Eis ist leichter als Wasser,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "weil sein Gitter Löcher hat,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und deshalb friert ein See von oben zu.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

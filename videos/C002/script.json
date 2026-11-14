@@ -1,0 +1,176 @@
+{
+ "serie": "Chemie",
+ "kostuem": "labor",
+ "accent": "#FF6BD6",
+ "id": "C002",
+ "titel": "Warum wird eine Avocado braun?",
+ "quelle": "Spektrum Lexikon der Chemie, Stichwort enzymatische Bräunung: Enzyme (Polyphenoloxidase) sind in der intakten Zelle von den Substraten getrennt, Bräunung erst nach Zellzerstörung, Sauerstoff nötig; Beispiele Apfel, Banane, Kartoffel; hemmen durch Luftausschluss, Ascorbinsäure, Säure (Zitronensaft). Bundeszentrum für Ernährung (über dpa, 01.10.2026): Beim Schneiden werden Zellen verletzt, Inhaltsstoffe kommen miteinander und mit Luftsauerstoff in Kontakt; Polyphenoloxidase wandelt Polyphenole in bräunliche Pigmente um; Zitronensaft und Abdecken verlangsamen. Avocado enthält Polyphenoloxidase: Heliyon 2025 (PMC11874750).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum wird Avocado *braun*?",
+   "emoji": "🥑",
+   "world": "h7c2",
+   "lines": [
+    {
+     "t": "Warum wird eine Avocado so schnell braun?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Chemie nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und wie sie länger grün bleibt.",
+     "mood": "shock",
+     "ev": "platsch"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Getrennte Zimmer",
+   "quip": "Noch alles grün.",
+   "quipAt": 3,
+   "path": [],
+   "world": "c2zelle",
+   "lines": [
+    {
+     "t": "Erstens: In der Avocado stecken zwei Stoffe.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Ein Enzym und sogenannte Polyphenole.",
+     "mood": "happy",
+     "ev": "stoffe"
+    },
+    {
+     "t": "In der heilen Zelle sind sie sauber getrennt.",
+     "mood": "wink",
+     "ev": "wand"
+    },
+    {
+     "t": "Deshalb bleibt die ganze Frucht grün.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Schnitt = Alarm",
+   "quip": "Zack, braun.",
+   "quipAt": 3,
+   "path": [],
+   "world": "c2schnitt",
+   "lines": [
+    {
+     "t": "Zweitens: Dein Messer zerstört die Zellen.",
+     "mood": "shock",
+     "ev": "messer"
+    },
+    {
+     "t": "Jetzt treffen Enzym und Polyphenole aufeinander.",
+     "mood": "happy",
+     "ev": "treffen"
+    },
+    {
+     "t": "Dazu kommt Sauerstoff aus der Luft.",
+     "mood": "happy",
+     "ev": "o2"
+    },
+    {
+     "t": "Zusammen bauen sie braune Farbstoffe.",
+     "mood": "shock",
+     "ev": "braun"
+    },
+    {
+     "t": "Krass: Beim Apfel läuft genau dasselbe ab.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "So bleibt sie grün",
+   "quip": "Zitrone drauf!",
+   "quipAt": 1,
+   "path": [],
+   "world": "c2gruen",
+   "lines": [
+    {
+     "t": "Drittens: Du kannst die Reaktion bremsen.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Zitronensaft drauf: Säure hemmt das Enzym.",
+     "mood": "wink",
+     "ev": "zitrone"
+    },
+    {
+     "t": "Und luftdicht abdecken: Dann fehlt der Sauerstoff.",
+     "mood": "happy",
+     "ev": "folie"
+    },
+    {
+     "t": "Ganz stoppen geht nicht, nur verlangsamen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c2outro",
+   "checks": [
+    "Schnitt zerstört die Zellen",
+    "Enzym + Sauerstoff = braun",
+    "Zitrone und luftdicht bremsen"
+   ],
+   "lines": [
+    {
+     "t": "Also: Der Schnitt zerstört die Zellen,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Enzym plus Sauerstoff macht braun,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und Zitrone und Abdecken bremsen das.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ],
+ "kolben": "#8BD450"
+}
