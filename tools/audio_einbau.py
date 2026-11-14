@@ -36,7 +36,7 @@ for i in range(1, N + 1):
         hit = gag + S.get('gagDelay', 0); s0 = os.path.join(root, 'videos', '_sfx', sid + '_0.wav'); s1 = os.path.join(root, 'videos', '_sfx', sid + '_1.wav'); d0 = dur(s0)
         lp = 'lowpass=f=2600,volume=1.15' if S.get('gagDumpf') else 'anull'
         fc = (f'[0:a]asplit[v1][v2];[v1]atrim=0:{hit},asetpts=PTS-STARTPTS[a];[v2]atrim={hit},asetpts=PTS-STARTPTS,{lp}[b];[a][b]concat=n=2:v=0:a=1[v];'
-              f'[1:a]volume=0.5,adelay={int(max(0, hit - d0) * 1000)}:all=1[x];[2:a]volume=0.9,adelay={int(hit * 1000)}:all=1[y];[v][x][y]amix=inputs=3:normalize=0:duration=first')
+              f'[1:a]volume=0.5,adelay={int(max(0, hit - d0) * 1000)}:all=1[x];[2:a]volume=0.9,adelay={int(hit * 1000)}:all=1[y];[v][x][y]amix=inputs=3:normalize=0:duration=first,alimiter=limit=0.84')
         ff('-i', src, '-i', s0, '-i', s1, '-filter_complex', fc, '-b:a', '192k', dst)
     else: ff('-i', src, '-c', 'copy', dst)
     json.dump({'alignment': al}, open(os.path.join(A, f'{i}.json'), 'w', encoding='utf8'), ensure_ascii=False)
