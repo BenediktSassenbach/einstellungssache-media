@@ -1,0 +1,176 @@
+{
+ "serie": "Informatik",
+ "kostuem": "roboter",
+ "accent": "#7C5CFF",
+ "id": "I002",
+ "titel": "Woher weiß TikTok, was du magst?",
+ "quelle": "TikTok Newsroom, 'Der Für dich-Feed erklärt' (19.06.2020): Empfehlungen beruhen auf Nutzerinteraktionen (Videos liken oder teilen, Konten folgen, Kommentare, eigene Inhalte), Videoinformationen (Bildunterschriften, Sounds, Hashtags) sowie Geräte- und Kontoeinstellungen (Sprache, Land, Gerätetyp, geringeres Gewicht); ein starker Indikator wie ein längeres Video bis zum Ende ansehen wiegt mehr als ein schwacher wie dasselbe Land; Followerzahl und frühere erfolgreiche Videos sind keine direkten Faktoren; der Feed mischt bewusst vielfältige Inhalte ein; lange auf ein Video drücken und 'Nicht interessiert' wählen. TikTok Newsroom (20.12.2022): 'Warum dieses Video'. Metricool und Hootsuite (2026): Wiedergabezeit wichtiger als Likes; Feed neu starten unter Einstellungen und Datenschutz, Inhaltspräferenzen, Feed 'Für dich' aktualisieren. Hinweis: Die Grundsatz-Erklärung von TikTok stammt von 2020, neuere Details nennt TikTok nicht vollständig.",
+ "gagTag": "[groans] [dizzy]",
+ "gagDelay": 0.5,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Woher *weiß* TikTok das?",
+   "emoji": "👀",
+   "world": "h7i2",
+   "lines": [
+    {
+     "t": "Woher weiß TikTok eigentlich, was du magst?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Informatik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Das stärkste Signal ist kein Like.",
+     "mood": "shock",
+     "ev": "egal"
+    }
+   ],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Drei Signale",
+   "quip": "Follower? Egal.",
+   "quipAt": 3,
+   "world": "i2sig",
+   "lines": [
+    {
+     "t": "Erstens: TikTok liest drei Signale. Was du tust: liken, teilen, kommentieren, folgen.",
+     "mood": "happy",
+     "ev": "tun"
+    },
+    {
+     "t": "Was im Video steckt: Text, Sound und Hashtags.",
+     "mood": "happy",
+     "ev": "video"
+    },
+    {
+     "t": "Und deine Einstellungen wie Sprache und Land.",
+     "mood": "shock",
+     "ev": "einst"
+    },
+    {
+     "t": "Krass: Die Followerzahl ist laut TikTok kein direkter Faktor.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Zuschauen zählt",
+   "quip": "Es lernt mit.",
+   "quipAt": 3,
+   "world": "i2watch",
+   "lines": [
+    {
+     "t": "Zweitens: Am stärksten zählt, wie lange du zuschaust.",
+     "mood": "happy",
+     "ev": "zeit"
+    },
+    {
+     "t": "Ein Video bis zum Ende zu schauen ist ein starkes Signal, dasselbe Land nur ein schwaches.",
+     "mood": "happy",
+     "ev": "stark"
+    },
+    {
+     "t": "Mit jedem Video lernt das System dazu und mischt Neues zum Testen rein.",
+     "mood": "shock",
+     "ev": "lernt"
+    },
+    {
+     "t": "Darum sieht kein Feed aus wie ein anderer.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Du steuerst mit",
+   "quip": "Alles auf Anfang!",
+   "quipAt": 3,
+   "world": "i2steuer",
+   "lines": [
+    {
+     "t": "Drittens: Du kannst den Feed lenken.",
+     "mood": "happy",
+     "ev": "lenk"
+    },
+    {
+     "t": "Lange auf ein Video drücken und Nicht interessiert wählen.",
+     "mood": "happy",
+     "ev": "nicht"
+    },
+    {
+     "t": "Oder unter Inhaltspräferenzen den Feed neu starten.",
+     "mood": "happy",
+     "ev": "neu"
+    },
+    {
+     "t": "Dann lernt TikTok dich komplett neu kennen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i2outro",
+   "checks": [
+    "Drei Signale",
+    "Sehdauer zählt am meisten",
+    "Feed lässt sich neu starten"
+   ],
+   "lines": [
+    {
+     "t": "Also: TikTok liest drei Signale,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "am stärksten zählt, wie lange du schaust,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und du kannst den Feed neu starten.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
