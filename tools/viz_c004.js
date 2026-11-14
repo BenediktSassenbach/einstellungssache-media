@@ -7,6 +7,7 @@ function h2o(x, y, rot, s) { s = s || 1; return '<g transform="translate(' + x +
 function beaker(x, y, w, hgt, liq, lvl, t) { let wv = 'M' + (x + 6) + ' ' + lvl; for (let i = 0; i <= 10; i++) wv += ' L' + (x + 6 + (w - 12) * i / 10) + ' ' + (lvl + 5 * Math.sin(i * 1.3 + t * 3));
   return '<path d="' + wv + ' L' + (x + w - 6) + ' ' + (y + hgt - 6) + ' L' + (x + 6) + ' ' + (y + hgt - 6) + ' Z" fill="' + liq + '" opacity=".8"/><path d="M' + x + ' ' + y + ' L' + x + ' ' + (y + hgt - 24) + ' Q' + x + ' ' + (y + hgt) + ' ' + (x + 24) + ' ' + (y + hgt) + ' L' + (x + w - 24) + ' ' + (y + hgt) + ' Q' + (x + w) + ' ' + (y + hgt) + ' ' + (x + w) + ' ' + (y + hgt - 24) + ' L' + (x + w) + ' ' + y + '" fill="none" stroke="#F4F6FB" stroke-width="9" stroke-linecap="round"/>'; }
 function fish(x, y, s, dir, t, col) { return '<g transform="translate(' + x + ' ' + y + ') scale(' + (s * dir) + ' ' + s + ')"><path d="M-40 0 Q0 -32 44 0 Q0 32 -40 0 Z" fill="' + col + '" stroke="#0B1020" stroke-width="4"/><path d="M-36 0 L-66 ' + (-22 + 6 * Math.sin(t * 9)) + ' L-66 ' + (22 + 6 * Math.sin(t * 9)) + ' Z" fill="' + col + '" stroke="#0B1020" stroke-width="4" stroke-linejoin="round"/><circle cx="22" cy="-5" r="5" fill="#0B1020"/></g>'; }
+function c4st(a) { if (a === undefined || a < .5) return 0; if (a < 1.9) return 70 * Math.abs(Math.sin(Math.PI * (a - .5) / .7)); if (a < 2.2) return -30 * Math.sin(Math.PI * (a - 1.9) / .3); return 0; }
 const ice4 = (t) => kitchen(t, '#061426', '#12406A', '#BFEAFF');
 // Wabengitter: Dreiecksgitter, jeder dritte Punkt ist ein Loch
 const C4G = (() => { const pts = [], holes = [], A = 140, RH = A * .866; for (let j = 0; j < 4; j++) for (let i = 0; i < 5; i++) { const x = 150 + i * A + (j % 2) * A / 2, y = 745 + j * RH, q = i - Math.floor(j / 2); (((q - j) % 3 + 3) % 3 === 0 ? holes : pts).push([x, y]); }
@@ -23,7 +24,7 @@ WORLD.h7c4 = function (sc, ev, t, lt) {
   if (e !== undefined && e < .5) for (let i = 0; i < 9; i++) { const c = cl(e / .5), a = -Math.PI * (.15 + .7 * rnd(i + 2)), d = 60 + 260 * c; o += drop(CX + d * Math.cos(a), GY + 20 + d * Math.sin(a) + 240 * c * c, 1.1, '#7FD3FF'); }
   o += iceCube(ix, iy, 1.25, ir);
   if (e !== undefined && e > .5) for (let i = 0; i < 5; i++) { const a = t * 4 + i * 1.257; o += '<path transform="translate(' + (250 + 110 * Math.cos(a)) + ' ' + (1230 + 34 * Math.sin(a)) + ') scale(' + (1 - cl((e - 2.2) / .5)) + ')" d="M0 -22 L6 -7 L22 -7 L9 3 L14 20 L0 10 L-14 20 L-9 3 L-22 -7 L-6 -7 Z" fill="#FFE14D" stroke="#0B1020" stroke-width="3"/>'; }
-  s += pop7(CX, 900, lt, o) + word7('BONK!', 620, 880, e === undefined || e < .5 ? undefined : e - .5, '#BFEAFF', -8) + sweat7(t, e === undefined ? k : 0);
+  s += pop7(CX, 900, lt, o) + sweat7(t, e === undefined ? k : 0);
   return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + vign7() + topShade());
 };
 WMASC.h7c4 = (ev, t, lt, sc) => { const e = ev.bonk, end = sc.lines[3] ? sc.lines[3].start - sc.start : 6, k = cl(lt / end);
@@ -41,13 +42,13 @@ WORLD.c4dichte = function (sc, ev, t, lt) {
   if (sk > 0 && sk < 1) s += '<path d="M260 ' + (cy + 70) + ' v40 m-14 -16 l14 18 l14 -18" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
   s += svgT(260, BY + BH + 52, 'anderer Stoff', 34, '#FFCF8A');
   if (w !== undefined) { const bob = 8 * Math.sin(t * 2.4), up = ev.act === undefined ? 0 : 1;
-    s += '<g transform="translate(680 ' + (BY + BH / 2) + ') scale(' + wk + ') translate(-680 ' + (-(BY + BH / 2)) + ')">' + beaker(530, BY, BW, BH, '#3BA8FF', LV, t) + iceCube(680, LV - 8 + bob, 1, 6 * Math.sin(t * 1.7)) + svgT(680, BY + BH + 52, 'Wasser', 34, '#9BE0FF') + '</g>';
+    s += '<g transform="translate(680 ' + (BY + BH / 2) + ') scale(' + wk + ') translate(-680 ' + (-(BY + BH / 2)) + ')">' + beaker(530, BY, BW, BH, '#3BA8FF', LV, t) + iceCube(680, LV - 8 + bob + c4st(ev.act), 1, 6 * Math.sin(t * 1.7)) + svgT(680, BY + BH + 52, 'Wasser', 34, '#9BE0FF') + '</g>';
     if (up) for (const d of [-1, 1]) { const p = 10 * Math.abs(Math.sin(t * 5)); s += '<path d="M' + (680 + d * 92) + ' ' + (LV + 40 - p) + ' v-50 m-14 16 l14 -18 l14 18" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="' + cl(ev.act / .3) + '"/>'; }
     if (ev.leicht !== undefined) { const k = ev.leicht; s += badge(680, 980, 'Wasser 1,00', '#3BA8FF', (k - .5) / .3, 34) + (ev.act === undefined ? badge(680, 742, 'Eis 0,92', '#CFF1FF', k / .3, 34) : '') + (k > 1 ? svgT(680, 1042, 'Gramm pro cm³', 28, '#D6EEFF') : ''); } }
   h += slot(ev, [['sinkt', 'Fest ist meist dichter: sinkt'], ['wasser', 'Wasser: genau andersrum', 'hot'], ['leicht', 'Eis ist leichter als Wasser'], ['act', 'Also schwimmt es oben', 'hot']]);
   return W(s + topShade(), h);
 };
-WMASC.c4dichte = (ev, t) => { if (ev.act === undefined) return BIG(); const k = ease(cl(ev.act / .5)), bob = 8 * Math.sin(t * 2.4); return { f: [lerp(220, 680, k), lerp(1537, 802 + bob, k) - 220 * Math.sin(Math.PI * k)], s: lerp(1, .55, k), r: k < 1 ? 0 : 6 * Math.sin(t * 1.7) }; };
+WMASC.c4dichte = (ev, t) => { if (ev.act === undefined) return BIG(); const a = ev.act, k = ease(cl(a / .5)), bob = 8 * Math.sin(t * 2.4), fly = a > 1.9 && a < 2.7 ? 150 * Math.sin(Math.PI * (a - 1.9) / .8) : 0; return { f: [lerp(220, 680, k), lerp(1537, 802 + bob + c4st(a), k) - 220 * Math.sin(Math.PI * k) - fly], s: lerp(1, .55, k), r: k < 1 ? 0 : (fly > 0 ? 360 * (a - 1.9) / .8 : 6 * Math.sin(t * 1.7)) }; };
 
 // ---------- Teil 2: dicht gedraengt fluessig, Gitter aus Sechsecken mit Loechern, 9 Prozent mehr Platz ----------
 WORLD.c4gitter = function (sc, ev, t, lt) {
@@ -93,9 +94,14 @@ WORLD.c4see = function (sc, ev, t, lt) {
   h += slot(ev, [['berg', 'Eisberg: nur 1/10 sichtbar'], ['rest', '9/10 stecken unter Wasser', 'hot'], ['see', 'Seen frieren von oben zu'], ['act', 'Darunter bleibt es flüssig', 'hot']]);
   return W(s + topShade(true), h);
 };
+function c4slip(q, t, see) { const edge = 920 - 395 * ease(cl(see / 2.2)) + 70;
+  if (q < .6) return { f: [Math.max(edge, 890 - 90 * q / .6), 800 - 10 * Math.abs(Math.sin(t * 12))], s: .62, r: 5 * Math.sin(t * 12), flip: true };
+  if (q < .95) { const k = (q - .6) / .35; return { f: [Math.max(edge, 800 - 40 * k), 800 - 90 * Math.sin(Math.PI * k)], s: .62, r: -360 * k + 22 * k, flip: true }; }
+  const k = cl((q - .95) / 1.3), d = 1 - (1 - k) * (1 - k); return { f: [Math.max(edge, 760 - 120 * d), 800], s: .62, r: 22 + 5 * Math.sin(t * 14) * (1 - k), flip: true }; }
 WMASC.c4see = (ev, t) => {
-  if (ev.see !== undefined && ev.see > 1.1 && ev.act === undefined) { const x = 790 + 30 * Math.sin(t * 1.2); return { f: [x, 800], s: .62, r: 5 * Math.sin(t * 2.4) }; }
-  return BIG();
+  if (ev.see === undefined || ev.see < .35) return BIG();
+  if (ev.act === undefined) return c4slip(ev.see - .35, t, ev.see);
+  const p = c4slip(ev.see - .35, t, ev.see), up = ease(cl((ev.act - .5) / .6)); return { f: [p.f[0], p.f[1] - 30 * Math.sin(Math.PI * up)], s: .62, r: p.r * (1 - up) + (up >= 1 ? 5 * Math.sin(t * 3) : 0), flip: true };
 };
 
 // ---------- Schluss ----------

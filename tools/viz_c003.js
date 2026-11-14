@@ -7,6 +7,10 @@ function noSign(x, y, k, inner) { return k <= 0 ? '' : '<g transform="translate(
 // Akku als Kissen: bl = 0 flach, 1 prall
 function pouch(cx, cy, w, bl, t) { const ry = 34 + 110 * bl, wob = bl > 0 ? 3 * Math.sin(t * 9) * bl : 0;
   return '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + (w / 2 + 6 * bl) + '" ry="' + (ry + wob) + '" fill="#B9C2D6" stroke="#6E7891" stroke-width="8"/><ellipse cx="' + (cx - w * .16) + '" cy="' + (cy - ry * .45) + '" rx="' + (w * .2) + '" ry="' + (ry * .18) + '" fill="#fff" opacity=".45"/><rect x="' + (cx + w / 2 - 4) + '" y="' + (cy - 16) + '" width="46" height="32" rx="6" fill="#FFB020" stroke="#6E7891" stroke-width="5"/>'; }
+function c3run(f, D, t) { const run = 16 * Math.abs(Math.sin(t * 16));
+  if (f < .35) return { m: { f: [118, 1118], s: .72, r: 12 + 5 * Math.sin(t * 7) }, fl: null };
+  if (f < .8) { const k = ease((f - .35) / .45); return { m: { f: [lerp(118, 190, k), lerp(1118, 1537, k) - 220 * Math.sin(Math.PI * k)], s: lerp(.72, 1, k), r: -25 * Math.sin(Math.PI * k) }, fl: [lerp(118, 190, k) - 70, lerp(1118, 1537, k) - 220 * Math.sin(Math.PI * k) - 150, cl((f - .35) / .2)] }; }
+  const u = cl((f - .8) / Math.max(.8, D - .9)), x = 190 + 600 * Math.sin(Math.PI * u), back2 = u > .5; return { m: { f: [x, 1537 - run], s: 1, r: (back2 ? 8 : -8) + 6 * Math.sin(t * 16), flip: back2 }, fl: [x + (back2 ? 95 : -95), 1537 - run - 190, 1] }; }
 const lab3 = (t) => kitchen(t, '#080B1C', '#1B2450', '#FFD23F');
 
 // ---------- Einstieg: Handy blaeht sich auf, Display springt ab und trifft Schalti ----------
@@ -86,6 +90,8 @@ WORLD.c3finger = function (sc, ev, t, lt) {
   if (show) { s += pouch(CX, CY, 520, 1, t);
     if (ev.defekt !== undefined && f === undefined) { const k = back(cl(ev.defekt / .35)); s += '<g transform="translate(' + CX + ' ' + CY + ') rotate(-10) scale(' + k + ')"><rect x="-190" y="-58" width="380" height="116" rx="20" fill="none" stroke="#FF4D4D" stroke-width="12"/>' + svgT(0, 30, 'DEFEKT', 86, '#FF4D4D') + '</g>'; }
     if (f !== undefined) { const k = cl(f / .5); s += '<path d="M' + (CX + 60) + ' ' + (CY - 120) + ' l-26 44 l30 14 l-24 46" stroke="#0B1020" stroke-width="9" fill="none" stroke-linejoin="round"/>' + fire(CX + 50, CY - 108, 190, 120 * back(cl((f - .4) / .5)), t, 4); } }
+  if (f !== undefined && n === undefined) { const c = c3run(f, sc.lines[2] ? sc.lines[2].start - sc.lines[1].start : 3.4, t).fl; if (c) s += fire(c[0], c[1], 70 * c[2], 100 * c[2], t, 2); }
+  if (n !== undefined && n < .9) s += smoke(140, 1330, t, 3, .7 * (1 - n / .9));
   if (n !== undefined && a === undefined) {
     s += noSign(210, 880, n / .3, '<path d="M-10 -52 Q-10 -64 0 -64 Q10 -64 10 -52 L10 -4 L34 4 Q44 8 42 20 L36 52 L-26 52 L-40 14 Q-36 2 -24 8 L-10 14 Z" fill="#FFD9B3" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/>') + svgT(210, 1030, 'drücken', 36, '#fff');
     if (n > .6) s += noSign(470, 880, (n - .6) / .3, '<path d="M-44 44 L36 -36" stroke="#E6ECF5" stroke-width="9" stroke-linecap="round"/><path d="M36 -36 L52 -52" stroke="#FFD23F" stroke-width="14" stroke-linecap="round"/><circle cx="-46" cy="46" r="5" fill="#fff"/>') + svgT(470, 1030, 'anstechen', 36, '#fff');
@@ -99,9 +105,9 @@ WORLD.c3finger = function (sc, ev, t, lt) {
   h += slot(ev, [['defekt', 'Aufgebläht heißt defekt', 'red'], ['feuer', 'Hülle verletzt: Brandgefahr', 'red'], ['nie', 'Niemals:', 'red'], ['act', 'Stattdessen:', 'hot']]);
   return W(s + topShade(), h);
 };
-WMASC.c3finger = (ev, t) => {
-  if (ev.nie !== undefined) return BIG();
-  if (ev.feuer !== undefined) { const f = ev.feuer, k = ease(cl((f - .35) / .5)); return { f: [lerp(118, 190, k), lerp(1118, 1537, k) - 220 * Math.sin(Math.PI * k)], s: lerp(.72, 1, k), r: k < 1 ? -25 * Math.sin(Math.PI * k) : -8 + 3 * Math.sin(t * 18) * (1 - cl((f - .85) / 1.2)) }; }
+WMASC.c3finger = (ev, t, lt, sc) => {
+  if (ev.nie !== undefined) return { f: [220, 1537], s: 1, r: 4 * Math.sin(t * 20) * (1 - cl(ev.nie / .8)), fx: ev.nie < 1.2 ? 'brightness(.6)' : undefined };
+  if (ev.feuer !== undefined) return c3run(ev.feuer, sc.lines[2] ? sc.lines[2].start - sc.lines[1].start : 3.4, t).m;
   if (ev.defekt !== undefined && ev.defekt > .9) { const k = ease(cl((ev.defekt - .9) / .5)); return { f: [lerp(220, 118, k), lerp(1537, 1118, k) - 180 * Math.sin(Math.PI * k)], s: lerp(1, .72, k), r: k < 1 ? 0 : 12 + 5 * Math.sin(t * 7) }; }
   return BIG();
 };
