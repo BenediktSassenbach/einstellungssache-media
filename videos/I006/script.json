@@ -32,7 +32,7 @@
      "ev": "werbung"
     }
    ],
-   "pause": 0.8
+   "pause": 0.5
   },
   {
    "type": "tip",
@@ -64,7 +64,7 @@
      "ev": "act"
     }
    ],
-   "pause": 0.8
+   "pause": 0.5
   },
   {
    "type": "tip",
@@ -96,7 +96,7 @@
      "ev": "act"
     }
    ],
-   "pause": 0.8
+   "pause": 0.5
   },
   {
    "type": "tip",
@@ -133,7 +133,7 @@
      "ev": "act"
     }
    ],
-   "pause": 0.8
+   "pause": 0.5
   },
   {
    "type": "outro",
