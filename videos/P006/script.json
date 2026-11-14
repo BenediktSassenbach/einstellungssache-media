@@ -1,0 +1,170 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P006",
+ "titel": "Warum kriegst du im Winter ständig eine gewischt?",
+ "quelle": "DGUV/IFA-Report Innenraumarbeitsplätze Kap. 10: Entladung spürbar ab ca. 2.000 bis 3.100 V, Laufen über Teppichboden 1.500 bis 35.000 V. Welt der Physik: Winterluft im warmen Zimmer ist trocken. DWD Thema des Tages Knisterwetter: feuchte Luft gleicht Ladungen aus, Lüften bewirkt das Gegenteil, Luftbefeuchter helfen. Uni Duisburg-Essen: Aufladung beim Kontakt zweier Stoffe. t-online: Funke schlägt am Schlüssel über. Hoffmann Group ESD: niedriger Stromfluss, körperliche Schäden nahezu ausgeschlossen.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum kriegst du eine *gewischt*?",
+   "emoji": "⚡",
+   "world": "h7p6",
+   "lines": [
+    {
+     "t": "Warum kriegst du im Winter ständig eine gewischt?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und warum dich tausende Volt nicht umhauen.",
+     "mood": "shock",
+     "ev": "zap"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Du lädst dich auf",
+   "quip": "Ich bin geladen.",
+   "quipAt": 2,
+   "path": [],
+   "world": "p6reib",
+   "lines": [
+    {
+     "t": "Erstens: Bei jedem Schritt reiben deine Sohlen am Boden.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Dabei wandern Elektronen aufs andere Material,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "und du lädst dich auf.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Krass: Auf Teppich sind bei trockener Luft bis zu 35.000 Volt drin.",
+     "mood": "shock",
+     "ev": "p3"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Warum im Winter?",
+   "quip": "Heizung an, Blitz an.",
+   "quipAt": 1,
+   "path": [],
+   "world": "p6luft",
+   "lines": [
+    {
+     "t": "Zweitens: Im Sommer leitet feuchte Luft die Ladung ab.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Im Winter ist die Heizungsluft trocken. Die Ladung bleibt.",
+     "mood": "angry",
+     "ev": "p2"
+    },
+    {
+     "t": "Fasst du Metall an, springt alles auf einmal über.",
+     "mood": "shock",
+     "ev": "p3"
+    },
+    {
+     "t": "Die Klinke ist unschuldig: Du entlädst dich an ihr.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Gefährlich? Was hilft?",
+   "quip": "Schlüssel-Held.",
+   "quipAt": 2,
+   "path": [],
+   "world": "p6hilft",
+   "lines": [
+    {
+     "t": "Drittens: Spürbar ist das erst ab etwa 2.000 Volt.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Gefährlich ist es nicht: Es fließt nur winzig wenig Ladung.",
+     "mood": "cool",
+     "ev": "p2"
+    },
+    {
+     "t": "Dein Trick: Klinke zuerst mit dem Schlüssel berühren. Dann trifft der Funke den Schlüssel, nicht dich.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Und: Luft befeuchten statt lüften.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p6outro",
+   "checks": [
+    "Reibung lädt dich auf",
+    "Trockene Luft hält die Ladung",
+    "Schlüssel zuerst"
+   ],
+   "lines": [
+    {
+     "t": "Also: Reibung lädt dich auf,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "trockene Luft hält die Ladung fest,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und der Schlüssel fängt den Schlag ab.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
