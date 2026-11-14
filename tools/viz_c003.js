@@ -73,7 +73,8 @@ WORLD.c3druck = function (sc, ev, t, lt) {
   return W(s + topShade(), h);
 };
 WMASC.c3druck = (ev, t) => {
-  if (ev.act !== undefined) return { f: [220, 1537], s: 1, r: -6 + 3 * Math.sin(t * 16) * (1 - cl(ev.act / 1.2)) };
+  if (ev.act !== undefined) { const a = ev.act, sl = ease(cl(a / .7)), fall = cl((a - .7) / .6); if (fall >= 1) return { f: [220, 1537], s: 1, r: -6 + 4 * Math.sin(t * 16) * (1 - cl((a - 1.3) / 1)) };
+    return { f: [lerp(lerp(330, 150, sl), 220, fall), lerp(lerp(825, 860, sl), 1537, fall * fall)], s: lerp(.6, 1, fall), r: -20 * sl - 340 * fall }; }
   if (ev.kissen !== undefined) { const bl = ease(cl(ev.kissen / 1.6)); return { f: [330, 1010 - 86 - 110 * bl * .9], s: .6, r: 5 * Math.sin(t * 12) * bl }; }
   return BIG();
 };
@@ -98,7 +99,12 @@ WORLD.c3finger = function (sc, ev, t, lt) {
   h += slot(ev, [['defekt', 'Aufgebläht heißt defekt', 'red'], ['feuer', 'Hülle verletzt: Brandgefahr', 'red'], ['nie', 'Niemals:', 'red'], ['act', 'Stattdessen:', 'hot']]);
   return W(s + topShade(), h);
 };
-WMASC.c3finger = (ev, t) => ev.feuer !== undefined && ev.nie === undefined ? { f: [190, 1537], s: 1, r: -8 + 3 * Math.sin(t * 18) * (1 - cl(ev.feuer / 1.2)) } : BIG();
+WMASC.c3finger = (ev, t) => {
+  if (ev.nie !== undefined) return BIG();
+  if (ev.feuer !== undefined) { const f = ev.feuer, k = ease(cl((f - .35) / .5)); return { f: [lerp(118, 190, k), lerp(1118, 1537, k) - 220 * Math.sin(Math.PI * k)], s: lerp(.72, 1, k), r: k < 1 ? -25 * Math.sin(Math.PI * k) : -8 + 3 * Math.sin(t * 18) * (1 - cl((f - .85) / 1.2)) }; }
+  if (ev.defekt !== undefined && ev.defekt > .9) { const k = ease(cl((ev.defekt - .9) / .5)); return { f: [lerp(220, 118, k), lerp(1537, 1118, k) - 180 * Math.sin(Math.PI * k)], s: lerp(1, .72, k), r: k < 1 ? 0 : 12 + 5 * Math.sin(t * 7) }; }
+  return BIG();
+};
 
 // ---------- Schluss ----------
 WORLD.c3outro = function (sc, ev, t) { return W(lab3(t) + pouch(650, 1040, 360, .7, t) + topShade()); };

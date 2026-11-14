@@ -34,7 +34,7 @@ WMASC.h7c4 = (ev, t, lt, sc) => { const e = ev.bonk, end = sc.lines[3] ? sc.line
 // ---------- Teil 1: fast alles sinkt fest im eigenen Fluessigen, Wasser nicht ----------
 WORLD.c4dichte = function (sc, ev, t, lt) {
   let s = ice4(t), h = '';
-  const BY = 760, BH = 340, BW = 300, LV = 830, w = ev.wasser, wk = w === undefined ? 0 : back(cl(w / .45));
+  const BY = 780, BH = 320, BW = 300, LV = 860, w = ev.wasser, wk = w === undefined ? 0 : back(cl(w / .45));
   // links: anderer Stoff, fester Brocken sinkt
   const sk = ease(cl(((ev.sinkt || 0) - .6) / 1.6)), cy = lerp(LV - 70, BY + BH - 62, sk);
   s += beaker(110, BY, BW, BH, '#FFB52E', LV, t) + '<rect x="' + (260 - 48) + '" y="' + (cy - 48) + '" width="96" height="96" rx="16" fill="#D9861A" stroke="#fff" stroke-width="6" transform="rotate(' + (20 * sk) + ' 260 ' + cy + ')"/>';
@@ -43,11 +43,11 @@ WORLD.c4dichte = function (sc, ev, t, lt) {
   if (w !== undefined) { const bob = 8 * Math.sin(t * 2.4), up = ev.act === undefined ? 0 : 1;
     s += '<g transform="translate(680 ' + (BY + BH / 2) + ') scale(' + wk + ') translate(-680 ' + (-(BY + BH / 2)) + ')">' + beaker(530, BY, BW, BH, '#3BA8FF', LV, t) + iceCube(680, LV - 8 + bob, 1, 6 * Math.sin(t * 1.7)) + svgT(680, BY + BH + 52, 'Wasser', 34, '#9BE0FF') + '</g>';
     if (up) for (const d of [-1, 1]) { const p = 10 * Math.abs(Math.sin(t * 5)); s += '<path d="M' + (680 + d * 92) + ' ' + (LV + 40 - p) + ' v-50 m-14 16 l14 -18 l14 18" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="' + cl(ev.act / .3) + '"/>'; }
-    if (ev.leicht !== undefined) { const k = ev.leicht; s += badge(680, 955, 'Wasser 1,00', '#3BA8FF', (k - .5) / .3, 34) + badge(680, 730, 'Eis 0,92', '#CFF1FF', k / .3, 34) + (k > 1 ? svgT(680, 1020, 'Gramm pro cm³', 28, '#D6EEFF') : ''); } }
+    if (ev.leicht !== undefined) { const k = ev.leicht; s += badge(680, 980, 'Wasser 1,00', '#3BA8FF', (k - .5) / .3, 34) + (ev.act === undefined ? badge(680, 742, 'Eis 0,92', '#CFF1FF', k / .3, 34) : '') + (k > 1 ? svgT(680, 1042, 'Gramm pro cm³', 28, '#D6EEFF') : ''); } }
   h += slot(ev, [['sinkt', 'Fest ist meist dichter: sinkt'], ['wasser', 'Wasser: genau andersrum', 'hot'], ['leicht', 'Eis ist leichter als Wasser'], ['act', 'Also schwimmt es oben', 'hot']]);
   return W(s + topShade(), h);
 };
-WMASC.c4dichte = () => BIG();
+WMASC.c4dichte = (ev, t) => { if (ev.act === undefined) return BIG(); const k = ease(cl(ev.act / .5)), bob = 8 * Math.sin(t * 2.4); return { f: [lerp(220, 680, k), lerp(1537, 802 + bob, k) - 220 * Math.sin(Math.PI * k)], s: lerp(1, .55, k), r: k < 1 ? 0 : 6 * Math.sin(t * 1.7) }; };
 
 // ---------- Teil 2: dicht gedraengt fluessig, Gitter aus Sechsecken mit Loechern, 9 Prozent mehr Platz ----------
 WORLD.c4gitter = function (sc, ev, t, lt) {
@@ -70,7 +70,8 @@ WORLD.c4gitter = function (sc, ev, t, lt) {
   h += slot(ev, [['fluessig', 'Flüssig: dicht gedrängt'], ['bruecken', 'Brücken halten sie auf Abstand', 'hot'], ['gitter', 'Sechsecke mit Löchern'], ['platz', 'Eis braucht 9 % mehr Platz', 'red'], ['act', 'Mehr Platz, gleiche Masse: leichter', 'hot']]);
   return W(s + topShade(), h);
 };
-WMASC.c4gitter = () => BIG();
+const C4H = C4G.holes.filter(p => p[0] > 300 && p[0] < 700 && p[1] > 820 && p[1] < 1010)[0] || [500, 900];
+WMASC.c4gitter = (ev, t) => { if (ev.gitter === undefined || ev.platz !== undefined) return BIG(); const k = ease(cl((ev.gitter - 1.0) / .5)); if (k <= 0) return BIG(); return { f: [lerp(220, C4H[0], k), lerp(1537, C4H[1] + 36, k) - 220 * Math.sin(Math.PI * k)], s: lerp(1, .5, k), r: k < 1 ? 0 : 8 * Math.sin(t * 5) }; };
 
 // ---------- Teil 3: Eisberg (1/10 sichtbar), See friert von oben zu, Fische ueberleben ----------
 WORLD.c4see = function (sc, ev, t, lt) {

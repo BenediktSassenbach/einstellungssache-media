@@ -69,6 +69,7 @@ WORLD.c2schnitt = function (sc, ev, t, lt) {
   C2E.forEach((p, i) => { const q = C2P[i], x = lerp(p[0], q[0] - 62, tr) + 8 * Math.sin(t * 2 + i), y = lerp(p[1], q[1], tr) + 8 * Math.cos(t * 1.7 + i); s += enz(x, y, 40, tr > 0 ? 0 : 20 * Math.sin(t * 1.5 + i), .5 + .5 * Math.sin(t * (tr > 0 ? 14 : 6) + i)); });
   C2P.forEach((p, i) => { const b = cl((br * 7 - i) / 1.2); s += hexa(p[0] + 6 * Math.sin(t * 1.8 + i * 2), p[1] + 6 * Math.cos(t * 2.1 + i), 30, lc('#C8F08A', '#7A5230', b), t * 20 * (1 - b) + i * 15); });
   if (br > .3) for (let i = 0; i < C2P.length - 1; i++) { const b = cl((br * 7 - i - 1) / 1.2); if (b > 0) s += '<line x1="' + C2P[i][0] + '" y1="' + C2P[i][1] + '" x2="' + C2P[i + 1][0] + '" y2="' + C2P[i + 1][1] + '" stroke="#7A5230" stroke-width="12" stroke-linecap="round" opacity="' + (.8 * b) + '"/>'; }
+  if (ev.treffen !== undefined && ap === undefined) { const q = ev.treffen, out = ease(cl((q - .3) / .5)), back2 = ease(cl((q - 1.7) / .6)), kk = out * (1 - back2); if (kk > 0) s += enz(lerp(640, 742, kk), lerp(1010, 1050, kk), 44, back2 > 0 ? 180 : 0, .5 + .5 * Math.sin(t * 22), '#FF7A2B'); }
   if (ev.o2 !== undefined && ap === undefined) for (let i = 0; i < 7; i++) { const c = cl((ev.o2 - i * .15) / 1.1); if (c <= 0) continue; const tx = 130 + i * 80, ty = 800 + 230 * rnd(i + 5); s += o2(lerp(CELL.mid, tx, ease(c)) + 10 * Math.sin(t * 3 + i), lerp(690, ty, ease(c)) + 10 * Math.cos(t * 2 + i), t * 80 + i * 50); }
   if (m !== undefined && m < 1.3) { const d = ease(cl(m / .35)), up = cl((m - .8) / .5); s += knife(CELL.mid, lerp(700, CELL.y1 + 20, d) - 420 * up, 0); }
   if (ap !== undefined) { const k = cl(ap / .3), g = back(k), b2 = cl((ap - .3) / 1.2);
@@ -80,6 +81,7 @@ WORLD.c2schnitt = function (sc, ev, t, lt) {
 };
 WMASC.c2schnitt = (ev, t) => {
   if (ev.act !== undefined) return BIG();
+  if (ev.treffen !== undefined && ev.o2 === undefined) { const q = ev.treffen, j = cl((q - .6) / .9), up = Math.sin(Math.PI * j); return { f: [830 + 20 * up, 1100 - 190 * up], s: .8, r: -14 * up + (q > 1.5 ? 4 * Math.sin(t * 18) * (1 - cl((q - 1.5) / .8)) : 0), flip: true }; }
   if (ev.messer !== undefined && ev.braun === undefined) return { f: [822, 1100], s: .8, r: ev.messer < .6 ? -8 : 3 * Math.sin(t * 6), flip: true };
   if (ev.braun !== undefined) return { f: [822, 1100], s: .8, r: 4 * Math.sin(t * 16) * (1 - cl(ev.braun / 1.5)), flip: true };
   return BIG();
@@ -98,17 +100,22 @@ WORLD.c2gruen = function (sc, ev, t, lt) {
   [[-70, -60], [60, -90], [-40, 10], [70, -10], [10, -140]].forEach((p, i) => { const x = CX + p[0] * 1.3, y = CY + p[1] * 1.3; s += enz(x + (1 - sl) * 6 * Math.sin(t * 3 + i), y, 26, (1 - sl) * 20 * Math.sin(t * 2 + i), (1 - sl) * (.5 + .5 * Math.sin(t * 10 + i)), lc('#FF9A3B', '#8A93A8', sl));
     if (sl > .5) s += svgT(x + 22, y - 26 - 10 * ((t * .8 + i * .3) % 1), 'z', 30, '#C9CFDD'); });
   if (z !== undefined && f === undefined) { const k = back(cl(z / .4)), sq = .9 + .1 * Math.sin(t * 10);
-    s += '<g transform="translate(700 760) rotate(' + (150 + 6 * Math.sin(t * 8)) + ') scale(' + k + ' ' + (k * sq) + ')"><path d="M-70 0 A70 70 0 0 1 70 0 Z" fill="#FFE14D" stroke="#C9A000" stroke-width="8" stroke-linejoin="round"/><path d="M-54 -4 A54 54 0 0 1 54 -4 Z" fill="#FFF3A0"/><path d="M0 -4 L0 -56 M0 -4 L-38 -42 M0 -4 L38 -42" stroke="#FFE14D" stroke-width="5"/></g>';
-    for (let i = 0; i < 4; i++) { const c = (t * 1.2 + i / 4) % 1; s += drop(690 - 110 * c - i * 12, 790 + 130 * c, .9, '#FFE14D'); } }
+    s += '<g transform="translate(668 770) rotate(' + (150 + 6 * Math.sin(t * 8)) + ') scale(' + k + ' ' + (k * sq) + ')"><path d="M-70 0 A70 70 0 0 1 70 0 Z" fill="#FFE14D" stroke="#C9A000" stroke-width="8" stroke-linejoin="round"/><path d="M-54 -4 A54 54 0 0 1 54 -4 Z" fill="#FFF3A0"/><path d="M0 -4 L0 -56 M0 -4 L-38 -42 M0 -4 L38 -42" stroke="#FFE14D" stroke-width="5"/></g>';
+    for (let i = 0; i < 4; i++) { const c = (t * 1.2 + i / 4) % 1; s += drop(660 - 100 * c - i * 12, 800 + 120 * c, .9, '#FFE14D'); } }
   if (f !== undefined) { const k = ease(cl(f / .8));
     s += '<g transform="translate(' + CX + ' ' + CY + ') scale(1.3)"><path transform="scale(1.1)" d="' + AVO_P + '" fill="rgba(190,235,255,.16)" stroke="#D8F2FF" stroke-width="5" stroke-dasharray="' + (1100 * k) + ' 1100"/><path d="M-60 -90 Q-30 -120 0 -124" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="' + (.8 * k) + '"/></g>';
     if (a === undefined) for (let i = 0; i < 7; i++) { const an = -Math.PI * (.05 + .9 * (i + .5) / 7), ph = (t * .45 + rnd(i + 2)) % 1, tri = ph < .5 ? ph * 2 : 2 - ph * 2, r = lerp(400, 250, tri), x = CX + r * Math.cos(an) * 1.0, y = CY + 40 + r * Math.sin(an) * .78; if (y < 700 || x > 930) continue; s += '<g opacity="' + k + '">' + o2(x, y, t * 90 + i * 40) + '</g>'; } }
   if (a !== undefined) { const k = back(cl(a / .4)), ang = a * 25;
-    s += '<g transform="translate(790 900) scale(' + k + ')"><circle r="92" fill="#F4F6FB" stroke="#0B1020" stroke-width="10"/><line x1="0" y1="0" x2="' + (60 * Math.sin(ang * Math.PI / 180)) + '" y2="' + (-60 * Math.cos(ang * Math.PI / 180)) + '" stroke="#0B1020" stroke-width="10" stroke-linecap="round"/><line x1="0" y1="0" x2="34" y2="20" stroke="#FF5A5A" stroke-width="8" stroke-linecap="round"/><circle r="9" fill="#0B1020"/></g>'; }
+    s += '<g transform="translate(800 880) scale(' + k + ')"><circle r="92" fill="#F4F6FB" stroke="#0B1020" stroke-width="10"/><line x1="0" y1="0" x2="' + (60 * Math.sin(ang * Math.PI / 180)) + '" y2="' + (-60 * Math.cos(ang * Math.PI / 180)) + '" stroke="#0B1020" stroke-width="10" stroke-linecap="round"/><line x1="0" y1="0" x2="34" y2="20" stroke="#FF5A5A" stroke-width="8" stroke-linecap="round"/><circle r="9" fill="#0B1020"/></g>'; }
   h += slot(ev, [['panel', 'Reaktion bremsen'], ['zitrone', 'Säure hemmt das Enzym', 'hot'], ['folie', 'Luftdicht: kein Sauerstoff'], ['act', 'Langsamer, aber nicht gestoppt', 'red']]);
   return W(s + topShade(), h);
 };
-WMASC.c2gruen = () => BIG();
+WMASC.c2gruen = (ev, t) => {
+  if (ev.act !== undefined) return BIG();
+  if (ev.folie !== undefined) { const k = ease(cl(ev.folie / .8)); return { f: [lerp(800, 760, k), lerp(900, 1110, k)], s: .7, r: -8 * Math.sin(Math.PI * k), flip: true }; }
+  if (ev.zitrone !== undefined) { const k = ease(cl(ev.zitrone / .4)); return { f: [lerp(220, 800, k), lerp(1537, 900, k) - 200 * Math.sin(Math.PI * k)], s: lerp(1, .7, k), r: k < 1 ? 0 : -6 + 5 * Math.sin(t * 10), flip: k > .5 }; }
+  return BIG();
+};
 
 // ---------- Schluss ----------
 WORLD.c2outro = function (sc, ev, t) { return W(green(t) + avo(660, 1010, .95, 0, 8) + '<g transform="translate(800 880) rotate(160)"><path d="M-50 0 A50 50 0 0 1 50 0 Z" fill="#FFE14D" stroke="#C9A000" stroke-width="7" stroke-linejoin="round"/><path d="M-38 -3 A38 38 0 0 1 38 -3 Z" fill="#FFF3A0"/></g>' + topShade()); };
