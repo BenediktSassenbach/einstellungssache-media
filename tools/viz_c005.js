@@ -25,39 +25,23 @@ function c5chase(q, D, t) { const u = cl(q / Math.max(2.8, D - .1)), HX = 220, H
   const c = (u - .8) / .2; return { front: 940, fo: 0, ice: 0, m: { f: [lerp(X1, HX, ease(c)), HY - 12 * Math.abs(Math.sin(t * 14)) * (1 - c)], s: 1, r: 5 * Math.sin(t * 22) * (1 - c), flip: c < .9 } };
 }
 
-// ---------- Einstieg (Blitzstart): Das ganze Bild ist die klare Fuellung. Klick nach 0,45 s, Kristalle schiessen ueber den Bildschirm,
-// Waerme glueht auf, Schalti friert kurz ein. Mit der Themenfrage (ev.mark) faehrt die Kamera zurueck: Es war ein Taschenwaermer. ----------
-function frost5(e, t) { const CX = 600, CY = 890;
-  let s = '<defs><radialGradient id="fr5" cx=".55" cy=".46" r=".8"><stop offset="0" stop-color="#2B62C0"/><stop offset="1" stop-color="#0A1530"/></radialGradient><radialGradient id="ht5" cx=".55" cy=".46" r=".75"><stop offset=".25" stop-color="#FF5A1F" stop-opacity="0"/><stop offset="1" stop-color="#FF5A1F" stop-opacity="1"/></radialGradient></defs><rect x="-600" y="-600" width="2280" height="3120" fill="url(#fr5)"/>';
-  const bo = e < 0 ? 1 : 1 - cl(e / .4);
-  if (bo > 0) for (let i = 0; i < 10; i++) { const y = 1900 - ((t * 90 * (.5 + rnd(i + 9)) + rnd(i + 20) * 1900) % 1900); s += '<circle cx="' + (60 + rnd(i + 1) * 960 + 12 * Math.sin(t * 3 + i)) + '" cy="' + y + '" r="' + (8 + 16 * rnd(i + 30)) + '" fill="none" stroke="#fff" stroke-width="4" opacity="' + (.3 * bo) + '"/>'; }
-  if (e >= 0) { const fr = 1700 * (1 - Math.pow(1 - cl(e / 1.05), 2.4)); let dm = '', dt = '';
-    s += '<circle cx="' + CX + '" cy="' + CY + '" r="' + fr + '" fill="#CFE9FF" opacity=".16"/>';
-    for (let i = 0; i < 22; i++) { const a = i * Math.PI * 2 / 22 + .22 * (rnd(i + 40) - .5), ca = Math.cos(a), sa = Math.sin(a), L = fr * (.82 + .18 * rnd(i + 60));
-      dm += 'M' + CX + ' ' + CY + 'L' + (CX + L * ca).toFixed(0) + ' ' + (CY + L * sa).toFixed(0);
-      for (let d = 80; d < L; d += 92) { const g = cl((L - d) / 130), px = CX + d * ca, py = CY + d * sa; for (let q = -1; q <= 1; q += 2) { const b = a + q * .95, tl = (36 + 74 * rnd(i * 31 + d + q)) * g; dt += 'M' + px.toFixed(0) + ' ' + py.toFixed(0) + 'L' + (px + tl * Math.cos(b)).toFixed(0) + ' ' + (py + tl * Math.sin(b)).toFixed(0); } } }
-    s += '<path d="' + dt + '" stroke="#BFE3FA" stroke-width="6" stroke-linecap="round" fill="none"/><path d="' + dm + '" stroke="#F4FAFF" stroke-width="10" stroke-linecap="round" fill="none"/>';
-    const h = cl((e - .7) / .6); if (h > 0) s += '<rect x="-600" y="-600" width="2280" height="3120" fill="#FF6A1F" opacity="' + (.3 * h) + '"/><rect x="-600" y="-600" width="2280" height="3120" fill="url(#ht5)" opacity="' + (.6 * h * (.85 + .15 * Math.sin(t * 7))) + '"/>'; }
-  const pr = e < 0 ? 1 + .1 * Math.sin(t * 22) : 1;
-  if (e < 0) for (let i = 0; i < 2; i++) { const c = ((t * 2.4 + i * .5) % 1); s += '<circle cx="' + CX + '" cy="' + CY + '" r="' + (95 + 150 * c) + '" fill="none" stroke="#fff" stroke-width="7" opacity="' + (.6 * (1 - c)) + '"/>'; }
-  s += '<g transform="translate(' + CX + ' ' + CY + ') scale(' + pr + ')"><circle r="84" fill="#C9CFDD" stroke="#0B1020" stroke-width="8"/><path d="M-40 6 q40 -34 80 0" stroke="#0B1020" stroke-width="7" fill="none" stroke-linecap="round"/></g>';
-  if (e < .25) { const dn = e < 0 ? -26 + 10 * Math.sin(t * 22) : 0, up = e < 0 ? 0 : e / .25, fx = CX + 40 + 300 * up, fy = CY - 60 + dn - 500 * up; s += '<path d="M' + (fx + 420) + ' ' + (fy - 520) + ' Q' + (fx + 150) + ' ' + (fy - 380) + ' ' + fx + ' ' + fy + '" stroke="#FF6BD6" stroke-width="54" fill="none" stroke-linecap="round"/><circle cx="' + fx + '" cy="' + fy + '" r="34" fill="#FFD23F" stroke="#0B1020" stroke-width="6"/>'; }
-  if (e >= 0 && e < .2) s += '<rect x="-600" y="-600" width="2280" height="3120" fill="#fff" opacity="' + (.85 * (1 - e / .2)) + '"/>';
-  if (e > .95) { const k = back(cl((e - .95) / .3)); s += '<g transform="translate(600 742) rotate(-5) scale(' + (k * (1 + .03 * Math.sin(t * 9))) + ')"><rect x="-290" y="-78" width="580" height="140" rx="40" fill="#0B1020" stroke="#FF8A3D" stroke-width="9"/>' + svgT(0, 30, 'über 50 °C', 96, '#FFB14D', 'middle') + '</g>'; }
-  return s; }
+// ---------- Einstieg: Schalti knickt das Plaettchen, die Kristalle schiessen heraus und frieren ihn ein ----------
 WORLD.h7c5 = function (sc, ev, t, lt) {
-  const e = lt - .45, m = ev.mark, rv = m === undefined ? 0 : ease(cl(m / .55)), sh = shake7(e < 0 ? undefined : e, t), CX = 600, CY = 890;
-  let s = stage7(t, m === undefined ? 0 : m, '#1A0A22', '#FF6BD6', CX, CY), fl = '';
-  if (rv > 0) s += '<g opacity="' + cl(rv * 2) + '" transform="translate(' + CX + ' ' + (CY + 6 * Math.sin(t * 2.2)) + ') scale(' + lerp(2.6, 1, rv) + ') translate(' + (-CX) + ' ' + (-CY) + ')">' + pad5(CX, CY, 460, 300, 1, t, 1) + '</g>';
-  if (rv < 1) s += '<g opacity="' + (1 - cl((rv - .35) / .5)) + '" transform="translate(' + CX + ' ' + CY + ') scale(' + lerp(1, .4, rv) + ') translate(' + (-CX) + ' ' + (-CY) + ')">' + frost5(e, t) + '</g>';
-  if (e > .5) { const op = m === undefined ? 1 : 1 - cl(m / .15), g = cl((e - .5) / .25);
-    if (op > 0) { for (let i = 0; i < 8; i++) fl += spike5(lerp(560, 60, i / 7), 1590, (90 + 80 * rnd(i + 5)) * g, 44, op);
-      fl += '<rect x="76" y="1322" width="300" height="258" rx="34" fill="#BFEAFF" opacity="' + (.5 * op * g) + '" stroke="#fff" stroke-width="7"/><path d="M110 1362 l44 0 M110 1362 l0 44" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity="' + (op * g) + '"/>'; } }
-  return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + fl + '</g>' + vign7() + topShade());
+  const e = ev.klick, end = sc.lines[4] ? sc.lines[4].start - sc.start : 8, k = cl(lt / end), sh = shake7(e, t), CX = 600, CY = 890;
+  let s = stage7(t, lt, '#1A0A22', e === undefined ? '#FF6BD6' : '#BFEAFF', CX, CY), o = '', fl = '';
+  const kr = e === undefined ? 0 : ease(cl(e / .45));
+  o += pad5(CX, CY, 460, 300, kr, t, kr);
+  if (e === undefined) { const pr = k > .35 ? 7 * Math.abs(Math.sin(t * (6 + 10 * k))) : 0, fx = CX - 110, fy = CY - 44 + pr; o += '<path d="M' + (CX + 250) + ' ' + (CY - 250) + ' Q' + (CX + 40) + ' ' + (CY - 230) + ' ' + fx + ' ' + fy + '" stroke="#FF6BD6" stroke-width="24" fill="none" stroke-linecap="round"/><circle cx="' + fx + '" cy="' + fy + '" r="22" fill="#FFD23F" stroke="#0B1020" stroke-width="4"/>'; }
+  else { const g = ease(cl((e - .12) / .4)), op = 1 - cl((e - 2.3) / .4);
+    for (let i = 0; i < 8; i++) fl += spike5(lerp(560, 60, i / 7), 1590, (90 + 80 * rnd(i + 5)) * cl(g * 8 - i * .8), 44, op);
+    if (e > .4) fl += '<rect x="76" y="1322" width="300" height="258" rx="34" fill="#BFEAFF" opacity="' + (.5 * op) + '" stroke="#fff" stroke-width="7"/><path d="M110 1362 l44 0 M110 1362 l0 44" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity="' + op + '"/>';
+    fl += word7('KLICK!', 620, 700, e, '#BFEAFF', -8); }
+  s += pop7(CX, CY, lt, o) + fl + sweat7(t, e === undefined ? k * .6 : 0);
+  return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + vign7() + topShade());
 };
-WMASC.h7c5 = (ev, t, lt) => { const e = lt - .45, m = ev.mark;
-  if (e > .55) { const th = m === undefined ? 0 : cl(m / .2), w = m === undefined ? 0 : cl(1 - (m - .65) / .5); return { f: [220, 1537], s: 1, r: 6 * Math.sin(t * 26) * th * w, fx: th < 1 ? 'saturate(' + (.2 + .8 * th) + ') brightness(' + (1.55 - .55 * th) + ')' : '' }; }
-  return { f: [220, 1537], s: 1, r: e < 0 ? 2 * Math.sin(t * 14) : -6 };
+WMASC.h7c5 = (ev, t, lt, sc) => { const e = ev.klick, end = sc.lines[4] ? sc.lines[4].start - sc.start : 8, k = cl(lt / end);
+  if (e !== undefined && e > .4) { const th = cl((e - 2.3) / .4); return { f: [220, 1537], s: 1, r: 5 * Math.sin(t * 26) * th, fx: th < 1 ? 'saturate(' + (.2 + .8 * th) + ') brightness(' + (1.55 - .55 * th) + ')' : '' }; }
+  return { f: [220, 1537], s: 1, r: 3 * k * Math.sin(t * 14) };
 };
 
 // ---------- Teil 1: Salz der Essigsaeure in Wasser, Schmelzpunkt 58 Grad, bleibt fluessig, sogar bis minus 20 ----------
