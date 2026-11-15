@@ -1,6 +1,19 @@
 // TESTFOLGE C005T "Wie wird ein Taschenwaermer auf Knopfdruck warm?" im Vollbild-Design (Skript 2.0). Gleicher Text wie C005.
 // Ort: Winternacht mit Polarlicht, Bergen, Huette und Schneefall. Teil 2 spielt im Inneren des Kissens. Zum Loeschen: diese Datei und videos/C005T.
 
+// Kopien aus Version 1, damit Version 1 geloescht werden kann, ohne dass diese Datei bricht
+function pad5b(cx, cy, w, h, k, t, glow) { const id = 'pc' + Math.round(cx) + '_' + Math.round(cy), px = cx - w * .24, R = w * 1.3 * cl(k), x = cx - w / 2, y = cy - h / 2;
+  let s = glow > 0 ? '<rect x="' + (x - 26) + '" y="' + (y - 26) + '" width="' + (w + 52) + '" height="' + (h + 52) + '" rx="' + (h * .34 + 20) + '" fill="#FF7A3D" opacity="' + (.35 * glow * (.8 + .2 * Math.sin(t * 6))) + '"/>' : '';
+  s += '<clipPath id="' + id + '"><rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + (h * .3) + '"/></clipPath><rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + (h * .3) + '" fill="#5CC8FF" opacity=".5"/>';
+  if (k <= 0) s += '<path d="M' + (x + w * .5) + ' ' + (y + h * .3) + ' q' + (w * .12) + ' ' + (6 * Math.sin(t * 3)) + ' ' + (w * .24) + ' 0" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" opacity=".7"/>';
+  else { s += '<g clip-path="url(#' + id + ')"><circle cx="' + px + '" cy="' + cy + '" r="' + R + '" fill="#F4F6FB"/>'; for (let i = 0; i < 16; i++) { const a = i * Math.PI / 8 + .2, r2 = R * (.7 + .3 * rnd(i + 3)); s += '<path d="M' + px + ' ' + cy + ' L' + (px + r2 * Math.cos(a)) + ' ' + (cy + r2 * Math.sin(a)) + '" stroke="#A9CFEA" stroke-width="5" stroke-linecap="round"/>'; } s += '</g>'; }
+  s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + (h * .3) + '" fill="none" stroke="#fff" stroke-width="9"/><circle cx="' + px + '" cy="' + cy + '" r="' + (w * .075) + '" fill="#C9CFDD" stroke="#0B1020" stroke-width="5"/><path d="M' + (px - w * .035) + ' ' + cy + ' q' + (w * .035) + ' ' + (-w * .03) + ' ' + (w * .07) + ' 0" stroke="#0B1020" stroke-width="4" fill="none"/>';
+  return s; }
+function spike5b(x, yb, hgt, w, op) { return hgt <= 0 ? '' : '<path d="M' + (x - w) + ' ' + yb + ' L' + (x - w * .2) + ' ' + (yb - hgt) + ' L' + (x + w * .3) + ' ' + (yb - hgt * .45) + ' L' + (x + w * .6) + ' ' + (yb - hgt * .8) + ' L' + (x + w) + ' ' + yb + ' Z" fill="#F4F6FB" stroke="#8ED6F5" stroke-width="5" stroke-linejoin="round" opacity="' + (op === undefined ? 1 : op) + '"/>'; }
+function thermo5b(x, y, hgt, v, lo, hi) { const f = cl((v - lo) / (hi - lo)), col = v >= 45 ? '#FF5A3D' : v < 5 ? '#7FD3FF' : '#FFD23F';
+  return '<rect x="' + (x - 20) + '" y="' + y + '" width="40" height="' + hgt + '" rx="20" fill="#0B1020" stroke="#fff" stroke-width="7"/><circle cx="' + x + '" cy="' + (y + hgt + 14) + '" r="38" fill="' + col + '" stroke="#fff" stroke-width="7"/><rect x="' + (x - 9) + '" y="' + (y + 12 + (hgt - 12) * (1 - f)) + '" width="18" height="' + ((hgt - 12) * f + 10) + '" rx="9" fill="' + col + '"/>' + svgT(x + 50, y + 12 + (hgt - 12) * (1 - f) + 18, v + ' °C', 54, col, 'start'); }
+function flake5b(x, y, s, rot) { let d = ''; for (let i = 0; i < 3; i++) d += '<path d="M0 -20 V20" transform="rotate(' + (i * 60) + ')" stroke="#DFF4FF" stroke-width="5" stroke-linecap="round"/>'; return '<g transform="translate(' + x + ' ' + y + ') rotate(' + rot + ') scale(' + s + ')">' + d + '</g>'; }
+
 // ---------- Helfer ----------
 function wsky5(t, o) { o = o || {}; const hz = 1100;
   let s = '<defs><linearGradient id="w5s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#040818"/><stop offset=".55" stop-color="#101A52"/><stop offset="1" stop-color="#3B2A7A"/></linearGradient><linearGradient id="w5g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A509A"/><stop offset=".45" stop-color="#18245A"/><stop offset="1" stop-color="#080D2A"/></linearGradient></defs><rect width="1080" height="' + (hz + 4) + '" fill="url(#w5s)"/>';
@@ -22,11 +35,11 @@ function inside5(t) { let s = '<defs><radialGradient id="in5" cx=".5" cy=".46" r
 WORLD.h7c5t = function (sc, ev, t, lt) {
   const e = ev.klick, sh = shake7(e, t), CX = 600, CY = 890, kr = e === undefined ? 0 : ease(cl(e / .45));
   let s = wsky5(t), fl = '';
-  s += '<circle cx="' + CX + '" cy="' + CY + '" r="330" fill="' + (e === undefined ? '#FF6BD6' : '#FF8A4D') + '" opacity="' + (.12 + .04 * Math.sin(t * 3)) + '"/><g transform="translate(' + CX + ' ' + (CY + 8 * Math.sin(t * 2.2)) + ') scale(' + back(cl((lt - .1) / .5)) + ') translate(' + (-CX) + ' ' + (-CY) + ')">' + pad5(CX, CY, 460, 300, kr, t, kr) + '</g>';
+  s += '<circle cx="' + CX + '" cy="' + CY + '" r="330" fill="' + (e === undefined ? '#FF6BD6' : '#FF8A4D') + '" opacity="' + (.12 + .04 * Math.sin(t * 3)) + '"/><g transform="translate(' + CX + ' ' + (CY + 8 * Math.sin(t * 2.2)) + ') scale(' + back(cl((lt - .1) / .5)) + ') translate(' + (-CX) + ' ' + (-CY) + ')">' + pad5b(CX, CY, 460, 300, kr, t, kr) + '</g>';
   if (e === undefined) { const k = cl(lt / 8), pr = k > .35 ? 7 * Math.abs(Math.sin(t * (6 + 10 * k))) : 0, fx = CX - 110, fy = CY - 44 + pr; s += '<path d="M' + (CX + 250) + ' ' + (CY - 250) + ' Q' + (CX + 40) + ' ' + (CY - 230) + ' ' + fx + ' ' + fy + '" stroke="#FF6BD6" stroke-width="24" fill="none" stroke-linecap="round"/><circle cx="' + fx + '" cy="' + fy + '" r="22" fill="#FFD23F" stroke="#0B1020" stroke-width="4"/>'; }
   else { const op = 1 - cl((e - 1.7) / .35), b = cl((e - .1) / .35), front = lerp(60, 1180, cl((e - .45) / 1.05));
     for (let i = 0; i < 9; i++) { const c = i / 8; if (c <= b) { const u = c, x = (1 - u) * (1 - u) * 400 + 2 * u * (1 - u) * 90 + u * u * 70, y = (1 - u) * (1 - u) * 960 + 2 * u * (1 - u) * 1150 + u * u * 1560; fl += '<path transform="translate(' + x + ' ' + y + ') rotate(' + (i * 37) + ')" d="M0 -30 L16 0 L0 30 L-16 0 Z" fill="#F4F6FB" stroke="#8ED6F5" stroke-width="5" opacity="' + op + '"/>'; } }
-    if (e > .45) for (let x = 40; x < front; x += 62) fl += spike5(x, 1600 + 50 * Math.pow(Math.max(0, x - 250) / 800, 1.4), (70 + 80 * rnd(x)) * cl((front - x) / 90), 40, op);
+    if (e > .45) for (let x = 40; x < front; x += 62) fl += spike5b(x, 1600 + 50 * Math.pow(Math.max(0, x - 250) / 800, 1.4), (70 + 80 * rnd(x)) * cl((front - x) / 90), 40, op);
     if (e < .16) fl += '<rect width="1080" height="1920" fill="#fff" opacity="' + (.6 * (1 - e / .16)) + '"/>'; }
   return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + fl + wsnow5(t, 1) + '</g>' + shade2());
 };
@@ -36,11 +49,11 @@ WMASC.h7c5t = (ev, t) => ev.klick === undefined ? { f: HOME2, s: 1, r: 2 * Math.
 WORLD.c5tfluessig = function (sc, ev, t, lt) {
   let s = wsky5(t, { cold: ev.act === undefined ? 0 : cl(ev.act / .8) }), h = '';
   const g = ev.grad, b = ev.bleibt, a = ev.act;
-  s += '<g transform="translate(0 ' + (6 * Math.sin(t * 2)) + ')">' + pad5(350, 900, 430, 280, 0, t, 0) + '</g>' + chip3(350, 1096, 'Salz + Wasser', 36, '#F4F6FB', '#0B1020', (lt - 1.2) / .3);
+  s += '<g transform="translate(0 ' + (6 * Math.sin(t * 2)) + ')">' + pad5b(350, 900, 430, 280, 0, t, 0) + '</g>' + chip3(350, 1096, 'Salz + Wasser', 36, '#F4F6FB', '#0B1020', (lt - 1.2) / .3);
   if (g !== undefined) { const v = a !== undefined ? Math.round(lerp(20, -20, ease(cl(a / 1.3)))) : b !== undefined ? Math.round(lerp(58, 20, ease(cl(b / 1.3)))) : 58, y58 = 740 + 12 + 288 * (1 - 88 / 100);
-    s += '<g opacity="' + cl(g / .3) + '">' + thermo5(700, 740, 300, v, -30, 70) + '<path d="M650 ' + y58 + ' H676" stroke="#FF5A3D" stroke-width="7" stroke-linecap="round"/>' + svgT(640, y58 + 12, '58', 34, '#FF9A7A', 'end') + '</g>'; }
+    s += '<g opacity="' + cl(g / .3) + '">' + thermo5b(700, 740, 300, v, -30, 70) + '<path d="M650 ' + y58 + ' H676" stroke="#FF5A3D" stroke-width="7" stroke-linecap="round"/>' + svgT(640, y58 + 12, '58', 34, '#FF9A7A', 'end') + '</g>'; }
   if (b !== undefined && a === undefined) s += okx1(540, 770, 40, true, (b - 1.2) / .3);
-  if (a !== undefined) for (let i = 0; i < 7; i++) { const c = (t * .22 + rnd(i + 4)) % 1; s += '<g opacity="' + cl(a / .4) + '">' + flake5(110 + 70 * i + 20 * Math.sin(t + i), 700 + 420 * c, .8 + .5 * rnd(i), t * 40 + i * 30) + '</g>'; }
+  if (a !== undefined) for (let i = 0; i < 7; i++) { const c = (t * .22 + rnd(i + 4)) % 1; s += '<g opacity="' + cl(a / .4) + '">' + flake5b(110 + 70 * i + 20 * Math.sin(t + i), 700 + 420 * c, .8 + .5 * rnd(i), t * 40 + i * 30) + '</g>'; }
   h += slot(ev, [['salz', 'Ein Salz der Essigsäure, in Wasser'], ['grad', 'Schmelzpunkt: 58 Grad'], ['bleibt', 'Bleibt trotzdem flüssig', 'hot'], ['act', 'Sogar bis minus 20 Grad', 'hot']]);
   return W(s + wsnow5(t, a === undefined ? 1 : 1 + 2 * cl(a / .8)) + (a === undefined ? '' : '<rect width="1080" height="1920" fill="#9FD8FF" opacity="' + (.12 * cl(a / .8)) + '"/>') + shade2(), h);
 };
@@ -68,13 +81,13 @@ WORLD.c5twaerme = function (sc, ev, t, lt) {
   let s = wsky5(t, { nocabin: ev.koch !== undefined || ev.act !== undefined }), h = '';
   const hs = ev.heiss, ko = ev.koch, a = ev.act;
   if (ko === undefined && a === undefined) { const kr = ease(cl((lt - .5) / 1.4));
-    s += pad5(350, 900, 430, 280, kr, t, kr);
+    s += pad5b(350, 900, 430, 280, kr, t, kr);
     for (let i = 0; i < 5; i++) { const c = (t * .5 + i / 5) % 1, x = 190 + i * 80; s += '<path d="M' + x + ' ' + (740 - 70 * c) + ' q16 -16 0 -32 q-16 -16 0 -32" stroke="#FF7A3D" stroke-width="9" fill="none" stroke-linecap="round" opacity="' + (kr * (1 - c)) + '"/>'; }
-    if (hs !== undefined) s += '<g opacity="' + cl(hs / .3) + '">' + thermo5(700, 740, 300, Math.round(lerp(20, 54, ease(cl(hs / 1.4)))), -30, 70) + '</g>';
+    if (hs !== undefined) s += '<g opacity="' + cl(hs / .3) + '">' + thermo5b(700, 740, 300, Math.round(lerp(20, 54, ease(cl(hs / 1.4)))), -30, 70) + '</g>';
   } else { const kr = a !== undefined ? 0 : 1 - ease(cl((ko - .8) / 1.8)), boil = a === undefined;
     for (let i = 0; i < 7; i++) s += '<path d="M' + (250 + 80 * i) + ' 1132 q-22 -30 0 -' + (44 + 14 * Math.sin(t * 9 + i)) + ' q22 30 0 ' + (44 + 14 * Math.sin(t * 9 + i)) + ' Z" fill="#FF9A3D" opacity="' + (boil ? .9 : .25) + '"/>';
     s += '<rect x="170" y="800" width="640" height="300" rx="36" fill="#2A3350" stroke="#C9CFDD" stroke-width="9"/><rect x="186" y="836" width="608" height="248" rx="24" fill="#3BA8FF" opacity=".75"/><path d="M110 850 H170 M810 850 H870" stroke="#C9CFDD" stroke-width="22" stroke-linecap="round"/>';
-    s += '<g transform="translate(0 ' + (boil ? 5 * Math.sin(t * 8) : 0) + ')">' + pad5(490, 968, 330, 190, kr, t, 0) + '</g>';
+    s += '<g transform="translate(0 ' + (boil ? 5 * Math.sin(t * 8) : 0) + ')">' + pad5b(490, 968, 330, 190, kr, t, 0) + '</g>';
     if (boil) { for (let i = 0; i < 9; i++) { const c = (t * .9 + rnd(i + 2)) % 1; s += '<circle cx="' + (220 + 66 * i + 8 * Math.sin(t * 5 + i)) + '" cy="' + (1070 - 220 * c) + '" r="' + (7 + 9 * c) + '" fill="none" stroke="#DFF4FF" stroke-width="4" opacity="' + (1 - c) + '"/>'; }
       for (let i = 0; i < 3; i++) { const c = (t * .4 + i / 3) % 1; s += '<path d="M' + (330 + i * 160) + ' ' + (790 - 70 * c) + ' q18 -18 0 -36" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" opacity="' + (.7 * (1 - c)) + '"/>'; }
       s += chip3(690, 752, 'Vorsicht, heiß', 30, '#FF5A3D', '#fff', (ko - .6) / .3); }
@@ -85,4 +98,4 @@ WORLD.c5twaerme = function (sc, ev, t, lt) {
 WMASC.c5twaerme = BIG2;
 
 // ---------- Schluss ----------
-WORLD.c5toutro = function (sc, ev, t) { return W(wsky5(t) + '<circle cx="770" cy="1000" r="170" fill="#FF8A4D" opacity=".14"/>' + pad5(770, 1000 + 6 * Math.sin(t * 2), 250, 160, 1, t, 1) + wsnow5(t, 1) + shade2()); };
+WORLD.c5toutro = function (sc, ev, t) { return W(wsky5(t) + '<circle cx="770" cy="1000" r="170" fill="#FF8A4D" opacity=".14"/>' + pad5b(770, 1000 + 6 * Math.sin(t * 2), 250, 160, 1, t, 1) + wsnow5(t, 1) + shade2()); };

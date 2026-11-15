@@ -1,6 +1,17 @@
 // TESTFOLGE P007T "Warum sieht der Mond am Horizont so riesig aus?" Gleicher Text wie P007, aber jede Szene als durchgehend animiertes
 // Nachtbild im Vollformat (Himmel, Stadt, Huegel, auf dem Schalti steht) statt Schaubild im Kasten. Zum Loeschen: diese Datei und videos/P007T.
 
+// Kopien aus Version 1, damit Version 1 geloescht werden kann, ohne dass diese Datei bricht
+function brain7b(x, y, s, t) { return '<g transform="translate(' + x + ' ' + y + ') scale(' + s + ')"><circle cx="-34" cy="6" r="44" fill="#FF8FB8" stroke="#0B1020" stroke-width="6"/><circle cx="34" cy="6" r="44" fill="#FF8FB8" stroke="#0B1020" stroke-width="6"/><circle cx="0" cy="-26" r="46" fill="#FF8FB8" stroke="#0B1020" stroke-width="6"/><circle cx="0" cy="12" r="40" fill="#FF8FB8"/><path d="M0 -66 V44 M-50 -4 q20 -16 34 4 M20 -18 q18 -14 34 6 M-30 30 q16 -12 26 2" stroke="#0B1020" stroke-width="5" fill="none" stroke-linecap="round"/></g>'; }
+function train7b(x, y, s) { return '<g transform="translate(' + x + ' ' + y + ') scale(' + s + ')"><rect x="-90" y="-190" width="180" height="190" rx="34" fill="#FF5A5A" stroke="#0B1020" stroke-width="7"/><rect x="-62" y="-160" width="124" height="66" rx="16" fill="#9BE7FF" stroke="#0B1020" stroke-width="6"/><circle cx="-48" cy="-44" r="18" fill="#FFE14D" stroke="#0B1020" stroke-width="5"/><circle cx="48" cy="-44" r="18" fill="#FFE14D" stroke="#0B1020" stroke-width="5"/><rect x="-70" y="-14" width="140" height="22" rx="8" fill="#2A3350"/></g>'; }
+const D7b = (sc, i) => sc.lines[i + 1] ? sc.lines[i + 1].start - sc.lines[i].start : 3.4;
+function p7railsb(q, D, t) { const u = cl(q / Math.max(3, D - .1)), H = [220, 1537], F = [500, 905], run = Math.abs(Math.sin(t * 16));
+  if (u < .22) { const c = ease(u / .22); return { tr: null, m: { f: [lerp(H[0], F[0], c), lerp(H[1], F[1], c) - 12 * run], s: lerp(1, .5, c), r: -6 } }; }
+  if (u < .46) { const c = (u - .22) / .24; return { tr: c > .5 ? [500, 800, .12 + .1 * (c - .5)] : null, m: { f: [F[0], F[1] - (c > .6 ? 20 * Math.abs(Math.sin(t * 20)) : 0)], s: .5, r: c > .6 ? 0 : 8 * Math.sin(t * 5), flip: Math.sin(t * 5) > 0 && c < .6 } }; }
+  if (u < .82) { const c = (u - .46) / .36, e = c * c; return { tr: [lerp(500, 500, e), lerp(800, 1118, e), lerp(.17, .95, e)], m: { f: [lerp(F[0], H[0], ease(c)), lerp(F[1], H[1], ease(c)) - 12 * run * (1 - c)], s: lerp(.5, 1, ease(c)), r: 8 + 5 * Math.sin(t * 16), flip: c < .9 } }; }
+  const c = (u - .82) / .18; return { tr: [500, 1118, .95], puff: c, m: { f: H, s: 1, r: 5 * Math.sin(t * 24) * (1 - c) } };
+}
+
 // ---------- Helfer ----------
 function nsky(t, o) { o = o || {}; const hz = o.hz || 1100, w = o.warm || 0, dx = o.dx || 0;
   let s = '<defs><linearGradient id="n7s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#02030F"/><stop offset=".5" stop-color="' + (o.space ? '#03040F' : '#0A1238') + '"/><stop offset=".85" stop-color="' + (o.space ? '#050818' : lc('#1B2A6B', '#5A3070', w)) + '"/><stop offset="1" stop-color="' + (o.space ? '#070B20' : lc('#2F4AA0', '#FF8A4D', w)) + '"/></linearGradient>';
@@ -87,7 +98,7 @@ WORLD.m7gleich = function (sc, ev, t, lt) {
     if (na !== undefined) s += chip3(725, 1104, 'gleich weit weg ✓', 34, '#F4F6FB', '#0B1020', (na - .5) / .3); }
   if (a !== undefined) { const k = back(cl(a / .45)), g = 1.75 - .45 * (.5 + .5 * Math.sin(t * 2.2));
     s += '<circle cx="' + L[0] + '" cy="' + L[1] + '" r="' + (R * g) + '" fill="#FFB25A" opacity="' + (.22 * cl(a / .4)) + '"/><circle cx="' + L[0] + '" cy="' + L[1] + '" r="' + (R * g) + '" fill="none" stroke="#FFC27A" stroke-width="6" stroke-dasharray="14 12" opacity="' + cl(a / .4) + '"/>' + chip3(L[0], L[1] - 190, 'gefühlt', 36, '#FFC27A', '#0B1020', (a - .3) / .3) + chip3(L[0] + 190, L[1] + 40, 'echt', 36, '#3DFF7A', '#0B1020', (a - .6) / .3);
-    s += brain7(730, 900, 1.5 * k * (1 + .04 * Math.sin(t * 8)), t) + '<g opacity="' + cl((a - .5) / .3) + '">' + svgT(880, 850, '!', 130, '#FFD23F') + '</g>'; }
+    s += brain7b(730, 900, 1.5 * k * (1 + .04 * Math.sin(t * 8)), t) + '<g opacity="' + cl((a - .5) / .3) + '">' + svgT(880, 850, '!', 130, '#FFD23F') + '</g>'; }
   h += NSLOT(ev, [['panel', 'Unten nicht größer als oben'], ['foto', 'Fotos: beide Male gleich breit', 'hot'], ['nah', 'Näher ist er dort auch nicht'], ['act', 'Die Täuschung entsteht im Kopf', 'hot']]);
   return W(s + nshade(), h);
 };
@@ -111,7 +122,7 @@ WORLD.m7hirn = function (sc, ev, t, lt) {
     s += nsky(t, { hz: VY }) + '<rect y="' + VY + '" width="1080" height="1160" fill="url(#n7gr)"/><g opacity="' + k + '"><path d="M230 1125 L' + VX + ' ' + VY + ' L770 1125" stroke="#C9CFDD" stroke-width="10" fill="none" stroke-linejoin="round"/>'; for (let i = 0; i < 9; i++) { const c = Math.pow(i / 9, 1.6), y = lerp(1110, VY + 14, c), hw = 270 * (y - VY) / 365; s += '<path d="M' + (VX - hw * 1.12) + ' ' + y + ' H' + (VX + hw * 1.12) + '" stroke="#5A4634" stroke-width="' + (16 - 12 * c) + '"/>'; }
     s += '<path d="M230 1125 L' + VX + ' ' + VY + ' L770 1125" stroke="#C9CFDD" stroke-width="10" fill="none" stroke-linejoin="round"/><rect x="390" y="832" width="220" height="24" rx="8" fill="#FFD23F" stroke="#0B1020" stroke-width="5"/><rect x="390" y="1040" width="220" height="24" rx="8" fill="#FFD23F" stroke="#0B1020" stroke-width="5"/></g>';
     if (po > 1) s += '<g opacity="' + cl((po - 1) / .3) + '"><path d="M390 870 V1026 M610 870 V1026" stroke="#3DFF7A" stroke-width="5" stroke-dasharray="10 10"/></g>' + chip3(820, 940, 'gleich lang', 34, '#3DFF7A', '#0B1020', (po - 1.1) / .3);
-    const g = p7rails(po, D7(sc, 2), t); if (g.tr) s += '<circle cx="' + g.tr[0] + '" cy="' + (g.tr[1] - 60 * g.tr[2]) + '" r="' + (330 * g.tr[2]) + '" fill="#FFE9A8" opacity=".14"/>' + train7(g.tr[0], g.tr[1], g.tr[2]); if (g.puff !== undefined) for (let i = 0; i < 3; i++) s += '<circle cx="' + (440 + 60 * i) + '" cy="' + (900 - 60 * g.puff - 14 * i) + '" r="' + (22 + 14 * g.puff) + '" fill="#fff" opacity="' + (.6 * (1 - g.puff)) + '"/>';
+    const g = p7railsb(po, D7b(sc, 2), t); if (g.tr) s += '<circle cx="' + g.tr[0] + '" cy="' + (g.tr[1] - 60 * g.tr[2]) + '" r="' + (330 * g.tr[2]) + '" fill="#FFE9A8" opacity=".14"/>' + train7b(g.tr[0], g.tr[1], g.tr[2]); if (g.puff !== undefined) for (let i = 0; i < 3; i++) s += '<circle cx="' + (440 + 60 * i) + '" cy="' + (900 - 60 * g.puff - 14 * i) + '" r="' + (22 + 14 * g.puff) + '" fill="#fff" opacity="' + (.6 * (1 - g.puff)) + '"/>';
   } else { const k = cl(a / .4), ox = 8 * Math.sin(t * 1.3), oy = 6 * Math.cos(t * 1.1);
     s += nsky(t, { hz: 1920, space: 1, dx: t * 6 }) + '<g opacity="' + k + '"><defs><radialGradient id="n7e" cx=".5" cy="0" r=".5"><stop offset="0" stop-color="#3D8BFF"/><stop offset=".25" stop-color="#1B4FB0"/><stop offset=".6" stop-color="#0A1E55"/></radialGradient></defs>';
     s += lun(850, lerp(880, 790, ease(cl(a / 2.5))), 66, 0) + '<circle cx="540" cy="2520" r="1530" fill="#7FD3FF" opacity=".12"/><circle cx="540" cy="2520" r="1500" fill="url(#n7e)" stroke="#9BE7FF" stroke-width="10"/><path d="M230 1080 q70 -34 150 -16 q46 28 -14 46 q-80 14 -136 -30 Z" fill="#2FAE66" opacity=".85"/>';
@@ -123,7 +134,7 @@ WORLD.m7hirn = function (sc, ev, t, lt) {
 };
 WMASC.m7hirn = (ev, t, lt, sc) => { const po = ev.ponzo, a = ev.act;
   if (a !== undefined) { const k = ease(cl(a / .5)), ox = 8 * Math.sin(t * 1.3), oy = 6 * Math.cos(t * 1.1); return { f: [lerp(220, 345 + ox, k), lerp(1537, 965 + oy, k)], s: lerp(1, .62, k), r: 6 * Math.sin(t * 2.4) * k, nospin: 1 }; } // schaut aus dem Fenster der Raumstation
-  if (po !== undefined) return Object.assign({ nospin: 1 }, p7rails(po, D7(sc, 2), t).m);
+  if (po !== undefined) return Object.assign({ nospin: 1 }, p7railsb(po, D7b(sc, 2), t).m);
   return { f: HOME7, s: 1, nospin: 1 }; };
 
 // ---------- Teil 3: Fingernagel-Test, Blick durch die Papierrolle, Farbe, Weg des Lichts durch die Luft ----------
