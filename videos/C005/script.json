@@ -1,0 +1,180 @@
+{
+ "serie": "Chemie",
+ "kostuem": "molekuel",
+ "accent": "#FF6BD6",
+ "id": "C005",
+ "titel": "Wie wird ein Taschenwärmer auf Knopfdruck warm?",
+ "quelle": "Physik Journal / pro-physik.de (Sabrina Patsch, Taschenwärmer): Plastikkissen mit klarer Flüssigkeit, Knicken des Metallplättchens lässt sie kristallisieren, dabei wird latente Wärme frei; Natriumacetat-Trihydrat schmilzt bei 58 °C; Wirkung des Plättchens nicht abschließend erforscht, vermutlich werden winzige Kristallisationskeime frei; die Lösung kann selbst bei minus 20 °C flüssig bleiben; Aufladen durch Erhitzen. Spektrum der Wissenschaft, Wissenschaft in die Schulen 7/2017: unterkühlte Schmelze, Klick-Plättchen löst die Kristallisation aus, Schmelze durchsichtig, Kristall trüb. Siemens Stiftung Medienportal (Lehrerhandreichung Wärmespeicher): beim Festwerden wird immer die gleiche Temperatur erreicht, je nach Kissen etwa 50 bis 58 °C; zum Aufladen in sehr heißes Wasser legen, bis alle Kristalle geschmolzen sind. ingenieur.de (VDI Verlag): Natriumacetat ist ein Salz der Essigsäure, Lösung aus Natriumacetat-Trihydrat und Wasser, metastabiler Zustand, im Wasserbad viele Male wiederverwendbar. Aufhänger 'erstarrt in Sekunden und wird dabei heiß' ist zugespitzt: das Kissen wird beim Kristallisieren fest und über 50 °C warm.",
+ "gagDelay": 0.12,
+ "gagTag": "[shivering, teeth chattering]",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "*Heiß* auf Klick?",
+   "emoji": "🔥",
+   "world": "h7c5",
+   "lines": [
+    {
+     "t": "Diese Flüssigkeit erstarrt in Sekunden. Und wird dabei heiß.",
+     "mood": "shock"
+    },
+    {
+     "t": "Wie wird ein Taschenwärmer auf Knopfdruck warm?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Chemie nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Ganz ohne Strom und ohne Feuer.",
+     "mood": "shock",
+     "ev": "klick"
+    }
+   ],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Flüssig trotz Kälte",
+   "quip": "Regelbrecher!",
+   "quipAt": 2,
+   "world": "c5fluessig",
+   "lines": [
+    {
+     "t": "Erstens: Im Kissen steckt ein Salz der Essigsäure, gelöst in Wasser.",
+     "mood": "happy",
+     "ev": "salz"
+    },
+    {
+     "t": "Flüssig wird es eigentlich erst bei 58 Grad.",
+     "mood": "happy",
+     "ev": "grad"
+    },
+    {
+     "t": "Kühlt es ab, bleibt es trotzdem flüssig.",
+     "mood": "wink",
+     "ev": "bleibt"
+    },
+    {
+     "t": "Krass: Das klappt sogar bis minus 20 Grad.",
+     "mood": "shock",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Ein Klick genügt",
+   "quip": "Brrr!",
+   "quipAt": 3,
+   "world": "c5klick",
+   "lines": [
+    {
+     "t": "Zweitens: Den Teilchen fehlt nur ein Startpunkt, um sich zu ordnen.",
+     "mood": "happy",
+     "ev": "start"
+    },
+    {
+     "t": "Knickst du das Metallplättchen, entsteht so ein Keim.",
+     "mood": "happy",
+     "ev": "knick"
+    },
+    {
+     "t": "Von dort wächst der Kristall durchs ganze Kissen.",
+     "mood": "shock",
+     "ev": "wachs"
+    },
+    {
+     "t": "Spoiler: Wie das Plättchen das genau auslöst, ist bis heute nicht ganz geklärt.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Woher kommt die Wärme?",
+   "quip": "Wieder aufgeladen.",
+   "quipAt": 3,
+   "world": "c5waerme",
+   "lines": [
+    {
+     "t": "Drittens: Beim Festwerden gibt die Füllung gespeicherte Wärme ab.",
+     "mood": "happy",
+     "ev": "frei"
+    },
+    {
+     "t": "Das Kissen wird über 50 Grad warm.",
+     "mood": "shock",
+     "ev": "heiss"
+    },
+    {
+     "t": "Dein Trick: Leg es danach in kochendes Wasser, bis alle Kristalle weg sind.",
+     "mood": "happy",
+     "ev": "koch"
+    },
+    {
+     "t": "Dann ist es wieder flüssig und startklar.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c5outro",
+   "checks": [
+    "Flüssig unter dem Schmelzpunkt",
+    "Ein Klick startet den Kristall",
+    "Kochen lädt es wieder auf"
+   ],
+   "lines": [
+    {
+     "t": "Also: Die Füllung bleibt flüssig, obwohl sie fest sein müsste,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "ein Klick startet den Kristall,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und kochendes Wasser lädt das Kissen wieder auf.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
