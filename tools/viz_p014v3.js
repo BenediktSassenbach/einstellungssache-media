@@ -16,7 +16,7 @@ function flat14(t, o) { o = o || {}; const split = !!o.split, calm = !!o.calm, W
     s += '<circle cx="780" cy="330" r="58" fill="#FFF1C4" opacity=".16"/><circle cx="780" cy="330" r="36" fill="#FFF1C4"/>'; { const cx = 560 + ((t * 9) % 380); s += '<g opacity=".5" fill="#9FB6E0"><ellipse cx="' + cx + '" cy="430" rx="60" ry="18"/><ellipse cx="' + (cx + 34) + '" cy="416" rx="40" ry="16"/></g>'; }
     s += '</g><rect x="600" y="250" width="250" height="300" rx="10" fill="none" stroke="#2A5A94" stroke-width="14"/><path d="M725 250 V550 M600 400 H850" stroke="#2A5A94" stroke-width="8"/><rect x="584" y="546" width="282" height="20" rx="8" fill="#2A5A94"/>';
     // Nachbarzimmer hinter der Wand mit Handy auf dem Regal
-    s += '<rect x="1006" y="0" width="74" height="1552" fill="#081A36"/><rect x="1012" y="1300" width="68" height="14" rx="5" fill="#2A5A94"/><rect x="1020" y="1216" width="46" height="84" rx="9" fill="#0B1020" stroke="#F4F6FB" stroke-width="5"/>' + bars14(1043, 1252, .5, o.rings > 0 ? 2 : 1); }
+    s += '<rect x="1006" y="0" width="74" height="1552" fill="#081A36"/><rect x="1012" y="1300" width="68" height="14" rx="5" fill="#2A5A94"/><rect x="1020" y="1216" width="46" height="84" rx="9" fill="#0B1020" stroke="#F4F6FB" stroke-width="5"/>' + bars14(1043, 1252, .5, o.nb || (o.rings > 0 ? 2 : 1)); }
   const R = o.router;
   if (R && o.rings > 0) { const rg = rings14(R[0], R[1] - 110, t, 4, '#5CE1FF', 520 + 420 * o.rings, .22 + .38 * o.rings, 6 + 4 * o.rings); s += '<g clip-path="url(#f14l)">' + rg + '</g><g clip-path="url(#f14r)" opacity=".45">' + rg + '</g>'; }
   if (!split) s += brick14(950, 232, 56, 1322, 'w');
@@ -31,21 +31,28 @@ function flat14(t, o) { o = o || {}; const split = !!o.split, calm = !!o.calm, W
   return s; }
 const F14HOME = { rings: 1, side: 1, router: [565, 1440] };   // Einstieg: Router sendet kraeftig
 const F14CALM = { calm: 1 };                                    // ruhiger Hintergrund ohne Router
-// Gag: Schalti rennt selbst los, knallt gegen die Ziegelwand, kugelt zurueck, sitzt benommen da und laeuft zurueck. Einschlag bei 0,75 s
-function gag14v(e, t) { const run = Math.abs(Math.sin(t * 17));
-  if (e < .25) return { f: [220, 1537], s: 1, r: -10, nospin: 1 };
-  if (e < .75) { const k = (e - .25) / .5; return { f: [lerp(220, 862, k), 1537 - 14 * run], s: 1, r: 10, nospin: 1 }; }
-  if (e < 1.3) { const k = (e - .75) / .55; return { f: [lerp(862, 600, k), 1537 - 150 * Math.sin(Math.PI * k)], s: 1, r: -360 * k, nospin: 1 }; }
-  if (e < 2.0) return { f: [600, 1537], s: 1, r: -16 + 5 * Math.sin(t * 9), nospin: 1 };
-  if (e < 2.7) { const k = (e - 2) / .7; return { f: [lerp(600, 220, k), 1537], s: 1, walk: true, flip: true, nospin: 1 }; }
+// Gag aus dem Objekt: Schalti geht waehrend "Gib mir 60 Sekunden" neugierig zum Router. Beim Nachsatz sendet der Router einen kraeftigen Wellenstoss,
+// der Schalti mitnimmt. Die Welle geht durch die Ziegelwand, Schalti nicht: Er klatscht an die Wand, rutscht herunter, sitzt benommen da und laeuft zurueck. Einschlag bei 0,5 s
+const P14R = e => e < .1 ? lerp(40, 205, e / .1) : e < .5 ? lerp(205, 377, (e - .1) / .4) : 377 + (e - .5) * 900; // Radius des Wellenstosses
+function gag14v(e, t) { const X0 = 690, XW = 862;
+  if (e < .1) return { f: [X0, 1537 - 30 * (e / .1)], s: 1, r: 6, nospin: 1 };
+  if (e < .5) { const k = (e - .1) / .4; return { f: [565 + P14R(e) - 80, 1537 - 30 - 70 * k], s: 1, r: 14, nospin: 1 }; }
+  if (e < .95) return { f: [XW, 1437], s: 1, r: 4 * Math.sin(t * 40) * (1 - cl((e - .5) / .2)), nospin: 1 };
+  if (e < 1.3) { const k = (e - .95) / .35; return { f: [lerp(XW, 800, k), lerp(1437, 1537, k * k)], s: 1, r: -16 * k, nospin: 1 }; }
+  if (e < 2.0) return { f: [800, 1537], s: 1, r: -16 + 5 * Math.sin(t * 9), nospin: 1 };
+  if (e < 2.8) { const k = (e - 2) / .8; return { f: [lerp(800, 220, k), 1537], s: 1, walk: true, flip: true, nospin: 1 }; }
   return { f: [220, 1537], s: 1, nospin: 1 }; }
 WORLD.h7p14_3 = function (sc, ev, t, lt) {
-  const e = ev.bonk, hit = e !== undefined && e >= .75 ? e - .75 : undefined, sh = shake7(hit, t);
-  let s = flat14(t, F14HOME);
-  if (e !== undefined && e > 1.2 && e < 2.2) s += stars14(630, 1230, t, 1 - cl((e - 1.9) / .3));
+  const e = ev.bonk, hit = e !== undefined && e >= .5 ? e - .5 : undefined, sh = shake7(hit, t);
+  let s = flat14(t, Object.assign({}, F14HOME, { nb: hit !== undefined && hit > .15 ? 4 : 2 }));
+  if (e !== undefined && e < 1.4) { const R = P14R(e), ring = '<circle cx="565" cy="1330" r="' + R + '" fill="none" stroke="#B8F3FF" stroke-width="' + (26 - 8 * cl(e)) + '" opacity="' + (1 - cl((e - .9) / .5)) + '"/><circle cx="565" cy="1330" r="' + Math.max(1, R - 34) + '" fill="none" stroke="#5CE1FF" stroke-width="10" opacity="' + (.7 * (1 - cl((e - .9) / .5))) + '"/>';
+    s += '<g clip-path="url(#f14l)">' + ring + '</g><g clip-path="url(#f14r)" opacity=".5">' + ring + '</g>'; }
+  if (e !== undefined && e > 1.25 && e < 2.2) s += stars14(830, 1230, t, 1 - cl((e - 1.9) / .3));
   return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + shade3());
 };
-WMASC.h7p14_3 = (ev, t, lt) => ev.bonk === undefined ? { f: [220 + 22 * Math.sin(t * 1.6) * cl(lt / 6), 1537 - 6 * Math.abs(Math.sin(t * 6)) * cl(lt / 6)], s: 1, r: -4, nospin: 1 } : gag14v(ev.bonk, t);
+WMASC.h7p14_3 = (ev, t, lt, sc) => { if (ev.bonk !== undefined) return gag14v(ev.bonk, t);
+  const q = lt - (sc.lines[3] ? sc.lines[3].start - sc.start : 6); if (q < 0) return { f: [220, 1537], s: 1, r: -3 + 2 * Math.sin(t * 2), nospin: 1 };
+  const k = cl(q / .8); return k < 1 ? { f: [lerp(220, 690, k), 1537], s: 1, walk: true, nospin: 1 } : { f: [690, 1537 - 5 * Math.abs(Math.sin(t * 5))], s: 1, r: 5, flip: true, nospin: 1 }; };
 
 // Teil 1: ruhige Wand, die Welle ist die Grafik. Schalti surft auf dem Kamm der langen WLAN-Welle
 WORLD.p14a_3 = (sc, ev, t, lt) => W(flat14(t, F14CALM) + g14a(sc, ev, t, lt) + shade3(), slot(ev, L14A));
