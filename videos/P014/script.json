@@ -1,0 +1,178 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P014",
+ "titel": "Warum geht WLAN durch die Wand?",
+ "quelle": "WLAN und sichtbares Licht sind elektromagnetische Wellen: Bundesamt für Strahlenschutz (Unterrichtsmaterial Mobilfunk, Spektrum: hochfrequente Felder und optische Strahlung im selben Spektrum; Infoblatt Bluetooth und WLAN: WLAN nutzt das 2,4-GHz-Band zwischen 2,4000 und 2,4835 GHz sowie Bereiche um 5 GHz). Wellenlänge WLAN rund 12 cm: eigene Rechnung aus Lichtgeschwindigkeit geteilt durch 2,4 GHz = 12,5 cm. Sichtbares Licht 380 bis 750 nm, also unter 0,001 mm. Rund 200.000 Mal länger: eigene Rechnung, 12,5 cm geteilt durch 0,00056 mm (grünes Licht) = rund 223.000, je nach Farbe 170.000 bis 330.000. Warum Ziegel Licht schluckt, Funkwellen aber durchlässt: Fermilab, Inquiring Minds (ob eine Welle durchkommt, hängt von den Elektronen im Material ab; Ziegel ist für Funk durchlässig, für Licht nicht; Metalle blocken beides). Jede Wand schwächt, dicke stärker: Ruhr-Universität Bochum, Praktikumsprojekt WLAN (Dämpfung in Kalksandstein wächst mit der Dicke, Metallwände schirmen 2,4 GHz völlig ab); PC-Welt, 20.04.2026 (Metall und Stahlbeton 20 bis 50 dB, massive Ziegelwände 15 bis 30 dB). Stahlbeton als WLAN-Killer: teltarif, PC-Welt. Wasser, zum Beispiel Aquarien: Telekom Hilfe (WLAN optimieren), teltarif. Router erhöht, möglichst zentral und frei aufstellen, nicht in geschlossene Schränke und nicht hinter den Fernseher: PC-Welt, 20.04.2026. Bewusst weggelassen: 5 GHz und 6 GHz kommen schlechter durch Wände als 2,4 GHz; Gesundheitsfragen. Spruch am Anfang ist leicht angsteinflößend gemeint und stimmt wörtlich: Die Funkwellen gehen tatsächlich durch die Wand. Nachsatz 'mit Licht verwandt' heißt: beides elektromagnetische Wellen.",
+ "gagTag": "[groans] [dizzy]",
+ "gagDelay": 0.75,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "WLAN durch die *Wand*?",
+   "emoji": "📶",
+   "world": "h7p14",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Gerade jetzt rast etwas Unsichtbares durch deine Wand!",
+     "mood": "shock"
+    },
+    {
+     "t": "Warum geht WLAN durch die Wand?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Spoiler: WLAN ist mit Licht verwandt.",
+     "mood": "shock",
+     "ev": "bonk"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Verwandt mit Licht",
+   "path": [],
+   "world": "p14a",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Erstens: WLAN und Licht sind beides elektromagnetische Wellen.",
+     "mood": "happy",
+     "ev": "spek"
+    },
+    {
+     "t": "Eine WLAN-Welle ist rund 12 Zentimeter lang.",
+     "mood": "happy",
+     "ev": "lang"
+    },
+    {
+     "t": "Bei sichtbarem Licht ist es weniger als ein Tausendstel Millimeter.",
+     "mood": "shock",
+     "ev": "licht"
+    },
+    {
+     "t": "Krass: Die WLAN-Welle ist rund 200.000 Mal länger.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "quip": "Lange Leitung!",
+   "quipAt": 3
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Die Wand entscheidet",
+   "path": [],
+   "world": "p14b",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Zweitens: Ob eine Welle durchkommt, entscheidet das Material.",
+     "mood": "happy",
+     "ev": "wand"
+    },
+    {
+     "t": "Ziegel und Holz schlucken sichtbares Licht. Darum siehst du nicht hindurch.",
+     "mood": "happy",
+     "ev": "licht2"
+    },
+    {
+     "t": "Die langen WLAN-Wellen kommen dagegen durch.",
+     "mood": "wink",
+     "ev": "durch"
+    },
+    {
+     "t": "Aber: Jede Wand schwächt das Signal, dicke stärker als dünne.",
+     "mood": "shock",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Was WLAN stoppt",
+   "path": [],
+   "world": "p14c",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Drittens: Metall blockt die Wellen ab. Stahlbeton ist deshalb ein WLAN-Killer.",
+     "mood": "shock",
+     "ev": "metall"
+    },
+    {
+     "t": "Wasser schluckt sie: Ein Aquarium bremst dein WLAN.",
+     "mood": "happy",
+     "ev": "wasser"
+    },
+    {
+     "t": "Dein Trick: Stell den Router frei, erhöht und möglichst in die Mitte der Wohnung.",
+     "mood": "happy",
+     "ev": "frei"
+    },
+    {
+     "t": "Und nicht in den Schrank oder hinter den Fernseher.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ],
+   "quip": "Hoch damit!",
+   "quipAt": 2
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p14outro",
+   "checks": [
+    "Welle wie Licht, nur länger",
+    "Wände schwächen, Metall stoppt",
+    "Router frei und nach oben"
+   ],
+   "lines": [
+    {
+     "t": "Also: WLAN ist eine Welle wie Licht, nur viel länger,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Wände schwächen sie, Metall und Wasser stoppen sie,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und dein Router gehört frei und nach oben.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
