@@ -4,8 +4,8 @@
  "accent": "#FF6BD6",
  "id": "C005",
  "titel": "Wie wird ein Taschenwärmer auf Knopfdruck warm?",
- "quelle": "Physik Journal / pro-physik.de (Sabrina Patsch, Taschenwärmer): Plastikkissen mit klarer Flüssigkeit, Knicken des Metallplättchens lässt sie kristallisieren, dabei wird latente Wärme frei; Natriumacetat-Trihydrat schmilzt bei 58 °C; Wirkung des Plättchens nicht abschließend erforscht, vermutlich werden winzige Kristallisationskeime frei; die Lösung kann selbst bei minus 20 °C flüssig bleiben; Aufladen durch Erhitzen. Spektrum der Wissenschaft, Wissenschaft in die Schulen 7/2017: unterkühlte Schmelze, Klick-Plättchen löst die Kristallisation aus, Schmelze durchsichtig, Kristall trüb. Siemens Stiftung Medienportal (Lehrerhandreichung Wärmespeicher): beim Festwerden wird immer die gleiche Temperatur erreicht, je nach Kissen etwa 50 bis 58 °C; zum Aufladen in sehr heißes Wasser legen, bis alle Kristalle geschmolzen sind. ingenieur.de (VDI Verlag): Natriumacetat ist ein Salz der Essigsäure, Lösung aus Natriumacetat-Trihydrat und Wasser, metastabiler Zustand, im Wasserbad viele Male wiederverwendbar. Aufhänger 'erstarrt in Sekunden und wird dabei heiß' ist zugespitzt: das Kissen wird beim Kristallisieren fest und über 50 °C warm.",
- "gagDelay": 0.12,
+ "quelle": "Physik Journal / pro-physik.de (Sabrina Patsch, Taschenwärmer): Plastikkissen mit klarer Flüssigkeit, Knicken des Metallplättchens lässt sie kristallisieren, dabei wird latente Wärme frei; Natriumacetat-Trihydrat schmilzt bei 58 °C; Wirkung des Plättchens nicht abschließend erforscht, vermutlich werden winzige Kristallisationskeime frei; die Lösung kann selbst bei minus 20 °C flüssig bleiben; Aufladen durch Erhitzen. Spektrum der Wissenschaft, Wissenschaft in die Schulen 7/2017: unterkühlte Schmelze, Klick-Plättchen löst die Kristallisation aus, Schmelze durchsichtig, Kristall trüb. Siemens Stiftung Medienportal (Lehrerhandreichung Wärmespeicher): beim Festwerden wird immer die gleiche Temperatur erreicht, je nach Kissen etwa 50 bis 58 °C; zum Aufladen in sehr heißes Wasser legen, bis alle Kristalle geschmolzen sind. ingenieur.de (VDI Verlag): Natriumacetat ist ein Salz der Essigsäure, Lösung aus Natriumacetat-Trihydrat und Wasser, metastabiler Zustand, im Wasserbad viele Male wiederverwendbar. Aufhänger 'Heißes Eis' ist zugespitzt: gemeint ist kein Wassereis, sondern die Salzlösung, die beim Kristallisieren fest und über 50 °C warm wird ('heißes Eis' ist der gängige Name des Schulversuchs mit Natriumacetat). Teil 1 stellt klar, dass es ein Salz der Essigsäure in Wasser ist.",
+ "gagDelay": 0.45,
  "gagTag": "[shivering, teeth chattering]",
  "scenes": [
   {
@@ -15,11 +15,11 @@
    "world": "h7c5",
    "lines": [
     {
-     "t": "Diese Flüssigkeit erstarrt in Sekunden. Und wird dabei heiß.",
+     "t": "Heißes Eis. Auf Knopfdruck!",
      "mood": "shock"
     },
     {
-     "t": "Wie wird ein Taschenwärmer auf Knopfdruck warm?",
+     "t": "Wie wird ein Taschenwärmer per Klick warm?",
      "mood": "happy",
      "ev": "mark"
     },
@@ -31,14 +31,9 @@
      "t": "Gib mir 60 Sekunden.",
      "mood": "wink",
      "ev": "sticker"
-    },
-    {
-     "t": "Ganz ohne Strom und ohne Feuer.",
-     "mood": "shock",
-     "ev": "klick"
     }
    ],
-   "pause": 0.5
+   "pause": 0.3
   },
   {
    "type": "tip",
