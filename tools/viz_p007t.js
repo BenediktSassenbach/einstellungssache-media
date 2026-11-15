@@ -60,7 +60,7 @@ function m7roll(e) { if (e < .5) { const c = (e - .12) / .38; return { x: lerp(6
 const HOME7 = [220, 1537];
 // Schalti rennt vor dem Mond rechts aus dem Bild und kommt links wieder herein
 WMASC.h7m7 = (ev, t, lt) => { const e = ev.roll, run = Math.abs(Math.sin(t * 17));
-  if (e === undefined) return { f: HOME7, s: 1, r: -5 + 2 * Math.sin(t * 3), prop: '🔭', nospin: 1 };
+  if (e === undefined) return { f: HOME7, s: 1, r: -5 + 2 * Math.sin(t * 3), nospin: 1 };
   if (e < .12) return { f: HOME7, s: 1, r: -12, nospin: 1 };
   if (e < 1.15) { const c = (e - .12) / 1.03; return { f: [lerp(220, 1300, c), 1537 - 14 * run], s: 1, r: 10, nospin: 1 }; }
   if (e < 2.1) return { f: [-400, 1537], s: 1, nospin: 1 };
@@ -91,7 +91,7 @@ WORLD.m7gleich = function (sc, ev, t, lt) {
   h += NSLOT(ev, [['panel', 'Unten nicht größer als oben'], ['foto', 'Fotos: beide Male gleich breit', 'hot'], ['nah', 'Näher ist er dort auch nicht'], ['act', 'Die Täuschung entsteht im Kopf', 'hot']]);
   return W(s + nshade(), h);
 };
-WMASC.m7gleich = (ev, t) => ({ f: HOME7, s: 1, prop: ev.foto !== undefined && ev.nah === undefined ? '📸' : '', nospin: 1 });
+WMASC.m7gleich = () => ({ f: HOME7, s: 1, nospin: 1 });
 
 // ---------- Teil 2: Baum wandert in die Ferne und bleibt im Bild gleich gross, Mond hinter der Stadt, Schienen, Blick aus dem All ----------
 WORLD.m7hirn = function (sc, ev, t, lt) {
