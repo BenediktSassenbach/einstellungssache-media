@@ -38,7 +38,8 @@ function g14a(sc, ev, t, lt) { let s = ''; const la = ev.lang, li = ev.licht, a 
 const L14A = [['spek', 'WLAN und Licht: beides Wellen'], ['lang', 'WLAN-Welle: rund 12 cm', 'hot'], ['licht', 'Licht: unter 0,001 mm'], ['act', 'Rund 200.000 Mal länger', 'hot']];
 
 // ---------- Teil 2: Das Material entscheidet. Ziegel schluckt Licht, WLAN kommt durch, jede Wand schwaecht ----------
-function g14b(sc, ev, t, lt) { let s = ''; const l2 = ev.licht2, d = ev.durch, a = ev.act, k = back(cl((lt - .4) / .4)), YL = 815, YW = 1010;
+// o.full: die Wand reicht vom Boden bis zur Decke und ist die Wand des Ortes (Design 3.0)
+function g14b(sc, ev, t, lt, o) { o = o || {}; let s = ''; const l2 = ev.licht2, d = ev.durch, a = ev.act, k = back(cl((lt - .4) / .4)), YL = 815, YW = 1010, WY = o.full ? 232 : 705, WH = o.full ? 1318 : 415;
   // Lampe und Auge (Licht-Reihe), Router und Handy (WLAN-Reihe)
   s += '<g opacity="' + cl((lt - .6) / .3) + '"><circle cx="190" cy="' + YL + '" r="' + (l2 === undefined ? 0 : 62 + 6 * Math.sin(t * 6)) + '" fill="#FFE14D" opacity=".25"/><circle cx="190" cy="' + YL + '" r="40" fill="#FFE14D" stroke="#0B1020" stroke-width="6"/><rect x="172" y="' + (YL + 34) + '" width="36" height="26" rx="6" fill="#C9CFDD" stroke="#0B1020" stroke-width="5"/>';
   s += '<ellipse cx="840" cy="' + YL + '" rx="56" ry="38" fill="#fff" stroke="#0B1020" stroke-width="6"/><circle cx="828" cy="' + YL + '" r="19" fill="#5CE1FF" stroke="#0B1020" stroke-width="4"/><circle cx="828" cy="' + YL + '" r="8" fill="#0B1020"/>' + router14(190, YW + 62, .62, t) + '</g>';
@@ -46,14 +47,14 @@ function g14b(sc, ev, t, lt) { let s = ''; const l2 = ev.licht2, d = ev.durch, a
     s += okx1(885, YL - 40, 26, false, (l2 - .7) / .3); }
   const amp = x => x < 430 ? 44 : x < 510 ? lerp(44, 27, (x - 430) / 80) : a === undefined || x < 640 ? 27 : x < 760 ? lerp(27, 10, (x - 640) / 120) : 10;
   if (d !== undefined) s += wave14(250, 790, YW, amp, 92, t * 9, '#5CE1FF', 10, d / .8);
-  s += '<g transform="translate(470 912) scale(' + k + ') translate(-470 -912)">' + brick14(430, 705, 80, 415, 'a', .86) + '</g>';
-  if (a !== undefined) { const k2 = back(cl(a / .35)); s += '<g transform="translate(700 912) scale(' + k2 + ') translate(-700 -912)">' + brick14(640, 705, 120, 415, 'b', .86) + '</g>'; }
+  s += '<g transform="' + (o.full ? 'translate(470 1550) scale(1 ' + ease(cl((lt - .3) / .5)) + ') translate(-470 -1550)' : 'translate(470 912) scale(' + k + ') translate(-470 -912)') + '">' + brick14(430, WY, 80, WH, 'a', .86) + '</g>';
+  if (a !== undefined) { const k2 = back(cl(a / .35)); s += '<g transform="' + (o.full ? 'translate(700 1550) scale(1 ' + ease(cl(a / .45)) + ') translate(-700 -1550)' : 'translate(700 912) scale(' + k2 + ') translate(-700 -912)') + '">' + brick14(640, WY, 120, WH, 'b', .86) + '</g>'; }
   s += phone14(850, YW, d === undefined || d < .8 ? 0 : a !== undefined && a > .6 ? 1 : 3, (lt - .8) / .3);
   return s; }
 const L14B = [['wand', 'Das Material entscheidet'], ['licht2', 'Ziegel schluckt Licht', 'red'], ['durch', 'WLAN kommt durch', 'hot'], ['act', 'Jede Wand schwächt das Signal', 'red']];
 
 // ---------- Teil 3: Metall blockt, Wasser schluckt, Router frei, erhoeht und mittig, nicht in den Schrank ----------
-// o.squirt: der Fisch spritzt Schalti nass (nur bisheriger Stil)
+// o.squirt: der Fisch spritzt Schalti nass (nur bisheriger Stil). o.room: Regal, Router und Wellen zeichnet der Ort selbst (Design 3.0)
 function g14c(sc, ev, t, lt, o) { o = o || {}; let s = ''; const w = ev.wasser, f = ev.frei, a = ev.act, YW = 980;
   if (f === undefined && a === undefined) { const k = cl((lt - .5) / .3);
     s += '<g opacity="' + k + '">' + router14(170, YW + 62, .62, t) + '</g>';
@@ -74,7 +75,7 @@ function g14c(sc, ev, t, lt, o) { o = o || {}; let s = ''; const w = ev.wasser, 
     return s; }
   // Aufstellen: Regal in der Mitte, Router faehrt nach oben, Wellen breiten sich frei aus
   const fk = f === undefined ? 1 : ease(cl(f / .6)), ry = lerp(1104, 900, fk);
-  s += '<path d="M110 1110 H900" stroke="#3A4A7A" stroke-width="6" stroke-linecap="round"/>' + rings14(560, ry - 70, t, 4, '#5CE1FF', 330 * fk + 60, .75) + '<rect x="380" y="900" width="260" height="208" rx="12" fill="#17365F" stroke="#F4F6FB" stroke-width="6"/><path d="M380 1004 H640 M510 904 V1104" stroke="#2A5A94" stroke-width="5"/>' + router14(560, ry, .62, t);
+  if (!o.room) s += '<path d="M110 1110 H900" stroke="#3A4A7A" stroke-width="6" stroke-linecap="round"/>' + rings14(560, ry - 70, t, 4, '#5CE1FF', 330 * fk + 60, .75) + '<rect x="380" y="900" width="260" height="208" rx="12" fill="#17365F" stroke="#F4F6FB" stroke-width="6"/><path d="M380 1004 H640 M510 904 V1104" stroke="#2A5A94" stroke-width="5"/>' + router14(560, ry, .62, t);
   if (a === undefined) s += chip3(215, 790, 'frei', 38, '#3DFF7A', '#0B1020', (f - .7) / .3) + chip3(800, 790, 'erhöht', 38, '#3DFF7A', '#0B1020', (f - 1.2) / .3) + chip3(800, 1010, 'mittig', 38, '#3DFF7A', '#0B1020', (f - 1.7) / .3);
   else [[215, 'Schrank', 0], [805, 'Fernseher', .5]].forEach(q => { const k = back(cl((a - q[2]) / .35)); if (k <= 0) return; s += '<g transform="translate(' + q[0] + ' 965) scale(' + k + ')"><rect x="-105" y="-125" width="210" height="250" rx="22" fill="#1B2748" stroke="#F4F6FB" stroke-width="6"/>' + (q[2] === 0 ? '<rect x="-64" y="-92" width="128" height="140" rx="8" fill="#7A5230" stroke="#0B1020" stroke-width="5"/><path d="M0 -92 V48" stroke="#0B1020" stroke-width="5"/><circle cx="-14" cy="-20" r="6" fill="#FFD23F"/><circle cx="14" cy="-20" r="6" fill="#FFD23F"/>' : '<rect x="-74" y="-88" width="148" height="100" rx="8" fill="#0B1020" stroke="#C9CFDD" stroke-width="6"/><path d="M-30 30 H30 M0 12 V30" stroke="#C9CFDD" stroke-width="7" stroke-linecap="round"/>') + svgT(0, 100, q[1], 32, '#F4F6FB') + '</g>' + okx1(q[0] + 78, 850, 30, false, (a - q[2] - .4) / .3); });
   return s; }
