@@ -46,17 +46,26 @@ const NSLOT = (ev, l) => slot(ev, l);
 
 // ---------- Einstieg: Der Riesenmond steigt hinter der Stadt auf, loest sich und kegelt Schalti um ----------
 WORLD.h7m7 = function (sc, ev, t, lt) {
-  const e = ev.roll, end = sc.lines[4] ? sc.lines[4].start - sc.start : 8, k = cl(lt / end), on = e !== undefined && e >= .12, sh = shake7(e !== undefined && e > .4 ? e - .4 : undefined, t);
+  const e = ev.roll, end = sc.lines[4] ? sc.lines[4].start - sc.start : 8, k = cl(lt / end), on = e !== undefined && e >= .12, sh = shake7(e !== undefined && e > 1 ? e - 1 : undefined, t);
   const rise = ease(cl(lt / 3)), w = on ? 1 - .8 * cl((e - .12) / 1.2) : .25 + .75 * rise;
   let s = nsky(t, { warm: w });
   if (!on) s += lun(600, lerp(1340, 870, rise), 235 * (1 + .12 * k + .015 * Math.sin(t * 3)), 1, -6 + 12 * k) + nbirds(t, 1150 - ((t * 110) % 1500), 800, 5, 1);
   s += ntown(-20, 1100, 1106, 1.35, t) + nground(t, 1100, on ? null : { x: 600, r: 235, w: 1, op: rise });
-  if (on) { const c = cl((e - .12) / .7); s += lun(lerp(600, -330, c), lerp(870, 1395, cl(c * 2.4)), lerp(262, 180, cl(c * 3)), 1, -c * 900); if (e > .9) s += stars6(e - .4, t); }
+  if (on) { const g = m7roll(e); s += lun(g.x, g.y, g.r, 1, g.rot); if (e > 1.2 && e < 2.5) for (let i = 0; i < 5; i++) { const a = t * 4 + i * 1.257; s += '<path transform="translate(' + (760 + 110 * Math.cos(a)) + ' ' + (1262 + 30 * Math.sin(a)) + ') scale(' + (cl((e - 1.2) / .2) * (1 - cl((e - 2.2) / .3))) + ')" d="M0 -22 L6 -7 L22 -7 L9 3 L14 20 L0 10 L-14 20 L-9 3 L-22 -7 L-6 -7 Z" fill="#FFE14D" stroke="#0B1020" stroke-width="3"/>'; } }
   return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + nshade());
 };
-WMASC.h7m7 = (ev, t, lt, sc) => { const e = ev.roll, end = sc.lines[4] ? sc.lines[4].start - sc.start : 8, k = cl(lt / end);
-  if (e !== undefined && e > .4) { const c = cl((e - .4) / .5); return { f: [220 - 20 * Math.sin(Math.PI * c), 1537 - 34 * Math.sin(Math.PI * c)], s: 1, r: c < 1 ? -360 * c : 7 * Math.sin(t * 7) * (1 - cl((e - 2.4) / .5)) }; }
-  return { f: [220, 1537], s: 1, r: 3 * k * Math.sin(t * 12) };
+// Gag: Der Mond faellt auf die Wiese, rollt Schalti hinterher, der rennt weg, wird bei e = 1 eingeholt, sitzt benommen da und laeuft zurueck
+function m7roll(e) { if (e < .5) { const c = (e - .12) / .38; return { x: lerp(600, 430, c), y: lerp(870, 1385, c * c), r: lerp(262, 170, c), rot: -120 * c }; }
+  if (e < 1) { const c = (e - .5) / .5; return { x: lerp(430, 640, c), y: 1385 - 26 * Math.abs(Math.sin(c * Math.PI * 2)), r: 170, rot: -120 + 150 * c }; }
+  const c = cl((e - 1) / .7); return { x: lerp(640, 1340, c), y: 1385 + 30 * c - 40 * Math.sin(Math.PI * cl(c * 2)), r: 170, rot: 30 + 420 * c }; }
+const HOME7 = [220, 1537];
+WMASC.h7m7 = (ev, t, lt) => { const e = ev.roll, mk = ev.mark, run = Math.abs(Math.sin(t * 17));
+  if (e === undefined) { const hop = mk !== undefined && mk < .7 ? 20 * Math.abs(Math.sin(mk * 13)) : 0; return { f: [220, 1537 - hop], s: 1, r: -5 + 2 * Math.sin(t * 3), prop: '🔭', nospin: 1 }; }
+  if (e < .25) return { f: [220, 1537], s: 1, r: -12, nospin: 1 };
+  if (e < 1) { const c = (e - .25) / .75; return { f: [lerp(220, 740, c), 1537 - 14 * run], s: 1, r: 9, nospin: 1 }; }
+  if (e < 1.25) { const c = (e - 1) / .25; return { f: [740 + 20 * c, 1537 - 30 * Math.sin(Math.PI * c)], s: 1, r: 22 * Math.sin(Math.PI * c * 2), nospin: 1 }; }
+  if (e < 2.4) return { f: [760, 1537], s: 1, r: 9 * Math.sin(t * 7), nospin: 1 };
+  const c = ease(cl((e - 2.4) / .9)); return { f: [lerp(760, 220, c), 1537 - 10 * run * (c < 1 ? 1 : 0)], s: 1, r: c < 1 ? -6 : 0, flip: c < .95, nospin: 1 };
 };
 
 // ---------- Teil 1: Zeitraffer vom Horizont nach oben, zwei Fotos im Vergleich, Gedankenblase ----------
@@ -84,7 +93,11 @@ WORLD.m7gleich = function (sc, ev, t, lt) {
   h += NSLOT(ev, [['panel', 'Unten nicht größer als oben'], ['foto', 'Fotos: beide Male gleich breit', 'hot'], ['nah', 'Näher ist er dort auch nicht'], ['act', 'Die Täuschung entsteht im Kopf', 'hot']]);
   return W(s + nshade(), h);
 };
-WMASC.m7gleich = () => BIG();
+WMASC.m7gleich = (ev, t, lt) => { const fo = ev.foto, na = ev.nah, a = ev.act, u = ease(cl((lt - 2.3) / 1.9));
+  if (a !== undefined) return { f: [220 - 14 * ease(cl(a / .3)), 1537], s: 1, r: -11 * ease(cl(a / .3)) * (1 - cl((a - 1.6) / .5)), nospin: 1 };
+  if (fo !== undefined && na === undefined) return { f: [220, 1537 - (fo < .35 ? 22 * Math.sin(Math.PI * fo / .35) : 0)], s: 1, r: -4, prop: '📸', nospin: 1 };
+  if (fo !== undefined) return { f: HOME7, s: 1, prop: '👍', nospin: 1 };
+  return { f: HOME7, s: 1, r: -9 * Math.sin(Math.PI * u), prop: lt > .8 && u < .05 ? '👆' : '', nospin: 1 }; };
 
 // ---------- Teil 2: Baum wandert in die Ferne und bleibt im Bild gleich gross, Mond hinter der Stadt, Schienen, Blick aus dem All ----------
 WORLD.m7hirn = function (sc, ev, t, lt) {
@@ -114,7 +127,11 @@ WORLD.m7hirn = function (sc, ev, t, lt) {
   h += NSLOT(ev, [['schatz', 'Das Gehirn rechnet mit Entfernung'], ['haus', 'Häuser und Bäume als Vergleich'], ['ponzo', 'Beide Balken sind gleich lang', 'hot'], ['act', 'Nicht ganz geklärt: auch im All', 'hot']]);
   return W(s + nshade(), h);
 };
-WMASC.m7hirn = (ev, t, lt, sc) => (ev.ponzo !== undefined && ev.act === undefined) ? p7rails(ev.ponzo, D7(sc, 2), t).m : BIG();
+WMASC.m7hirn = (ev, t, lt, sc) => { const ha = ev.haus, po = ev.ponzo, a = ev.act;
+  if (a !== undefined) { const k = ease(cl(a / .8)); return { f: [220 + 26 * Math.sin(t * .9) * k, 1537 - 30 * k + 12 * Math.sin(t * 1.3) * k], s: lerp(1, .82, k), r: 15 * Math.sin(t * 1.1) * k, nospin: 1 }; } // schwebt schwerelos
+  if (po !== undefined) return Object.assign({ nospin: 1 }, p7rails(po, D7(sc, 2), t).m);
+  if (ha !== undefined) return { f: HOME7, s: 1, r: -4, prop: ha > .8 ? '📏' : '', nospin: 1 };
+  const u = ease(cl((lt - 1.5) / 2.2)), w = cl((lt - 3.7) / .25) * (1 - cl((lt - 4.3) / .3)); return { f: [220 - 26 * w, 1537], s: 1, r: 6 * u - 14 * w, nospin: 1 }; };
 
 // ---------- Teil 3: Fingernagel-Test, Blick durch die Papierrolle, Farbe, Weg des Lichts durch die Luft ----------
 WORLD.m7test = function (sc, ev, t, lt) {
@@ -138,7 +155,11 @@ WORLD.m7test = function (sc, ev, t, lt) {
   h += NSLOT(ev, [['finger', 'Arm strecken: Mond = Fingernagel'], ['rolle', 'Papierrolle: er schrumpft sofort', 'hot'], ['farbe', 'Echt ist nur die Farbe'], ['act', 'Luft streut blaues Licht weg', 'hot']]);
   return W(s + nshade(), h);
 };
-WMASC.m7test = () => BIG();
+WMASC.m7test = (ev, t, lt) => { const ro = ev.rolle, fa = ev.farbe, a = ev.act;
+  if (a !== undefined) return { f: [220, 1537 - 12 * Math.abs(Math.sin(t * 6)) * (1 - cl((a - 1.2) / .4))], s: 1, r: 5 * Math.sin(t * 6) * (1 - cl((a - 1.2) / .4)), prop: '💨', nospin: 1 };
+  if (fa !== undefined) return { f: HOME7, s: 1, r: -5, prop: '🎨', nospin: 1 };
+  if (ro !== undefined) return { f: HOME7, s: 1, r: -10 + 3 * Math.sin(t * 3), prop: '🧻', nospin: 1 };
+  return { f: HOME7, s: 1, r: -4, prop: lt > .7 ? '☝️' : '', nospin: 1 }; };
 
 // ---------- Schluss ----------
 WORLD.m7outro = function (sc, ev, t) { return W(nsky(t, { warm: .15, seed: 3 }) + lun(800, 960 + 8 * Math.sin(t * .8), 104, .1) + ntown(-20, 1100, 1106, 1, t) + nground(t, 1100, { x: 800, r: 104, w: .1 }) + nshade()); };

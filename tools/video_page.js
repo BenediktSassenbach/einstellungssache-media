@@ -450,7 +450,7 @@ function draw(t) {
   m.style.transform = 'translate(' + (Math.sin(t * 1.1) * 10) + 'px,' + (Math.sin(t * 2.6) * 7 - (talking ? open * 5 : 0) - jump) + 'px) rotate(' + (Math.sin(t * 1.7) * 3 + spin) + 'deg)';
   // Pilot P005: Schalti bewegt sich durch die Welt und haelt Requisiten
   const pose = sc.world && typeof WMASC !== 'undefined' && WMASC[sc.world] ? WMASC[sc.world](ev, t, lt, sc) : null;
-  if (pose) { const s0 = pose.s, hop = pose.walk ? Math.abs(Math.sin(t * 11)) * 22 * s0 : 0;
+  if (pose) { if (pose.nospin) { spin = 0; jump = 0; } /* Folge schaltet den Standard-Salto ab und spielt eigene Aktionen */ const s0 = pose.s, hop = pose.walk ? Math.abs(Math.sin(t * 11)) * 22 * s0 : 0;
     m.style.left = (pose.f[0] - 150) + 'px'; m.style.top = (pose.f[1] - 225) + 'px'; m.style.transformOrigin = '50% 100%';
     m.style.transform = 'translate(0px,' + (-hop - jump * (s0 >= .8 ? .35 : s0) + Math.sin(t * 2.6) * 4) + 'px) rotate(' + ((pose.r || 0) + spin + Math.sin(t * 1.7) * 3) + 'deg) scale(' + (pose.flip ? -s0 : s0) + ',' + s0 + ')';
     if (pose.prop) m.innerHTML += '<span style="position:absolute;left:-46px;top:-40px;font-size:100px;line-height:1;font-family:Noto Color Emoji;transform:scale(' + (pose.flip ? -1 : 1) + ',1) rotate(' + (10 * Math.sin(t * 4)) + 'deg)">' + pose.prop + '</span>';
