@@ -5,7 +5,7 @@
  "id": "P007T",
  "titel": "Warum sieht der Mond am Horizont so riesig aus?",
  "quelle": "NASA Science, The Moon Illusion: Why Does the Moon Look So Big Sometimes? (Stand 13.02.2025): Fotos beweisen, dass der Mond am Horizont gleich breit ist wie hoch am Himmel; die Täuschung entsteht in der Verarbeitung im Gehirn; die Entfernung des Mondes ändert sich dabei kaum; Erklärungsansätze über Größen- und Entfernungsschätzung und Vordergrund-Objekte wie Bäume und Gebäude, Vergleich mit der Ponzo-Täuschung; eine gesicherte Erklärung gibt es nicht, auch Astronauten im Orbit sehen die Täuschung; Tests: ausgestreckter Zeigefinger (Fingernagel etwa so groß wie der Mond), Papierrolle, zwei Fotos mit gleichem Zoom; echt ist die gelblich-orange Farbe tief am Himmel, weil das Licht einen längeren Weg durch die Atmosphäre nimmt und mehr blaues Licht weggestreut wird. Anlass (nur für Bildunterschrift, nicht im Video): Supermond am 24.11.2026, Vollmond 15:53 Uhr MEZ. Aufhänger 'Der Riesenmond am Horizont existiert gar nicht' ist zugespitzt: der Mond ist echt, nur seine scheinbare Größe am Horizont ist eine Täuschung. Das Video stellt das klar.",
- "gagDelay": 1.0,
+ "gagDelay": 0.5,
  "gagTag": "[groans] [dizzy]",
  "scenes": [
   {
@@ -44,8 +44,6 @@
    "type": "tip",
    "num": "1",
    "title": "Immer gleich groß",
-   "quip": "Alles Kopfsache.",
-   "quipAt": 3,
    "world": "m7gleich",
    "lines": [
     {
@@ -76,8 +74,6 @@
    "type": "tip",
    "num": "2",
    "title": "Dein Gehirn rät",
-   "quip": "Hilfe, ein Zug!",
-   "quipAt": 2,
    "world": "m7hirn",
    "lines": [
     {
@@ -108,8 +104,6 @@
    "type": "tip",
    "num": "3",
    "title": "Teste es selbst",
-   "quip": "Daumen hoch.",
-   "quipAt": 1,
    "world": "m7test",
    "lines": [
     {
