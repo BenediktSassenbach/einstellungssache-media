@@ -35,6 +35,6 @@ function skelK(x, y, s, t, o) { o = o || {}; const g0 = cl(o.g === undefined ? 1
     s2 += '</g>'; }
   if (!o.noSkull) s2 += skullK(0, shY - 22 - 58 * hz, hz, (o.tilt || 0) + 2 * Math.sin(t * 1.5), o.sk === undefined ? 1 : o.sk, cart, t, { look: o.look, lookY: o.lookY, smile: o.smile });
   s2 += '</g>';
-  return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') scale(' + s.toFixed(3) + ')" opacity="' + (o.op === undefined ? 1 : o.op) + '">' + s2 + '</g>'; }
+  return '<g id="figurK" transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') scale(' + s.toFixed(3) + ')" opacity="' + (o.op === undefined ? 1 : o.op) + '">' + s2 + '</g>'; }
 // Kopfhoehe des Skeletts ueber den Fuessen (fuer abnehmbare Schaedel und Schilder)
 function skelHeadK(g) { const g0 = cl(g), L = lerp(.56, 1, g0), hz = lerp(1.5, 1, g0); return (122 * L + 112 * L + 20) + 186 + 22 + 58 * hz; }

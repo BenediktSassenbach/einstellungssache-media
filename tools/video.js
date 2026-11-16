@@ -65,6 +65,19 @@ function ff(a) { return new Promise((res, rej) => { const p = spawn('ffmpeg', a,
       for (const k of r) { if (!hits[k]) hits[k] = [x, x, 0]; hits[k][1] = x; hits[k][2]++; }
     }
     const ks = Object.keys(hits); console.log(ks.length ? ks.map(k => hits[k][0].toFixed(1) + '-' + hits[k][1].toFixed(1) + 's (' + hits[k][2] + 'x) ' + k).join('\n') : 'KEINE UEBERLAPPUNG'); await br.close(); return; }
+  if (args.includes('--rahmen')) { // Rahmen-Pruefung: Elemente mit data-in="id" muessen ganz im Element #id liegen, Elemente mit data-frei="id" duerfen #id nicht beruehren
+    const pg = await mk(); const hits = {};
+    for (let x = 0.05; x < S.total; x += 0.1) {
+      await pg.evaluate(t => draw(t), x);
+      const r = await pg.evaluate(() => {
+        const leaf = g => { let b = null; for (const e of g.querySelectorAll('path,rect,circle,ellipse,text,image')) { if (e.closest('clipPath') || e.closest('defs')) continue; let skip = false; for (let n = e; n && n !== g.parentNode; n = n.parentNode) { if (n !== e && n.getAttribute && n.getAttribute('clip-path')) skip = true; const o = n.getAttribute && n.getAttribute('opacity'); if (o !== null && o !== undefined && +o < 0.05) skip = true; } if (skip) continue; const q = e.getBoundingClientRect(); if (q.width < 1 && q.height < 1) continue; b = b ? { left: Math.min(b.left, q.left), right: Math.max(b.right, q.right), top: Math.min(b.top, q.top), bottom: Math.max(b.bottom, q.bottom) } : { left: q.left, right: q.right, top: q.top, bottom: q.bottom }; } return b; };
+        const out = [], f = v => Math.round(v);
+        for (const g of document.querySelectorAll('[data-in]')) { const ref = document.getElementById(g.getAttribute('data-in')), b = leaf(g); if (!ref || !b) continue; const R = ref.getBoundingClientRect(), d = [R.left - b.left, b.right - R.right, R.top - b.top, b.bottom - R.bottom], m = Math.max(...d); if (m > 1.5) out.push(g.id + ' ragt ueber ' + g.getAttribute('data-in') + ' (' + ['links', 'rechts', 'oben', 'unten'][d.indexOf(m)] + ' ' + f(m) + ' px)'); }
+        for (const g of document.querySelectorAll('[data-frei]')) for (const rid of g.getAttribute('data-frei').split(',')) { const ref = document.getElementById(rid), b = leaf(g); if (!ref || !b) continue; const R = leaf(ref); if (!R) continue; const w = Math.min(b.right, R.right) - Math.max(b.left, R.left), h = Math.min(b.bottom, R.bottom) - Math.max(b.top, R.top); if (w > 2 && h > 2) out.push(g.id + ' beruehrt ' + rid + ' (' + f(w) + ' x ' + f(h) + ' px)'); }
+        return out; });
+      for (const k of r) { const key = k.replace(/\d+ px|\d+ x \d+ px/, m => m); const kk = k.replace(/\(.*\)/, '').trim(); if (!hits[kk]) hits[kk] = [x, x, 0, k]; hits[kk][1] = x; hits[kk][2]++; if (k.length) hits[kk][3] = (parseInt((hits[kk][3].match(/(\d+) (px|x)/) || [0, 0])[1]) >= parseInt((k.match(/(\d+) (px|x)/) || [0, 0])[1])) ? hits[kk][3] : k; }
+    }
+    const ks = Object.keys(hits); console.log(ks.length ? ks.map(k => hits[k][0].toFixed(1) + '-' + hits[k][1].toFixed(1) + 's (' + hits[k][2] + 'x) groesster Fall: ' + hits[k][3]).join('\n') : 'ALLES IM RAHMEN'); await br.close(); return; }
   const fr = opt('--frames');
   if (fr) { const pg = await mk(); for (const x of fr.split(',')) { await pg.evaluate(t => draw(t), +x); await pg.screenshot({ path: path.join(out, 'frame_' + x + '.jpg'), type: 'jpeg', quality: 80 }); } await br.close(); return; }
   const nur = opt('--szenen') ? opt('--szenen').split(',').map(x => +x - 1) : null; // nur diese Szenen neu rendern, Rest wiederverwenden
