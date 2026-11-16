@@ -45,14 +45,38 @@ old3(['h7c4', 'c4dichte', 'c4gitter', 'c4see', 'c4outro'], '#FF6BD6', (n, sc, ev
 const FL4 = [600, 1076];
 function fdy4(q, e, t) { if (e === undefined) return q >= .45 && q < .8 ? 24 * Math.sin(Math.PI * (q - .45) / .35) : 4 * Math.sin(t * 2);
   if (e < .35) return 0; if (e < .6) return 135 * ease((e - .35) / .25); if (e < .72) return lerp(135, -70, ease((e - .6) / .12)); return -70 * Math.exp(-(e - .72) * 3) * Math.cos((e - .72) * 13); }
-function floe4(x, y, r) { return '<g transform="translate(' + x + ' ' + y + ') rotate(' + r + ') scale(1.32)"><path d="M-150 0 v28 a150 34 0 0 0 300 0 v-28 Z" fill="#8FC4EE" stroke="#0B1020" stroke-width="6"/><ellipse rx="150" ry="34" fill="#F4FAFF" stroke="#0B1020" stroke-width="6"/><path d="M-90 -6 l40 10 l30 -8 M30 12 l46 -8" stroke="#BFD8FF" stroke-width="5" fill="none" stroke-linecap="round"/></g>'; }
-WORLD.h7c4_3 = function (sc, ev, t, lt) { const e = ev.bonk, q = since3(sc, 3, lt), dy = fdy4(q, e, t), hit = e !== undefined && e >= .72 ? e - .72 : undefined, sh = shake7(hit, t);
-  let s = lake4(t, { jetty: 0 }) + '<ellipse cx="600" cy="1094" rx="372" ry="98" fill="#F4FAFF" stroke="#0B1020" stroke-width="6"/><ellipse cx="600" cy="1098" rx="348" ry="82" fill="#0E3A7A"/>';
-  for (let i = 0; i < 2; i++) s += '<path d="M' + (380 + i * 250) + ' ' + (1120 + i * 14) + ' q40 ' + (-8 + 4 * Math.sin(t * 2 + i)) + ' 80 0" stroke="#7FD3FF" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>';
+// Kantiger Umriss rund um eine Ellipse (fester Zufall), fuer Scholle, Eisloch und Eisstuecke
+function poly4(cx, cy, rx, ry, n, seed, amp) { let d = ''; for (let i = 0; i < n; i++) { const a = i * 6.2832 / n, k = 1 + amp * (rnd(seed + i) - .5) * 2; d += (cx + rx * k * Math.cos(a)).toFixed(1) + ',' + (cy + ry * k * Math.sin(a)).toFixed(1) + ' '; } return d; }
+const FP4 = poly4(0, 0, 196, 46, 13, 40, .09), FU4 = poly4(0, 0, 196, 46, 13, 40, .09), HP4 = poly4(600, 1096, 372, 96, 19, 7, .07);
+// Eisscholle: kantige Platte mit heller Schneedecke, blauer Bruchkante, Glanzlichtern. Der groessere Teil haengt sichtbar unter Wasser
+function floe4(x, y, r) { let s = '<g transform="translate(' + x + ' ' + y + ') rotate(' + r + ')">';
+  s += '<polygon points="' + FU4 + '" transform="translate(0 74) scale(.86 1.5)" fill="#3F8FD8" opacity=".38"/><polygon points="' + FU4 + '" transform="translate(0 52) scale(.95 1.25)" fill="#5FB0EE" opacity=".45"/>';
+  s += '<polygon points="' + FP4 + '" transform="translate(0 36)" fill="#6FB2E8" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/>';
+  for (let i = 0; i < 6; i++) { const xx = -150 + i * 60 + 16 * rnd(i + 3); s += '<path d="M' + xx + ' ' + (30 + 10 * rnd(i + 9)) + ' l' + (8 - 16 * rnd(i + 5)) + ' 34" stroke="#BFE3FF" stroke-width="5" stroke-linecap="round" opacity=".8"/>'; }
+  s += '<polygon points="' + FP4 + '" fill="url(#f4t)" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/>';
+  s += '<path d="M-120 -8 q40 -22 96 -14 q50 6 70 -6 q40 -10 76 8" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round"/><ellipse cx="-40" cy="6" rx="90" ry="14" fill="#fff" opacity=".8"/><ellipse cx="90" cy="14" rx="48" ry="9" fill="#fff" opacity=".7"/>';
+  s += '<path d="M-150 14 l44 8 l26 -10 M40 26 l40 -6 l30 8 M-30 -20 l22 10" stroke="#9CCBF0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+  return s + '</g>'; }
+// Der See rund um die Scholle: dunkles Wasserloch mit Eiskante, Risse im Eis, Schneewehen, treibende Eisstuecke, Spiegelung der Berge
+function hole4(t, dy, e) { let s = '<defs><linearGradient id="h4w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#061E52"/><stop offset="1" stop-color="#1C66C0"/></linearGradient><linearGradient id="f4t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#CFEAFF"/></linearGradient><clipPath id="h4c"><polygon points="' + HP4 + '"/></clipPath></defs>';
+  // Spiegelung der Berge und Schneewehen auf dem Eis
+  s += '<path d="M-20 1012 L140 1110 L260 1050 L400 1130 L560 1044 L700 1118 L860 1048 L980 1100 L1100 1040 V1012 Z" fill="#2A2A7A" opacity=".13"/>';
+  [[170, 1300, 150, 16], [880, 1360, 170, 18], [520, 1440, 220, 20], [930, 1190, 110, 12], [120, 1150, 100, 10]].forEach(q => { s += '<ellipse cx="' + q[0] + '" cy="' + q[1] + '" rx="' + q[2] + '" ry="' + q[3] + '" fill="#fff" opacity=".5"/>'; });
+  // Risse, die vom Loch ausgehen
+  [[250, 1120, 120, 1160, 40, 1150], [300, 1160, 210, 1250, 150, 1330], [930, 1140, 1010, 1190, 1080, 1180], [860, 1170, 900, 1260, 990, 1310], [560, 1192, 540, 1270, 600, 1340], [700, 1190, 760, 1250, 740, 1320]].forEach(c => { s += '<path d="M' + c[0] + ' ' + c[1] + ' L' + c[2] + ' ' + c[3] + ' L' + c[4] + ' ' + c[5] + '" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".75"/><path d="M' + c[2] + ' ' + c[3] + ' l' + (c[4] > c[2] ? 40 : -40) + ' -14" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".55"/>'; });
+  // Eisloch: Bruchkante des Eises, darin das Wasser
+  s += '<polygon points="' + HP4 + '" transform="translate(0 -5)" fill="#fff" stroke="#fff" stroke-width="16" stroke-linejoin="round"/><polygon points="' + HP4 + '" fill="#8CC6F2" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/>';
+  s += '<g clip-path="url(#h4c)"><polygon points="' + HP4 + '" transform="translate(0 22)" fill="url(#h4w)"/>';
+  for (let i = 0; i < 5; i++) { const y = 1070 + i * 26, x = 330 + ((i * 137 + t * 26) % 520); s += '<path d="M' + x + ' ' + y + ' q26 ' + (-7 + 3 * Math.sin(t * 2 + i)) + ' 52 0" stroke="#8FD0FF" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"/>'; }
   s += floe4(FL4[0], FL4[1] + dy, e !== undefined && e > .72 ? 5 * Math.exp(-(e - .72) * 3) * Math.sin((e - .72) * 13) : 0);
-  if (dy > 6) s += '<ellipse cx="600" cy="1098" rx="348" ry="82" fill="#0E3A7A" opacity="' + cl(dy / 60) * .72 + '"/>';
+  if (dy > 6) s += '<rect x="200" y="980" width="800" height="260" fill="#0A2E6E" opacity="' + (cl(dy / 60) * .7) + '"/>';
+  // kleine Eisstuecke treiben im Wasser
+  [[330, 1118, 30, 3], [880, 1090, 38, 5], [820, 1156, 24, 8]].forEach(q => { const by = q[1] + 3 * Math.sin(t * 2 + q[3]) + (e !== undefined && e > .72 ? 8 * Math.exp(-(e - .72) * 2) * Math.sin((e - .72) * 11 + q[3]) : 0); s += '<polygon points="' + poly4(q[0], by + 8, q[2], q[2] * .3, 7, q[3], .16) + '" fill="#6FB2E8" stroke="#0B1020" stroke-width="4" stroke-linejoin="round"/><polygon points="' + poly4(q[0], by, q[2], q[2] * .3, 7, q[3], .16) + '" fill="#F4FAFF" stroke="#0B1020" stroke-width="4" stroke-linejoin="round"/>'; });
+  return s + '</g>'; }
+WORLD.h7c4_3 = function (sc, ev, t, lt) { const e = ev.bonk, q = since3(sc, 3, lt), dy = fdy4(q, e, t), hit = e !== undefined && e >= .72 ? e - .72 : undefined, sh = shake7(hit, t);
+  let s = lake4(t, { jetty: 0 }) + hole4(t, dy, e);
   if (e !== undefined && e > .35 && e < 1.3) for (let i = 0; i < 12; i++) { const c = cl((e - (i % 2 ? .72 : .35)) / .55); if (c <= 0 || c >= 1) continue; const a = -Math.PI * (.1 + .8 * rnd(i + 2)), d = 70 + 250 * c; s += drop(600 + d * Math.cos(a), 1070 + d * .8 * Math.sin(a) + 260 * c * c, 1.1, '#BFEAFF'); }
-  if (hit !== undefined) { for (let i = 0; i < 2; i++) { const c = (hit * .9 + i * .5) % 1; s += '<ellipse cx="600" cy="1100" rx="' + (205 + 130 * c) + '" ry="' + (46 + 30 * c) + '" fill="none" stroke="#BFEAFF" stroke-width="5" opacity="' + (1 - c) * cl(2.2 - hit) + '"/>'; } if (hit > .22 && hit < 1.4) s += word7('PLOPP!', 590, 870, hit - .22, '#FFE14D', -6); }
+  if (hit !== undefined) { for (let i = 0; i < 2; i++) { const c = (hit * .9 + i * .5) % 1; s += '<ellipse cx="600" cy="1104" rx="' + (215 + 120 * c) + '" ry="' + (50 + 26 * c) + '" fill="none" stroke="#BFEAFF" stroke-width="5" opacity="' + (1 - c) * cl(2.2 - hit) + '"/>'; } if (hit > .22 && hit < 1.4) s += word7('PLOPP!', 590, 870, hit - .22, '#FFE14D', -6); }
   return look3(W('<g transform="translate(' + (sh[0] * .5) + ' ' + (sh[1] * .5) + ')">' + s + '</g>' + shade3()), sc, t, lt, '#FF6BD6'); };
 WMASC.h7c4_3 = (ev, t, lt, sc) => { const e = ev.bonk, q = since3(sc, 3, lt), dy = fdy4(q, e, t), S = .78, Y = FL4[1] - 8;
   if (e === undefined) { if (q < 0) return stay3(HOME3, 1, { r: -3 + 2 * Math.sin(t * 2) }); if (q < .45) return hop3(q / .45, HOME3, [600, Y], 230, 1, S); return stay3([600, Y + dy], S, { r: 3 * Math.sin(t * 5) }); }
