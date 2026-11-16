@@ -55,13 +55,13 @@ WORLD.b12b = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.
 WMASC.b12b = (ev, t) => { const p1 = ev.p1; if (p1 !== undefined && ev.p2 === undefined && p1 > .2 && p1 < 2.4) return stay3([220, 1537 - 18 * Math.abs(Math.sin(t * 5))], 1, { nospin: 1 }); if (ev.p2 !== undefined && ev.p2 < 1.3) return stay3([220 + 10 * Math.sin(cl(ev.p2 / 1.3) * Math.PI * 3), 1537], 1, { r: 8 * Math.sin(cl(ev.p2 / 1.3) * Math.PI * 3), nospin: 1 }); return BIG3(); };
 
 // ---------- Teil 3: Schicht 5 Kapsel mit Gelenkfluessigkeit, Schicht 6 Sehne mit Kniescheibe ----------
-WORLD.b12c = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.p2, a = ev.act, cp = cl((lt - .5) / .9), te = p2 === undefined ? 0 : cl((p2 - .5) / 1.2), pat = a === undefined ? 0 : cl((a - .3) / .7), kr = a === undefined && p2 !== undefined && p2 > 2.3 ? p2 - 2.3 : -1, pull = a !== undefined && a > 1.2 ? .5 - .5 * Math.cos((a - 1.2) * 3.4) : kr >= 0 ? .5 - .5 * Math.cos(kr * 5) : 0;
+WORLD.b12c = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.p2, a = ev.act, cp = cl((lt - .5) / .9), te = p2 === undefined ? 0 : cl((p2 - .9) / 1.0), pat = a === undefined ? 0 : cl((a - .3) / .7), kr = a === undefined && p2 !== undefined && p2 > 2.3 ? p2 - 2.3 : -1, pull = a !== undefined && a > 1.2 ? .5 - .5 * Math.cos((a - 1.2) * 3.4) : kr >= 0 ? .5 - .5 * Math.cos(kr * 5) : 0;
   let s = laborS(t, { rows: ROWS12, on: 4 + cp + te, cur: p2 !== undefined ? 6 : 5, cx: KX, note: NOTE12 });
   s += kneeS(KX, KY, KZ, t, { l: [1, 1, 1, 1, cp, te], pat: pat, pull: pull, q: 1 - pat });
   if (p1 !== undefined && p2 === undefined) s += markS(t, 0, 6, 118);
   if (a !== undefined && a > 1.5) s += lupeS(lupHeb(t, cl((a - 1.8) / .6)), (a - 1.5) / .35, KX - 30 * KZ, KY - 40 * KZ);
   if (p2 === undefined) s += LB(138, -70, 800, 'Kapsel', (lt - 1.4) / .35) + (p1 !== undefined ? LB(74, 9, 980, 'Flüssigkeit', (p1 - .3) / .35) : '');
-  if (p2 !== undefined && a === undefined) s += LB(40, -170, 760, 'Muskel', (p2 - 1.0) / .35) + LB(24, 40, 980, 'Sehne', (p2 - 1.7) / .35);
+  if (p2 !== undefined && a === undefined) s += LB(24, 40, 980, 'Sehne', (p2 - 1.1) / .35) + LB(40, -170, 760, 'Muskel', (p2 - 3.1) / .35);
   // Kraft: der Muskel zieht, gruene Pfeile laufen an der Sehne entlang nach oben
   if (kr >= 0) for (let i = 0; i < 3; i++) { const q = ((kr * 1.4 + i / 3) % 1), yy = KY + (80 - 190 * q) * KZ; s += '<path d="M' + (KX - 52 * KZ) + ' ' + yy.toFixed(0) + ' v-26 m0 0 l-9 11 m9 -11 l9 11" stroke="' + TH().hl + '" stroke-width="6" fill="none" stroke-linecap="round" opacity="' + Math.sin(Math.PI * q).toFixed(2) + '"/>'; }
   if (a !== undefined) s += ringS(t, 0, -58, 60, (a - .9) / .6) + LB(34, -60, 860, 'Kniescheibe', (a - 1.0) / .35);
