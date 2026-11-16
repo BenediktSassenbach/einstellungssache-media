@@ -6,7 +6,8 @@
 // Zum Loeschen einer Fassung: ihren Ordner videos/<ID>V3 entfernen. Diese Datei erst loeschen, wenn keine der fuenf Fassungen mehr existiert.
 
 // Alte Welt an neuem Ort: waehrend des Aufrufs liefern die alten Hintergruende (bgRad, stage7) den Ort
-function place3(name, bg, a) { const b0 = bgRad, s0 = stage7; bgRad = () => bg; stage7 = () => bg; try { return WORLD[name].apply(null, a); } finally { bgRad = b0; stage7 = s0; } }
+// Dazu (16.11.2026): kein treibender Staub (dust) und kein Schweben fester Gegenstaende (pop7)
+function place3(name, bg, a) { const b0 = bgRad, s0 = stage7, d0 = dust, p0 = pop7; bgRad = () => bg; stage7 = () => bg; dust = () => ''; pop7 = (cx, cy, lt, inner) => inner; try { return WORLD[name].apply(null, a); } finally { bgRad = b0; stage7 = s0; dust = d0; pop7 = p0; } }
 function old3(list, col, bgOf) { list.forEach(n => { WORLD[n + '_3'] = (sc, ev, t, lt, E) => look3(place3(n, bgOf(n, sc, ev, t, lt), [sc, ev, t, lt, E]), sc, t, lt, col); WMASC[n + '_3'] = (ev, t, lt, sc) => one3(WMASC[n] ? WMASC[n](ev, t, lt, sc) : null, ev); }); }
 // Hoechstens ein Salto, der am Schluss: der Standard-Salto bleibt nur beim letzten Satz an
 function one3(p, ev) { if (ev.save !== undefined) return p; p = p || BIG3(); p.nospin = 1; return p; }
@@ -61,6 +62,15 @@ function living6(t, o) { o = o || {}; const F = o.fy || 1130, w = cl(o.warm || 0
   s += '<rect y="' + (F - 24) + '" width="1080" height="26" fill="#DCE0FF" opacity=".28"/><path d="M0 ' + F + ' H1080" stroke="#0B1020" stroke-width="5"/>';
   return s + '<ellipse cx="240" cy="1596" rx="270" ry="46" fill="#8A3B5A" stroke="#B85A7A" stroke-width="6"/>'; }
 old3(['h7p6', 'p6reib', 'p6luft', 'p6hilft', 'p6outro'], '#5CE1FF', (n, sc, ev, t) => living6(t, { fy: n === 'p6reib' ? 1052 : n === 'h7p6' ? 1130 : n === 'p6outro' ? 1130 : 1118, win: n === 'p6luft' ? (ev.p2 === undefined ? 'sun' : 'snow') : n === 'p6reib' || n === 'p6outro' ? 'snow' : '', warm: n === 'p6luft' && ev.p2 === undefined ? 1 : n === 'p6luft' ? 1 - ease(cl(ev.p2 / .8)) : 0 }));
+
+// Stromschlag (Regel vom 16.11.2026): Schalti wird sichtbar geschockt, Haare stehen hoch (shock), und zwar am Ende des Satzes.
+// Teil 2: Der Sprung zur Klinke und der Schlag werden so verschoben, dass der Schlag mit den letzten Worten kommt
+const sh6 = (sc, ev) => { if (ev.p3 === undefined) return ev; const s = Math.max(0, dur3(sc, 2) - 1.5), e2 = Object.assign({}, ev); e2.p3 = ev.p3 < s ? Math.min(ev.p3, .78) : .8 + ev.p3 - s; return e2; };
+WORLD.p6luft_3 = (sc, ev, t, lt, E) => look3(place3('p6luft', living6(t, { fy: 1118, win: ev.p2 === undefined ? 'sun' : 'snow', warm: ev.p2 === undefined ? 1 : 1 - ease(cl(ev.p2 / .8)) }), [sc, sh6(sc, ev), t, lt, E]), sc, t, lt, '#5CE1FF');
+WMASC.p6luft_3 = (ev, t, lt, sc) => { const e2 = sh6(sc, ev), p = one3(WMASC.p6luft(e2, t, lt, sc), ev), q = e2.p3;
+  if (q !== undefined && q > .8 && ev.act === undefined) { const z = q < 1.6; p.shock = z ? 1 : 1 - cl((q - 1.6) / 1.2); p.fx = z ? (Math.floor(t * 15) % 2 ? 'invert(1)' : 'brightness(1.6)') : q < 2.4 ? 'brightness(.75) contrast(1.4)' : ''; p.r = z ? 8 * Math.sin(t * 50) : 0; }
+  return p; };
+WMASC.h7p6_3 = (ev, t, lt, sc) => { const p = one3(WMASC.h7p6(ev, t, lt, sc), ev), e = ev.zap; if (e !== undefined) p.shock = e < .9 ? 1 : 1 - cl((e - .9) / 1.4); return p; };
 
 // ---------- P005V3: GPS. Die Welten aus viz_gps.js sind schon der Ort (Erde aus dem All). Neu: Kamera, Farbstimmung und ein Gag aus dem Objekt ----------
 // Gag: Beim Nachsatz "ohne Einstein kilometerweit daneben" rutscht die ganze Karte samt Standortpunkt zur Seite. Schalti steht ploetzlich neben seinem Standort,

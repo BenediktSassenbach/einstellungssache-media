@@ -29,7 +29,7 @@ function bedroom3(t, o) { o = o || {}; const on = !!o.on, px = o.px === undefine
     if (o.xray) s += '<rect x="' + (px - 65) + '" y="' + (y - 16) + '" width="130" height="8" rx="4" fill="#FFB870"/><path d="M' + px + ' ' + (y - 60) + ' V' + (y - 2) + '" stroke="#FFB870" stroke-width="4" stroke-dasharray="6 6"/>';
     if (on) for (let i = 0; i < 3; i++) { const q = (t * 1.1 + i / 3) % 1; s += '<path d="M' + (px - 70 + i * 70 - 16) + ' ' + (1008 - 40 * q) + ' q16 -14 32 0" stroke="#5CE1FF" stroke-width="6" fill="none" stroke-linecap="round" opacity="' + (1 - q) + '"/>'; } }
   // Blase ueber dem Handy
-  if (o.bub) { const st = o.bub, col = st === 'on' ? '#3DFF7A' : '#FF5A5A', bx = px, by = 838 + 6 * Math.sin(t * 2.4);
+  if (o.bub) { const st = o.bub, col = st === 'on' ? '#3DFF7A' : '#FF5A5A', bx = px, by = 838;
     s += '<path d="M' + (bx - 22) + ' ' + (by + 84) + ' L' + bx + ' ' + (by + 128) + ' L' + (bx + 22) + ' ' + (by + 84) + ' Z" fill="#0B1020" stroke="' + col + '" stroke-width="7" stroke-linejoin="round"/><circle cx="' + bx + '" cy="' + by + '" r="92" fill="#0B1020" stroke="' + col + '" stroke-width="7"/>';
     s += batt3(bx, by + 4, 1, st === 'on' ? .2 + .8 * ((t * .45) % 1) : .12, col);
     if (st === 'on') s += bolt3(bx - 4, by + 4, .8, '#FFE14D'); else if (st === 'off') s += '<path d="M' + (bx - 40) + ' ' + (by - 36) + ' L' + (bx + 32) + ' ' + (by + 44) + '" stroke="#FF5A5A" stroke-width="12" stroke-linecap="round"/>'; else s += svgT(bx - 4, by + 26, '?', 64, '#FF5A5A'); }
@@ -55,7 +55,6 @@ WMASC.h7p3_3 = (ev, t, lt, sc) => { const e = ev.gag, T = 1040;
 const PC3 = [600, 1050], PW3 = 5.7; // Mitte der Matte, Takt des Wechselstroms
 function desk3(t) { let s = '<defs><linearGradient id="d3w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070826"/><stop offset="1" stop-color="#2C2A8C"/></linearGradient><linearGradient id="d3t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A26C48"/><stop offset="1" stop-color="#6E4630"/></linearGradient></defs><rect width="1080" height="1100" fill="url(#d3w)"/>';
   s += '<circle cx="190" cy="790" r="120" fill="#FFF1C4" opacity=".1"/><circle cx="190" cy="790" r="64" fill="#FFF1C4" opacity=".16"/>';
-  for (let i = 0; i < 6; i++) s += '<circle cx="' + (80 + rnd(i + 3) * 900) + '" cy="' + (640 + rnd(i + 13) * 380) + '" r="' + (30 + 50 * rnd(i + 23)) + '" fill="#5CE1FF" opacity=".04"/>';
   s += '<rect y="1086" width="1080" height="466" fill="url(#d3t)"/>'; for (let i = 0; i < 6; i++) s += '<path d="M0 ' + (1130 + i * 70) + ' Q540 ' + (1118 + i * 74) + ' 1080 ' + (1136 + i * 70) + '" stroke="#5E3B28" stroke-width="4" fill="none" opacity=".5"/>';
   return s + '<path d="M0 1086 H1080" stroke="#C99A72" stroke-width="5"/><rect y="1548" width="1080" height="372" fill="#3E2618"/><path d="M0 1548 H1080" stroke="#FFC890" stroke-width="6"/>'; }
 // Matte von schraeg oben. x 0 bis 1: Deckel wird durchsichtig, Spule sichtbar. cur: Strom fliesst (Punkte pendeln)
@@ -92,7 +91,7 @@ WMASC.p3a_3 = (ev, t) => ev.p2 === undefined ? BIG3() : stay3(HOME3, 1, { r: 11 
 // Teil 2: zweite Spule im Handy, Feld schiebt Elektronen an, Strom in den Akku, Induktion, anheben stoppt das Laden
 const PH3 = { up: 800, on: 1014, lift: 838 };
 WORLD.p3b_3 = function (sc, ev, t, lt) { const p1 = ev.p1, p2 = ev.p2, p3 = ev.p3, a = ev.act, a2 = ev.act2;
-  const yc = a2 !== undefined ? lerp(PH3.on, PH3.lift, ease(cl(a2 / .45))) : p1 !== undefined ? lerp(PH3.up, PH3.on, ease(cl(p1 / .6))) : PH3.up + 8 * Math.sin(t * 2.2);
+  const yc = a2 !== undefined ? lerp(PH3.on, PH3.lift, ease(cl(a2 / .45))) : p1 !== undefined ? lerp(PH3.up, PH3.on, ease(cl(p1 / .6))) : PH3.up;
   const off = a2 !== undefined && a2 > .3, run = off ? 0 : p2 === undefined ? 0 : cl(p2 / .4);
   let s = desk3(t) + padT3(t, 1, true) + field3(t, 1) + phT3(yc, t, run, (lt - .2) / .45);
   if (p1 === undefined) s += chip3(600, 715, 'zweite Spule', 40, '#FFB870', '#0B1020', (lt - 1) / .3);
