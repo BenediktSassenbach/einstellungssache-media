@@ -1,6 +1,7 @@
 // Laeuft im Browser. Erwartet die globale Konstante S (Skript mit Zeitplan) und zeichnet mit draw(t) das Bild zur Zeit t.
 const A = S.accent, BG = '#0B1020';
 document.body.style.setProperty('--a', A);
+if (S.look === 'hell') document.body.classList.add('hell'); // heller Look (weiss als Grundfarbe), Farben in video_page.css
 const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const ease = x => { x = cl(x); return 1 - Math.pow(1 - x, 3); };
 const back = x => { x = cl(x); const c = 1.70158; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };

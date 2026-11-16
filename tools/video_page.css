@@ -86,3 +86,6 @@ h2{font-size:60px;line-height:1.03;font-weight:900;letter-spacing:-.035em}
 #world{position:absolute;inset:0;overflow:hidden;z-index:1}
 #stage{z-index:2}#masc{z-index:5}#bub{z-index:5}#cap{z-index:6}
 .brand,.prog{z-index:2}
+
+/* Heller Look ("look": "hell" im Skript): Weiss als Grundfarbe */
+body.hell{background:#F6F8FC;color:#0B1020}body.hell .blob{background:#E9EDF6}body.hell .brand{color:#4A5578}body.hell .prog{background:#D5DCEB}body.hell .chk{background:#E3E8F3;color:#0B1020}body.hell .num{color:#3E9B00}body.hell .vlab{border:3px solid #0B1020}body.hell #cap div{color:#F4F6FB}
