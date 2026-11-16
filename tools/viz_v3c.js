@@ -39,50 +39,51 @@ function inice4(t) { let s = '<defs><radialGradient id="i4n" cx=".5" cy=".48" r=
   return s + '<path d="M-20 1552 Q540 1520 1100 1552 V1920 H-20 Z" fill="#12306E" stroke="#BFEAFF" stroke-width="7"/>'; }
 old3(['h7c4', 'c4dichte', 'c4gitter', 'c4see', 'c4outro'], '#FF6BD6', (n, sc, ev, t) => n === 'c4gitter' ? inice4(t) : lake4(t, { top: n === 'h7c4' ? 1120 : n === 'c4outro' ? 1130 : 1100 }));
 
-// Einstieg neu (16.11.2026, Benedikt: Anfang interessanter): spielt direkt auf dem See, ohne Glas.
-// Gag aus dem Objekt: Schalti springt waehrend "Gib mir 60 Sekunden" auf eine Eisscholle, sie traegt ihn. Beim Nachsatz "muesste untergehen"
-// stampft er sie unter Wasser. Sie schiesst wieder hoch und schleudert ihn in hohem Bogen ans Ufer. Abwurf bei 0,72 s
-const FL4 = [600, 1076];
-function fdy4(q, e, t) { if (e === undefined) return q >= .45 && q < .8 ? 24 * Math.sin(Math.PI * (q - .45) / .35) : 4 * Math.sin(t * 2);
-  if (e < .35) return 0; if (e < .6) return 135 * ease((e - .35) / .25); if (e < .72) return lerp(135, -70, ease((e - .6) / .12)); return -70 * Math.exp(-(e - .72) * 3) * Math.cos((e - .72) * 13); }
-// Kantiger Umriss rund um eine Ellipse (fester Zufall), fuer Scholle, Eisloch und Eisstuecke
-function poly4(cx, cy, rx, ry, n, seed, amp) { let d = ''; for (let i = 0; i < n; i++) { const a = i * 6.2832 / n, k = 1 + amp * (rnd(seed + i) - .5) * 2; d += (cx + rx * k * Math.cos(a)).toFixed(1) + ',' + (cy + ry * k * Math.sin(a)).toFixed(1) + ' '; } return d; }
-const FP4 = poly4(0, 0, 196, 46, 13, 40, .09), FU4 = poly4(0, 0, 196, 46, 13, 40, .09), HP4 = poly4(600, 1096, 372, 96, 19, 7, .07);
-// Eisscholle: kantige Platte mit heller Schneedecke, blauer Bruchkante, Glanzlichtern. Der groessere Teil haengt sichtbar unter Wasser
-function floe4(x, y, r) { let s = '<g transform="translate(' + x + ' ' + y + ') rotate(' + r + ')">';
-  s += '<polygon points="' + FU4 + '" transform="translate(0 74) scale(.86 1.5)" fill="#3F8FD8" opacity=".38"/><polygon points="' + FU4 + '" transform="translate(0 52) scale(.95 1.25)" fill="#5FB0EE" opacity=".45"/>';
-  s += '<polygon points="' + FP4 + '" transform="translate(0 36)" fill="#6FB2E8" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/>';
-  for (let i = 0; i < 6; i++) { const xx = -150 + i * 60 + 16 * rnd(i + 3); s += '<path d="M' + xx + ' ' + (30 + 10 * rnd(i + 9)) + ' l' + (8 - 16 * rnd(i + 5)) + ' 34" stroke="#BFE3FF" stroke-width="5" stroke-linecap="round" opacity=".8"/>'; }
-  s += '<polygon points="' + FP4 + '" fill="url(#f4t)" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/>';
-  s += '<path d="M-120 -8 q40 -22 96 -14 q50 6 70 -6 q40 -10 76 8" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round"/><ellipse cx="-40" cy="6" rx="90" ry="14" fill="#fff" opacity=".8"/><ellipse cx="90" cy="14" rx="48" ry="9" fill="#fff" opacity=".7"/>';
-  s += '<path d="M-150 14 l44 8 l26 -10 M40 26 l40 -6 l30 8 M-30 -20 l22 10" stroke="#9CCBF0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
-  return s + '</g>'; }
-// Der See rund um die Scholle: dunkles Wasserloch mit Eiskante, Risse im Eis, Schneewehen, treibende Eisstuecke, Spiegelung der Berge
-function hole4(t, dy, e) { let s = '<defs><linearGradient id="h4w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#061E52"/><stop offset="1" stop-color="#1C66C0"/></linearGradient><linearGradient id="f4t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#CFEAFF"/></linearGradient><clipPath id="h4c"><polygon points="' + HP4 + '"/></clipPath></defs>';
-  // Spiegelung der Berge und Schneewehen auf dem Eis
-  s += '<path d="M-20 1012 L140 1110 L260 1050 L400 1130 L560 1044 L700 1118 L860 1048 L980 1100 L1100 1040 V1012 Z" fill="#2A2A7A" opacity=".13"/>';
-  [[170, 1300, 150, 16], [880, 1360, 170, 18], [520, 1440, 220, 20], [930, 1190, 110, 12], [120, 1150, 100, 10]].forEach(q => { s += '<ellipse cx="' + q[0] + '" cy="' + q[1] + '" rx="' + q[2] + '" ry="' + q[3] + '" fill="#fff" opacity=".5"/>'; });
-  // Risse, die vom Loch ausgehen
-  [[250, 1120, 120, 1160, 40, 1150], [300, 1160, 210, 1250, 150, 1330], [930, 1140, 1010, 1190, 1080, 1180], [860, 1170, 900, 1260, 990, 1310], [560, 1192, 540, 1270, 600, 1340], [700, 1190, 760, 1250, 740, 1320]].forEach(c => { s += '<path d="M' + c[0] + ' ' + c[1] + ' L' + c[2] + ' ' + c[3] + ' L' + c[4] + ' ' + c[5] + '" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".75"/><path d="M' + c[2] + ' ' + c[3] + ' l' + (c[4] > c[2] ? 40 : -40) + ' -14" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".55"/>'; });
-  // Eisloch: Bruchkante des Eises, darin das Wasser
-  s += '<polygon points="' + HP4 + '" transform="translate(0 -5)" fill="#fff" stroke="#fff" stroke-width="16" stroke-linejoin="round"/><polygon points="' + HP4 + '" fill="#8CC6F2" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/>';
-  s += '<g clip-path="url(#h4c)"><polygon points="' + HP4 + '" transform="translate(0 22)" fill="url(#h4w)"/>';
-  for (let i = 0; i < 5; i++) { const y = 1070 + i * 26, x = 330 + ((i * 137 + t * 26) % 520); s += '<path d="M' + x + ' ' + y + ' q26 ' + (-7 + 3 * Math.sin(t * 2 + i)) + ' 52 0" stroke="#8FD0FF" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"/>'; }
-  s += floe4(FL4[0], FL4[1] + dy, e !== undefined && e > .72 ? 5 * Math.exp(-(e - .72) * 3) * Math.sin((e - .72) * 13) : 0);
-  if (dy > 6) s += '<rect x="200" y="980" width="800" height="260" fill="#0A2E6E" opacity="' + (cl(dy / 60) * .7) + '"/>';
-  // kleine Eisstuecke treiben im Wasser
-  [[330, 1118, 30, 3], [880, 1090, 38, 5], [820, 1156, 24, 8]].forEach(q => { const by = q[1] + 3 * Math.sin(t * 2 + q[3]) + (e !== undefined && e > .72 ? 8 * Math.exp(-(e - .72) * 2) * Math.sin((e - .72) * 11 + q[3]) : 0); s += '<polygon points="' + poly4(q[0], by + 8, q[2], q[2] * .3, 7, q[3], .16) + '" fill="#6FB2E8" stroke="#0B1020" stroke-width="4" stroke-linejoin="round"/><polygon points="' + poly4(q[0], by, q[2], q[2] * .3, 7, q[3], .16) + '" fill="#F4FAFF" stroke="#0B1020" stroke-width="4" stroke-linejoin="round"/>'; });
+// Einstieg neu (16.11.2026, Benedikt): spielt am offenen, nicht zugefrorenen See, ohne Glas. Im Wasser schwimmt ein Eisbrocken mit echten Proportionen:
+// rund ein Zehntel ragt heraus, neun Zehntel liegen unter der Wasserlinie. Der See ist seitlich angeschnitten, damit man den Teil unter Wasser sieht.
+// Gag aus dem Objekt: Schalti springt waehrend "Gib mir 60 Sekunden" auf den Brocken, er traegt ihn. Beim Nachsatz "muesste untergehen"
+// stampft er ihn unter Wasser. Der Brocken schiesst wieder hoch und schleudert Schalti in hohem Bogen ans Ufer. Abwurf bei 0,72 s
+const WL4 = 972, BX4 = 620;
+function fdy4(q, e, t) { if (e === undefined) return q >= .45 && q < .85 ? 20 * Math.sin(Math.PI * (q - .45) / .4) : 3 * Math.sin(t * 1.6);
+  if (e < .35) return 0; if (e < .6) return 140 * ease((e - .35) / .25); if (e < .72) return lerp(140, -80, ease((e - .6) / .12)); return -80 * Math.exp(-(e - .72) * 2.6) * Math.cos((e - .72) * 11); }
+// Offener See im Anschnitt: Himmel, Berge, Wasseroberflaeche bis zum Horizont, darunter das Wasser von der Seite mit Grund und zwei Fischen
+function openlake4(t) { let s = '<defs><linearGradient id="l4s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E1248"/><stop offset=".6" stop-color="#4A3EA8"/><stop offset="1" stop-color="#FF9AC8"/></linearGradient><linearGradient id="o4a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8A8F0"/><stop offset="1" stop-color="#5AA6EC"/></linearGradient><linearGradient id="o4b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3D9AE8"/><stop offset=".45" stop-color="#1C5FB8"/><stop offset="1" stop-color="#08205A"/></linearGradient><linearGradient id="o4i" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D8F0FF"/><stop offset="1" stop-color="#6FB2E8"/></linearGradient></defs><rect width="1080" height="910" fill="url(#l4s)"/>';
+  for (let i = 0; i < 30; i++) s += '<circle cx="' + (rnd(i + 1) * 1080).toFixed(0) + '" cy="' + (rnd(i + 100) * 640).toFixed(0) + '" r="' + (1 + 2 * rnd(i + 200)).toFixed(1) + '" fill="#fff" opacity="' + (.25 + .35 * Math.abs(Math.sin(t * (.6 + rnd(i + 300)) + i))).toFixed(2) + '"/>';
+  s += '<g transform="translate(0 -106)"><path d="M-20 1012 L140 870 L260 955 L400 840 L560 965 L700 858 L860 962 L980 888 L1100 972 V1012 Z" fill="#2A2A7A"/><path d="M140 870 l-34 30 l26 -6 l12 18 l16 -20 l20 8 Z M400 840 l-36 32 l28 -6 l12 20 l18 -22 l22 8 Z M700 858 l-34 30 l26 -6 l12 18 l16 -20 l20 8 Z" fill="#E8F2FF"/></g>';
+  // Wasseroberflaeche bis zum Horizont, mit Spiegelung und kleinen Wellen
+  s += '<rect y="904" width="1080" height="' + (WL4 - 904) + '" fill="url(#o4a)"/><path d="M-20 906 L140 948 L260 922 L400 956 L560 918 L700 950 L860 920 L980 942 L1100 916 Z" fill="#2A2A7A" opacity=".22"/>';
+  for (let i = 0; i < 7; i++) { const x = (i * 173 + t * 14) % 1180 - 60, y = 916 + (i * 23) % 50; s += '<path d="M' + x + ' ' + y + ' h' + (40 + 30 * rnd(i + 4)) + '" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".5"/>'; }
+  // Wasser von der Seite
+  s += '<rect y="' + WL4 + '" width="1080" height="' + (1552 - WL4) + '" fill="url(#o4b)"/>';
+  [[180, 90], [520, 70], [860, 110]].forEach((q, i) => { s += '<path d="M' + q[0] + ' ' + WL4 + ' l' + q[1] + ' 0 l' + (60 + i * 20) + ' 580 l' + (-q[1] - 80) + ' 0 Z" fill="#BFEAFF" opacity="' + (.05 + .02 * Math.sin(t * .8 + i)) + '"/>'; });
+  s += '<path d="M0 1500 Q200 1470 420 1496 T800 1488 T1080 1500 V1552 H0 Z" fill="#0A1A48"/>'; [[430, 1492, 34], [760, 1486, 46], [960, 1498, 28], [600, 1500, 22]].forEach(q => { s += '<ellipse cx="' + q[0] + '" cy="' + q[1] + '" rx="' + q[2] + '" ry="' + (q[2] * .45) + '" fill="#14306E"/>'; });
+  // zwei Fische, ruhig unterwegs
+  [[1400, 1385, 1, 22], [1250, 1445, -1, 16]].forEach((f, i) => { const x = f[2] > 0 ? (t * f[3] * 3 + 300 * i) % 1280 - 100 : 1180 - (t * f[3] * 3 + 500) % 1280, y = f[1] + 8 * Math.sin(t * 1.3 + i); s += '<g transform="translate(' + x + ' ' + y + ') scale(' + f[2] + ' 1)"><path d="M-30 0 q30 -22 60 0 q-30 22 -60 0 Z M-30 0 l-22 -16 v32 Z" fill="#FF9A6B" stroke="#0B1020" stroke-width="4" stroke-linejoin="round"/><circle cx="16" cy="-3" r="4" fill="#0B1020"/></g>'; });
+  return s; }
+// Eisbrocken: Nullpunkt ist die Wasserlinie. Kappe ueber Wasser hoechstens 42 hoch, Rumpf unter Wasser 325 tief
+const IB4 = { cap: '-150,0 -128,-27 -70,-41 -6,-33 58,-42 124,-25 150,0', hull: '-150,0 150,0 166,62 152,150 120,238 62,308 -10,325 -82,300 -136,222 -166,120 -160,42' };
+function berg4(dy, r, t) { let s = '<g transform="translate(' + BX4 + ' ' + (WL4 + dy) + ') rotate(' + r + ')">';
+  s += '<polygon points="' + IB4.hull + '" fill="url(#o4i)" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/>';
+  s += '<path d="M-150 0 L-60 120 L-82 300 M-60 120 L40 90 L150 0 M40 90 L62 308 M40 90 L152 150 M-60 120 L-166 120 M-10 325 L-10 220 L62 308" stroke="#fff" stroke-width="4" fill="none" stroke-linejoin="round" opacity=".45"/><path d="M-110 40 l30 60 M90 60 l-20 80 M-20 180 l-30 70" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".5"/>';
+  s += '<polygon points="' + IB4.cap + '" fill="#FFFFFF" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/><path d="M-100 -14 q30 -16 62 -12 M30 -22 q30 -10 62 2" stroke="#CFEAFF" stroke-width="6" fill="none" stroke-linecap="round"/>';
   return s + '</g>'; }
 WORLD.h7c4_3 = function (sc, ev, t, lt) { const e = ev.bonk, q = since3(sc, 3, lt), dy = fdy4(q, e, t), hit = e !== undefined && e >= .72 ? e - .72 : undefined, sh = shake7(hit, t);
-  let s = lake4(t, { jetty: 0 }) + hole4(t, dy, e);
-  if (e !== undefined && e > .35 && e < 1.3) for (let i = 0; i < 12; i++) { const c = cl((e - (i % 2 ? .72 : .35)) / .55); if (c <= 0 || c >= 1) continue; const a = -Math.PI * (.1 + .8 * rnd(i + 2)), d = 70 + 250 * c; s += drop(600 + d * Math.cos(a), 1070 + d * .8 * Math.sin(a) + 260 * c * c, 1.1, '#BFEAFF'); }
-  if (hit !== undefined) { for (let i = 0; i < 2; i++) { const c = (hit * .9 + i * .5) % 1; s += '<ellipse cx="600" cy="1104" rx="' + (215 + 120 * c) + '" ry="' + (50 + 26 * c) + '" fill="none" stroke="#BFEAFF" stroke-width="5" opacity="' + (1 - c) * cl(2.2 - hit) + '"/>'; } if (hit > .22 && hit < 1.4) s += word7('PLOPP!', 590, 870, hit - .22, '#FFE14D', -6); }
+  let s = openlake4(t) + berg4(dy, e !== undefined && e > .72 ? 4 * Math.exp(-(e - .72) * 2.6) * Math.sin((e - .72) * 11) : 1.2 * Math.sin(t * 1.1), t);
+  // Wasser faerbt alles unter der Wasserlinie, darueber die Linie selbst mit den Wellen um den Brocken
+  s += '<rect y="' + WL4 + '" width="1080" height="' + (1552 - WL4) + '" fill="#1C5FB8" opacity=".34"/><path d="M0 ' + WL4 + ' H1080" stroke="#DFF4FF" stroke-width="6" opacity=".9"/>';
+  for (let i = 0; i < 2; i++) { const c = (t * .35 + i * .5) % 1; s += '<ellipse cx="' + BX4 + '" cy="' + (WL4 - 2) + '" rx="' + (170 + 90 * c) + '" ry="' + (10 + 8 * c) + '" fill="none" stroke="#fff" stroke-width="4" opacity="' + (.6 * (1 - c)) + '"/>'; }
+  // Snow-Ufer vorn, Schneefall
+  s += '<path d="M0 1548 Q270 1524 540 1550 T1080 1542 V1920 H0 Z" fill="#F4F8FF" stroke="#BFD8FF" stroke-width="6"/><path d="M0 1700 Q300 1670 600 1710 T1080 1690 V1920 H0 Z" fill="#DCE8FF"/>';
+  for (let i = 0; i < 26; i++) { const x = (rnd(i + 700) * 1180 + 40 * Math.sin(t * .7 + i)) % 1080, y = (t * (50 + 60 * rnd(i + 720)) + rnd(i + 740) * 960) % 960; s += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="' + (2 + 3 * rnd(i + 760)).toFixed(1) + '" fill="#fff" opacity=".5"/>'; }
+  if (e !== undefined && e > .35 && e < 1.3) for (let i = 0; i < 12; i++) { const c = cl((e - (i % 2 ? .72 : .35)) / .55); if (c <= 0 || c >= 1) continue; const a = -Math.PI * (.1 + .8 * rnd(i + 2)), d = 70 + 250 * c, y = WL4 - 10 + d * .8 * Math.sin(a) + 260 * c * c; if (y < WL4) s += drop(BX4 + d * Math.cos(a), y, 1.1, '#DFF4FF'); }
+  if (hit !== undefined) { for (let i = 0; i < 2; i++) { const c = (hit * .9 + i * .5) % 1; s += '<ellipse cx="' + BX4 + '" cy="' + (WL4 - 2) + '" rx="' + (190 + 220 * c) + '" ry="' + (12 + 14 * c) + '" fill="none" stroke="#fff" stroke-width="6" opacity="' + (1 - c) * cl(2.2 - hit) + '"/>'; } if (hit > .22 && hit < 1.4) s += word7('PLOPP!', 560, 800, hit - .22, '#FFE14D', -6); }
+  if (e === undefined && q < 0 && lt > 1.2) s += '<g opacity="' + cl((lt - 1.2) / .4) + '"><path d="M880 ' + (WL4 - 40) + ' h36 M898 ' + (WL4 - 40) + ' V' + WL4 + ' M880 ' + WL4 + ' h36" stroke="#FFE14D" stroke-width="6" stroke-linecap="round"/><path d="M880 ' + WL4 + ' h36 M898 ' + WL4 + ' V' + (WL4 + 325) + ' M880 ' + (WL4 + 325) + ' h36" stroke="#FFE14D" stroke-width="6" stroke-linecap="round" opacity=".55"/></g>' + chip3(898, WL4 - 78, '1/10', 34, '#FFE14D', '#0B1020', (lt - 1.4) / .3) + chip3(898, WL4 + 150, '9/10', 34, '#FFE14D', '#0B1020', (lt - 1.7) / .3);
   return look3(W('<g transform="translate(' + (sh[0] * .5) + ' ' + (sh[1] * .5) + ')">' + s + '</g>' + shade3()), sc, t, lt, '#FF6BD6'); };
-WMASC.h7c4_3 = (ev, t, lt, sc) => { const e = ev.bonk, q = since3(sc, 3, lt), dy = fdy4(q, e, t), S = .78, Y = FL4[1] - 8;
-  if (e === undefined) { if (q < 0) return stay3(HOME3, 1, { r: -3 + 2 * Math.sin(t * 2) }); if (q < .45) return hop3(q / .45, HOME3, [600, Y], 230, 1, S); return stay3([600, Y + dy], S, { r: 3 * Math.sin(t * 5) }); }
-  if (e < .35) return stay3([600, Y - 170 * Math.sin(Math.PI * e / .35)], S, { r: 0 });
-  if (e < .72) return stay3([600 + (e > .6 ? 0 : 3 * Math.sin(t * 40)), Y + dy], S, { r: e < .6 ? 4 * Math.sin(t * 30) : 0 });
-  if (e < 1.75) { const k = (e - .72) / 1.03; return hop3(k, [600, Y - 70], HOME3, 520, S, 1, { r: -360 * ease(cl(k)) }); }
+WMASC.h7c4_3 = (ev, t, lt, sc) => { const e = ev.bonk, q = since3(sc, 3, lt), dy = fdy4(q, e, t), S = .72, Y = WL4 - 36;
+  if (e === undefined) { if (q < 0) return stay3(HOME3, 1, { r: -3 + 2 * Math.sin(t * 2) }); if (q < .45) return hop3(q / .45, HOME3, [BX4, Y], 300, 1, S); return stay3([BX4, Y + dy], S, { r: 3 * Math.sin(t * 5) }); }
+  if (e < .35) return stay3([BX4, Y - 170 * Math.sin(Math.PI * e / .35)], S, { r: 0 });
+  if (e < .72) return stay3([BX4 + (e > .6 ? 0 : 3 * Math.sin(t * 40)), Y + dy], S, { r: e < .6 ? 4 * Math.sin(t * 30) : 0 });
+  if (e < 1.75) { const k = (e - .72) / 1.03; return hop3(k, [BX4, Y - 80], HOME3, 430, S, 1, { r: -360 * ease(cl(k)) }); }
   return stay3(HOME3, 1, { r: e < 2.6 ? 7 * Math.sin(t * 9) * (1 - cl((e - 1.75) / .85)) : 0 }); };
 
 // ---------- I004V3: Zocker-Zimmer bei Nacht. Im Einstieg und Schluss steht der Monitor auf dem Schreibtisch, Teil 2 zeigt den Weg durch die Stadt zum Server ----------
