@@ -94,6 +94,37 @@ WMASC.h7c4_3 = (ev, t, lt, sc) => { const e = ev.bonk, q = since3(sc, 3, lt), dy
   if (e < 1.75) { const k = (e - .72) / 1.03; return hop3(k, [BX4, Y - 80], HOME3, 430, S, 1, { r: -360 * ease(cl(k)) }); }
   return stay3(HOME3, 1, { r: e < 2.6 ? 7 * Math.sin(t * 9) * (1 - cl((e - 1.75) / .85)) : 0 }); };
 
+// Teil 3 neu (16.11.2026, Benedikt: schoener, mit den Fischen unterm Eis). Derselbe offene See wie im Einstieg, die Wasserlinie liegt hoeher im Bild.
+//   berg, rest: der Eisbrocken, erst sieht man nur die Kappe, dann wird der Rumpf unter Wasser sichtbar (1/10 und 9/10)
+//   see: derselbe See friert von beiden Ufern her zu, der Brocken friert ein. act: unter der Eisdecke bleibt es fluessig, Fische und Pflanzen leben weiter
+function fish4(x, y, s, dir, t, col) { const w = 9 * Math.sin(t * 6);
+  return '<g transform="translate(' + x + ' ' + y + ') scale(' + (dir * s) + ' ' + s + ')"><path d="M-34 0 L-66 ' + (-24 + w) + ' Q-54 0 -66 ' + (24 + w) + ' Z" fill="' + col + '" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/><path d="M-10 -20 Q4 -44 24 -17 Z M-4 20 Q6 36 18 17 Z" fill="' + col + '" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/><path d="M-38 0 Q-10 -30 30 -15 Q47 -7 49 0 Q47 8 30 15 Q-10 30 -38 0 Z" fill="' + col + '" stroke="#0B1020" stroke-width="5"/><path d="M-22 9 Q8 22 36 8" stroke="#fff" stroke-width="5" fill="none" opacity=".55" stroke-linecap="round"/><path d="M4 -19 Q-3 0 4 19 M-12 -15 Q-18 0 -12 15" stroke="#0B1020" stroke-width="4" fill="none" opacity=".22"/><circle cx="31" cy="-4" r="7" fill="#fff" stroke="#0B1020" stroke-width="3"/><circle cx="33" cy="-4" r="3" fill="#0B1020"/></g>'; }
+WORLD.c4see_3 = function (sc, ev, t, lt) { const SH = -150, WLs = WL4 + SH, se = ev.see, a = ev.act, z = se === undefined ? 0 : ease(cl(se / 1.8)), rv = ev.rest === undefined ? 0 : ease(cl(ev.rest / .9)), X = 470;
+  let g = openlake4(t) + berg4(3 * Math.sin(t * 1.6) * (1 - z), 1.2 * Math.sin(t * 1.1) * (1 - z), t, X);
+  g += '<rect y="' + WL4 + '" width="1080" height="' + (1552 - WL4) + '" fill="#1C5FB8" opacity=".3"/><rect y="' + WL4 + '" width="1080" height="' + (1552 - WL4) + '" fill="#061A4A" opacity="' + (.62 * (1 - rv)) + '"/>';
+  // Wasserpflanzen am Grund wiegen sich
+  for (let i = 0; i < 9; i++) { const x = 60 + i * 124 + 30 * rnd(i + 3), h = 70 + 60 * rnd(i + 8), sw = 14 * Math.sin(t * 1.2 + i); g += '<path d="M' + x + ' 1502 Q' + (x + sw) + ' ' + (1502 - h * .5) + ' ' + (x + sw * 1.6) + ' ' + (1502 - h) + '" stroke="' + (i % 2 ? '#2FBF8A' : '#1F9E78') + '" stroke-width="10" fill="none" stroke-linecap="round"/>'; }
+  if (z < 1) g += '<path d="M0 ' + WL4 + ' H1080" stroke="#DFF4FF" stroke-width="6" opacity="' + (.9 * (1 - z)) + '"/>';
+  // Fische unter dem Eis
+  if (a !== undefined) { const k = cl(a / .5); [[150, 1, 1.05, '#FFB020'], [215, -1, .85, '#FF6BD6'], [275, 1, .95, '#8BD450'], [118, -1, .7, '#FFE14D'], [305, -1, 1.1, '#FF8A5C']].forEach((f, i) => { const ph = (t * .05 * (1 + .25 * i) + i * .23) % 1, x = f[1] > 0 ? -80 + 1240 * ph : 1160 - 1240 * ph, y = WL4 + f[0] + 9 * Math.sin(t * 1.7 + i * 2); if (Math.abs(x - X) < 215 && f[0] < 300) return; g += '<g opacity="' + k + '">' + fish4(x, y, f[2], f[1], t + i, f[3]) + '</g>'; if (((t * .6 + i * .37) % 1) < .5) { const c = ((t * .6 + i * .37) % 1) * 2; g += '<circle cx="' + (x + f[1] * 50) + '" cy="' + (y - 16 - 46 * c) + '" r="' + (4 + 3 * c) + '" fill="none" stroke="#DFF4FF" stroke-width="3" opacity="' + (k * (1 - c)) + '"/>'; } }); }
+  // Eisdecke waechst von beiden Ufern zur Mitte, der Brocken friert ein
+  if (z > 0) { const w = 548 * z, y0 = WL4 - 14, d = 'h' + w + ' l-16 20 l12 26'; g += '<rect width="1080" height="' + WL4 + '" fill="#0A1040" opacity="' + (.22 * z) + '"/>';
+    g += '<path d="M-10 ' + y0 + ' ' + d + ' H-10 Z" fill="url(#o4i)" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/><path d="M1090 ' + y0 + ' h' + (-w) + ' l16 20 l-12 26 H1090 Z" fill="url(#o4i)" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/><path d="M-10 ' + (y0 + 5) + ' h' + (w - 6) + ' M1090 ' + (y0 + 5) + ' h' + (-(w - 6)) + '" stroke="#fff" stroke-width="10" stroke-linecap="round"/>';
+    for (let i = 0; i < 12; i++) { const x = 30 + i * 92; if (x > w - 20 && x < 1080 - w + 20) continue; g += '<path d="M' + x + ' ' + (y0 + 46) + ' l8 ' + (14 + 12 * rnd(i + 2)) + ' l8 -' + (14 + 12 * rnd(i + 2)) + '" fill="#CFEAFF" stroke="#0B1020" stroke-width="3" stroke-linejoin="round"/>'; }
+    g += '<polygon points="' + IB4.cap + '" transform="translate(' + X + ' ' + WL4 + ')" fill="#FFFFFF" stroke="#0B1020" stroke-width="6" stroke-linejoin="round" opacity="' + z + '"/>'; }
+  let s = '<rect y="1340" width="1080" height="212" fill="#0A1A48"/><g transform="translate(0 ' + SH + ')">' + g + '</g>';
+  s += '<path d="M0 1548 Q270 1524 540 1550 T1080 1542 V1920 H0 Z" fill="#F4F8FF" stroke="#BFD8FF" stroke-width="6"/><path d="M0 1700 Q300 1670 600 1710 T1080 1690 V1920 H0 Z" fill="#DCE8FF"/>';
+  const nf = 16 + Math.round(26 * z); for (let i = 0; i < nf; i++) { const x = (rnd(i + 700) * 1180 + 40 * Math.sin(t * .7 + i)) % 1080, y = (t * (50 + 60 * rnd(i + 720)) + rnd(i + 740) * 800) % (WLs - 16); s += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="' + (2 + 3 * rnd(i + 760)).toFixed(1) + '" fill="#fff" opacity=".6"/>'; }
+  // Markierungen
+  if (se === undefined || se < .4) { const o = se === undefined ? 1 : 1 - se / .4, b = ev.berg === undefined ? 0 : cl((ev.berg - .5) / .3);
+    s += '<g opacity="' + o + '"><path d="M676 ' + (WLs - 42) + ' h30 v42 h-30" stroke="#FFE14D" stroke-width="6" fill="none" opacity="' + b + '"/><path d="M676 ' + (WLs + 6) + ' h30 v319 h-30" stroke="#FFE14D" stroke-width="6" fill="none" opacity="' + cl((rv - .4) * 2) + '"/>' + chip3(790, WLs - 26, '1/10', 46, '#FFE14D', '#0B1020', ev.berg === undefined ? -1 : (ev.berg - .6) / .3) + chip3(800, WLs + 165, '9/10', 60, '#FFE14D', '#0B1020', ev.rest === undefined ? -1 : (ev.rest - .5) / .3) + '</g>'; }
+  if (a !== undefined) s += chip3(820, 1096, 'unten: 4 °C', 36, '#3BA8FF', '#fff', (a - .9) / .3);
+  return look3(W(s + shade3(), slot(ev, [['berg', 'Eisberg: nur 1/10 sichtbar'], ['rest', '9/10 stecken unter Wasser', 'hot'], ['see', 'Seen frieren von oben zu'], ['act', 'Darunter bleibt es flüssig', 'hot']])), sc, t, lt, '#FF6BD6'); };
+// Schalti springt auf die frische Eisdecke, rutscht ein Stueck und schaut durchs Eis nach unten
+WMASC.c4see_3 = (ev, t) => { const se = ev.see, Y = WL4 - 150 - 12; if (se === undefined || se < 1.5) return BIG3();
+  if (se < 2.05) return hop3((se - 1.5) / .55, HOME3, [870, Y], 260, 1, .6, { flip: false });
+  const k = 1 - Math.pow(1 - cl((se - 2.05) / 1.3), 2); return stay3([870 - 110 * k, Y], .6, { flip: true, r: ev.act !== undefined && k >= 1 ? -10 + 2 * Math.sin(t * 2) : 9 * (1 - k) * Math.sin(t * 12) }); };
+
 // ---------- I004V3: Zocker-Zimmer bei Nacht. Im Einstieg und Schluss steht der Monitor auf dem Schreibtisch, Teil 2 zeigt den Weg durch die Stadt zum Server ----------
 function den4(t, o) { o = o || {}; const D = o.desk;
   let s = room3(t, { id: 'd4', a: '#07061C', b: '#1A1050', c: '#32208A', fl: '#0A0820', fs: '#1A1248', ln: '#B79CFF', glow: [600, 890, 520, 380, '#7C5CFF', .4] });
