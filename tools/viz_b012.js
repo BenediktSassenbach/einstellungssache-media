@@ -26,12 +26,12 @@ WMASC.h12knie = (ev, t, lt) => { const e = ev.gag;
 
 // ---------- Teil 1: Schicht 1 Knochen, Schicht 2 Knorpel ----------
 WORLD.b12a = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.p2, a = ev.act, bn = cl((lt - .2) / .8), ca = p2 === undefined ? 0 : cl((p2 - .5) / .8);
-  const hlB = p1 !== undefined || p === undefined ? '' : p > 1.0 && p < 1.9 ? 'f' : p >= 1.9 && p < 2.8 ? 't' : p >= 2.8 && p < 3.9 ? 'p' : '';
+  const hlB = p1 !== undefined || p === undefined ? '' : p > 1.2 && p < 2.36 ? 'f' : p >= 2.36 && p < 3.2 ? 't' : p >= 3.2 && p < 4.3 ? 'p' : '';
   const rub = p1 !== undefined && p2 === undefined ? cl(p1 / .3) : 0, fdx = 8 * rub * Math.sin(t * 9);
   let s = laborS(t, { rows: ROWS12, on: bn + ca, cur: p2 !== undefined ? 2 : 1, cx: KX, note: NOTE12 });
   s += kneeS(KX, KY, KZ, t, { l: [bn, ca, 0, 0, 0, 0], pat: 0, hlB: hlB, fdx: fdx, fdy: rub ? 9 : 0, q: cl((lt - 1.2) / .4) });
   if (rub) for (const sx of [-1, 1]) s += '<path d="M' + (KX + sx * 58 * KZ - 12) + ' ' + (KY + 8) + ' l8 -9 l8 9 l8 -9" stroke="' + TH().hl + '" stroke-width="5" fill="none" stroke-linecap="round" opacity="' + (.5 + .5 * Math.sin(t * 18 + sx)).toFixed(2) + '"/>';
-  if (p1 === undefined && p !== undefined) s += LB(34, -150, 760, 'Oberschenkel', (p - 1.0) / .35) + LB(34, 150, 1060, 'Schienbein', (p - 1.9) / .35) + labelS(Math.round(KX - 160 * KZ), Math.round(KY - 132 * KZ), 366, 716, 'Kniescheibe', (p - 2.8) / .35);
+  if (p1 === undefined && p !== undefined) s += LB(34, -150, 760, 'Oberschenkel', (p - 1.2) / .35) + LB(34, 150, 1060, 'Schienbein', (p - 2.36) / .35) + labelS(Math.round(KX - 160 * KZ), Math.round(KY - 132 * KZ), 366, 716, 'Kniescheibe', (p - 3.2) / .35);
   if (p2 !== undefined) s += ringS(t, 0, 4, 120, (p2 - .5) / .7) + LB(100, -22, 880, 'Knorpel', (p2 - 1.0) / .35);
   if (a !== undefined) s += lupeS(lupRF(t, false), a / .35, KX - 62 * KZ, KY + 6) + markS(t, -92, 4, 30) + markS(t, 92, 4, 30);
   s += puffb(KX, KY, (lt - .15) / .6, 240);
@@ -56,7 +56,7 @@ WORLD.b12c = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.
   let s = laborS(t, { rows: ROWS12, on: 4 + cp + te, cur: p2 !== undefined ? 6 : 5, cx: KX, note: NOTE12 });
   s += kneeS(KX, KY, KZ, t, { l: [1, 1, 1, 1, cp, te], pat: pat, pull: pull, q: 1 - pat });
   if (p1 !== undefined && p2 === undefined) s += markS(t, 0, 6, 118);
-  if (a !== undefined && a > 1.2) s += lupeS(lupHeb(t, cl((a - 1.5) / .6)), (a - 1.2) / .35, KX - 30 * KZ, KY - 40 * KZ);
+  if (a !== undefined && a > 1.5) s += lupeS(lupHeb(t, cl((a - 1.8) / .6)), (a - 1.5) / .35, KX - 30 * KZ, KY - 40 * KZ);
   if (p2 === undefined) s += LB(138, -70, 800, 'Kapsel', (lt - 1.4) / .35) + (p1 !== undefined ? LB(74, 9, 980, 'Flüssigkeit', (p1 - .3) / .35) : '');
   if (p2 !== undefined && a === undefined) s += LB(40, -170, 760, 'Muskel', (p2 - 1.0) / .35) + LB(24, 40, 980, 'Sehne', (p2 - 1.7) / .35);
   if (a !== undefined) s += ringS(t, 0, -58, 60, (a - .9) / .6) + LB(34, -60, 860, 'Kniescheibe', (a - 1.0) / .35);
