@@ -1,0 +1,175 @@
+{
+ "serie": "Bio",
+ "kostuem": "beobachter",
+ "accent": "#A8E63C",
+ "id": "B001V3",
+ "titel": "Sind Vögel wirklich Dinosaurier?",
+ "quelle": "Vögel stammen von kleinen Raubsauriern (Theropoden) ab und sind kladistisch eine Untergruppe der Dinosaurier: Universität Heidelberg, Centre for Organismal Studies, Zoologische Sammlung, Blatt Vögel 2023 ('weitgehende Einigkeit', 'macht die Vögel kladistisch zu einer Untergruppe der Dinosaurier'; Federn schon bei verschiedenen kleinen Raubsauriern); wissenschaft.de, Themenseite Theropoden ('gilt unter Paläontologen heute als gesichert'); Spektrum der Wissenschaft, 'Der Ursprung der Vögel und ihres Fluges'. Hohle Knochen, Brüten auf Nestern, Federn: Spektrum, 'Ein ungewöhnlicher Vogel' und wissenschaft.de, 'Flugunfähiger Vogelvorfahr' (Turner, Makovicky, Norell, Science 317, 2007, dort für Velociraptor). Die Linie zu den Vögeln wurde über Jahrmillionen kleiner und entwickelte Federkleid und Flügel: wissenschaft.de, 'Geflügelte Schrumpf-Dinos'. T. rex enger mit Huhn und Strauß verwandt als mit heutigen Reptilien wie dem Alligator: wissenschaft.de, 'Der große Bruder des Huhns' (Organ und andere, Science 2008, Vergleich von Kollagen). Einschlag vor 66 Millionen Jahren, annähernd drei Viertel aller Tierarten ausgestorben, von den Dinosauriern überlebten allein Vögel, und davon nur wenige Linien; heute annähernd 11.000 Vogelarten: Der Standard, 2018, mit Daniel Field (Universität Bath); ZDFheute, 'Warum kleine Vögel die Asteroiden-Apokalypse überlebten' (über 11.000 Arten). Dino-Regel (16.11.2026): Erzählt wird die am weitesten verbreitete, belegte Theorie. Gegenstimme zur Abstammung (Alan Feduccia) ist eine Einzelmeinung und wird nicht erwähnt. Der Asteroid als Ursache des Aussterbens ist die Mehrheitsmeinung. Spruch am Anfang ist übertrieben gemeint und stimmt nach heutiger Systematik wörtlich für jeden, der schon Geflügel gegessen hat. Nachsatz 'mit dem T. rex verwandt' nach Organ 2008. Bewusst weggelassen: Jahreszahlen zur Entstehung der Vögel, Archaeopteryx, Streit um den Stammbaum der Dinosaurier von 2017. Design: Skript 3.0, Ort Hühnerhof, das Huhn verwandelt sich an Ort und Stelle. Kostüm B3 Tier-Beobachter.",
+ "gagTag": "[gasps] [startled]",
+ "gagDelay": 0.5,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Sind Vögel *Dinosaurier*?",
+   "emoji": "🐔",
+   "world": "h7b1_3",
+   "pause": 0.9,
+   "lines": [
+    {
+     "t": "Du hast schon mal einen Dinosaurier gegessen!",
+     "mood": "shock"
+    },
+    {
+     "t": "Sind Vögel wirklich Dinosaurier?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Bio nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Spoiler: Das Huhn ist mit dem T. rex verwandt.",
+     "mood": "shock",
+     "ev": "gag"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Vom Saurier zum Vogel",
+   "path": [],
+   "world": "b1a_3",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Erstens: Vögel stammen von kleinen Raubsauriern ab.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Viele dieser Saurier hatten schon Federn.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Sie hatten hohle Knochen und brüteten auf Nestern.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Über Millionen Jahre wurden sie kleiner und bekamen Flügel.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Mitten im Stammbaum",
+   "path": [],
+   "world": "b1b_3",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Zweitens: Für die Forschung sind Vögel nicht bloß Verwandte.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Im Stammbaum sitzen sie mitten zwischen den Dinosauriern.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Krass: Der T. rex ist mit dem Huhn enger verwandt als mit einem Krokodil.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Heißt: Dein Huhn ist ein lebender Dinosaurier.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Die Überlebenden",
+   "path": [],
+   "world": "b1c_3",
+   "pause": 0.9,
+   "lines": [
+    {
+     "t": "Drittens: Vor 66 Millionen Jahren schlug ein Asteroid ein.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Rund drei Viertel aller Tierarten starben aus.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Von den Dinosauriern überlebten nur ein paar Vögel.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Heute gibt es rund 11.000 Vogelarten.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "b1outro_3",
+   "pause": 0.05,
+   "checks": [
+    "Vögel stammen von Raubsauriern ab",
+    "Im Stammbaum: selbst Dinosaurier",
+    "Nur sie überlebten den Einschlag"
+   ],
+   "lines": [
+    {
+     "t": "Also: Vögel stammen von kleinen Raubsauriern ab,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "im Stammbaum gehören sie selbst zu den Dinosauriern,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und nur sie haben den Einschlag überlebt.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
