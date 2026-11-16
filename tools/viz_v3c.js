@@ -39,6 +39,28 @@ function inice4(t) { let s = '<defs><radialGradient id="i4n" cx=".5" cy=".48" r=
   return s + '<path d="M-20 1552 Q540 1520 1100 1552 V1920 H-20 Z" fill="#12306E" stroke="#BFEAFF" stroke-width="7"/>'; }
 old3(['h7c4', 'c4dichte', 'c4gitter', 'c4see', 'c4outro'], '#FF6BD6', (n, sc, ev, t) => n === 'c4gitter' ? inice4(t) : lake4(t, { top: n === 'h7c4' ? 1120 : n === 'c4outro' ? 1130 : 1100 }));
 
+// Einstieg neu (16.11.2026, Benedikt: Anfang interessanter): spielt direkt auf dem See, ohne Glas.
+// Gag aus dem Objekt: Schalti springt waehrend "Gib mir 60 Sekunden" auf eine Eisscholle, sie traegt ihn. Beim Nachsatz "muesste untergehen"
+// stampft er sie unter Wasser. Sie schiesst wieder hoch und schleudert ihn in hohem Bogen ans Ufer. Abwurf bei 0,72 s
+const FL4 = [600, 1076];
+function fdy4(q, e, t) { if (e === undefined) return q >= .45 && q < .8 ? 24 * Math.sin(Math.PI * (q - .45) / .35) : 4 * Math.sin(t * 2);
+  if (e < .35) return 0; if (e < .6) return 135 * ease((e - .35) / .25); if (e < .72) return lerp(135, -70, ease((e - .6) / .12)); return -70 * Math.exp(-(e - .72) * 3) * Math.cos((e - .72) * 13); }
+function floe4(x, y, r) { return '<g transform="translate(' + x + ' ' + y + ') rotate(' + r + ') scale(1.32)"><path d="M-150 0 v28 a150 34 0 0 0 300 0 v-28 Z" fill="#8FC4EE" stroke="#0B1020" stroke-width="6"/><ellipse rx="150" ry="34" fill="#F4FAFF" stroke="#0B1020" stroke-width="6"/><path d="M-90 -6 l40 10 l30 -8 M30 12 l46 -8" stroke="#BFD8FF" stroke-width="5" fill="none" stroke-linecap="round"/></g>'; }
+WORLD.h7c4_3 = function (sc, ev, t, lt) { const e = ev.bonk, q = since3(sc, 3, lt), dy = fdy4(q, e, t), hit = e !== undefined && e >= .72 ? e - .72 : undefined, sh = shake7(hit, t);
+  let s = lake4(t, { jetty: 0 }) + '<ellipse cx="600" cy="1094" rx="372" ry="98" fill="#F4FAFF" stroke="#0B1020" stroke-width="6"/><ellipse cx="600" cy="1098" rx="348" ry="82" fill="#0E3A7A"/>';
+  for (let i = 0; i < 2; i++) s += '<path d="M' + (380 + i * 250) + ' ' + (1120 + i * 14) + ' q40 ' + (-8 + 4 * Math.sin(t * 2 + i)) + ' 80 0" stroke="#7FD3FF" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>';
+  s += floe4(FL4[0], FL4[1] + dy, e !== undefined && e > .72 ? 5 * Math.exp(-(e - .72) * 3) * Math.sin((e - .72) * 13) : 0);
+  if (dy > 6) s += '<ellipse cx="600" cy="1098" rx="348" ry="82" fill="#0E3A7A" opacity="' + cl(dy / 60) * .72 + '"/>';
+  if (e !== undefined && e > .35 && e < 1.3) for (let i = 0; i < 12; i++) { const c = cl((e - (i % 2 ? .72 : .35)) / .55); if (c <= 0 || c >= 1) continue; const a = -Math.PI * (.1 + .8 * rnd(i + 2)), d = 70 + 250 * c; s += drop(600 + d * Math.cos(a), 1070 + d * .8 * Math.sin(a) + 260 * c * c, 1.1, '#BFEAFF'); }
+  if (hit !== undefined) { for (let i = 0; i < 2; i++) { const c = (hit * .9 + i * .5) % 1; s += '<ellipse cx="600" cy="1100" rx="' + (205 + 130 * c) + '" ry="' + (46 + 30 * c) + '" fill="none" stroke="#BFEAFF" stroke-width="5" opacity="' + (1 - c) * cl(2.2 - hit) + '"/>'; } if (hit < 1.2) s += word7('PLOPP!', 700, 860, hit, '#FFE14D', -6); }
+  return look3(W('<g transform="translate(' + (sh[0] * .5) + ' ' + (sh[1] * .5) + ')">' + s + '</g>' + shade3()), sc, t, lt, '#FF6BD6'); };
+WMASC.h7c4_3 = (ev, t, lt, sc) => { const e = ev.bonk, q = since3(sc, 3, lt), dy = fdy4(q, e, t), S = .78, Y = FL4[1] - 8;
+  if (e === undefined) { if (q < 0) return stay3(HOME3, 1, { r: -3 + 2 * Math.sin(t * 2) }); if (q < .45) return hop3(q / .45, HOME3, [600, Y], 230, 1, S); return stay3([600, Y + dy], S, { r: 3 * Math.sin(t * 5) }); }
+  if (e < .35) return stay3([600, Y - 170 * Math.sin(Math.PI * e / .35)], S, { r: 0 });
+  if (e < .72) return stay3([600 + (e > .6 ? 0 : 3 * Math.sin(t * 40)), Y + dy], S, { r: e < .6 ? 4 * Math.sin(t * 30) : 0 });
+  if (e < 1.75) { const k = (e - .72) / 1.03; return hop3(k, [600, Y - 70], HOME3, 520, S, 1, { r: -360 * ease(cl(k)) }); }
+  return stay3(HOME3, 1, { r: e < 2.6 ? 7 * Math.sin(t * 9) * (1 - cl((e - 1.75) / .85)) : 0 }); };
+
 // ---------- I004V3: Zocker-Zimmer bei Nacht. Im Einstieg und Schluss steht der Monitor auf dem Schreibtisch, Teil 2 zeigt den Weg durch die Stadt zum Server ----------
 function den4(t, o) { o = o || {}; const D = o.desk;
   let s = room3(t, { id: 'd4', a: '#07061C', b: '#1A1050', c: '#32208A', fl: '#0A0820', fs: '#1A1248', ln: '#B79CFF', glow: [600, 890, 520, 380, '#7C5CFF', .4] });

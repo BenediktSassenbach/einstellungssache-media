@@ -4,7 +4,7 @@
  "accent": "#FF6BD6",
  "id": "C004V3",
  "titel": "Warum schwimmt Eis?",
- "quelle": "Lernhelfer Schülerlexikon Chemie, Anomalie des Wassers: Wasser 4 °C rund 1 g/cm³, Eis bei 0 °C 0,92 g/cm³, deshalb schwimmt Eis; Volumenzunahme beim Gefrieren 9 %; weitmaschiges Gitter mit sechseckigen Hohlräumen, Wasserstoffbrückenbindungen; Eisberg etwa 9/10 unter und 1/10 über Wasser. wissen.de: Sechsecke, Kristallgitter mit Hohlräumen, etwa 9 % mehr Volumen; Gewässer gefrieren zuerst an der Oberfläche, unten 4 °C. Studyflix Anomalie des Wassers: See friert von oben zu, Eis schützt das Wasser darunter, Fische überleben. RAAbits Physik 2020: Im Gegensatz zu fast allen anderen Stoffen ist Wasser flüssig dichter als fest. Fassung 3.0 vom 16.11.2026: Teile 1 bis 3 und Schluss wortgleich, neuer Einstiegssatz.",
+ "quelle": "Lernhelfer Schülerlexikon Chemie, Anomalie des Wassers: Wasser 4 °C rund 1 g/cm³, Eis bei 0 °C 0,92 g/cm³, deshalb schwimmt Eis; Volumenzunahme beim Gefrieren 9 %; weitmaschiges Gitter mit sechseckigen Hohlräumen, Wasserstoffbrückenbindungen; Eisberg etwa 9/10 unter und 1/10 über Wasser. wissen.de: Sechsecke, Kristallgitter mit Hohlräumen, etwa 9 % mehr Volumen; Gewässer gefrieren zuerst an der Oberfläche, unten 4 °C. Studyflix Anomalie des Wassers: See friert von oben zu, Eis schützt das Wasser darunter, Fische überleben. RAAbits Physik 2020: Im Gegensatz zu fast allen anderen Stoffen ist Wasser flüssig dichter als fest. Einstiegssatz \"Würde Eis sinken, wäre dieser See längst tot!\" ist zugespitzt: Gemeint ist, dass ein See dann von unten durchfrieren würde, Teil 3 erklärt es (friert von oben zu, darunter bleibt es flüssig, Fische überleben). Fassung 3.0 vom 16.11.2026: Teile 1 bis 3 und Schluss wortgleich, neuer Einstiegssatz.",
  "scenes": [
   {
    "type": "hook",
@@ -13,7 +13,7 @@
    "world": "h7c4_3",
    "lines": [
     {
-     "t": "Wasser macht, was fast kein anderer Stoff macht!",
+     "t": "Würde Eis sinken, wäre dieser See längst tot!",
      "mood": "shock"
     },
     {
@@ -175,6 +175,6 @@
    "pause": 0.05
   }
  ],
- "gagDelay": 0.12,
- "gagTag": "[stammering, shaking]"
+ "gagDelay": 0.72,
+ "gagTag": "[yelps]"
 }
