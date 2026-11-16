@@ -1,6 +1,6 @@
 // B012 Schicht fuer Schicht, Folge 1: Wie ist ein Knie aufgebaut? (Skript Schicht fuer Schicht Anatomie)
 // Ein Knie-Modell steht auf dem Podest und waechst in sechs Schichten. Jede Schicht kommt dazu, weil vorher etwas fehlt.
-const KX = 600, KY = 912, KZ = 1.04, NOTE12 = 'linkes Knie, Ansicht von vorn';
+const KX = 600, KY = 912, KZ = 1.14, NOTE12 = 'linkes Knie, Ansicht von vorn';
 const LB = (lx, ly, ty, txt, k) => labelS(Math.round(KX + lx * KZ), Math.round(KY + ly * KZ), 790, ty, txt, k);
 const ROWS12 = [['Knochen', COLS.bone], ['Knorpel', COLS.cart], ['Menisken', COLS.men], ['Bänder', COLS.lig], ['Kapsel', COLS.cap], ['Sehne', COLS.ten]];
 const ringS = (t, lx, ly, r, k) => k > 0 && k < 1 ? '<circle cx="' + (KX + lx * KZ) + '" cy="' + (KY + ly * KZ) + '" r="' + (r * (1 + .5 * k)).toFixed(0) + '" fill="none" stroke="' + TH().hl + '" stroke-width="8" opacity="' + (1 - k).toFixed(2) + '"/>' : '';
@@ -31,7 +31,7 @@ WORLD.b12a = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.
   let s = laborS(t, { rows: ROWS12, on: bn + ca, cur: p2 !== undefined ? 2 : 1, cx: KX, note: NOTE12 });
   s += kneeS(KX, KY, KZ, t, { l: [bn, ca, 0, 0, 0, 0], pat: 0, hlB: hlB, fdx: fdx, fdy: rub ? 9 : 0, q: cl((lt - 1.2) / .4) });
   if (rub) for (const sx of [-1, 1]) s += '<path d="M' + (KX + sx * 58 * KZ - 12) + ' ' + (KY + 8) + ' l8 -9 l8 9 l8 -9" stroke="' + TH().hl + '" stroke-width="5" fill="none" stroke-linecap="round" opacity="' + (.5 + .5 * Math.sin(t * 18 + sx)).toFixed(2) + '"/>';
-  if (p1 === undefined && p !== undefined) s += LB(34, -150, 760, 'Oberschenkel', (p - 1.0) / .35) + LB(34, 150, 1060, 'Schienbein', (p - 1.9) / .35) + labelS(Math.round(KX - 170 * KZ), Math.round(KY - 150 * KZ), 352, 718, 'Kniescheibe', (p - 2.8) / .35);
+  if (p1 === undefined && p !== undefined) s += LB(34, -150, 760, 'Oberschenkel', (p - 1.0) / .35) + LB(34, 150, 1060, 'Schienbein', (p - 1.9) / .35) + labelS(Math.round(KX - 160 * KZ), Math.round(KY - 132 * KZ), 366, 716, 'Kniescheibe', (p - 2.8) / .35);
   if (p2 !== undefined) s += ringS(t, 0, 4, 120, (p2 - .5) / .7) + LB(100, -22, 880, 'Knorpel', (p2 - 1.0) / .35);
   if (a !== undefined) s += lupeS(lupRF(t, false), a / .35, KX - 62 * KZ, KY + 6) + markS(t, -92, 4, 30) + markS(t, 92, 4, 30);
   s += puffb(KX, KY, (lt - .15) / .6, 240);
@@ -68,7 +68,7 @@ WORLD.b12out = function (sc, ev, t, lt) { const c1 = ev.c1, c2 = ev.c2, c3 = ev.
   const cur = sv !== undefined ? 0 : c3 !== undefined ? 6 : c2 !== undefined ? 4 : c1 !== undefined ? 2 : 0;
   let s = laborS(t, { rows: ROWS12, on: 6, cur: 0, noList: sv !== undefined, cx: KX, note: sv === undefined ? NOTE12 : '' });
   s += kneeS(KX, y, z, t, { l: [1, 1, 1, 1, 1, 1], pat: 1, pull: .5 + .5 * Math.sin(t * 2.6) });
-  if (cur) for (const r of [cur - 1, cur]) s += '<rect x="56" y="' + (786 + (r - 1) * 42 - 29) + '" width="270" height="38" rx="9" fill="#A8E63C" opacity="' + (HELL() ? .5 : .22) + '"/>';
+  if (cur) for (const r of [cur - 1, cur]) s += '<rect x="50" y="' + (782 + (r - 1) * 45 - 31) + '" width="290" height="41" rx="9" fill="#A8E63C" opacity="' + (HELL() ? .5 : .22) + '"/>';
   return W(s + (HELL() ? '' : '<rect width="1080" height="1920" fill="#02030F" opacity=".3"/>') + shadeS()); };
 ['h12knie', 'b12a', 'b12b', 'b12c', 'b12out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => { const out = inner(sc, ev, t, lt, E); if (!HELL()) return look3(out, sc, t, lt, '#A8E63C');
   // heller Look: gleiche Kamera wie look3, aber ohne dunkle Farbstimmung
