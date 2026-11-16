@@ -43,7 +43,7 @@ WORLD.h7dino = function (sc, ev, t, lt) { const e = ev.gag, hit = e !== undefine
     s += rexd(x, y, z, t, { jaw: jaw, head: head, run: ch > 0 || (ap > 0 && ap < 1), ph: ch > 0 ? stepD(cx - 500, 2.2) : stepD((x - RXD[0]) + (y - RXD[1]), 1.1), flip: ch > 0 });
   }
   s += puffb(HX0, RXD[1] - 220, (lt - HM0) / .5, 250);
-  if (hit !== undefined && hit < 1.1) s += word7('RAWR!', 690, 1420, hit, '#FFE14D', -5);
+  if (hit !== undefined && hit < 1.1) s += word7('RAWR!', 700, 1478, hit, '#FFE14D', -4);
   return W('<g transform="translate(' + (sh[0] * .6) + ' ' + (sh[1] * .6) + ')">' + s + '</g>' + shade3()); };
 // Schalti: erschrickt bei der Verwandlung, redet dann weiter. Beim Nachsatz wird er entdeckt.
 WMASC.h7dino = (ev, t, lt, sc) => { const e = ev.gag;
