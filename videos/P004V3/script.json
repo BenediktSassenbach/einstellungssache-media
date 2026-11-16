@@ -1,0 +1,200 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P004V3",
+ "titel": "Warum ist der Himmel blau?",
+ "quelle": "Rayleigh-Streuung proportional zu 1/λ⁴ (Spektrum Lexikon der Geowissenschaften, wetterdienst.de); Abendrot durch längeren Weg (Spektrum, wetterdienst.de); Wolken weiß durch Mie-Streuung (wetterdienst.de). Hinweis: Die oft genannte Zahl '16-mal' gilt nicht für Blau gegen Rot (eher 4- bis 6-mal), deshalb ohne Zahl. Warum Blau stärker gestreut wird: Licht regt die Ladungen in den Luftmolekülen zum Schwingen an, die abgestrahlte Leistung ist proportional zu ω⁴ (Physik-Lehrbuch Wellen, Rayleigh-Streuung; Spektrum Lexikon: Streukoeffizient proportional zu λ⁻⁴). Fassung 3.0 vom 16.11.2026: Teile 1 bis 3 und Schluss wortgleich, neuer Einstiegssatz.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum ist der Himmel *blau*?",
+   "emoji": "🌤️",
+   "lines": [
+    {
+     "t": "Sonnenlicht ist weiß. Trotzdem ist der Himmel blau!",
+     "mood": "shock"
+    },
+    {
+     "t": "Warum ist der Himmel eigentlich blau?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und warum wird er abends rot?",
+     "mood": "cool",
+     "ev": "gag"
+    }
+   ],
+   "world": "h7p4_3",
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Licht ist gemischt",
+   "path": [],
+   "lines": [
+    {
+     "t": "Erstens: Sonnenlicht ist gar nicht einfach weiß.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Es ist eine Mischung aus allen Farben.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Rotes Licht schwingt in langen Wellen,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "blaues Licht in ganz kurzen, es schwingt also viel öfter pro Sekunde.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Und genau das ist der Trick.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "world": "p4a_3",
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Blau prallt ab",
+   "path": [],
+   "lines": [
+    {
+     "t": "Zweitens: Die Luft ist voller winziger Teilchen.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Trifft Sonnenlicht darauf, wird es abgelenkt, also gestreut.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Das Licht bringt die Ladungen in den Teilchen zum Mitschwingen, und die senden es in alle Richtungen weiter.",
+     "mood": "shock",
+     "ev": "mit"
+    },
+    {
+     "t": "Blau schwingt viel schneller, und je schneller, desto stärker wird es gestreut.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Darum fliegt Blau kreuz und quer über den ganzen Himmel.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Egal wohin du schaust, von überall kommt Blau bei dir an.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "world": "p4b_3",
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Und abends rot?",
+   "path": [],
+   "lines": [
+    {
+     "t": "Drittens: Und warum ist der Sonnenuntergang rot?",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Abends steht die Sonne tief.",
+     "mood": "happy",
+     "ev": "tief"
+    },
+    {
+     "t": "Ihr Licht muss einen viel längeren Weg durch die Luft nehmen.",
+     "mood": "happy",
+     "ev": "weg"
+    },
+    {
+     "t": "Unterwegs wird fast das ganze Blau weggestreut.",
+     "mood": "shock",
+     "ev": "blau"
+    },
+    {
+     "t": "Übrig bleiben Orange und Rot.",
+     "mood": "cool",
+     "ev": "act"
+    },
+    {
+     "t": "Und Wolken sind weiß, weil ihre Tröpfchen alle Farben ähnlich stark streuen.",
+     "mood": "happy",
+     "ev": "act2"
+    }
+   ],
+   "world": "p4c_3",
+   "pause": 0.5
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "checks": [
+    "Licht = alle Farben",
+    "Blau wird am stärksten gestreut",
+    "Abends langer Weg = Rot"
+   ],
+   "lines": [
+    {
+     "t": "Also: Sonnenlicht hat alle Farben,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Blau wird in der Luft am stärksten gestreut,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und abends bleibt auf dem langen Weg nur Rot übrig.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ],
+   "world": "p4outro_3",
+   "pause": 0.05
+  }
+ ],
+ "gagDelay": 0.5,
+ "gagTag": "[gasps] [startled]"
+}

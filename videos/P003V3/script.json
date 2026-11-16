@@ -1,0 +1,200 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P003V3",
+ "titel": "Wie lädt dein Handy ohne Kabel?",
+ "quelle": "Apple Support 108377 und Qi-Anleitung: mittig auflegen, dicke oder Metall-Hülle entfernen, empfohlenes Netzteil. Apple Sicherheitsinformationen: Metallgegenstände können das Laden stören. Induktion mit zwei Spulen und Wechselstrom: PC-Welt, Macwelt, Anker. Geringe Reichweite: inside-digital, channelpartner. Fassung 3.0 vom 16.11.2026: Teile 1 bis 3 und Schluss wortgleich, neuer Einstiegssatz.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Laden *ohne* Kabel?",
+   "emoji": "🪄",
+   "lines": [
+    {
+     "t": "Kein Kabel, kein Kontakt. Und trotzdem lädt es!",
+     "mood": "shock"
+    },
+    {
+     "t": "Wie kommt Strom ohne Kabel in dein Handy?",
+     "mood": "shock",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Und was du tust, wenn es plötzlich nicht mehr lädt.",
+     "mood": "cool",
+     "ev": "gag"
+    }
+   ],
+   "world": "h7p3_3",
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Spule in der Matte",
+   "path": [],
+   "lines": [
+    {
+     "t": "Erstens: In der Ladematte steckt eine Spule aus Kupferdraht.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Durch sie fließt Wechselstrom, also Strom, der ständig die Richtung wechselt.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Dadurch entsteht ein Magnetfeld, das genauso schnell hin und her kippt.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Das Feld ist aber schwach und reicht nur ganz kurz.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "world": "p3a_3",
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Zweite Spule im Handy",
+   "path": [],
+   "lines": [
+    {
+     "t": "Zweitens: Im Handy sitzt eine zweite Spule.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Legst du das Handy auf, geht das kippende Magnetfeld durch diese Spule.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Und ein kippendes Magnetfeld schiebt dort die Elektronen an.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Es fließt wieder Strom, direkt in den Akku.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Das nennt man Induktion.",
+     "mood": "cool",
+     "ev": "act"
+    },
+    {
+     "t": "Hebst du das Handy an, ist das Feld zu schwach und das Laden stoppt.",
+     "mood": "angry",
+     "ev": "act2"
+    }
+   ],
+   "world": "p3b_3",
+   "pause": 0.5
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Lädt nicht?",
+   "path": [],
+   "lines": [
+    {
+     "t": "Drittens: Was, wenn es nicht lädt?",
+     "mood": "shock",
+     "ev": "panel"
+    },
+    {
+     "t": "Liegt das Handy schief, treffen sich die Spulen nicht.",
+     "mood": "happy",
+     "ev": "schief"
+    },
+    {
+     "t": "Dicke Hüllen oder Metall dazwischen stören das Feld.",
+     "mood": "angry",
+     "ev": "metall"
+    },
+    {
+     "t": "Dann: Handy mittig auflegen,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Hülle oder Metall entfernen,",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und das vom Hersteller empfohlene Netzteil nutzen.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Lädt es dann immer noch nicht, lass Handy und Ladegerät prüfen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "world": "p3c_3",
+   "pause": 0.5
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "checks": [
+    "Spule + Wechselstrom = Magnetfeld",
+    "Zweite Spule macht wieder Strom",
+    "Lädt nicht? Mittig, ohne Metall"
+   ],
+   "lines": [
+    {
+     "t": "Also: Spule plus Wechselstrom gibt ein kippendes Magnetfeld,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "die Spule im Handy macht daraus wieder Strom,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und wenn's nicht lädt: mittig auflegen und Metall weg.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ],
+   "world": "p3outro_3",
+   "pause": 0.05
+  }
+ ],
+ "gagDelay": 0.4,
+ "gagTag": "[gasps] [nervous]"
+}
