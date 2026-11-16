@@ -124,6 +124,13 @@ function mascot(m, open, blink, w) {
     const hb = 1 + .08 * Math.abs(Math.sin(performance_t * 5));
     hand = '<g transform="translate(6 40)"><g transform="translate(0 -40) rotate(-10) scale(' + hb.toFixed(3) + ')"><path d="M0 26 C-40 0 -30 -30 -12 -30 C-4 -30 0 -24 0 -18 C0 -24 4 -30 12 -30 C30 -30 40 0 0 26 Z" fill="#FF4D4D"/><path d="M-16 -18 Q-20 -10 -16 -2" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8"/></g><circle cx="0" cy="0" r="10" fill="#fff"/></g>';
   }
+  // Kostuem "baumeister" (Bio B5, Serie Schicht fuer Schicht): gelber Bauhelm, Warnweste, in der Hand ein Stapel aus drei Schichten
+  if (S.kostuem === 'baumeister') {
+    coat = '<clipPath id="b5c"><rect x="30" y="40" width="240" height="120" rx="60"/></clipPath><g clip-path="url(#b5c)"><rect x="30" y="40" width="126" height="120" fill="#FF8A3D"/><rect x="62" y="40" width="14" height="120" fill="#FFF27A"/><rect x="112" y="40" width="14" height="120" fill="#FFF27A"/><rect x="30" y="118" width="126" height="12" fill="#FFF27A"/></g><rect x="30" y="40" width="240" height="120" rx="60" fill="none" stroke="' + A + '" stroke-width="5"/>';
+    top = '<path d="M152 60 Q154 4 212 2 Q270 4 272 60 Z" fill="#FFC933" stroke="#0B1020" stroke-width="4" stroke-linejoin="round"/><path d="M212 4 V58" stroke="#E09A10" stroke-width="9" stroke-linecap="round"/><rect x="140" y="54" width="148" height="15" rx="7" fill="#FFB020" stroke="#0B1020" stroke-width="4"/>';
+    const sb = 2 * Math.sin(performance_t * 3);
+    hand = '<g transform="translate(6 40)"><g transform="translate(0 ' + sb.toFixed(1) + ')"><rect x="-30" y="-32" width="60" height="15" rx="5" fill="#FFF6DF" stroke="#0B1020" stroke-width="3"/><rect x="-27" y="-48" width="54" height="15" rx="5" fill="#6FC3F0" stroke="#0B1020" stroke-width="3"/><rect x="-24" y="-64" width="48" height="15" rx="5" fill="#FFD166" stroke="#0B1020" stroke-width="3"/></g><circle cx="0" cy="0" r="10" fill="#fff"/></g>';
+  }
   return '<svg width="' + w + '" viewBox="-10 -12 320 247" xmlns="http://www.w3.org/2000/svg" style="overflow:visible"><path d="M112 150 L104 205 M190 150 L198 205" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/><path d="M84 207 L108 207 M194 207 L218 207" stroke="' + A + '" stroke-width="12" stroke-linecap="round"/>' + arm + '<rect x="30" y="40" width="240" height="120" rx="60" fill="' + A + '"/>' + coat + hair + '<circle cx="212" cy="100" r="54" fill="' + BG + '"/>' + (hideEyes ? '' : e) + mouth + top + hand + '</svg>';
 }
 function sw(k, nm) { k = ease(k); const c = k > 0.5 ? A : '#C9CFDD'; return '<span class="sw" style="background:' + c + (nm ? ';margin-left:0' : '') + '"><i style="left:' + (5 + 38 * k) + 'px"></i></span>'; }
