@@ -41,7 +41,7 @@
    "title": "Knochen und Knorpel",
    "path": [],
    "world": "b12a",
-   "pause": 0.5,
+   "pause": 0.35,
    "lines": [
     {
      "t": "Schicht eins: Oberschenkelknochen, Schienbein und Kniescheibe.",
@@ -71,7 +71,7 @@
    "title": "Menisken und Bänder",
    "path": [],
    "world": "b12b",
-   "pause": 0.5,
+   "pause": 0.35,
    "lines": [
     {
      "t": "Schicht drei: zwei Menisken, wie Halbmonde aus Knorpel.",
@@ -101,7 +101,7 @@
    "title": "Kapsel und Sehne",
    "path": [],
    "world": "b12c",
-   "pause": 0.9,
+   "pause": 0.2,
    "lines": [
     {
      "t": "Schicht fünf: Eine Kapsel umschließt das ganze Gelenk.",
