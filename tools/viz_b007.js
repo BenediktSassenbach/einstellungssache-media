@@ -88,5 +88,5 @@ WMASC.b7c = (ev, t) => { const a = ev.act; if (a !== undefined && a > 1.0 && a <
 
 // ---------- Schluss: noch einmal Baby, Kind, Erwachsener am selben Skelett, die Zeitleiste wandert mit ----------
 WORLD.b7out = function (sc, ev, t, lt) { const c2 = ev.c2, c3 = ev.c3, g = c3 !== undefined ? lerp(.55, 1, ease(cl(c3 / .8))) : c2 !== undefined ? .55 * ease(cl(c2 / .8)) : 0;
-  return W(classK(t, { age: g, close: ev.save === undefined ? bigNumK(g >= 1 ? '206' : g > .5 ? '240' : '300+', g > .5 ? 'Knochen' : 'Knochen + Knorpel', g >= 1) : '' }) + skelK(SKX, SKY, KS(g) * back(cl((lt - .1) / .4)), t, { g: g, cart: .8 * (1 - g), sk: cl(g * 2), sac: g, smile: 1, wave: g >= 1 ? .8 : 0 }) + '<rect width="1080" height="1920" fill="#02030F" opacity=".3"/>' + shade3()); };
+  return W(classK(t, { age: ev.save === undefined ? g : undefined, close: ev.save === undefined ? bigNumK(g >= 1 ? '206' : g > .5 ? '240' : '300+', g > .5 ? 'Knochen' : 'Knochen + Knorpel', g >= 1) : '' }) + skelK(SKX, SKY, KS(g) * back(cl((lt - .1) / .4)), t, { g: g, cart: .8 * (1 - g), sk: cl(g * 2), sac: g, smile: 1, wave: g >= 1 ? .8 : 0 }) + '<rect width="1080" height="1920" fill="#02030F" opacity=".3"/>' + shade3()); };
 ['h7bone', 'b7a', 'b7b', 'b7c', 'b7out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, '#A8E63C'); });
