@@ -1,0 +1,47 @@
+{
+ "serie": "Bio",
+ "kostuem": "beobachter",
+ "accent": "#A8E63C",
+ "gagTag": "[gasps] [startled]",
+ "gagDelay": 0.5,
+ "id": "B001TD",
+ "titel": "Test Dino-Skript D",
+ "dv": {
+  "art": "ki",
+  "look": "n"
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Sind Vögel *Dinosaurier*?",
+   "emoji": "🐔",
+   "world": "h7d1",
+   "pause": 1.0,
+   "lines": [
+    {
+     "t": "Du hast schon mal einen Dinosaurier gegessen!",
+     "mood": "shock"
+    },
+    {
+     "t": "Sind Vögel wirklich Dinosaurier?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Bio nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Spoiler: Das Huhn ist mit dem T. rex verwandt.",
+     "mood": "shock",
+     "ev": "gag"
+    }
+   ]
+  }
+ ]
+}
