@@ -1,0 +1,175 @@
+{
+ "serie": "Bio",
+ "kostuem": "dinokostuem",
+ "accent": "#A8E63C",
+ "id": "B002",
+ "titel": "Wie sah der Spinosaurus wirklich aus?",
+ "quelle": "Name und erste Knochen: Ernst Stromer beschrieb Spinosaurus aegyptiacus 1915 nach Funden aus Ägypten (Scientific American, Tetrapod Zoology, 'The discovery and early interpretation of Spinosaurus'; Discover Magazine 2020). Aufrechte Darstellung: Stromers Rekonstruktion von 1936 in der damals üblichen 'känguruartigen' Haltung, mit normalem, hohem Raubsaurier-Schädel (Scientific American, ebenda). Im Video vereinfacht als 'gezeichnet wurde er aufrecht', ohne Jahreszahl 1936. Zerstörung: Stromers Originalmaterial wurde im April 1944 bei einem Bombenangriff auf München zerstört, danach blieben Zeichnungen, Beschreibungen und Fotos (Scientific American; Smithsonian Magazine 2020). Späteres Bild: Vor 2014 gab es nur wenige, unvollständige Reste; der Schwanz wurde wie bei anderen Raubsauriern angenommen, starr und zum Ausbalancieren (National Geographic, 'Reconstructing a gigantic aquatic predator', 2020; Smithsonian 2020). Heute: Funde aus Marokko; krokodilartige Kiefer mit kegelförmigen Zähnen zum Greifen von Fischen (National Geographic Explorer 2020); Schwanz hoch und paddelartig, beschrieben 2020 in Nature (Ibrahim und andere). Neue Art: Spinosaurus mirabilis aus Niger, rund 95 Millionen Jahre alt, säbelförmiger Kopfkamm von rund einem halben Meter, beschrieben am 19.02.2026 in Science (Sereno und andere; Live Science, National Geographic). Bewusst weggelassen (Entscheidung Benedikt, 16.11.2026: nur Aussehen): der Streit, ob Spinosaurus aktiv schwamm oder im flachen Wasser watete (Ibrahim 2020 und Yale 2026 gegen Hone und Holtz 2021, Sereno 2022 und 2026). Im Bild steht er höchstens im flachen Wasser, das passt zu beiden Lagern. Ebenfalls weggelassen: vierbeiniger Gang (umstritten), Körperlänge, Farbe (unbekannt, frei gewählt). Schwanzform und Beinlänge der neuen Art sind frei nach der Gattung gezeichnet. Spruch am Anfang ist übertrieben gemeint: Das bekannte Bild vom langbeinigen Landräuber gilt als überholt. Design: Dino-Skript 1.0, Ort Flussufer in der Urzeit, ein Tier verwandelt sich an Ort und Stelle. Kostüm B2 Dino-Kostüm ('So sah er wirklich aus').",
+ "gagTag": "[gasps] [startled]",
+ "gagDelay": 0.9,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Wie sah der *Spinosaurus* aus?",
+   "emoji": "🦕",
+   "world": "h7spino",
+   "pause": 1.0,
+   "lines": [
+    {
+     "t": "Der Spinosaurus, den du kennst, hat nie existiert!",
+     "mood": "shock"
+    },
+    {
+     "t": "Wie sah der Spinosaurus wirklich aus?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Bio nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Spoiler: Sein Schwanz war ein Paddel.",
+     "mood": "shock",
+     "ev": "gag"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Aufrecht wie ein Känguru",
+   "path": [],
+   "world": "b2a",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Erstens: 1915 beschrieb ein deutscher Forscher die ersten Knochen aus Ägypten.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Gezeichnet wurde er aufrecht, wie ein Känguru mit Segel.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "1944 wurden die Knochen bei einem Bombenangriff auf München zerstört.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Danach blieben nur Zeichnungen und Fotos.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Der Landräuber",
+   "path": [],
+   "world": "b2b",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Zweitens: Später kam das Bild, das du kennst.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Ein riesiger Landräuber mit langen Beinen und spitzem Schwanz.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Was fehlte, ergänzte man nach anderen Raubsauriern.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Krass: Vom echten Tier gab es kaum Knochen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Schnauze, Paddel, Kamm",
+   "path": [],
+   "world": "b2c",
+   "pause": 0.9,
+   "lines": [
+    {
+     "t": "Drittens: Neue Funde aus Marokko zeigen ein anderes Tier.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Lange Krokodilschnauze, kegelförmige Zähne für Fische.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "2020 kam der Schwanz dazu: hoch und flach wie ein Paddel.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Und 2026 eine neue Art aus Niger, mit Säbelkamm auf dem Kopf.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "b2out",
+   "pause": 0.05,
+   "checks": [
+    "1915: aufrecht wie ein Känguru",
+    "Später: riesiger Landräuber",
+    "Heute: Schnauze und Paddelschwanz"
+   ],
+   "lines": [
+    {
+     "t": "Also: Erst stand er aufrecht wie ein Känguru,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "dann wurde er zum Landräuber,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "heute hat er Krokodilschnauze und Paddelschwanz.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
