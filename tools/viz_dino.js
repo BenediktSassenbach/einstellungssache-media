@@ -27,7 +27,7 @@ function rexd(x, y, s, t, o) { o = o || {}; const N = o.look === 'n', id = 'rx' 
       + '<ellipse cx="' + mx.toFixed(1) + '" cy="' + my.toFixed(1) + '" rx="74" ry="50" transform="rotate(' + ang.toFixed(1) + ' ' + mx.toFixed(1) + ' ' + my.toFixed(1) + ')" fill="' + col + '" ' + K + '/>'; };
   g += leg(1);
   // Schwanz: schwingt nach
-  let ttx = 0, tty = 0; { let up = '', dn = ''; const n = 12; for (let i = 0; i <= n; i++) { const k = i / n, tx = 96 + 318 * k, ty = -206 + bob * (1 - k) + (10 * Math.sin(t * 2.3 - k * 3) + (run ? 16 * Math.sin(ph - k * 3) : 0)) * k + 14 * k * k, w = 47 * Math.pow(1 - k, 1.25) + 2; ttx = tx; tty = ty; up += (i ? ' L' : 'M') + tx.toFixed(1) + ' ' + (ty - w).toFixed(1); dn = ' L' + tx.toFixed(1) + ' ' + (ty + w * .85).toFixed(1) + dn; }
+  let ttx = 0, tty = 0; { let up = '', dn = ''; const n = 12; for (let i = 0; i <= n; i++) { const k = i / n, tx = 96 + 318 * (o.tl || 1) * k, ty = -206 + bob * (1 - k) + (10 * Math.sin(t * 2.3 - k * 3) + (run ? 16 * Math.sin(ph - k * 3) : 0)) * k + 14 * k * k, w = 47 * Math.pow(1 - k, 1.25) + 2; ttx = tx; tty = ty; up += (i ? ' L' : 'M') + tx.toFixed(1) + ' ' + (ty - w).toFixed(1); dn = ' L' + tx.toFixed(1) + ' ' + (ty + w * .85).toFixed(1) + dn; }
     g += '<path d="' + up + dn + ' Z" fill="url(#' + id + 'g)" ' + K + '/>'; }
   if (fe > 0) for (let i = 0; i < 5; i++) g += plm(ttx - 34, tty, -44 + i * 22 + 4 * Math.sin(t * 3 + i), fe * 1.25, i);
   // Rumpf
@@ -36,6 +36,7 @@ function rexd(x, y, s, t, o) { o = o || {}; const N = o.look === 'n', id = 'rx' 
   else if (RAP) { for (let i = 0; i < 12; i++) g += '<circle cx="' + (-110 + 210 * rnd(i + 3)).toFixed(0) + '" cy="' + (-272 + 50 * rnd(i + 41)).toFixed(0) + '" r="' + (7 + 7 * rnd(i + 7)).toFixed(0) + '" fill="' + P.sp + '"/>'; }
   else for (const sx of [-84, -44, -4, 36, 76]) g += '<path d="M' + sx + ' -284 q16 34 -6 62 q-20 -26 -14 -62 Z" fill="' + P.sp + '"/>';
   g += '<path d="M-130 -150 C-80 -112 20 -108 90 -138 L90 -100 L-130 -100 Z" fill="#000" opacity=".1"/></g>';
+  if (fe > 0) for (let i = 0; i < 9; i++) g += plm(-92 + i * 24, -272 + Math.abs(i - 3) * 2.2, -150 + i * 4 + 5 * Math.sin(t * 3 + i), fe * .5, i);
   // Hals und Kopf
   g += '<g transform="rotate(' + (-hr).toFixed(2) + ' -96 -236) translate(-96 -236) scale(' + hs + ') translate(96 236)">'; if (fe > 0) for (let i = 0; i < 4; i++) g += plm(-150 - i * 16, -376 - i * 2, -128 + i * 20 + 4 * Math.sin(t * 3.4 + i), fe * .9, i + 1); g += '<g><path d="M-58 -266 C-98 -292 -126 -322 -136 -356 L-200 -304 C-172 -262 -150 -220 -122 -176 Z" fill="url(#' + id + 'g)" ' + K + '/>';
   const jr = jw * Math.PI / 180, tipx = -152 - 164 * Math.cos(jr), tipy = -302 + 164 * Math.sin(jr);
@@ -51,7 +52,7 @@ function rexd(x, y, s, t, o) { o = o || {}; const N = o.look === 'n', id = 'rx' 
   g += '</g></g>';
   // Arm: zwei Finger
   if (wg > 0) g += '<g transform="translate(-70 -214) rotate(' + (-14 + 34 * Math.sin(t * 17) * wg).toFixed(1) + ') scale(' + wg.toFixed(2) + ')"><path d="M0 0 Q-70 -110 -190 -86 Q-140 -52 -150 -14 Q-104 -32 -88 16 Q-50 -10 0 26 Z" fill="' + fc[0] + '" ' + K + '/><path d="M-30 -8 Q-80 -60 -150 -62 M-22 8 Q-70 -20 -120 -14" stroke="' + P.st + '" stroke-width="3" fill="none" opacity=".5"/></g>';
-  g += '<g transform="rotate(' + (8 * Math.sin(t * 3.1) + (run ? 14 * Math.sin(ph) : 0)).toFixed(1) + ' -112 -196) translate(-112 -196) scale(' + (RAP ? 1.5 : 1) + ') translate(112 196)" opacity="' + (1 - wg) + '">'; if (fe > 0) for (let i = 0; i < 4; i++) g += plm(-124 - i * 8, -186 + i * 6, 70 + i * 12, fe * .62, i);
+  g += '<g transform="rotate(' + (8 * Math.sin(t * 3.1) + (run ? 14 * Math.sin(ph) : 0)).toFixed(1) + ' -112 -196) translate(-112 -196) scale(' + (RAP ? 1.5 : 1) + ') translate(112 196)" opacity="' + (1 - wg) + '">'; if (fe > 0) for (let i = 0; i < 4; i++) g += plm(-124 - i * 8, -186 + i * 6, 70 + i * 12, fe * .62 * (o.fa || 1), i);
   g += '<g><path d="M-112 -196 L-146 -168 L-170 -184 M-146 -168 L-172 -162" stroke="' + P.st + '" stroke-width="' + (16 + P.sw * 2) + '" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M-112 -196 L-146 -168 L-170 -184 M-146 -168 L-172 -162" stroke="' + P.b + '" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>';
   return g + leg(0) + '</g>'; }
 
@@ -63,8 +64,9 @@ function hend(x, y, s, t, o) { o = o || {}; const N = o.look === 'n', id = 'hn' 
   g += lg(22, ph + Math.PI) + '<g transform="translate(0 ' + bob.toFixed(1) + ')">';
   for (let i = 0; i < 4; i++) g += '<path transform="rotate(' + (-34 + i * 15 + 3 * Math.sin(t * 3 + i)) + ' 66 -110)" d="M66 -110 C100 -150 140 -160 146 -124 C120 -128 96 -110 66 -92 Z" fill="url(#' + id + ')" ' + K + '/>';
   g += '<path d="M-58 -128 C-70 -60 -20 -32 30 -34 C86 -36 106 -86 86 -128 C66 -168 -30 -176 -58 -128 Z" fill="url(#' + id + ')" ' + K + '/>';
+  g += '<path d="M-40 -84 q11 12 22 0 M-14 -72 q11 12 22 0 M-30 -106 q11 12 22 0 M-2 -98 q11 12 22 0 M12 -60 q11 12 22 0" stroke="' + st + '" stroke-width="' + (sw - 2) + '" fill="none" stroke-linecap="round" opacity=".3"/>';
   g += '<g transform="translate(' + (wk ? 12 * Math.sin(ph) : 0).toFixed(1) + ' 0) rotate(' + (-pk + (o.tilt || 0)).toFixed(1) + ' -36 -118)"><path d="M-70 -150 C-52 -116 -20 -116 -4 -134 L-28 -184 C-48 -190 -64 -176 -70 -150 Z" fill="url(#' + id + ')"/>';
-  g += '<path d="M-86 -206 C-92 -232 -70 -238 -66 -220 C-64 -244 -40 -244 -44 -220 C-34 -236 -18 -226 -30 -204 Z" fill="' + (N ? '#C8362E' : '#FF4D4D') + '" ' + K + '/><circle cx="-62" cy="-182" r="35" fill="url(#' + id + ')" ' + K + '/><path d="M-94 -192 L-132 -178 L-94 -168 Z" fill="' + lc + '" ' + K + '/><path d="M-92 -164 C-104 -150 -98 -132 -86 -134 C-78 -138 -78 -154 -82 -166 Z" fill="' + (N ? '#C8362E' : '#FF4D4D') + '" ' + K + '/>';
+  g += '<path d="M-86 -206 C-92 -232 -70 -238 -66 -220 C-64 -244 -40 -244 -44 -220 C-34 -236 -18 -226 -30 -204 Z" fill="' + (N ? '#C8362E' : '#FF4D4D') + '" ' + K + '/><circle cx="-62" cy="-182" r="35" fill="url(#' + id + ')" ' + K + '/><path d="M-94 -192 L-132 -178 L-94 -168 Z" fill="' + lc + '" ' + K + '/><path d="M-98 -180 H-124" stroke="' + st + '" stroke-width="2.5" opacity=".6"/><circle cx="-104" cy="-185" r="2" fill="' + st + '"/><path d="M-92 -164 C-104 -150 -98 -132 -86 -134 C-78 -138 -78 -154 -82 -166 Z" fill="' + (N ? '#C8362E' : '#FF4D4D') + '" ' + K + '/>';
   g += (t % 3.1) < .1 ? '<path d="M-84 -188 q10 6 20 0" stroke="' + st + '" stroke-width="4" fill="none" stroke-linecap="round"/>' : N ? '<circle cx="-74" cy="-188" r="6" fill="#E8A23A" stroke="' + st + '" stroke-width="2"/><circle cx="-75" cy="-188" r="3" fill="#0B0A08"/>' : '<circle cx="-74" cy="-188" r="12" fill="#fff" stroke="' + st + '" stroke-width="4"/><circle cx="-77" cy="-187" r="6" fill="#0B1020"/><circle cx="-75" cy="-190" r="2.2" fill="#fff"/>';
   g += '</g><g transform="rotate(' + fl.toFixed(1) + ' -8 -116)"><path d="M-16 -118 C30 -156 84 -128 86 -96 C60 -66 10 -64 -14 -88 Z" fill="' + (o.c2 || (N ? '#E9E3D4' : '#E3E8F4')) + '" ' + K + '/><path d="M6 -84 C30 -78 56 -84 72 -98 M0 -98 C30 -92 56 -100 76 -112" stroke="' + st + '" stroke-width="' + (sw - 1) + '" fill="none" stroke-linecap="round" opacity=".55"/></g></g>';
   return g + lg(-14, ph) + '</g>'; }
@@ -104,3 +106,14 @@ function birdd(x, y, s, t, o) { o = o || {}; const id = 'bd' + (o.id || ''), c =
   for (let i = 0; i < 3; i++) g += '<path transform="rotate(' + (-16 + i * 16 + 4 * f) + ' -44 4)" d="M-44 4 L-104 -10 L-104 14 Z" fill="' + c2 + '" ' + K + '/>';
   g += '<ellipse cx="0" cy="6" rx="52" ry="30" fill="url(#' + id + ')" ' + K + '/><circle cx="46" cy="-10" r="24" fill="' + c + '" ' + K + '/><path d="M66 -16 L96 -8 L66 2 Z" fill="#FF8A3D" ' + K + '/><circle cx="52" cy="-15" r="8" fill="#fff" stroke="' + st + '" stroke-width="3"/><circle cx="54" cy="-15" r="4" fill="' + st + '"/><path d="M-6 30 l-10 14 M8 32 l-8 14" stroke="#FF8A3D" stroke-width="5" stroke-linecap="round"/>';
   return g + wing(c, 0) + '</g>'; }
+
+// Farnwedel: Mittelrippe mit Fiedern, wiegt sich. Fuer Urzeit-Szenen, hinter und vor den Tieren
+function frondD(x, y, ang, len, t, col, ph) { const a = (ang + 2.5 * Math.sin(t * 1.2 + (ph || 0))) * Math.PI / 180, n = 11; let s = '', px = x, py = y, d = 'M' + x + ' ' + y;
+  for (let i = 1; i <= n; i++) { const k = i / n, qx = x + len * k * Math.cos(a), qy = y + len * k * Math.sin(a) + len * .22 * k * k, L = (len * .2) * (1 - k * .8) + 8, na = Math.atan2(qy - py, qx - px);
+    s += '<path d="M' + qx.toFixed(1) + ' ' + qy.toFixed(1) + ' l' + (L * Math.cos(na - 1.9)).toFixed(1) + ' ' + (L * Math.sin(na - 1.9)).toFixed(1) + ' M' + qx.toFixed(1) + ' ' + qy.toFixed(1) + ' l' + (L * Math.cos(na + 1.9)).toFixed(1) + ' ' + (L * Math.sin(na + 1.9)).toFixed(1) + '" stroke="' + col + '" stroke-width="' + (len * .05 * (1 - k * .6) + 3).toFixed(1) + '" stroke-linecap="round"/>'; d += ' L' + qx.toFixed(1) + ' ' + qy.toFixed(1); px = qx; py = qy; }
+  return '<path d="' + d + '" stroke="#0B1020" stroke-width="' + (len * .035 + 6).toFixed(1) + '" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/>' + s + '<path d="' + d + '" stroke="' + col + '" stroke-width="' + (len * .035).toFixed(1) + '" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'; }
+// Baumfarn: Stamm mit Ringen und Krone aus Wedeln
+function ferntD(x, y, h, t, ph) { let s = '<path d="M' + (x - 22) + ' ' + y + ' L' + (x - 14) + ' ' + (y - h) + ' H' + (x + 14) + ' L' + (x + 22) + ' ' + y + ' Z" fill="#6B4A2E" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/>';
+  for (let i = 1; i < h / 34; i++) s += '<path d="M' + (x - 20 + i * .4) + ' ' + (y - i * 34) + ' q20 12 ' + (40 - i * .8) + ' 0" stroke="#4A3320" stroke-width="5" fill="none"/>';
+  for (let i = 0; i < 9; i++) s += frondD(x, y - h, -176 + i * 21.5, 150 + 30 * ((i * 7) % 3), t, i % 2 ? '#2A9450' : '#1F7A3E', i + (ph || 0));
+  return s; }
