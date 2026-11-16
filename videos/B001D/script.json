@@ -34,7 +34,7 @@
      "ev": "sticker"
     },
     {
-     "t": "Spoiler: Das Huhn ist mit dem T. rex verwandt.",
+     "t": "Spoiler: Das Huhn ist mit dem T. rex verwandt.",
      "mood": "shock",
      "ev": "gag"
     }
@@ -89,7 +89,7 @@
      "ev": "p1"
     },
     {
-     "t": "Krass: Der T. rex ist mit dem Huhn enger verwandt als mit einem Krokodil.",
+     "t": "Krass: Der T. rex ist mit dem Huhn enger verwandt als mit einem Krokodil.",
      "mood": "happy",
      "ev": "p2"
     },
@@ -173,6 +173,6 @@
   }
  ],
  "sprich": {
-  "T-Rex": "T. rex"
+  "T-Rex": "T. rex"
  }
 }
