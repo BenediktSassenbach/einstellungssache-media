@@ -104,7 +104,7 @@ WMASC.b2b = (ev, t) => { const p1 = ev.p1, p2 = ev.p2, a = ev.act;
 // ---------- Teil 3: heute ----------
 // Neue Knochen tauchen auf, der Spinosaurus steigt ins flache Wasser. Die Schnauze wird lang und schmal, er schnappt einen springenden Fisch.
 // Dann waechst der Schwanz zum Paddel und spritzt Schalti nass. Zum Schluss wischt die Szene nach Niger: die neue Art mit dem Saebelkamm kommt ins Bild.
-WORLD.b2c = function (sc, ev, t, lt) { const pa = ev.panel, p1 = ev.p1, p2 = ev.p2, a = ev.act;
+WORLD.b2c = function (sc, ev, t, lt) { const pa = ev.panel, p1 = lt > 2.3 ? lt - 2.3 : undefined, p2 = ev.p1, a = ev.p2, r = ev.act;
   const q = ease(cl((lt - 1.3) / 1.2)), x = lerp(500, SPW[0], q), y = lerp(SPB[1], SPW[1], q), sn = p1 === undefined ? 0 : ease(cl((p1 - .2) / .6)), pad = p2 === undefined ? 0 : ease(cl((p2 - .2) / .6));
   const N = nilD(t, { wade: q > .55, wx: x }); let s = N.b;
   const fq = p1 === undefined ? -1 : (p1 - 1.25) / .75, snap = fq >= 1 && fq < 1.5 ? Math.sin(Math.PI * (fq - 1) / .5) : 0;
@@ -121,23 +121,24 @@ WORLD.b2c = function (sc, ev, t, lt) { const pa = ev.panel, p1 = ev.p1, p2 = ev.
   if (a !== undefined) { const M = nilD(t, {}), k = ease(cl((a - .35) / 1.3)), mx = lerp(1500, 600, k), look = cl((a - 1.9) / .5);
     let n = M.b + '<rect width="1080" height="1920" fill="#FF8A3D" opacity=".13"/>' + spinod(mx, SPB[1], .92, t, { pal: TEAL, sn: 1, pad: 1, lg: .9, crest: 1, run: k < 1, ph: stepD(1500 - mx, .92), head: 22 * look + 3 * Math.sin(t * 2), jaw: k < 1 ? .15 : 0, id: 'c' }) + M.f + chip3(800, 716, 'Niger: neue Art', 40, '#FFD23F', '#0B1020', (a - 1.6) / .3);
     s = wipe3(s, n, a - .05, .55, '#A8E63C'); }
-  return W(s + shade3(), slot(ev, [['panel', 'Neue Funde aus Marokko'], ['p1', 'Krokodilschnauze, Zähne für Fische', 'hot'], ['p2', '2020: Schwanz wie ein Paddel', 'hot'], ['act', '2026: neue Art mit Säbelkamm', 'hot']])); };
-WMASC.b2c = (ev, t) => { const p1 = ev.p1, p2 = ev.p2, a = ev.act;
+  if (r !== undefined) s += photoD(t, r);
+  return W(s + shade3(), slot(ev, [['panel', 'Krokodilschnauze, Zähne für Fische'], ['p1', '2020: Schwanz wie ein Paddel', 'hot'], ['p2', '2026: neue Art mit Säbelkamm', 'hot'], ['act', 'So könnte er ausgesehen haben', 'hot']])); };
+WMASC.b2c = (ev, t, lt) => { const p1 = lt > 2.3 ? lt - 2.3 : undefined, p2 = ev.p1, a = ev.p2, r = ev.act;
+  if (r !== undefined) return stay3([lerp(220, 250, ease(cl(r / .4))), 1537], 1, { r: 10 });
   if (a !== undefined) return a > 2.0 && a < 2.9 ? stay3([220, 1537 - 22 * Math.sin(Math.PI * (a - 2.0) / .9)], 1, { r: -8, nospin: 1 }) : stay3(HOME3, 1, { r: -6 });
   if (p2 !== undefined) return p2 > 1.5 ? stay3([220 + 5 * Math.sin(t * 36) * cl(1 - (p2 - 1.5) / 1.2), 1537], 1, { r: -12 * cl(1 - (p2 - 1.5) / 1.2) }) : stay3(HOME3, 1, { r: 6 });
   if (p1 !== undefined) return p1 > 1.2 && p1 < 2.2 ? stay3([lerp(220, 185, ease(cl((p1 - 1.2) / .3))), 1537], 1, { r: -14 }) : stay3([lerp(185, 220, cl((p1 - 2.2) / .4)), 1537], 1, { r: -3 });
   return BIG3(); };
 
-// ---------- Schluss: die drei Bilder noch einmal am selben Tier, dann ein realistisches Bild im Rahmen ----------
-// Beim dritten Merksatz verwandelt sich die Figur zum heutigen Spinosaurus. Danach faellt ein grosses gerahmtes Bild in den Grafikbereich (y 560 bis 1120, x 110 bis 930):
-// so koennte er nach heutigem Stand ausgesehen haben. Liegt ein Bild in SPIMG (tools/viz_b002img.js), wird es gezeigt, sonst die naturnah gezeichnete Figur.
-const cardD = (t, k, op) => { if (k <= 0) return ''; const y = lerp(-420, 890, back(cl(k))), W0 = 705, H0 = 470; let inner;
-  if (typeof SPIMG !== 'undefined') inner = '<image href="' + SPIMG + '" x="' + (-W0 / 2) + '" y="' + (-H0 / 2) + '" width="' + W0 + '" height="' + H0 + '" preserveAspectRatio="xMidYMid slice"/>';
+// Grosses realistisches Bild (Teil 3, letzte Zeile, direkt vor der Zusammenfassung): volle Breite, y 505 bis 1198. Etikett und Textzeile liegen darueber.
+// Liegt ein Bild in SPIMG (tools/viz_b002img.js), wird es gezeigt, sonst die naturnah gezeichnete Figur. Das Bild zoomt ganz langsam.
+const photoD = (t, k) => { if (k <= 0) return ''; const W0 = 1040, H0 = 693, cy = 888, e = back(cl(k / .5)), z = 1 + .05 * cl(k / 4); let inner;
+  if (typeof SPIMG !== 'undefined') inner = '<image href="' + SPIMG + '" x="' + (-W0 / 2) + '" y="' + (-H0 / 2) + '" width="' + W0 + '" height="' + H0 + '" preserveAspectRatio="xMidYMid slice" transform="scale(' + z.toFixed(3) + ')"/>';
   else inner = '<svg x="' + (-W0 / 2) + '" y="' + (-H0 / 2) + '" width="' + W0 + '" height="' + H0 + '" viewBox="60 560 1000 667" preserveAspectRatio="xMidYMid slice">' + nilD(t, { wade: 1, wx: 600 }).b + spinod(600, 1196, .92, t, { look: 'n', sn: 1, pad: 1, lg: .86, shadow: 0, id: 'real', pal: { a: '#7C7A52', b: '#4C4A30', be: '#D9CFA8', sp: '#3A3822' } }) + nilD(t, { wade: 1, wx: 600 }).f + '</svg>';
-  return '<g opacity="' + (op === undefined ? 1 : op) + '"><g transform="translate(520 ' + y.toFixed(0) + ') rotate(' + (-2 + 1.2 * Math.sin(t * 1.1) * (1 - cl(k))).toFixed(2) + ')"><rect x="' + (-W0 / 2 - 14) + '" y="' + (-H0 / 2 - 14) + '" width="' + (W0 + 28) + '" height="' + (H0 + 28) + '" rx="18" fill="#000" opacity=".35" transform="translate(12 16)"/><rect x="' + (-W0 / 2 - 14) + '" y="' + (-H0 / 2 - 14) + '" width="' + (W0 + 28) + '" height="' + (H0 + 28) + '" rx="18" fill="#FFF6DF" stroke="#0B1020" stroke-width="6"/><clipPath id="cdC"><rect x="' + (-W0 / 2) + '" y="' + (-H0 / 2) + '" width="' + W0 + '" height="' + H0 + '" rx="8"/></clipPath><g clip-path="url(#cdC)">' + inner + '</g><rect x="' + (-W0 / 2) + '" y="' + (-H0 / 2) + '" width="' + W0 + '" height="' + H0 + '" rx="8" fill="none" stroke="#0B1020" stroke-width="4"/></g>' + chip3(520, y + H0 / 2 + 4, 'So könnte er ausgesehen haben', 34, '#A8E63C', '#0B1020', (k - .8) / .3) + '</g>'; };
-WORLD.b2out = function (sc, ev, t, lt) { const N = nilD(t, {}), c2 = ev.c2, c3 = ev.c3, up = c2 === undefined ? 1 : 1 - ease(cl(c2 / .7)), m = c3 === undefined ? 0 : ease(cl((c3 - .1) / .7)), ck = c3 === undefined ? 0 : (c3 - 1.25) / .6;
-  let s = N.b + '<g opacity="' + (1 - cl(ck * 1.4)) + '" style="filter:sepia(' + (.9 * up).toFixed(2) + ')">' + spinod(620, SPB[1], .8 * back(cl((lt - .1) / .4)), t, { up: up, sn: m, pad: m, lg: lerp(1, .86, m), swish: .15 * m, id: 'e', head: 3 * Math.sin(t * 1.7) }) + '</g>' + N.f;
+  return '<rect width="1080" height="1920" fill="#02030F" opacity="' + (.55 * cl(k / .4)) + '"/><g transform="translate(540 ' + cy + ') scale(' + e.toFixed(3) + ')"><rect x="' + (-W0 / 2 - 10) + '" y="' + (-H0 / 2 - 10) + '" width="' + (W0 + 20) + '" height="' + (H0 + 20) + '" rx="16" fill="#FFF6DF" stroke="#0B1020" stroke-width="6"/><clipPath id="phC"><rect x="' + (-W0 / 2) + '" y="' + (-H0 / 2) + '" width="' + W0 + '" height="' + H0 + '" rx="8"/></clipPath><g clip-path="url(#phC)">' + inner + '</g></g>' + chip3(900, 1156, 'KI-Bild', 28, '#0B1020', '#F4F6FB', (k - .7) / .3); };
+// ---------- Schluss: die drei Bilder noch einmal am selben Tier ----------
+WORLD.b2out = function (sc, ev, t, lt) { const N = nilD(t, {}), c2 = ev.c2, c3 = ev.c3, up = c2 === undefined ? 1 : 1 - ease(cl(c2 / .7)), m = c3 === undefined ? 0 : ease(cl((c3 - .1) / .7));
+  let s = N.b + '<g style="filter:sepia(' + (.9 * up).toFixed(2) + ')">' + spinod(620, SPB[1], .8 * back(cl((lt - .1) / .4)), t, { up: up, sn: m, pad: m, lg: lerp(1, .86, m), swish: .15 * m, id: 'e', head: 3 * Math.sin(t * 1.7) }) + '</g>' + N.f;
   if (c2 !== undefined) s += puffb(600, 900, c2 / .5, 200); if (c3 !== undefined) s += puffb(600, 900, c3 / .5, 200);
-  return W(s + '<rect width="1080" height="1920" fill="#02030F" opacity=".34"/>' + cardD(t, ck, ev.save === undefined ? 1 : 1 - .8 * cl(ev.save / .3)) + shade3()); };
-WMASC.b2out = (ev, t) => { const c3 = ev.c3; return c3 !== undefined && c3 > 1.25 && c3 < 2.6 ? stay3([lerp(220, 250, ease(cl((c3 - 1.25) / .4))), 1537], 1, { r: 10 }) : undefined; };
+  return W(s + '<rect width="1080" height="1920" fill="#02030F" opacity=".34"/>' + shade3()); };
 ['h7spino', 'b2a', 'b2b', 'b2c', 'b2out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, '#A8E63C'); });

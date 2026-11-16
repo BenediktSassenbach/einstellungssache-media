@@ -4,7 +4,7 @@
  "accent": "#A8E63C",
  "id": "B002",
  "titel": "Wie sah der Spinosaurus wirklich aus?",
- "quelle": "Name und erste Knochen: Ernst Stromer beschrieb Spinosaurus aegyptiacus 1915 nach Funden aus Ägypten (Scientific American, Tetrapod Zoology, 'The discovery and early interpretation of Spinosaurus'; Discover Magazine 2020). Aufrechte Darstellung: Stromers Rekonstruktion von 1936 in der damals üblichen 'känguruartigen' Haltung, mit normalem, hohem Raubsaurier-Schädel (Scientific American, ebenda). Im Video vereinfacht als 'gezeichnet wurde er aufrecht', ohne Jahreszahl 1936. Zerstörung: Stromers Originalmaterial wurde im April 1944 bei einem Bombenangriff auf München zerstört, danach blieben Zeichnungen, Beschreibungen und Fotos (Scientific American; Smithsonian Magazine 2020). Späteres Bild: Vor 2014 gab es nur wenige, unvollständige Reste; der Schwanz wurde wie bei anderen Raubsauriern angenommen, starr und zum Ausbalancieren (National Geographic, 'Reconstructing a gigantic aquatic predator', 2020; Smithsonian 2020). Heute: Funde aus Marokko; krokodilartige Kiefer mit kegelförmigen Zähnen zum Greifen von Fischen (National Geographic Explorer 2020); Schwanz hoch und paddelartig, beschrieben 2020 in Nature (Ibrahim und andere). Neue Art: Spinosaurus mirabilis aus Niger, rund 95 Millionen Jahre alt, säbelförmiger Kopfkamm von rund einem halben Meter, beschrieben am 19.02.2026 in Science (Sereno und andere; Live Science, National Geographic). Bewusst weggelassen (Entscheidung Benedikt, 16.11.2026: nur Aussehen): der Streit, ob Spinosaurus aktiv schwamm oder im flachen Wasser watete (Ibrahim 2020 und Yale 2026 gegen Hone und Holtz 2021, Sereno 2022 und 2026). Im Bild steht er höchstens im flachen Wasser, das passt zu beiden Lagern. Ebenfalls weggelassen: vierbeiniger Gang (umstritten), Körperlänge, Farbe (unbekannt, frei gewählt). Schwanzform und Beinlänge der neuen Art sind frei nach der Gattung gezeichnet. Spruch am Anfang ist übertrieben gemeint: Das bekannte Bild vom langbeinigen Landräuber gilt als überholt. Design: Dino-Skript 1.0, Ort Flussufer in der Urzeit, ein Tier verwandelt sich an Ort und Stelle. Kostüm B2 Dino-Kostüm ('So sah er wirklich aus').",
+ "quelle": "Name und erste Knochen: Ernst Stromer beschrieb Spinosaurus aegyptiacus 1915 nach Funden aus Ägypten (Scientific American, Tetrapod Zoology, 'The discovery and early interpretation of Spinosaurus'; Discover Magazine 2020). Aufrechte Darstellung: Stromers Rekonstruktion von 1936 in der damals üblichen 'känguruartigen' Haltung, mit normalem, hohem Raubsaurier-Schädel (Scientific American, ebenda). Im Video vereinfacht als 'gezeichnet wurde er aufrecht', ohne Jahreszahl 1936. Zerstörung: Stromers Originalmaterial wurde im April 1944 bei einem Bombenangriff auf München zerstört, danach blieben Zeichnungen, Beschreibungen und Fotos (Scientific American; Smithsonian Magazine 2020). Späteres Bild: Vor 2014 gab es nur wenige, unvollständige Reste; der Schwanz wurde wie bei anderen Raubsauriern angenommen, starr und zum Ausbalancieren (National Geographic, 'Reconstructing a gigantic aquatic predator', 2020; Smithsonian 2020). Heute: Funde aus Marokko; krokodilartige Kiefer mit kegelförmigen Zähnen zum Greifen von Fischen (National Geographic Explorer 2020); Schwanz hoch und paddelartig, beschrieben 2020 in Nature (Ibrahim und andere). Neue Art: Spinosaurus mirabilis aus Niger, rund 95 Millionen Jahre alt, säbelförmiger Kopfkamm von rund einem halben Meter, beschrieben am 19.02.2026 in Science (Sereno und andere; Live Science, National Geographic). Bewusst weggelassen (Entscheidung Benedikt, 16.11.2026: nur Aussehen): der Streit, ob Spinosaurus aktiv schwamm oder im flachen Wasser watete (Ibrahim 2020 und Yale 2026 gegen Hone und Holtz 2021, Sereno 2022 und 2026). Im Bild steht er höchstens im flachen Wasser, das passt zu beiden Lagern. Ebenfalls weggelassen: vierbeiniger Gang (umstritten), Körperlänge, Farbe (unbekannt, frei gewählt). Schwanzform und Beinlänge der neuen Art sind frei nach der Gattung gezeichnet. Spruch am Anfang ist übertrieben gemeint: Das bekannte Bild vom langbeinigen Landräuber gilt als überholt. Design: Dino-Skript 1.0, Ort Flussufer in der Urzeit, ein Tier verwandelt sich an Ort und Stelle. Kostüm B2 Dino-Kostüm ('So sah er wirklich aus'). Realistisches Bild am Ende von Teil 3: KI-Bild (OpenArt, GPT Image 2.5, 16.11.2026), im Video als 'KI-Bild' gekennzeichnet. Geprüft gegen die erzählten Merkmale: lange Krokodilschnauze, Segel, hoher flacher Paddelschwanz, kurze Hinterbeine, steht zweibeinig im flachen Wasser. Ein erstes Bild mit spitzem Schwanz und langen Beinen wurde verworfen. Farbe und Haut sind frei gestaltet. Fundort der neueren Skelettreste ist Marokko, im Bild als Schild, im Text 'aus Ägypten' meint die Art Spinosaurus aegyptiacus.",
  "gagTag": "[gasps] [startled]",
  "gagDelay": 0.9,
  "scenes": [
@@ -109,22 +109,22 @@
    "pause": 0.9,
    "lines": [
     {
-     "t": "Drittens: Neue Funde aus Marokko zeigen ein anderes Tier.",
+     "t": "Drittens: Neue Funde zeigen eine lange Krokodilschnauze mit kegelförmigen Zähnen für Fische.",
      "mood": "happy",
      "ev": "panel"
     },
     {
-     "t": "Lange Krokodilschnauze, kegelförmige Zähne für Fische.",
+     "t": "2020 kam der Schwanz dazu: hoch und flach wie ein Paddel.",
      "mood": "shock",
      "ev": "p1"
     },
     {
-     "t": "2020 kam der Schwanz dazu: hoch und flach wie ein Paddel.",
+     "t": "2026 folgte eine neue Art aus Niger, mit Säbelkamm auf dem Kopf.",
      "mood": "happy",
      "ev": "p2"
     },
     {
-     "t": "Und 2026 eine neue Art aus Niger, mit Säbelkamm auf dem Kopf.",
+     "t": "Und der Spinosaurus aus Ägypten? So könnte er ausgesehen haben.",
      "mood": "cool",
      "ev": "act"
     }
