@@ -16,7 +16,7 @@ WORLD.h12knie = function (sc, ev, t, lt) { const e = ev.gag, hit = e !== undefin
   let s = saalS(t, { rows: ROWS12, on: gone, cur: e === undefined && lt > .6 && lt < 3.2 ? 6 : 0 });
   s += kneeS(KX, KY, KZ, t, { l: l, pat: e === undefined || e < 0 ? 1 : 0, pull: pull, q: e !== undefined ? cl((e - .6) / .3) : 0 });
   if (e === undefined && lt > .6 && lt < 3.2) s += markS(t, 0, -60, 62);
-  s += fly; if (hit !== undefined && hit < 1.1) s += word7('PLATSCH!', 590, 1462, hit, '#FFE14D', -5);
+  s += fly; if (hit !== undefined && hit < 1.1) s += word7('PLATSCH!', 650, 1462, hit, '#FFE14D', -5);
   return W('<g transform="translate(' + (sh[0] * .4) + ' ' + (sh[1] * .4) + ')">' + s + '</g>' + shade3()); };
 WMASC.h12knie = (ev, t, lt) => { const e = ev.gag;
   if (e === undefined) return stay3([220, 1537], 1, { r: -3 + 2 * Math.sin(t * 2) });
