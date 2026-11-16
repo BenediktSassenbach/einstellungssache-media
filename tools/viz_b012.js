@@ -6,8 +6,11 @@ const ROWS12 = [['Knochen', COLS.bone], ['Knorpel', COLS.cart], ['Menisken', COL
 const ringS = (t, lx, ly, r, k) => k > 0 && k < 1 ? '<circle cx="' + (KX + lx * KZ) + '" cy="' + (KY + ly * KZ) + '" r="' + (r * (1 + .5 * k)).toFixed(0) + '" fill="none" stroke="' + TH().hl + '" stroke-width="8" opacity="' + (1 - k).toFixed(2) + '"/>' : '';
 const markS = (t, lx, ly, r) => '<circle cx="' + (KX + lx * KZ) + '" cy="' + (KY + ly * KZ) + '" r="' + r + '" fill="none" stroke="' + TH().hl + '" stroke-width="6" stroke-dasharray="16 10" opacity="' + (.7 + .3 * Math.sin(t * 5)).toFixed(2) + '"/>';
 // ---------- Einstieg: fertiges Knie, im Gag fliegen die Schichten 6 bis 2 nacheinander ab und landen neben Schalti ----------
+// Der Gag haengt an keiner Zeile mehr (Benedikt, 16.11.2026: kein Spoiler-Satz in dieser Serie). Er startet nach dem letzten Satz des Einstiegs:
+// mit Stimme bei "gagAt" (Sekunden ab Beginn der Aufnahme, dort sitzt der Schreck-Laut), stumm kurz nach dem letzten Wort.
+const gag12 = (sc, t) => { const L = sc.lines, g = typeof S !== 'undefined' && S.gagAt ? L[0].start + S.gagAt : L[L.length - 1].end + .15; return t >= g ? t - g : undefined; };
 const FLY12 = [[5, 0, 640], [4, .1, 540], [3, .2, 440], [2, .3, 590], [1, .4, 490]];
-WORLD.h12knie = function (sc, ev, t, lt) { const e = ev.gag, hit = e !== undefined && e >= .9 ? e - .9 : undefined, sh = shake7(hit, t), L = kneeLayS;
+WORLD.h12knie = function (sc, ev, t, lt) { const e = gag12(sc, t), hit = e !== undefined && e >= .9 ? e - .9 : undefined, sh = shake7(hit, t), L = kneeLayS;
   const pull = e === undefined ? .5 + .5 * Math.sin(t * 2.6) : 0, l = [1, 1, 1, 1, 1, 1]; let fly = '';
   if (e !== undefined) FLY12.forEach(([i, t0, lx], n) => { const k = cl((e - t0) / .5); if (k > 0) l[i] = 0; if (k <= 0) return;
     const x = lerp(KX, lx, k), y = lerp(KY, 1492, k * k) - 230 * Math.sin(Math.PI * k) * (1 - k * .3), rot = (n % 2 ? -1 : 1) * 200 * k + (k >= 1 ? 0 : 0), sq = k >= 1 ? 1 + .25 * Math.exp(-(e - t0 - .5) * 6) * Math.cos((e - t0 - .5) * 20) : 1;
@@ -19,7 +22,7 @@ WORLD.h12knie = function (sc, ev, t, lt) { const e = ev.gag, hit = e !== undefin
   if (e === undefined && lt > .6 && lt < 3.4) s += markS(t, 0, -60, 62) + LB(34, -66, 860, 'Kniescheibe', (lt - .7) / .4) + LB(26, -112, 790, 'Sehne', (lt - 1.0) / .4);
   s += fly; if (hit !== undefined && hit < 1.1) s += word7('PLOPP!', 700, 1462, hit, '#FFE14D', -5);
   return W('<g transform="translate(' + (sh[0] * .4) + ' ' + (sh[1] * .4) + ')">' + s + '</g>' + shadeS()); };
-WMASC.h12knie = (ev, t, lt) => { const e = ev.gag;
+WMASC.h12knie = (ev, t, lt, sc) => { const e = gag12(sc, t);
   if (e === undefined) return stay3([220, 1537], 1, { r: -3 + 2 * Math.sin(t * 2) });
   const x = e < .45 ? lerp(220, 150, ease(cl(e / .35))) : e < 1.6 ? 150 + (e > .9 && e < 1.3 ? 3 * Math.sin(t * 40) : 0) : lerp(150, 220, ease(cl((e - 1.6) / .5)));
   return stay3([x, 1537 - (e > .9 && e < 1.25 ? 40 * Math.sin(Math.PI * (e - .9) / .35) : 0)], 1, { r: e < .45 ? -14 : e < 1.6 ? -18 : 8 * cl(1 - (e - 1.6) / .6), nospin: 1 }); };

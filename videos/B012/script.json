@@ -13,7 +13,7 @@
    "title": "Dein *Knie*, Schicht für Schicht",
    "emoji": "🦵",
    "world": "h12knie",
-   "pause": 1.0,
+   "pause": 0.3,
    "lines": [
     {
      "t": "Deine Kniescheibe steckt mitten in einer Sehne!",
@@ -32,11 +32,6 @@
      "t": "Gib mir 60 Sekunden.",
      "mood": "wink",
      "ev": "sticker"
-    },
-    {
-     "t": "Spoiler: Wir bauen es Schicht für Schicht.",
-     "mood": "shock",
-     "ev": "gag"
     }
    ]
   },
@@ -167,5 +162,6 @@
     }
    ]
   }
- ]
+ ],
+ "gagAt": 7.8
 }
