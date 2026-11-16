@@ -7,7 +7,9 @@
 
 // Alte Welt an neuem Ort: waehrend des Aufrufs liefern die alten Hintergruende (bgRad, stage7) den Ort
 function place3(name, bg, a) { const b0 = bgRad, s0 = stage7; bgRad = () => bg; stage7 = () => bg; try { return WORLD[name].apply(null, a); } finally { bgRad = b0; stage7 = s0; } }
-function old3(list, col, bgOf) { list.forEach(n => { WORLD[n + '_3'] = (sc, ev, t, lt, E) => look3(place3(n, bgOf(n, sc, ev, t, lt), [sc, ev, t, lt, E]), sc, t, lt, col); WMASC[n + '_3'] = (ev, t, lt, sc) => WMASC[n] ? WMASC[n](ev, t, lt, sc) : BIG3(); }); }
+function old3(list, col, bgOf) { list.forEach(n => { WORLD[n + '_3'] = (sc, ev, t, lt, E) => look3(place3(n, bgOf(n, sc, ev, t, lt), [sc, ev, t, lt, E]), sc, t, lt, col); WMASC[n + '_3'] = (ev, t, lt, sc) => one3(WMASC[n] ? WMASC[n](ev, t, lt, sc) : null, ev); }); }
+// Hoechstens ein Salto, der am Schluss: der Standard-Salto bleibt nur beim letzten Satz an
+function one3(p, ev) { if (ev.save !== undefined) return p; p = p || BIG3(); p.nospin = 1; return p; }
 
 // ---------- C001V3: Kueche. Die Arbeitsplatte mit dem Kochfeld liegt genau unter der Pfanne, darunter der Backofen ----------
 function kitchen1(t, o) { o = o || {}; const T = o.top || 1128, cx = o.cx || 560;
@@ -64,12 +66,12 @@ old3(['h7p6', 'p6reib', 'p6luft', 'p6hilft', 'p6outro'], '#5CE1FF', (n, sc, ev, 
 // Gag: Beim Nachsatz "ohne Einstein kilometerweit daneben" rutscht die ganze Karte samt Standortpunkt zur Seite. Schalti steht ploetzlich neben seinem Standort,
 // erschrickt, springt dem Punkt hinterher, dann rueckt die Karte wieder zurecht. Einschlag bei 0,35 s
 const gdx5 = e => e === undefined ? 0 : e < .35 ? 330 * ease(e / .35) : e < 2 ? 330 : e < 2.5 ? 330 * (1 - ease((e - 2) / .5)) : 0;
-['orbit', 'signal', 'kreise', 'einstein', 'outro'].forEach(n => { WORLD[n + '_g3'] = (sc, ev, t, lt, E) => look3(WORLD[n](sc, ev, t, lt, E), sc, t, lt, '#5CE1FF'); WMASC[n + '_g3'] = (ev, t, lt, sc) => WMASC[n] ? WMASC[n](ev, t, lt, sc) : null; });
+['orbit', 'signal', 'kreise', 'einstein', 'outro'].forEach(n => { WORLD[n + '_g3'] = (sc, ev, t, lt, E) => look3(WORLD[n](sc, ev, t, lt, E), sc, t, lt, '#5CE1FF'); WMASC[n + '_g3'] = (ev, t, lt, sc) => { const p = WMASC[n] ? WMASC[n](ev, t, lt, sc) : null; if (p && ev.save === undefined) p.nospin = 1; return p; }; });
 WORLD.zoom_g3 = function (sc, ev, t, lt, E) { const e = ev.gag, dx = gdx5(e), hit = e !== undefined && e >= .35 ? e - .35 : undefined, sh = shake7(hit, t);
   let out = WORLD.zoom(sc, ev, t, lt, E); const i = out.indexOf('>') + 1, j = out.lastIndexOf('</svg>');
   if (e !== undefined) out = out.slice(0, i) + '<rect width="1080" height="1920" fill="#0B1020"/><g transform="translate(' + (dx + sh[0] * .5) + ' ' + (sh[1] * .5) + ')">' + out.slice(i, j) + '</g>' + (hit !== undefined && hit < 1.4 ? word7('DANEBEN!', 520, 1080, hit, '#FF5A5A', -5) : '') + out.slice(j);
   return look3(out, sc, t, lt, '#5CE1FF'); };
-WMASC.zoom_g3 = (ev, t, lt, sc) => { const e = ev.gag, P = [540, 752]; if (e === undefined) return WMASC.zoom(ev, t, lt, sc);
+WMASC.zoom_g3 = (ev, t, lt, sc) => { const e = ev.gag, P = [540, 752]; if (e === undefined) { const p = WMASC.zoom(ev, t, lt, sc); p.nospin = 1; return p; }
   if (e < .9) return { f: [P[0] + 4 * Math.sin(t * 40) * cl((e - .35) / .1), P[1]], s: .42, r: e < .35 ? 0 : -10, nospin: 1 };
   if (e < 1.3) return hop3((e - .9) / .4, P, [870, 752], 120, .42, .42);
   return { f: [540 + gdx5(e), 752], s: .42, nospin: 1, prop: e > 2.5 ? '🔭' : '' }; };
