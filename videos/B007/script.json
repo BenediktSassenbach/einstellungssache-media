@@ -1,0 +1,175 @@
+{
+ "serie": "Bio",
+ "kostuem": "skelett",
+ "accent": "#A8E63C",
+ "id": "B007",
+ "titel": "Wie viele Knochen hat ein Mensch?",
+ "gagTag": "[gasps] [startled]",
+ "gagDelay": 0.9,
+ "quelle": "Erwachsene: etwa 206 Knochen, die Zahl lässt sich nur ungefähr angeben; Babys: mehr als 300 Knochen und Knorpel; im Lauf des Lebens wachsen Knochen zusammen; die Hälfte der Knochen eines Erwachsenen steckt in Händen und Füßen; der Schädel von Neugeborenen ist noch nicht vollständig geschlossen: Barmer, Presse-Newsletter 'Wie viele Knochen hat eigentlich der Mensch?' (Dr. Utta Petzold). Babys über 300 Knochen, überwiegend aus weichem Knorpel, der beim Heranwachsen verknöchert und teilweise zusammenwächst: wissen.de, 'Wie viele Knochen habe ich?'. Kreuzbein aus fünf verwachsenen Wirbeln, Säuglinge über 300 Knochen: bionity.com, Lexikon 'Knochen des Menschen'. Biegsamkeit durch Knorpel, Lücken zwischen den Schädelknochen: Healthline, 'How many bones does a baby have?'. Wachstumsfuge aus Knorpel, Ort des Längenwachstums, verknöchert mit Wachstumsabschluss: bionity.com 'Epiphysenfuge'; apotheken.de 'Aufbau und Funktion von Knochen und Gelenken' (gegen Ende der Pubertät); studyflix (mit circa 20 Jahren); MSD Manual (spätestens mit 20). Im Video deshalb 'meist bis etwa zwanzig'. Die Zwischenzahl 240 an der Tafel ist nur ein Zähler im Bild und keine Aussage. Spruch am Anfang stimmt wörtlich, wenn man Knorpelteile mitzählt, das Video sagt das im ersten Teil. Nachsatz 'Verschwunden ist keiner davon': Sie wachsen zusammen. Körper-Thema, drei Prüffragen: niemand sucht das wegen Beschwerden, kein Wort zu gesund oder schädlich, niemand ändert danach etwas. Kein Rat, kein Trick am Schluss. Bewusst weggelassen: Hüftbein aus drei Teilen (keine Quelle zur Hand), Geburt, Verletzungen der Wachstumsfuge. Design: Skript 3.0 (Ort Bio-Saal mit Schulskelett: Hauptobjekt in echter Größe, alle drei Teile am selben Skelett, Tafel wird für die Zahl gebraucht). Kostüm B4 Skelett-Anzug.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Wie viele *Knochen* hast du?",
+   "emoji": "🦴",
+   "world": "h7bone",
+   "pause": 1.0,
+   "lines": [
+    {
+     "t": "Du hast heute weniger Knochen als bei deiner Geburt!",
+     "mood": "shock"
+    },
+    {
+     "t": "Wie viele Knochen hat ein Mensch?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Bio nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Spoiler: Verschwunden ist keiner davon.",
+     "mood": "shock",
+     "ev": "gag"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Über 300 beim Baby",
+   "path": [],
+   "world": "b7a",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Erstens: Ein Baby hat über 300 Knochen und Knorpelteile.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Viele davon sind noch weicher Knorpel.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Der Schädel besteht aus Platten, mit Lücken dazwischen.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Deshalb ist ein Baby so biegsam.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Sie wachsen zusammen",
+   "path": [],
+   "world": "b7b",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Zweitens: Beim Wachsen wird Knorpel zu Knochen.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Dabei wachsen viele Teile zusammen.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Aus fünf Wirbeln wird zum Beispiel ein Kreuzbein.",
+     "mood": "shock",
+     "ev": "p2"
+    },
+    {
+     "t": "Krass: Die Hälfte deiner Knochen steckt in Händen und Füßen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Am Ende rund 206",
+   "path": [],
+   "world": "b7c",
+   "pause": 0.9,
+   "lines": [
+    {
+     "t": "Drittens: Lange Knochen wachsen an Fugen aus Knorpel.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Bist du ausgewachsen, verknöchern auch diese Fugen.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Das passiert meist bis etwa zwanzig.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Übrig bleiben rund 206 Knochen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "b7out",
+   "pause": 0.05,
+   "checks": [
+    "Baby: über 300 Teile",
+    "Viele wachsen zusammen",
+    "Erwachsen: rund 206"
+   ],
+   "lines": [
+    {
+     "t": "Also: Ein Baby hat über 300 Knochen und Knorpelteile,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "beim Wachsen verschmelzen viele davon,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "am Ende sind es rund 206.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
