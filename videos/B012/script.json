@@ -6,7 +6,7 @@
  "titel": "Schicht für Schicht: Wie ist ein Knie aufgebaut?",
  "gagTag": "[gasps] [startled]",
  "gagDelay": 0.9,
- "quelle": "Kniegelenk: Oberschenkelknochen, Kniescheibe und Schienbein als Knochen, dazu Knorpel, Menisken, Kreuz- und Seitenbänder, Sehnen und Gelenkkapsel; Menisken gleichen runde Gelenkfläche des Oberschenkelknochens und platte Gelenkfläche des Schienbeins aus; zwei Kreuzbänder im Inneren, zwei Seitenbänder an Innen- und Außenseite: praktischarzt.de. Drei Knochen zählen zum Kniegelenk; Gelenkkapsel umschließt das Gelenk und produziert Gelenkflüssigkeit, die den Knorpel ernährt und das Aneinanderreiben der Knorpelflächen reduziert: Kliniken des Landkreises Neustadt a.d. Aisch, 'Das Kniegelenk'. Knorpel überall dort, wo sich die Knochenenden berühren würden; Menisken als Stoßdämpfer: krankenhaus.de 'Das Kniegelenk'. Menisken halbmondförmig, verbessern den Kontakt zwischen abgerundeten Kondylen und flachem Plateau, dämpfen Stöße; Kniescheibe als größtes Sesambein in die Sehne des Oberschenkelmuskels eingearbeitet, die zum Schienbeinkopf zieht; Sesambein sorgt für zusätzlichen Abstand zum Knochen: apotheken.de 'Aufbau und Funktion von Knie und Unterschenkel'. Kreuzbänder verhindern, dass sich der Oberschenkel zu weit nach vorne und hinten verschiebt, Seitenbänder geben seitliche Stabilität: Orthopädie-Merkblatt 'Das Kniegelenk'. Kniescheibe vergrößert den Hebelarm des Muskels: kenhub.com 'Patella', doccheck Flexikon 'Patella'. Äußeres Seitenband zieht vom Wadenbein zum Oberschenkel (im Bild, nicht im Text): tutory.de 'Der Aufbau des Knies'. Die sechs 'Schichten' sind die Reihenfolge der Serie und keine anatomische Einteilung. Bewusst weggelassen: Schleimbeutel, Fettkörper, hintere Bänder, Wadenbein im Text, Haut. Körper-Thema, drei Prüffragen: Das Video erklärt nur den gesunden Aufbau; kein Wort zu Schmerzen, Verletzungen, Sport oder gesund und schädlich; niemand ändert danach etwas. Frage 1 ist ein Grenzfall (Knie wird auch wegen Beschwerden gesucht), Benedikt hat das Thema am 16.11.2026 ausdrücklich gewählt. Kein Rat, kein Trick am Schluss. Design: Skript Schicht für Schicht Anatomie, Kostüm B6 Forscher, Look Labor.",
+ "quelle": "Kniegelenk: Oberschenkelknochen, Kniescheibe und Schienbein als Knochen, dazu Knorpel, Menisken, Kreuz- und Seitenbänder, Sehnen und Gelenkkapsel; Menisken gleichen runde Gelenkfläche des Oberschenkelknochens und platte Gelenkfläche des Schienbeins aus; zwei Kreuzbänder im Inneren, zwei Seitenbänder an Innen- und Außenseite: praktischarzt.de. Drei Knochen zählen zum Kniegelenk; Gelenkkapsel umschließt das Gelenk und produziert Gelenkflüssigkeit, die den Knorpel ernährt und das Aneinanderreiben der Knorpelflächen reduziert: Kliniken des Landkreises Neustadt a.d. Aisch, 'Das Kniegelenk'. Knorpel überall dort, wo sich die Knochenenden berühren würden; Menisken als Stoßdämpfer: krankenhaus.de 'Das Kniegelenk'. Menisken halbmondförmig, verbessern den Kontakt zwischen abgerundeten Kondylen und flachem Plateau, dämpfen Stöße; Kniescheibe als größtes Sesambein in die Sehne des Oberschenkelmuskels eingearbeitet, die zum Schienbeinkopf zieht; Sesambein sorgt für zusätzlichen Abstand zum Knochen: apotheken.de 'Aufbau und Funktion von Knie und Unterschenkel'. Kreuzbänder verhindern, dass sich der Oberschenkel zu weit nach vorne und hinten verschiebt, Seitenbänder geben seitliche Stabilität: Orthopädie-Merkblatt 'Das Kniegelenk'. Die Sehne dient der Kraftübertragung des Oberschenkelmuskels, der das Bein streckt: dr-gumpert.de 'Die Quadrizepssehne'. Kniescheibe vergrößert den Hebelarm des Muskels: kenhub.com 'Patella', doccheck Flexikon 'Patella'. Äußeres Seitenband zieht vom Wadenbein zum Oberschenkel (im Bild, nicht im Text): tutory.de 'Der Aufbau des Knies'. Die sechs 'Schichten' sind die Reihenfolge der Serie und keine anatomische Einteilung. Bewusst weggelassen: Schleimbeutel, Fettkörper, hintere Bänder, Wadenbein im Text, Haut. Körper-Thema, drei Prüffragen: Das Video erklärt nur den gesunden Aufbau; kein Wort zu Schmerzen, Verletzungen, Sport oder gesund und schädlich; niemand ändert danach etwas. Frage 1 ist ein Grenzfall (Knie wird auch wegen Beschwerden gesucht), Benedikt hat das Thema am 16.11.2026 ausdrücklich gewählt. Kein Rat, kein Trick am Schluss. Design: Skript Schicht für Schicht Anatomie, Kostüm B6 Forscher, Look Labor.",
  "scenes": [
   {
    "type": "hook",
@@ -114,7 +114,7 @@
      "ev": "p1"
     },
     {
-     "t": "Schicht sechs: die Sehne vom Oberschenkelmuskel zum Schienbein.",
+     "t": "Schicht sechs: die Sehne. Sie überträgt die Kraft vom Muskel aufs Schienbein.",
      "mood": "happy",
      "ev": "p2"
     },
@@ -163,5 +163,5 @@
    ]
   }
  ],
- "gagAt": 7.8
+ "gagAt": 8.28
 }
