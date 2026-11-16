@@ -7,70 +7,78 @@ const RAPD = { a: '#3FA9F5', b: '#1E6FC2', be: '#EAF6FF', sp: '#1B5DA8' }; // kl
 function yardD(t, o) { o = o || {}; const dk = cl(o.dark || 0); let s = yardb(t, o);
   s += '<defs><linearGradient id="yDd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#04240F" stop-opacity="0"/><stop offset="1" stop-color="#04240F" stop-opacity=".5"/></linearGradient><radialGradient id="yDs"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".55"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient></defs><rect y="1050" width="1080" height="870" fill="url(#yDd)"/><circle cx="880" cy="740" r="420" fill="url(#yDs)" opacity="' + (.5 * (1 - dk)) + '"/>';
   if (!o.old && o.props !== 0) { // Sonnenblumen am Zaun (wiegen sich), Heuballen, Futtertrog, Koerner
-    for (const [x, h, ph] of (o.part === 2 ? [[1010, 160, 2.2]] : [[790, 150, 0], [840, 118, 1.3]])) { const w = 5 * Math.sin(t * 1.3 + ph); s += '<path d="M' + x + ' 1040 Q' + (x + w) + ' ' + (1040 - h / 2) + ' ' + (x + w * 2) + ' ' + (1040 - h) + '" stroke="#1F7A3E" stroke-width="9" fill="none" stroke-linecap="round"/><ellipse cx="' + (x + w + 16) + '" cy="' + (1040 - h * .5) + '" rx="20" ry="9" fill="#2A9450" transform="rotate(-24 ' + (x + w + 16) + ' ' + (1040 - h * .5) + ')"/>'; for (let i = 0; i < 10; i++) s += '<ellipse cx="' + (x + w * 2) + '" cy="' + (1040 - h - 30) + '" rx="9" ry="20" fill="#FFD23F" stroke="#0B1020" stroke-width="3" transform="rotate(' + (i * 36) + ' ' + (x + w * 2) + ' ' + (1040 - h) + ')"/>'; s += '<circle cx="' + (x + w * 2) + '" cy="' + (1040 - h) + '" r="17" fill="#6B4226" stroke="#0B1020" stroke-width="4"/>'; }
-    if (o.part !== 2) s += '<rect x="880" y="1010" width="150" height="74" rx="14" fill="#E8C766" stroke="#0B1020" stroke-width="5"/><path d="M894 1030 H1016 M894 1050 H1016 M894 1068 H1016" stroke="#C9A441" stroke-width="5"/><rect x="930" y="954" width="110" height="60" rx="12" fill="#F0D27A" stroke="#0B1020" stroke-width="5"/><path d="M942 972 H1028 M942 992 H1028" stroke="#C9A441" stroke-width="5"/>';
-    if (o.part !== 2) s += '<path d="M330 1066 L350 1108 H470 L490 1066 Z" fill="#8B5E3C" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/><path d="M338 1070 H482" stroke="#6FC3F0" stroke-width="10" stroke-linecap="round"/>';
-    for (let i = 0; i < 12; i++) s += '<circle cx="' + (430 + 300 * rnd(i + 61)).toFixed(0) + '" cy="' + (1126 + 34 * rnd(i + 77)).toFixed(0) + '" r="4" fill="#F2D06B"/>'; }
+    for (const [x, h, ph] of (o.part === 2 ? [[1010, 160, 2.2]] : [[950, 150, 0], [1004, 118, 1.3]])) { const w = 5 * Math.sin(t * 1.3 + ph); s += '<path d="M' + x + ' 1040 Q' + (x + w) + ' ' + (1040 - h / 2) + ' ' + (x + w * 2) + ' ' + (1040 - h) + '" stroke="#1F7A3E" stroke-width="9" fill="none" stroke-linecap="round"/><ellipse cx="' + (x + w + 16) + '" cy="' + (1040 - h * .5) + '" rx="20" ry="9" fill="#2A9450" transform="rotate(-24 ' + (x + w + 16) + ' ' + (1040 - h * .5) + ')"/>'; for (let i = 0; i < 10; i++) s += '<ellipse cx="' + (x + w * 2) + '" cy="' + (1040 - h - 30) + '" rx="9" ry="20" fill="#FFD23F" stroke="#0B1020" stroke-width="3" transform="rotate(' + (i * 36) + ' ' + (x + w * 2) + ' ' + (1040 - h) + ')"/>'; s += '<circle cx="' + (x + w * 2) + '" cy="' + (1040 - h) + '" r="17" fill="#6B4226" stroke="#0B1020" stroke-width="4"/>'; }
+    if (o.part !== 2) s += '<g transform="translate(-150 0)"><rect x="880" y="1010" width="150" height="74" rx="14" fill="#E8C766" stroke="#0B1020" stroke-width="5"/><path d="M894 1030 H1016 M894 1050 H1016 M894 1068 H1016" stroke="#C9A441" stroke-width="5"/><rect x="930" y="954" width="110" height="60" rx="12" fill="#F0D27A" stroke="#0B1020" stroke-width="5"/><path d="M942 972 H1028 M942 992 H1028" stroke="#C9A441" stroke-width="5"/></g>';
+    if (o.part !== 2) s += '<g transform="translate(-100 0)"><path d="M330 1066 L350 1108 H470 L490 1066 Z" fill="#8B5E3C" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/><path d="M338 1070 H482" stroke="#6FC3F0" stroke-width="10" stroke-linecap="round"/></g>';
+    for (let i = 0; i < 12; i++) s += '<circle cx="' + (300 + 300 * rnd(i + 61)).toFixed(0) + '" cy="' + (1126 + 34 * rnd(i + 77)).toFixed(0) + '" r="4" fill="#F2D06B"/>'; }
   return s; }
 const peckD = t => Math.max(0, Math.sin(t * 5.2)) * (Math.sin(t * 1.3) > -.2 ? 1 : 0);
 
 // ---------- Einstieg ----------
-// Das Auge bekommt sofort etwas: Schon beim ersten Satz wird das Huhn zum T. rex. Der benimmt sich weiter wie ein Huhn:
-// er wundert sich ueber seine Aermchen, dreht sich um, scharrt und pickt Koerner. Schalti bemerkt er nicht.
-// Erst beim Nachsatz dreht er sich um, sieht Schalti, bruellt (Einschlag bei 0,5 s), stapft auf ihn zu, senkt den Kopf und schnappt.
-// Schalti rennt rechts aus dem Bild, der T. rex hinterher. Schalti kommt links wieder, das Huhn laeuft von rechts zurueck.
-const RXD = [640, 1118], HM0 = .8;
+// Das Auge bekommt sofort etwas: Schon beim ersten Satz wird das Huhn (am Trog) zum T. rex. Er wundert sich ueber seine Aermchen,
+// dreht sich um, laeuft nach rechts zum Heu, frisst davon, dreht sich wieder um und laeuft ein Stueck nach links. Er laeuft nie auf der Stelle:
+// die Schritte haengen am zurueckgelegten Weg. Schalti bemerkt er nicht.
+// Erst beim Nachsatz stutzt er, sieht Schalti, bruellt (Einschlag bei 0,5 s), stapft auf ihn zu, senkt den Kopf und schnappt.
+// Schalti rennt rechts aus dem Bild, der T. rex hinterher. Schalti kommt links wieder. Das Huhn kommt erst in Teil 1 zurueck.
+const HX0 = 430, HX1 = 520, HX2 = 440, HM0 = .8, RXD = [HX2, 1118], stepD = (d, z) => d * Math.PI / (168 * z);
 WORLD.h7dino = function (sc, ev, t, lt) { const e = ev.gag, hit = e !== undefined && e >= .5 ? e - .5 : undefined, sh = shake7(hit, t);
   let s = yardD(t, {});
-  if (lt < HM0 + .2) s += hend(700 + (lt > HM0 - .3 ? 7 * Math.sin(t * 60) : 0), RXD[1], 1.25 + .6 * cl((lt - HM0 + .3) / .5), t, { peck: lt < HM0 - .3 ? peckD(t) : 0, flap: lt > HM0 - .3 ? 1 : 0 });
+  if (lt < HM0 + .2) s += hend(HX0 + (lt > HM0 - .3 ? 7 * Math.sin(t * 60) : 0), RXD[1], 1.25 + .6 * cl((lt - HM0 + .3) / .5), t, { peck: lt < HM0 - .3 ? peckD(t) : 0, flap: lt > HM0 - .3 ? 1 : 0 });
   const k = cl((lt - HM0 - .05) / .3);
-  if (e === undefined && k > 0) { // vor dem Gag: der T. rex als Huhn
-    let x = 700, o = {};
-    if (lt < 2.5) o = { head: 20 + 8 * Math.sin(t * 7), jaw: lt < 1.6 ? .6 * Math.abs(Math.sin(t * 9)) : 0 };
-    else if (lt < 2.9) { const q = (lt - 2.5) / .4; o = { kx: Math.abs(Math.cos(Math.PI * q)) * .9 + .1, flip: q > .5 }; }
-    else if (lt < 4.1) { x = lerp(700, RXD[0], ease((lt - 2.9) / 1.2)); o = { flip: 1, run: 1, ph: lt * 9, head: 8 }; }
-    else { x = RXD[0]; const c = (lt - 4.1) % 2.6; o = c < 1.5 ? { flip: 1, head: 48 + 14 * Math.sin(t * 12), jaw: .25 + .25 * Math.sin(t * 12) } : { flip: 1, run: 1, ph: t * 12, head: 16 }; }
+  if (e === undefined && k > 0) { let x = HX0, o = {};
+    const turn = (q, toRight) => ({ kx: Math.abs(Math.cos(Math.PI * q)) * .9 + .1, flip: toRight ? q > .5 : q <= .5 });
+    if (lt < 2.2) o = { head: 20 + 8 * Math.sin(t * 7), jaw: lt < 1.6 ? .6 * Math.abs(Math.sin(t * 9)) : 0 };
+    else if (lt < 2.6) o = turn((lt - 2.2) / .4, 1);
+    else if (lt < 3.9) { const q = ease((lt - 2.6) / 1.3); x = lerp(HX0, HX1, q); o = { flip: 1, run: q < 1, ph: stepD(x - HX0, 1), head: 26 * cl((lt - 3.3) / .6) }; }
+    else if (lt < 5.7) { x = HX1; const c = lt - 3.9; o = { flip: 1, head: 44 + 8 * Math.sin(t * 11), jaw: .3 + .3 * Math.sin(t * 11) };
+      for (let i = 0; i < 6; i++) { const q = ((c * 1.6 + i / 6) % 1); s += '<path transform="translate(' + (836 + 70 * (rnd(i + 5) - .5) + 60 * q * (rnd(i + 9) - .5)) + ' ' + (980 - 90 * Math.sin(Math.PI * q)) + ') rotate(' + (360 * q + i * 50) + ')" d="M-14 0 H14" stroke="#F2D06B" stroke-width="6" stroke-linecap="round" opacity="' + (1 - q) + '"/>'; } }
+    else if (lt < 6.1) { x = HX1; o = turn((lt - 5.7) / .4, 0); }
+    else if (lt < 7.5) { const q = ease((lt - 6.1) / 1.4); x = lerp(HX1, HX2, q); o = { run: q < 1, ph: stepD(HX1 - x, 1), jaw: .2 + .2 * Math.sin(t * 9), head: 6 }; }
+    else { x = HX2; o = { head: -8 + 6 * Math.sin(t * 2.4), jaw: lt < 8.3 ? .2 + .2 * Math.sin(t * 9) : 0 }; }
     s += rexd(x, RXD[1], 1.0 * back(k), t, o);
-  } else if (e !== undefined && e < 2.9) { const ap = ease(cl((e - 1.1) / .6)), ch = cl((e - 1.95) / .85), x = ch > 0 ? lerp(600, 1760, ch * ch * .4 + ch * .6) : lerp(RXD[0], 600, ap), y = lerp(RXD[1], 1200, ap), z = lerp(1.0, 1.25, ap), tq = cl(e / .36);
-    const snap = e >= 1.7 && e < 1.9 ? Math.sin(Math.PI * (e - 1.7) / .2) : 0, jaw = e < .5 ? 0 : e < 1.1 ? .75 + .25 * Math.abs(Math.sin(t * 24)) : ch > 0 ? .35 + .2 * Math.abs(Math.sin(t * 13)) : .12 + .88 * snap, head = e < .5 ? -14 * tq : e < 1.1 ? 6 : ch > 0 ? 0 : 30 * ap + 8 * snap;
-    if (e >= .5 && e < 1.1) s += roard(RXD[0] - 300, RXD[1] - 310, 110, t, cl((e - .5) / .15) * cl((1.1 - e) / .15));
-    s += rexd(x, y, z, t, { jaw: jaw, head: head, run: ch > 0 || (ap > 0 && ap < 1), ph: ch > 0 ? undefined : e * 11, flip: ch > 0 || tq < .5, kx: e < .36 ? Math.abs(Math.cos(Math.PI * tq)) * .9 + .1 : 1 });
-  } else if (e !== undefined) { const q = ease(cl((e - 2.9) / .9)); s += hend(lerp(1280, 700, q), RXD[1], 1.25, t, { walk: q < 1 }); }
-  s += puffb(700, RXD[1] - 220, (lt - HM0) / .5, 250);
+  } else if (e !== undefined && e < 2.9) { const ap = ease(cl((e - 1.1) / .6)), ch = cl((e - 1.95) / .85), cx = lerp(500, 1800, ch * ch * .4 + ch * .6), x = ch > 0 ? cx : lerp(RXD[0], 500, ap), y = lerp(RXD[1], 1200, ap), z = lerp(1.0, 1.25, ap);
+    const snap = e >= 1.7 && e < 1.9 ? Math.sin(Math.PI * (e - 1.7) / .2) : 0, jaw = e < .5 ? 0 : e < 1.1 ? .75 + .25 * Math.abs(Math.sin(t * 24)) : ch > 0 ? .35 + .2 * Math.abs(Math.sin(t * 13)) : .12 + .88 * snap, head = e < .2 ? -16 * cl(e / .15) : e < .5 ? lerp(-16, 22, cl((e - .2) / .2)) : e < 1.1 ? 8 : ch > 0 ? 0 : 30 * ap + 8 * snap;
+    if (e >= .5 && e < 1.1) s += roard(RXD[0] - 290, RXD[1] - 300, 96, t, cl((e - .5) / .15) * cl((1.1 - e) / .15));
+    s += rexd(x, y, z, t, { jaw: jaw, head: head, run: ch > 0 || (ap > 0 && ap < 1), ph: ch > 0 ? stepD(cx - 500, 2.2) : stepD((x - RXD[0]) + (y - RXD[1]), 1.1), flip: ch > 0 });
+  }
+  s += puffb(HX0, RXD[1] - 220, (lt - HM0) / .5, 250);
   if (hit !== undefined && hit < 1.1) s += word7('RAWR!', 740, 705, hit, '#FFE14D', 6);
   return W('<g transform="translate(' + (sh[0] * .6) + ' ' + (sh[1] * .6) + ')">' + s + '</g>' + shade3()); };
-// Schalti: erschrickt bei der Verwandlung, redet dann weiter und merkt nicht, dass er zu laut wird. Beim Nachsatz wird er entdeckt.
+// Schalti: erschrickt bei der Verwandlung, redet dann weiter. Beim Nachsatz wird er entdeckt.
 WMASC.h7dino = (ev, t, lt, sc) => { const e = ev.gag;
   if (e === undefined) { if (lt < HM0) return stay3(HOME3, 1, { r: -2 + 2 * Math.sin(t * 2) }); if (lt < HM0 + .7) { const q = (lt - HM0) / .7; return stay3([lerp(220, 170, ease(q)), 1537 - 40 * Math.sin(Math.PI * cl(q / .5))], 1, { r: -16 * Math.sin(Math.PI * q) }); }
-    return since3(sc, 3, lt) < 0 ? stay3([lerp(170, 220, ease(cl((lt - HM0 - .7) / .6))), 1537], 1, { r: -3 + 2 * Math.sin(t * 2) }) : stay3([lerp(220, 290, ease(cl(since3(sc, 3, lt) / .5))), 1537], 1, { r: 9 }); }
-  if (e < .5) return stay3([lerp(290, 220, cl(e / .3)), 1537], 1, { r: -14 * cl(e / .3) });
+    return since3(sc, 3, lt) < 0 ? stay3([lerp(170, 220, ease(cl((lt - HM0 - .7) / .6))), 1537], 1, { r: -3 + 2 * Math.sin(t * 2) }) : stay3([lerp(220, 270, ease(cl(since3(sc, 3, lt) / .5))), 1537], 1, { r: 9 }); }
+  if (e < .5) return stay3([lerp(270, 220, cl(e / .3)), 1537], 1, { r: -14 * cl(e / .3) });
   if (e < 1.1) return stay3([lerp(220, 150, ease((e - .5) / .5)) + 5 * Math.sin(t * 44), 1537], 1, { r: -20 + 4 * Math.sin(t * 36) });
   if (e < 1.7) return stay3([lerp(150, 200, ease((e - 1.1) / .6)) + 2.5 * Math.sin(t * 50), 1537], 1, { r: -6 });
   if (e < 1.78) return stay3([200, 1537 - 60 * Math.sin(Math.PI * (e - 1.7) / .16)], 1, { r: -10 });
   return flee3(e, t, 1.78, 2.45, 2.95, 3.6); };
 
 // ---------- Teil 1: vom Raubsaurier zum Vogel ----------
-// Das Huhn wird an Ort und Stelle zum kleinen Raubsaurier. Er bekommt Federn, setzt sich aufs Nest, bekommt Fluegel und hebt als Vogel ab.
-// Schalti schleicht zum Nest, der Saurier schnappt nach ihm. Am Ende umkreist der Vogel Schalti.
+// Das Huhn kommt von rechts zurueckgerannt und wird in der Bildmitte zum kleinen Raubsaurier. Der steht gross und nah im Bild, damit man Federn und Nest gut sieht.
+// Er bekommt Federn, setzt sich aufs Nest, bekommt Fluegel und hebt als Vogel ab. Schalti schleicht zum Nest, der Saurier schnappt nach ihm.
+const TA = [500, 1128], TAS = 1.2, TM = .95; // Platz, Groesse, Beginn der Verwandlung (Sekunden nach dem ersten Wort)
 const snapD = ev => ev.p2 === undefined || ev.act !== undefined ? 0 : Math.max(0, Math.sin(Math.PI * cl((ev.p2 - 1.5) / .5)));
 WORLD.d1a = function (sc, ev, t, lt) { const pa = ev.panel, p1 = ev.p1, p2 = ev.p2, a = ev.act;
-  let s = yardD(t, {});
-  const mk = pa === undefined ? 0 : cl((pa - .35) / .5);
-  if (a === undefined || a < 1.7) { if (mk < .5) s += hend(DB[0], DB[1], 1.25 * (1 - .4 * mk * 2), t, { peck: pa === undefined ? peckD(t) : 0, flap: mk > 0 ? 1 : 0 });
-    if (mk > .3) { const sn = snapD(ev), sit = p2 === undefined || a !== undefined ? (a !== undefined ? 1 - cl(a / .3) : 0) : ease(cl(p2 / .5)) * (1 - sn), shr = a === undefined ? 1 : 1 - .42 * ease(cl((a - .2) / 1.0)), up = a === undefined ? 0 : ease(cl((a - 1.0) / .7));
-      if (p2 !== undefined) { const nk = back(cl(p2 / .4)) * (a === undefined ? 1 : 1 - cl((a - .2) / .4)); if (nk > 0) s += '<g transform="translate(' + (DB[0] + 30) + ' ' + (DB[1] + 8) + ') scale(' + nk + ')"><ellipse cx="0" cy="6" rx="176" ry="18" fill="#000" opacity=".2"/><ellipse cx="0" cy="0" rx="160" ry="44" fill="#8B5E3C" stroke="#0B1020" stroke-width="6"/><path d="M-150 -6 q30 -24 60 0 q30 -24 60 0 q30 -24 60 0 q30 -24 60 0 q30 -24 60 0" stroke="#C9A36A" stroke-width="8" fill="none" stroke-linecap="round"/>' + [-96, -36, 26, 88].map((x, i) => '<ellipse cx="' + x + '" cy="-24" rx="27" ry="36" fill="#FFF5DC" stroke="#0B1020" stroke-width="5"/><circle cx="' + (x - 6) + '" cy="' + (-32 + i * 3) + '" r="5" fill="#E8C9A0"/>').join('') + '</g>'; }
-      s += rexd(DB[0] - 70 * sn, DB[1] - 4 - 240 * up, .9 * back(cl((mk - .3) / .5)) * shr, t, { kind: 'rap', pal: RAPD, id: 'r', feath: p1 === undefined ? 0 : back(cl(p1 / .5)), sit: sit, jaw: sn > 0 ? sn : (pa !== undefined && pa < 1.4 ? .5 * Math.abs(Math.sin(t * 9)) : 0), head: sn > 0 ? 24 * sn : (p1 !== undefined && p1 < 1.2 ? -10 : 4 * Math.sin(t * 1.9)), wing: a === undefined ? 0 : ease(cl((a - .3) / .7)), shadow: up > .1 ? 0 : 1 }); }
-    s += puffb(DB[0], DB[1] - 150, pa === undefined ? -1 : (pa - .35) / .55, 190);
-    if (p1 !== undefined && p1 < 1.4) for (let i = 0; i < 6; i++) { const k = cl((p1 - .15 - i * .06) / 1.1); if (k > 0 && k < 1) s += '<path transform="translate(' + (DB[0] - 120 + i * 50 + 30 * Math.sin(k * 6 + i)) + ' ' + (DB[1] - 330 + 300 * k) + ') rotate(' + (40 * Math.sin(k * 7 + i)) + ')" d="M0 0 Q14 -8 34 0 Q14 8 0 0 Z" fill="' + ['#FFD23F', '#FF6BD6'][i % 2] + '" stroke="#0B1020" stroke-width="3" opacity="' + (1 - k) + '"/>'; }
+  let s = yardD(t, {}), front = '';
+  const mk = pa === undefined ? 0 : cl((pa - TM) / .5), hin = ease(cl(lt / 1.15));
+  if (a === undefined || a < 1.7) { if (mk < .5) s += hend(lerp(1260, TA[0], hin), TA[1], 1.25 * (1 - .4 * mk * 2), t, { walk: hin < 1, flap: hin < 1 || mk > 0 ? 1 : 0 });
+    if (mk > .3) { const sn = snapD(ev), sit = p2 === undefined || a !== undefined ? (a !== undefined ? 1 - cl(a / .3) : 0) : ease(cl(p2 / .5)) * (1 - sn), shr = a === undefined ? 1 : 1 - .5 * ease(cl((a - .2) / 1.0)), up = a === undefined ? 0 : ease(cl((a - 1.0) / .7));
+      if (p2 !== undefined) { const nk = back(cl(p2 / .4)) * (a === undefined ? 1 : 1 - cl((a - .2) / .4)); if (nk > 0) { const N = 'translate(' + (TA[0] + 40) + ' ' + (TA[1] + 14) + ') scale(' + (nk * 1.25) + ')', egg = (x, i) => '<ellipse cx="' + x + '" cy="-28" rx="29" ry="38" fill="#FFF5DC" stroke="#0B1020" stroke-width="5"/><ellipse cx="' + (x - 9) + '" cy="-40" rx="7" ry="11" fill="#fff" opacity=".8"/><circle cx="' + (x + 8) + '" cy="' + (-22 + i * 3) + '" r="5" fill="#E8C9A0"/>';
+        s += '<g transform="' + N + '"><ellipse cx="0" cy="10" rx="236" ry="20" fill="#000" opacity=".2"/><ellipse cx="0" cy="0" rx="220" ry="48" fill="#6B4226" stroke="#0B1020" stroke-width="6"/>' + [-164, -104, 112, 170].map(egg).join('') + '</g>';
+        front = '<g transform="' + N + '"><path d="M-220 0 C-220 46 220 46 220 0 C150 26 -150 26 -220 0 Z" fill="#8B5E3C" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/><path d="M-196 14 q26 -22 52 0 q26 -22 52 0 q26 -22 52 0 q26 -22 52 0 q26 -22 52 0 q26 -22 52 0 q26 -22 52 0 q14 -12 28 0" stroke="#C9A36A" stroke-width="8" fill="none" stroke-linecap="round"/></g>'; } }
+      s += rexd(TA[0] - 80 * sn, TA[1] - 4 - 300 * up, TAS * back(cl((mk - .3) / .5)) * shr, t, { kind: 'rap', pal: RAPD, id: 'r', feath: p1 === undefined ? 0 : back(cl(p1 / .5)), sit: sit * .8, jaw: sn > 0 ? sn : (pa !== undefined && pa < TM + 1.2 ? .5 * Math.abs(Math.sin(t * 9)) : 0), head: sn > 0 ? 26 * sn : (p1 !== undefined && p1 < 1.2 ? -10 : 4 * Math.sin(t * 1.9)), wing: a === undefined ? 0 : ease(cl((a - .3) / .7)), shadow: up > .1 ? 0 : 1 }) + front; }
+    s += puffb(TA[0], TA[1] - 200, pa === undefined ? -1 : (pa - TM) / .55, 240);
+    if (p1 !== undefined && p1 < 1.6) for (let i = 0; i < 8; i++) { const k = cl((p1 - .15 - i * .06) / 1.2); if (k > 0 && k < 1) s += '<path transform="translate(' + (TA[0] - 220 + i * 70 + 30 * Math.sin(k * 6 + i)) + ' ' + (TA[1] - 430 + 400 * k) + ') rotate(' + (40 * Math.sin(k * 7 + i)) + ') scale(1.6)" d="M0 0 Q14 -8 34 0 Q14 8 0 0 Z" fill="' + ['#FFD23F', '#FF6BD6'][i % 2] + '" stroke="#0B1020" stroke-width="3" opacity="' + (1 - k) + '"/>'; }
   }
-  if (a !== undefined && a >= 1.5) { const k = ease(cl((a - 1.5) / .9)), o = Math.max(0, (a - 2.4) * 2.3), k2 = ease(cl(o / 2.0)), bx = k < 1 ? lerp(DB[0], 560, k) : lerp(560, 205, k2), by = k < 1 ? lerp(DB[1] - 380, 880, k) : lerp(880, 728, k2) - 70 * Math.sin(Math.PI * k2);
-    s += puffb(DB[0], DB[1] - 360, (a - 1.5) / .45, 120) + birdd(bx, by + 6 * Math.sin(t * 2.3), 1.0, t, { flip: 1, id: 'f' }); }
-  if (p2 !== undefined && a === undefined) s += chip3(800, 760, 'hohle Knochen', 38, '#F4F6FB', '#0B1020', (p2 - .5) / .3);
+  if (a !== undefined && a >= 1.5) { const k = ease(cl((a - 1.5) / .9)), o = Math.max(0, (a - 2.4) * 2.3), k2 = ease(cl(o / 2.0)), bx = k < 1 ? lerp(TA[0], 560, k) : lerp(560, 205, k2), by = k < 1 ? lerp(TA[1] - 420, 880, k) : lerp(880, 728, k2) - 70 * Math.sin(Math.PI * k2);
+    s += puffb(TA[0], TA[1] - 400, (a - 1.5) / .45, 130) + birdd(bx, by + 6 * Math.sin(t * 2.3), 1.0, t, { flip: 1, id: 'f' }); }
+  if (p2 !== undefined && a === undefined) s += chip3(790, 730, 'hohle Knochen', 38, '#F4F6FB', '#0B1020', (p2 - .5) / .3);
   return W(s + shade3(), slot(ev, [['panel', 'Die Vorfahren: kleine Raubsaurier'], ['p1', 'Federn gab es schon vor den Vögeln', 'hot'], ['p2', 'Hohle Knochen, Brüten auf dem Nest'], ['act', 'Kleiner, leichter, Flügel', 'hot']])); };
 WMASC.d1a = (ev, t) => { const p1 = ev.p1, p2 = ev.p2, a = ev.act;
   if (a !== undefined) return a < 2.4 ? stay3(HOME3, 1, { r: -8 + 2 * Math.sin(t * 2) }) : stay3([220, 1537 - 14 * Math.abs(Math.sin(t * 7)) * cl((a - 3.0) / .4)], 1, { r: -12 * cl((a - 2.4) / .6) });
-  if (p2 !== undefined) { if (p2 < .9) return BIG3(); if (p2 < 1.5) return stay3([lerp(220, 340, ease((p2 - .9) / .6)), 1537 - 8 * Math.abs(Math.sin(t * 12))], 1, { r: 10 }); if (p2 < 2.0) return hop3((p2 - 1.5) / .5, [340, 1537], HOME3, 80, 1, 1, { r: -16 }); return stay3([220 + 4 * Math.sin(t * 34) * cl(1 - (p2 - 2) / .5), 1537], 1); }
-  if (p1 !== undefined && p1 < 1.4) return stay3([lerp(220, 270, ease(cl(p1 / .4))), 1537], 1, { r: 8 }); return BIG3(); };
+  if (p2 !== undefined) { if (p2 < .9) return BIG3(); if (p2 < 1.5) return stay3([lerp(220, 300, ease((p2 - .9) / .6)), 1537 - 8 * Math.abs(Math.sin(t * 12))], 1, { r: 10 }); if (p2 < 2.0) return hop3((p2 - 1.5) / .5, [300, 1537], [190, 1537], 80, 1, 1, { r: -16 }); return stay3([lerp(190, 220, cl((p2 - 2) / .5)) + 4 * Math.sin(t * 34) * cl(1 - (p2 - 2) / .5), 1537], 1); }
+  if (p1 !== undefined && p1 < 1.4) return stay3([lerp(220, 250, ease(cl(p1 / .4))), 1537], 1, { r: 8 }); return BIG3(); };
 
 // ---------- Teil 2: der Stammbaum als Wege auf der Wiese ----------
 // Blick von weiter oben auf die Wiese hinter dem Hof. Vom gemeinsamen Anfang unten fuehrt ein Weg nach oben und gabelt sich zweimal.
@@ -104,7 +112,7 @@ WORLD.d1b = function (sc, ev, t, lt) { const p1 = ev.p1, p2 = ev.p2, a = ev.act;
   // T. rex stapft auf seinen Weg, bruellt zu Schalti herunter, dreht sich dann zum Huhn
   if (p1 !== undefined) { const q = ease(cl(p1 / .9)), roar = p1 > 1.5 && p1 < 2.5 && p2 === undefined, tq = p2 === undefined ? 0 : cl((p2 - 1.5) / .4), nod = a === undefined ? 0 : 14 * Math.abs(Math.sin(a * 5)) * cl(1 - a / 2);
     if (roar) s += roard(WG.R[0] - 180, WG.R[1] - 186, 110, t, cl((p1 - 1.5) / .15) * cl((2.5 - p1) / .15));
-    s += rexd(lerp(WG.B[0], WG.R[0], q), lerp(WG.B[1], WG.R[1], q), lerp(.7, .6, q), t, { id: 't', run: q < 1, ph: p1 * 10, jaw: roar ? .7 + .3 * Math.abs(Math.sin(t * 24)) : 0, head: roar ? 22 : tq > .5 ? 14 + nod : 0, flip: tq > .5, kx: tq > 0 && tq < 1 ? Math.abs(Math.cos(Math.PI * tq)) * .9 + .1 : 1 }); }
+    s += rexd(lerp(WG.B[0], WG.R[0], q), lerp(WG.B[1], WG.R[1], q), lerp(.7, .6, q), t, { id: 't', run: q < 1, ph: stepD(110 * q, .65), jaw: roar ? .7 + .3 * Math.abs(Math.sin(t * 24)) : 0, head: roar ? 22 : tq > .5 ? 14 + nod : 0, flip: tq > .5, kx: tq > 0 && tq < 1 ? Math.abs(Math.cos(Math.PI * tq)) * .9 + .1 : 1 }); }
   // Huhn laeuft als Erstes auf seinen Weg
   { const q = ease(cl((lt - 1.0) / 1.2)), hj = a === undefined ? 0 : 70 * Math.abs(Math.sin(Math.PI * cl(a / .5))) + (a > .5 && a < 1.6 ? 26 * Math.abs(Math.sin((a - .5) * 9)) : 0);
     if (a !== undefined) for (let i = 0; i < 2; i++) { const c = (t * .9 + i / 2) % 1; s += '<circle cx="' + WG.H[0] + '" cy="' + (WG.H[1] - 110) + '" r="' + (120 + 60 * c) + '" fill="none" stroke="#FFE14D" stroke-width="8" opacity="' + (.8 * (1 - c) * cl(a / .4)) + '"/>'; }
@@ -131,7 +139,7 @@ WORLD.d1c = function (sc, ev, t, lt) { const pa = ev.panel, p1 = ev.p1, p2 = ev.
   const gone = p2 === undefined ? 0 : ease(cl(p2 / 1.2));
   let front = '';
   if (a === undefined || a < .4) { const wi = ease(cl(lt / 1.3)), lookup = pa !== undefined && hit === undefined ? cl((pa - (ti - 1.0)) / .4) : 0;
-    if (gone < 1) s += '<g style="filter:grayscale(' + gone + ')">' + rexd(lerp(930, 560, wi), DB[1] + 40 * gone, .95, t, { op: 1 - gone, run: wi < 1, ph: lt * 8, head: hit !== undefined ? 26 : -26 * lookup, sit: hit === undefined ? 0 : .7 * ease(cl(hit / .5)), jaw: hit !== undefined && hit < 1.2 ? .8 : .1 * lookup, id: 'u' }) + '</g>';
+    if (gone < 1) s += '<g style="filter:grayscale(' + gone + ')">' + rexd(lerp(930, 560, wi), DB[1] + 40 * gone, .95, t, { op: 1 - gone, run: wi < 1, ph: stepD(370 * wi, .95), head: hit !== undefined ? 26 : -26 * lookup, sit: hit === undefined ? 0 : .7 * ease(cl(hit / .5)), jaw: hit !== undefined && hit < 1.2 ? .8 : .1 * lookup, id: 'u' }) + '</g>';
     // der kleine Vogel: erst hinten, dann fluechtet er nach vorn zu Schalti
     const fk = hit === undefined ? 0 : ease(cl((hit - .3) / .9)), bx = lerp(900, 430, fk), by = lerp(DB[1] + 6, 1530, fk);
     front = hend(bx, by, lerp(.44, .62, fk), t, { c1: '#E3C08A', c2: '#B58A4E', id: 'v', walk: fk > 0 && fk < 1, flap: fk > 0 && fk < 1 ? 1 : 0, peck: fk >= 1 && p2 !== undefined && p2 > 1.3 ? peckD(t) : 0 }); if (fk < .5) { s += front; front = ''; } }
