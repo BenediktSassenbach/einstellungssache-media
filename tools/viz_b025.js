@@ -1,6 +1,6 @@
 // B025 Schicht fuer Schicht, Folge 2: Wie ist dein Gehirn aufgebaut? (Skript Schicht fuer Schicht Anatomie)
 // Test (Benedikt, 17.11.2026): gaengigster deutscher Begriff im Text und gross auf dem Schildchen, der lateinische Fachbegriff kurz gesprochen und kursiv darunter.
-const GX = 596, GY = 912, GZ = 1.0, NOTE25 = 'Gehirn, Ansicht von links';
+const GX = 596, GY = 912, GZ = 1.0, NOTE25 = 'linke Hirnhälfte, von der Seite';
 const GL = (lx, ly, tx, ty, de, la, k) => labelL(Math.round(GX + lx * GZ), Math.round(GY + ly * GZ), tx, ty, de, la, k);
 const ROWS25 = [['Hirnstamm', COLS.stem], ['Kleinhirn', COLS.cb], ['Großhirn', COLS.cer], ['Hirnrinde', COLS.cor], ['Hirnhäute', COLS.mng], ['Schädel', COLS.bone]];
 const markG = (t, lx, ly, r) => '<circle cx="' + (GX + lx * GZ) + '" cy="' + (GY + ly * GZ) + '" r="' + r + '" fill="none" stroke="' + TH().hl + '" stroke-width="6" stroke-dasharray="16 10" opacity="' + (.7 + .3 * Math.sin(t * 5)).toFixed(2) + '"/>';
@@ -11,14 +11,14 @@ const gag25 = (sc, t) => { const L = sc.lines, g = typeof S !== 'undefined' && S
 const FLY25 = [[5, 0, 650], [4, .1, 540], [3, .2, 450], [2, .3, 600], [1, .4, 500]];
 WORLD.h25hirn = function (sc, ev, t, lt) { const e = gag25(sc, t), hit = e !== undefined && e >= .9 ? e - .9 : undefined, sh = shake7(hit, t), L = brainLayS, l = [1, 1, 1, 1, 1, 1]; let fly = '';
   if (e !== undefined) FLY25.forEach(([i, t0, lx], n) => { const k = cl((e - t0) / .5); if (k > 0) l[i] = 0; if (k <= 0) return;
-    const x = lerp(GX, lx, k), y = lerp(GY, 1492, k * k) - 230 * Math.sin(Math.PI * k) * (1 - k * .3), rot = k >= 1 ? (n % 2 ? -20 : 20) : (n % 2 ? -1 : 1) * 200 * k;
+    const x = lerp(GX, lx, k), y = lerp(GY, 1492, k * k) - 230 * Math.sin(Math.PI * k) * (1 - k * .3), rot = (n % 2 ? -1 : 1) * 18 * ease(k);
     const inner = i === 5 ? L.skull() : i === 4 ? L.liq(t) + L.mng() : i === 3 ? L.cor(1) : i === 2 ? L.cer() : L.cb();
     fly += '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + rot.toFixed(0) + ') scale(.3)">' + BDEF + inner + '</g>'; });
   const gone = e === undefined ? 6 : 1 + FLY25.filter(([i, t0]) => e < t0).length;
   let s = laborS(t, { rows: ROWS25, on: gone, cur: e === undefined && lt > .5 && lt < 3 ? 5 : 0, cx: GX, note: NOTE25 });
   s += brainS(GX, GY, GZ, t, { l: l, bob: e === undefined ? bobG(t) * 1.6 : 0 });
-  if (e === undefined && lt > .4 && lt < 3.4) s += GL(-150, -150, 740, 740, 'Hirnwasser', 'Liquor', (lt - .5) / .4);
-  s += fly; if (hit !== undefined && hit < 1.1) s += word7('PLOPP!', 700, 1462, hit, '#FFE14D', -5);
+  if (e === undefined && lt > .4 && lt < 3.4) s += GL(-150, -128, 740, 740, 'Hirnwasser', 'Liquor', (lt - .5) / .4);
+  s += fly;
   return W('<g transform="translate(' + (sh[0] * .4) + ' ' + (sh[1] * .4) + ')">' + s + '</g>' + shadeS()); };
 WMASC.h25hirn = (ev, t, lt, sc) => { const e = gag25(sc, t);
   if (e === undefined) return stay3([220, 1537 - 6 * Math.sin(t * 1.8)], 1, { r: -3 + 2 * Math.sin(t * 2) });
@@ -33,10 +33,9 @@ WORLD.b25a = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.
     s += '<g opacity="' + k.toFixed(2) + '" transform="translate(' + GX + ' ' + GY + ') scale(' + GZ + ')"><path d="' + BCER + '" fill="none" stroke="' + TH().txt + '" stroke-width="4" stroke-dasharray="14 10" opacity=".6"/>' + d + '</g>'; }
   s += brainS(GX, GY, GZ, t, { l: [st, cb, 0, 0, 0, 0], hl: p1 !== undefined && p2 === undefined ? 'st' : '', dots: a === undefined ? 0 : cl((a - .5) / 1.2) });
   if (p1 !== undefined && p2 === undefined) { for (let i = 0; i < 2; i++) { const q = (t * .9 + i * .5) % 1; s += '<circle cx="' + (GX + 30 * GZ) + '" cy="' + (GY + 110 * GZ) + '" r="' + (40 + 70 * q).toFixed(0) + '" fill="none" stroke="' + TH().hl + '" stroke-width="5" opacity="' + (.8 * (1 - q)).toFixed(2) + '"/>'; } }
-  if (p2 === undefined && p !== undefined) s += GL(54, 150, 712, 1070, 'Hirnstamm', 'Truncus encephali', (p - .9) / .4);
-  if (p2 !== undefined) s += ringG(116, 90, 90, (p2 - 1.6) / .7) + GL(160, 100, 790, 1040, 'Kleinhirn', 'Cerebellum', (p2 - 1.9) / .4);
+  if (p2 === undefined && p !== undefined) s += GL(30, 160, 712, 1070, 'Hirnstamm', 'Truncus encephali', (p - .9) / .4);
+  if (p2 !== undefined) s += ringG(116, 90, 90, (p2 - 1.6) / .7) + GL(166, 96, 790, 1040, 'Kleinhirn', 'Cerebellum', (p2 - 1.9) / .4);
   if (a !== undefined) s += markG(t, 116, 90, 70);
-  s += puffb(GX + 30 * GZ, GY + 120 * GZ, (lt - .15) / .6, 200);
   return W(s + shadeS(), slot(ev, [['panel', 'Schicht 1: Hirnstamm'], ['p1', 'Atmung und Herzschlag', 'hot'], ['p2', 'Schicht 2: Kleinhirn'], ['act', 'Klein, aber mehr Nervenzellen', 'hot']])); };
 // Ohne Kleinhirn wackelt Schalti, sobald es sitzt, steht er still
 WMASC.b25a = (ev, t) => { const p2 = ev.p2; if (ev.p1 !== undefined && p2 === undefined) return stay3([220, 1537], 1 + .03 * Math.sin(t * 3.2), { nospin: 1 });
@@ -61,8 +60,8 @@ WORLD.b25c = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.
   // Erschuetterung: die Huelle ruckt, das Gehirn im Hirnwasser folgt gedaempft
   const jx = 14 * jolt * Math.sin(t * 30), bob = mn * bobG(t) * (a !== undefined ? 1.8 : 1) - 8 * jolt * Math.sin(t * 9);
   s += '<g transform="translate(' + jx.toFixed(1) + ' 0)">' + brainS(GX, GY, GZ, t, { l: [1, 1, 1, 1, mn, sk], bob: bob }) + '</g>';
-  if (p2 === undefined) s += GL(-150, -150, 740, 740, 'Hirnhäute', 'Meninges', (lt - 1.1) / .4) + GL(66, 180, 790, 1070, 'Hirnwasser', 'Liquor', (lt - 3.0) / .4);
-  if (p2 !== undefined && a === undefined) s += ringG(8, -20, 190, (p2 - 1.2) / .7) + GL(170, -150, 790, 760, 'Schädel', 'Cranium', (p2 - 1.6) / .4);
+  if (p2 === undefined) s += GL(-150, -136, 740, 740, 'Hirnhäute', 'Meninges', (lt - 1.1) / .4) + GL(52, 180, 790, 1070, 'Hirnwasser', 'Liquor', (lt - 3.0) / .4);
+  if (p2 !== undefined && a === undefined) s += ringG(8, -20, 190, (p2 - 1.2) / .7) + GL(170, -134, 790, 760, 'Schädel', 'Cranium', (p2 - 1.6) / .4);
   if (a !== undefined) { s += lupeS(lupAuf(cl((a - 1.4) / 1.4)), (a - .9) / .35, GX - 20 * GZ, GY + 40 * GZ);
     for (let i = 0; i < 3; i++) { const q = ((t * .8 + i / 3) % 1); s += '<path d="M' + (GX + (-80 + 80 * i) * GZ) + ' ' + (GY + (90 - 60 * q) * GZ).toFixed(0) + ' v-30 m0 0 l-10 12 m10 -12 l10 12" stroke="' + TH().hl + '" stroke-width="6" fill="none" stroke-linecap="round" opacity="' + Math.sin(Math.PI * q).toFixed(2) + '"/>'; } }
   return W(s + shadeS(), slot(ev, [['panel', 'Schicht 5: Hirnhäute und Hirnwasser'], ['p1', 'Fängt Erschütterungen ab', 'hot'], ['p2', 'Schicht 6: Schädel'], ['act', 'Rund 97 Prozent leichter', 'hot']])); };
