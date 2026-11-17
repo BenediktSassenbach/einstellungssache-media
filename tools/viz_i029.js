@@ -1,89 +1,139 @@
-// I029 "Warum braucht GTA 6 so viel Platz?" (GTA-6-Spezial, Informatik) im Skript 4 (17.11.2026). Design-Kennung 3.3.
+// I029 "Warum braucht GTA 6 so viel Platz?" (GTA-6-Spezial, Informatik) im Skript 4, Fassung v2 (17.11.2026). Design-Kennung 3.3.
+// Benedikts Wunsch: mehr mit dem Hintergrund arbeiten, alles interaktiv in der Stadt statt Schaubild. Kein Wissenschaftsmodus.
 // Ort: dieselbe Neon-Stadt wie I026 und I028 (street26 aus viz_i026.js).
-// Einstieg: Schalti stopft ein Paket "212 GB" in eine Konsole, sie beult sich aus und platzt. Nachsatz trocken: "Passt schon."
-// Wissenschaftsmodus: Teil 1 drei Texturen und 4K-Raster, Teil 2 gepackter gegen ungepackter Ton, Teil 3 Speicherbalken der PS5.
-// Wie GTA 6 innen aufgeteilt ist, hat Rockstar nicht veroeffentlicht: das Video spricht deshalb von grossen Spielen allgemein.
+// Einstieg: Haeuser der Skyline fliegen in eine Konsolen-Kiste (Zaehler bis 212 GB), die Kiste quillt ueber, Schalti drueckt, sie platzt.
+// Teil 1: graue Hauswand, Schalti rollt die Textur auf, dann Unebenheit und Glanz, Lupe auf die Pixel, Textur abziehen und falten.
+// Teil 2: Schritte, Hupe und Radio werfen Ton-Dateien aus, Turm waechst, blaeht sich auf, Konsole muss nicht entpacken, Turm wird Hochhaus.
+// Teil 3: Parkhaus = Speicher der PS5. System grau, GTA-Bus parkt fast ein Drittel, Spiele auf den USB-Parkplatz schieben und zurueckholen.
 // Zum Loeschen: diese Datei und videos/I029.
 var AC29 = '#7C5CFF';
-// Konsole (neutral, ohne Marke). x links, b Boden, bu Ausbeulen 0..1, pop geplatzt 0..1
-function cons29(x, b, bu, pop, t) { const w = 150 + 40 * bu, h = 300, xl = x - (w - 150) / 2, sh = pop > 0 ? 0 : 6 * bu * Math.sin(t * 40);
-  let s = '<g transform="translate(' + sh.toFixed(1) + ' 0)"><rect x="' + xl.toFixed(1) + '" y="' + (b - h) + '" width="' + w.toFixed(1) + '" height="' + h + '" rx="' + (26 + 30 * bu).toFixed(0) + '" fill="#F4F6FB" stroke="#0B1020" stroke-width="6"/>'
-    + '<rect x="' + (xl + w / 2 - 22).toFixed(1) + '" y="' + (b - h + 40) + '" width="44" height="' + (h - 80) + '" rx="22" fill="#0B1020"/><circle cx="' + (xl + w / 2).toFixed(1) + '" cy="' + (b - h + 70) + '" r="9" fill="' + (pop > 0 ? '#FF5A7A' : '#5CE1FF') + '"/></g>';
-  if (pop > 0) { const k = cl(pop / .8); s += '<g transform="translate(' + (x + 75 + 140 * k).toFixed(1) + ' ' + (b - h - 300 * k + 420 * k * k).toFixed(1) + ') rotate(' + (200 * k).toFixed(0) + ')"><rect x="-80" y="-14" width="160" height="28" rx="12" fill="#F4F6FB" stroke="#0B1020" stroke-width="5"/></g>';
-    for (let i = 0; i < 9; i++) { const a = -Math.PI / 2 + (i - 4) * .32, d = 60 + 380 * k * (.6 + .4 * rnd(i + 5)); s += '<rect x="' + (x + 75 + d * Math.cos(a) - 16).toFixed(1) + '" y="' + (b - h + d * Math.sin(a) + 300 * k * k).toFixed(1) + '" width="32" height="32" rx="6" fill="' + ['#FF5A7A', '#FFD23F', '#5CE1FF', '#3DFF7A', AC29][i % 5] + '" stroke="#0B1020" stroke-width="4" opacity="' + (1 - .4 * k).toFixed(2) + '"/>'; }
-    s += '<circle cx="' + (x + 75) + '" cy="' + (b - h - 40 - 60 * k) + '" r="' + (40 + 60 * k).toFixed(0) + '" fill="#8A93B8" opacity="' + (.45 * (1 - k)).toFixed(2) + '"/>'; }
-  return s; }
-function box29(x, b, sz, sq) { const w = sz * (1 - .25 * sq), h = sz * (1 + .1 * sq); return '<rect x="' + x.toFixed(1) + '" y="' + (b - h).toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + h.toFixed(1) + '" rx="12" fill="#C98A4B" stroke="#0B1020" stroke-width="6"/><path d="M' + (x + w / 2).toFixed(1) + ' ' + (b - h).toFixed(1) + ' V' + b + '" stroke="#E8C08A" stroke-width="16"/>' + svgT(x + w / 2, b - h / 2 + 18, '212 GB', 48, '#0B1020'); }
+function bg29(t) { return street26(t, 0, { RB: 2000, F: 3000 }); }
+// kleines Haus (fliegt in die Kiste). x, y Mitte unten, z Groesse, c Farbe, r Drehung
+function hs29(x, y, z, c, r) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (r || 0).toFixed(1) + ') scale(' + z.toFixed(3) + ')"><rect x="-40" y="-70" width="80" height="70" fill="' + c + '" stroke="#0B1020" stroke-width="5"/><path d="M-48 -68 L0 -108 L48 -68 Z" fill="#2C2160" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/><rect x="-24" y="-54" width="16" height="16" fill="#FFE14D"/><rect x="8" y="-54" width="16" height="16" fill="#FFE14D"/><rect x="-10" y="-28" width="20" height="28" fill="#0B1020"/></g>'; }
+var HC29 = ['#B9A6FF', '#FF6BD6', '#5CE1FF', '#FFB0D9', '#7C5CFF', '#FFD23F'];
+// Konsolen-Kiste: links x, Boden b, Breite w, Hoehe h, bu Ausbeulen, lab Anzeige
+function kiste29(x, b, w, h, bu, lab, t, hot) { const sh = 5 * bu * Math.sin(t * 38), ww = w + 50 * bu, xl = x - 25 * bu;
+  return '<g transform="translate(' + sh.toFixed(1) + ' 0)"><rect x="' + xl.toFixed(1) + '" y="' + (b - h) + '" width="' + ww.toFixed(1) + '" height="' + h + '" rx="' + (24 + 30 * bu).toFixed(0) + '" fill="#F4F6FB" stroke="#0B1020" stroke-width="7"/><rect x="' + (xl + 22).toFixed(1) + '" y="' + (b - 110) + '" width="' + (ww - 44).toFixed(1) + '" height="78" rx="16" fill="#0B1020"/>' + svgT(xl + ww / 2, b - 52, lab, 46, hot ? '#FF5A7A' : '#5CE1FF') + '<circle cx="' + (xl + ww - 30).toFixed(1) + '" cy="' + (b - h + 30) + '" r="9" fill="' + (bu > .5 ? '#FF5A7A' : '#3DFF7A') + '"/></g>'; }
 
 // ---------- Einstieg ----------
-WORLD.i29hook = function (sc, ev, t, lt) { let s = street26(t, 0, { RB: 2000, F: 3000 }); const st = ev.stopf, pl = ev.platz, pu = ev.puff;
-  const pop = pl === undefined ? 0 : cl((pl - .7) / .1) > 0 ? pl - .7 : 0, bu = pl === undefined ? 0 : cl(pl / .7);
-  const bx = st === undefined ? 350 : 350 + 140 * ease(cl(st / 1.2));
-  if (pop <= 0) s += box29(bx, 1548, 220, bu);
-  s += cons29(700, 1548, bu, pop, t);
-  if (st !== undefined && pl === undefined) s += chip3(780, 1010, 'Passt das rein?', 40, '#FFE14D', '#0B1020', cl((st - .5) / .3));
+var KX29 = 600, KW29 = 300, KH29 = 300;
+function flyH29(i, q) { const sx = 120 + (i * 137) % 860, sy = 760 + (i * 53) % 160, ex = KX29 + 40 + (i * 47) % (KW29 - 80), ey = GY26 - KH29 + 10; const e = ease(q);
+  return [lerp(sx, ex, e), lerp(sy, ey, e) - 260 * Math.sin(Math.PI * e), 1 - .45 * e, 200 * e * (i % 2 ? 1 : -1)]; }
+WORLD.i29hook = function (sc, ev, t, lt) { let s = bg29(t); const fr = ev.stopf, dr = ev.platz, pu = ev.puff;
+  const N = 14, tot = fr === undefined ? lt : 99, burst = dr === undefined ? 0 : (dr > .9 ? dr - .9 : 0), bu = dr === undefined ? (fr === undefined ? 0 : .35 * cl(fr / 1)) : (burst > 0 ? 0 : .35 + .65 * cl(dr / .9));
+  let landed = 0; const gb = fr === undefined ? 212 * cl(lt / 2.2) : 212;
+  for (let i = 0; i < N; i++) { const st = i * .15, q = cl((tot - st) / .7); if (q <= 0) continue; if (q >= 1) { landed++; continue; } const p = flyH29(i, q); s += hs29(p[0], p[1], p[2], HC29[i % 6], p[3]); }
+  if (burst <= 0) { let pile = ''; for (let i = 0; i < landed; i++) { const col = i % 4, row = Math.floor(i / 4), x = KX29 + 50 + col * 66 + (row % 2) * 30, y = GY26 - KH29 + 14 - row * 62; pile += hs29(x, y, .55, HC29[i % 6], (i % 3 - 1) * 8); } s += pile + kiste29(KX29, GY26, KW29, KH29, bu, Math.round(gb) + ' GB', t, gb >= 212); }
+  else { const k = cl(burst / .9); s += kiste29(KX29, GY26, KW29, KH29 * (1 - .15 * cl(k * 4)), 0, '212 GB', t, 1);
+    for (let i = 0; i < 12; i++) { const a = -Math.PI / 2 + (i - 5.5) * .26, d = 120 + 620 * k * (.6 + .4 * rnd(i + 3)), x = KX29 + KW29 / 2 + d * Math.cos(a), y = GY26 - KH29 + d * Math.sin(a) + 900 * k * k; if (y < 1700) s += hs29(x, y, .55, HC29[i % 6], 300 * k * (i % 2 ? 1 : -1)); }
+    s += '<circle cx="' + (KX29 + KW29 / 2) + '" cy="' + (GY26 - KH29 - 30) + '" r="' + (60 + 140 * k).toFixed(0) + '" fill="#B9A6FF" opacity="' + (.5 * (1 - k)).toFixed(2) + '"/>'; }
+  if (pu !== undefined) { const q = cl(pu / .5); s += hs29(380, lerp(900, GY26, q * q), .7, '#FFB0D9', 18 * (1 - q)); }
   return W(s + shade3()); };
-WMASC.i29hook = (ev, t, lt, sc) => { const st = ev.stopf, pl = ev.platz, pu = ev.puff;
-  if (pu !== undefined || (pl !== undefined && pl > .7)) return { f: [220, 1537], s: 1, r: -6, nospin: 1, mood: pu !== undefined ? 'cool' : 'shock' };
-  if (st !== undefined) { const p = ease(cl(st / 1.2)); return { f: [200 + 140 * p, 1537], s: 1, r: 14 + 4 * Math.sin(t * 20), nospin: 1, walk: p < 1 ? 1 : 0 }; }
-  return { f: [200, 1537], s: 1, r: 2, nospin: 1 }; };
+WMASC.i29hook = (ev, t, lt, sc) => { const dr = ev.platz, pu = ev.puff;
+  if (pu !== undefined) return stay3([200, 1537], 1, { r: -4, mood: 'cool' });
+  if (dr !== undefined) { if (dr < .5) return stay3([lerp(220, 470, ease(dr / .5)), 1537 - 8 * Math.abs(Math.sin(t * 12))], 1, { r: 10 }); if (dr < .95) return stay3([470 + 6 * Math.sin(t * 30), 1537], 1, { r: 18, mood: 'shock' }); return hop3(cl((dr - .95) / .5), [470, 1537], [200, 1537], 70, 1, 1, { r: -20, mood: 'shock' }); }
+  return stay3(HOME3, 1, ev.stopf !== undefined ? { r: -6, mood: 'shock' } : { r: 2 * Math.sin(t * 3) }); };
 
-// ---------- Teil 1: Texturen ----------
-function brick29(x, y, w, h, kind) { let s = '<clipPath id="br' + kind + x + '"><rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="10"/></clipPath><g clip-path="url(#br' + kind + x + ')">';
-  const bg = kind === 0 ? '#B4583A' : kind === 1 ? '#8080FF' : '#3A3A44'; s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + bg + '"/>';
-  const rows = 6, rh = h / rows; for (let r = 0; r < rows; r++) for (let c = -1; c < 4; c++) { const bxx = x + c * w / 3 + (r % 2) * w / 6, byy = y + r * rh;
-    const f = kind === 0 ? ['#C96A48', '#A54E33', '#D27B55'][(r + c + 3) % 3] : kind === 1 ? '#9A9AFF' : '#5A5A66';
-    s += '<rect x="' + (bxx + 4).toFixed(1) + '" y="' + (byy + 4).toFixed(1) + '" width="' + (w / 3 - 8).toFixed(1) + '" height="' + (rh - 8).toFixed(1) + '" rx="3" fill="' + f + '"' + (kind === 2 ? ' opacity="' + (.4 + .6 * rnd(r * 7 + c)).toFixed(2) + '"' : '') + '/>'; }
-  return s + '</g><rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="10" fill="none" stroke="#F4F6FB" stroke-width="5"/>'; }
-WORLD.i29tex = function (sc, ev, t, lt) { const bg = street26(t, 0, { RB: 2000, F: 3000 }); let s = fuse33(bg, sc, t), h = ''; const m = lab33(sc, t);
-  if (ev.tex !== undefined && ev.drei === undefined && m < .99) { const k = ease(cl((ev.tex - .2) / .8)) * (1 - m); s += '<g opacity="' + (1 - m).toFixed(3) + '">' + brick29(620, 1010 + 300 * (1 - k), 260, 300 * k + 1, 0) + '</g>' + chip3(750, 930, 'Textur', 46, '#FFE14D', '#0B1020', cl((ev.tex - .6) / .3) * (1 - m)); }
-  if (m > .01) { let g = ''; const d = ev.drei, p = ev.pix;
-    if (d !== undefined && p === undefined) { const lab = ['Farbe', 'Unebenheit', 'Glanz']; for (let i = 0; i < 3; i++) { const k = cl((d - .3 * i) / .4); g += '<g opacity="' + k.toFixed(3) + '">' + brick29(110 + i * 270, 790, 220, 220, i) + svgT(220 + i * 270, 1080, lab[i], 40, '#F4F6FB') + '</g>'; } }
-    if (p !== undefined) { const z = ease(cl(p / .8)), S = 220 + 300 * z, X = 540 - S / 2; g += brick29(X, 760, S, S * .8, 0);
-      const n = 6 + Math.floor(26 * z); for (let i = 1; i < n; i++) g += '<path d="M' + (X + S * i / n).toFixed(1) + ' 760 v' + (S * .8).toFixed(1) + '" stroke="#0B1020" stroke-width="1.5" opacity=".5"/><path d="M' + X.toFixed(1) + ' ' + (760 + S * .8 * i / n).toFixed(1) + ' h' + S.toFixed(1) + '" stroke="#0B1020" stroke-width="1.5" opacity=".5"/>';
-      g += svgT(540, 740, '4096 × 4096', 44, '#F4F6FB') + chip3(540, 1090, 'fast 17 Millionen Pixel', 44, '#FFE14D', '#0B1020', cl((p - .9) / .3)); }
-    s += '<g opacity="' + m.toFixed(3) + '">' + g + '</g>'; }
-  if (ev.pack !== undefined) { const k = cl((ev.pack - .2) / .3) * (1 - m), q = ease(cl((ev.pack - .5) / .8)), S = 240 * (1 - q * (1 - 1 / Math.sqrt(8)));
-    s += '<g opacity="' + k.toFixed(3) + '"><rect x="' + (760 - S / 2).toFixed(1) + '" y="' + (1010 - S / 2).toFixed(1) + '" width="' + S.toFixed(1) + '" height="' + S.toFixed(1) + '" rx="10" fill="#B4583A" stroke="#F4F6FB" stroke-width="5"/></g>' + chip3(760, 1130, 'höchstens etwa 1/8', 40, '#FFE14D', '#0B1020', cl((ev.pack - 1.2) / .3)); }
+// ---------- Teil 1: die Hauswand ----------
+var WX29 = 540, WY29 = 700, WW29 = 400, WH29 = GY26 - 700;
+// Wand: rv Farbe von oben aufgerollt (0..1), bump Unebenheit, gl Glanz, peel Textur abgezogen
+function wall29(t, rv, bump, gl, peel) { const X = WX29, Y = WY29, Wd = WW29, H = WH29; let s = '<rect x="' + X + '" y="' + Y + '" width="' + Wd + '" height="' + H + '" fill="#8A93A6" stroke="#0B1020" stroke-width="6"/><path d="M' + (X - 14) + ' ' + Y + ' h' + (Wd + 28) + ' v-26 h-' + (Wd + 28) + ' Z" fill="#5A6276" stroke="#0B1020" stroke-width="6"/>';
+  const win = []; for (let r = 0; r < 5; r++) for (let c = 0; c < 3; c++) win.push([X + 40 + c * 125, Y + 60 + r * 150]);
+  const vis = rv * (1 - peel);
+  if (vis > 0) { s += '<clipPath id="wv29"><rect x="' + X + '" y="' + Y + '" width="' + Wd + '" height="' + (H * vis).toFixed(1) + '"/></clipPath><g clip-path="url(#wv29)"><rect x="' + X + '" y="' + Y + '" width="' + Wd + '" height="' + H + '" fill="#9C4A30"/>';
+    const bh = 34, bw = 80; for (let r = 0; r * bh < H; r++) { const off = (r % 2) * bw / 2; let row = ''; for (let c = -1; c * bw < Wd; c++) { const bx = X + c * bw + off, by = Y + r * bh; row += '<rect x="' + (bx + 3) + '" y="' + (by + 3) + '" width="' + (bw - 6) + '" height="' + (bh - 6) + '" rx="3" fill="' + ['#C96A48', '#B4583A', '#D27B55'][(r * 7 + c * 3 + 9) % 3] + '"/>'; }
+      if (bump > 0) row += '<path d="M' + X + ' ' + (Y + r * bh + 4) + ' h' + Wd + '" stroke="#F4C3A0" stroke-width="3" opacity="' + (.8 * bump).toFixed(2) + '"/><path d="M' + X + ' ' + (Y + r * bh + bh - 3) + ' h' + Wd + '" stroke="#4A1E10" stroke-width="5" opacity="' + (.8 * bump).toFixed(2) + '"/>';
+      s += row; }
+    s += '</g>'; }
+  win.forEach((w, i) => { const on = vis > 0 && w[1] < Y + H * vis; s += '<rect x="' + w[0] + '" y="' + w[1] + '" width="70" height="90" rx="6" fill="' + (on ? '#2C3A66' : '#5A6276') + '" stroke="#0B1020" stroke-width="5"/>';
+    if (gl > 0 && on) { const ph = (t * .6 + i * .07) % 1.4; if (ph < 1) s += '<clipPath id="gw' + i + '"><rect x="' + w[0] + '" y="' + w[1] + '" width="70" height="90" rx="6"/></clipPath><g clip-path="url(#gw' + i + ')"><path d="M' + (w[0] - 60 + 190 * ph) + ' ' + w[1] + ' l40 0 l-60 90 l-40 0 Z" fill="#fff" opacity="' + (.75 * gl).toFixed(2) + '"/></g>'; } });
+  return s; }
+WORLD.i29wand = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const te = ev.tex, dr = ev.drei, px = ev.pix, pk = ev.pack;
+  const rv = te === undefined ? 0 : ease(cl((te - .6) / 2.4)), bump = dr === undefined ? 0 : cl((dr - .9) / .5), gl = dr === undefined ? 0 : cl((dr - 1.8) / .5), peel = pk === undefined ? 0 : ease(cl(pk / .9));
+  s += wall29(t, rv, bump, gl, peel);
+  if (te !== undefined && rv < 1) { const ry = WY29 + WH29 * rv; s += '<path d="M360 1420 L' + (WX29 + 40) + ' ' + ry.toFixed(0) + '" stroke="#C9A36A" stroke-width="12" stroke-linecap="round"/><rect x="' + (WX29 + 10) + '" y="' + (ry - 22).toFixed(0) + '" width="' + (WW29 - 20) + '" height="44" rx="22" fill="#C96A48" stroke="#0B1020" stroke-width="6"/>'; }
+  if (dr !== undefined && px === undefined) [['Farbe', 0], ['Unebenheit', .9], ['Glanz', 1.8]].forEach((c, i) => { s += chip3(WX29 + WW29 / 2, 770 + i * 92, c[0], 40, ['#FF5A7A', '#FFD23F', '#5CE1FF'][i], '#0B1020', cl((dr - c[1]) / .3)); });
+  if (px !== undefined && pk === undefined) { const k = cl(px / .4), z = ease(cl((px - .4) / 1.4)), n = Math.round(6 + 30 * z), cx = 700, cy = 900, r = 190;
+    let g = '<clipPath id="lp29"><circle cx="' + cx + '" cy="' + cy + '" r="' + r + '"/></clipPath><g clip-path="url(#lp29)"><rect x="' + (cx - r) + '" y="' + (cy - r) + '" width="' + (2 * r) + '" height="' + (2 * r) + '" fill="#C96A48"/>';
+    const cs = 2 * r / n; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) g += '<rect x="' + (cx - r + i * cs).toFixed(1) + '" y="' + (cy - r + j * cs).toFixed(1) + '" width="' + (cs - 1).toFixed(1) + '" height="' + (cs - 1).toFixed(1) + '" fill="' + ['#C96A48', '#B4583A', '#D27B55', '#A54E33'][(i * 3 + j * 5) % 4] + '"/>';
+    g += '</g><circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="#F4F6FB" stroke-width="14"/><path d="M' + (cx - r * .72) + ' ' + (cy + r * .72) + ' L420 1400" stroke="#F4F6FB" stroke-width="26" stroke-linecap="round"/>';
+    s += '<g opacity="' + k.toFixed(3) + '">' + g + '</g>' + chip3(700, 1125, 'fast 17 Millionen Pixel', 40, '#FFE14D', '#0B1020', cl((px - 1.4) / .3)); }
+  if (pk !== undefined) { const fold = ease(cl((pk - .9) / 1)), f8 = 1 - fold * (1 - 1 / Math.sqrt(8)), sq = pk > 2 ? .03 * Math.sin(t * 40) : 0, w = 300 * f8 * (1 + sq), hh = 380 * f8 * (1 - sq);
+    const cx = lerp(WX29 + WW29 / 2, 520, ease(cl(pk / .9))), cy = lerp(WY29 + 300, 1360, ease(cl(pk / .9)));
+    s += '<g transform="translate(' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ')"><clipPath id="pp29"><rect x="' + (-w / 2).toFixed(1) + '" y="' + (-hh / 2).toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + hh.toFixed(1) + '" rx="6"/></clipPath><g clip-path="url(#pp29)"><rect x="-200" y="-250" width="400" height="500" fill="#C96A48"/>';
+    for (let r = -8; r < 8; r++) s += '<path d="M-200 ' + (r * 34) + ' h400" stroke="#9C4A30" stroke-width="5"/>'; s += '</g><rect x="' + (-w / 2).toFixed(1) + '" y="' + (-hh / 2).toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + hh.toFixed(1) + '" rx="6" fill="none" stroke="#0B1020" stroke-width="6"/></g>';
+    s += chip3(700, 1125, 'höchstens etwa 1/8', 40, '#FFE14D', '#0B1020', cl((pk - 1.9) / .3)); }
   h += slot(ev, [['tex', 'Fast jede Fläche: eine Textur'], ['drei', 'Oft drei pro Fläche'], ['pix', '4K-Textur: fast 17 Mio. Pixel', 'hot'], ['pack', 'Packen: nur auf etwa 1/8']]);
   return W(s + shade3(), h); };
-WMASC.i29tex = (ev, t) => { if (ev.pack !== undefined) { const q = ease(cl((ev.pack - .5) / .8)); return { f: [300, 1537], s: 1, r: -10 * q, nospin: 1, mood: q < 1 ? 'shock' : 'cool' }; } return BIG3(); };
+WMASC.i29wand = (ev, t) => { const te = ev.tex, dr = ev.drei, px = ev.pix, pk = ev.pack;
+  if (pk !== undefined) return stay3([lerp(220, 340, ease(cl(pk / .9))) + (pk > 2 ? 3 * Math.sin(t * 40) : 0), 1537], 1, pk > 2.1 ? { r: -10, mood: 'shock' } : { r: 8 });
+  if (px !== undefined) return stay3([lerp(260, 330, ease(cl(px / .5))), 1537], 1, { r: 10 });
+  if (dr !== undefined) { const slap = [0, .9, 1.8].some(a => dr > a && dr < a + .25); return stay3([260, 1537 - (slap ? 20 : 0)], 1, { r: slap ? 14 : 4 }); }
+  if (te !== undefined) return stay3([lerp(220, 260, ease(cl(te / .6))), 1537], 1, { r: 6 + 4 * Math.sin(t * 6) });
+  return BIG3(); };
 
 // ---------- Teil 2: Ton ----------
-function file29(x, y, sz, col, note) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') scale(' + (sz / 100).toFixed(3) + ')"><path d="M-40 -55 h55 l25 25 v85 h-80 Z" fill="' + col + '" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/><path d="M15 -55 v25 h25" fill="none" stroke="#0B1020" stroke-width="6"/>' + (note ? '<path d="M-14 26 v-46 l26 -8 v40" stroke="#0B1020" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="-20" cy="28" r="9" fill="#0B1020"/><circle cx="6" cy="20" r="9" fill="#0B1020"/>' : '') + '</g>'; }
-WORLD.i29ton = function (sc, ev, t, lt) { const bg = street26(t, 0, { RB: 2000, F: 3000 }); let s = fuse33(bg, sc, t), h = ''; const m = lab33(sc, t);
-  if (ev.ton !== undefined && ev.roh === undefined && m < .99) { const k = cl((ev.ton - .2) / .4) * (1 - m); for (let i = 0; i < 7; i++) { const ph = (t * .5 + i / 7) % 1; s += '<g opacity="' + (k * (1 - ph)).toFixed(3) + '">' + file29(420 + 80 * i, 1200 - 380 * ph, 70, ['#FFD23F', '#5CE1FF', '#FF6BD6', '#3DFF7A'][i % 4], 1) + '</g>'; }
-    s += chip3(740, 820, 'Jeder Ton: eine Datei', 40, '#FFE14D', '#0B1020', k); }
-  if (m > .01) { let g = ''; const r = ev.roh, c = ev.cpu;
-    if (r !== undefined) { const k = ease(cl((r - .2) / .8)); g += file29(300, 900, 110, '#3DFF7A', 1) + svgT(300, 1030, 'gepackt', 40, '#3DFF7A') + file29(700, 900, 110 + 150 * k, '#FF5A7A', 1) + svgT(700, 1110, 'ungepackt', 40, '#FF5A7A'); }
-    if (c !== undefined) { const k = cl((c - .2) / .4); g = '<g opacity="' + (1 - k).toFixed(3) + '">' + g + '</g><g opacity="' + k.toFixed(3) + '"><rect x="400" y="760" width="280" height="280" rx="30" fill="#0B1020" stroke="#5CE1FF" stroke-width="7"/>';
-      for (let i = 0; i < 5; i++) g += '<path d="M' + (430 + i * 55) + ' 740 v20 M' + (430 + i * 55) + ' 1040 v20 M380 ' + (790 + i * 55) + ' h20 M680 ' + (790 + i * 55) + ' h20" stroke="#5CE1FF" stroke-width="7"/>';
-      g += svgT(540, 920, 'Konsole', 40, '#5CE1FF') + '</g>' + okx1(540, 1100, 40, true, (c - .7) / .3) + svgT(540, 740 - 20, 'nichts entpacken', 40, '#F4F6FB'); }
-    s += '<g opacity="' + m.toFixed(3) + '">' + g + '</g>'; }
-  if (ev.titan !== undefined) { const k = cl((ev.titan - .2) / .3) * (1 - m); s += chip3(740, 900, 'Titanfall: 48 GB', 50, AC29, '#fff', k) + chip3(740, 1010, 'vor allem Ton', 38, '#2C3350', '#F4F6FB', k * cl((ev.titan - .8) / .3)); }
+function file29(x, y, sz, col, zip) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') scale(' + (sz / 100).toFixed(3) + ')"><path d="M-40 -55 h55 l25 25 v85 h-80 Z" fill="' + col + '" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/><path d="M15 -55 v25 h25" fill="none" stroke="#0B1020" stroke-width="6"/><path d="M-14 26 v-46 l26 -8 v40" stroke="#0B1020" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="-20" cy="28" r="9" fill="#0B1020"/><circle cx="6" cy="20" r="9" fill="#0B1020"/>' + (zip ? '<rect x="-46" y="-6" width="92" height="16" rx="5" fill="#0B1020"/><rect x="-10" y="-14" width="20" height="32" rx="5" fill="#C9CED9" stroke="#0B1020" stroke-width="4"/>' : '') + '</g>'; }
+var TC29 = ['#FFD23F', '#5CE1FF', '#FF6BD6', '#3DFF7A'];
+var SRC29 = [[260, 1500], [470, 1440], [620, 1440]]; // Schaltis Schritte, Hupe am Auto, Radio
+function tower29(n, inf) { let s = ''; const z = 70 * (1 + .8 * inf); for (let i = 0; i < n; i++) { const c = i % 3, r = Math.floor(i / 3), x = 720 + c * z * .95, y = GY26 - 40 - r * z * 1.15; s += file29(x, y, z, TC29[i % 4]); } return s; }
+function car29(x, b, honk) { let s = '<g transform="translate(' + x + ' ' + b + ')"><path d="M-110 -10 v-40 q0 -14 14 -14 h40 l30 -36 h70 l34 36 h20 q14 0 14 14 v40 Z" fill="#FF5A7A" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/><path d="M-50 -64 l24 -30 h56 l26 30 Z" fill="#2C3A66"/><circle cx="-60" cy="-6" r="22" fill="#0B1020"/><circle cx="60" cy="-6" r="22" fill="#0B1020"/></g>';
+  if (honk > 0) for (let i = 0; i < 3; i++) s += '<path d="M' + (x - 130 - i * 22) + ' ' + (b - 70) + ' q-14 24 0 48" stroke="#FFE14D" stroke-width="6" fill="none" opacity="' + (honk * (1 - i * .25)).toFixed(2) + '"/>'; return s; }
+function radio29(on, t) { const bp = on ? 1 + .06 * Math.sin(t * 16) : 1; return '<g transform="translate(620 1548) scale(' + bp.toFixed(3) + ')"><rect x="-70" y="-96" width="140" height="92" rx="14" fill="#FFB0D9" stroke="#0B1020" stroke-width="6"/><path d="M-40 -96 q40 -40 80 0" stroke="#0B1020" stroke-width="7" fill="none"/><circle cx="-34" cy="-48" r="24" fill="#0B1020"/><circle cx="34" cy="-48" r="24" fill="#0B1020"/><circle cx="-34" cy="-48" r="9" fill="#5A6276"/><circle cx="34" cy="-48" r="9" fill="#5A6276"/></g>' + (on ? '<path d="M700 1470 q20 -16 40 0 M705 1440 q26 -20 52 0" stroke="#FFE14D" stroke-width="5" fill="none"/>' : ''); }
+WORLD.i29ton = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const to = ev.ton, ro = ev.roh, cp = ev.cpu, ti = ev.titan;
+  s += radio29(to !== undefined && ro === undefined, t);
+  const nT = to === undefined ? 0 : Math.min(12, Math.floor(cl((to - .3) / 2.6) * 12) ), inf = ro === undefined ? 0 : ease(cl((ro - .2) / 1.2));
+  s += car29(430, GY26, to !== undefined && to > 1 && to < 1.8 ? 1 : 0);
+  if (ti === undefined) s += tower29(ro === undefined ? nT : 12, inf);
+  else { const g = ease(cl(ti / 1.2)), top = lerp(GY26 - 520, 760, g); s += '<rect x="660" y="' + top.toFixed(0) + '" width="280" height="' + (GY26 - top).toFixed(0) + '" fill="#2C2160" stroke="#0B1020" stroke-width="6"/>';
+    for (let r = 0; top + 120 + r * 120 < GY26 - 40; r++) for (let c = 0; c < 3; c++) s += file29(705 + c * 92, top + 120 + r * 120, 64, TC29[(r + c) % 4]);
+    s += '<rect x="640" y="' + (top - 90).toFixed(0) + '" width="300" height="80" rx="12" fill="#0B1020" stroke="' + AC29 + '" stroke-width="6"/>' + svgT(790, top - 36, 'Titanfall: 48 GB', 38, '#FFE14D'); }
+  if (to !== undefined && ro === undefined) for (let i = 0; i < 12; i++) { const st = .3 + i * 2.6 / 12, q = cl((to - st) / .5); if (q <= 0 || q >= 1) continue; const src = SRC29[i % 3], c = i % 3, r = Math.floor(i / 3), ex = 720 + c * 66, ey = GY26 - 40 - r * 80, e = ease(q);
+    s += file29(lerp(src[0], ex, e), lerp(src[1], ey, e) - 160 * Math.sin(Math.PI * e), 70, TC29[i % 4]); }
+  if (cp !== undefined && ti === undefined) { const zipIn = cl((cp - .1) / .6), raw = cl((cp - 1.6) / .6), steam = cp > .7 && cp < 1.5 ? 1 : 0;
+    s += kiste29(450, GY26 - 150, 220, 260, steam ? .25 : 0, 'Konsole', t, 0);
+    if (zipIn < 1) s += file29(lerp(720, 560, ease(zipIn)), lerp(1300, 1160, ease(zipIn)), 60, '#FFD23F', 1);
+    if (steam) { for (let i = 0; i < 4; i++) { const ph = (t * 1.5 + i / 4) % 1; s += '<circle cx="' + (500 + i * 34) + '" cy="' + (1120 - 140 * ph).toFixed(0) + '" r="' + (18 + 20 * ph).toFixed(0) + '" fill="#F4F6FB" opacity="' + (.6 * (1 - ph)).toFixed(2) + '"/>'; } s += chip3(560, 930, 'entpacken …', 36, '#FF5A7A', '#fff', 1); }
+    if (cp > 1.6 && raw < 1) s += file29(lerp(760, 560, ease(raw)), lerp(1300, 1160, ease(raw)), 110, '#3DFF7A');
+    if (raw >= 1) s += okx1(560, 950, 46, true, (cp - 2.2) / .3); }
   h += slot(ev, [['ton', 'Jeder Ton ist eine Datei'], ['roh', 'Manchmal ungepackt'], ['cpu', 'Spart Arbeit beim Spielen', 'hot'], ['titan', 'Titanfall: 48 GB, vor allem Ton']]);
   return W(s + shade3(), h); };
-WMASC.i29ton = (ev, t) => BIG3();
+WMASC.i29ton = (ev, t) => { const to = ev.ton, ti = ev.titan;
+  if (to !== undefined && ev.roh === undefined) { const q = cl(to / 2.8); return stay3([lerp(200, 300, q), 1537 - 10 * Math.abs(Math.sin(t * 9)) * (q < 1 ? 1 : 0)], 1, { walk: q < 1 ? 1 : 0, r: 4 }); }
+  if (ti !== undefined) return stay3([300, 1537], 1, ti > .8 ? { r: -14, mood: 'shock' } : { r: -14 * cl(ti / .8) });
+  return stay3([300, 1537], 1, { r: 2 }); };
 
-// ---------- Teil 3: Platz auf deiner Konsole ----------
-WORLD.i29platz = function (sc, ev, t, lt) { const bg = street26(t, 0, { RB: 2000, F: 3000 }); let s = fuse33(bg, sc, t), h = ''; const m = lab33(sc, t);
-  if (m > .01) { const X = 110, L = 860, f = ev.frei, d = ev.drittel; let g = svgT(X, 760, 'PS5 mit 825 GB', 46, '#F4F6FB', 'start') + '<rect x="' + X + '" y="790" width="' + L + '" height="130" rx="20" fill="#0B1020" stroke="#B9A6FF" stroke-width="5"/>';
-    const sys = L * 158 / 825, fr = L * 667 / 825, k = f === undefined ? 0 : ease(cl((f - .2) / .8));
-    g += '<rect x="' + X + '" y="790" width="' + (sys * k).toFixed(1) + '" height="130" rx="20" fill="#2C3350"/>' + (k > .9 ? svgT(X + sys / 2, 870, 'System', 30, '#8A93B8') : '');
-    g += '<rect x="' + (X + sys) + '" y="790" width="' + (fr * k).toFixed(1) + '" height="130" fill="#3DFF7A" opacity=".35"/>' + (k > .9 ? svgT(X + sys + fr / 2, 1010, 'frei nutzbar: rund 667 GB', 42, '#3DFF7A') : '');
-    if (d !== undefined) { const kd = ease(cl((d - .2) / .8)), gw = fr * 212 / 667; g += '<rect x="' + (X + sys) + '" y="790" width="' + (gw * kd).toFixed(1) + '" height="130" fill="' + AC29 + '" stroke="#F4F6FB" stroke-width="5"/>' + (kd > .6 ? svgT(X + sys + gw / 2, 872, 'GTA 6', 40, '#fff') : '') + chip3(540, 1100, 'fast ein Drittel', 46, '#FFE14D', '#0B1020', cl((d - 1) / .3)); }
-    s += '<g opacity="' + m.toFixed(3) + '">' + g + '</g>'; }
-  const u = ev.usb, z = ev.zurueck;
-  if (u !== undefined && m < .99) { const k = cl((u - .2) / .3) * (1 - m), mv = z === undefined ? ease(cl((u - .6) / 1)) : 1 - ease(cl(z / 1));
-    s += '<g opacity="' + k.toFixed(3) + '">' + cons29(560, 1150, 0, 0, t) + '<rect x="790" y="1040" width="150" height="110" rx="18" fill="#2C3350" stroke="#F4F6FB" stroke-width="5"/>' + svgT(865, 1112, 'USB', 38, '#F4F6FB');
-    for (let i = 0; i < 2; i++) { const x0 = 590 + 30 * i, x1 = 820 + 30 * i, x = lerp(x0, x1, mv); s += '<rect x="' + (x - 18).toFixed(1) + '" y="' + (900 + 50 * i - 40 * Math.sin(Math.PI * mv)).toFixed(1) + '" width="54" height="40" rx="6" fill="' + ['#FFD23F', '#5CE1FF'][i] + '" stroke="#0B1020" stroke-width="4"/>'; }
-    s += '</g>'; if (z !== undefined) s += chip3(720, 780, 'zum Spielen zurück', 40, '#3DFF7A', '#0B1020', cl((z - .2) / .3) * (1 - m)); }
+// ---------- Teil 3: das Parkhaus ----------
+var PX29 = 120, PL29 = 820, PY29 = 1070; // Deck: links, Laenge (= 825 GB), Boden
+var SYS29 = PL29 * 158 / 825, GTA29 = PL29 * 212 / 825;
+function park29(nosign) { let s = '<rect x="' + (PX29 - 20) + '" y="800" width="' + (PL29 + 40) + '" height="' + (PY29 - 800 + 30) + '" fill="#1E1650" stroke="#0B1020" stroke-width="6"/><rect x="' + (PX29 - 30) + '" y="790" width="' + (PL29 + 60) + '" height="30" fill="#3A2F7A" stroke="#0B1020" stroke-width="6"/><rect x="' + (PX29 - 30) + '" y="' + PY29 + '" width="' + (PL29 + 60) + '" height="30" fill="#3A2F7A" stroke="#0B1020" stroke-width="6"/>';
+  for (let i = 0; i <= 20; i++) s += '<path d="M' + (PX29 + i * PL29 / 20).toFixed(0) + ' ' + (PY29 - 6) + ' v-50" stroke="#F4F6FB" stroke-width="4" opacity=".5"/>';
+  s += '<rect x="' + (PX29 + 10) + '" y="' + (PY29 - 150) + '" width="' + (SYS29 - 20).toFixed(0) + '" height="140" rx="10" fill="#5A6276" stroke="#0B1020" stroke-width="5"/>' + svgT(PX29 + SYS29 / 2, PY29 - 70, 'System', 30, '#C9CED9');
+  return nosign ? s : s + '<rect x="390" y="700" width="300" height="70" rx="12" fill="#0B1020" stroke="#5CE1FF" stroke-width="5"/>' + svgT(540, 748, 'PS5: 825 GB', 38, '#5CE1FF'); }
+function carP29(x, y, w, col, lab) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')"><rect x="0" y="-110" width="' + w.toFixed(0) + '" height="96" rx="20" fill="' + col + '" stroke="#0B1020" stroke-width="6"/><rect x="16" y="-96" width="' + (w - 32).toFixed(0) + '" height="34" rx="8" fill="#2C3A66"/><circle cx="34" cy="-12" r="18" fill="#0B1020"/><circle cx="' + (w - 34).toFixed(0) + '" cy="-12" r="18" fill="#0B1020"/>' + (lab ? svgT(w / 2, -30, lab, 30, '#fff') : '') + '</g>'; }
+var GC29 = [['#FFD23F', 150], ['#5CE1FF', 140], ['#FF6BD6', 140]];
+WORLD.i29park = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const fr = ev.frei, dr = ev.drittel, us = ev.usb, zu = ev.zurueck;
+  s += park29();
+  const fk = fr === undefined ? 0 : cl((fr - .8) / .5); if (fk > 0 && dr === undefined) s += '<rect x="' + (PX29 + SYS29).toFixed(0) + '" y="' + (PY29 - 150) + '" width="' + (PL29 - SYS29).toFixed(0) + '" height="140" rx="10" fill="#3DFF7A" opacity="' + (.3 * fk).toFixed(2) + '"/>' + chip3(PX29 + SYS29 + (PL29 - SYS29) / 2, 1000, 'frei: rund 667 GB', 40, '#3DFF7A', '#0B1020', fk);
+  const uk = us === undefined ? 0 : cl(us / .4); s += '<g opacity="' + (.35 + .65 * uk).toFixed(2) + '"><rect x="560" y="1370" width="400" height="170" rx="12" fill="#2C3350" stroke="#0B1020" stroke-width="6"/><path d="M700 1380 v150 M840 1380 v150" stroke="#F4F6FB" stroke-width="4" opacity=".6"/>' + svgT(760, 1355, 'USB', 38, '#F4F6FB') + '</g>';
+  const gx0 = PX29 + SYS29 + 6; if (dr !== undefined) { const q = ease(cl(dr / 1.1)); s += carP29(lerp(1100, gx0, q), PY29 - 4, GTA29 - 12, AC29, 'GTA 6'); if (q >= 1) s += chip3(gx0 + GTA29 / 2, 880, 'fast ein Drittel', 38, '#FFE14D', '#0B1020', cl((dr - 1.1) / .3)); }
+  if (dr !== undefined) { let px = gx0 + GTA29; GC29.forEach((g, i) => { const inq = ease(cl((dr - 1.6 - i * .25) / .6)), home = [px + 8, PY29 - 4], usbP = [580 + i * 140, 1530];
+      let x = lerp(1100 + i * 160, home[0], inq), y = home[1];
+      if (us !== undefined && i < 2) { const q = ease(cl((us - .5 - i * .5) / 1)); x = lerp(home[0], usbP[0], q); y = lerp(home[1], usbP[1], q) - 120 * Math.sin(Math.PI * q); }
+      if (zu !== undefined && i === 0) { const q = ease(cl((zu - .2) / .6)); x = lerp(usbP[0], home[0], q); y = lerp(usbP[1], home[1], q) - 120 * Math.sin(Math.PI * q); if (q > 0 && q < 1) s += '<path d="M' + (x + g[1] + 10).toFixed(0) + ' ' + (y - 80).toFixed(0) + ' h70 M' + (x + g[1] + 10).toFixed(0) + ' ' + (y - 50).toFixed(0) + ' h100" stroke="#F4F6FB" stroke-width="6" stroke-linecap="round"/>'; }
+      s += carP29(x, y, g[1] - 16, g[0], ''); px += g[1]; });
+    const full = cl((dr - 2.5) / .3) * (us === undefined ? 1 : 1 - cl((us - 1) / .3)); if (full > 0) s += chip3(860, 760, 'voll', 38, '#FF5A7A', '#fff', full); }
+  if (zu !== undefined) s += chip3(540, 1130, 'meist schneller als neu laden', 34, '#3DFF7A', '#0B1020', cl((zu - .8) / .3));
   h += slot(ev, [['frei', 'PS5 mit 825 GB: rund 667 GB frei'], ['drittel', 'GTA 6: fast ein Drittel', 'hot'], ['usb', 'Trick: Spiele auf USB auslagern'], ['zurueck', 'Zum Spielen zurückkopieren']]);
   return W(s + shade3(), h); };
-WMASC.i29platz = (ev, t) => BIG3();
+WMASC.i29park = (ev, t) => { const us = ev.usb, zu = ev.zurueck;
+  if (us !== undefined && zu === undefined) { const q = cl(us / 2); return stay3([lerp(220, 420, ease(q)), 1537 - 8 * Math.abs(Math.sin(t * 12)) * (q < 1 ? 1 : 0)], 1, { r: 14, walk: q < 1 ? 1 : 0 }); }
+  if (zu !== undefined) return stay3([420, 1537], 1, { r: -4, mood: 'happy' });
+  if (ev.drittel !== undefined) return stay3(HOME3, 1, ev.drittel > 2.5 ? { r: -6, mood: 'shock' } : { r: -6 });
+  return BIG3(); };
 
 // ---------- Schluss ----------
-WORLD.i29outro = function (sc, ev, t) { return W(street26(t, 0, { RB: 2000, F: 3000 }) + shade3()); };
+WORLD.i29outro = function (sc, ev, t) { return W(bg29(t) + park29(1) + carP29(PX29 + SYS29 + 6, PY29 - 4, GTA29 - 12, AC29, 'GTA 6') + shade3()); };
 WMASC.i29outro = () => BIG3();
 
-['i29hook', 'i29tex', 'i29ton', 'i29platz', 'i29outro'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC29); });
+['i29hook', 'i29wand', 'i29ton', 'i29park', 'i29outro'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC29); });

@@ -5,7 +5,7 @@
  "id": "I029",
  "titel": "Warum braucht GTA 6 so viel Platz?",
  "design": "3.3",
- "quelle": "Design: Skript 4 (technische Kennung 3.3). Ort: dieselbe Neon-Stadt wie I026 und I028. Wissenschaftsmodus: Teil 1 Zeile 1 und 2 (drei Texturen, 4K-Raster), Teil 2 Zeile 1 und 2 (gepackter gegen ungepackter Ton, Konsole), Teil 3 Zeile 0 und 1 (Speicherbalken). Bis zu 212 GB auf PS5 und Xbox Series X|S: Rockstar-Blogeintrag zum Preload, berichtet von GIGA und Notebookcheck. Wie GTA 6 innen aufgeteilt ist, hat Rockstar nicht veroeffentlicht: Das Video spricht in Teil 1 und 2 von grossen Spielen allgemein und behauptet nichts ueber den Inhalt von GTA 6. Texturen als groesster Wachstumstreiber der Spielgroesse und drei Texturen pro Objekt (Farbe, Unebenheit/Normal Map, Glanz/Specular), Texturen lassen sich mit GPU-Blockkompression hoechstens etwa 8 zu 1 packen: PC Gamer 'How game sizes got so huge' (Nathan Hanish, Stardock). 4096 x 4096 = 16.777.216 Pixel. Ton als eigene Dateien, manche Spiele speichern Ton ungepackt, damit der Prozessor nicht entpacken muss; Titanfall 48 GB installiert, vor allem Ton (21 GB Download): PC Gamer ebenda; Seagate-Blog 'Why do games have large install sizes now' (ungepackter Ton). PS5 mit 825 GB: rund 667 GB nutzbar (TweakTown, GIGA). 212 / 667 = 32 Prozent, also fast ein Drittel. PS5-Spiele auf USB-Erweiterungsspeicher auslagern und zum Spielen zurueckkopieren: Sony Support 'USB extended storage on PS5 consoles'. Zurueckkopieren meist schneller als neu laden: TweakTown ('doesn't take a long time'), haengt von der Leitung ab, deshalb 'meist'. Abgrenzung zu I026: dort Arbeitsspeicher, hier Speicherplatz und was ihn fuellt. Keine Spielszenen, kein Logo, keine Figuren aus GTA 6, Konsole neutral gezeichnet. Stand der Recherche: 17.11.2026.",
+ "quelle": "Design: Skript 4 (technische Kennung 3.3). Ort: dieselbe Neon-Stadt wie I026 und I028. Fassung v2 (Benedikt, 17.11.2026): alles interaktiv in der Stadt statt Schaubild, kein Wissenschaftsmodus. Hauswand mit Farbrolle (Texturen), Ton-Dateien aus Schritten, Hupe und Radio (Ton), Parkhaus als Speicher der PS5 mit USB-Parkplatz. Die Laengen im Parkhaus sind massstabsgetreu (158, 212 und 825 GB). Bis zu 212 GB auf PS5 und Xbox Series X|S: Rockstar-Blogeintrag zum Preload, berichtet von GIGA und Notebookcheck. Wie GTA 6 innen aufgeteilt ist, hat Rockstar nicht veroeffentlicht: Das Video spricht in Teil 1 und 2 von grossen Spielen allgemein und behauptet nichts ueber den Inhalt von GTA 6. Texturen als groesster Wachstumstreiber der Spielgroesse und drei Texturen pro Objekt (Farbe, Unebenheit/Normal Map, Glanz/Specular), Texturen lassen sich mit GPU-Blockkompression hoechstens etwa 8 zu 1 packen: PC Gamer 'How game sizes got so huge' (Nathan Hanish, Stardock). 4096 x 4096 = 16.777.216 Pixel. Ton als eigene Dateien, manche Spiele speichern Ton ungepackt, damit der Prozessor nicht entpacken muss; Titanfall 48 GB installiert, vor allem Ton (21 GB Download): PC Gamer ebenda; Seagate-Blog 'Why do games have large install sizes now' (ungepackter Ton). PS5 mit 825 GB: rund 667 GB nutzbar (TweakTown, GIGA). 212 / 667 = 32 Prozent, also fast ein Drittel. PS5-Spiele auf USB-Erweiterungsspeicher auslagern und zum Spielen zurueckkopieren: Sony Support 'USB extended storage on PS5 consoles'. Zurueckkopieren meist schneller als neu laden: TweakTown ('doesn't take a long time'), haengt von der Leitung ab, deshalb 'meist'. Abgrenzung zu I026: dort Arbeitsspeicher, hier Speicherplatz und was ihn fuellt. Keine Spielszenen, kein Logo, keine Figuren aus GTA 6, Konsole neutral gezeichnet. Stand der Recherche: 17.11.2026.",
  "gagTag": "[groans] [deadpan]",
  "gagDelay": 0,
  "scenes": [
@@ -46,12 +46,8 @@
    "num": "1",
    "title": "Bilder auf *jeder Fläche*",
    "path": [],
-   "world": "i29tex",
+   "world": "i29wand",
    "pause": 0.5,
-   "labor": [
-    1,
-    2
-   ],
    "lines": [
     {
      "t": "Erstens: In großen Spielen ist fast jede Fläche ein aufgeklebtes Bild, eine Textur.",
@@ -82,10 +78,6 @@
    "path": [],
    "world": "i29ton",
    "pause": 0.5,
-   "labor": [
-    1,
-    2
-   ],
    "lines": [
     {
      "t": "Zweitens: Ton. Jede Stimme, jeder Schritt, jeder Song ist eine eigene Datei.",
@@ -107,21 +99,17 @@
      "mood": "cool",
      "ev": "titan"
     }
-   ]
+   ],
+   "quip": "Ganz schön hoch.",
+   "quipAt": 3
   },
   {
    "type": "tip",
    "num": "3",
    "title": "Platz auf *deiner Konsole*",
    "path": [],
-   "world": "i29platz",
+   "world": "i29park",
    "pause": 0.5,
-   "labor": [
-    0,
-    1
-   ],
-   "quip": "Platz da.",
-   "quipAt": 2,
    "lines": [
     {
      "t": "Drittens: Auf einer PS5 mit 825 Gigabyte sind nur rund 667 frei nutzbar.",
