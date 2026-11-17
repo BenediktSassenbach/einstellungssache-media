@@ -148,13 +148,13 @@ function lupe9(n, al, a, t, kI) { const P = [[-100, -118], [-118, -42], [-120, 3
   if (a !== undefined) for (let i = 0; i < 7; i++) { const y = -230 + ((t * 320 + i * 66) % 460), x = -100 - 20 * (1 - (y / 220) * (y / 220)) - 6; c += '<ellipse cx="' + n9(x) + '" cy="' + n9(y) + '" rx="13" ry="19" fill="#BFEAFF" stroke="#0B1020" stroke-width="3" opacity="' + cl(a / .4).toFixed(2) + '"/>'; }
   c += svgT(-36, 168, 'Hornhaut', 29, '#FFE3EE') + svgT(112, 118, 'Nerv', 30, '#FFD23F');
   return '<g transform="translate(' + LUP9[0] + ' ' + LUP9[1] + ') scale(' + kI.toFixed(3) + ')"><clipPath id="c9i"><circle r="200"/></clipPath><circle r="213" fill="#0B1020"/><g clip-path="url(#c9i)">' + c + '</g><circle r="200" fill="none" stroke="#fff" stroke-width="10"/></g>'; }
-WORLD.c9auge_3 = function (sc, ev, t, lt) { const n = ev.nerv, al = ev.alarm, a = ev.act, L3 = LD9(sc, 3), wash = a === undefined ? 0 : cl((a - (L3 - 1.5)) / .4);
+WORLD.c9auge_3 = function (sc, ev, t, lt) { const n = ev.nerv, al = ev.alarm, a = ev.act, L3 = LD9(sc, 3), wash = a === undefined ? 0 : cl((a - (L3 - 1.1)) / .4);
   let s = kitchen9(t) + half9(706, 1030, 74, -14) + half9(862, 1030, 74, 14);
   for (let i = 0; i < 4; i++) { const c = (t * .6 + i / 4) % 1, x = 700 + i * 56; s += '<path d="M' + x + ' ' + n9(948 - 80 * c) + ' q16 -18 0 -36 q-16 -18 0 -36" stroke="' + LIME9 + '" stroke-width="8" fill="none" stroke-linecap="round" opacity="' + (.8 * (1 - c) * cl((lt - .3) / .4)).toFixed(2) + '"/>'; }
   // Strom aus Reizstoff: vom Brett im Bogen zu Schaltis Augen
   const front = cl((lt - .7) / 1.7), N = 9; for (let i = 0; i < N; i++) { const c = (t * .3 + i / N) % 1; if (front < 1 && c > front) continue; const u = 1 - c, x = u * u * 784 + 2 * u * c * 540 + c * c * (EYE9[0] + 16), y = u * u * 940 + 2 * u * c * 720 + c * c * EYE9[1];
     s += gas9(x, y, 30 + 8 * Math.sin(t * 2 + i), t, .85 * cl(c * 8) * cl((1 - c) * 6) * (1 - wash), i) + mol9(x, y, 11, cl(c * 8) * cl((1 - c) * 6) * (1 - wash)); }
-  if (n !== undefined) { const kI = back(cl(n / .35)) * (a === undefined ? 1 : 1 - ease(cl((a - (L3 - 1.7)) / .3)));
+  if (n !== undefined) { const kI = back(cl(n / .35)) * (a === undefined ? 1 : 1 - ease(cl((a - (L3 - 1.3)) / .3)));
     if (kI > .02) { s += '<path d="M' + (EYE9[0] + 22) + ' ' + EYE9[1] + ' L' + (LUP9[0] - 196 * kI) + ' ' + (LUP9[1] - 40 * kI) + ' M' + (EYE9[0] + 22) + ' ' + EYE9[1] + ' L' + (LUP9[0] - 96 * kI) + ' ' + (LUP9[1] + 176 * kI) + '" stroke="#fff" stroke-width="5" opacity="' + (.75 * cl(kI)).toFixed(2) + '"/>';
       if (al !== undefined) { const k = cl(al / .3), hot = al > .45 && Math.floor(t * 6) % 2 === 0; s += '<path d="M748 934 C850 920 890 840 858 778" stroke="#FFD23F" stroke-width="10" fill="none" stroke-linecap="round" opacity="' + (k * cl(kI)).toFixed(2) + '"/>';
         if (a === undefined || a < 1.2) for (let j = 0; j < 2; j++) { const u = (t * 1.5 + j / 2) % 1; s += '<circle cx="' + n9(lerp(752, 860, u) + 40 * Math.sin(Math.PI * u)) + '" cy="' + n9(lerp(932, 782, u) + 10 * Math.sin(Math.PI * u)) + '" r="12" fill="#FF5A3D" stroke="#0B1020" stroke-width="3" opacity="' + cl(kI).toFixed(2) + '"/>'; }
@@ -164,7 +164,7 @@ WORLD.c9auge_3 = function (sc, ev, t, lt) { const n = ev.nerv, al = ev.alarm, a 
 };
 WMASC.c9auge_3 = (ev, t, lt, sc) => { const a = ev.act, L3 = LD9(sc, 3), u = lt - .4;
   if (u < 0) return BIG3(); if (u < .6) return hop3(u / .6, HOME3, SIT9, 150, 1, S9);
-  if (a !== undefined && a > L3 - 1.5) { const k = cl((a - (L3 - 1.5)) / .3); return stay3([SIT9[0] + 3 * Math.sin(t * 40) * k, CY9], S9, { r: 4 * Math.sin(t * 17) * k, mood: 'cry', cry: k }); }
+  if (a !== undefined && a > L3 - 1.1) { const k = cl((a - (L3 - 1.1)) / .3); return stay3([SIT9[0] + 3 * Math.sin(t * 40) * k, CY9], S9, { r: 4 * Math.sin(t * 17) * k, mood: 'cry', cry: k }); }
   if (ev.nerv !== undefined && ev.nerv > .4) return stay3([SIT9[0] + 2 * Math.sin(t * 38), CY9], S9, { r: -5 + 2 * Math.sin(t * 30), mood: a !== undefined ? 'shock' : undefined });
   return stay3(SIT9, S9, { r: 2 * Math.sin(t * 2.5) }); };
 
