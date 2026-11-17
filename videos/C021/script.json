@@ -5,7 +5,7 @@
  "id": "C021",
  "titel": "Warum schießt Cola mit Mentos hoch?",
  "design": "3.3",
- "quelle": "Design: Skript 4 (technische Kennung 3.3). Ort: Garten bei Tag, Cola-Flasche im Gras. Wissenschaftsmodus: Teil 1 Zeile 1 und 2 (Startpunkt fuer Blasen, pH-Messung), Teil 2 Zeile 0 und 1 (Mentos-Oberflaeche unter der Lupe), Teil 3 Zeile 1 (Blasen in der ganzen Flasche). Hauptquelle: Coffey, T. S. (2008): Diet Coke and Mentos: What is really behind this physical reaction? American Journal of Physics 76, 551; Pressemitteilung Appalachian State University (Newswise, Juni 2008). Ergebnisse: physikalischer Vorgang, keine chemische Reaktion; pH-Wert der Cola vor und nach der Mentos-Fontaene 3,0 (bei Natron dagegen 6,1, also Saeure-Base-Reaktion); raue Mentos-Oberflaeche mit vielen Poren bietet Startpunkte fuer Blasen (Keimbildung, Nukleation); ganze Mentos sinken schnell, zerkleinerte kaum und geben eine kleine Fontaene; Suessstoff Aspartam und Kaliumbenzoat in Diaet-Cola senken die Oberflaechenspannung und helfen der Blasenbildung. Ergaenzend: Mental Floss 'Why do Diet Coke and Mentos react' (Tausende kleine Poren, schnelleres Sinken gibt groessere Fontaene, zerkleinerte Mentos schwach); EepyBird 'The Science of Coke and Mentos' (Keimstellen auch Kratzer im Glas, Staub); Wikipedia 'Diet Coke and Mentos eruption' (physikalisch, nicht chemisch). Geloestes Kohlendioxid in Limonaden: Grundwissen. Spruch 'Mentos reagieren gar nicht.' ist zugespitzt und meint: keine chemische Reaktion. Teil 1 klaert das auf. Nur Erklaerung, keine Anleitung zu Fontaenen-Rekorden. Markennamen nur als Wort, keine Logos. Stand der Recherche: 17.11.2026.",
+ "quelle": "Design: Skript 4 (technische Kennung 3.3). Fassung v2 (Benedikt, 17.11.2026): Hintergrund passend zum Thema, Interaktion statt Schaubild, kein Wissenschaftsmodus. Orte: Kueche (Schalti klein auf der Arbeitsplatte neben der Flasche), in der Flasche (geloestes Kohlendioxid, pH-Messgeraet), Mentos-Oberflaeche unter dem Mikroskop (Poren als Krater), zurueck in der Kueche (Glas mit Kratzer, Light-Cola). Pfefferminzrolle ohne Marke. Hauptquelle: Coffey, T. S. (2008): Diet Coke and Mentos: What is really behind this physical reaction? American Journal of Physics 76, 551; Pressemitteilung Appalachian State University (Newswise, Juni 2008). Ergebnisse: physikalischer Vorgang, keine chemische Reaktion; pH-Wert der Cola vor und nach der Mentos-Fontaene 3,0 (bei Natron dagegen 6,1, also Saeure-Base-Reaktion); raue Mentos-Oberflaeche mit vielen Poren bietet Startpunkte fuer Blasen (Keimbildung, Nukleation); ganze Mentos sinken schnell, zerkleinerte kaum und geben eine kleine Fontaene; Suessstoff Aspartam und Kaliumbenzoat in Diaet-Cola senken die Oberflaechenspannung und helfen der Blasenbildung. Ergaenzend: Mental Floss 'Why do Diet Coke and Mentos react' (Tausende kleine Poren, schnelleres Sinken gibt groessere Fontaene, zerkleinerte Mentos schwach); EepyBird 'The Science of Coke and Mentos' (Keimstellen auch Kratzer im Glas, Staub); Wikipedia 'Diet Coke and Mentos eruption' (physikalisch, nicht chemisch). Geloestes Kohlendioxid in Limonaden: Grundwissen. Spruch 'Mentos reagieren gar nicht.' ist zugespitzt und meint: keine chemische Reaktion. Teil 1 klaert das auf. Nur Erklaerung, keine Anleitung zu Fontaenen-Rekorden. Markennamen nur als Wort, keine Logos. Stand der Recherche: 17.11.2026.",
  "gagTag": "[sighs] [deadpan]",
  "gagDelay": 0,
  "scenes": [
@@ -48,10 +48,6 @@
    "path": [],
    "world": "c21gas",
    "pause": 0.5,
-   "labor": [
-    1,
-    2
-   ],
    "lines": [
     {
      "t": "Erstens: Das Gas ist schon in der Cola, gelöst als Kohlendioxid.",
@@ -82,10 +78,6 @@
    "path": [],
    "world": "c21poren",
    "pause": 0.5,
-   "labor": [
-    0,
-    1
-   ],
    "lines": [
     {
      "t": "Zweitens: Eine Mentos ist unter dem Mikroskop voller winziger Poren.",
@@ -116,9 +108,6 @@
    "path": [],
    "world": "c21sink",
    "pause": 0.5,
-   "labor": [
-    1
-   ],
    "quip": "Nochmal?",
    "quipAt": 3,
    "lines": [
