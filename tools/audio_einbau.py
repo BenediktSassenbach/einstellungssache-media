@@ -1,5 +1,6 @@
 # Audio einbauen nach Bauplan Schritt 6: python3 tools/audio_einbau.py videos/C001 <Rohordner mit 1.mp3, 1.json ...> [SFX-Kuerzel]
-# - entfernt Regie-Anweisungen [..] aus den Zeitstempeln, legt den Gag (Beginn der letzten Zeile in Szene 1) auf den Beginn der Anweisung
+# - entfernt Regie-Anweisungen [..] aus den Zeitstempeln, legt den Gag (Beginn der letzten Zeile in Szene 1) auf den Beginn der Anweisung.
+#   Eine Anweisung ganz am Anfang von Szene 1 gilt als Sprechweise und wird nur entfernt (seit 17.11.2026)
 # - ersetzt ausgeschriebene Sprechweisen durch den Skripttext (Schluessel "sprich" im Skript: {"eins eins zwei": "112"})
 # - haengt den Schlusssatz aus videos/_outro an die letzte Szene, ruft zeiten.py auf
 # - mischt in Szene 1 die Soundeffekte videos/_sfx/<ID>_0.wav (endet am Einschlag) und <ID>_1.wav (beginnt am Einschlag),
@@ -19,7 +20,7 @@ for i in range(1, N + 1):
     while True:
         txt = ''.join(al['characters']); m = re.search(r'(\[[^\]]*\] ?)+', txt)
         if not m: break
-        if i == 1 and gag is None: gag = al['character_start_times_seconds'][m.start()]
+        if i == 1 and gag is None and m.start() > 0: gag = al['character_start_times_seconds'][m.start()]  # eine Anweisung ganz am Anfang ist die Sprechweise (z. B. [casually, calm and cool]), nicht der Gag
         cut(al, m.start(), m.end())
     for k, v in (S.get('sprich') or {}).items():
         txt = ''.join(al['characters']); p = txt.find(k)
