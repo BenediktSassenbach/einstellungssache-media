@@ -1,0 +1,195 @@
+{
+ "serie": "Physik",
+ "kostuem": "astronaut",
+ "accent": "#5CE1FF",
+ "id": "P027V33F",
+ "design": "3.3",
+ "titel": "Warum braucht eine Nachricht an Voyager 1 einen ganzen Tag?",
+ "quelle": "Voyager 1 ist am 18.11.2026 einen Lichttag (rund 25,9 Milliarden km) von der Erde entfernt, ein Befehl samt Antwort dauert damit 48 Stunden: NASA JPL laut ScienceDaily (3.11.2026), EarthSky mit der NASA-Zeitangabe (18.11.2026, 06:16 UTC), CNN mit Voyager-Projektleiterin Suzy Dodd (JPL). Start 5.9.1977, seit August 2012 im interstellaren Raum: NASA Science, Missionsseite Voyager 1. Rund 17 km/s: NASA JPL laut Space.com. Sender rund 22 Watt, vergleichbar mit einer Kühlschranklampe: NASA JPL, Bild PIA17047. Empfang über 70-m-Antennen des Deep Space Network (Goldstone, Madrid, Canberra): NASA JPL, 'Two Voyagers taught us how to listen to space'. Funk ist so schnell wie Licht, fast 300.000 km/s (299.792 km/s), Licht der Sonne rund 8 Minuten 20 Sekunden: Standardwerte. Mond gut 1 Sekunde: eigene Rechnung, 384.400 km geteilt durch 299.792 km/s = 1,28 s. 'Interstellarer Raum' ist im Video vereinfacht als 'zwischen den Sternen' erklärt (jenseits der Grenze, bis zu der der Sonnenwind reicht). Spruch: alltagsnah (auf Antworten warten), stimmt für Voyager wörtlich. Testfassung im Design 3.2, 17.11.2026, Anlass: 18.11.2026. Testfassung Design 3.3 Stand 2 (17.11.2026): Text wie die 3.0-Fassung, nur an die Regeln vom 17.11. angepasst; dazu eine Sprechblase wie in Skript 1. Einstieg unter 10 Sekunden (17.11.2026): Spruch, Themenfrage und Nachsatz gekuerzt, das Warten im Zeitraffer beginnt schon beim Satz \"Physik nie verstanden?\".",
+ "gagTag": "[yawns] [deadpan]",
+ "gagDelay": 1.63,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Ein *Tag* für eine Nachricht?",
+   "emoji": "📡",
+   "world": "h7p27_3",
+   "pause": 0,
+   "lines": [
+    {
+     "t": "Deine Nachricht kommt morgen.",
+     "mood": "cool"
+    },
+    {
+     "t": "Warum braucht Funk zu Voyager so lange?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy",
+     "ev": "warte"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Ich warte.",
+     "mood": "sleepy"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Schnell, aber nicht sofort",
+   "path": [],
+   "world": "p27licht_3",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Erstens: Funk ist so schnell wie Licht, fast 300.000 Kilometer pro Sekunde.",
+     "mood": "happy",
+     "ev": "funk"
+    },
+    {
+     "t": "Vom Mond kommt so ein Signal in gut einer Sekunde an.",
+     "mood": "happy",
+     "ev": "mond"
+    },
+    {
+     "t": "Das Licht der Sonne braucht schon gut 8 Minuten.",
+     "mood": "shock",
+     "ev": "sonne"
+    },
+    {
+     "t": "Bis zu Voyager 1 ist das Signal einen ganzen Tag unterwegs.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "labor": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "So weit weg",
+   "path": [],
+   "world": "p27weit_3",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Zweitens: Die Sonde Voyager 1 startete 1977 und fliegt seitdem immer weiter weg.",
+     "mood": "happy",
+     "ev": "start"
+    },
+    {
+     "t": "Und zwar mit rund 17 Kilometern pro Sekunde.",
+     "mood": "happy",
+     "ev": "tempo"
+    },
+    {
+     "t": "Seit 2012 ist sie zwischen den Sternen, außerhalb der Grenze, bis zu der der Wind der Sonne reicht.",
+     "mood": "wink",
+     "ev": "raus"
+    },
+    {
+     "t": "Am 18. November ist sie rund 26 Milliarden Kilometer weit weg: ein ganzer Lichttag.",
+     "mood": "shock",
+     "ev": "act"
+    }
+   ],
+   "quip": "Keine Chance.",
+   "quipAt": 2
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Ein leises Signal",
+   "path": [],
+   "world": "p27leise_3",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Drittens: Ihr Funksender hat nur rund 22 Watt.",
+     "mood": "happy",
+     "ev": "watt"
+    },
+    {
+     "t": "So viel wie die Lampe in deinem Kühlschrank.",
+     "mood": "wink",
+     "ev": "lampe"
+    },
+    {
+     "t": "Darum hören riesige Antennen mit 70 Metern Durchmesser zu.",
+     "mood": "happy",
+     "ev": "schuessel"
+    },
+    {
+     "t": "Fragt die NASA etwas, kommt die Antwort erst nach zwei Tagen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "labor": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p27outro_3",
+   "checks": [
+    "Funk: so schnell wie Licht",
+    "Voyager 1: ein Lichttag weit weg",
+    "Leiser Funk, riesige Antennen"
+   ],
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Also: Funk ist so schnell wie Licht,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "aber Voyager 1 ist einen ganzen Lichttag weit weg,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und ihr leiser Funk kommt nur dank riesiger Antennen an.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ],
+ "sprich": {
+  "dreihunderttausend": "300.000",
+  "acht Minuten": "8 Minuten",
+  "neunzehnhundertsiebenundsiebzig": "1977",
+  "zweitausendzwölf": "2012",
+  "achtzehnten": "18."
+ }
+}
