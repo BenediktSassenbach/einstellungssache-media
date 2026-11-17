@@ -1,0 +1,181 @@
+{
+ "serie": "Chemie",
+ "kostuem": "labor",
+ "kolben": "#C8F75A",
+ "accent": "#FF6BD6",
+ "id": "C009V3B",
+ "titel": "Warum tränen deine Augen beim Zwiebelschneiden?",
+ "quelle": "Design: Skript 3.0 (Küche mit Schneidebrett, Zwiebel und Messer; Teil 2 und 3 spielen am Brett, Teil 1 ist der eine Blick ins Innere der Zelle). Ganze Zwiebel reizt nicht, Stoffe liegen getrennt: chemie.de Lexikon (Isoalliin ist in der Zwiebel stabil und nicht tränenreizend, kommt erst bei Verletzung mit der Alliinase in Kontakt); Spektrum.de, Uta Schindler, 01.10.2018 (beim Zerschneiden kommen Inhaltsstoffe zusammen, die sonst getrennt bleiben); Protein Spotlight Nr. 28, SIB Swiss Institute of Bioinformatics (Enzyme und Schwefelverbindungen liegen in der Zelle getrennt). Zwei Enzyme bauen den Reizstoff: Imai et al., Nature 419, 685 (2002) (Alliinase macht aus Isoalliin 1-Propensulfensäure, erst das Enzym Lachrymatory-Factor-Synthase macht daraus Propanthial-S-oxid); Spektrum.de wie oben. Schutz vor Fressfeinden: SRF Einstein (Schutz gegen Nager wie Ratten und Wühlmäuse); McGill Office for Science and Society (Abwehr gegen Insekten); Öko-Test mit Prof. Jutta Papenbrock, Uni Hannover. Verdunstet und steigt auf: SRF Einstein (der Stoff verdunstet und steigt in die Augen); Live Science mit Josie Silvaroli, Ohio State University (flüchtige Flüssigkeit, wird sehr schnell zu Dampf). Nerven in der Hornhaut, Meldung ans Gehirn, Tränen spülen aus: Spektrum.de (Schmerzrezeptoren in der Hornhaut, Signal ins Gehirn, Hirnstamm befiehlt mehr Tränenflüssigkeit, Reflextränen verdünnen und spülen den Reizstoff aus); Physics World, 10.10.2025 (reizt die Nerven in der Hornhaut). Stumpfes Messer, Tröpfchen, Faktor 40: Wu, Hooshanginejad, Wang, Hui, Jung (Cornell University), 'Droplet outbursts from onion cutting', PNAS 2025, DOI 10.1073/pnas.2512779122, Vorabdruck arXiv 2505.06016 (stumpfe Klinge staucht die Zwiebel, Druck baut sich auf; Zahl der Tröpfchen steigt bis etwa auf das Vierzigfache, wenn der Klingenradius von 0,91 auf 13,3 Mikrometer wächst; schnelleres Schneiden rund viermal mehr Tröpfchen (Satz 'schnelles Hacken'); scharfe Klinge und langsamer Schnitt ergeben weniger und langsamere Tröpfchen); Physics World und ScienceAlert zur selben Studie. Bewusst weggelassen: 'Schwefelsäure im Auge' (oft behauptet, nicht sauber belegt); Zwiebel kühlen (Spektrum nennt es plausibel, aber ungeprüft, Physics World berichtet aus der PNAS-Studie sogar mehr Tröpfchen bei gekühlten Zwiebeln, im Vorabdruck nicht nachprüfbar); Flughöhe 60 cm (nur in Physics World, im Vorabdruck nicht gefunden). Kein Gesundheitsbezug: nur der Reflex, kein Rat zu Augen. Spruch am Anfang ist übertrieben gemeint und wird im Video aufgeklärt: Die Zwiebel greift nicht an, sie bildet bei Verletzung einen Reizstoff als Schutz vor Fressfeinden. Alltagsnah (Zwiebel in der eigenen Küche), keine TikTok-Daten zum Thema vorhanden, deshalb direkte Ansprache mit 'deine' und Widerspruch zur Erwartung. Stand der Recherche: 17.11.2026. Sprachregel vom 17.11.2026 angewendet: kein Staun-Ausruf im Text ('Krass:' in Teil 3 gestrichen). Fassung B (Test, 17.11.2026): nur der Einstieg neu aufgenommen, ruhiger und lässiger gesprochen (Regie-Anweisung vorne, Punkt statt Ausrufezeichen, nach dem Gag trocken statt weinerlich). Teile 1 bis 3 und Schluss sind dieselben Aufnahmen wie in C009V3.",
+ "gagTag": "[coughs] [sniffs] [deadpan]",
+ "gagDelay": 0.5,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Tränen durch die *Zwiebel*?",
+   "emoji": "🧅",
+   "world": "c9hook_3",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Deine Zwiebel greift dich mit Reizgas an.",
+     "mood": "shock"
+    },
+    {
+     "t": "Warum tränen deine Augen beim Zwiebelschneiden?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Chemie nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    },
+    {
+     "t": "Sie will nämlich nicht gefressen werden.",
+     "mood": "shock",
+     "ev": "gas"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Erst der Schnitt",
+   "path": [],
+   "world": "c9zelle_3",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Erstens: Eine ganze Zwiebel reizt deine Augen gar nicht.",
+     "mood": "happy",
+     "ev": "ganz"
+    },
+    {
+     "t": "In ihren Zellen lagern ein Schwefel-Stoff und Enzyme, sauber getrennt.",
+     "mood": "happy",
+     "ev": "zwei"
+    },
+    {
+     "t": "Das Messer zerschneidet die Zellen, alles vermischt sich.",
+     "mood": "shock",
+     "ev": "schnitt"
+    },
+    {
+     "t": "Erst jetzt bauen die Enzyme daraus den Reizstoff.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Ab ins Auge",
+   "path": [],
+   "world": "c9auge_3",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Zweitens: Der Reizstoff verdunstet sofort und steigt auf.",
+     "mood": "happy",
+     "ev": "steigt"
+    },
+    {
+     "t": "Im Auge trifft er auf Nerven in der Hornhaut.",
+     "mood": "shock",
+     "ev": "nerv"
+    },
+    {
+     "t": "Die melden dem Gehirn: Alarm, da ist was!",
+     "mood": "shock",
+     "ev": "alarm"
+    },
+    {
+     "t": "Sofort spülen deine Tränendrüsen ihn wieder raus.",
+     "mood": "happy",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Der Messer-Trick",
+   "path": [],
+   "world": "c9messer_3",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Drittens: Ein stumpfes Messer quetscht die Zwiebel.",
+     "mood": "happy",
+     "ev": "stumpf"
+    },
+    {
+     "t": "Dabei spritzen winzige Tröpfchen mit Reizstoff hoch.",
+     "mood": "shock",
+     "ev": "spritz"
+    },
+    {
+     "t": "Bis zu vierzigmal mehr als bei einer scharfen Klinge.",
+     "mood": "shock",
+     "ev": "mal"
+    },
+    {
+     "t": "Und schnelles Hacken sprüht noch mehr davon in die Luft.",
+     "mood": "shock",
+     "ev": "hack"
+    },
+    {
+     "t": "Also: scharfes Messer nehmen und langsam schneiden.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c9outro_3",
+   "checks": [
+    "Erst der Schnitt mischt die Stoffe",
+    "Der Reizstoff steigt ins Auge",
+    "Scharfes Messer, langsamer Schnitt"
+   ],
+   "lines": [
+    {
+     "t": "Also: Erst der Schnitt mischt die Stoffe,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "der Reizstoff steigt dir ins Auge,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und ein scharfes Messer bremst die Spritzer.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ],
+   "pause": 0.05
+  }
+ ]
+}
