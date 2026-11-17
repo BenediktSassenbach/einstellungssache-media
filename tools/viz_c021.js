@@ -99,10 +99,10 @@ WORLD.c21gas = function (sc, ev, t, lt) { const st = ev.start, ph = ev.ph, fr = 
   if (fr !== undefined) { const g = ease(cl((fr - .3) / 1.2)); IN += bub21(470, lerp(1300, 760, g), 26 + 40 * g); IN += chip3(720, 1000, 'kein neuer Stoff', 40, '#3DFF7A', '#0B1020', cl((fr - .2) / .3)); }
   const s = wipe3(kitchen21(t, { splat: 1, puddle: .7, px: 420 }) + bot21(BX21, GY21, BS21, .35, .05, t), IN, lt, .6, AC21);
   return W(s + shade3(), slot(ev, [['gas', 'Das Gas ist schon in der Cola'], ['start', 'Jede Blase braucht einen Startpunkt'], ['ph', 'Vorher und nachher gleich sauer', 'hot'], ['frei', 'Keine Reaktion: Gas wird nur frei']])); };
-WMASC.c21gas = (ev, t, lt) => { const st = ev.start, fr = ev.frei, ph = ev.ph, bob = 18 * Math.sin(t * 1.6);
-  if (st !== undefined && ph === undefined) return stay3([380, 1530 + bob * .3], 1, { r: 10 * Math.sin(t * 6), mood: st > 1.6 ? 'shock' : 'happy' });
-  if (fr !== undefined) return stay3([360, 1530 + bob * .3], 1, { r: -8, mood: 'happy' });
-  return stay3([300, 1530 + bob * .3], 1, { r: 6 * Math.sin(t * 1.3) }); };
+WMASC.c21gas = (ev, t, lt) => { const st = ev.start, fr = ev.frei, ph = ev.ph, bob = 18 * Math.sin(t * 1.6) * cl(lt / .6), X = lerp(240, 220, ease(cl(lt / .6)));
+  if (st !== undefined && ph === undefined) return stay3([X, 1530 + bob * .3], 1, { r: 10 * Math.sin(t * 6), mood: st > 1.6 ? 'shock' : 'happy' });
+  if (fr !== undefined) return stay3([X, 1530 + bob * .3], 1, { r: -8, mood: 'happy' });
+  return stay3([X, 1530 + bob * .3], 1, { r: 6 * Math.sin(t * 1.3) }); };
 
 // ---------- Teil 2: auf der Mentos ----------
 WORLD.c21poren = function (sc, ev, t, lt) { const po = ev.poren, bl = ev.blase, ho = ev.hoch, gl = ev.glas;
@@ -117,15 +117,15 @@ WORLD.c21poren = function (sc, ev, t, lt) { const po = ev.poren, bl = ev.blase, 
     K += chip3(720, 900, 'Kratzer = Startpunkt', 38, '#FFE14D', '#0B1020', cl((gl - .6) / .3)); s = wipe3(S, K, gl, .5, AC21); }
   return W(s + shade3(), slot(ev, [['poren', 'Mentos: voller winziger Poren'], ['blase', 'An jeder Pore startet eine Blase', 'hot'], ['hoch', 'Unzählige Blasen drücken nach oben'], ['glas', 'Im Glas: Blasen an Kratzern']])); };
 WMASC.c21poren = (ev, t, lt) => { const po = ev.poren, bl = ev.blase, ho = ev.hoch, gl = ev.glas;
-  if (gl !== undefined && gl > .4) return stay3([420, 1537], 1, { r: 10, mood: 'happy' });
+  if (gl !== undefined) { const q = ease(cl(gl / .6)); return stay3([lerp(330, 420, q), lerp(1107, 1537, q)], 1, { r: 10 * q, mood: 'happy' }); }
   if (ho !== undefined) { const lift = ease(cl(ho / .5)); return stay3([330, 1537 - 430 * lift + 10 * Math.sin(t * 4) * lift], 1, { r: 8 * Math.sin(t * 3), mood: 'shock' }); }
   if (bl !== undefined) { const k = cl((bl - .6) / 1); return stay3([330, 1537 - 10 * k], 1, { r: 6, mood: k > .3 ? 'shock' : 'happy' }); }
-  if (po !== undefined) { const q = cl(po / 1.6), trip = po > 1.6 && po < 2.4 ? 1 : 0; return stay3([lerp(180, 330, q), 1537 + (trip ? 20 : 0) - 10 * Math.abs(Math.sin(t * 10)) * (q < 1 ? 1 : 0)], 1, { r: trip ? 30 : 6, walk: q < 1 ? 1 : 0, mood: trip ? 'shock' : 'happy' }); }
-  return stay3([180, 1537], 1, { r: 2 }); };
+  if (po !== undefined) { const q = cl(po / 1.6), trip = po > 1.6 && po < 2.4 ? 1 : 0; return stay3([lerp(220, 330, q), 1537 + (trip ? 20 : 0) - 10 * Math.abs(Math.sin(t * 10)) * (q < 1 ? 1 : 0)], 1, { r: trip ? 30 : 6, walk: q < 1 ? 1 : 0, mood: trip ? 'shock' : 'happy' }); }
+  return stay3([220, 1537], 1, { r: 2 }); };
 
 // ---------- Teil 3: mit der Mentos nach unten ----------
 WORLD.c21sink = function (sc, ev, t, lt) { const sk = ev.sink, ue = ev.ueberall, kr = ev.krumel, li = ev.light;
-  let IN = inside21(t); const fall = sk === undefined ? 0 : ease(cl(sk / 1.8)), my = lerp(820, 1560, ue !== undefined ? 1 : fall);
+  let IN = inside21(t); const fall = sk === undefined ? 0 : ease(cl((sk - .6) / 1.4)), my = lerp(820, 1560, ue !== undefined ? 1 : fall);
   if (kr === undefined) { IN += mint21(560, my, 120, 8 * Math.sin(t * 4)); if (sk !== undefined && fall < 1 && ue === undefined) for (let i = 0; i < 5; i++) IN += '<path d="M' + (470 + i * 45) + ' ' + (my - 90) + ' v-' + (90 + 20 * (i % 3)) + '" stroke="#FFE3B8" stroke-width="6" stroke-linecap="round" opacity=".5"/>';
     const trail = ue !== undefined ? 1 : fall; for (let i = 0; i < 40; i++) { const y0 = lerp(820, my, rnd(i + 3) * trail), ph = (t * 1.1 + rnd(i + 50)) % 1, y = y0 - (y0 - 500) * ph * (ue !== undefined ? 1 : .3); IN += bub21(460 + rnd(i + 9) * 200 + (ue !== undefined ? (rnd(i + 20) - .5) * 700 : 0), y, 6 + 10 * rnd(i)); } }
   else { for (let i = 0; i < 9; i++) { const x = 360 + i * 50 + 20 * Math.sin(t + i), y = 700 + 60 * rnd(i + 3) + 20 * Math.sin(t * .8 + i) + 40 * cl(kr / 3); IN += '<path d="M' + x.toFixed(0) + ' ' + y.toFixed(0) + ' l14 -10 l12 12 l-6 14 l-16 -2 Z" fill="#F8F6F0" stroke="#0B1020" stroke-width="3"/>'; if (i % 3 === 0) IN += bub21(x + 6, y - 20 - 60 * ((t + i * .3) % 1), 7); }
@@ -134,9 +134,10 @@ WORLD.c21sink = function (sc, ev, t, lt) { const sk = ev.sink, ue = ev.ueberall,
   if (li !== undefined) { const K = kitchen21(t, { splat: 1, puddle: .7, px: 300 }) + bot21(560, GY21, 1.35, .9, .2, t) + bot21(860, GY21, 1.35, .9, .2 + .8 * cl((li - 1) / .5), t, 1) + chip3(860, 820, 'Süßstoff hilft', 36, '#FFE14D', '#0B1020', cl((li - 1.2) / .3)); s = wipe3(IN, K, li, .5, AC21); }
   return W(s + shade3(), slot(ev, [['sink', 'Mentos sinken schnell nach unten'], ['ueberall', 'Blasen in der ganzen Flasche', 'hot'], ['krumel', 'Zerkleinert: kleine Fontäne'], ['light', 'Light-Cola: Süßstoff hilft mit']])); };
 WMASC.c21sink = (ev, t, lt) => { const sk = ev.sink, ue = ev.ueberall, kr = ev.krumel, li = ev.light;
-  if (li !== undefined && li > .4) return stay3([260, 1537], 1, { r: 8, mood: 'happy' });
-  if (kr !== undefined) return stay3([330, 1100 + 20 * Math.sin(t * 1.6)], 1, { r: 10 * Math.sin(t * 2), mood: 'happy' });
-  if (sk !== undefined || ue !== undefined) { const fall = ue !== undefined ? 1 : ease(cl(sk / 1.8)), my = lerp(820, 1560, fall); return stay3([560, my - 50], 1, { r: 6 * Math.sin(t * 8), mood: fall < 1 ? 'shock' : 'happy' }); }
+  if (li !== undefined) { const q = ease(cl(li / .6)); return stay3([lerp(330, 260, q), lerp(1100, 1537, q)], 1, { r: 8 * q, mood: 'happy' }); }
+  if (kr !== undefined) { const q = ease(cl(kr / .8)); return stay3([lerp(560, 330, q), lerp(1510, 1100, q)], 1, { r: 10 * Math.sin(t * 2) * q, mood: 'happy' }); }
+  if (lt < .6 && ue === undefined) return hop3(lt / .6, [420, 1537], [560, 770], 120, 1, 1, { r: -10 });
+  if (sk !== undefined || ue !== undefined) { const fall = ue !== undefined ? 1 : ease(cl((sk - .6) / 1.4)), my = lerp(820, 1560, fall); return stay3([560, my - 50], 1, { r: 6 * Math.sin(t * 8), mood: fall < 1 ? 'shock' : 'happy' }); }
   return stay3([560, 770], 1, { r: 0 }); };
 
 // ---------- Schluss: Kueche ----------

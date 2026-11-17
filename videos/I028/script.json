@@ -5,7 +5,7 @@
  "id": "I028",
  "titel": "Warum läuft GTA 6 nur mit 30 Bildern?",
  "design": "3.3",
- "quelle": "Design: Skript 4 (technische Kennung 3.3). Ort: dieselbe Neon-Stadt wie I026, damit die GTA-Videos als Reihe wirken. Wissenschaftsmodus: Teil 1 Zeile 1 und 2 (Sekunde in 30 Kaestchen), Teil 2 Zeile 1 und 2 (Zeitbudget pro Bild), Teil 3 Zeile 0 und 1 (33 zu knapp 17 ms). 30 Bilder pro Sekunde auf allen Konsolen inklusive PS5 Pro: Rob Nelson (Rockstar North) gegenueber Flow Games und beim Besuch von Davy Jones, berichtet von PC Games Hardware ('GTA 6 mit 30 Fps auf allen Konsolen, auch auf der PS5 Pro'), Tom's Hardware, TweakTown, VGC, Insider Gaming (Rockstar Newswire). Ein 60-Bilder-Modus ist nicht bestaetigt; das Video behauptet nichts dazu. 33 ms und knapp 17 ms: Rechnung 1000 ms / 30 = 33,3 ms und 1000 ms / 60 = 16,7 ms. Pro Bild werden Spielwelt und Bild neu berechnet (Spielschleife, Frame Budget): Unreal Engine Dokumentation 'Performance and Profiling' bzw. Frame-Budget-Begriff; allgemeines Prinzip. Nicht rechtzeitig fertig = Ruckler (Frame Drop): allgemeines Prinzip. Mehr Bilder kosten Details: allgemeiner Zielkonflikt (Leistungsmodus gegen Qualitaetsmodus in vielen Konsolenspielen); WARUM Rockstar 30 gewaehlt hat, behauptet das Video nicht. Wimpernschlag dauert laenger als 33 ms (rund 100 bis 400 ms, Harvard-Datenbank BioNumbers). Kinofilme meist 24 Bilder pro Sekunde: Kinostandard. Spruch 'Spiele sind Daumenkinos' ist ein Bild fuer Einzelbilder hintereinander. Gag: 60 Sekunden mal 30 Bilder = 1.800, minus 30 = 1.770. Keine Spielszenen, kein Logo, keine Figuren aus GTA 6. Stand der Recherche: 17.11.2026.",
+ "quelle": "Design: Skript 4 (technische Kennung 3.3). Ort: dieselbe Neon-Stadt wie I026 und I029. Fassung v2 (Benedikt, 17.11.2026): alles interaktiv in der Stadt, kein Wissenschaftsmodus. Anzeige-Turm zaehlt Bilder und Zeit; Bilder-Zug auf der Hochbahn (30 Wagen in 1 s, gezeigt in Zeitlupe); Schalti baut jedes Bild selbst (Auto, Leute, Licht) gegen die Uhr; Details verschwinden aus der Stadt; Kino mit 24 Bildern. 30 Bilder pro Sekunde auf allen Konsolen inklusive PS5 Pro: Rob Nelson (Rockstar North) gegenueber Flow Games und beim Besuch von Davy Jones, berichtet von PC Games Hardware ('GTA 6 mit 30 Fps auf allen Konsolen, auch auf der PS5 Pro'), Tom's Hardware, TweakTown, VGC, Insider Gaming (Rockstar Newswire). Ein 60-Bilder-Modus ist nicht bestaetigt; das Video behauptet nichts dazu. 33 ms und knapp 17 ms: Rechnung 1000 ms / 30 = 33,3 ms und 1000 ms / 60 = 16,7 ms. Pro Bild werden Spielwelt und Bild neu berechnet (Spielschleife, Frame Budget): Unreal Engine Dokumentation 'Performance and Profiling' bzw. Frame-Budget-Begriff; allgemeines Prinzip. Nicht rechtzeitig fertig = Ruckler (Frame Drop): allgemeines Prinzip. Mehr Bilder kosten Details: allgemeiner Zielkonflikt (Leistungsmodus gegen Qualitaetsmodus in vielen Konsolenspielen); WARUM Rockstar 30 gewaehlt hat, behauptet das Video nicht. Wimpernschlag dauert laenger als 33 ms (rund 100 bis 400 ms, Harvard-Datenbank BioNumbers). Kinofilme meist 24 Bilder pro Sekunde: Kinostandard. Spruch 'Spiele sind Daumenkinos' ist ein Bild fuer Einzelbilder hintereinander. Gag: 60 Sekunden mal 30 Bilder = 1.800, minus 30 = 1.770. Keine Spielszenen, kein Logo, keine Figuren aus GTA 6. Stand der Recherche: 17.11.2026.",
  "gagTag": "[panting] [deadpan]",
  "gagDelay": 0,
  "scenes": [
@@ -48,10 +48,6 @@
    "path": [],
    "world": "i28bild",
    "pause": 0.5,
-   "labor": [
-    1,
-    2
-   ],
    "lines": [
     {
      "t": "Erstens: Ein Spiel ist wie ein Daumenkino aus Einzelbildern.",
@@ -82,10 +78,6 @@
    "path": [],
    "world": "i28budget",
    "pause": 0.5,
-   "labor": [
-    1,
-    2
-   ],
    "lines": [
     {
      "t": "Zweitens: In diesen 33 Millisekunden muss alles fertig werden.",
@@ -116,12 +108,6 @@
    "path": [],
    "world": "i28sechzig",
    "pause": 0.5,
-   "labor": [
-    0,
-    1
-   ],
-   "quip": "Reicht mir.",
-   "quipAt": 3,
    "lines": [
     {
      "t": "Drittens: Für 60 Bilder bliebe nur die halbe Zeit, knapp 17 Millisekunden.",
@@ -143,7 +129,9 @@
      "mood": "cool",
      "ev": "kino"
     }
-   ]
+   ],
+   "quip": "Reicht mir.",
+   "quipAt": 2
   },
   {
    "type": "outro",

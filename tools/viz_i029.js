@@ -66,7 +66,7 @@ WORLD.i29wand = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const te = e
   h += slot(ev, [['tex', 'Fast jede Fläche: eine Textur'], ['drei', 'Oft drei pro Fläche'], ['pix', '4K-Textur: fast 17 Mio. Pixel', 'hot'], ['pack', 'Packen: nur auf etwa 1/8']]);
   return W(s + shade3(), h); };
 WMASC.i29wand = (ev, t) => { const te = ev.tex, dr = ev.drei, px = ev.pix, pk = ev.pack;
-  if (pk !== undefined) return stay3([lerp(220, 340, ease(cl(pk / .9))) + (pk > 2 ? 3 * Math.sin(t * 40) : 0), 1537], 1, pk > 2.1 ? { r: -10, mood: 'shock' } : { r: 8 });
+  if (pk !== undefined) return stay3([lerp(330, 300, ease(cl(pk / .9))) + (pk > 2 ? 3 * Math.sin(t * 40) : 0), 1537], 1, pk > 2.1 ? { r: -10, mood: 'shock' } : { r: 8 });
   if (px !== undefined) return stay3([lerp(260, 330, ease(cl(px / .5))), 1537], 1, { r: 10 });
   if (dr !== undefined) { const slap = [0, .9, 1.8].some(a => dr > a && dr < a + .25); return stay3([260, 1537 - (slap ? 20 : 0)], 1, { r: slap ? 14 : 4 }); }
   if (te !== undefined) return stay3([lerp(220, 260, ease(cl(te / .6))), 1537], 1, { r: 6 + 4 * Math.sin(t * 6) });
@@ -75,7 +75,7 @@ WMASC.i29wand = (ev, t) => { const te = ev.tex, dr = ev.drei, px = ev.pix, pk = 
 // ---------- Teil 2: Ton ----------
 function file29(x, y, sz, col, zip) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') scale(' + (sz / 100).toFixed(3) + ')"><path d="M-40 -55 h55 l25 25 v85 h-80 Z" fill="' + col + '" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/><path d="M15 -55 v25 h25" fill="none" stroke="#0B1020" stroke-width="6"/><path d="M-14 26 v-46 l26 -8 v40" stroke="#0B1020" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="-20" cy="28" r="9" fill="#0B1020"/><circle cx="6" cy="20" r="9" fill="#0B1020"/>' + (zip ? '<rect x="-46" y="-6" width="92" height="16" rx="5" fill="#0B1020"/><rect x="-10" y="-14" width="20" height="32" rx="5" fill="#C9CED9" stroke="#0B1020" stroke-width="4"/>' : '') + '</g>'; }
 var TC29 = ['#FFD23F', '#5CE1FF', '#FF6BD6', '#3DFF7A'];
-var SRC29 = [[260, 1500], [470, 1440], [620, 1440]]; // Schaltis Schritte, Hupe am Auto, Radio
+var SRC29 = [[300, 1500], [470, 1440], [620, 1440]]; // Schaltis Schritte, Hupe am Auto, Radio
 function tower29(n, inf) { let s = ''; const z = 70 * (1 + .8 * inf); for (let i = 0; i < n; i++) { const c = i % 3, r = Math.floor(i / 3), x = 720 + c * z * .95, y = GY26 - 40 - r * z * 1.15; s += file29(x, y, z, TC29[i % 4]); } return s; }
 function car29(x, b, honk) { let s = '<g transform="translate(' + x + ' ' + b + ')"><path d="M-110 -10 v-40 q0 -14 14 -14 h40 l30 -36 h70 l34 36 h20 q14 0 14 14 v40 Z" fill="#FF5A7A" stroke="#0B1020" stroke-width="6" stroke-linejoin="round"/><path d="M-50 -64 l24 -30 h56 l26 30 Z" fill="#2C3A66"/><circle cx="-60" cy="-6" r="22" fill="#0B1020"/><circle cx="60" cy="-6" r="22" fill="#0B1020"/></g>';
   if (honk > 0) for (let i = 0; i < 3; i++) s += '<path d="M' + (x - 130 - i * 22) + ' ' + (b - 70) + ' q-14 24 0 48" stroke="#FFE14D" stroke-width="6" fill="none" opacity="' + (honk * (1 - i * .25)).toFixed(2) + '"/>'; return s; }
@@ -99,7 +99,7 @@ WORLD.i29ton = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const to = ev
   h += slot(ev, [['ton', 'Jeder Ton ist eine Datei'], ['roh', 'Manchmal ungepackt'], ['cpu', 'Spart Arbeit beim Spielen', 'hot'], ['titan', 'Titanfall: 48 GB, vor allem Ton']]);
   return W(s + shade3(), h); };
 WMASC.i29ton = (ev, t) => { const to = ev.ton, ti = ev.titan;
-  if (to !== undefined && ev.roh === undefined) { const q = cl(to / 2.8); return stay3([lerp(200, 300, q), 1537 - 10 * Math.abs(Math.sin(t * 9)) * (q < 1 ? 1 : 0)], 1, { walk: q < 1 ? 1 : 0, r: 4 }); }
+  if (to !== undefined && ev.roh === undefined) { const q = cl(to / 2.8); return stay3([300, 1537 - 10 * Math.abs(Math.sin(t * 9)) * (q < 1 ? 1 : 0)], 1, { r: 4 + 4 * Math.sin(t * 9) * (q < 1 ? 1 : 0) }); }
   if (ti !== undefined) return stay3([300, 1537], 1, ti > .8 ? { r: -14, mood: 'shock' } : { r: -14 * cl(ti / .8) });
   return stay3([300, 1537], 1, { r: 2 }); };
 
@@ -126,14 +126,15 @@ WORLD.i29park = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const fr = e
   if (zu !== undefined) s += chip3(540, 1130, 'meist schneller als neu laden', 34, '#3DFF7A', '#0B1020', cl((zu - .8) / .3));
   h += slot(ev, [['frei', 'PS5 mit 825 GB: rund 667 GB frei'], ['drittel', 'GTA 6: fast ein Drittel', 'hot'], ['usb', 'Trick: Spiele auf USB auslagern'], ['zurueck', 'Zum Spielen zurückkopieren']]);
   return W(s + shade3(), h); };
-WMASC.i29park = (ev, t) => { const us = ev.usb, zu = ev.zurueck;
+WMASC.i29park = (ev, t, lt) => { const us = ev.usb, zu = ev.zurueck;
   if (us !== undefined && zu === undefined) { const q = cl(us / 2); return stay3([lerp(220, 420, ease(q)), 1537 - 8 * Math.abs(Math.sin(t * 12)) * (q < 1 ? 1 : 0)], 1, { r: 14, walk: q < 1 ? 1 : 0 }); }
   if (zu !== undefined) return stay3([420, 1537], 1, { r: -4, mood: 'happy' });
-  if (ev.drittel !== undefined) return stay3(HOME3, 1, ev.drittel > 2.5 ? { r: -6, mood: 'shock' } : { r: -6 });
-  return BIG3(); };
+  const X = lerp(300, 220, ease(cl(lt / .7)));
+  if (ev.drittel !== undefined) return stay3([X, 1537], 1, ev.drittel > 2.5 ? { r: -6, mood: 'shock' } : { r: -6 });
+  return stay3([X, 1537], 1, { r: 2 }); };
 
 // ---------- Schluss ----------
 WORLD.i29outro = function (sc, ev, t) { return W(bg29(t) + park29(1) + carP29(PX29 + SYS29 + 6, PY29 - 4, GTA29 - 12, AC29, 'GTA 6') + shade3()); };
-WMASC.i29outro = () => BIG3();
+WMASC.i29outro = (ev, t, lt) => stay3([lerp(420, 220, ease(cl(lt / .8))), 1537], 1, { r: 2 });
 
 ['i29hook', 'i29wand', 'i29ton', 'i29park', 'i29outro'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC29); });
