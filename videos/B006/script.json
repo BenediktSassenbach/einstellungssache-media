@@ -1,0 +1,173 @@
+{
+ "serie": "Bio",
+ "kostuem": "dinokostuem",
+ "accent": "#A8E63C",
+ "id": "B006",
+ "titel": "Wie gefährlich war der Velociraptor?",
+ "gagTag": "[winces] [deadpan]",
+ "gagDelay": 0,
+ "quelle": "Dino-Skript 1.0 (kein Wissenschaftsmodus), Kostuem B2 Dino-Kostuem (Film-Irrtum). Ort: Urzeit-Lichtung vor einer Felswand. Figur: rexd kind 'rap' (blau, bunte Federn, wie B001). Dino-Regel: nur Stand der Forschung. Groesse etwa wie ein Truthahn, bis rund 2 m lang mit Schwanz, etwa 0,5 m Hueft hoehe, bis etwa 15 kg: Live Science 'Velociraptor: Facts About the Speedy Thief'; Wikipedia 'Velociraptor' (Beschreibung). Film-Raptoren nach dem groesseren Verwandten Deinonychus gestaltet: Live Science ebenda; Wikipedia ('based on members of the related genus Deinonychus'). Federn: Hoecker fuer Federkiele (quill knobs) an der Elle eines Velociraptor aus der Mongolei, Turner, Makovicky, Norell 2007, Science 317: 1721; dieselben Hoecker tragen heutige Vogelknochen (Live Science, AMNH-Mitteilung). Fliegen konnte er nicht: Stand der Forschung (Arme zu kurz, Koerper zu schwer). Grosse gebogene Kralle an der zweiten Zehe jedes Fusses (rund 6,5 cm): Wikipedia 'Velociraptor'. Fund 'Kaempfende Dinosaurier' (1971, Mongolei): Velociraptor mitten im Kampf mit einem Protoceratops, Wikipedia; AMNH. Wofuer genau die Kralle diente, wird nicht behauptet (mehrere Theorien). Zeile 'So koennte er ausgesehen haben': Platz fuer ein realistisches KI-Bild nach Abschnitt 9; in der stummen Demo die naturnah gezeichnete Figur, Farbe frei gestaltet. Keine Figuren, Farben oder Posen aus Filmen. Stand der Recherche: 17.11.2026.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Der *Velociraptor*?",
+   "emoji": "🦖",
+   "world": "b6hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Der Film hat dich angelogen.",
+     "mood": "shock"
+    },
+    {
+     "t": "Wie gefährlich war der Velociraptor?",
+     "mood": "happy",
+     "ev": "frage"
+    },
+    {
+     "t": "Bio nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "shock",
+     "ev": "dreh"
+    },
+    {
+     "t": "Trotzdem fies.",
+     "mood": "cool",
+     "ev": "zwick"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "So groß wie ein *Truthahn*",
+   "path": [],
+   "world": "b6size",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Erstens: Der echte Velociraptor war etwa so groß wie ein Truthahn.",
+     "mood": "happy",
+     "ev": "trut"
+    },
+    {
+     "t": "Mit Schwanz rund zwei Meter lang, aber nur etwa kniehoch.",
+     "mood": "happy",
+     "ev": "mass"
+    },
+    {
+     "t": "Und er wog höchstens um die 15 Kilo.",
+     "mood": "shock",
+     "ev": "kilo"
+    },
+    {
+     "t": "Die Raptoren im Film sind einem größeren Verwandten nachempfunden.",
+     "mood": "cool",
+     "ev": "film"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Er hatte *Federn*",
+   "path": [],
+   "world": "b6feder",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Zweitens: Er hatte Federn.",
+     "mood": "happy",
+     "ev": "feder"
+    },
+    {
+     "t": "Forscher fanden 2007 an seinem Unterarm kleine Höcker, an denen Federkiele saßen.",
+     "mood": "shock",
+     "ev": "hoeck"
+    },
+    {
+     "t": "Genau solche Höcker haben Vögel heute auch.",
+     "mood": "happy",
+     "ev": "vogel"
+    },
+    {
+     "t": "Fliegen konnte er damit trotzdem nicht.",
+     "mood": "cool",
+     "ev": "flieg"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Harmlos war er *nicht*",
+   "path": [],
+   "world": "b6kralle",
+   "pause": 0.5,
+   "quip": "Abstand halten.",
+   "quipAt": 1,
+   "lines": [
+    {
+     "t": "Drittens: Harmlos war er trotzdem nicht.",
+     "mood": "shock",
+     "ev": "harm"
+    },
+    {
+     "t": "An jedem Fuß trug er eine große, gebogene Kralle.",
+     "mood": "happy",
+     "ev": "kralle"
+    },
+    {
+     "t": "Ein berühmter Fund aus der Mongolei zeigt ihn mitten im Kampf mit einem anderen Dinosaurier.",
+     "mood": "shock",
+     "ev": "fund"
+    },
+    {
+     "t": "So könnte er ausgesehen haben.",
+     "mood": "cool",
+     "ev": "foto"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "b6out",
+   "pause": 0.05,
+   "checks": [
+    "So groß wie ein Truthahn",
+    "Er hatte Federn",
+    "Seine Kralle war echt"
+   ],
+   "lines": [
+    {
+     "t": "Also: Der echte Velociraptor war so groß wie ein Truthahn,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "er hatte Federn,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und seine Kralle war trotzdem echt.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

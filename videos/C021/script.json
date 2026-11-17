@@ -1,0 +1,185 @@
+{
+ "serie": "Chemie",
+ "kostuem": "explosion",
+ "accent": "#FF6BD6",
+ "id": "C021",
+ "titel": "Warum schießt Cola mit Mentos hoch?",
+ "design": "3.3",
+ "quelle": "Design: Skript 4 (technische Kennung 3.3). Ort: Garten bei Tag, Cola-Flasche im Gras. Wissenschaftsmodus: Teil 1 Zeile 1 und 2 (Startpunkt fuer Blasen, pH-Messung), Teil 2 Zeile 0 und 1 (Mentos-Oberflaeche unter der Lupe), Teil 3 Zeile 1 (Blasen in der ganzen Flasche). Hauptquelle: Coffey, T. S. (2008): Diet Coke and Mentos: What is really behind this physical reaction? American Journal of Physics 76, 551; Pressemitteilung Appalachian State University (Newswise, Juni 2008). Ergebnisse: physikalischer Vorgang, keine chemische Reaktion; pH-Wert der Cola vor und nach der Mentos-Fontaene 3,0 (bei Natron dagegen 6,1, also Saeure-Base-Reaktion); raue Mentos-Oberflaeche mit vielen Poren bietet Startpunkte fuer Blasen (Keimbildung, Nukleation); ganze Mentos sinken schnell, zerkleinerte kaum und geben eine kleine Fontaene; Suessstoff Aspartam und Kaliumbenzoat in Diaet-Cola senken die Oberflaechenspannung und helfen der Blasenbildung. Ergaenzend: Mental Floss 'Why do Diet Coke and Mentos react' (Tausende kleine Poren, schnelleres Sinken gibt groessere Fontaene, zerkleinerte Mentos schwach); EepyBird 'The Science of Coke and Mentos' (Keimstellen auch Kratzer im Glas, Staub); Wikipedia 'Diet Coke and Mentos eruption' (physikalisch, nicht chemisch). Geloestes Kohlendioxid in Limonaden: Grundwissen. Spruch 'Mentos reagieren gar nicht.' ist zugespitzt und meint: keine chemische Reaktion. Teil 1 klaert das auf. Nur Erklaerung, keine Anleitung zu Fontaenen-Rekorden. Markennamen nur als Wort, keine Logos. Stand der Recherche: 17.11.2026.",
+ "gagTag": "[sighs] [deadpan]",
+ "gagDelay": 0,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Cola und *Mentos*?",
+   "emoji": "🥤",
+   "world": "c21hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Mentos reagieren gar nicht.",
+     "mood": "shock"
+    },
+    {
+     "t": "Warum schießt Cola mit Mentos hoch?",
+     "mood": "happy",
+     "ev": "drop"
+    },
+    {
+     "t": "Chemie nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "shock",
+     "ev": "fontaene"
+    },
+    {
+     "t": "Klebt.",
+     "mood": "cool",
+     "ev": "kleb"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Das Gas ist *schon drin*",
+   "path": [],
+   "world": "c21gas",
+   "pause": 0.5,
+   "labor": [
+    1,
+    2
+   ],
+   "lines": [
+    {
+     "t": "Erstens: Das Gas ist schon in der Cola, gelöst als Kohlendioxid.",
+     "mood": "happy",
+     "ev": "gas"
+    },
+    {
+     "t": "Es will raus, aber jede Blase braucht einen Startpunkt.",
+     "mood": "happy",
+     "ev": "start"
+    },
+    {
+     "t": "Forscher haben gemessen: Die Cola ist danach genauso sauer wie vorher.",
+     "mood": "shock",
+     "ev": "ph"
+    },
+    {
+     "t": "Es entsteht also kein neuer Stoff, das Gas wird nur frei.",
+     "mood": "cool",
+     "ev": "frei"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Rau wie ein *Schwamm*",
+   "path": [],
+   "world": "c21poren",
+   "pause": 0.5,
+   "labor": [
+    0,
+    1
+   ],
+   "lines": [
+    {
+     "t": "Zweitens: Eine Mentos ist unter dem Mikroskop voller winziger Poren.",
+     "mood": "happy",
+     "ev": "poren"
+    },
+    {
+     "t": "An jeder Pore kann sich sofort eine Blase bilden.",
+     "mood": "shock",
+     "ev": "blase"
+    },
+    {
+     "t": "Unzählige Blasen auf einmal drücken die Cola nach oben.",
+     "mood": "happy",
+     "ev": "hoch"
+    },
+    {
+     "t": "Das Gleiche siehst du im Glas: Blasen steigen an Kratzern auf.",
+     "mood": "cool",
+     "ev": "glas"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Warum gerade *Mentos*",
+   "path": [],
+   "world": "c21sink",
+   "pause": 0.5,
+   "labor": [
+    1
+   ],
+   "quip": "Nochmal?",
+   "quipAt": 3,
+   "lines": [
+    {
+     "t": "Drittens: Mentos sinken schnell bis zum Boden.",
+     "mood": "happy",
+     "ev": "sink"
+    },
+    {
+     "t": "So bilden sich Blasen in der ganzen Flasche.",
+     "mood": "shock",
+     "ev": "ueberall"
+    },
+    {
+     "t": "Zerkleinerte Mentos sinken kaum, die Fontäne bleibt klein.",
+     "mood": "happy",
+     "ev": "krumel"
+    },
+    {
+     "t": "Und in Light-Cola hilft der Süßstoff den Blasen beim Entstehen.",
+     "mood": "cool",
+     "ev": "light"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c21outro",
+   "pause": 0.05,
+   "checks": [
+    "Das Gas ist schon in der Cola",
+    "Raue Mentos: Startpunkte für Blasen",
+    "Sinkt sie, sprudelt die ganze Flasche"
+   ],
+   "lines": [
+    {
+     "t": "Also: Das Gas ist schon in der Cola,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "die raue Mentos lässt es auf einmal frei,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und weil sie sinkt, sprudelt die ganze Flasche.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

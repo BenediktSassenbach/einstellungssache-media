@@ -1,0 +1,186 @@
+{
+ "serie": "Informatik",
+ "kostuem": "gamer",
+ "accent": "#7C5CFF",
+ "id": "I029",
+ "titel": "Warum braucht GTA 6 so viel Platz?",
+ "design": "3.3",
+ "quelle": "Design: Skript 4 (technische Kennung 3.3). Ort: dieselbe Neon-Stadt wie I026 und I028. Wissenschaftsmodus: Teil 1 Zeile 1 und 2 (drei Texturen, 4K-Raster), Teil 2 Zeile 1 und 2 (gepackter gegen ungepackter Ton, Konsole), Teil 3 Zeile 0 und 1 (Speicherbalken). Bis zu 212 GB auf PS5 und Xbox Series X|S: Rockstar-Blogeintrag zum Preload, berichtet von GIGA und Notebookcheck. Wie GTA 6 innen aufgeteilt ist, hat Rockstar nicht veroeffentlicht: Das Video spricht in Teil 1 und 2 von grossen Spielen allgemein und behauptet nichts ueber den Inhalt von GTA 6. Texturen als groesster Wachstumstreiber der Spielgroesse und drei Texturen pro Objekt (Farbe, Unebenheit/Normal Map, Glanz/Specular), Texturen lassen sich mit GPU-Blockkompression hoechstens etwa 8 zu 1 packen: PC Gamer 'How game sizes got so huge' (Nathan Hanish, Stardock). 4096 x 4096 = 16.777.216 Pixel. Ton als eigene Dateien, manche Spiele speichern Ton ungepackt, damit der Prozessor nicht entpacken muss; Titanfall 48 GB installiert, vor allem Ton (21 GB Download): PC Gamer ebenda; Seagate-Blog 'Why do games have large install sizes now' (ungepackter Ton). PS5 mit 825 GB: rund 667 GB nutzbar (TweakTown, GIGA). 212 / 667 = 32 Prozent, also fast ein Drittel. PS5-Spiele auf USB-Erweiterungsspeicher auslagern und zum Spielen zurueckkopieren: Sony Support 'USB extended storage on PS5 consoles'. Zurueckkopieren meist schneller als neu laden: TweakTown ('doesn't take a long time'), haengt von der Leitung ab, deshalb 'meist'. Abgrenzung zu I026: dort Arbeitsspeicher, hier Speicherplatz und was ihn fuellt. Keine Spielszenen, kein Logo, keine Figuren aus GTA 6, Konsole neutral gezeichnet. Stand der Recherche: 17.11.2026.",
+ "gagTag": "[groans] [deadpan]",
+ "gagDelay": 0,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "*212 GB*?",
+   "emoji": "📦",
+   "world": "i29hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "212 Gigabyte. Für ein Spiel.",
+     "mood": "shock"
+    },
+    {
+     "t": "Warum braucht GTA 6 so viel Platz?",
+     "mood": "happy",
+     "ev": "stopf"
+    },
+    {
+     "t": "Informatik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "shock",
+     "ev": "platz"
+    },
+    {
+     "t": "Passt schon.",
+     "mood": "cool",
+     "ev": "puff"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Bilder auf *jeder Fläche*",
+   "path": [],
+   "world": "i29tex",
+   "pause": 0.5,
+   "labor": [
+    1,
+    2
+   ],
+   "lines": [
+    {
+     "t": "Erstens: In großen Spielen ist fast jede Fläche ein aufgeklebtes Bild, eine Textur.",
+     "mood": "happy",
+     "ev": "tex"
+    },
+    {
+     "t": "Oft sogar drei pro Fläche: für Farbe, Unebenheit und Glanz.",
+     "mood": "happy",
+     "ev": "drei"
+    },
+    {
+     "t": "Eine einzige 4K-Textur hat fast 17 Millionen Pixel.",
+     "mood": "shock",
+     "ev": "pix"
+    },
+    {
+     "t": "Und zusammenpacken lässt sie sich höchstens auf etwa ein Achtel.",
+     "mood": "cool",
+     "ev": "pack"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Ton braucht *Platz*",
+   "path": [],
+   "world": "i29ton",
+   "pause": 0.5,
+   "labor": [
+    1,
+    2
+   ],
+   "lines": [
+    {
+     "t": "Zweitens: Ton. Jede Stimme, jeder Schritt, jeder Song ist eine eigene Datei.",
+     "mood": "happy",
+     "ev": "ton"
+    },
+    {
+     "t": "Manche Spiele speichern ihn sogar ungepackt.",
+     "mood": "shock",
+     "ev": "roh"
+    },
+    {
+     "t": "Dann muss die Konsole beim Spielen nichts entpacken.",
+     "mood": "happy",
+     "ev": "cpu"
+    },
+    {
+     "t": "Titanfall war deshalb installiert 48 Gigabyte groß, vor allem wegen des Tons.",
+     "mood": "cool",
+     "ev": "titan"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Platz auf *deiner Konsole*",
+   "path": [],
+   "world": "i29platz",
+   "pause": 0.5,
+   "labor": [
+    0,
+    1
+   ],
+   "quip": "Platz da.",
+   "quipAt": 2,
+   "lines": [
+    {
+     "t": "Drittens: Auf einer PS5 mit 825 Gigabyte sind nur rund 667 frei nutzbar.",
+     "mood": "happy",
+     "ev": "frei"
+    },
+    {
+     "t": "GTA 6 belegt davon fast ein Drittel.",
+     "mood": "shock",
+     "ev": "drittel"
+    },
+    {
+     "t": "Dein Trick: Schieb Spiele, die du gerade nicht spielst, auf eine USB-Festplatte.",
+     "mood": "happy",
+     "ev": "usb"
+    },
+    {
+     "t": "Zum Spielen kopierst du sie zurück, das geht meist schneller als neu laden.",
+     "mood": "cool",
+     "ev": "zurueck"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i29outro",
+   "pause": 0.05,
+   "checks": [
+    "Große Spiele sind vor allem Bilder",
+    "Ton braucht viel Platz",
+    "Auslagern statt löschen"
+   ],
+   "lines": [
+    {
+     "t": "Also: Große Spiele bestehen vor allem aus Bildern,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Ton braucht viel Platz,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und auslagern ist besser als löschen.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
