@@ -1,0 +1,166 @@
+{
+ "serie": "Bio",
+ "kostuem": "forscher",
+ "accent": "#A8E63C",
+ "id": "B035",
+ "titel": "Schicht für Schicht: Wie ist ein Knochen aufgebaut?",
+ "gagTag": "[gasps] [startled]",
+ "gagDelay": 0.9,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Dein *Knochen*, Schicht für Schicht",
+   "emoji": "🦴",
+   "world": "h35knochen",
+   "pause": 0.3,
+   "lines": [
+    {
+     "t": "Dein Blut entsteht in deinen Knochen.",
+     "mood": "cool"
+    },
+    {
+     "t": "Wie ist ein Knochen aufgebaut?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Bio nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Knochenmark und Schwammknochen",
+   "path": [],
+   "world": "b35a",
+   "pause": 0.35,
+   "lines": [
+    {
+     "t": "Schicht eins: das Knochenmark, ganz innen.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Rotes Knochenmark bildet ständig neue Blutzellen. Tragen kann es aber nichts.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Schicht zwei: der Schwammknochen, ein Gitter aus feinen Bälkchen.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Die Bälkchen folgen der Belastung. So ist er stabil und trotzdem leicht.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Kompakta und Blutgefäße",
+   "path": [],
+   "world": "b35b",
+   "pause": 0.35,
+   "lines": [
+    {
+     "t": "Schicht drei: die Kompakta, eine dicke, harte Wand um den Schaft.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Sie besteht aus winzigen Röhrchen mit Ringen um einen Kanal.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Schicht vier: Blutgefäße. Sie laufen durch diese Kanäle mitten durch den Knochen.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "So bekommt auch das Innere Sauerstoff und Nährstoffe.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Knochenhaut und Gelenkknorpel",
+   "path": [],
+   "world": "b35c",
+   "pause": 0.2,
+   "lines": [
+    {
+     "t": "Schicht fünf: die Knochenhaut, außen um den Knochen.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Sie schützt und ernährt die harte Wand. Nur an den Gelenkflächen fehlt sie.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Schicht sechs: Dort sitzt der Gelenkknorpel.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Er ist glatt und verringert die Reibung im Gelenk.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "b35out",
+   "pause": 0.05,
+   "checks": [
+    "Knochenmark und Schwammknochen",
+    "Kompakta und Blutgefäße",
+    "Knochenhaut und Gelenkknorpel"
+   ],
+   "lines": [
+    {
+     "t": "Also: innen Mark und Schwammknochen,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "dazu die harte Wand mit Blutgefäßen,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "außen Knochenhaut und Knorpel.",
+     "mood": "happy",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ],
+ "quelle": "Spruch 'Dein Blut entsteht in deinen Knochen.' ist zugespitzt: gemeint sind die Blutzellen. Im roten Knochenmark entstehen aus Stammzellen rote und weiße Blutkörperchen und Blutplättchen (medi-karriere 'Knochen'; studyflix 'Knochen'). Aufbau Röhrenknochen außen nach innen: Knochenhaut, Kompakta (im Schaft dichtes Knochengewebe), im Inneren Spongiosa aus feinen Knochenbälkchen, große Stabilität bei geringem Gewicht (apotheken.de 'Aufbau und Funktion von Knochen und Gelenken'). Bälkchen passen sich der Belastung an (lecturio 'Aufbau der Knochen'; dr-gumpert: Struktur abhängig von der mechanischen Belastung). Knochenmark: im Schaft bei Kindern rot und blutbildend, wandelt sich mit dem Alter in gelbes Fettmark (apotheken.de). Bild zeigt deshalb gelbes Mark im Schaft und rotes in den Enden; rotes Mark beim Erwachsenen v. a. in platten Knochen und in den Enden der Röhrenknochen (apotheken.de, aschke-seminare). Das gelbe Mark wird im Text nicht genannt. Kompakta: Osteone, konzentrische Lamellen um den Havers-Kanal mit Blutgefäßen und Nerven, Volkmann-Kanäle verbinden quer zum Periost; Versorgung der Knochenzellen mit Sauerstoff und Nährstoffen (medi-karriere 'Substantia compacta'; DocCheck 'Lamellenknochen'; Semmelweis-Uni 'Stütz-Ossif'). 'Ringe um einen Kanal' sind die konzentrischen Lamellen um den Havers-Kanal. Knochenhaut (Periost): überzieht den Knochen außer an den überknorpelten Gelenkflächen, reich an Blutgefäßen und Nerven, schützt und ernährt die äußere Knochenschicht (DocCheck 'Knochenhaut'/'Periost'; apotheken.de). Gelenkknorpel auf den Gelenkflächen reduziert Reibungskräfte (apotheken.de). Lateinische Begriffe nur im Bild: Medulla ossium, Substantia spongiosa, Substantia compacta, Vasa sanguinea, Periosteum, Cartilago articularis. Deutsche Begriffe nach Gebräuchlichkeit: Knochenmark, Schwammknochen (statt Spongiosa), Kompakta (gängiger Schulbegriff), Knochenhaut, Gelenkknorpel. Die sechs Schichten sind die Reihenfolge der Serie, keine anatomische Einteilung (Blutgefäße liegen in Kompakta und Knochenhaut). Bewusst weggelassen: Endost, Wachstumsfuge, Nerven im Text, Knochenzellen, gelbes Fettmark, Schmerzempfindlichkeit der Knochenhaut. Körper-Thema, drei Prüffragen: nur gesunder Aufbau, kein Wort zu Brüchen, Osteoporose, Ernährung oder Training, niemand ändert danach etwas. Kein Rat, kein Trick. Faktencheck Zeile für Zeile am 17.11.2026. Design: Skript Schicht für Schicht Anatomie, Kostüm B6 Forscher, dunkler Labor-Look, weiches Relief, kräftige Farben."
+}
