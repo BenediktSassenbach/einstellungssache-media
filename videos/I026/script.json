@@ -1,0 +1,190 @@
+{
+ "serie": "Informatik",
+ "kostuem": "gamer",
+ "accent": "#7C5CFF",
+ "id": "I026",
+ "titel": "Wie lädt ein Spiel ganze Städte?",
+ "design": "3.3",
+ "quelle": "Design: Skript 4 (technische Kennung 3.3). Ort: Strasse einer Stadt bei Nacht, die Stadt besteht aus Kacheln, die geladen und wieder entladen werden. Wissenschaftsmodus nur dort, wo Schalti nicht mitspielen kann: Teil 1 Groessenvergleich (Zeilen 1 und 2), Teil 2 Drahtgitter-Haus (Zeilen 2 und 3), Teil 3 Karte von oben mit Blickfeld (Zeilen 2 und 3). Anlass: GTA 6 erscheint am 19.11.2026 (heise, PC Games, PC-Welt; Take-Two bestaetigt). Bis zu 212 GB Speicherplatz je nach Konsole: Rockstar laut Notebookcheck (Preload-Mitteilung). PS5 hat 16 GB GDDR6 Arbeitsspeicher: Sony-Spezifikation aus 'Road to PS5' (Gematsu/Digital Foundry, Tom's Hardware, The Guardian). Gilt fuer die normale PS5; die PS5 Pro hat zusaetzlich 2 GB, deshalb im Video 'eine PS5'. Nur die Gegend um den Spieler wird geladen, Kacheln werden nach Entfernung geladen und entladen: Unreal Engine Dokumentation 'World Partition' (distanzbasiertes Streaming, Gitterzellen, Streaming-Quelle ist der Spieler, 'only loads the parts of the Level that the player sees and interacts with'); Mark Cerny, Road to PS5 (beim Umdrehen werden Texturen fuer alles hinter dem Spieler in Sekundenbruchteilen nachgeladen). Fernes wird mit weniger Dreiecken gezeichnet, naeher dran feinere Fassung, aus der Ferne kein sichtbarer Unterschied: Unity Handbuch 'Level of Detail' (weniger Dreiecke mit wachsender Entfernung zur Kamera; aus der Ferne ist wenig Detail zu sehen); Unreal Engine Dokumentation Static Mesh LOD. Was ausserhalb des Blickfelds liegt oder verdeckt ist, wird nicht gezeichnet: Unreal Engine Dokumentation 'Visibility and Occlusion Culling' (View-Frustum-Culling und Occlusion-Culling); Unity Handbuch 'Occlusion Culling'. Wie GTA 6 das intern genau macht, hat Rockstar nicht veroeffentlicht. Das Video behauptet deshalb nichts Spezielles ueber GTA 6, nur die Groesse von 212 GB, und erklaert die allgemeine Technik grosser Spielwelten. Spruch 'Hinter dir ist die Stadt weg.' ist zugespitzt: Was hinter dir liegt, wird nicht gezeichnet und weit hinter dir auch nicht geladen. Teil 3 klaert das auf. Gewaehlt fuer Gamer, alltagsnah (Umdrehen im Spiel), keine TikTok-Daten zum Thema. Keine Spielszenen, kein Logo, keine Figuren aus GTA 6. Kein Staun-Ausruf. Stand der Recherche: 17.11.2026.",
+ "gagTag": "[gasps] [deadpan]",
+ "gagDelay": 0.7,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Ganze Städte *laden*?",
+   "emoji": "🎮",
+   "world": "i26hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Hinter dir ist die Stadt weg.",
+     "mood": "shock"
+    },
+    {
+     "t": "Wie lädt ein Spiel ganze Städte?",
+     "mood": "happy",
+     "ev": "geh"
+    },
+    {
+     "t": "Informatik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "shock",
+     "ev": "sprint"
+    },
+    {
+     "t": "Zu schnell.",
+     "mood": "cool",
+     "ev": "respawn"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Nur, was in der Nähe ist",
+   "path": [],
+   "world": "i26kachel",
+   "pause": 0.5,
+   "labor": [
+    0,
+    1
+   ],
+   "lines": [
+    {
+     "t": "Erstens: Ein Spiel wie GTA 6 braucht bis zu 212 Gigabyte.",
+     "mood": "happy",
+     "ev": "gb"
+    },
+    {
+     "t": "Eine PS5 hat aber nur 16 Gigabyte Arbeitsspeicher.",
+     "mood": "shock",
+     "ev": "ram"
+    },
+    {
+     "t": "Also lädt sie nur die Gegend um dich herum.",
+     "mood": "happy",
+     "ev": "um"
+    },
+    {
+     "t": "Gehst du weiter, kommt vorne Neues rein und hinten fliegt Altes raus.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Fernes wird grob",
+   "path": [],
+   "world": "i26lod",
+   "pause": 0.5,
+   "labor": [
+    1,
+    2
+   ],
+   "lines": [
+    {
+     "t": "Zweitens: Was weit weg ist, zeichnet das Spiel grob.",
+     "mood": "happy",
+     "ev": "grob"
+    },
+    {
+     "t": "Ein Haus in der Ferne besteht nur aus wenigen Dreiecken.",
+     "mood": "happy",
+     "ev": "drei"
+    },
+    {
+     "t": "Kommst du näher, tauscht es das Haus gegen eine feinere Fassung.",
+     "mood": "shock",
+     "ev": "fein"
+    },
+    {
+     "t": "Von weitem siehst du den Unterschied gar nicht.",
+     "mood": "wink",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Nicht im Blick",
+   "path": [],
+   "world": "i26sicht",
+   "pause": 0.5,
+   "labor": [
+    1,
+    2
+   ],
+   "lines": [
+    {
+     "t": "Drittens: Was du gerade nicht siehst, wird gar nicht erst gezeichnet.",
+     "mood": "happy",
+     "ev": "sicht"
+    },
+    {
+     "t": "Alles hinter dir und neben deinem Blickfeld fällt weg.",
+     "mood": "shock",
+     "ev": "hinten"
+    },
+    {
+     "t": "Auch Häuser, die von anderen Häusern verdeckt werden.",
+     "mood": "happy",
+     "ev": "verdeckt"
+    },
+    {
+     "t": "Drehst du dich um, ist alles in Sekundenbruchteilen wieder da.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "quip": "Alles noch da.",
+   "quipAt": 3
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i26outro",
+   "pause": 0.05,
+   "checks": [
+    "Geladen wird nur die Gegend um dich",
+    "Fernes wird grob gezeichnet",
+    "Was du nicht siehst, wird nicht gezeichnet"
+   ],
+   "lines": [
+    {
+     "t": "Also: Geladen wird nur, was um dich herum ist,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Fernes wird grob gezeichnet,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und was du nicht siehst, gar nicht.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

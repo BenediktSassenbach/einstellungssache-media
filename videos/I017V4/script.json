@@ -1,0 +1,181 @@
+{
+ "serie": "Informatik",
+ "kostuem": "hacker",
+ "accent": "#7C5CFF",
+ "id": "I017V4",
+ "titel": "Ist Inkognito wirklich anonym?",
+ "quelle": "Google Chrome Hilfe (Im Inkognitomodus surfen): Bildungseinrichtung, Arbeitgeber oder Internetanbieter können Aktivitäten im Inkognitomodus möglicherweise beobachten; besuchte Websites geben Informationen weiter. heise (Tipps und Tricks, Inkognito-Modus mit Chrome): Für den Internetanbieter und die besuchten Webseiten bleiben die Aktivitäten sichtbar. schieb.de (Inkognito-Modus: So funktioniert privates Surfen wirklich): macht nicht anonym, wirkt nur lokal auf dem Gerät, ändert nichts auf der Netzwerkebene, Websites können die IP-Adresse erfassen, auch Schulnetzwerk oder Arbeitgeber können mitlesen, wenn man deren Internet nutzt. netzwelt: Verlauf und Cookies werden gelöscht, wenn das letzte Inkognito-Fenster geschlossen ist. winfuture (Chrome Inkognito spricht jetzt Klartext): Downloads und Lesezeichen bleiben gespeichert; andere Nutzer des Geräts sehen die Aktivität nicht. t-online (Häufige Irrtümer): Formulare werden nicht automatisch ausgefüllt, nachfolgende Nutzer sehen besuchte Seiten nicht. Vergleich Brown gegen Google, eingereicht am 1.4.2024 (heise, zitiert bei netzwoche; t3n; winfuture): Google sagt zu, Milliarden Datensätze aus dem Inkognito-Modus zu löschen oder zu anonymisieren, keine Entschädigung. Nutzen bei geteilten Geräten (Geschenke) nach surfshark-Übersicht und t-online, Anmelden an fremden Geräten als Folgerung daraus, dass Cookies beim Schließen gelöscht werden. Aufhänger 'Dein Inkognito-Modus ist eine Lüge' ist zugespitzt: gemeint ist, dass er nicht anonym macht. Das Video stellt klar, was er wirklich tut (Spuren auf dem eigenen Gerät löschen) und wer weiter mitsieht. E-Mail-Adresse und Begrüßung in der Grafik sind erfunden. Fassung I017V4 im Skript 4 (17.11.2026): Einstieg unter 10 Sekunden. Spruch 'Dein Inkognito-Modus lügt.' (zugespitzt wie vorher: er macht nicht anonym), Themenfrage 'Ist Inkognito wirklich anonym?', Nachsatz 'Erwischt.', der Lichtkegel kommt schon bei 'Informatik nie verstanden?'. Faktencheck erneut am 17.11.2026: 'Schließt du das Fenster' praezisiert zu 'Schließt du alle Inkognito-Fenster' (netzwelt: geloescht, wenn das letzte Inkognito-Fenster geschlossen ist). 'sieht nichts' praezisiert zu 'findet nichts im Verlauf' (Downloads bleiben, siehe naechster Satz). 'Krass:' gestrichen, Google-Zusage vollstaendig: 'zu loeschen oder zu anonymisieren' (heise, t3n, winfuture zum Vergleich Brown gegen Google). Wissenschaftsmodus fuer Teil 2 Saetze 2 und 3 (Weg der Daten ueber den Anbieter, IP-Adresse als Absender: Netzwerk, zu abstrakt fuer den Ort).",
+ "gagDelay": 0.1,
+ "gagTag": "[gasps] [nervous]",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Wirklich *anonym*?",
+   "emoji": "🕶️",
+   "world": "h7i17t_3",
+   "lines": [
+    {
+     "t": "Dein Inkognito-Modus lügt.",
+     "mood": "shock"
+    },
+    {
+     "t": "Ist Inkognito wirklich anonym?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Informatik nie verstanden?",
+     "mood": "shock",
+     "ev": "licht"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "shock"
+    },
+    {
+     "t": "Erwischt.",
+     "mood": "cool"
+    }
+   ],
+   "pause": 0.05
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Was er wirklich macht",
+   "world": "i17tlokal_3",
+   "lines": [
+    {
+     "t": "Erstens: Der Modus räumt nur auf deinem eigenen Gerät auf.",
+     "mood": "happy",
+     "ev": "geraet"
+    },
+    {
+     "t": "Schließt du alle Inkognito-Fenster, sind Verlauf und Cookies weg.",
+     "mood": "happy",
+     "ev": "weg"
+    },
+    {
+     "t": "Wer danach dein Handy nimmt, findet nichts im Verlauf.",
+     "mood": "wink",
+     "ev": "sieht"
+    },
+    {
+     "t": "Achtung: Downloads und Lesezeichen bleiben trotzdem.",
+     "mood": "shock",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5,
+   "quip": "Nichts zu sehen.",
+   "quipAt": 2
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Wer trotzdem zuschaut",
+   "world": "i17taugen_3",
+   "lines": [
+    {
+     "t": "Zweitens: Die Seiten, die du besuchst, sehen dich weiter.",
+     "mood": "happy",
+     "ev": "seite"
+    },
+    {
+     "t": "Dein Internetanbieter auch, im Schul- oder Firmennetz der Betreiber.",
+     "mood": "shock",
+     "ev": "anb"
+    },
+    {
+     "t": "Denn deine IP-Adresse, quasi dein Absender, bleibt sichtbar.",
+     "mood": "happy",
+     "ev": "ip"
+    },
+    {
+     "t": "Nach einer Klage sagte Google 2024 zu, Milliarden Inkognito-Datensätze zu löschen oder zu anonymisieren.",
+     "mood": "shock",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5,
+   "labor": [
+    1,
+    2
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Wofür er taugt",
+   "world": "i17tnutzen_3",
+   "lines": [
+    {
+     "t": "Drittens: Nützlich ist er trotzdem.",
+     "mood": "happy",
+     "ev": "gut"
+    },
+    {
+     "t": "Zum Beispiel für die Geschenksuche auf dem Familien-Tablet.",
+     "mood": "wink",
+     "ev": "geschenk"
+    },
+    {
+     "t": "Oder wenn du dich an einem fremden Gerät anmeldest.",
+     "mood": "happy",
+     "ev": "fremd"
+    },
+    {
+     "t": "Aber: Meldest du dich an, weiß die Seite, wer du bist.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ],
+   "path": [],
+   "pause": 0.5
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i17toutro_3",
+   "checks": [
+    "Löscht nur Spuren am Gerät",
+    "Seiten und Anbieter sehen mit",
+    "Gut für geteilte Geräte"
+   ],
+   "lines": [
+    {
+     "t": "Also: Inkognito löscht nur die Spuren auf deinem Gerät,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Seiten und Anbieter sehen weiter mit,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "praktisch ist er für geteilte Geräte.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ],
+   "pause": 0.05
+  }
+ ],
+ "design": "3.3"
+}
