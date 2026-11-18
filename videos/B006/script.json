@@ -6,7 +6,7 @@
  "titel": "Wie gefährlich war der Velociraptor?",
  "gagTag": "[winces] [deadpan]",
  "gagDelay": 0,
- "quelle": "Dino-Skript 1.0 (kein Wissenschaftsmodus), Kostuem B2 Dino-Kostuem (Film-Irrtum). Ort: Urzeit-Lichtung vor einer Felswand. Figur: rexd kind 'rap' (blau, bunte Federn, wie B001). Dino-Regel: nur Stand der Forschung. Groesse etwa wie ein Truthahn, bis rund 2 m lang mit Schwanz, etwa 0,5 m Hueft hoehe, bis etwa 15 kg: Live Science 'Velociraptor: Facts About the Speedy Thief'; Wikipedia 'Velociraptor' (Beschreibung). Film-Raptoren nach dem groesseren Verwandten Deinonychus gestaltet: Live Science ebenda; Wikipedia ('based on members of the related genus Deinonychus'). Federn: Hoecker fuer Federkiele (quill knobs) an der Elle eines Velociraptor aus der Mongolei, Turner, Makovicky, Norell 2007, Science 317: 1721; dieselben Hoecker tragen heutige Vogelknochen (Live Science, AMNH-Mitteilung). Fliegen konnte er nicht: Stand der Forschung (Arme zu kurz, Koerper zu schwer). Grosse gebogene Kralle an der zweiten Zehe jedes Fusses (rund 6,5 cm): Wikipedia 'Velociraptor'. Fund 'Kaempfende Dinosaurier' (1971, Mongolei): Velociraptor mitten im Kampf mit einem Protoceratops, Wikipedia; AMNH. Wofuer genau die Kralle diente, wird nicht behauptet (mehrere Theorien). Zeile 'So koennte er ausgesehen haben': Platz fuer ein realistisches KI-Bild nach Abschnitt 9; in der stummen Demo die naturnah gezeichnete Figur, Farbe frei gestaltet. Keine Figuren, Farben oder Posen aus Filmen. Stand der Recherche: 17.11.2026.",
+ "quelle": "Dino-Skript 1.0 mit den Regeln vom 18.11.2026 (nur Tiere, die die Aussage braucht; genug Platz; keine Fluegel-Optik; bei 'Wie gefaehrlich' die Eigenschaften zeigen). Fassung v3. Kostuem B2 Dino-Kostuem (Film-Irrtum). Ort: Urzeit-Lichtung, Nahaufnahmen von Fuss und Kopf im Ort, Grabungsstelle in der Mongolei. Figur: rexd kind 'rap' mit Sichelkralle (sk) und drei Fingern mit Krallen (h3), Federn dezent, Arme angelegt. Groesse: bis 2,07 m lang, 0,5 m Hueftehoehe, bis 15 kg (Wikipedia 'Velociraptor', Beschreibung). Sichelkralle an der zweiten Zehe jedes Fusses, ueber 6,5 cm an der Aussenkante (Wikipedia). Beim Laufen angehoben, vermutlich um sie scharf zu halten; Faehrten von Velociraptor und Verwandten zeigen keine Spur der Kralle, nur zwei Zehen am Boden (Natural History Museum London, 'Velociraptor facts'; Everything Dinosaur zu Zwei-Zehen-Faehrten). Zaehne: 26 bis 28 weit stehende Zaehne pro Seite, hinten staerker gezackt als vorne (Wikipedia, Beschreibung). Gezeichnet: 13 oben, 14 unten. Vergleich mit dem Steakmesser ist ein Bild, keine Messung. Hand: drei stark gebogene Krallen an jeder Hand (Wikipedia). Schwanz: durch Knochenfortsaetze und verknoecherte Sehnen versteift, sorgte wahrscheinlich fuer Balance und Stabilitaet in schnellen Kurven (Wikipedia, Ostrom 1969; deshalb 'wohl'). Fund 'Kaempfende Dinosaurier' (1971, Djadochta-Formation, Mongolei): Sichelkralle in der Halsregion des Protoceratops, der in den rechten Arm des Raptors beisst; linke Hand am Gesicht des Protoceratops (Carpenter 1998; AMNH; Live Science). Fund schematisch gezeichnet, nicht massstabsgetreu. Wofuer genau die Kralle diente, wird nicht behauptet (NHM: verletzen, festhalten, kein Aufschlitzen). Zeile 'So koennte er ausgesehen haben': Platz fuer ein realistisches KI-Bild nach Abschnitt 9; in der stummen Demo die naturnah gezeichnete Figur, Farbe frei gestaltet. Keine Figuren, Farben oder Posen aus Filmen. Stand der Recherche: 18.11.2026.",
  "scenes": [
   {
    "type": "hook",
@@ -43,87 +43,87 @@
   {
    "type": "tip",
    "num": "1",
-   "title": "So groß wie ein *Truthahn*",
+   "title": "Die *Sichelkralle*",
    "path": [],
-   "world": "b6size",
+   "world": "b6sichel",
    "pause": 0.5,
    "lines": [
     {
-     "t": "Erstens: Der echte Velociraptor war etwa so groß wie ein Truthahn.",
+     "t": "Erstens: Er war kleiner als im Film, nur etwa kniehoch.",
      "mood": "happy",
-     "ev": "trut"
+     "ev": "klein"
     },
     {
-     "t": "Mit Schwanz rund zwei Meter lang, aber nur etwa kniehoch.",
-     "mood": "happy",
-     "ev": "mass"
-    },
-    {
-     "t": "Und er wog höchstens um die 15 Kilo.",
+     "t": "Seine bekannteste Waffe: eine große Sichelkralle an jedem Fuß.",
      "mood": "shock",
-     "ev": "kilo"
+     "ev": "sichel"
     },
     {
-     "t": "Die Raptoren im Film sind einem größeren Verwandten nachempfunden.",
+     "t": "Beim Laufen hielt er sie hoch, vermutlich damit sie scharf blieb.",
+     "mood": "happy",
+     "ev": "hoch"
+    },
+    {
+     "t": "Raptoren-Fährten zeigen deshalb nur zwei Zehen.",
      "mood": "cool",
-     "ev": "film"
+     "ev": "spur"
     }
    ]
   },
   {
    "type": "tip",
    "num": "2",
-   "title": "Er hatte *Federn*",
+   "title": "*Zähne* und *Krallen*",
    "path": [],
-   "world": "b6feder",
+   "world": "b6zahn",
    "pause": 0.5,
    "lines": [
     {
-     "t": "Zweitens: Er hatte Federn.",
+     "t": "Zweitens: Im Maul saßen auf jeder Seite 26 bis 28 Zähne.",
      "mood": "happy",
-     "ev": "feder"
+     "ev": "zahn"
     },
     {
-     "t": "Forscher fanden 2007 an seinem Unterarm kleine Höcker, an denen Federkiele saßen.",
+     "t": "Hinten waren sie stärker gezackt als vorne, fast wie ein Steakmesser.",
      "mood": "shock",
-     "ev": "hoeck"
+     "ev": "zack"
     },
     {
-     "t": "Genau solche Höcker haben Vögel heute auch.",
+     "t": "Dazu kamen drei Finger an jeder Hand, jeder mit einer stark gebogenen Kralle.",
      "mood": "happy",
-     "ev": "vogel"
+     "ev": "hand"
     },
     {
-     "t": "Fliegen konnte er damit trotzdem nicht.",
+     "t": "Und sein steifer Schwanz half ihm wohl, in schnellen Kurven die Balance zu halten.",
      "mood": "cool",
-     "ev": "flieg"
+     "ev": "schw"
     }
    ],
-   "quip": "Ich auch nicht.",
-   "quipAt": 3
+   "quip": "Lieber nicht anfassen.",
+   "quipAt": 1
   },
   {
    "type": "tip",
    "num": "3",
-   "title": "Harmlos war er *nicht*",
+   "title": "Der *Kampf-Fund*",
    "path": [],
-   "world": "b6kralle",
+   "world": "b6fund",
    "pause": 0.5,
    "lines": [
     {
-     "t": "Drittens: Harmlos war er trotzdem nicht.",
-     "mood": "shock",
-     "ev": "harm"
-    },
-    {
-     "t": "An jedem Fuß trug er eine große, gebogene Kralle.",
+     "t": "Drittens: Wie er kämpfte, zeigt ein berühmter Fund aus der Mongolei.",
      "mood": "happy",
-     "ev": "kralle"
+     "ev": "fund"
     },
     {
-     "t": "Ein berühmter Fund aus der Mongolei zeigt ihn mitten im Kampf mit einem anderen Dinosaurier.",
+     "t": "Ein Velociraptor und ein Protoceratops sind dort mitten im Kampf versteinert.",
      "mood": "shock",
-     "ev": "fund"
+     "ev": "zwei"
+    },
+    {
+     "t": "Die Fußkralle des Raptors steckt am Hals des Gegners, und der beißt ihm in den Arm.",
+     "mood": "shock",
+     "ev": "kral"
     },
     {
      "t": "So könnte er ausgesehen haben.",
@@ -138,23 +138,27 @@
    "world": "b6out",
    "pause": 0.05,
    "checks": [
-    "So groß wie ein Truthahn",
-    "Er hatte Federn",
-    "Seine Kralle war echt"
+    "Sichelkralle am Fuß",
+    "Gezackte Zähne",
+    "Drei Krallen pro Hand"
    ],
    "lines": [
     {
-     "t": "Also: Der echte Velociraptor war so groß wie ein Truthahn,",
+     "t": "Also: Er war klein, aber gut bewaffnet.",
+     "mood": "cool"
+    },
+    {
+     "t": "Eine Sichelkralle an jedem Fuß,",
      "mood": "happy",
      "ev": "c1"
     },
     {
-     "t": "er hatte Federn,",
+     "t": "gezackte Zähne",
      "mood": "happy",
      "ev": "c2"
     },
     {
-     "t": "und seine Kralle war trotzdem echt.",
+     "t": "und drei Krallen an jeder Hand.",
      "mood": "cool",
      "ev": "c3"
     },
