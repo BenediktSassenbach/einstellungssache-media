@@ -116,7 +116,7 @@ function hand6(t) { let s = '<rect x="-260" y="-260" width="520" height="520" fi
 // ---------- Einstieg (wie v2) ----------
 function hk6(ev, lt, t) { const fr = ev.frage, dr = ev.dreh, zw = ev.zwick;
   const out = fr === undefined ? 0 : ease(cl(fr / 1.2)), step = dr === undefined ? 0 : ease(cl((dr - .4) / .6)), lun = zw === undefined ? 0 : ease(cl(zw / .3));
-  return { x: lerp(1300, RX6, out) - 60 * step - 110 * lun, out, step, lun, walk: (fr !== undefined && out < 1) || (step > 0 && step < 1) || (lun > 0 && lun < 1) }; }
+  return { x: lerp(1300, RX6 + 170, out) - 60 * step - 110 * lun, out, step, lun, walk: (fr !== undefined && out < 1) || (step > 0 && step < 1) || (lun > 0 && lun < 1) }; }
 WORLD.b6hook = function (sc, ev, t, lt) { const U = urD(t), H = hk6(ev, lt, t), dr = ev.dreh, zw = ev.zwick; let s = bg6(U, t) + cliff6();
   const grow = ease(cl(lt / 1)), ssc = lerp(1.7, 1.1, H.out) * (.75 + .25 * grow), jawS = .5 + .5 * Math.sin(t * 5);
   s += shad6(lerp(560, H.x - 80, H.out), 1160, ssc, t, { feath: H.out > .5 ? .8 : 0, jaw: H.out < 1 ? jawS : .1, head: -6 }, .55 * (1 - .55 * H.out));
@@ -140,9 +140,8 @@ const PR6 = [[690, 1130], [830, 1136], [970, 1130]];
 WORLD.b6sichel = function (sc, ev, t, lt) { const U = urD(t), kl = ev.klein, si = ev.sichel, ho = ev.hoch, sp = ev.spur; let h = '';
   // Lichtung: Raptor tritt nach dem Fauchen zurueck und schaut zu Schalti. Im letzten Satz dreht er um und laeuft ganz aus dem Bild.
   let rx = RX6, o = {}, C = bg6(U, t) + mud6();
-  const b0 = ease(cl(lt / .9));
-  if (sp === undefined) { rx = lerp(RX6 - 170, RX6, b0); const sn = kl === undefined ? 0 : Math.sin(Math.PI * cl((kl - 1.6) / 1.6)); o = b0 < 1 ? { run: 1 } : { head: 20 * sn + peck6(t) * .3 * (1 - sn), jaw: .15 * sn }; }
-  else { const tu = ease(cl((sp - .4) / .4)), wk = ease(cl((sp - .7) / 1.6)); rx = lerp(RX6, 1600, wk); o = { kx: lerp(1, -1, tu), run: wk > 0 && wk < 1 ? 1 : 0 };
+    if (sp === undefined) { const sn = kl === undefined ? 0 : Math.sin(Math.PI * cl((kl - 1.6) / 1.6)); o = { head: 20 * sn + peck6(t) * .3 * (1 - sn), jaw: .15 * sn }; }
+  else { const tu = ease(cl((sp - .4) / .4)), wk = ease(cl((sp - .85) / 1.6)); rx = lerp(RX6, 1600, wk); o = { kx: lerp(1, -1, tu), run: wk > 0 && wk < 1 ? 1 : 0 };
     PR6.forEach((p, i) => { C += print6(p[0], p[1], cl((sp - .9 - i * .3) / .25), i === 0 ? cl((sp - 2.4) / .3) : 0); }); }
   if (rx < 1560) C += rap6(rx, RY6, RS6, t, o);
   if (kl !== undefined && si === undefined) { const k = ease(cl((kl - .3) / .7)), x = RX6 + 150, hip = RY6 - 188 * RS6; C += '<path d="M' + x + ' ' + RY6 + ' V' + lerp(RY6, hip, k).toFixed(0) + '" stroke="#FFE14D" stroke-width="12" stroke-linecap="round"/>'; for (let i = 1; i < 6; i++) { const y = lerp(RY6, hip, i / 6); if (y > lerp(RY6, hip, k)) C += '<path d="M' + (x - 10) + ' ' + y.toFixed(0) + ' h20" stroke="' + ST6 + '" stroke-width="4"/>'; }
@@ -177,15 +176,15 @@ const cone6 = (x, y, r) => '<g data-figur="Zapfen" transform="translate(' + x.to
 WORLD.b6zahn = function (sc, ev, t, lt) { const U = urD(t), za = ev.zahn, zk = ev.zack, ha = ev.hand, sw = ev.schw; let h = '';
   const pr = () => PR6.map(p => print6(p[0], p[1], 1, 0)).join('');
   // Lichtung zu Beginn: Raptor kommt von rechts zurueck
-  const ret = ease(cl(lt / 1.1)), C1 = bg6(U, t) + mud6() + pr() + rap6(lerp(1600, RX6, ret), RY6, RS6, t, { run: ret < 1 ? 1 : 0 }) + fg6(t);
+  const ret = ease(cl(lt / 1)), yw = za === undefined ? 0 : ease(cl((za - .45) / .4)), C1 = bg6(U, t) + mud6() + pr() + rap6(lerp(1600, RX6, ret), RY6, RS6, t, { run: ret < 1 ? 1 : 0, head: 12 * yw, jaw: .3 * yw }) + fg6(t);
   // Kopf in Nahaufnahme
   let jaw = 0, cnt = 0, hot = -1, chomp = 0;
-  if (za !== undefined) { jaw = .7 * ease(cl((za - .4) / .6)); cnt = Math.min(27, Math.floor(cl((za - 1) / 2) * 27 + .001)); if (cnt > 0 && cnt < 27) hot = cnt - 1; chomp = cl((za - 3.3) / .15); if (chomp > 0) jaw = .7 * (1 - chomp); }
+  if (za !== undefined) { jaw = .3 + .4 * ease(cl((za - 1.1) / .5)); cnt = Math.min(27, Math.floor(cl((za - 1.6) / 1.55) * 27 + .001)); if (cnt > 0 && cnt < 27) hot = cnt - 1; chomp = cl((za - 3.45) / .15); if (chomp > 0) jaw = .7 * (1 - chomp); }
   if (zk !== undefined) { jaw = .35 * ease(cl((zk - .2) / .4)); cnt = 27; hot = 4; }
   const D = bg6(U, t) + '<g data-figur="Kopf">' + head6(HC6[0], HC6[1], HX6, t, { jaw: jaw, cnt: cnt, hot: hot }) + '</g>' + fg6(t);
   let s = C1;
-  if (ha === undefined) { s = wipe3(C1, D, za === undefined ? 0 : za, .5, AC6);
-    if (za !== undefined && zk === undefined) { s += ch6(300, 702, cnt >= 27 && za > 3.05 ? '26 bis 28 pro Seite' : cnt + ' Zähne', 30, '#FFE14D', ST6, cl((za - 1) / .2)); if (chomp > 0 && chomp < 1) s += '<path d="M150 1080 l-40 -30 M200 1100 l-10 -46 M250 1080 l30 -36" stroke="#FFE14D" stroke-width="8" stroke-linecap="round"/>'; }
+  if (ha === undefined) { s = wipe3(C1, D, za === undefined ? 0 : za - .85, .5, AC6);
+    if (za !== undefined && zk === undefined) { s += ch6(300, 702, cnt >= 27 && za > 3.2 ? '26 bis 28 pro Seite' : cnt + ' Zähne', 30, '#FFE14D', ST6, cl((za - 1.6) / .2)); if (chomp > 0 && chomp < 1) s += '<path d="M150 1080 l-40 -30 M200 1100 l-10 -46 M250 1080 l30 -36" stroke="#FFE14D" stroke-width="8" stroke-linecap="round"/>'; }
     if (zk !== undefined) { const [tx, ty] = UT6(4); s += lupe6(740, 800, 200, tooth6(), cl((zk - .4) / .4), (HC6[0] + tx * HX6).toFixed(0), (HC6[1] + (ty + 26) * HX6).toFixed(0)); } }
   else {
     // Zurueck in der Lichtung: Hand (Schalti wirft einen Zapfen, der Raptor faengt ihn mit den Krallen) und Sprint
@@ -194,7 +193,7 @@ WORLD.b6zahn = function (sc, ev, t, lt) { const U = urD(t), za = ev.zahn, zk = e
       o = { arm: up, head: fq > 0 && fq < 1 ? 10 : 4, jaw: fq > .8 && fq < 1 ? .3 : 0 };
       if (fq > 0 && fq < 1) { const e = ease(fq); cone = cone6(lerp(330, HX, e), lerp(1330, HY, e) - 360 * Math.sin(Math.PI * e), 600 * fq); }
       else if (fq >= 1) cone = cone6(HX - 6, HY + 6, 20); }
-    else { const a = ease(cl((sw - .2) / .9)), b = ease(cl((sw - 1.1) / .35)), c = ease(cl((sw - 1.45) / .9)); rx = c > 0 ? lerp(1020, RX6, c) : lerp(RX6, 1020, a); const kx = c > 0 || b > 0 ? lerp(-1, 1, b) : lerp(1, -1, ease(cl((sw - .1) / .3))); o = { kx: kx, run: (a > 0 && a < 1) || (c > 0 && c < 1) ? 1 : 0, ph: t * 17 }; }
+    else { const a = ease(cl((sw - .45) / .75)), b = ease(cl((sw - 1.2) / .3)), c = ease(cl((sw - 1.5) / .85)); rx = c > 0 ? lerp(1020, RX6, c) : lerp(RX6, 1020, a); const kx = c > 0 || b > 0 ? lerp(-1, 1, b) : lerp(1, -1, ease(cl((sw - .1) / .3))); o = { kx: kx, run: (a > 0 && a < 1) || (c > 0 && c < 1) ? 1 : 0, ph: t * 17 }; }
     C2 += rap6(rx, RY6, RS6, t, o) + cone + fg6(t);
     if (sw === undefined) C2 += lupe6(820, 640, 170, hand6(t), cl((ha - .9) / .4) * (1 - cl((ha - 3.2) / .3)), 525, RY6 - 267);
     else C2 += ch6(210, 960, 'steif wie ein Stab', 28, '#3DFF7A', ST6, cl((sw - 2.4) / .3));
@@ -204,7 +203,7 @@ WORLD.b6zahn = function (sc, ev, t, lt) { const U = urD(t), za = ev.zahn, zk = e
 WMASC.b6zahn = (ev, t, lt) => { const za = ev.zahn, ha = ev.hand, sw = ev.schw;
   if (sw !== undefined) { const q = cl((sw - 2.4) / 1.6); if (q <= 0) return stay3([220, 1537], 1, { r: 4, mood: 'happy' }); const fall = Math.sin(Math.PI * q), sp = ease(cl(q / .3)); return stay3([220 + 36 * fall, 1537], 1, { r: -64 * fall + 6 * Math.sin(t * 9) * (1 - sp) * (q < .3 ? 1 : 0), mood: q > .25 && q < .85 ? 'shock' : 'cool' }); }
   if (ha !== undefined) { const th = Math.sin(Math.PI * cl((ha - 3.3) / .5)); return stay3([lerp(190, 220, ease(cl(ha / .6))), 1537], 1, { r: -18 * th, mood: ha > 4 ? 'happy' : 'cool' }); }
-  if (za !== undefined) { const c = cl((za - 3.3) / .5); if (c > 0 && c < 1) return hop3(c, [220, 1537], [190, 1537], 40, 1, 1, { r: -12 * Math.sin(Math.PI * c), mood: 'shock' }); return stay3([za >= 3.8 ? 190 : 220, 1537], 1, { r: 4 + 4 * Math.sin(t * 4) * Math.sin(Math.PI * cl((za - 1) / 2)), mood: 'happy' }); }
+  if (za !== undefined) { const c = cl((za - 3.45) / .5); if (c > 0 && c < 1) return hop3(c, [220, 1537], [190, 1537], 40, 1, 1, { r: -12 * Math.sin(Math.PI * c), mood: 'shock' }); return stay3([za >= 3.95 ? 190 : 220, 1537], 1, { r: 4 + 4 * Math.sin(t * 4) * Math.sin(Math.PI * cl((za - 1.6) / 1.6)), mood: 'happy' }); }
   return stay3([220, 1537], 1, { r: 2 }); };
 
 // ---------- Teil 3: Kampf-Fund ----------
@@ -255,7 +254,7 @@ function photo6(t, k) { if (k <= 0) return ''; const W0 = 1040, H0 = 693, cy = 8
   return '<rect width="1080" height="1920" fill="#02030F" opacity="' + (.55 * cl(k / .4)).toFixed(3) + '"/><g transform="translate(540 ' + cy + ') scale(' + e.toFixed(3) + ')"><rect x="' + (-W0 / 2 - 10) + '" y="' + (-H0 / 2 - 10) + '" width="' + (W0 + 20) + '" height="' + (H0 + 20) + '" rx="16" fill="#FFF6DF" stroke="#0B1020" stroke-width="6"/><clipPath id="ph6"><rect x="' + (-W0 / 2) + '" y="' + (-H0 / 2) + '" width="' + W0 + '" height="' + H0 + '" rx="8"/></clipPath><g clip-path="url(#ph6)">' + inner + '</g></g>' + (typeof VRIMG !== 'undefined' ? ch6(900, 1196, 'KI-Bild', 28, '#0B1020', '#F4F6FB', (k - .7) / .3) : ''); }
 
 // ---------- Schluss: der Raptor kommt und setzt sich mit Abstand zu Schalti ----------
-WORLD.b6out = function (sc, ev, t, lt) { const U = urD(t), k = ease(cl(lt / 1.6)), sit = ease(cl((lt - 1.7) / .6)); return W(bg6(U, t) + rap6(lerp(1600, RX6, k), RY6, RS6, t, { run: k < 1 ? 1 : 0, sit: sit * .8, head: k >= 1 ? 6 : 0 }) + fg6(t) + shade3()); };
+WORLD.b6out = function (sc, ev, t, lt) { const U = urD(t), sit = ease(cl((lt - .6) / .8)); return W(bg6(U, t) + rap6(RX6, RY6, RS6, t, { sit: sit * .8, head: 6 * sit }) + fg6(t) + shade3()); };
 WMASC.b6out = (ev, t, lt) => stay3([220, 1537], 1, { r: 2 });
 
 ['b6hook', 'b6sichel', 'b6zahn', 'b6fund', 'b6out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC6); });
