@@ -17,6 +17,10 @@ function shad6(x, y, s, t, o, op) { return '<clipPath id="cl6c"><path d="M330 10
 function lupe6(cx, cy, r, inner, k, hx, hy) { if (k <= .01) return ''; const e = back(cl(k)); return '<g transform="translate(' + cx + ' ' + cy + ') scale(' + e.toFixed(3) + ')"><clipPath id="lu6' + cx + '"><circle r="' + r + '"/></clipPath><circle r="' + r + '" fill="#FFF6DF"/><g clip-path="url(#lu6' + cx + ')">' + inner + '</g><circle r="' + r + '" fill="none" stroke="#F4F6FB" stroke-width="12"/><circle r="' + (r + 6) + '" fill="none" stroke="#0B1020" stroke-width="4"/></g><path d="M' + (cx - r * .7 * e).toFixed(0) + ' ' + (cy + r * .7 * e).toFixed(0) + ' L' + hx + ' ' + hy + '" stroke="#F4F6FB" stroke-width="20" stroke-linecap="round" opacity="' + cl(k * 2).toFixed(2) + '"/>'; }
 function fly6(x, y, t) { const w = Math.sin(t * 60) * 14; return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')"><ellipse cx="-6" cy="-6" rx="20" ry="' + (6 + Math.abs(w) * .3).toFixed(1) + '" fill="#DDF6FF" opacity=".7" transform="rotate(' + (-30 + w) + ')"/><ellipse cx="6" cy="-6" rx="20" ry="' + (6 + Math.abs(w) * .3).toFixed(1) + '" fill="#DDF6FF" opacity=".7" transform="rotate(' + (30 - w) + ')"/><path d="M-30 0 H22" stroke="#2FB8A8" stroke-width="7" stroke-linecap="round"/><circle cx="26" cy="0" r="7" fill="#1E7A70"/></g>'; }
 const peck6 = t => 30 * Math.max(0, Math.sin(t * 4.4)) * (Math.sin(t * 1.1) > -.3 ? 1 : 0);
+// Pflanzen: die Randfarne gehoeren zum Hintergrund (hinter dem Raptor). Vorn liegt nur noch die untere Wiese ab y 1540,
+// damit keine Halme ueber dem Raptor oder der Textzeile liegen (Benedikt, 18.11.2026).
+function bg6(U, t) { let f = ''; for (let i = 0; i < 4; i++) f += frondD(-10, 1170, -62 + i * 16, 230, t, i % 2 ? '#35A85C' : '#22874A', i); for (let i = 0; i < 4; i++) f += frondD(1090, 1170, -118 - i * 16, 240, t, i % 2 ? '#22874A' : '#35A85C', i + 5); return U.b + f; }
+const fg6 = t => lowD(t, 1, 1540);
 // Matschfleck fuer die Faehrte
 const mud6 = () => '<ellipse cx="820" cy="1496" rx="330" ry="58" fill="#7A5A36" opacity=".9"/><ellipse cx="800" cy="1486" rx="290" ry="40" fill="#8C6A42" opacity=".8"/>';
 // Abdruck mit zwei Zehen, Zehen zeigen nach rechts (Laufrichtung). n: Zaehl-Nummern (0 bis 1)
@@ -47,7 +51,7 @@ function rfoot6(x, y, s, t, o) { o = o || {}; const P = RAP6, L = o.lift || 0, f
   g += '</g></g></g></g>'; return g; }
 
 // Felsblock, auf dem der Fuss in der Nahaufnahme steht (Schalti steht unten daneben)
-function rock6() { return '<defs><linearGradient id="rk6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A89C8C"/><stop offset="1" stop-color="#6A6054"/></linearGradient></defs><path d="M300 1560 L330 1200 Q360 1104 470 1098 L1100 1086 V1560 Z" fill="url(#rk6)" stroke="' + ST6 + '" stroke-width="7" stroke-linejoin="round"/><path d="M350 1130 Q420 1100 480 1100 L1100 1090 V1124 L480 1134 Q410 1136 350 1150 Z" fill="#C2B6A4" opacity=".7"/><path d="M520 1180 l30 90 l-20 70 M800 1160 l-24 110 l30 80 M960 1200 l14 120" stroke="#564C42" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M340 1300 q40 -20 70 6 q30 -26 66 0" stroke="#3C9A5A" stroke-width="14" fill="none" stroke-linecap="round"/>'; }
+function rock6() { return '<defs><linearGradient id="rk6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A89C8C"/><stop offset="1" stop-color="#6A6054"/></linearGradient></defs><path d="M470 1560 L486 1200 Q500 1108 580 1100 L1100 1086 V1560 Z" fill="url(#rk6)" stroke="' + ST6 + '" stroke-width="7" stroke-linejoin="round"/><path d="M494 1140 Q530 1102 590 1102 L1100 1090 V1124 L590 1134 Q530 1138 494 1160 Z" fill="#C2B6A4" opacity=".7"/><path d="M600 1180 l30 90 l-20 70 M800 1160 l-24 110 l30 80 M960 1200 l14 120" stroke="#564C42" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M500 1300 q40 -20 70 6 q30 -26 66 0" stroke="#3C9A5A" stroke-width="14" fill="none" stroke-linecap="round"/>'; }
 // ---------- Nahaufnahme: Kopf (Ursprung Kopfmitte, schaut nach links) ----------
 // o: jaw (0 bis 1), cnt (gezaehlte Zaehne, oben 13 + unten 14), hot (Zahn mit Ring)
 const UT6 = i => { const x = -390 + i * 42; return [x, -5 + 35 * (x + 405) / 545]; };
@@ -98,7 +102,7 @@ function hand6(t) { let s = '<rect x="-260" y="-260" width="520" height="520" fi
 function hk6(ev, lt, t) { const fr = ev.frage, dr = ev.dreh, zw = ev.zwick;
   const out = fr === undefined ? 0 : ease(cl(fr / 1.2)), step = dr === undefined ? 0 : ease(cl((dr - .4) / .6)), lun = zw === undefined ? 0 : ease(cl(zw / .3));
   return { x: lerp(1200, RX6, out) - 60 * step - 110 * lun, out, step, lun, walk: (fr !== undefined && out < 1) || (step > 0 && step < 1) || (lun > 0 && lun < 1) }; }
-WORLD.b6hook = function (sc, ev, t, lt) { const U = urD(t), H = hk6(ev, lt, t), dr = ev.dreh, zw = ev.zwick; let s = U.b + cliff6();
+WORLD.b6hook = function (sc, ev, t, lt) { const U = urD(t), H = hk6(ev, lt, t), dr = ev.dreh, zw = ev.zwick; let s = bg6(U, t) + cliff6();
   const grow = ease(cl(lt / 1)), ssc = lerp(1.7, 1.1, H.out) * (.75 + .25 * grow), jawS = .5 + .5 * Math.sin(t * 5);
   s += shad6(lerp(560, H.x - 80, H.out), 1160, ssc, t, { feath: H.out > .5 ? .8 : 0, jaw: H.out < 1 ? jawS : .1, head: -6 }, .55 * (1 - .55 * H.out));
   const chase = ev.frage !== undefined && dr === undefined, flyGone = dr === undefined ? 0 : cl(dr / .8);
@@ -107,7 +111,7 @@ WORLD.b6hook = function (sc, ev, t, lt) { const U = urD(t), H = hk6(ev, lt, t), 
   const snapF = chase ? Math.max(0, Math.sin(t * 3.4)) : 0, zwq = zw === undefined ? 0 : Math.max(0, Math.sin(Math.PI * cl((zw - .2) / .35)));
   s += rap6(H.x, RY6, RS6, t, { run: H.walk ? 1 : 0, head: zw !== undefined ? 26 * zwq + 10 : (dr !== undefined ? 16 : (chase ? -14 + 10 * Math.sin(t * 2.3) : peck6(t))), jaw: zw !== undefined ? zwq : (dr !== undefined ? .4 + .25 * Math.sin(t * 9) : snapF * .8) });
   if (dr !== undefined && zw === undefined) s += roard(H.x - 360, RY6 - 330, 200, t, cl((dr - .3) / .3) * .6);
-  s += U.f; if (H.out < .3) for (let i = 0; i < 4; i++) s += frondD(1100, 1300, -170 + i * 18, 360, t, i % 2 ? '#2A9450' : '#22874A', i);
+  s += fg6(t); if (H.out < .3) for (let i = 0; i < 4; i++) s += frondD(1100, 1300, -170 + i * 18, 360, t, i % 2 ? '#2A9450' : '#22874A', i);
   return W(s + shade3()); };
 WMASC.b6hook = (ev, t, lt) => { const zw = ev.zwick, dr = ev.dreh;
   if (zw !== undefined) { if (zw < .45) return stay3(HOME3, 1, { r: -4, mood: 'shock' }); return hop3(cl((zw - .45) / .45), HOME3, [150, 1537], 50, 1, 1, { r: -16, mood: zw > .9 ? 'cool' : 'shock' }); }
@@ -119,7 +123,7 @@ WMASC.b6hook = (ev, t, lt) => { const zw = ev.zwick, dr = ev.dreh;
 const PR6 = [[700, 1494], [860, 1502], [1020, 1494]];
 WORLD.b6sichel = function (sc, ev, t, lt) { const U = urD(t), kl = ev.klein, si = ev.sichel, ho = ev.hoch, sp = ev.spur; let h = '';
   // Lichtung: Raptor tritt nach dem Zwicken zurueck, schnuppert an Schalti. Im letzten Satz dreht er um und laeuft weg.
-  let rx = RX6, o = {}, C = U.b + mud6();
+  let rx = RX6, o = {}, C = bg6(U, t) + mud6();
   const b0 = ease(cl(lt / .9));
   if (sp === undefined) { rx = lerp(RX6 - 170, RX6, b0); const sn = kl === undefined ? 0 : Math.max(0, Math.sin(Math.PI * cl((kl - 1.6) / 1.4))); o = b0 < 1 ? { run: 1 } : { head: 22 * sn + peck6(t) * .3 * (1 - sn), jaw: .15 * sn }; }
   else { const tu = ease(cl((sp - .5) / .4)), wk = ease(cl((sp - .8) / 1.6)); rx = lerp(RX6, 1420, wk); o = { kx: lerp(1, -1, tu), run: wk > 0 && wk < 1 ? 1 : 0 };
@@ -127,20 +131,20 @@ WORLD.b6sichel = function (sc, ev, t, lt) { const U = urD(t), kl = ev.klein, si 
   C += rap6(rx, RY6, RS6, t, o);
   if (kl !== undefined && si === undefined) { const k = ease(cl((kl - .3) / .7)), x = RX6 + 150, hip = RY6 - 188 * RS6; C += '<path d="M' + x + ' ' + RY6 + ' V' + lerp(RY6, hip, k).toFixed(0) + '" stroke="#FFE14D" stroke-width="12" stroke-linecap="round"/>'; for (let i = 1; i < 6; i++) { const y = lerp(RY6, hip, i / 6); if (y > lerp(RY6, hip, k)) C += '<path d="M' + (x - 10) + ' ' + y.toFixed(0) + ' h20" stroke="' + ST6 + '" stroke-width="4"/>'; }
     C += chip3(780, 1110, 'etwa 0,5 m', 34, '#FFE14D', ST6, cl((kl - 1) / .3)); }
-  C += U.f;
+  C += fg6(t);
   // Nahaufnahme Fuss
   let D = '';
   if (si !== undefined && sp === undefined) { let L = 0, land = 0; if (ho !== undefined) { const ph = (ho % 1.6) / 1.6; L = ph < .5 ? Math.sin(Math.PI * ph * 2) : 0; land = ph >= .5 && ph < .75 ? (ph - .5) / .25 : 0; }
     const fl = ho !== undefined ? 0 : -24 * Math.sin(Math.PI * cl((si - .9) / 1)) + 4 * Math.sin(t * 2.4);
-    D = U.b + U.f + rock6() + rfoot6(760, 1100, 1.3, t, { lift: L, flex: fl, gl: si > 1.6 && ho === undefined ? (si - 1.6) / .8 : 0, mes: ho === undefined ? cl((si - 2) / .6) : 0 });
-    if (land > 0) for (let i = 0; i < 5; i++) D += '<circle cx="' + (470 + i * 70 + 40 * land * (i - 2)).toFixed(0) + '" cy="' + (1100 - 26 * land).toFixed(0) + '" r="' + (10 + 18 * land).toFixed(0) + '" fill="#EFE6D6" opacity="' + (.7 * (1 - land)).toFixed(2) + '"/>';
-    if (ho === undefined) D += chip3(330, 720, 'über 6,5 cm', 34, '#FFE14D', ST6, cl((si - 2.4) / .3));
-    else D += chip3(410, 720, 'berührt den Boden nicht', 30, '#3DFF7A', ST6, cl((ho - .8) / .3)); }
+    D = bg6(U, t) + rock6() + rfoot6(870, 1100, 1.2, t, { lift: L, flex: fl, gl: si > 1.6 && ho === undefined ? (si - 1.6) / .8 : 0, mes: ho === undefined ? cl((si - 2) / .6) : 0 });
+    if (land > 0) for (let i = 0; i < 5; i++) D += '<circle cx="' + (560 + i * 64 + 40 * land * (i - 2)).toFixed(0) + '" cy="' + (1100 - 26 * land).toFixed(0) + '" r="' + (10 + 18 * land).toFixed(0) + '" fill="#EFE6D6" opacity="' + (.7 * (1 - land)).toFixed(2) + '"/>';
+    if (ho === undefined) D += chip3(470, 720, 'über 6,5 cm', 34, '#FFE14D', ST6, cl((si - 2.4) / .3));
+    else D += chip3(500, 720, 'berührt den Boden nicht', 30, '#3DFF7A', ST6, cl((ho - .8) / .3)); }
   let s = C; if (si !== undefined && sp === undefined) s = wipe3(C, D, si, .5, AC6); if (sp !== undefined) { const C0 = C; s = sp < .5 ? wipe3(D0b6(t), C0, sp, .5, AC6) : C0; }
   if (sp !== undefined) s += chip3(830, 1390, 'nur zwei Zehen', 30, '#FFE14D', ST6, cl((sp - 2.5) / .3));
   h += slot(ev, [['klein', 'Nur etwa kniehoch'], ['sichel', 'Sichelkralle an jedem Fuß', 'hot'], ['hoch', 'Beim Laufen angehoben'], ['spur', 'Fährten: nur zwei Zehen']]);
   return W(s + shade3(), h); };
-function D0b6(t) { const U = urD(t); return U.b + U.f + rock6() + rfoot6(760, 1100, 1.3, t, {}); }
+function D0b6(t) { const U = urD(t); return bg6(U, t) + rock6() + rfoot6(870, 1100, 1.2, t, {}); }
 WMASC.b6sichel = (ev, t, lt) => { const kl = ev.klein, si = ev.sichel, ho = ev.hoch, sp = ev.spur;
   if (sp !== undefined) { const q = ease(cl((sp - 1.3) / .9)); return stay3([lerp(220, 400, q), 1537], 1, { r: q > 0 && q < 1 ? 4 * Math.sin(t * 16) : 8, mood: sp > 2.3 ? 'happy' : 'cool' }); }
   if (ho !== undefined) { const ph = (ho % 1.6) / 1.6, fl = ph >= .5 && ph < .7; return stay3([220, 1537], 1, fl ? { r: -10, mood: 'shock' } : { r: 6 }); }
@@ -152,22 +156,22 @@ WMASC.b6sichel = (ev, t, lt) => { const kl = ev.klein, si = ev.sichel, ho = ev.h
 WORLD.b6zahn = function (sc, ev, t, lt) { const U = urD(t), za = ev.zahn, zk = ev.zack, ha = ev.hand, sw = ev.schw; let h = '';
   const pr = () => PR6.map(p => print6(p[0], p[1], 1.3, 0)).join('');
   // Lichtung zu Beginn: Raptor kommt zurueck
-  const ret = ease(cl(lt / 1.1)), C1 = U.b + mud6() + pr() + rap6(lerp(1420, RX6, ret), RY6, RS6, t, { run: ret < 1 ? 1 : 0 }) + U.f;
+  const ret = ease(cl(lt / 1.1)), C1 = bg6(U, t) + mud6() + pr() + rap6(lerp(1420, RX6, ret), RY6, RS6, t, { run: ret < 1 ? 1 : 0 }) + fg6(t);
   // Kopf in Nahaufnahme
   let jaw = 0, cnt = 0, hot = -1, chomp = 0;
   if (za !== undefined) { jaw = .85 * ease(cl((za - .4) / .6)); cnt = Math.min(27, Math.floor(cl((za - 1) / 2) * 27 + .001)); if (cnt > 0 && cnt < 27) hot = cnt - 1; chomp = cl((za - 3.3) / .15); if (chomp > 0) jaw = .85 * (1 - chomp); }
   if (zk !== undefined) { jaw = .35 * ease(cl((zk - .2) / .4)); cnt = 27; hot = 4; }
-  const D = U.b + head6(620, 860, 1.15, t, { jaw: jaw, cnt: cnt, hot: hot }) + U.f;
+  const D = bg6(U, t) + head6(620, 860, 1.15, t, { jaw: jaw, cnt: cnt, hot: hot }) + fg6(t);
   let s = C1;
   if (ha === undefined) { s = wipe3(C1, D, za === undefined ? 0 : za, .5, AC6);
     if (za !== undefined && zk === undefined) { s += chip3(300, 712, cnt >= 27 && za > 3.05 ? '26 bis 28 pro Seite' : cnt + ' Zähne', 36, '#FFE14D', ST6, cl((za - 1) / .2)); if (chomp > 0 && chomp < 1) s += '<path d="M150 1060 l-40 -30 M200 1080 l-10 -46 M250 1060 l30 -36" stroke="#FFE14D" stroke-width="8" stroke-linecap="round"/>'; }
     if (zk !== undefined) { const [tx, ty] = UT6(4); s += lupe6(740, 800, 200, tooth6(), cl((zk - .4) / .4), (620 + tx * 1.15).toFixed(0), (860 + (ty + 26) * 1.15).toFixed(0)); } }
   else {
     // Zurueck in der Lichtung: Hand und Sprint
-    let rx = RX6, o = {}, C2 = U.b + mud6() + pr();
+    let rx = RX6, o = {}, C2 = bg6(U, t) + mud6() + pr();
     if (sw === undefined) { const up = 40 * ease(cl((ha - .5) / .5)), sv = cl((ha - 3.6) / 1); rx = RX6 - 60 * Math.sin(Math.PI * sv); o = { arm: up + (sv > 0 && sv < 1 ? 30 * Math.sin(t * 14) : 0), head: sv > 0 && sv < 1 ? 14 : 0, jaw: sv > 0 && sv < 1 ? .3 : 0, run: sv > 0 && sv < 1 ? 1 : 0 }; }
     else { const a = ease(cl((sw - .2) / .9)), b = ease(cl((sw - 1.1) / .35)), c = ease(cl((sw - 1.45) / .9)); rx = c > 0 ? lerp(1020, RX6, c) : lerp(RX6, 1020, a); const kx = c > 0 || b > 0 ? lerp(-1, 1, b) : lerp(1, -1, ease(cl((sw - .1) / .3))); o = { kx: kx, run: (a > 0 && a < 1) || (c > 0 && c < 1) ? 1 : 0, ph: t * 17 }; }
-    C2 += rap6(rx, RY6, RS6, t, o) + U.f;
+    C2 += rap6(rx, RY6, RS6, t, o) + fg6(t);
     if (sw === undefined) C2 += lupe6(700, 830, 190, hand6(t), cl((ha - .9) / .4) * (1 - cl((ha - 3.3) / .3)), 525, 1173);
     else C2 += chip3(700, 1110, 'steif wie ein Stab', 32, '#3DFF7A', ST6, cl((sw - 2.4) / .3));
     s = wipe3(D, C2, ha, .5, AC6); }
@@ -203,7 +207,7 @@ function fossil6(rev) { const B = 'stroke="#F6EDD4" stroke-width="11" fill="none
   draw('M790 1310 Q860 1300 940 1330'); for (let i = 0; i < 6; i++) draw('M' + (800 + i * 22) + ' ' + (1310 + i * 2) + ' q4 36 -4 56', 1); draw('M830 1350 L816 1450 M906 1350 L920 1450', 1); draw('M940 1330 L970 1360', 1);
   return '<g transform="translate(0 -470)"><clipPath id="fos6">' + rev + '</clipPath><g clip-path="url(#fos6)"><rect x="80" y="1180" width="900" height="320" fill="#C99A62"/>' + g + '</g></g>'; }
 WORLD.b6fund = function (sc, ev, t, lt) { const U = urD(t), fu = ev.fund, zw = ev.zwei, kr = ev.kral, fo = ev.foto; let h = '';
-  const C = U.b + mud6() + rap6(RX6, RY6, RS6, t, { head: peck6(t) * .4 }) + U.f; let s = C;
+  const C = bg6(U, t) + mud6() + rap6(RX6, RY6, RS6, t, { head: peck6(t) * .4 }) + fg6(t); let s = C;
   if (fu !== undefined) { let D = desert6(t); const prog = ease(cl((fu - .9) / 4)); let rev = ''; for (let i = 0; i < 18; i++) { const r = cl(prog * 18 - i) * 110; if (r > 0) rev += '<circle cx="' + (140 + (i % 6) * 150 + 20 * rnd(i)).toFixed(0) + '" cy="' + (1230 + Math.floor(i / 6) * 100).toFixed(0) + '" r="' + r.toFixed(0) + '"/>'; }
     D += '<rect x="60" y="690" width="940" height="360" rx="20" fill="#D9A86A" stroke="#8A5A32" stroke-width="6"/><path d="M60 1050 Q540 1090 1000 1050 V1110 H60 Z" fill="#B8804A"/>' + fossil6(rev);
     if (prog > 0 && prog < 1) { const bx = 140 + (Math.floor(prog * 18) % 6) * 150, by = 760 + Math.floor(Math.floor(prog * 18) / 6) * 100; D += '<g transform="translate(' + (bx + 20 * Math.sin(t * 14)).toFixed(0) + ' ' + (by - 30) + ') rotate(-30)"><rect x="-10" y="-90" width="20" height="80" rx="6" fill="#8B5E3C" stroke="#0B1020" stroke-width="4"/><rect x="-22" y="-14" width="44" height="40" rx="6" fill="#F2D06A" stroke="#0B1020" stroke-width="4"/></g>'; for (let i = 0; i < 4; i++) { const ph = (t * 3 + i / 4) % 1; D += '<circle cx="' + (bx + 40 + 50 * ph).toFixed(0) + '" cy="' + (by - 10 - 40 * ph).toFixed(0) + '" r="' + (4 + 6 * ph).toFixed(0) + '" fill="#E8C08A" opacity="' + (1 - ph).toFixed(2) + '"/>'; } }
@@ -227,7 +231,7 @@ function photo6(t, k) { if (k <= 0) return ''; const W0 = 1040, H0 = 693, cy = 8
   return '<rect width="1080" height="1920" fill="#02030F" opacity="' + (.55 * cl(k / .4)).toFixed(3) + '"/><g transform="translate(540 ' + cy + ') scale(' + e.toFixed(3) + ')"><rect x="' + (-W0 / 2 - 10) + '" y="' + (-H0 / 2 - 10) + '" width="' + (W0 + 20) + '" height="' + (H0 + 20) + '" rx="16" fill="#FFF6DF" stroke="#0B1020" stroke-width="6"/><clipPath id="ph6"><rect x="' + (-W0 / 2) + '" y="' + (-H0 / 2) + '" width="' + W0 + '" height="' + H0 + '" rx="8"/></clipPath><g clip-path="url(#ph6)">' + inner + '</g></g>' + (typeof VRIMG !== 'undefined' ? chip3(900, 1196, 'KI-Bild', 28, '#0B1020', '#F4F6FB', (k - .7) / .3) : ''); }
 
 // ---------- Schluss: der Raptor kommt und setzt sich mit Abstand zu Schalti ----------
-WORLD.b6out = function (sc, ev, t, lt) { const U = urD(t), k = ease(cl(lt / 1.6)), sit = ease(cl((lt - 1.7) / .6)); return W(U.b + rap6(lerp(1300, RX6, k), RY6 + 40, RS6, t, { run: k < 1 ? 1 : 0, sit: sit * .8, head: k >= 1 ? 6 : 0 }) + U.f + shade3()); };
+WORLD.b6out = function (sc, ev, t, lt) { const U = urD(t), k = ease(cl(lt / 1.6)), sit = ease(cl((lt - 1.7) / .6)); return W(bg6(U, t) + rap6(lerp(1300, RX6, k), RY6 + 40, RS6, t, { run: k < 1 ? 1 : 0, sit: sit * .8, head: k >= 1 ? 6 : 0 }) + fg6(t) + shade3()); };
 WMASC.b6out = (ev, t, lt) => stay3([220, 1537], 1, { r: 2 });
 
 ['b6hook', 'b6sichel', 'b6zahn', 'b6fund', 'b6out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC6); });
