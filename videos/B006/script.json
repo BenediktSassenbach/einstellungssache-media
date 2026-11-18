@@ -5,7 +5,7 @@
  "id": "B006",
  "titel": "Wie gefährlich war der Velociraptor?",
  "gagTag": "[winces] [deadpan]",
- "gagDelay": 0,
+ "gagDelay": 0.35,
  "quelle": "Dino-Skript 1.0 mit den Regeln vom 18.11.2026 (nur Tiere, die die Aussage braucht; genug Platz; keine Fluegel-Optik; bei 'Wie gefaehrlich' die Eigenschaften zeigen). Fassung v3. Kostuem B2 Dino-Kostuem (Film-Irrtum). Ort: Urzeit-Lichtung, Nahaufnahmen von Fuss und Kopf im Ort, Grabungsstelle in der Mongolei. Figur: rexd kind 'rap' mit Sichelkralle (sk) und drei Fingern mit Krallen (h3), Federn dezent, Arme angelegt. Groesse: bis 2,07 m lang, 0,5 m Hueftehoehe, bis 15 kg (Wikipedia 'Velociraptor', Beschreibung). Sichelkralle an der zweiten Zehe jedes Fusses, ueber 6,5 cm an der Aussenkante (Wikipedia). Beim Laufen angehoben, vermutlich um sie scharf zu halten; Faehrten von Velociraptor und Verwandten zeigen keine Spur der Kralle, nur zwei Zehen am Boden (Natural History Museum London, 'Velociraptor facts'; Everything Dinosaur zu Zwei-Zehen-Faehrten). Zaehne: 26 bis 28 weit stehende Zaehne pro Seite, hinten staerker gezackt als vorne (Wikipedia, Beschreibung). Gezeichnet: 13 oben, 14 unten. Vergleich mit dem Steakmesser ist ein Bild, keine Messung. Hand: drei stark gebogene Krallen an jeder Hand (Wikipedia). Schwanz: durch Knochenfortsaetze und verknoecherte Sehnen versteift, sorgte wahrscheinlich fuer Balance und Stabilitaet in schnellen Kurven (Wikipedia, Ostrom 1969; deshalb 'wohl'). Fund 'Kaempfende Dinosaurier' (1971, Djadochta-Formation, Mongolei): Sichelkralle in der Halsregion des Protoceratops, der in den rechten Arm des Raptors beisst; linke Hand am Gesicht des Protoceratops (Carpenter 1998; AMNH; Live Science). Fund schematisch gezeichnet, nicht massstabsgetreu. Wofuer genau die Kralle diente, wird nicht behauptet (NHM: verletzen, festhalten, kein Aufschlitzen). Zeile 'So koennte er ausgesehen haben': realistisches KI-Bild (OpenArt, GPT Image 2.5 Sunburst, 18.11.2026, tools/viz_b006img.js), gekennzeichnet als 'KI-Bild'. Gezeigt: Federn, angelegte Arme ohne Fluegel-Optik, drei Krallen pro Hand, angehobene Sichelkralle, langer steifer Schwanz, Wueste der Mongolei. Farbe der Federn und Hintergrund frei gestaltet. Keine Figuren, Farben oder Posen aus Filmen. Stand der Recherche: 18.11.2026.",
  "scenes": [
   {
@@ -108,7 +108,7 @@
    "title": "Der *Kampf-Fund*",
    "path": [],
    "world": "b6fund",
-   "pause": 0.5,
+   "pause": 1.2,
    "lines": [
     {
      "t": "Drittens: Wie er kämpfte, zeigt ein berühmter Fund aus der Mongolei.",

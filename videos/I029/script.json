@@ -7,7 +7,7 @@
  "design": "3.3",
  "quelle": "Design: Skript 4 (technische Kennung 3.3). Ort: dieselbe Neon-Stadt wie I026 und I028. Fassung v2 (Benedikt, 17.11.2026): alles interaktiv in der Stadt statt Schaubild, kein Wissenschaftsmodus. Hauswand mit Farbrolle (Texturen), Ton-Dateien aus Schritten, Hupe und Radio (Ton), Parkhaus als Speicher der PS5 mit USB-Parkplatz. Die Laengen im Parkhaus sind massstabsgetreu (158, 212 und 825 GB). Bis zu 212 GB auf PS5 und Xbox Series X|S: Rockstar-Blogeintrag zum Preload, berichtet von GIGA und Notebookcheck. Wie GTA 6 innen aufgeteilt ist, hat Rockstar nicht veroeffentlicht: Das Video spricht in Teil 1 und 2 von grossen Spielen allgemein und behauptet nichts ueber den Inhalt von GTA 6. Texturen als groesster Wachstumstreiber der Spielgroesse und drei Texturen pro Objekt (Farbe, Unebenheit/Normal Map, Glanz/Specular), Texturen lassen sich mit GPU-Blockkompression hoechstens etwa 8 zu 1 packen: PC Gamer 'How game sizes got so huge' (Nathan Hanish, Stardock). 4096 x 4096 = 16.777.216 Pixel. Ton als eigene Dateien, manche Spiele speichern Ton ungepackt, damit der Prozessor nicht entpacken muss; Titanfall 48 GB installiert, vor allem Ton (21 GB Download): PC Gamer ebenda; Seagate-Blog 'Why do games have large install sizes now' (ungepackter Ton). PS5 mit 825 GB: rund 667 GB nutzbar (TweakTown, GIGA). 212 / 667 = 32 Prozent, also fast ein Drittel. PS5-Spiele auf USB-Erweiterungsspeicher auslagern und zum Spielen zurueckkopieren: Sony Support 'USB extended storage on PS5 consoles'. Zurueckkopieren meist schneller als neu laden: TweakTown ('doesn't take a long time'), haengt von der Leitung ab, deshalb 'meist'. Abgrenzung zu I026: dort Arbeitsspeicher, hier Speicherplatz und was ihn fuellt. Keine Spielszenen, kein Logo, keine Figuren aus GTA 6, Konsole neutral gezeichnet. Stand der Recherche: 17.11.2026.",
  "gagTag": "[groans] [deadpan]",
- "gagDelay": 0,
+ "gagDelay": -0.31,
  "scenes": [
   {
    "type": "hook",
@@ -17,7 +17,7 @@
    "pause": 0.05,
    "lines": [
     {
-     "t": "212 Gigabyte. Für ein Spiel.",
+     "t": "212 Gigabyte für ein Spiel.",
      "mood": "shock"
     },
     {
@@ -35,7 +35,7 @@
      "ev": "platz"
     },
     {
-     "t": "Passt schon.",
+     "t": "Passt.",
      "mood": "cool",
      "ev": "puff"
     }
