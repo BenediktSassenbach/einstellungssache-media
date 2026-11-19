@@ -69,14 +69,22 @@ WORLD.h7p8_4 = function (sc, ev, t, lt) { const fr = ev.frost, a = ev.aus, hit =
     if (a !== undefined) s += '<rect width="1080" height="1920" fill="#FFFFFF" opacity="' + (.25 * Math.sin(Math.PI * cl(a / .5))).toFixed(2) + '"/>';
     return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + shade3()); }
   if (hit < .55) { const k = hit < .45 ? 1 : 1 - (hit - .45) / .1; s += '<rect width="1080" height="1920" fill="#000" opacity="' + k.toFixed(2) + '"/><g opacity="' + (k * (.4 + .6 * Math.abs(Math.sin(hit * 14)))).toFixed(2) + '"><rect x="440" y="900" width="180" height="90" rx="14" fill="none" stroke="#FF4D4D" stroke-width="10"/><rect x="620" y="925" width="16" height="40" rx="4" fill="#FF4D4D"/><rect x="456" y="916" width="18" height="58" rx="4" fill="#FF4D4D"/></g>'; return W(s + shade3()); }
-  // Von aussen: Schalti im Eis, das tote Handy rutscht vom Stick und landet vorne im Schnee
-  const q = hit - .55, fall = ease(cl((q - .35) / .6)), phx = lerp(STICK8[0], PX8, fall), phy = lerp(STICK8[1], PY8, fall) - 220 * Math.sin(Math.PI * fall), phs = lerp(.3, S8, fall);
-  s += ice8(cl(q / .3)) + stick8(HAND8, STICK8, 8, 6);
-  if (fall >= 1) s += mound8(); s += ph8(phx, phy, phs, { on: 0, frost: 1 }, t); if (fall >= 1) s += mound8();
-  if (fall >= 1) { const k = cl((q - .95) / .4); s += [0, 1, 2, 3, 4].map(i => '<circle cx="' + (PX8 - 90 + 45 * i) + '" cy="' + (1580 - 60 * k * (1 - Math.abs(i - 2) / 3)) + '" r="' + (16 * (1 - k)) + '" fill="#FFFFFF"/>').join(''); }
+  // Von aussen (Ausraster): Schalti eingefroren, sprengt bei "Eben noch 40 Prozent!" das Eis, schuettelt bei "So ein Kack!" den Stick, das Handy fliegt in den Schnee
+  const wu = ev.wut, ka = ev.kack, burst = wu === undefined ? 0 : cl((wu - .25) / .4);
+  if (burst < 1) s += '<g opacity="' + (1 - burst).toFixed(2) + '">' + ice8(cl((hit - .55) / .3)) + '</g>';
+  if (burst > 0 && burst < 1) for (let k = 0; k < 9; k++) { const a = -Math.PI * (.05 + .9 * k / 8), d = 60 + 380 * ease(burst); s += '<path d="M0 -26 L20 10 L-18 16 Z" transform="translate(' + (220 + Math.cos(a) * d).toFixed(0) + ' ' + (1420 + Math.sin(a) * d + 300 * burst * burst).toFixed(0) + ') rotate(' + (k * 47 + 400 * burst).toFixed(0) + ')" fill="#DFF4FF" stroke="#FFFFFF" stroke-width="3" opacity="' + (1 - burst).toFixed(2) + '"/>'; }
+  const shk = ka === undefined ? 0 : Math.sin(Math.PI * cl(ka / 1.1)), tip = [STICK8[0] + 40 * Math.sin(ka === undefined ? 0 : ka * 9) * shk, STICK8[1] + 20 * Math.cos(ka === undefined ? 0 : ka * 9) * shk];
+  const fall = ka === undefined ? 0 : ease(cl((ka - .55) / .6));
+  s += stick8(HAND8, tip, 8, 6);
+  if (fall >= 1) s += mound8();
+  const phx = lerp(tip[0], PX8, fall), phy = lerp(tip[1], PY8, fall) - 260 * Math.sin(Math.PI * fall), phs = lerp(.3, S8, fall); s += ph8(phx, phy, phs, { on: 0, frost: 1 }, t);
+  if (fall >= 1) { s += mound8(); const k = cl((ka - 1.15) / .4); s += [0, 1, 2, 3, 4].map(i => '<circle cx="' + (PX8 - 90 + 45 * i) + '" cy="' + (1580 - 60 * k * (1 - Math.abs(i - 2) / 3)) + '" r="' + (16 * (1 - k)) + '" fill="#FFFFFF"/>').join(''); }
+  if (burst > 0 && burst < 1) s += '<circle cx="220" cy="1420" r="' + (80 + 260 * burst) + '" fill="none" stroke="#FF6B4D" stroke-width="' + (18 * (1 - burst)) + '" opacity="' + (1 - burst) + '"/>';
   return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + shade3()); };
-WMASC.h7p8_4 = (ev, t) => { const a = ev.aus, hit = a !== undefined ? a - .5 : undefined;
-  if (hit !== undefined && hit >= 0) { if (hit < .45) return { f: HOME3, s: .001, nospin: 1 }; return { f: HOME3, s: 1, r: 2 * Math.sin(t * 5), nospin: 1, mood: 'shock' }; }
+WMASC.h7p8_4 = (ev, t) => { const a = ev.aus, hit = a !== undefined ? a - .5 : undefined, wu = ev.wut, ka = ev.kack;
+  if (ka !== undefined) { const q = cl(ka / 1.2), st = Math.pow(Math.sin(Math.PI * 2 * q), 2); return { f: [HOME3[0], HOME3[1] - 34 * st * (q < 1 ? 1 : 0)], s: 1, nospin: 1, r: 7 * Math.sin(ka * 6) * (1 - cl((ka - 1.4) / .5)), mood: 'angry' }; }
+  if (wu !== undefined) { const b = cl((wu - .25) / .4); return { f: HOME3, s: 1 + .08 * Math.sin(Math.PI * b), nospin: 1, r: 0, mood: b > 0 ? 'angry' : 'shock' }; }
+  if (hit !== undefined && hit >= 0) { if (hit < .45) return { f: HOME3, s: .001, nospin: 1 }; return { f: HOME3, s: 1, nospin: 1, mood: 'shock' }; }
   if (a !== undefined) return { f: HOME3, s: 1, r: -6 * Math.sin(Math.PI * cl(a / .5)), nospin: 1, mood: 'wink' };
   if (ev.frost !== undefined) return { f: HOME3, s: 1, r: 4 * Math.sin(t * 6), nospin: 1, mood: 'cool' };
   return { f: HOME3, s: 1, r: 3 * Math.sin(t * 2), nospin: 1, mood: 'cool' }; };
