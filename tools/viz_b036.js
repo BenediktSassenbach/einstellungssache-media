@@ -161,7 +161,8 @@ WORLD.b36c = function (sc, ev, t, lt, E) { const L = sc.lines[sc.lines.length - 
 
 // ---- Test C (Benedikt, 19.11.2026, noch keine Regel): Schalti kuendigt an, dann tanzt das Skelett ohne Sprache zum Song, Disco-Effekt, danach endet das Video (keine Zusammenfassung)
 // Choreografie in Takten (120 BPM, 1 Takt = 0,5 s): Hueftschwung, Knie hoch, Seitkick, Twist, Kombi, Schlusspose
-const CHOR = [[0, 2, 'sway', 'Hüftschwung'], [2, 4, 'knee', 'Beugen und Strecken'], [4, 6, 'kick', 'Abspreizen'], [6, 8, 'twist', 'Drehen nach innen und außen'], [8, 10, 'combo', 'Alles zusammen'], [10, 99, 'pose', '']];
+// Auf Song 5 (Variante 1) abgestimmt: 120 BPM, Schlussschlag bei 8,0 s, dort sitzt die Schlusspose
+const CHOR = [[0, 1.5, 'sway', 'Hüftschwung'], [1.5, 3, 'knee', 'Beugen und Strecken'], [3, 4.5, 'kick', 'Abspreizen'], [4.5, 6, 'twist', 'Drehen nach innen und außen'], [6, 8, 'combo', 'Alles zusammen'], [8, 99, 'pose', '']];
 function chorP(u) { const seg = CHOR.find(c => u < c[1]) || CHOR[CHOR.length - 1], v = u - seg[0], m = seg[2], c = Math.sin(2 * Math.PI * v), bt = Math.abs(Math.sin(Math.PI * v * 2));
   let o = { bob: 10 * bt }, lp = [1, 0];
   if (m === 'sway') { const k = Math.sin(Math.PI * v); o.sh = 22 * k; o.L = { abd: 14 * Math.max(0, k) }; o.R = { abd: 14 * Math.max(0, -k) }; o.armR = [150 + 15 * Math.max(0, k), -10]; o.armL = [150 + 15 * Math.max(0, -k), 10]; o.armR = k > 0 ? [155, -10] : [30, 95]; o.armL = k < 0 ? [155, 10] : [30, 95]; o.glow = [Math.max(0, -k), Math.max(0, k)]; lp = [1, o.L.abd]; }
