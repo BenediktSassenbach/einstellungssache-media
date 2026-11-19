@@ -27,7 +27,7 @@ for i in range(1, N + 1):
         txt = ''.join(al['characters']); p = txt.find(k)
         if p >= 0: cut(al, p, p + len(k), v)
     src = os.path.join(roh, f'{i}.mp3'); dst = os.path.join(A, f'{i}.mp3')
-    if i == N:  # Schlusssatz anhaengen
+    if i == N and not S.get('ohneSchlusssatz'):  # Schlusssatz anhaengen ("ohneSchlusssatz": true im Skript laesst ihn weg, z. B. wenn das Video mit einem Tanz endet)
         o = os.path.join(root, 'videos', '_outro', 'einstellungssache'); oa = json.load(open(o + '.json', encoding='utf-8-sig'))['alignment']
         skip = ''.join(oa['characters']).index('] ') + 2; off = dur(src) + 0.3
         ff('-i', src, '-i', o + '.mp3', '-filter_complex', '[0:a]apad=pad_dur=0.3[a];[a][1:a]concat=n=2:v=0:a=1', '-b:a', '192k', dst)
