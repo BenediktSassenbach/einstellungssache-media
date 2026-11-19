@@ -86,32 +86,59 @@ WMASC.p8energie_4 = (ev, t, lt, sc) => { const v = ev.voll, inn = ev.innen, a = 
   if (inn < .7) return hop3(inn / .7, SP8, [FX0 + 60, 1010], 260, 1, .45, { mood: 'happy' });
   const honey = honey8(ev);
   if (a === undefined) { const sp = 1 - .85 * honey, q = ((inn - .7) * .35 * sp) % 2, x = lerp(FX0 + 60, FX1 - 60, q < 1 ? q : 2 - q); return { f: [x, 1010], s: .45, nospin: 1, walk: honey < .9, flip: q >= 1, r: honey > .5 ? 6 * Math.sin(t * 4) : 0, mood: honey > .5 ? 'shock' : 'happy' }; }
-  const D = Math.max(2.4, L8(sc, 3)), x = lerp(FX0 + 105, FX0 + 185, cl(a / 3));
-  if (a < D - .6) return { f: [x, 1010], s: .45, nospin: 1, r: 18 + 3 * Math.sin(t * 4), walk: 1, mood: 'shock' };
-  return hop3((a - (D - .6)) / .55, [x, 1010], HOME3, 220, .45, 1, { flip: true }); };
+  const x = lerp(FX0 + 105, FX0 + 185, cl(a / 3));
+  return { f: [x, 1010], s: .45, nospin: 1, r: 18 + 3 * Math.sin(t * 4), walk: 1, mood: 'shock' }; };
 
-// ---------- Teil 2 (normal): Foto mit Blitz braucht viel Strom, Spannung bricht ein, der Waechter im Handy zieht den Hebel ----------
-function volt8(v, k) { if (k <= 0) return ''; const w = 420, x = 330 - w / 2, y = 980; let s = '<g opacity="' + cl(k) + '">' + svgT(330, y - 30, 'Spannung', 32, '#F4F6FB') + '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="56" rx="16" fill="#0D1B3A" stroke="#F4F6FB" stroke-width="6"/>';
-  s += '<rect x="' + (x + 8) + '" y="' + (y + 8) + '" width="' + ((w - 16) * cl(v)).toFixed(0) + '" height="40" rx="10" fill="' + (v < .4 ? '#FF4D4D' : '#3DFF7A') + '"/></g>'; return s; }
-WORLD.p8spannung_4 = function (sc, ev, t, lt) { const la = ev.last, sch = ev.schutz, au = ev.aus2, a = ev.act; let s = bg8(sc, t, lt);
-  const press = la === undefined ? -1 : la - 1.0, flash = press >= 0 ? Math.max(0, 1 - press / .45) : 0, drop = press < 0 ? 0 : ease(cl((press - .2) / .8));
-  const v = 1 - .85 * drop + .03 * Math.sin(t * 11) * (1 - drop);
-  s += volt8(v, la === undefined ? 0 : cl((la - .3) / .3));
-  if (press >= .2 && press < 2.2) for (let i = 0; i < 3; i++) s += bolt(560 + 40 * i, 1020 + 14 * Math.sin(t * 9 + i), .7, '#FFE14D', .5 + .5 * Math.sin(t * 12 + i));
-  const off = au === undefined ? 0 : cl((au - .7) / .15), zero = a === undefined ? 0 : cl(a / .3);
-  const o = { cam: sch === undefined ? 1 : 0, flash, pct: zero > 0 ? 0 : 40, on: zero > 0 ? 1 : 1 - off, ghost: zero > 0 ? 0 : off, guard: sch === undefined || off >= 1 ? 0 : cl(sch / .35), look: -1, up: 1, lever: sch === undefined ? undefined : au === undefined ? 0 : cl((au - .35) / .3) };
-  s += ph8(PX8, PY8, S8, o, t) + mound8();
-  if (sch !== undefined && au === undefined) s += chip3(760, 1090, 'Schutzelektronik: Akku leer?', 26, '#7FD3FF', '#0B1020', (sch - .5) / .3);
-  if (au !== undefined && a === undefined) s += chip3(760, 1090, 'Ladung noch drin', 28, '#3DFF7A', '#0B1020', (au - 1.1) / .3);
-  return W(s + shade3(), slot(ev, [['last', 'Viel Strom: Spannung bricht ein'], ['schutz', 'Schutzelektronik: Akku leer?'], ['aus2', 'Sie schaltet ab', 'hot'], ['act', 'Anzeige springt auf null', 'red']])); };
-WMASC.p8spannung_4 = (ev, t, lt, sc) => { const la = ev.last, sch = ev.schutz, au = ev.aus2, a = ev.act;
-  if (a !== undefined) { const k = ease(cl(a / .35)), D = Math.max(2.4, L8(sc, 3)); if (a < D - .7) return { f: SP8, s: 1, nospin: 1, r: -48 * k, mood: 'shock' }; return { f: SP8, s: 1, nospin: 1, r: -48 * (1 - ease(cl((a - (D - .7)) / .5))), mood: 'cry' }; }
-  if (au !== undefined) { if (au < 1) return { f: SP8, s: 1, nospin: 1, mood: 'shock' }; const h = Math.pow(Math.sin((au - 1) * 4), 2); return { f: [SP8[0], SP8[1] - 50 * h], s: 1, nospin: 1, r: 6 * Math.sin((au - 1) * 4), mood: 'shock' }; }
-  if (sch !== undefined) return { f: SP8, s: 1, nospin: 1, r: 4 * Math.sin(t * 2), mood: 'wink' };
-  if (la === undefined) return BIG3();
-  if (la < .55) return walk8(la / .5, HOME3, SP8, { mood: 'happy' });
-  if (la < 1.4) return hop3((la - .55) / .85, SP8, SP8, 120, 1, 1, { mood: 'happy', r: -12 });
-  return { f: SP8, s: 1, nospin: 1, mood: 'shock' }; };
+// ---------- Teil 2 (weiter im Wissenschaftsmodus): Stromkreis aus kaltem Akku, Spannungsanzeige, Schutzelektronik mit Schalter, Handy als Verbraucher ----------
+const P1END8 = [FX0 + 185, 1010], LOAD8 = [900, 805], SW8 = [640, 770];
+function gauge8(v) { const cx = 560, cy = 1060, r = 110, P = q => [cx + r * Math.cos(Math.PI * (1 - q)), cy - r * Math.sin(Math.PI * (1 - q))], g = .3, A = P(0), G = P(g), B = P(1);
+  let s = '<path d="M' + A[0] + ' ' + cy + ' A' + r + ' ' + r + ' 0 0 1 ' + G[0].toFixed(1) + ' ' + G[1].toFixed(1) + '" stroke="#FF4D4D" stroke-width="26" fill="none"/><path d="M' + G[0].toFixed(1) + ' ' + G[1].toFixed(1) + ' A' + r + ' ' + r + ' 0 0 1 ' + B[0] + ' ' + cy + '" stroke="#3DFF7A" stroke-width="26" fill="none" opacity=".85"/>';
+  const T0 = [cx + (r - 30) * Math.cos(Math.PI * .7), cy - (r - 30) * Math.sin(Math.PI * .7)], T1 = [cx + (r + 26) * Math.cos(Math.PI * .7), cy - (r + 26) * Math.sin(Math.PI * .7)];
+  s += '<path d="M' + T0[0].toFixed(1) + ' ' + T0[1].toFixed(1) + ' L' + T1[0].toFixed(1) + ' ' + T1[1].toFixed(1) + '" stroke="#F4F6FB" stroke-width="6" stroke-dasharray="6 5"/>';
+  const N = [cx + (r - 14) * Math.cos(Math.PI * (1 - v)), cy - (r - 14) * Math.sin(Math.PI * (1 - v))];
+  return s + '<path d="M' + cx + ' ' + cy + ' L' + N[0].toFixed(1) + ' ' + N[1].toFixed(1) + '" stroke="#F4F6FB" stroke-width="9" stroke-linecap="round"/><circle cx="' + cx + '" cy="' + cy + '" r="13" fill="#F4F6FB"/>' + svgT(cx, cy + 40, 'Spannung', 26, '#F4F6FB'); }
+function sci8(t, ev, sc) { const la = ev.last, sch = ev.schutz, au = ev.aus2, a = ev.act;
+  const press = la === undefined ? -1 : la - .85, drop = press < 0 ? 0 : ease(cl((press - .2) / 1.0));
+  const open = au === undefined ? 0 : au < .6 ? ease(cl(au / .3)) * 0 + cl((au - .3) / .3) : au < 1.0 ? 1 : au < 1.9 ? 1 - .8 * ease(cl((au - 1.0) / .7)) : au < 2.1 ? .2 + .8 * back(cl((au - 1.9) / .2)) : 1;
+  const flow = au === undefined || open < .15 ? (press < 0 ? .4 : 1.6) : 0, v = .8 - .65 * drop + .03 * Math.sin(t * 8) * (1 - drop) + (open > .15 && au !== undefined ? .05 * cl((au - .6) / 1) : 0);
+  const on = ease(cl((sc.lines[0] ? 1 : 1)));
+  // kalter Akku, klein, links
+  let s = '<rect x="70" y="800" width="330" height="250" rx="26" fill="#0D1B3A" stroke="#F4F6FB" stroke-width="7"/><rect x="400" y="895" width="20" height="60" rx="6" fill="#F4F6FB"/>';
+  s += '<rect x="170" y="815" width="130" height="220" rx="12" fill="#E8A23A" opacity=".7"/>';
+  for (let i = 0; i < 4; i++) s += '<rect x="90" y="' + (830 + i * 50) + '" width="64" height="26" rx="6" fill="#4A5A7A"/>';
+  for (let r2 = 0; r2 < 4; r2++) for (let c = 0; c < 2; c++) s += '<circle cx="' + (330 + c * 38) + '" cy="' + (842 + r2 * 52) + '" r="12" fill="#8A3B5A"/>';
+  for (let i = 0; i < 5; i++) { const c = (t * .06 + rnd(i + 11)) % 1, x = lerp(185, 285, c), y = 840 + i * 42; s += '<circle cx="' + x.toFixed(0) + '" cy="' + y + '" r="12" fill="#FFD23F" stroke="#0B1020" stroke-width="3"/>'; }
+  s += svgT(235, 1090, 'Akku, kalt', 24, '#FFD27A');
+  // Leitungen
+  const top = 'M420 925 H470 V770 H' + (SW8[0] - 30) + ' M' + (SW8[0] + 30) + ' 770 H800 V900 H845', back8 = 'M845 980 H815 V1112 H50 V925 H70';
+  s += '<path d="' + top + '" stroke="#AEB9D6" stroke-width="10" fill="none"/><path d="' + back8 + '" stroke="#AEB9D6" stroke-width="10" fill="none"/>';
+  if (flow > 0) s += '<path d="' + top + '" stroke="#FFE14D" stroke-width="10" fill="none" stroke-dasharray="14 26" stroke-dashoffset="' + (-t * 90 * flow).toFixed(0) + '"/><path d="' + back8 + '" stroke="#FFE14D" stroke-width="10" fill="none" stroke-dasharray="14 26" stroke-dashoffset="' + (-t * 90 * flow).toFixed(0) + '"/>';
+  // Schalter: Kontakte und Hebel (offen dreht nach oben)
+  const ang = -38 * open; s += '<circle cx="' + (SW8[0] - 30) + '" cy="770" r="10" fill="#F4F6FB"/><circle cx="' + (SW8[0] + 30) + '" cy="770" r="10" fill="#F4F6FB"/><path d="M' + (SW8[0] - 30) + ' 770 l60 0" transform="rotate(' + ang.toFixed(1) + ' ' + (SW8[0] - 30) + ' 770)" stroke="#F4F6FB" stroke-width="10" stroke-linecap="round"/>';
+  // Schutzelektronik als Chip mit Auge unter dem Schalter
+  const kS = sch === undefined ? .55 : 1; s += '<g opacity="' + kS + '"><rect x="' + (SW8[0] - 60) + '" y="815" width="120" height="66" rx="10" fill="#2B62C0" stroke="#F4F6FB" stroke-width="5"/>' + [0, 1, 2, 3].map(k => '<path d="M' + (SW8[0] - 45 + k * 30) + ' 881 v12 M' + (SW8[0] - 45 + k * 30) + ' 815 v-10" stroke="#F4F6FB" stroke-width="5"/>').join('');
+  const lk = sch === undefined ? 0 : cl(sch / .4); s += '<circle cx="' + SW8[0] + '" cy="848" r="18" fill="#fff"/><circle cx="' + (SW8[0] - 8 * lk) + '" cy="' + (848 + 8 * lk) + '" r="9" fill="#0B1020"/></g>';
+  s += gauge8(v);
+  // Handy als Verbraucher
+  const dark = au === undefined ? 0 : cl((au - .45) / .2), zero = a === undefined ? 0 : cl(a / .25), flash = press >= 0 ? Math.max(0, 1 - press / .5) : 0;
+  s += '<rect x="845" y="' + LOAD8[1] + '" width="110" height="195" rx="18" fill="' + lc('#1B2748', '#05070F', zero > 0 ? 0 : dark) + '" stroke="#F4F6FB" stroke-width="6"/>';
+  if (zero > 0) s += svgT(900, 920, '0 %', 40, '#FF4D4D'); else if (dark < 1) s += '<g opacity="' + (1 - dark) + '">' + svgT(900, 920, '40 %', 36, '#F4F6FB') + '</g>';
+  if (flash > 0) s += '<rect x="845" y="805" width="110" height="195" rx="18" fill="#fff" opacity="' + flash.toFixed(2) + '"/>' + [0, 60, 120, 180, 240, 300].map(r2 => '<path d="M900 820 l0 ' + (-40 - 40 * flash).toFixed(0) + '" transform="rotate(' + r2 + ' 900 860)" stroke="#FFF6B0" stroke-width="8" stroke-linecap="round" opacity="' + flash.toFixed(2) + '"/>').join('');
+  // Hinweise
+  if (la !== undefined && sch === undefined) s += chip3(640, 722, 'viel Strom: Spannung fällt', 26, '#FFE14D', '#0B1020', (press - .5) / .3);
+  if (sch !== undefined && au === undefined) s += chip3(640, 722, 'unter der Grenze: Akku leer?', 26, '#7FD3FF', '#0B1020', (sch - .6) / .3);
+  if (au !== undefined) s += chip3(235, 760, 'Ladung noch drin', 26, '#3DFF7A', '#0B1020', (au - .9) / .3);
+  return s; }
+WORLD.p8spannung_4 = function (sc, ev, t, lt) { return W(bg8(sc, t, lt) + sci8(t, ev, sc) + shade3(), slot(ev, [['last', 'Viel Strom: Spannung bricht ein'], ['schutz', 'Schutzelektronik: Akku leer?'], ['aus2', 'Sie schaltet ab', 'hot'], ['act', 'Anzeige springt auf null', 'red']])); };
+WMASC.p8spannung_4 = (ev, t, lt, sc) => { const la = ev.last, sch = ev.schutz, au = ev.aus2, a = ev.act, ON = [LOAD8[0], LOAD8[1] + 2], SWP = [SW8[0] + 10, 762], S = .42;
+  if (a !== undefined) { const D = Math.max(2.4, L8(sc, 3)); if (a < D - .7) return { f: SWP, s: S, nospin: 1, r: -40 * ease(cl(a / .4)), mood: 'shock' }; return hop3((a - (D - .7)) / .6, SWP, SP8, 260, S, 1, { mood: 'happy' }); }
+  if (au !== undefined) { if (au < .9) return { f: ON, s: S, nospin: 1, mood: 'shock' }; if (au < 1.45) return hop3((au - .9) / .55, ON, SWP, 120, S, S, { flip: true, mood: 'shock' });
+    if (au < 1.9) return { f: SWP, s: S, nospin: 1, r: 22 * ease(cl((au - 1.45) / .3)), mood: 'shock' }; return { f: SWP, s: S, nospin: 1, r: 22 * (1 - ease(cl((au - 1.9) / .4))), mood: 'shock' }; }
+  if (sch !== undefined) return { f: ON, s: S, nospin: 1, r: -10 * ease(cl(sch / .5)), mood: 'wink' };
+  if (la === undefined) return { f: P1END8, s: .45, nospin: 1 };
+  if (la < .6) return hop3(la / .6, P1END8, ON, 160, .45, S, { mood: 'happy' });
+  if (la < 1.0) { const q = (la - .6) / .4; return { f: [ON[0], ON[1] - 40 * Math.sin(Math.PI * q)], s: S, nospin: 1, mood: 'happy' }; }
+  return { f: ON, s: S, nospin: 1, mood: 'shock' }; };
 
 // ---------- Teil 3 (normal): Schalti haucht das Handy warm, steckt es in die Jacke, laedt erst wenn es warm ist ----------
 const POCK8 = [250, 1442];
