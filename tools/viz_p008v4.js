@@ -61,33 +61,34 @@ function finder8(pct, frost, press, t) { let s = '';
   const pr = press > 0 ? 1 - .15 * Math.sin(Math.PI * cl(press / .4)) : 1; s += '<g transform="translate(540 1720) scale(' + pr.toFixed(3) + ')"><circle r="58" fill="none" stroke="#FFFFFF" stroke-width="9"/><circle r="44" fill="#FFFFFF"/></g>' + svgT(540, 1640, 'SELFIE', 26, '#FFD23F');
   return s; }
 function stick8(a, b, w0, w1) { const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L; return '<path d="M' + (a[0] + nx * w0) + ' ' + (a[1] + ny * w0) + ' L' + (b[0] + nx * w1) + ' ' + (b[1] + ny * w1) + ' L' + (b[0] - nx * w1) + ' ' + (b[1] - ny * w1) + ' L' + (a[0] - nx * w0) + ' ' + (a[1] - ny * w0) + ' Z" fill="#2B2F4A" stroke="#0B1020" stroke-width="3"/>'; }
-WORLD.h7p8_4 = function (sc, ev, t, lt) { const fr = ev.frost, a = ev.aus, hit = a !== undefined ? a - .5 : undefined, sh = shake7(hit !== undefined && hit >= 0 ? hit : undefined, t);
-  const frost = fr === undefined ? 0 : cl(fr / 2.4), pct = fr === undefined ? 40 : Math.max(12, 40 - 28 * cl(fr / 2.4));
+// Einstieg (Stand 19.11. 15 Uhr): Spruch im Sucher, Kamera geht aus. Ausraster, Themenfrage und "Physik nie verstanden?" auf Schwarz. Bei "Gib mir 60 Sekunden." kurz von aussen, das Handy steckt im Schnee.
+function rage8(t, ev) { const wu = ev.wut, ka = ev.kack, frq = ev.frage; let s = '<rect x="-60" y="-60" width="1200" height="2040" fill="#000"/>';
+  const red = wu === undefined ? 0 : frq === undefined ? .55 + .45 * Math.sin(t * 9) : Math.max(0, 1 - frq / .8) * (.55 + .45 * Math.sin(t * 9));
+  if (red > 0) s += '<defs><radialGradient id="rg8" cx=".5" cy=".5" r=".7"><stop offset=".5" stop-color="#FF2A2A" stop-opacity="0"/><stop offset="1" stop-color="#FF2A2A" stop-opacity="' + (.5 * red).toFixed(2) + '"/></radialGradient></defs><rect width="1080" height="1920" fill="url(#rg8)"/>';
+  s += '<g opacity="' + (.45 + .55 * Math.abs(Math.sin(t * 4))).toFixed(2) + '"><rect x="440" y="900" width="180" height="90" rx="14" fill="none" stroke="#FF4D4D" stroke-width="10"/><rect x="620" y="925" width="16" height="40" rx="4" fill="#FF4D4D"/><rect x="456" y="916" width="18" height="58" rx="4" fill="#FF4D4D"/></g>';
+  if (ka !== undefined && frq === undefined) { const G = ['#', '@', '!', '%', '$', '&', '!']; G.forEach((g, k) => { const tk = .08 + k * .13, q = ka - tk; if (q < 0) return; const a = -Math.PI / 2 + (k - 3) * .62, d = 190 + 50 * (k % 2), sc = back(cl(q / .25)) * (1 - .25 * cl((q - .9) / .5));
+      s += '<text x="' + (540 + Math.cos(a) * d * 1.5).toFixed(0) + '" y="' + (945 + Math.sin(a) * d * .9 + 10 * Math.sin(t * 7 + k)).toFixed(0) + '" text-anchor="middle" font-size="96" font-weight="900" font-family="Inter Display" fill="' + (k % 2 ? '#FFD23F' : '#FF4D4D') + '" stroke="#000" stroke-width="6" paint-order="stroke" transform="rotate(' + ((k - 3) * 9) + ' 540 945)" opacity="' + cl(sc).toFixed(2) + '" style="font-size:' + (96 * sc).toFixed(0) + 'px">' + g + '</text>'; }); }
+  return s; }
+function shake8(ev) { const T = []; if (ev.wut !== undefined) T.push(ev.wut); if (ev.kack !== undefined) { T.push(ev.kack); T.push(ev.kack - .45); T.push(ev.kack - .9); }
+  let x = 0, y = 0; T.forEach((q, k) => { if (q < 0 || q > .6) return; const A = 26 * Math.exp(-q * 7); x += A * Math.sin(q * 70 + k); y += A * Math.cos(q * 55 + k * 2); }); return [x, y]; }
+WORLD.h7p8_4 = function (sc, ev, t, lt) { const d0 = Math.max(1.6, L8(sc, 0)), en = ev.ende;
   let s = bg8(sc, t, lt);
-  if (hit === undefined || hit < 0) { // Sucher: der Zuschauer ist die Kamera am Selfiestick
-    s += stick8(HAND8, [780, 1960], 9, 34) + finder8(pct, frost, a === undefined ? 0 : a, t);
-    if (a !== undefined) s += '<rect width="1080" height="1920" fill="#FFFFFF" opacity="' + (.25 * Math.sin(Math.PI * cl(a / .5))).toFixed(2) + '"/>';
-    return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + shade3()); }
-  if (hit < .55) { const k = hit < .45 ? 1 : 1 - (hit - .45) / .1; s += '<rect width="1080" height="1920" fill="#000" opacity="' + k.toFixed(2) + '"/><g opacity="' + (k * (.4 + .6 * Math.abs(Math.sin(hit * 14)))).toFixed(2) + '"><rect x="440" y="900" width="180" height="90" rx="14" fill="none" stroke="#FF4D4D" stroke-width="10"/><rect x="620" y="925" width="16" height="40" rx="4" fill="#FF4D4D"/><rect x="456" y="916" width="18" height="58" rx="4" fill="#FF4D4D"/></g>'; return W(s + shade3()); }
-  // Von aussen (Ausraster): Schalti eingefroren, sprengt bei "Eben noch 40 Prozent!" das Eis, schuettelt bei "So ein Kack!" den Stick, das Handy fliegt in den Schnee
-  const wu = ev.wut, ka = ev.kack, burst = wu === undefined ? 0 : cl((wu - .25) / .4);
-  if (burst < 1) s += '<g opacity="' + (1 - burst).toFixed(2) + '">' + ice8(cl((hit - .55) / .3)) + '</g>';
-  if (burst > 0 && burst < 1) for (let k = 0; k < 9; k++) { const a = -Math.PI * (.05 + .9 * k / 8), d = 60 + 380 * ease(burst); s += '<path d="M0 -26 L20 10 L-18 16 Z" transform="translate(' + (220 + Math.cos(a) * d).toFixed(0) + ' ' + (1420 + Math.sin(a) * d + 300 * burst * burst).toFixed(0) + ') rotate(' + (k * 47 + 400 * burst).toFixed(0) + ')" fill="#DFF4FF" stroke="#FFFFFF" stroke-width="3" opacity="' + (1 - burst).toFixed(2) + '"/>'; }
-  const shk = ka === undefined ? 0 : Math.sin(Math.PI * cl(ka / 1.1)), tip = [STICK8[0] + 40 * Math.sin(ka === undefined ? 0 : ka * 9) * shk, STICK8[1] + 20 * Math.cos(ka === undefined ? 0 : ka * 9) * shk];
-  const fall = ka === undefined ? 0 : ease(cl((ka - .55) / .6));
-  s += stick8(HAND8, tip, 8, 6);
-  if (fall >= 1) s += mound8();
-  const phx = lerp(tip[0], PX8, fall), phy = lerp(tip[1], PY8, fall) - 260 * Math.sin(Math.PI * fall), phs = lerp(.3, S8, fall); s += ph8(phx, phy, phs, { on: 0, frost: 1 }, t);
-  if (fall >= 1) { s += mound8(); const k = cl((ka - 1.15) / .4); s += [0, 1, 2, 3, 4].map(i => '<circle cx="' + (PX8 - 90 + 45 * i) + '" cy="' + (1580 - 60 * k * (1 - Math.abs(i - 2) / 3)) + '" r="' + (16 * (1 - k)) + '" fill="#FFFFFF"/>').join(''); }
-  if (burst > 0 && burst < 1) s += '<circle cx="220" cy="1420" r="' + (80 + 260 * burst) + '" fill="none" stroke="#FF6B4D" stroke-width="' + (18 * (1 - burst)) + '" opacity="' + (1 - burst) + '"/>';
-  return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + shade3()); };
-WMASC.h7p8_4 = (ev, t) => { const a = ev.aus, hit = a !== undefined ? a - .5 : undefined, wu = ev.wut, ka = ev.kack;
-  if (ka !== undefined) { const q = cl(ka / 1.2), st = Math.pow(Math.sin(Math.PI * 2 * q), 2); return { f: [HOME3[0], HOME3[1] - 34 * st * (q < 1 ? 1 : 0)], s: 1, nospin: 1, r: 7 * Math.sin(ka * 6) * (1 - cl((ka - 1.4) / .5)), mood: 'angry' }; }
-  if (wu !== undefined) { const b = cl((wu - .25) / .4); return { f: HOME3, s: 1 + .08 * Math.sin(Math.PI * b), nospin: 1, r: 0, mood: b > 0 ? 'angry' : 'shock' }; }
-  if (hit !== undefined && hit >= 0) { if (hit < .45) return { f: HOME3, s: .001, nospin: 1 }; return { f: HOME3, s: 1, nospin: 1, mood: 'shock' }; }
-  if (a !== undefined) return { f: HOME3, s: 1, r: -6 * Math.sin(Math.PI * cl(a / .5)), nospin: 1, mood: 'wink' };
-  if (ev.frost !== undefined) return { f: HOME3, s: 1, r: 4 * Math.sin(t * 6), nospin: 1, mood: 'cool' };
-  return { f: HOME3, s: 1, r: 3 * Math.sin(t * 2), nospin: 1, mood: 'cool' }; };
+  if (en !== undefined) { // kurz von aussen: Schalti noch sauer, leerer Stick, Handy steckt im Schnee
+    s += stick8(HAND8, STICK8, 8, 6) + mound8() + ph8(PX8, PY8, S8, { on: 0, frost: 1 }, t) + mound8();
+    s += '<rect width="1080" height="1920" fill="#000" opacity="' + (1 - cl(en / .3)).toFixed(2) + '"/>';
+    return W(s + shade3()); }
+  if (ev.wut !== undefined) { const sh = shake8(ev); return W('<g transform="translate(' + sh[0].toFixed(1) + ' ' + sh[1].toFixed(1) + ')">' + rage8(t, ev) + '</g>' + shade3()); }
+  // Sucher: Spruch, Reif kriecht rein, Akku rauscht runter, Schalti drueckt ab
+  const frost = cl((lt - .3) / 1.4), pct = Math.max(1, 40 - 39 * cl((lt - .3) / (d0 - .9))), press = lt - (d0 - .5);
+  s += stick8(HAND8, [780, 1960], 9, 34) + finder8(pct, frost, press > 0 ? press : 0, t);
+  if (press > 0) s += '<rect width="1080" height="1920" fill="#FFFFFF" opacity="' + (.3 * Math.sin(Math.PI * cl(press / .5))).toFixed(2) + '"/>';
+  return W(s + shade3()); };
+WMASC.h7p8_4 = (ev, t, lt, sc) => { const en = ev.ende;
+  if (en !== undefined) return { f: HOME3, s: 1, nospin: 1, r: 3 * Math.sin(en * 3), mood: en < 1.2 ? 'angry' : 'cool' };
+  if (ev.wut !== undefined) return { f: HOME3, s: .001, nospin: 1 };
+  const d0 = Math.max(1.6, L8(sc, 0)), press = lt - (d0 - .5);
+  if (press > 0) return { f: HOME3, s: 1, r: -6 * Math.sin(Math.PI * cl(press / .5)), nospin: 1, mood: 'wink' };
+  return { f: HOME3, s: 1, r: 3 * Math.sin(t * 2), nospin: 1, mood: lt > 1.2 ? 'shock' : 'cool' }; };
 
 // ---------- Teil 1: Die Energie ist noch da. Normal: Schalti klopft ans Handy. Ab "Schau in den Akku" Wissenschaftsmodus, Schalti springt hinein ----------
 const BX0 = 110, BX1 = 900, BY0 = 720, BY1 = 1100, FX0 = BX0 + 210, FX1 = BX1 - 210;
