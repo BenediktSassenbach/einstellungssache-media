@@ -59,6 +59,15 @@ def I029():  # Kiste unter Druck: aechzendes Knarzen, das ansteigt, dann ein Plo
         if k + m < len(t): cl[k:k + m] += hp(noise(m), .4) * np.exp(-np.arange(m) / SR * 90) * (1 - i / 10)
     save('I029_1.wav', norm((pop + .5 * cl) * env(len(t), .002, .4), .5))
 
+def P028():  # Schaltis Schatten rennt hinterher: schnelle Schritte, ein anschwellendes Vorbeisausen, dann ein leises Wusch und Ausrutschen
+    d = 1.2; n = int(SR * d); x = np.zeros(n); t = 0.0; step = .2
+    while t < d - .03:
+        k = int(t * SR); m = min(n - k, int(.04 * SR)); x[k:k + m] += lp(noise(m), .25) * np.exp(-np.arange(m) / SR * 90); step = max(.09, step * .9); t += step
+    tt = T(d); wh = hp(lp(noise(n), .3), .02) * (tt / d) ** 3
+    save('P028_0.wav', norm((.8 * x + wh) * env(n, .05, .02), .4))
+    d = 1.0; tt = T(d); n = len(tt); wh = hp(lp(noise(n), .25), .02) * np.exp(-tt * 4); sl = lp(noise(n), .06) * np.exp(-((tt - .45) / .12) ** 2)
+    save('P028_1.wav', norm((wh + .6 * sl) * env(n, .005, .4), .45))
+
 def C021():  # Cola: Sprudeln, das immer staerker wird, dann zischende Fontaene mit Platschen
     d = 1.0; t = T(d); x = np.zeros(len(t))
     for i in range(int(260)):
