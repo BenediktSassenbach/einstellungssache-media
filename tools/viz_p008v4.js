@@ -62,14 +62,14 @@ function finder8(pct, frost, press, t) { let s = '';
   return s; }
 function stick8(a, b, w0, w1) { const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L; return '<path d="M' + (a[0] + nx * w0) + ' ' + (a[1] + ny * w0) + ' L' + (b[0] + nx * w1) + ' ' + (b[1] + ny * w1) + ' L' + (b[0] - nx * w1) + ' ' + (b[1] - ny * w1) + ' L' + (a[0] - nx * w0) + ' ' + (a[1] - ny * w0) + ' Z" fill="#2B2F4A" stroke="#0B1020" stroke-width="3"/>'; }
 // Einstieg (Stand 19.11. 15 Uhr): Spruch im Sucher, Kamera geht aus. Ausraster, Themenfrage und "Physik nie verstanden?" auf Schwarz. Bei "Gib mir 60 Sekunden." kurz von aussen, das Handy steckt im Schnee.
-function rage8(t, ev) { const wu = ev.wut, ka = ev.kack, frq = ev.frage; let s = '<rect x="-60" y="-60" width="1200" height="2040" fill="#000"/>';
+function rage8(t, ev) { const wu = ev.wut, ka = ev.pic !== undefined ? ev.pic : ev.kack, frq = ev.frage; let s = '<rect x="-60" y="-60" width="1200" height="2040" fill="#000"/>';
   const red = wu === undefined ? 0 : (frq === undefined ? 1 : .75) * (.55 + .45 * Math.sin(t * 9));
   if (red > 0) s += '<defs><radialGradient id="rg8" cx=".5" cy=".5" r=".7"><stop offset=".5" stop-color="#FF2A2A" stop-opacity="0"/><stop offset="1" stop-color="#FF2A2A" stop-opacity="' + (.5 * red).toFixed(2) + '"/></radialGradient></defs><rect width="1080" height="1920" fill="url(#rg8)"/>';
   s += '<g opacity="' + (.45 + .55 * Math.abs(Math.sin(t * 4))).toFixed(2) + '"><rect x="440" y="900" width="180" height="90" rx="14" fill="none" stroke="#FF4D4D" stroke-width="10"/><rect x="620" y="925" width="16" height="40" rx="4" fill="#FF4D4D"/><rect x="456" y="916" width="18" height="58" rx="4" fill="#FF4D4D"/></g>';
   if (ka !== undefined && frq === undefined) { const G = ['#', '@', '!', '%', '$', '&', '!']; G.forEach((g, k) => { const tk = .08 + k * .13, q = ka - tk; if (q < 0) return; const a = -Math.PI / 2 + (k - 3) * .62, d = 190 + 50 * (k % 2), sc = back(cl(q / .25)) * (1 - .25 * cl((q - .9) / .5));
       s += '<text x="' + (540 + Math.cos(a) * d * 1.5).toFixed(0) + '" y="' + (945 + Math.sin(a) * d * .9 + 10 * Math.sin(t * 7 + k)).toFixed(0) + '" text-anchor="middle" font-size="96" font-weight="900" font-family="Inter Display" fill="' + (k % 2 ? '#FFD23F' : '#FF4D4D') + '" stroke="#000" stroke-width="6" paint-order="stroke" transform="rotate(' + ((k - 3) * 9) + ' 540 945)" opacity="' + cl(sc).toFixed(2) + '" style="font-size:' + (96 * sc).toFixed(0) + 'px">' + g + '</text>'; }); }
   return s; }
-function shake8(ev) { const T = []; if (ev.wut !== undefined) T.push(ev.wut); if (ev.kack !== undefined) { T.push(ev.kack); T.push(ev.kack - .45); T.push(ev.kack - .9); }
+function shake8(ev) { const T = []; if (ev.wut !== undefined) T.push(ev.wut); if (ev.kack !== undefined) { T.push(ev.kack); T.push(ev.kack - .45); T.push(ev.kack - .9); } if (ev.pic !== undefined) { T.push(ev.pic - .1); T.push(ev.pic - .6); }
   let x = 0, y = 0; T.forEach((q, k) => { if (q < 0 || q > .6) return; const A = 26 * Math.exp(-q * 7); x += A * Math.sin(q * 70 + k); y += A * Math.cos(q * 55 + k * 2); }); return [x, y]; }
 WORLD.h7p8_4 = function (sc, ev, t, lt) { const d0 = Math.max(1.6, L8(sc, 0)), en = ev.ende;
   let s = bg8(sc, t, lt);
