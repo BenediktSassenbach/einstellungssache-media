@@ -152,7 +152,7 @@ WORLD.b36out = function (sc, ev, t, lt, E) { const m1 = ev.m1, c1 = ev.c1;
   return look3(W(s + shadeS(), c1 === undefined ? dw.lab : ''), sc, t, lt, '#A8E63C'); };
 // Fassung B: nach dem letzten Satz von Teil 3 tanzt das Skelett in der Pause ("tanz" Sekunden), ohne Sprache
 const c36 = WORLD.b36c;
-WORLD.b36c = function (sc, ev, t, lt, E) { const L = sc.lines[sc.lines.length - 1], D = (typeof S !== 'undefined' && S.tanz) || 0, u = t - L.end - .15;
+WORLD.b36c = function (sc, ev, t, lt, E) { const L = sc.lines[sc.lines.length - 1], D = (typeof S !== 'undefined' && S.tanzNachTeil3 && S.tanz) || 0, u = t - L.end - .15;
   if (!D || u < 0) return c36(sc, ev, t, lt, E);
   let s = laborS(t, { rows: ROWS36, cx: HX, noList: true, on: 6 }); const dw = danceW(t, u, D, [D / 3, 2 * D / 3]);
   s += '<g opacity="' + cl(u / .35).toFixed(2) + '">' + dw.w + '</g>';
