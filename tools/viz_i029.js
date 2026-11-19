@@ -7,7 +7,16 @@
 // Teil 3: Parkhaus = Speicher der PS5. System grau, GTA-Bus parkt fast ein Drittel, Spiele auf den USB-Parkplatz schieben und zurueckholen.
 // Zum Loeschen: diese Datei und videos/I029.
 var AC29 = '#7C5CFF';
-function bg29(t) { return street26(t, 0, { RB: 2000, F: 3000 }); }
+function bg29(t, skip) { return street26(t, 0, { RB: 2000, F: 3000, noPpl: 1, skip: skip }); }
+// Leute auf dem Gehweg laufen vor den Dingen der Folge (Gehweg liegt vorn), nie dahinter
+function ppl29(t) { return ppl26(t, 0, 220, 3000, 2000); }
+// Baugeruest vor der Hauswand: Stangen, Boeden, Diagonalen, Netz an der Seite, Bauschild
+function scaf29() { const X = WX29, Wd = WW29, Y = WY29; let s = '';
+  for (const x of [X - 18, X + Wd / 2, X + Wd + 10]) s += '<rect x="' + (x - 4) + '" y="' + (Y - 30) + '" width="8" height="' + (GY26 - Y + 30) + '" fill="#C8A060"/><rect x="' + (x + 2) + '" y="' + (Y - 30) + '" width="2" height="' + (GY26 - Y + 30) + '" fill="#FFE2A8" opacity=".7"/>';
+  for (let y = Y + 140; y < GY26 - 40; y += 150) s += '<rect x="' + (X - 26) + '" y="' + y + '" width="' + (Wd + 44) + '" height="10" fill="#B88A50"/><rect x="' + (X - 26) + '" y="' + (y + 10) + '" width="' + (Wd + 44) + '" height="4" fill="#000" opacity=".25"/>';
+  for (let y = Y + 140; y < GY26 - 190; y += 300) s += '<path d="M' + (X - 18) + ' ' + y + ' L' + (X + Wd / 2) + ' ' + (y + 150) + '" stroke="#C8A060" stroke-width="5"/>';
+  s += '<rect x="' + (X + Wd + 6) + '" y="' + (Y - 30) + '" width="22" height="' + (GY26 - Y + 30) + '" fill="#5FD0C0" opacity=".25"/>';
+  return s; }
 // kleines Haus (fliegt in die Kiste). x, y Mitte unten, z Groesse, c Farbe, r Drehung
 function hs29(x, y, z, c, r) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (r || 0).toFixed(1) + ') scale(' + z.toFixed(3) + ')"><rect x="-40" y="-70" width="80" height="70" fill="' + c + '" stroke="#2A1440" stroke-width="2" stroke-opacity=".5"/><path d="M-48 -68 L0 -108 L48 -68 Z" fill="#2C2160" stroke="#2A1440" stroke-width="2" stroke-opacity=".5" stroke-linejoin="round"/><rect x="-24" y="-54" width="16" height="16" fill="#FFE14D"/><rect x="8" y="-54" width="16" height="16" fill="#FFE14D"/><rect x="-10" y="-28" width="20" height="28" fill="#0B1020"/></g>'; }
 var HC29 = ['#B9A6FF', '#FF6BD6', '#5CE1FF', '#FFB0D9', '#7C5CFF', '#FFD23F'];
@@ -28,7 +37,7 @@ WORLD.i29hook = function (sc, ev, t, lt) { let s = bg29(t); const fr = ev.stopf,
     for (let i = 0; i < 12; i++) { const a = -Math.PI / 2 + (i - 5.5) * .26, d = 120 + 620 * k * (.6 + .4 * rnd(i + 3)), x = KX29 + KW29 / 2 + d * Math.cos(a), y = GY26 - KH29 + d * Math.sin(a) + 900 * k * k; if (y < 1700) s += hs29(x, y, .55, HC29[i % 6], 300 * k * (i % 2 ? 1 : -1)); }
     s += '<circle cx="' + (KX29 + KW29 / 2) + '" cy="' + (GY26 - KH29 - 30) + '" r="' + (60 + 140 * k).toFixed(0) + '" fill="#B9A6FF" opacity="' + (.5 * (1 - k)).toFixed(2) + '"/>'; }
   if (pu !== undefined) { const q = cl(pu / .5); s += hs29(380, lerp(900, GY26, q * q), .7, '#FFB0D9', 18 * (1 - q)); }
-  return W(s + shade3()); };
+  return W(s + ppl29(t) + shade3()); };
 WMASC.i29hook = (ev, t, lt, sc) => { const dr = ev.platz, pu = ev.puff;
   if (pu !== undefined) return stay3([200, 1537], 1, { r: -4, mood: 'cool' });
   if (dr !== undefined) { if (dr < .5) return stay3([lerp(220, 470, ease(dr / .5)), 1537 - 8 * Math.abs(Math.sin(t * 12))], 1, { r: 10 }); if (dr < .95) return stay3([470 + 6 * Math.sin(t * 30), 1537], 1, { r: 18, mood: 'shock' }); return hop3(cl((dr - .95) / .5), [470, 1537], [200, 1537], 70, 1, 1, { r: -20, mood: 'shock' }); }
@@ -48,9 +57,9 @@ function wall29(t, rv, bump, gl, peel) { const X = WX29, Y = WY29, Wd = WW29, H 
   win.forEach((w, i) => { const on = vis > 0 && w[1] < Y + H * vis; s += '<rect x="' + w[0] + '" y="' + w[1] + '" width="70" height="90" rx="6" fill="' + (on ? '#3E1F78' : '#6A5A7A') + '" stroke="#2A1440" stroke-width="2" stroke-opacity=".5"/>';
     if (gl > 0 && on) { const ph = (t * .6 + i * .07) % 1.4; if (ph < 1) s += '<clipPath id="gw' + i + '"><rect x="' + w[0] + '" y="' + w[1] + '" width="70" height="90" rx="6"/></clipPath><g clip-path="url(#gw' + i + ')"><path d="M' + (w[0] - 60 + 190 * ph) + ' ' + w[1] + ' l40 0 l-60 90 l-40 0 Z" fill="#fff" opacity="' + (.75 * gl).toFixed(2) + '"/></g>'; } });
   return s; }
-WORLD.i29wand = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const te = ev.tex, dr = ev.drei, px = ev.pix, pk = ev.pack;
+WORLD.i29wand = function (sc, ev, t, lt) { let s = bg29(t, [3, 4]), h = ''; const te = ev.tex, dr = ev.drei, px = ev.pix, pk = ev.pack;
   const rv = te === undefined ? 0 : ease(cl((te - .6) / 2.4)), bump = dr === undefined ? 0 : cl((dr - .9) / .5), gl = dr === undefined ? 0 : cl((dr - 1.8) / .5), peel = pk === undefined ? 0 : ease(cl(pk / .9));
-  s += '<rect x="' + (WX29 - 20) + '" y="' + (GY26 - 6) + '" width="' + (WW29 + 60) + '" height="16" fill="#2A1440" opacity=".35"/>' + wall29(t, rv, bump, gl, peel) + '<rect x="' + WX29 + '" y="' + WY29 + '" width="' + WW29 + '" height="' + WH29 + '" fill="url(#k26L)"/><rect x="' + (WX29 - 14) + '" y="' + (WY29 - 12) + '" width="' + (WW29 + 28) + '" height="16" fill="#F2C8B0"/>';
+  s += '<rect x="' + (WX29 - 20) + '" y="' + (GY26 - 6) + '" width="' + (WW29 + 60) + '" height="16" fill="#2A1440" opacity=".35"/>' + wall29(t, rv, bump, gl, peel) + '<rect x="' + WX29 + '" y="' + WY29 + '" width="' + WW29 + '" height="' + WH29 + '" fill="url(#k26L)"/><rect x="' + (WX29 - 14) + '" y="' + (WY29 - 12) + '" width="' + (WW29 + 28) + '" height="16" fill="#F2C8B0"/>' + scaf29();
   if (te !== undefined && rv < 1) { const ry = WY29 + WH29 * rv; s += '<path d="M360 1420 L' + (WX29 + 40) + ' ' + ry.toFixed(0) + '" stroke="#C9A36A" stroke-width="12" stroke-linecap="round"/><rect x="' + (WX29 + 10) + '" y="' + (ry - 22).toFixed(0) + '" width="' + (WW29 - 20) + '" height="44" rx="22" fill="#C96A48" stroke="#2A1440" stroke-width="3" stroke-opacity=".5"/>'; }
   if (dr !== undefined && px === undefined) [['Farbe', 0], ['Unebenheit', .9], ['Glanz', 1.8]].forEach((c, i) => { s += chip3(WX29 + WW29 / 2, 770 + i * 92, c[0], 40, ['#FF5A7A', '#FFD23F', '#5CE1FF'][i], '#0B1020', cl((dr - c[1]) / .3)); });
   if (px !== undefined && pk === undefined) { const k = cl(px / .4), z = ease(cl((px - .4) / 1.4)), n = Math.round(6 + 30 * z), cx = 700, cy = 900, r = 190;
@@ -64,7 +73,7 @@ WORLD.i29wand = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const te = e
     for (let r = -8; r < 8; r++) s += '<path d="M-200 ' + (r * 34) + ' h400" stroke="#9C4A30" stroke-width="5"/>'; s += '</g><rect x="' + (-w / 2).toFixed(1) + '" y="' + (-hh / 2).toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + hh.toFixed(1) + '" rx="6" fill="none" stroke="#2A1440" stroke-width="3" stroke-opacity=".5"/></g>';
     s += chip3(700, 1125, 'höchstens etwa 1/8', 40, '#FFE14D', '#0B1020', cl((pk - 1.9) / .3)); }
   h += slot(ev, [['tex', 'Fast jede Fläche: eine Textur'], ['drei', 'Oft drei pro Fläche'], ['pix', '4K-Textur: fast 17 Mio. Pixel', 'hot'], ['pack', 'Packen: nur auf etwa 1/8']]);
-  return W(s + shade3(), h); };
+  return W(s + ppl29(t) + shade3(), h); };
 WMASC.i29wand = (ev, t) => { const te = ev.tex, dr = ev.drei, px = ev.pix, pk = ev.pack;
   if (pk !== undefined) return stay3([lerp(330, 300, ease(cl(pk / .9))) + (pk > 2 ? 3 * Math.sin(t * 40) : 0), 1537], 1, pk > 2.1 ? { r: -10, mood: 'shock' } : { r: 8 });
   if (px !== undefined) return stay3([lerp(260, 330, ease(cl(px / .5))), 1537], 1, { r: 10 });
@@ -76,7 +85,11 @@ WMASC.i29wand = (ev, t) => { const te = ev.tex, dr = ev.drei, px = ev.pix, pk = 
 function file29(x, y, sz, col, zip) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') scale(' + (sz / 100).toFixed(3) + ')"><path d="M-40 -55 h55 l25 25 v85 h-80 Z" fill="' + col + '" stroke="#2A1440" stroke-width="3" stroke-opacity=".5" stroke-linejoin="round"/><path d="M15 -55 v25 h25" fill="none" stroke="#2A1440" stroke-width="3" stroke-opacity=".5"/><path d="M-14 26 v-46 l26 -8 v40" stroke="#2A1440" stroke-width="3" stroke-opacity=".5" fill="none" stroke-linecap="round"/><circle cx="-20" cy="28" r="9" fill="#0B1020"/><circle cx="6" cy="20" r="9" fill="#0B1020"/>' + (zip ? '<rect x="-46" y="-6" width="92" height="16" rx="5" fill="#0B1020"/><rect x="-10" y="-14" width="20" height="32" rx="5" fill="#C9CED9" stroke="#2A1440" stroke-width="2" stroke-opacity=".5"/>' : '') + '</g>'; }
 var TC29 = ['#FFD23F', '#5CE1FF', '#FF6BD6', '#3DFF7A'];
 var SRC29 = [[300, 1500], [470, 1440], [620, 1440]]; // Schaltis Schritte, Hupe am Auto, Radio
-function tower29(n, inf) { let s = ''; const z = 70 * (1 + .8 * inf); for (let i = 0; i < n; i++) { const c = i % 3, r = Math.floor(i / 3), x = 720 + c * z * .95, y = GY26 - 40 - r * z * 1.15; s += file29(x, y, z, TC29[i % 4]); } return s; }
+function tower29(n, inf) { let s = ''; const z = 70 * (1 + .8 * inf), rows = Math.ceil(n / 3), x0 = 720 - z * .62, wB = z * .95 * 3 + z * .24;
+  if (rows > 0) { const top = GY26 - rows * z * 1.15 - 12; s += '<rect x="' + (x0 - 6).toFixed(1) + '" y="' + (GY26 - 6) + '" width="' + (wB + 24).toFixed(1) + '" height="14" fill="#2A1440" opacity=".35"/><rect x="' + x0.toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + wB.toFixed(1) + '" height="' + (GY26 - top).toFixed(1) + '" fill="#6A4A8A"/><rect x="' + x0.toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + wB.toFixed(1) + '" height="' + (GY26 - top).toFixed(1) + '" fill="url(#k26L)"/>';
+    for (let r = 0; r <= rows; r++) { const y = GY26 - r * z * 1.15 - 12; s += '<rect x="' + (x0 - 6).toFixed(1) + '" y="' + (y - 4).toFixed(1) + '" width="' + (wB + 12).toFixed(1) + '" height="10" fill="#C8A0A8"/>'; }
+    s += '<rect x="' + (x0 + wB - 6).toFixed(1) + '" y="' + top.toFixed(1) + '" width="6" height="' + (GY26 - top).toFixed(1) + '" fill="#FFD9A8" opacity=".8"/>'; }
+   for (let i = 0; i < n; i++) { const c = i % 3, r = Math.floor(i / 3), x = 720 + c * z * .95, y = GY26 - 40 - r * z * 1.15; s += file29(x, y, z, TC29[i % 4]); } return s; }
 function car29(x, b, honk) { let s = '<g transform="translate(' + x + ' ' + b + ')"><ellipse cx="0" cy="2" rx="120" ry="10" fill="#2A1440" opacity=".35"/>' + carP28(240, 100, '#FF5A7A', -1) + '</g>';
   if (honk > 0) for (let i = 0; i < 3; i++) s += '<path d="M' + (x - 130 - i * 22) + ' ' + (b - 70) + ' q-14 24 0 48" stroke="#FFE14D" stroke-width="6" fill="none" opacity="' + (honk * (1 - i * .25)).toFixed(2) + '"/>'; return s; }
 function radio29(on, t) { const bp = on ? 1 + .06 * Math.sin(t * 16) : 1; return '<g transform="translate(620 1548) scale(' + bp.toFixed(3) + ')"><rect x="-70" y="-96" width="140" height="92" rx="14" fill="#FFB0D9" stroke="#2A1440" stroke-width="3" stroke-opacity=".5"/><path d="M-40 -96 q40 -40 80 0" stroke="#2A1440" stroke-width="3" stroke-opacity=".5" fill="none"/><circle cx="-34" cy="-48" r="24" fill="#0B1020"/><circle cx="34" cy="-48" r="24" fill="#0B1020"/><circle cx="-34" cy="-48" r="9" fill="#5A6276"/><circle cx="34" cy="-48" r="9" fill="#5A6276"/></g>' + (on ? '<path d="M700 1470 q20 -16 40 0 M705 1440 q26 -20 52 0" stroke="#FFE14D" stroke-width="5" fill="none"/>' : ''); }
@@ -97,7 +110,7 @@ WORLD.i29ton = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const to = ev
     if (cp > 1.6 && raw < 1) s += file29(lerp(800, 630, ease(raw)), lerp(1300, 1360, ease(raw)), 110, '#3DFF7A');
     if (raw >= 1) s += okx1(560, 950, 46, true, (cp - 2.2) / .3); }
   h += slot(ev, [['ton', 'Jeder Ton ist eine Datei'], ['roh', 'Manchmal ungepackt'], ['cpu', 'Spart Arbeit beim Spielen', 'hot'], ['titan', 'Titanfall: 48 GB, vor allem Ton']]);
-  return W(s + shade3(), h); };
+  return W(s + ppl29(t) + shade3(), h); };
 WMASC.i29ton = (ev, t) => { const to = ev.ton, ti = ev.titan;
   if (to !== undefined && ev.roh === undefined) { const q = cl(to / 2.8); return stay3([300, 1537 - 10 * Math.abs(Math.sin(t * 9)) * (q < 1 ? 1 : 0)], 1, { r: 4 + 4 * Math.sin(t * 9) * (q < 1 ? 1 : 0) }); }
   if (ti !== undefined) return stay3([300, 1537], 1, ti > .8 ? { r: -14, mood: 'shock' } : { r: -14 * cl(ti / .8) });
@@ -117,13 +130,13 @@ function garage29() { const X0 = PX29 - 30, X1 = PX29 + PL29 + 30; let s = '<def
   for (const y of [1100, 1330]) s += '<rect x="' + X0 + '" y="' + y + '" width="' + (X1 - X0) + '" height="26" fill="url(#gc29)"/><rect x="' + X0 + '" y="' + (y + 26) + '" width="' + (X1 - X0) + '" height="8" fill="#000" opacity=".25"/>';
   for (let x = X0; x <= X1 - 30; x += (X1 - X0 - 30) / 5) s += '<rect x="' + x.toFixed(0) + '" y="800" width="30" height="' + (GY26 - 800) + '" fill="url(#gc29)"/><rect x="' + (x + 24).toFixed(0) + '" y="800" width="6" height="' + (GY26 - 800) + '" fill="#FFE2C4" opacity=".6"/>';
   s += '<path d="M' + (X0 + 40) + ' ' + (GY26 - 6) + ' L' + (X0 + 330) + ' 1360" stroke="#C8A0A8" stroke-width="20"/><path d="M' + (X0 + 360) + ' 1330 L' + (X0 + 640) + ' 1130" stroke="#C8A0A8" stroke-width="20" opacity=".8"/>';
-  for (let i = 0; i < 4; i++) s += '<rect x="' + (X0 + 120 + i * 190) + '" y="1440" width="110" height="60" rx="14" fill="' + ['#FF5A7A', '#5CE1FF', '#FFD23F', '#F4F6FB'][i] + '" opacity=".55"/>';
   return s; }
 var GC29 = [['#FFD23F', 150], ['#5CE1FF', 140], ['#FF6BD6', 140]];
 WORLD.i29park = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const fr = ev.frei, dr = ev.drittel, us = ev.usb, zu = ev.zurueck;
   s += park29();
   const fk = fr === undefined ? 0 : cl((fr - .8) / .5); if (fk > 0 && dr === undefined) s += '<rect x="' + (PX29 + SYS29).toFixed(0) + '" y="' + (PY29 - 150) + '" width="' + (PL29 - SYS29).toFixed(0) + '" height="140" rx="10" fill="#3DFF7A" opacity="' + (.3 * fk).toFixed(2) + '"/>' + chip3(PX29 + SYS29 + (PL29 - SYS29) / 2, 1000, 'frei: rund 667 GB', 40, '#3DFF7A', '#0B1020', fk);
-  const uk = us === undefined ? 0 : cl(us / .4); s += '<g opacity="' + (.35 + .65 * uk).toFixed(2) + '"><rect x="560" y="1370" width="400" height="170" rx="12" fill="#2C3350" stroke="#2A1440" stroke-width="3" stroke-opacity=".5"/><path d="M700 1380 v150 M840 1380 v150" stroke="#F4F6FB" stroke-width="4" opacity=".6"/>' + svgT(760, 1355, 'USB', 38, '#F4F6FB') + '</g>';
+  const uk = us === undefined ? 0 : cl(us / .4); /* USB-Deck: das Erdgeschoss des Parkhauses ist die angeschlossene USB-Platte, eigenes Schild, eigene Markierung */
+  s += '<rect x="560" y="1530" width="400" height="18" fill="#C8A0A8" opacity=".7"/><path d="M700 1500 v40 M840 1500 v40" stroke="#F4F6FB" stroke-width="5" opacity="' + (.4 + .5 * uk).toFixed(2) + '"/><path d="M640 1364 v14 M880 1364 v14" stroke="#5A3A6A" stroke-width="5"/><rect x="620" y="1376" width="280" height="44" rx="10" fill="url(#cm28)"/><rect x="628" y="1382" width="264" height="32" rx="7" fill="#140A26"/>' + svgT(760, 1407, 'USB-Platte', 26, uk > .5 ? '#5CE1FF' : '#7A8AA8') + '<rect x="560" y="1370" width="400" height="178" fill="#5CE1FF" opacity="' + (.1 * uk).toFixed(2) + '"/>';
   const gx0 = PX29 + SYS29 + 6; if (dr !== undefined) { const q = ease(cl(dr / 1.1)); s += carP29(lerp(1100, gx0, q), PY29 - 4, GTA29 - 12, AC29, 'GTA 6'); if (q >= 1) s += chip3(gx0 + GTA29 / 2, 880, 'fast ein Drittel', 38, '#FFE14D', '#0B1020', cl((dr - 1.1) / .3)); }
   if (dr !== undefined) { let px = gx0 + GTA29; GC29.forEach((g, i) => { const inq = ease(cl((dr - 1.6 - i * .25) / .6)), home = [px + 8, PY29 - 4], usbP = [580 + i * 140, 1530];
       let x = lerp(1100 + i * 160, home[0], inq), y = home[1];
@@ -133,7 +146,7 @@ WORLD.i29park = function (sc, ev, t, lt) { let s = bg29(t), h = ''; const fr = e
     const full = cl((dr - 2.5) / .3) * (us === undefined ? 1 : 1 - cl((us - 1) / .3)); if (full > 0) s += chip3(860, 760, 'voll', 38, '#FF5A7A', '#fff', full); }
   if (zu !== undefined) s += chip3(540, 1130, 'meist schneller als neu laden', 34, '#3DFF7A', '#0B1020', cl((zu - .8) / .3));
   h += slot(ev, [['frei', 'PS5 mit 825 GB: rund 667 GB frei'], ['drittel', 'GTA 6: fast ein Drittel', 'hot'], ['usb', 'Trick: Spiele auf USB auslagern'], ['zurueck', 'Zum Spielen zurückkopieren']]);
-  return W(s + shade3(), h); };
+  return W(s + ppl29(t) + shade3(), h); };
 WMASC.i29park = (ev, t, lt) => { const us = ev.usb, zu = ev.zurueck;
   if (us !== undefined && zu === undefined) { const q = cl(us / 2); return stay3([lerp(220, 420, ease(q)), 1537 - 8 * Math.abs(Math.sin(t * 12)) * (q < 1 ? 1 : 0)], 1, { r: 14, walk: q < 1 ? 1 : 0 }); }
   if (zu !== undefined) return stay3([420, 1537], 1, { r: -4, mood: 'happy' });
@@ -142,7 +155,7 @@ WMASC.i29park = (ev, t, lt) => { const us = ev.usb, zu = ev.zurueck;
   return stay3([X, 1537], 1, { r: 2 }); };
 
 // ---------- Schluss ----------
-WORLD.i29outro = function (sc, ev, t) { return W(bg29(t) + park29(1) + carP29(PX29 + SYS29 + 6, PY29 - 4, GTA29 - 12, AC29, 'GTA 6') + shade3()); };
+WORLD.i29outro = function (sc, ev, t) { return W(bg29(t) + park29(1) + carP29(PX29 + SYS29 + 6, PY29 - 4, GTA29 - 12, AC29, 'GTA 6') + ppl29(t) + shade3()); };
 WMASC.i29outro = (ev, t, lt) => stay3([lerp(420, 220, ease(cl(lt / .8))), 1537], 1, { r: 2 });
 
 ['i29hook', 'i29wand', 'i29ton', 'i29park', 'i29outro'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC29); });
