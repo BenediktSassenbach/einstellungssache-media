@@ -1,0 +1,188 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P008V4",
+ "design": "3.3",
+ "titel": "Warum ist dein Akku bei Kälte leer?",
+ "quelle": "Apple: iPhone für 0 bis 35 °C ausgelegt; sehr kalte Bedingungen können die Batterielaufzeit vorübergehend verkürzen und ein Abschalten verursachen, in wärmerer Umgebung erholt sie sich (Apple Support 118431, abgerufen 19.11.2026). Kälte macht den Elektrolyt zähflüssiger, Lithium-Ionen bewegen sich langsamer, Innenwiderstand steigt (wissen.de 'Handy-Akku: Was passiert bei Kälte'). Bei Leistungsbedarf bricht die Spannung ein, die Schutzelektronik hält das für einen leeren Akku und schaltet ab, obwohl Restladung da ist; zurück in der Wärme ist die Ladung wieder da, die Anzeige springt z. B. von 40 auf 0 Prozent (netzwelt.de 258580). Handy nah am Körper bzw. in der Innentasche tragen (netzwelt.de, t3n). Eiskalten Akku nicht laden, erst aufwärmen (netzwelt.de: gefährlich wird erst das Laden im kalten Zustand; antwort.net). 'Zäh wie Honig' ist ein Vergleich für den zähflüssigen Elektrolyt. Die 40 Prozent im Einstieg sind ein Beispielwert. Spruch: 'Dein Akku lügt im Winter' = die Anzeige springt, obwohl Ladung da ist (alltagsnah, wird in Teil 2 aufgeklärt). Kostüm P1 Professor, weil P3 Unter Strom im Renderer noch nicht gebaut ist. Skript 4, Einstieg unter 10 s.",
+ "gagTag": "[shivering] [deadpan]",
+ "gagDelay": 0,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Akku *leer* im Winter?",
+   "emoji": "🥶",
+   "world": "h7p8_4",
+   "pause": 0,
+   "lines": [
+    {
+     "t": "Dein Akku lügt im Winter.",
+     "mood": "cool"
+    },
+    {
+     "t": "Warum ist dein Akku bei Kälte leer?",
+     "mood": "happy",
+     "ev": "frost"
+    },
+    {
+     "t": "Physik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "shock",
+     "ev": "aus"
+    },
+    {
+     "t": "Eben noch 40 Prozent.",
+     "mood": "cool"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Die Energie ist noch da",
+   "path": [],
+   "world": "p8energie_4",
+   "pause": 0.5,
+   "labor": [
+    1,
+    2,
+    3
+   ],
+   "lines": [
+    {
+     "t": "Erstens: Die Energie ist gar nicht weg.",
+     "mood": "happy",
+     "ev": "voll"
+    },
+    {
+     "t": "Schau in den Akku: Lithium-Ionen wandern durch eine Flüssigkeit.",
+     "mood": "happy",
+     "ev": "innen"
+    },
+    {
+     "t": "In der Kälte wird diese Flüssigkeit zäh wie Honig.",
+     "mood": "shock",
+     "ev": "zaeh"
+    },
+    {
+     "t": "Die Ionen kommen nur noch langsam durch.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Darum geht es aus",
+   "path": [],
+   "world": "p8spannung_4",
+   "pause": 0.5,
+   "labor": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "lines": [
+    {
+     "t": "Zweitens: Braucht dein Handy plötzlich viel Strom, bricht die Spannung ein.",
+     "mood": "happy",
+     "ev": "last"
+    },
+    {
+     "t": "Die Schutzelektronik hält das für einen leeren Akku.",
+     "mood": "wink",
+     "ev": "schutz"
+    },
+    {
+     "t": "Also schaltet sie ab, obwohl noch Ladung drin ist.",
+     "mood": "happy",
+     "ev": "aus2"
+    },
+    {
+     "t": "Deshalb springt die Anzeige plötzlich auf null.",
+     "mood": "shock",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Warm halten",
+   "path": [],
+   "world": "p8waerme_4",
+   "pause": 0.5,
+   "quip": "Rein in die Jacke.",
+   "quipAt": 1,
+   "lines": [
+    {
+     "t": "Drittens: Wird das Handy wieder warm, ist die Ladung zurück.",
+     "mood": "happy",
+     "ev": "warm"
+    },
+    {
+     "t": "Trag es deshalb in der Innentasche, nah am Körper.",
+     "mood": "happy",
+     "ev": "tasche"
+    },
+    {
+     "t": "Deine Körperwärme hält den Akku warm genug.",
+     "mood": "wink",
+     "ev": "koerper"
+    },
+    {
+     "t": "Und lade ein eiskaltes Handy erst, wenn es wieder warm ist.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p8outro_4",
+   "checks": [
+    "Ladung da, Ionen nur langsam",
+    "Spannung bricht ein, Handy geht aus",
+    "Warm halten, erst warm laden"
+   ],
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Also: Die Ladung ist noch da, die Kälte bremst nur die Ionen,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "die Spannung bricht ein, und das Handy geht aus,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und Wärme holt alles zurück.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?",
+     "mood": "happy",
+     "pop": [
+      "🧠",
+      ""
+     ]
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
