@@ -1,0 +1,167 @@
+{
+ "serie": "Bio",
+ "kostuem": "forscher",
+ "accent": "#A8E63C",
+ "id": "B036BK",
+ "titel": "Schicht für Schicht: Wie ist deine Hüfte aufgebaut?",
+ "gagTag": "[gasps] [startled]",
+ "gagDelay": 0.9,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Deine *Hüfte*, Schicht für Schicht",
+   "emoji": "🦴",
+   "world": "h36huefte",
+   "pause": 0.3,
+   "lines": [
+    {
+     "t": "Das stärkste Band deines Körpers sitzt in deiner Hüfte.",
+     "mood": "cool"
+    },
+    {
+     "t": "Wie ist deine Hüfte aufgebaut?",
+     "mood": "happy",
+     "ev": "mark"
+    },
+    {
+     "t": "Bio nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "wink",
+     "ev": "sticker"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Knochen und Knorpel",
+   "path": [],
+   "world": "b36a",
+   "pause": 0.35,
+   "lines": [
+    {
+     "t": "Schicht eins: der Oberschenkelkopf, eine Kugel in der Hüftpfanne.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Knochen auf Knochen würde aber reiben.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Schicht zwei: glatter Knorpel auf Kopf und Pfanne.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Die Pfanne allein ist aber nur etwa eine halbe Kugel.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Gelenklippe und Kapsel",
+   "path": [],
+   "world": "b36b",
+   "pause": 0.35,
+   "lines": [
+    {
+     "t": "Schicht drei: die Gelenklippe, ein Knorpelring am Pfannenrand.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Sie vertieft die Pfanne. Jetzt umschließt sie mehr als die halbe Kugel.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Schicht vier: Eine Kapsel umschließt das ganze Gelenk.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Ihre Flüssigkeit schmiert und ernährt den Knorpel.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Bänder und Gesäßmuskel",
+   "path": [],
+   "world": "b36c",
+   "pause": 7.85,
+   "lines": [
+    {
+     "t": "Schicht fünf: Bänder halten den Kopf in der Pfanne.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Eins davon gilt als das stärkste Band deines Körpers.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Beim Gehen stehst du kurz auf einem Bein. Schicht sechs: der mittlere Gesäßmuskel.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Er hält dein Becken dabei waagerecht.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "b36out",
+   "pause": 0.05,
+   "checks": [
+    "Knochen und Knorpel",
+    "Gelenklippe und Kapsel",
+    "Bänder und Gesäßmuskel"
+   ],
+   "lines": [
+    {
+     "t": "Also: Kugel und Pfanne gleiten auf Knorpel,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Lippe und Kapsel umschließen das Gelenk,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "Bänder und Muskel halten es stabil.",
+     "mood": "happy",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ],
+ "quelle": "Spruch 'Das stärkste Band deines Körpers sitzt in deiner Hüfte.': Lig. iliofemorale (Y-Band) gilt als stärkstes bzw. zugfestestes Band des Körpers (Kenhub 'Hüftgelenk': zugfestestes Band; dr-gumpert 'Hüftgelenk': stärkstes Band; medi-learn Skript Anatomie 5: stärkstes Band, ermöglicht amuskuläres Stehen; Wikipedia en 'Iliofemoral ligament'). DocCheck schreibt vorsichtiger 'gehört zu den stärksten', deshalb im Teil 3 'gilt als'. Hüftgelenk = Oberschenkelkopf (Caput femoris) in der Hüftpfanne (Acetabulum), Kugelgelenk, Bewegung in alle Richtungen (Kenhub 'Hüftgelenk'; DocCheck 'Articulatio coxae'; Marien-Kliniken: Beugen/Strecken, An-/Abspreizen, Innen-/Außendrehen). Knorpel überzieht Kopf und Pfanne, damit die Knochen nicht aneinander reiben (gesundheit.gv.at 'Gelenke'; Sportklinik Stuttgart OP-Broschüre Hüfte). Knöcherne Pfanne 'halbkugelförmige Aussparung' (dr-gumpert), deshalb 'etwa eine halbe Kugel'. Gelenklippe (Labrum acetabuli): Ring aus Faserknorpel am Pfannenrand, vertieft die Pfanne, mehr als die Hälfte des Kopfes liegt in der Pfanne (Kenhub 'Labrum acetabuli'; lecturio: Knorpelring, Erhöhung der Tiefe; DocCheck 'Hüftgelenk': Pfanne umschließt den Kopf über seinen Äquator hinaus, Nussgelenk). Kapsel umschließt das Gelenk, Innenschicht bildet Gelenkflüssigkeit, die schmiert und den Knorpel ernährt (Uniklinikum Dresden Broschüre Hüftarthrose; Sportklinik Stuttgart; krankenhaus.de 'Hüftgelenk'). Bänder: Lig. iliofemorale, pubofemorale, ischiofemorale sind in die äußere Kapselschicht eingewoben und halten den Kopf in der Pfanne (Uniklinikum Dresden: äußere Schicht durchwoben von Bänderzügen, die den Hüftkopf in der Pfanne stabilisieren; DocCheck 'Lig. iliofemorale': Teil der Gelenkkapsel; krankenhaus.de: bilden einen Teil der Gelenkkapsel). Im Bild von vorn: Y-Band (von der Spina iliaca anterior inferior zur Linea intertrochanterica, zwei Schenkel) und Lig. pubofemorale; das Lig. ischiofemorale liegt hinten und ist nicht zu sehen. Mittlerer Gesäßmuskel (M. gluteus medius): Ursprung Außenfläche der Darmbeinschaufel, Ansatz großer Rollhügel (DocCheck, Kenhub). Hält im Einbeinstand und beim Gehen das Becken waagerecht, bei Schwäche kippt es zur Gegenseite (DocCheck 'Einbeinstand'; medi-karriere 'Gluteus medius'). Der kleine Gesäßmuskel hilft dabei mit (medi-karriere 'Gluteus minimus'), wird im Text nicht genannt. Ansicht: linke Hüfte von vorn, Pfanne aufgeschnitten (Schnittfläche mit Bälkchen), Bänder und Muskel auf der Vorderseite. Lateinische Begriffe nur im Bild: Acetabulum, Caput femoris, Cartilago articularis, Labrum acetabuli, Capsula articularis, Ligamenta, Lig. iliofemorale, M. gluteus medius. Deutsche Begriffe nach Gebräuchlichkeit: Hüftpfanne, Oberschenkelkopf (statt Hüftkopf, passt zu B035), Gelenkknorpel, Gelenklippe (Patientenbroschüren Diakovere, Sportklinik), Gelenkkapsel, Y-Band, Gesäßmuskel. Farbe Türkis jetzt für Faserknorpel allgemein (Menisken, Gelenklippe). Die sechs Schichten sind die Reihenfolge der Serie, keine anatomische Einteilung (Bänder gehören zur Kapsel). Bewusst weggelassen: Hüftkopfband (keine Haltefunktion, medi-learn), Lig. transversum, Fettkörper, Schleimbeutel, großer und kleiner Gesäßmuskel, Kräfte in Vielfachen des Körpergewichts (Zahlen schwanken). Körper-Thema: nur gesunder Aufbau, kein Wort zu Schmerzen, Arthrose, Prothesen, Brüchen oder Training. Faktencheck Zeile für Zeile am 19.11.2026. Design: Skript Schicht für Schicht Anatomie, Kostüm B6 Forscher, dunkler Labor-Look, weiches Relief. Test (Benedikt, 19.11.2026, noch keine Regel): Ein Schulskelett tanzt zu einem eigenen Song (ElevenLabs Music, French-House-Stil, eigener Text) und zeigt, was die Hüfte kann: Beugen und Strecken, Abspreizen, Drehen nach innen und außen (Marien-Kliniken 'Das Hüftgelenk'; Kenhub 'Hüftgelenk': Kugelgelenk). Beugen und Strecken beim Gehen und Treppensteigen.",
+ "tanz": 7.5
+}

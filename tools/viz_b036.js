@@ -71,3 +71,76 @@ WORLD.b36out = function (sc, ev, t, lt) { const c1 = ev.c1, c2 = ev.c2, c3 = ev.
   if (cur) for (const r of [cur - 1, cur]) s += '<rect x="50" y="' + (782 + (r - 1) * 45 - 31) + '" width="340" height="41" rx="9" fill="#A8E63C" opacity=".22"/>';
   return W(s + '<rect width="1080" height="1920" fill="#02030F" opacity=".3"/>' + shadeS()); };
 ['h36huefte', 'b36a', 'b36b', 'b36c', 'b36out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, '#A8E63C'); });
+
+// ---- Test (Benedikt, 19.11.2026, noch keine Regel): Ein Schulskelett tanzt zu einem eigenen Song und zeigt, was die Huefte kann.
+// Fassung A: Schalti spricht ueber den Tanz (Schluss, Zeilen m1/m2). Fassung B: nur Tanz und Musik in der Pause nach Teil 3 ("tanz": Sekunden im Skript).
+const SK = { HJ: 42, L1: 112, L2: 104 };
+const skTap = (p0, p1, w0, w1) => mTap(p0, p1, w0, w1);
+// Glied mit Verjuengung (auch fuer das Skelett)
+function mTap(p0, p1, w0, w1) { const dx = p1[0] - p0[0], dy = p1[1] - p0[1], L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L, P = (p, w, sg) => (p[0] + sg * nx * w / 2).toFixed(1) + ' ' + (p[1] + sg * ny * w / 2).toFixed(1);
+  return '<path d="M' + P(p0, w0, 1) + ' L' + P(p1, w1, 1) + ' L' + P(p1, w1, -1) + ' L' + P(p0, w0, -1) + ' Z" fill="#fff"/><circle cx="' + p0[0].toFixed(1) + '" cy="' + p0[1].toFixed(1) + '" r="' + (w0 / 2) + '" fill="#fff"/><circle cx="' + p1[0].toFixed(1) + '" cy="' + p1[1].toFixed(1) + '" r="' + (w1 / 2) + '" fill="#fff"/>'; }
+const pol = (p, L, deg) => [p[0] + L * Math.sin(deg * Math.PI / 180), p[1] + L * Math.cos(deg * Math.PI / 180)];
+const P2 = p => p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+// Bein von vorn. sd = -1 rechtes Bein der Person (links im Bild), +1 linkes. o.flex Beugen (Grad, perspektivisch), o.abd Abspreizen, o.rot Drehen (+ = nach aussen)
+function skLeg(sd, o) { const H = [sd * SK.HJ, 4], f = (o.flex || 0) * Math.PI / 180, ab = sd * (o.abd || 0), r = (o.rot || 0) * sd;
+  const K = [H[0] + SK.L1 * Math.sin(ab * Math.PI / 180), H[1] + SK.L1 * Math.cos(ab * Math.PI / 180) * Math.cos(f)], A = pol(K, SK.L2 * (1 - .12 * Math.sin(f)), ab * .9 - sd * 10 * Math.sin(f)), sr = Math.sin(r * Math.PI / 180);
+  const T = [H[0] + sd * 15, H[1] + 9], sh0 = [H[0] + sd * 9, H[1] + 14];
+  let b = mTap(H, T, 13, 15) + mTap(sh0, [K[0] + sd * 2, K[1] - 8], 15, 12) + '<ellipse cx="' + K[0].toFixed(1) + '" cy="' + (K[1] - 2).toFixed(1) + '" rx="14" ry="9" fill="#fff"/>';
+  b += mTap([K[0] - sd * 2, K[1] + 7], [A[0] - sd * 2, A[1]], 14, 9) + mTap([K[0] + sd * 9, K[1] + 9], [A[0] + sd * 7, A[1] - 2], 5, 4);
+  b += mTap([A[0], A[1] + 4], [A[0] + 22 * sr, A[1] + 22], 15, 10) + '<circle cx="' + H[0] + '" cy="' + H[1] + '" r="11" fill="#fff"/>';
+  const pat = '<ellipse cx="' + (K[0] + 7 * sr).toFixed(1) + '" cy="' + (K[1] - 6).toFixed(1) + '" rx="6" ry="8" fill="#fff"/>';
+  return { H, K, A, s: b + pat }; }
+// Arm von vorn: Schulter S, Oberarm-Winkel a (Grad von unten, + nach aussen), Ellbogen-Winkel e
+function skArm(sd, a, e) { const S = [sd * 62, -160], E = pol(S, 66, sd * a), W2 = pol(E, 58, sd * (a + e));
+  let s = mTap(S, E, 12, 9) + mTap(E, W2, 6, 5) + mTap([E[0] + sd * 4, E[1]], [W2[0] + sd * 4, W2[1]], 5, 4) + '<circle cx="' + P2(S) + '" r="1" fill="#fff"/>'.replace('cx="' + P2(S) + '"', 'cx="' + S[0].toFixed(1) + '" cy="' + S[1].toFixed(1) + '"').replace('r="1"', 'r="10"');
+  const Hd = pol(W2, 10, sd * (a + e)); s += '<ellipse cx="' + Hd[0].toFixed(1) + '" cy="' + Hd[1].toFixed(1) + '" rx="8" ry="10" fill="#fff"/>';
+  for (let i = -1.5; i <= 1.5; i++) { const F0 = [Hd[0] + i * 4, Hd[1]], F1 = pol(F0, 16, sd * (a + e) + i * 8); s += mTap(F0, F1, 3, 2.4); }
+  return s; }
+// Ganzes Schulskelett. o.L / o.R Beinstellungen, o.armL / o.armR [a, e], o.bob Hoch-Runter, o.sh Becken seitlich, o.glow Leuchten der Hueftgelenke
+function skelS(x, y, s, t, o) { o = o || {}; const lR = skLeg(-1, o.R || {}), lL = skLeg(1, o.L || {}), aR = o.armR || [8, 10], aL = o.armL || [8, 10];
+  let b = '';
+  // Wirbelsaeule hinter den Rippen
+  for (let i = 0; i < 9; i++) b += '<rect x="-8" y="' + (-178 + i * 9) + '" width="16" height="7" rx="3" fill="#fff"/>';
+  for (let i = 0; i < 5; i++) b += '<rect x="-12" y="' + (-92 + i * 12) + '" width="24" height="10" rx="4" fill="#fff"/>';
+  // Rippen und Brustbein
+  for (let i = 0; i < 7; i++) { const y0 = -156 + i * 11, w = i < 4 ? 40 + i * 6 : 58 - (i - 3) * 3; for (const sd of [-1, 1]) b += '<path d="M' + sd * 6 + ' ' + y0 + ' C' + sd * w * .9 + ' ' + (y0 - 8) + ' ' + sd * (w + 4) + ' ' + (y0 + 12) + ' ' + sd * w * .8 + ' ' + (y0 + 24) + '" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>'; }
+  b += mTap([0, -160], [0, -98], 12, 8);
+  // Schluesselbeine, Schaedel mit Unterkiefer, Halswirbel
+  b += mTap([-6, -168], [-60, -162], 9, 8) + mTap([6, -168], [60, -162], 9, 8) + '<ellipse cx="0" cy="-226" rx="31" ry="35" fill="#fff"/><path d="M-21 -210 Q-22 -188 0 -184 Q22 -188 21 -210 Z" fill="#fff"/>';
+  for (let i = 0; i < 2; i++) b += '<rect x="-7" y="' + (-184 + i * 8) + '" width="14" height="6" rx="3" fill="#fff"/>';
+  // Becken von vorn
+  b += '<path d="M-8 -22 C-26 -40 -58 -46 -68 -26 C-74 -12 -64 0 -54 6 C-50 18 -38 28 -22 32 C-12 34 -5 28 0 27 C5 28 12 34 22 32 C38 28 50 18 54 6 C64 0 74 -12 68 -26 C58 -46 26 -40 8 -22 Z" fill="#fff"/><path d="M-50 -30 C-40 -16 -24 -12 -12 -14 M50 -30 C40 -16 24 -12 12 -14" stroke="#9a9a9a" stroke-width="5" fill="none"/>';
+  b += skArm(-1, aR[0], aR[1]) + skArm(1, aL[0], aL[1]) + lR.s + lL.s;
+  let d = '<g fill="#2A1E10"><ellipse cx="-12" cy="-228" rx="8.5" ry="9.5"/><ellipse cx="12" cy="-228" rx="8.5" ry="9.5"/><path d="M0 -218 l-5 10 h10 Z"/><ellipse cx="-22" cy="24" rx="9" ry="7" opacity=".85"/><ellipse cx="22" cy="24" rx="9" ry="7" opacity=".85"/><path d="M-10 -20 C-6 -6 6 -6 10 -20 C6 -26 -6 -26 -10 -20 Z" opacity=".25"/></g><path d="M-15 -196 H15 M-10 -200 V-192 M-5 -200 V-192 M0 -200 V-192 M5 -200 V-192 M10 -200 V-192" stroke="#2A1E10" stroke-width="1.6" opacity=".7"/>';
+  const g = o.glow || [1, 1]; let gl = ''; [[lR.H, g[0]], [lL.H, g[1]]].forEach(([H, k]) => { gl += '<g opacity="' + cl(.45 + .55 * k).toFixed(2) + '"><circle cx="' + H[0] + '" cy="' + H[1] + '" r="' + (18 + 8 * k).toFixed(1) + '" fill="#3FB4FF" opacity=".5" filter="url(#hCGlow)"/><circle cx="' + H[0] + '" cy="' + H[1] + '" r="12" fill="none" stroke="url(#hCart)" stroke-width="4.5"/><path d="M' + (H[0] - 15) + ' ' + (H[1] - 5) + ' A16 16 0 0 1 ' + (H[0] + 15) + ' ' + (H[1] - 5) + '" stroke="#1FE8C8" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>'; });
+  return '<g transform="translate(' + (x + (o.sh || 0)).toFixed(1) + ' ' + (y - (o.bob || 0)).toFixed(1) + ') scale(' + s + ')">' + HDEF + '<ellipse cx="0" cy="' + (238 + (o.bob || 0) / s).toFixed(1) + '" rx="96" ry="9" fill="#000" opacity=".35"/><g filter="url(#hBone)">' + b + '</g>' + d + gl + '</g>'; }
+// Tanz: Phase 0 Beugen und Strecken (Marsch, Knie hoch), Phase 1 Abspreizen (Seitkick), Phase 2 Drehen (Twist). v = Sekunden in der Phase, Takt 120 BPM
+function danceP(ph, v) { const c = Math.sin(2 * Math.PI * v), bob = 8 * Math.abs(Math.sin(2 * Math.PI * v)), o = { bob: bob };
+  if (ph === 0) { o.L = { flex: 82 * Math.max(0, c) }; o.R = { flex: 82 * Math.max(0, -c) }; o.armL = [12 + 30 * Math.max(0, -c), 20 + 60 * Math.max(0, -c)]; o.armR = [12 + 30 * Math.max(0, c), 20 + 60 * Math.max(0, c)]; o.glow = [Math.max(0, -c), Math.max(0, c)]; }
+  else if (ph === 1) { const k = Math.sin(Math.PI * v * 1.6); o.L = { abd: 40 * Math.max(0, k) }; o.R = { abd: 40 * Math.max(0, -k) }; o.sh = -14 * k; o.armL = [80 + 30 * Math.max(0, k), 30]; o.armR = [80 + 30 * Math.max(0, -k), 30]; o.glow = [Math.max(0, k), Math.max(0, -k)]; }
+  else { o.L = { rot: 38 * c, flex: 14 }; o.R = { rot: -38 * c, flex: 14 }; o.sh = -8 * c; o.bob = 10 + 4 * Math.abs(c); o.armL = [40 + 20 * c, 90]; o.armR = [40 - 20 * c, 90]; o.glow = [Math.abs(c), Math.abs(c)]; }
+  return o; }
+const DLAB = ['Beugen und Strecken', 'Abspreizen', 'Drehen nach innen und außen'];
+function danceW(t, u, D, cuts, s) { const ph = u < cuts[0] ? 0 : u < cuts[1] ? 1 : 2, v = u - (ph === 0 ? 0 : cuts[ph - 1]), o = danceP(ph, v);
+  let w = skelS(HX, 922, .88, t, o);
+  // Taktlicht: zwei weiche Spots im Rhythmus
+  const beat = Math.pow(Math.max(0, Math.cos(2 * Math.PI * u)), 6); w = '<ellipse cx="' + HX + '" cy="1130" rx="' + (200 + 30 * beat).toFixed(0) + '" ry="34" fill="#A8E63C" opacity="' + (.12 + .18 * beat).toFixed(2) + '"/>' + w;
+  return { w: w, lab: slot({ d: v }, [['d', DLAB[ph]]]) }; }
+// Fassung A: Schluss mit Tanz waehrend m1/m2, danach das Modell
+const out36 = WORLD.b36out;
+WORLD.b36out = function (sc, ev, t, lt, E) { const m1 = ev.m1, c1 = ev.c1;
+  if (m1 === undefined || (c1 !== undefined && c1 > .5)) return out36(sc, ev, t, lt, E);
+  const L1 = sc.lines[0], L2 = sc.lines[1], u = t - L1.start, D = L2.end - L1.start, cuts = [L1.end - L1.start, L1.end - L1.start + (L2.end - L2.start) * .5];
+  let s = laborS(t, { rows: ROWS36, cx: HX, noList: true, on: 6 }); const dw = danceW(t, u, D, cuts);
+  const outK = c1 === undefined ? 1 : 1 - cl(c1 / .5);
+  s += '<g opacity="' + (cl(lt / .4) * outK).toFixed(2) + '">' + dw.w + '</g>';
+  if (c1 !== undefined) s += '<g opacity="' + cl(c1 / .5).toFixed(2) + '">' + hipS(HX, HY, HZ, t, { l: [1, 1, 1, 1, 1, 1] }) + '</g>';
+  return look3(W(s + shadeS(), c1 === undefined ? dw.lab : ''), sc, t, lt, '#A8E63C'); };
+// Fassung B: nach dem letzten Satz von Teil 3 tanzt das Skelett in der Pause ("tanz" Sekunden), ohne Sprache
+const c36 = WORLD.b36c;
+WORLD.b36c = function (sc, ev, t, lt, E) { const L = sc.lines[sc.lines.length - 1], D = (typeof S !== 'undefined' && S.tanz) || 0, u = t - L.end - .15;
+  if (!D || u < 0) return c36(sc, ev, t, lt, E);
+  let s = laborS(t, { rows: ROWS36, cx: HX, noList: true, on: 6 }); const dw = danceW(t, u, D, [D / 3, 2 * D / 3]);
+  s += '<g opacity="' + cl(u / .35).toFixed(2) + '">' + dw.w + '</g>';
+  if (u < .35) s += '<g opacity="' + (1 - cl(u / .35)).toFixed(2) + '">' + hipS(HX, HY, HZ, t, { l: [1, 1, 1, 1, 1, 1] }) + '</g>';
+  return look3(W(s + shadeS(), dw.lab), sc, t, lt, '#A8E63C'); };
