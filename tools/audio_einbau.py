@@ -5,6 +5,7 @@
 # - haengt den Schlusssatz aus videos/_outro an die letzte Szene, ruft zeiten.py auf
 # - mischt in Szene 1 die Soundeffekte videos/_sfx/<ID>_0.wav (endet am Einschlag) und <ID>_1.wav (beginnt am Einschlag),
 #   Stimme nach dem Einschlag leicht gedaempft. "gagDelay" im Skript = Sekunden zwischen Gag-Beginn und Einschlag.
+#   "gagZeile" im Skript: Index der Einstiegszeile, die am Gag beginnt (Standard -1 = Nachsatz). Weitere Anweisungen in Szene 1 (z. B. [angry]) zaehlen nicht als Gag.
 import json, os, re, subprocess, sys
 d, roh = sys.argv[1], sys.argv[2]; S = json.load(open(os.path.join(d, 'script.json'), encoding='utf8')); sid = sys.argv[3] if len(sys.argv) > 3 else S['id']
 A = os.path.join(d, 'audio'); os.makedirs(A, exist_ok=True); N = len(S['scenes']); root = os.path.dirname(os.path.dirname(os.path.abspath(d)))
@@ -43,5 +44,5 @@ for i in range(1, N + 1):
     json.dump({'alignment': al}, open(os.path.join(A, f'{i}.json'), 'w', encoding='utf8'), ensure_ascii=False)
 subprocess.run([sys.executable, os.path.join(root, 'tools', 'zeiten.py'), d], check=True)
 zp = os.path.join(d, 'zeiten.json'); Z = json.load(open(zp))
-if gag is not None: Z['szenen'][0]['zeilen'][-1][0] = round(gag, 3); json.dump(Z, open(zp, 'w'), indent=1)
+if gag is not None: Z['szenen'][0]['zeilen'][S.get('gagZeile', -1)][0] = round(gag, 3); json.dump(Z, open(zp, 'w'), indent=1)  # gagZeile: Einstiegszeile, die am Gag beginnt (Standard: letzte)
 print('Gag bei', gag, '| Quellen:', [z['quelle'] for z in Z['szenen']])
