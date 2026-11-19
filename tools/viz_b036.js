@@ -158,3 +158,42 @@ WORLD.b36c = function (sc, ev, t, lt, E) { const L = sc.lines[sc.lines.length - 
   s += '<g opacity="' + cl(u / .35).toFixed(2) + '">' + dw.w + '</g>';
   if (u < .35) s += '<g opacity="' + (1 - cl(u / .35)).toFixed(2) + '">' + hipS(HX, HY, HZ, t, { l: [1, 1, 1, 1, 1, 1] }) + '</g>';
   return look3(W(s + shadeS(), dw.lab), sc, t, lt, '#A8E63C'); };
+
+// ---- Test C (Benedikt, 19.11.2026, noch keine Regel): Schalti kuendigt an, dann tanzt das Skelett ohne Sprache zum Song, Disco-Effekt, danach endet das Video (keine Zusammenfassung)
+// Choreografie in Takten (120 BPM, 1 Takt = 0,5 s): Hueftschwung, Knie hoch, Seitkick, Twist, Kombi, Schlusspose
+const CHOR = [[0, 2, 'sway', 'Hüftschwung'], [2, 4, 'knee', 'Beugen und Strecken'], [4, 6, 'kick', 'Abspreizen'], [6, 8, 'twist', 'Drehen nach innen und außen'], [8, 10, 'combo', 'Alles zusammen'], [10, 99, 'pose', '']];
+function chorP(u) { const seg = CHOR.find(c => u < c[1]) || CHOR[CHOR.length - 1], v = u - seg[0], m = seg[2], c = Math.sin(2 * Math.PI * v), bt = Math.abs(Math.sin(Math.PI * v * 2));
+  let o = { bob: 10 * bt }, lp = [1, 0];
+  if (m === 'sway') { const k = Math.sin(Math.PI * v); o.sh = 22 * k; o.L = { abd: 14 * Math.max(0, k) }; o.R = { abd: 14 * Math.max(0, -k) }; o.armR = [150 + 15 * Math.max(0, k), -10]; o.armL = [150 + 15 * Math.max(0, -k), 10]; o.armR = k > 0 ? [155, -10] : [30, 95]; o.armL = k < 0 ? [155, 10] : [30, 95]; o.glow = [Math.max(0, -k), Math.max(0, k)]; lp = [1, o.L.abd]; }
+  else if (m === 'knee') { o = danceP(0, v); o.bob = 12 * bt; lp = [0, o.L.flex]; }
+  else if (m === 'kick') { o = danceP(1, v); o.bob = 10 * bt; lp = [1, o.L.abd]; }
+  else if (m === 'twist') { o = danceP(2, v * 1.25); lp = [2, o.L.rot]; }
+  else if (m === 'combo') { const b = Math.floor(v / .5) % 4, q = Math.sin(Math.PI * ((v % .5) / .5)); o = { bob: 12 * q, L: {}, R: {}, armL: [60, 60], armR: [60, 60] };
+    if (b === 0) { o.L.flex = 85 * q; o.armR = [40, 110 * q]; lp = [0, o.L.flex]; } else if (b === 1) { o.R.abd = 42 * q; o.armL = [100, 20]; o.armR = [100, 20]; o.sh = 12 * q; lp = [1, 0]; } else if (b === 2) { o.R.flex = 85 * q; o.armL = [40, 110 * q]; lp = [0, 0]; } else { o.L.abd = 42 * q; o.armL = [100, 20]; o.armR = [100, 20]; o.sh = -12 * q; lp = [1, o.L.abd]; }
+    o.glow = [b % 2 ? q : .3, b % 2 ? .3 : q]; }
+  else { const k = ease(cl(v / .25)); o = { bob: 0, L: { abd: 16 * k }, R: {}, armR: [lerp(30, 158, k), lerp(20, -6, k)], armL: [lerp(30, 30, k), lerp(20, 105, k)], sh: 0, glow: [1, 1] }; lp = [1, o.L.abd]; }
+  return { o: o, lp: lp, lab: seg[3], v: v, m: m }; }
+// Disco: Labor dunkel, Kugel faehrt herunter, Lichtkegel schwenken im Takt, Bodenflecken blinken
+function discoS(t, u, k) { if (!(k > 0)) return ''; const bx = 780, by = lerp(-80, 640, ease(cl(u / .7))), beat = Math.pow(Math.max(0, Math.cos(2 * Math.PI * u)), 4);
+  let s = '<rect width="1080" height="1545" fill="#02030F" opacity="' + (.55 * k).toFixed(2) + '"/>';
+  const cols = ['#A8E63C', '#3FB4FF', '#FF5C97', '#FFD166'];
+  for (let i = 0; i < 4; i++) { const a = (i - 1.5) * 26 + 22 * Math.sin(t * 1.6 + i * 1.3), L = 980, w = 120, ra = a * Math.PI / 180, ex = bx + L * Math.sin(ra), ey = by + L * Math.cos(ra), nx = Math.cos(ra) * w, ny = -Math.sin(ra) * w;
+    s += '<path d="M' + bx + ' ' + by.toFixed(0) + ' L' + (ex - nx).toFixed(0) + ' ' + (ey - ny).toFixed(0) + ' L' + (ex + nx).toFixed(0) + ' ' + (ey + ny).toFixed(0) + ' Z" fill="' + cols[i] + '" opacity="' + ((.1 + .1 * beat) * k).toFixed(2) + '"/>'; }
+  for (let i = 0; i < 6; i++) { const x = 300 + i * 90 + 30 * Math.sin(t * 2 + i), on = ((Math.floor(u * 2) + i) % 3 === 0) ? 1 : .25; s += '<ellipse cx="' + x.toFixed(0) + '" cy="' + (1128 + 10 * (i % 2)) + '" rx="54" ry="14" fill="' + cols[i % 4] + '" opacity="' + (.45 * on * k).toFixed(2) + '"/>'; }
+  s += '<path d="M' + bx + ' 0 V' + (by - 46).toFixed(0) + '" stroke="#9AA6C0" stroke-width="3"/><defs><radialGradient id="dB36" cx=".38" cy=".35" r=".7"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#B9C3D8"/><stop offset="1" stop-color="#5C6680"/></radialGradient><clipPath id="dC36"><circle cx="' + bx + '" cy="' + by.toFixed(1) + '" r="44"/></clipPath></defs><circle cx="' + bx + '" cy="' + by.toFixed(1) + '" r="44" fill="url(#dB36)"/><g clip-path="url(#dC36)">';
+  for (let r = 0; r < 9; r++) for (let q = 0; q < 9; q++) { const x = bx - 44 + q * 10, y = by - 44 + r * 10, f = (Math.sin(t * 9 + r * 1.7 + q * 2.3) + 1) / 2; s += '<rect x="' + x.toFixed(0) + '" y="' + y.toFixed(0) + '" width="9" height="9" fill="' + (f > .82 ? cols[(r + q) % 4] : '#fff') + '" opacity="' + (.15 + .5 * f).toFixed(2) + '"/>'; }
+  s += '</g>'; for (let i = 0; i < 4; i++) { const a = t * 2 + i * 1.57, x = bx + 58 * Math.cos(a), y = by + 58 * Math.sin(a), sz = 6 + 6 * beat; s += '<path d="M' + x.toFixed(0) + ' ' + (y - sz).toFixed(0) + ' L' + (x + 2).toFixed(0) + ' ' + (y - 2).toFixed(0) + ' L' + (x + sz).toFixed(0) + ' ' + y.toFixed(0) + ' L' + (x + 2).toFixed(0) + ' ' + (y + 2).toFixed(0) + ' L' + x.toFixed(0) + ' ' + (y + sz).toFixed(0) + ' L' + (x - 2).toFixed(0) + ' ' + (y + 2).toFixed(0) + ' L' + (x - sz).toFixed(0) + ' ' + y.toFixed(0) + ' L' + (x - 2).toFixed(0) + ' ' + (y - 2).toFixed(0) + ' Z" fill="#fff" opacity="' + (.6 * k).toFixed(2) + '"/>'; }
+  return s; }
+WORLD.b36dance = function (sc, ev, t, lt) { const L = sc.lines[sc.lines.length - 1], u = t - L.end - .05;
+  let s = laborS(t, { rows: ROWS36, cx: HX, noList: true, on: 6 });
+  if (u < 0) { s += hipS(HX, HY, HZ, t, { l: [1, 1, 1, 1, 1, 1] }); return look3(W(s + shadeS()), sc, t, lt, '#A8E63C'); }
+  const P = chorP(u), k = cl(u / .3);
+  s += discoS(t, u, k);
+  let w = skelS(DSX, DSY, DSZ, t, P.o);
+  const hx = DSX + (P.o.sh || 0) + SK.HJ * DSZ, hy = DSY - (P.o.bob || 0) + 4 * DSZ;
+  w += '<path d="M' + hx.toFixed(1) + ' ' + hy.toFixed(1) + ' L' + (LPX - LPR * .92) + ' ' + (LPY - 30) + '" stroke="' + TH().hl + '" stroke-width="4" stroke-dasharray="10 9" opacity=".9"/><circle cx="' + hx.toFixed(1) + '" cy="' + hy.toFixed(1) + '" r="' + (26 + 4 * Math.sin(t * 6)).toFixed(1) + '" fill="none" stroke="' + TH().hl + '" stroke-width="5"/>' + hipLupe(P.lp[0], P.lp[1], t, 1);
+  s += '<g opacity="' + k.toFixed(2) + '">' + w + '</g>';
+  if (u < .3) s += '<g opacity="' + (1 - k).toFixed(2) + '">' + hipS(HX, HY, HZ, t, { l: [1, 1, 1, 1, 1, 1] }) + '</g>';
+  if (P.m === 'pose' && P.v < .35) s += '<rect width="1080" height="1920" fill="#fff" opacity="' + (.5 * (1 - P.v / .35)).toFixed(2) + '"/>';
+  return look3(W(s + shadeS(), P.lab ? slot({ d: P.v }, [['d', P.lab]]) : ''), sc, t, lt, '#A8E63C'); };
+WMASC.b36dance = (ev, t) => BIG3();
