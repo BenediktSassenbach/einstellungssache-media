@@ -49,14 +49,37 @@ const L8 = (sc, i) => sc.lines[i + 1] ? sc.lines[i + 1].start - sc.lines[i].star
 function ice8(k) { if (k <= 0) return ''; const s = back(cl(k)); return '<g transform="translate(220 1540) scale(' + s + ') translate(-220 -1540)"><rect x="70" y="1250" width="300" height="300" rx="26" fill="#BFE6FF" opacity=".42" stroke="#F4FBFF" stroke-width="7"/><path d="M100 1290 l40 -20 M300 1300 l30 30 M120 1480 l50 30" stroke="#fff" stroke-width="6" opacity=".7"/>' + [95, 160, 250, 330].map((x, i) => '<path d="M' + x + ' 1252 l12 ' + (34 + 14 * (i % 2)) + ' l12 ' + (-34 - 14 * (i % 2)) + ' Z" fill="#DFF4FF"/>').join('') + '</g>'; }
 const walk8 = (k, A, B, o) => Object.assign({ f: [lerp(A[0], B[0], ease(cl(k))), lerp(A[1], B[1], ease(cl(k)))], s: 1, nospin: 1, walk: k > 0 && k < 1, flip: B[0] < A[0] && k < 1 }, o || {});
 
-// ---------- Einstieg: Schalti will auf der Piste ein Foto machen, das Handy friert ein und geht aus ----------
+// ---------- Einstieg: Selfie-Sucher. Schalti posiert vor dem Ausblick, Reif kriecht ins Bild, beim Ausloesen geht der Akku aus. Dann von aussen: Schalti im Eis, das Handy faellt in den Schnee ----------
+const HAND8 = [340, 1468], STICK8 = [490, 1310];
+function finder8(pct, frost, press, t) { let s = '';
+  if (frost > 0) s += '<defs><radialGradient id="fr8" cx=".5" cy=".55" r=".75"><stop offset=".55" stop-color="#DFF4FF" stop-opacity="0"/><stop offset="1" stop-color="#DFF4FF" stop-opacity="' + (.75 * frost).toFixed(2) + '"/></radialGradient></defs><rect width="1080" height="1920" fill="url(#fr8)"/>' +
+    Array.from({ length: 22 }, (_, i) => { const side = i % 4, u = rnd(i + 500), k = cl(frost * 1.5 - rnd(i + 520) * .5); if (k <= 0) return ''; const x = side === 0 ? 60 + 40 * rnd(i) : side === 1 ? 1020 - 40 * rnd(i) : 60 + 960 * u, y = side < 2 ? 690 + 1110 * u : side === 2 ? 690 + 40 * rnd(i) : 1800 - 40 * rnd(i);
+      return '<g transform="translate(' + x.toFixed(0) + ' ' + y.toFixed(0) + ') scale(' + (k * (1 + rnd(i + 540))).toFixed(2) + ')">' + [0, 60, 120].map(r => '<path d="M0 -26 V26" transform="rotate(' + r + ')" stroke="#F4FBFF" stroke-width="6" stroke-linecap="round"/>').join('') + '</g>'; }).join('');
+  [[60, 680, 1, 1], [1020, 680, -1, 1], [60, 1800, 1, -1], [1020, 1800, -1, -1]].forEach(([x, y, a, b]) => { s += '<path d="M' + x + ' ' + (y + 70 * b) + ' V' + y + ' H' + (x + 70 * a) + '" stroke="#FFFFFF" stroke-width="8" fill="none" stroke-linecap="round" opacity=".9"/>'; });
+  const low = pct <= 20, blink = low ? .55 + .45 * Math.sin(t * 10) : 1; s += '<g opacity="' + blink.toFixed(2) + '">' + batt(880, 705, 80, 38, Math.max(.05, pct / 100), low ? '#FF4D4D' : '#3DFF7A') + svgT(850, 735, Math.round(pct) + ' %', 32, low ? '#FF4D4D' : '#FFFFFF', 'end') + '</g>';
+  const f = [HOME3[0], HOME3[1] - 120], fs = 92 + 6 * Math.sin(t * 3); s += [[-1, -1], [1, -1], [-1, 1], [1, 1]].map(([a, b]) => '<path d="M' + (f[0] + a * fs) + ' ' + (f[1] + b * fs - b * 26) + ' V' + (f[1] + b * fs) + ' H' + (f[0] + a * fs - a * 26) + '" stroke="#FFD23F" stroke-width="6" fill="none"/>').join('');
+  const pr = press > 0 ? 1 - .15 * Math.sin(Math.PI * cl(press / .4)) : 1; s += '<g transform="translate(540 1720) scale(' + pr.toFixed(3) + ')"><circle r="58" fill="none" stroke="#FFFFFF" stroke-width="9"/><circle r="44" fill="#FFFFFF"/></g>' + svgT(540, 1640, 'SELFIE', 26, '#FFD23F');
+  return s; }
+function stick8(a, b, w0, w1) { const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L; return '<path d="M' + (a[0] + nx * w0) + ' ' + (a[1] + ny * w0) + ' L' + (b[0] + nx * w1) + ' ' + (b[1] + ny * w1) + ' L' + (b[0] - nx * w1) + ' ' + (b[1] - ny * w1) + ' L' + (a[0] - nx * w0) + ' ' + (a[1] - ny * w0) + ' Z" fill="#2B2F4A" stroke="#0B1020" stroke-width="3"/>'; }
 WORLD.h7p8_4 = function (sc, ev, t, lt) { const fr = ev.frost, a = ev.aus, hit = a !== undefined ? a - .5 : undefined, sh = shake7(hit !== undefined && hit >= 0 ? hit : undefined, t);
-  const frost = fr === undefined ? 0 : cl(fr / 2.6), pct = fr === undefined ? 40 : Math.max(12, 40 - 10 * cl(fr / 2.6)), on = hit === undefined || hit < 0 ? 1 : Math.max(0, 1 - hit / .12);
-  let s = bg8(sc, t, lt) + ph8(PX8, PY8, S8 * back(cl((lt - .1) / .5)), { pct, on, frost, cam: fr === undefined ? 1 : 0 }, t) + mound8();
-  if (hit !== undefined && hit >= 0) { const k = cl(hit / .5); s += '<circle cx="' + PX8 + '" cy="' + PY8 + '" r="' + (60 + 520 * k) + '" fill="none" stroke="#DFF4FF" stroke-width="' + (30 * (1 - k)) + '" opacity="' + (1 - k) + '"/>' + ice8(cl((hit - .15) / .35)); }
+  const frost = fr === undefined ? 0 : cl(fr / 2.4), pct = fr === undefined ? 40 : Math.max(12, 40 - 28 * cl(fr / 2.4));
+  let s = bg8(sc, t, lt);
+  if (hit === undefined || hit < 0) { // Sucher: der Zuschauer ist die Kamera am Selfiestick
+    s += stick8(HAND8, [780, 1960], 9, 34) + finder8(pct, frost, a === undefined ? 0 : a, t);
+    if (a !== undefined) s += '<rect width="1080" height="1920" fill="#FFFFFF" opacity="' + (.25 * Math.sin(Math.PI * cl(a / .5))).toFixed(2) + '"/>';
+    return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + shade3()); }
+  if (hit < .55) { const k = hit < .45 ? 1 : 1 - (hit - .45) / .1; s += '<rect width="1080" height="1920" fill="#000" opacity="' + k.toFixed(2) + '"/><g opacity="' + (k * (.4 + .6 * Math.abs(Math.sin(hit * 14)))).toFixed(2) + '"><rect x="440" y="900" width="180" height="90" rx="14" fill="none" stroke="#FF4D4D" stroke-width="10"/><rect x="620" y="925" width="16" height="40" rx="4" fill="#FF4D4D"/><rect x="456" y="916" width="18" height="58" rx="4" fill="#FF4D4D"/></g>'; return W(s + shade3()); }
+  // Von aussen: Schalti im Eis, das tote Handy rutscht vom Stick und landet vorne im Schnee
+  const q = hit - .55, fall = ease(cl((q - .35) / .6)), phx = lerp(STICK8[0], PX8, fall), phy = lerp(STICK8[1], PY8, fall) - 220 * Math.sin(Math.PI * fall), phs = lerp(.3, S8, fall);
+  s += ice8(cl(q / .3)) + stick8(HAND8, STICK8, 8, 6);
+  if (fall >= 1) s += mound8(); s += ph8(phx, phy, phs, { on: 0, frost: 1 }, t); if (fall >= 1) s += mound8();
+  if (fall >= 1) { const k = cl((q - .95) / .4); s += [0, 1, 2, 3, 4].map(i => '<circle cx="' + (PX8 - 90 + 45 * i) + '" cy="' + (1580 - 60 * k * (1 - Math.abs(i - 2) / 3)) + '" r="' + (16 * (1 - k)) + '" fill="#FFFFFF"/>').join(''); }
   return W('<g transform="translate(' + sh[0] + ' ' + sh[1] + ')">' + s + '</g>' + shade3()); };
-WMASC.h7p8_4 = (ev, t) => { const a = ev.aus; if (a !== undefined && a >= .5) return { f: [220, 1537], s: 1, r: 2 * Math.sin(t * 5), nospin: 1, mood: 'shock' };
-  if (ev.frost !== undefined) return { f: [220, 1537], s: 1, r: 4 * Math.sin(t * 6), nospin: 1, mood: 'shock' }; return { f: HOME3, s: 1, r: 2 * Math.sin(t * 3), nospin: 1, mood: 'cool' }; };
+WMASC.h7p8_4 = (ev, t) => { const a = ev.aus, hit = a !== undefined ? a - .5 : undefined;
+  if (hit !== undefined && hit >= 0) { if (hit < .45) return { f: HOME3, s: .001, nospin: 1 }; return { f: HOME3, s: 1, r: 2 * Math.sin(t * 5), nospin: 1, mood: 'shock' }; }
+  if (a !== undefined) return { f: HOME3, s: 1, r: -6 * Math.sin(Math.PI * cl(a / .5)), nospin: 1, mood: 'wink' };
+  if (ev.frost !== undefined) return { f: HOME3, s: 1, r: 4 * Math.sin(t * 6), nospin: 1, mood: 'cool' };
+  return { f: HOME3, s: 1, r: 3 * Math.sin(t * 2), nospin: 1, mood: 'cool' }; };
 
 // ---------- Teil 1: Die Energie ist noch da. Normal: Schalti klopft ans Handy. Ab "Schau in den Akku" Wissenschaftsmodus, Schalti springt hinein ----------
 const BX0 = 110, BX1 = 900, BY0 = 720, BY1 = 1100, FX0 = BX0 + 210, FX1 = BX1 - 210;
