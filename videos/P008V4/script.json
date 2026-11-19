@@ -5,7 +5,7 @@
  "id": "P008V4",
  "design": "3.3",
  "titel": "Warum ist dein Akku bei Kälte leer?",
- "quelle": "Apple: iPhone für 0 bis 35 °C ausgelegt; sehr kalte Bedingungen können die Batterielaufzeit vorübergehend verkürzen und ein Abschalten verursachen, in wärmerer Umgebung erholt sie sich (Apple Support 118431, abgerufen 19.11.2026). Kälte macht den Elektrolyt zähflüssiger, Lithium-Ionen bewegen sich langsamer, Innenwiderstand steigt (wissen.de 'Handy-Akku: Was passiert bei Kälte'). Bei Leistungsbedarf bricht die Spannung ein, die Schutzelektronik hält das für einen leeren Akku und schaltet ab, obwohl Restladung da ist; zurück in der Wärme ist die Ladung wieder da, die Anzeige springt z. B. von 40 auf 0 Prozent (netzwelt.de 258580). Handy nah am Körper bzw. in der Innentasche tragen (netzwelt.de, t3n). Eiskalten Akku nicht laden, erst aufwärmen (netzwelt.de: gefährlich wird erst das Laden im kalten Zustand; antwort.net). 'Zäh wie Honig' ist ein Vergleich für den zähflüssigen Elektrolyt. Die 40 Prozent im Einstieg sind ein Beispielwert. Spruch: 'Dein Akku lügt im Winter' = die Anzeige springt, obwohl Ladung da ist (alltagsnah, wird in Teil 2 aufgeklärt). Kostüm P1 Professor, weil P3 Unter Strom im Renderer noch nicht gebaut ist. Skript 4, Einstieg unter 10 s.",
+ "quelle": "Apple: iPhone für 0 bis 35 °C ausgelegt; sehr kalte Bedingungen können die Batterielaufzeit vorübergehend verkürzen und ein Abschalten verursachen, in wärmerer Umgebung erholt sie sich (Apple Support 118431, abgerufen 19.11.2026). Kälte macht den Elektrolyt zähflüssiger, Lithium-Ionen bewegen sich langsamer, Innenwiderstand steigt (wissen.de 'Handy-Akku: Was passiert bei Kälte'). Bei Leistungsbedarf bricht die Spannung ein, die Schutzelektronik hält das für einen leeren Akku und schaltet ab, obwohl Restladung da ist; zurück in der Wärme ist die Ladung wieder da, die Anzeige springt z. B. von 40 auf 0 Prozent (netzwelt.de 258580). Handy nah am Körper bzw. in der Innentasche tragen (netzwelt.de, t3n). Eiskalten Akku nicht laden, erst aufwärmen (netzwelt.de: gefährlich wird erst das Laden im kalten Zustand; antwort.net). 'Zäh wie Honig' ist ein Vergleich für den zähflüssigen Elektrolyt. Die 40 Prozent im Einstieg sind ein Beispielwert. Spruch: 'Dein Akku lügt im Winter' = die Anzeige springt, obwohl Ladung da ist (alltagsnah, wird in Teil 2 aufgeklärt). Ort Skipiste mit Sessellift (eigens für dieses Video). Der Wächter im Handy steht bildhaft für die Schutzelektronik. Kostüm P1 Professor, weil P3 Unter Strom im Renderer noch nicht gebaut ist. Skript 4, Einstieg unter 10 s.",
  "gagTag": "[shivering] [deadpan]",
  "gagDelay": 0,
  "scenes": [
@@ -82,12 +82,7 @@
    "path": [],
    "world": "p8spannung_4",
    "pause": 0.5,
-   "labor": [
-    0,
-    1,
-    2,
-    3
-   ],
+   "labor": [],
    "lines": [
     {
      "t": "Zweitens: Braucht dein Handy plötzlich viel Strom, bricht die Spannung ein.",
