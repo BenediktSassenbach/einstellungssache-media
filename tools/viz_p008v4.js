@@ -63,7 +63,7 @@ function finder8(pct, frost, press, t) { let s = '';
 function stick8(a, b, w0, w1) { const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L; return '<path d="M' + (a[0] + nx * w0) + ' ' + (a[1] + ny * w0) + ' L' + (b[0] + nx * w1) + ' ' + (b[1] + ny * w1) + ' L' + (b[0] - nx * w1) + ' ' + (b[1] - ny * w1) + ' L' + (a[0] - nx * w0) + ' ' + (a[1] - ny * w0) + ' Z" fill="#2B2F4A" stroke="#0B1020" stroke-width="3"/>'; }
 // Einstieg (Stand 19.11. 15 Uhr): Spruch im Sucher, Kamera geht aus. Ausraster, Themenfrage und "Physik nie verstanden?" auf Schwarz. Bei "Gib mir 60 Sekunden." kurz von aussen, das Handy steckt im Schnee.
 function rage8(t, ev) { const wu = ev.wut, ka = ev.kack, frq = ev.frage; let s = '<rect x="-60" y="-60" width="1200" height="2040" fill="#000"/>';
-  const red = wu === undefined ? 0 : frq === undefined ? .55 + .45 * Math.sin(t * 9) : Math.max(0, 1 - frq / .8) * (.55 + .45 * Math.sin(t * 9));
+  const red = wu === undefined ? 0 : (frq === undefined ? 1 : .75) * (.55 + .45 * Math.sin(t * 9));
   if (red > 0) s += '<defs><radialGradient id="rg8" cx=".5" cy=".5" r=".7"><stop offset=".5" stop-color="#FF2A2A" stop-opacity="0"/><stop offset="1" stop-color="#FF2A2A" stop-opacity="' + (.5 * red).toFixed(2) + '"/></radialGradient></defs><rect width="1080" height="1920" fill="url(#rg8)"/>';
   s += '<g opacity="' + (.45 + .55 * Math.abs(Math.sin(t * 4))).toFixed(2) + '"><rect x="440" y="900" width="180" height="90" rx="14" fill="none" stroke="#FF4D4D" stroke-width="10"/><rect x="620" y="925" width="16" height="40" rx="4" fill="#FF4D4D"/><rect x="456" y="916" width="18" height="58" rx="4" fill="#FF4D4D"/></g>';
   if (ka !== undefined && frq === undefined) { const G = ['#', '@', '!', '%', '$', '&', '!']; G.forEach((g, k) => { const tk = .08 + k * .13, q = ka - tk; if (q < 0) return; const a = -Math.PI / 2 + (k - 3) * .62, d = 190 + 50 * (k % 2), sc = back(cl(q / .25)) * (1 - .25 * cl((q - .9) / .5));
@@ -75,6 +75,7 @@ WORLD.h7p8_4 = function (sc, ev, t, lt) { const d0 = Math.max(1.6, L8(sc, 0)), e
   let s = bg8(sc, t, lt);
   if (en !== undefined) { // kurz von aussen: Schalti noch sauer, leerer Stick, Handy steckt im Schnee
     s += stick8(HAND8, STICK8, 8, 6) + mound8() + ph8(PX8, PY8, S8, { on: 0, frost: 1 }, t) + mound8();
+    for (let k = 0; k < 3; k++) { const q = ((en * .9 + k / 3) % 1); s += '<circle cx="' + (HOME3[0] + (k === 1 ? 175 : -150) + 40 * q * (k === 1 ? 1 : -1)).toFixed(0) + '" cy="' + (1400 - 110 * q - 30 * k).toFixed(0) + '" r="' + (20 + 30 * q).toFixed(0) + '" fill="#FFFFFF" stroke="#5A6BB0" stroke-width="5" opacity="' + (.85 * (1 - q)).toFixed(2) + '"/>'; }
     s += '<rect width="1080" height="1920" fill="#000" opacity="' + (1 - cl(en / .3)).toFixed(2) + '"/>';
     return W(s + shade3()); }
   if (ev.wut !== undefined) { const sh = shake8(ev); return W('<g transform="translate(' + sh[0].toFixed(1) + ' ' + sh[1].toFixed(1) + ')">' + rage8(t, ev) + '</g>' + shade3()); }
@@ -84,7 +85,7 @@ WORLD.h7p8_4 = function (sc, ev, t, lt) { const d0 = Math.max(1.6, L8(sc, 0)), e
   if (press > 0) s += '<rect width="1080" height="1920" fill="#FFFFFF" opacity="' + (.3 * Math.sin(Math.PI * cl(press / .5))).toFixed(2) + '"/>';
   return W(s + shade3()); };
 WMASC.h7p8_4 = (ev, t, lt, sc) => { const en = ev.ende;
-  if (en !== undefined) return { f: HOME3, s: 1, nospin: 1, r: 3 * Math.sin(en * 3), mood: en < 1.2 ? 'angry' : 'cool' };
+  if (en !== undefined) { const st = Math.pow(Math.sin(Math.PI * cl((en - .5) / .5)), 2); return { f: [HOME3[0], HOME3[1] - 30 * st], s: 1, nospin: 1, r: 3 * Math.sin(en * 3), mood: 'angry' }; }
   if (ev.wut !== undefined) return { f: HOME3, s: .001, nospin: 1 };
   const d0 = Math.max(1.6, L8(sc, 0)), press = lt - (d0 - .5);
   if (press > 0) return { f: HOME3, s: 1, r: -6 * Math.sin(Math.PI * cl(press / .5)), nospin: 1, mood: 'wink' };
@@ -114,7 +115,7 @@ WORLD.p8energie_4 = function (sc, ev, t, lt) { const v = ev.voll, inn = ev.innen
   if (inn !== undefined) s += cell8(t, ev);
   return W(s + shade3(), slot(ev, [['voll', 'Die Energie ist nicht weg'], ['innen', 'Ionen wandern durch Flüssigkeit'], ['zaeh', 'Kälte: zäh wie Honig', 'hot'], ['act', 'Die Ionen kommen kaum durch', 'hot']])); };
 WMASC.p8energie_4 = (ev, t, lt, sc) => { const v = ev.voll, inn = ev.innen, a = ev.act;
-  if (inn === undefined) { if (v === undefined) return BIG3(); if (v < .85) return walk8(v / .8, HOME3, SP8, { mood: 'happy' }); return { f: SP8, s: 1, nospin: 1, r: v < 1.9 ? -10 * Math.pow(Math.sin((v - .9) * 7), 2) : 0, mood: 'happy' }; }
+  if (inn === undefined) { if (v === undefined) return BIG3(); if (v < .85) return walk8(v / .8, HOME3, SP8, { mood: 'happy' }); return { f: SP8, s: 1, nospin: 1, r: v < 1.9 ? -10 * Math.pow(Math.sin((v - .9) * 7), 2) : 0, mood: 'angry' }; }
   if (inn < .7) return hop3(inn / .7, SP8, [FX0 + 60, 1010], 260, 1, .45, { mood: 'happy' });
   const honey = honey8(ev);
   if (a === undefined) { const sp = 1 - .85 * honey, q = ((inn - .7) * .35 * sp) % 2, x = lerp(FX0 + 60, FX1 - 60, q < 1 ? q : 2 - q); return { f: [x, 1010], s: .45, nospin: 1, walk: honey < .9, flip: q >= 1, r: honey > .5 ? 6 * Math.sin(t * 4) : 0, mood: honey > .5 ? 'shock' : 'happy' }; }
