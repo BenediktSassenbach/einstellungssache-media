@@ -1,0 +1,89 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P028",
+ "titel": "Wie macht ein Spiel echte Schatten?",
+ "design": "3.3",
+ "quelle": "Design: Skript 4 (technische Kennung 3.3), GTA-6-Spezial, Benedikts Wunsch 19.11.2026: so visuell wie moeglich. Ort: Strasse bei Sonnenuntergang mit Palme, als echte 3D-Szene gerechnet (Kamera, Boden, Palme aus Kugeln). Die Schatten im Video sind wirklich per Strahlentest berechnet (tools/viz_p028.js), weicher Rand durch mehrere Strahlen zur Sonnenscheibe (Sonnenscheibe zur Sichtbarkeit rund doppelt so gross angenommen). Kein Wissenschaftsmodus, alles im Ort. Fakten: Licht geht in der Natur von der Lichtquelle aus, wird an Oberflaechen zurueckgeworfen und erreicht teils das Auge; die meisten Strahlen erreichen das Auge nie, deshalb verfolgt Raytracing die Strahlen rueckwaerts von der Kamera durch jeden Bildpunkt (Scratchapixel 'Introduction to Ray Tracing: Implementing the Raytracing Algorithm'; Uni Otago COSC342 Vorlesung 11). Der erste getroffene Gegenstand bestimmt die Farbe des Bildpunkts (Otago COSC342: 'Determine the first object hit by that ray'). Schattenstrahl vom Treffpunkt zur Lichtquelle: kommt er durch, ist die Stelle beleuchtet, sonst im Schatten (Scratchapixel; UC San Diego CSE 167, Ravi Ramamoorthi, Raytracing-Vorlesung). Weicher Rand: die Sonne ist keine Punktquelle (Halbschatten); im Raytracing durch mehrere Strahlen zu verschiedenen Punkten der Lichtquelle (Otago COSC342: multiple rays per pixel, Flaechenlichter). Viel Rechenaufwand: Scratchapixel/CSE 167 (Raytracing ist rechenintensiv). Schattenkarte (Shadow Mapping, Williams 1978): Tiefen aus Sicht der Lichtquelle speichern, was dahinter liegt, ist im Schatten (UC San Diego CSE 167: 'First store the depths from the light source'). Kantige Kante der Schattenkarte im Bild: Folge der begrenzten Aufloesung (bekanntes Aliasing), wird nicht ausgesprochen. GTA 6: Rockstar-Beitrag vom 10.11.2026, 30 Bilder auf allen Konsolen, PSSR und Raytracing-Schatten exklusiv auf PS5 Pro (berichtet von VGC 'PS5 Pro-exclusive ray-tracing', TweakTown, Notebookcheck, KitGuru, playday.one). Erscheinungstag 19.11.2026. Keine Spielszenen, kein Logo, keine Figuren aus GTA 6. Stand der Recherche: 19.11.2026.",
+ "gagTag": "[panting] [deadpan]",
+ "gagDelay": 0,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Echte *Schatten*?",
+   "emoji": "🌴",
+   "world": "p28hook",
+   "pause": 0.05,
+   "lines": [
+    { "t": "Dein Schatten ist berechnet.", "mood": "shock", "ev": "sp" },
+    { "t": "Wie macht ein Spiel echte Schatten?", "mood": "happy", "ev": "frage" },
+    { "t": "Physik nie verstanden?", "mood": "shock", "ev": "nie" },
+    { "t": "Gib mir 60 Sekunden.", "mood": "shock", "ev": "gib" },
+    { "t": "Er überholt mich.", "mood": "cool", "ev": "puh" }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Licht *rückwärts*",
+   "path": [],
+   "world": "p28strahl",
+   "pause": 0.5,
+   "lines": [
+    { "t": "Erstens: In echt fliegt Licht von der Sonne los, prallt ab und landet in deinem Auge.", "mood": "happy", "ev": "echt" },
+    { "t": "Die meisten Strahlen treffen dein Auge aber nie.", "mood": "shock", "ev": "nie" },
+    { "t": "Deshalb rechnet Raytracing rückwärts: von der Kamera aus, durch jeden Bildpunkt.", "mood": "happy", "ev": "rueck" },
+    { "t": "Was der Strahl zuerst trifft, bestimmt die Farbe des Bildpunkts.", "mood": "wink", "ev": "farbe" }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Der *Schatten-Test*",
+   "path": [],
+   "world": "p28test",
+   "pause": 0.5,
+   "lines": [
+    { "t": "Zweitens: Vom Treffpunkt schickt das Spiel einen zweiten Strahl zur Sonne.", "mood": "happy", "ev": "zweit" },
+    { "t": "Kommt er durch, ist die Stelle hell.", "mood": "happy", "ev": "hell" },
+    { "t": "Steht etwas im Weg, liegt sie im Schatten.", "mood": "shock", "ev": "weg" },
+    { "t": "Mit mehreren Strahlen zur Sonnenscheibe wird der Rand weich, wie in echt.", "mood": "cool", "ev": "weich" }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Die *Schattenkarte*",
+   "path": [],
+   "world": "p28karte",
+   "pause": 0.5,
+   "lines": [
+    { "t": "Drittens: Das braucht sehr viele Strahlen und kostet viel Rechenleistung.", "mood": "shock", "ev": "viel" },
+    { "t": "Ohne Raytracing nutzen Spiele einen Trick: eine Schattenkarte.", "mood": "happy", "ev": "trick" },
+    { "t": "Das Spiel merkt sich, was die Sonne sieht. Alles dahinter liegt im Schatten.", "mood": "happy", "ev": "sieht" },
+    { "t": "Laut Rockstar gibt es bei GTA 6 Raytracing-Schatten nur auf der PS5 Pro.", "mood": "cool", "ev": "rock" }
+   ],
+   "quip": "Schick.",
+   "quipAt": 3
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p28outro",
+   "pause": 0.05,
+   "checks": [
+    "Strahlen starten an der Kamera",
+    "Strahl zur Sonne: hell oder Schatten",
+    "Ohne Raytracing: Schattenkarte"
+   ],
+   "lines": [
+    { "t": "Also: Raytracing schickt Strahlen rückwärts von der Kamera los,", "mood": "happy", "ev": "c1" },
+    { "t": "ein zweiter Strahl zur Sonne entscheidet über hell oder Schatten,", "mood": "happy", "ev": "c2" },
+    { "t": "und ohne Raytracing hilft eine Schattenkarte.", "mood": "cool", "ev": "c3" },
+    { "t": "Physik verstehen?", "mood": "happy" },
+    { "t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save" }
+   ]
+  }
+ ]
+}
