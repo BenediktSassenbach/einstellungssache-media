@@ -52,18 +52,43 @@ function ground28() { let s = '<rect x="0" y="1072" width="1080" height="848" fi
   for (const Z of [6, 7, 8.5, 10.5, 13, 16.5, 21, 28]) { const y = pj28(0, 0, Z)[1]; s += '<path d="M0 ' + y.toFixed(1) + ' H1080" stroke="#A86E62" stroke-width="' + (36 / Z).toFixed(1) + '" opacity=".45"/>'; }
   for (let X = -14; X <= 14; X += 2) { const a = pj28(X, 0, 4), b = pj28(X, 0, 40); s += '<path d="M' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + ' L' + b[0].toFixed(1) + ' ' + b[1].toFixed(1) + '" stroke="#A86E62" stroke-width="3" opacity=".35"/>'; }
   return s; }
-function palm28() { let s = ''; const tr = PALM28.tr.map(p => pj28(p[0], p[1], p[2]));
+function palm28(tt) { let s = ''; const tr = PALM28.tr.map(p => pj28(p[0], p[1], p[2]));
   s += '<path d="M' + tr.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L') + '" stroke="#3A1E2E" stroke-width="30" fill="none" stroke-linecap="round"/><path d="M' + tr.map(p => (p[0] + 5).toFixed(1) + ' ' + p[1].toFixed(1)).join(' L') + '" stroke="#6A3A40" stroke-width="12" fill="none" stroke-linecap="round"/>';
   for (let i = 2; i < tr.length - 1; i += 2) s += '<path d="M' + (tr[i][0] - 14).toFixed(1) + ' ' + tr[i][1].toFixed(1) + ' h28" stroke="#2A1420" stroke-width="4"/>';
-  const fr = PALM28.fr.map(f => f.map(p => pj28(p[0], p[1], p[2]))).sort((a, b) => a[8][1] - b[8][1]);
+  const fr = PALM28.fr.map((f, k) => f.map((p, j) => { const q = pj28(p[0], p[1], p[2]); const a = 5 * (j / 8) * (j / 8) * Math.sin(tt * 1.4 + k); return [q[0] + a, q[1] + a * .4]; })).sort((a, b) => a[8][1] - b[8][1]);
   for (const f of fr) { const top = f.map(p => p[0].toFixed(1) + ' ' + (p[1] - 2).toFixed(1)).join(' L'); s += '<path d="M' + top + '" stroke="#1F4A3A" stroke-width="30" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M' + top + '" stroke="#3E8A5E" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
     for (let j = 1; j < 8; j++) { const p = f[j], q = f[j + 1], dx = q[0] - p[0], dy = q[1] - p[1], l = Math.hypot(dx, dy) || 1, nx = -dy / l, ny = dx / l, w = 26 * (1 - j / 9); s += '<path d="M' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ' l' + (nx * w + dx * .4).toFixed(1) + ' ' + (Math.abs(ny * w) + 8).toFixed(1) + ' M' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ' l' + (-nx * w + dx * .4).toFixed(1) + ' ' + (Math.abs(ny * w) + 8).toFixed(1) + '" stroke="#2F6E4C" stroke-width="7" stroke-linecap="round"/>'; } }
   const c = pj28(PALM28.C[0], PALM28.C[1] - .25, PALM28.C[2]); s += [[-12, 4], [10, 6], [0, 16]].map(o => '<circle cx="' + (c[0] + o[0]).toFixed(1) + '" cy="' + (c[1] + o[1]).toFixed(1) + '" r="11" fill="#5A3A20" stroke="#2A1420" stroke-width="3"/>').join('');
   return s; }
 // Szene ohne Schatten
 function scene28() { return sky28() + city28() + ground28(); }
-var SCN28 = null; function base28() { return SCN28 || (SCN28 = scene28()); }
-var PLM28 = null; function palmS28() { return PLM28 || (PLM28 = palm28()); }
+var SKY28 = null, CTY28 = null, GRD28 = null;
+// ---- Leben im Ort (v2, Benedikt 19.11.2026: Bild zu leer, mehr Leben, mehr mit dem Hintergrund spielen)
+function cloud28(t) { let s = ''; for (let i = 0; i < 4; i++) { const x = ((rnd(i + 70) * 1400 + t * (8 + 6 * rnd(i + 71))) % 1500) - 250, y = 560 + rnd(i + 72) * 170, w = 120 + rnd(i + 73) * 120;
+  s += '<g opacity=".55"><ellipse cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" rx="' + w.toFixed(1) + '" ry="' + (w * .18).toFixed(1) + '" fill="#FFB0A8"/><ellipse cx="' + (x + w * .3).toFixed(1) + '" cy="' + (y - w * .12).toFixed(1) + '" rx="' + (w * .5).toFixed(1) + '" ry="' + (w * .16).toFixed(1) + '" fill="#FFC6B8"/></g>'; } return s; }
+function gull28(x, y, t, sz) { const f = Math.sin(t * 9) * 14 * sz; return '<path d="M' + (x - 26 * sz).toFixed(1) + ' ' + (y - f).toFixed(1) + ' Q' + (x - 12 * sz).toFixed(1) + ' ' + (y - 12 * sz).toFixed(1) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ' Q' + (x + 12 * sz).toFixed(1) + ' ' + (y - 12 * sz).toFixed(1) + ' ' + (x + 26 * sz).toFixed(1) + ' ' + (y - f).toFixed(1) + '" stroke="#3A1E3E" stroke-width="' + (5 * sz).toFixed(1) + '" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'; }
+function gulls28(t) { let s = ''; for (let i = 0; i < 3; i++) { const sp = 55 + 25 * i, x = ((t * sp + i * 520) % 1500) - 200, y = 700 + i * 70 + 25 * Math.sin(t * .8 + i); s += gull28(i % 2 ? 1080 - x : x, y, t + i, .8 + .25 * i); } return s; }
+// Fenster an und aus, Neon-Schrift flackert
+function lights28(t) { let s = ''; const W = [[110, 862], [140, 908], [230, 776], [300, 822], [250, 960], [640, 838], [690, 930], [760, 734], [840, 826], [790, 918], [940, 818], [990, 910]];
+  W.forEach((w, i) => { const on = Math.floor(t * .6 + rnd(i + 200) * 9) % 3 !== 0; if (on) s += '<rect x="' + w[0] + '" y="' + w[1] + '" width="34" height="12" rx="5" fill="#FFE9A8" opacity=".85"/>'; });
+  const fl = (Math.floor(t * 7) % 11 === 0) ? .25 : 1; s += '<g opacity="' + fl + '"><rect x="212" y="742" width="126" height="44" rx="10" fill="#1B1045" stroke="#FF6BD6" stroke-width="5"/>' + svgT(275, 776, 'HOTEL', 30, '#FF9BE6') + '</g>';
+  return s; }
+// hintere Strasse mit Autos (Z 28) und Gehweg mit Leuten (Z 22). Beide werfen Schatten nach vorn links, weg von der Sonne
+var CARC28 = ['#FF5A7A', '#5CE1FF', '#FFE14D', '#F4F6FB', '#3DFF7A'];
+function shp28(X, Z, h, w) { const a = pj28(X - w / 2, 0, Z), b = pj28(X + w / 2, 0, Z), dx = -L28[0] / L28[1] * h, dz = -L28[2] / L28[1] * h, c = pj28(X + w / 2 + dx, 0, Z + dz), d = pj28(X - w / 2 + dx, 0, Z + dz);
+  return '<path d="M' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + ' L' + b[0].toFixed(1) + ' ' + b[1].toFixed(1) + ' L' + c[0].toFixed(1) + ' ' + c[1].toFixed(1) + ' L' + d[0].toFixed(1) + ' ' + d[1].toFixed(1) + ' Z" fill="#22104A" opacity=".45"/>'; }
+function road28(t) { const y0 = pj28(0, 0, 30)[1], y1 = pj28(0, 0, 26)[1]; let s = '<rect x="0" y="' + y0.toFixed(1) + '" width="1080" height="' + (y1 - y0).toFixed(1) + '" fill="#4A2E50"/>';
+  for (let x = -40; x < 1080; x += 90) s += '<rect x="' + x + '" y="' + ((y0 + y1) / 2 - 1.5).toFixed(1) + '" width="44" height="3" fill="#FFD27A" opacity=".7"/>';
+  const cars = []; for (let i = 0; i < 4; i++) { const dir = i % 2 ? -1 : 1, Z = dir > 0 ? 28.8 : 27.2, sp = 5 + rnd(i + 90) * 3, X = dir * (((t * sp + i * 11) % 44) - 22); cars.push([Z, X, dir, i]); }
+  cars.sort((a, b) => b[0] - a[0]).forEach(c => { const Z = c[0], X = c[1], p = pj28(X, 0, Z), k = F28 / Z, L = 4.2 * k, H = 1.3 * k; s += shp28(X, Z, 1.3, 4.2);
+    s += '<g transform="translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ') scale(' + c[2] + ',1)"><path d="M' + (-L / 2).toFixed(1) + ' ' + (-H * .2).toFixed(1) + ' v' + (-H * .4).toFixed(1) + ' l' + (L * .2).toFixed(1) + ' ' + (-H * .4).toFixed(1) + ' h' + (L * .45).toFixed(1) + ' l' + (L * .15).toFixed(1) + ' ' + (H * .4).toFixed(1) + ' h' + (L * .2).toFixed(1) + ' v' + (H * .4).toFixed(1) + ' Z" fill="' + CARC28[c[3] % 5] + '" stroke="#2A1430" stroke-width="2"/><circle cx="' + (-L * .3).toFixed(1) + '" cy="' + (-H * .15).toFixed(1) + '" r="' + (H * .2).toFixed(1) + '" fill="#2A1430"/><circle cx="' + (L * .3).toFixed(1) + '" cy="' + (-H * .15).toFixed(1) + '" r="' + (H * .2).toFixed(1) + '" fill="#2A1430"/><rect x="' + (L * .44).toFixed(1) + '" y="' + (-H * .5).toFixed(1) + '" width="4" height="4" fill="#FFF3C9"/></g>'; });
+  return s; }
+function walk28p(t) { let s = ''; const P = []; for (let i = 0; i < 4; i++) { const dir = i % 2 ? -1 : 1, Z = 21 + i * .7, X = dir * (((t * (1.1 + .3 * rnd(i + 120)) + i * 9) % 30) - 15); P.push([Z, X, dir, i]); }
+  P.sort((a, b) => b[0] - a[0]).forEach(q => { const Z = q[0], X = q[1], p = pj28(X, 0, Z), k = F28 / Z, h = 1.75 * k, sw = Math.sin(t * 7 + q[3]) * h * .12, col = ['#5CE1FF', '#FF6BD6', '#FFE14D', '#3DFF7A'][q[3]];
+    s += shp28(X, Z, 1.75, .45) + '<g transform="translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ')"><path d="M0 ' + (-h * .45).toFixed(1) + ' l' + sw.toFixed(1) + ' ' + (h * .45).toFixed(1) + ' M0 ' + (-h * .45).toFixed(1) + ' l' + (-sw).toFixed(1) + ' ' + (h * .45).toFixed(1) + '" stroke="#2A1430" stroke-width="' + (h * .09).toFixed(1) + '" stroke-linecap="round"/><rect x="' + (-h * .13).toFixed(1) + '" y="' + (-h * .82).toFixed(1) + '" width="' + (h * .26).toFixed(1) + '" height="' + (h * .42).toFixed(1) + '" rx="' + (h * .08).toFixed(1) + '" fill="' + col + '"/><circle cy="' + (-h * .9).toFixed(1) + '" r="' + (h * .1).toFixed(1) + '" fill="#F2C9A0"/></g>'; });
+  return s; }
+function base28(t) { PLMT28 = t; if (!SKY28) { SKY28 = sky28(); CTY28 = city28(); GRD28 = ground28(); } return SKY28 + cloud28(t) + gulls28(t) + CTY28 + lights28(t) + GRD28 + road28(t) + walk28p(t); }
+var PLMT28 = 0; function palmS28() { return palm28(PLMT28); }
 // Leuchtender Strahl von a nach b, k = wie weit er schon ist
 function ray28(a, b, col, k, w, op) { k = cl(k); if (k <= 0) return ''; const x = a[0] + (b[0] - a[0]) * k, y = a[1] + (b[1] - a[1]) * k; w = w || 6; op = op === undefined ? 1 : op;
   return '<path d="M' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + ' L' + x.toFixed(1) + ' ' + y.toFixed(1) + '" stroke="' + col + '" stroke-width="' + (w * 2.6).toFixed(1) + '" opacity="' + (.22 * op).toFixed(2) + '" stroke-linecap="round"/><path d="M' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + ' L' + x.toFixed(1) + ' ' + y.toFixed(1) + '" stroke="' + col + '" stroke-width="' + w + '" opacity="' + op.toFixed(2) + '" stroke-linecap="round"/>' + (k < 1 ? '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + (w * 1.6).toFixed(1) + '" fill="#fff" opacity="' + op.toFixed(2) + '"/>' : ''); }
@@ -79,6 +104,24 @@ function at28(fx, fy, mode) { const g = gd28(fx, fy); return lit28([g[0], .9, g[
 function lab28(k) { return k >= .99 ? '' : 'brightness(' + (.5 + .5 * k).toFixed(3) + ') saturate(' + (.7 + .3 * k).toFixed(3) + ')'; }
 function walk28(a, b, k) { return { f: [lerp(a, b, ease(cl(k))), 1537], walk: k > 0 && k < 1 ? 1 : 0, r: k > 0 && k < 1 ? (b > a ? 8 : -8) : 0 }; }
 
+// ---- Katze: schlaeft im Schatten der Palme. Platz: im harten, weichen und Karten-Schatten, nah bei (600, 1470)
+var CAT28 = null; function catP28() { if (CAT28) return CAT28; let best = null; for (let y = 1370; y <= 1500; y += 6) for (let x = 420; x <= 860; x += 6) { const g = gd28(x, y), q = .42, gk = [Math.floor(g[0] / q) * q + q / 2, 0, Math.floor(g[2] / q) * q + q / 2];
+  const ok = [[-40, 0], [40, 0]].every(o => { const h = gd28(x + o[0], y + o[1]); return lit28(h, 'weich') < .35; }) && lit28(g, 'hart') === 0 && lit28(gk, 'hart') === 0; if (!ok) continue; const d = Math.hypot(x - 730, y - 1395); if (!best || d < best[2]) best = [x, y, d]; }
+  return CAT28 = best ? [best[0], best[1]] : [600, 1470]; }
+// st: 0 schlaeft, 1 sitzt wach (schwitzt bei sw), jmp: Sprung 0..1
+function cat28(t, st, sw, jmp) { const p = catP28(), e = ease(cl(st)), j = Math.sin(Math.PI * cl(jmp)) * 90; let s = '<g transform="translate(' + p[0] + ' ' + (p[1] - j).toFixed(1) + ')">';
+  s += '<ellipse cx="0" cy="' + (4 + j).toFixed(1) + '" rx="' + (70 - 20 * cl(jmp > 0 ? 1 : 0)).toFixed(1) + '" ry="12" fill="#1B0A30" opacity=".25"/>';
+  const by = lerp(-26, -40, e), bw = lerp(64, 44, e), bh = lerp(28, 40, e), hx = lerp(46, 18, e), hy = lerp(-30, -84, e);
+  s += '<path d="M' + (-bw + 4) + ' ' + (by + 8).toFixed(1) + ' q-40 ' + (-10 - 30 * e).toFixed(1) + ' -30 ' + (-40 + 20 * Math.sin(t * 3)).toFixed(1) + '" stroke="#E07A3A" stroke-width="13" fill="none" stroke-linecap="round"/>';
+  s += '<ellipse cx="0" cy="' + by.toFixed(1) + '" rx="' + bw.toFixed(1) + '" ry="' + bh.toFixed(1) + '" fill="#F08A4A" stroke="#2A1430" stroke-width="5"/><path d="M-20 ' + (by - bh * .8).toFixed(1) + ' q8 10 0 20 M0 ' + (by - bh).toFixed(1) + ' q8 10 0 22" stroke="#C8622A" stroke-width="6" fill="none" stroke-linecap="round"/>';
+  s += '<g transform="translate(' + hx.toFixed(1) + ' ' + hy.toFixed(1) + ')"><path d="M-24 -12 L-20 -40 L-4 -22 M24 -12 L20 -40 L4 -22" fill="#F08A4A" stroke="#2A1430" stroke-width="5" stroke-linejoin="round"/><circle r="27" fill="#F08A4A" stroke="#2A1430" stroke-width="5"/>';
+  if (e < .5) s += '<path d="M-15 -2 q6 5 12 0 M3 -2 q6 5 12 0" stroke="#2A1430" stroke-width="4" fill="none" stroke-linecap="round"/>';
+  else s += '<ellipse cx="-10" cy="-3" rx="6" ry="' + (jmp > 0 && jmp < 1 ? 9 : 7) + '" fill="#2A1430"/><ellipse cx="10" cy="-3" rx="6" ry="' + (jmp > 0 && jmp < 1 ? 9 : 7) + '" fill="#2A1430"/>';
+  s += '<path d="M-4 9 l4 4 l4 -4" stroke="#2A1430" stroke-width="3" fill="none"/><path d="M-30 8 h-16 M30 8 h16" stroke="#2A1430" stroke-width="2"/></g>';
+  if (e < .5 && jmp <= 0) for (let i = 0; i < 3; i++) { const c = (t * .5 + i / 3) % 1; s += '<text x="' + (hx + 24 + c * 40).toFixed(1) + '" y="' + (hy - 30 - c * 70).toFixed(1) + '" font-size="' + (22 + 12 * c).toFixed(0) + '" font-weight="900" fill="#F4F6FB" opacity="' + (1 - c).toFixed(2) + '" font-family="Inter Display">z</text>'; }
+  if (sw > 0) for (let i = 0; i < 3; i++) { const c = (t * 1.2 + i / 3) % 1; s += '<path d="M' + (hx - 34 + i * 34) + ' ' + (hy - 44 + c * 60).toFixed(1) + ' q-11 18 0 24 q11 -6 0 -24" fill="#7FD3FF" stroke="#2A1430" stroke-width="2" opacity="' + (cl(sw) * (1 - c)).toFixed(2) + '"/>'; }
+  return s + '</g>'; }
+
 // ---------- Einstieg ----------
 function hookP28(ev, t) { const fr = ev.frage, ni = ev.nie, gb = ev.gib, pu = ev.puh, run = Math.abs(Math.sin(t * 17));
   // Schalti: steht, geht beim Wackeln ein Stueck nach rechts, rennt bei "Gib mir 60 Sekunden" weg, keucht am Ende
@@ -93,9 +136,11 @@ function hookP28(ev, t) { const fr = ev.frage, ni = ev.nie, gb = ev.gib, pu = ev
   if (gb !== undefined) { const k = cl(gb / 1.3); st = 1; eyes = 1; sx = k < .35 ? lerp(170, 420, k / .35) : lerp(330, 1300, (k - .35) / .65); }
   if (pu !== undefined) { const k = ease(cl((pu - .25) / .7)); st = 0; eyes = 0; sx = lerp(1300, 700, k); op = cl((pu - .25) / .15); }
   return { x: x, r: r, walk: walk, mood: mood, sx: sx, st: st, eyes: eyes, wig: wig, op: op, run: run }; }
-WORLD.p28hook = function (sc, ev, t, lt) { const H = hookP28(ev, t); let s = base28() + shadow28('weich', 1) + palmS28(), h = '';
+WORLD.p28hook = function (sc, ev, t, lt) { const H = hookP28(ev, t); let s = base28(t) + shadow28('weich', 1) + palmS28(), h = '';
   // "berechnet": drei Strahlen von der Sonne zu Schaltis Schattenrand
   if (ev.sp !== undefined && ev.frage === undefined) { const k = cl(ev.sp / .5); for (let i = 0; i < 3; i++) s += ray28(SUN28, [H.x - 40 - i * 70, 1580 + i * 50], '#FFE9A8', k * 1.6 - i * .25, 5, .9); }
+  let cj = 0, cs = 0; if (ev.gib !== undefined) { const pass = (catP28()[0] - 170) / (1300 - 170), k = cl(ev.gib / 1.3), k0 = .35 + .65 * pass; const tj = (k - k0) * 1.3 / .5; cj = tj > 0 && tj < 1 ? tj : 0; cs = tj > 0 ? 1 : 0; } if (ev.puh !== undefined) cs = 1 - cl((ev.puh - .6) / .6);
+  s += cat28(t, cs, 0, cj);
   const sh = H.st > .5 ? '' : msh28(H.sx, 1537, H.st, H.op, 0, H.wig); h += sh;
   if (H.st > .5) h += msh28(H.sx + (H.st === 1 && ev.gib !== undefined ? 6 * Math.sin(t * 30) : 0), 1537 - (ev.gib !== undefined ? 14 * H.run : 0), H.st, 1, H.eyes, 0);
   return Wp28(s + shade3(), h); };
@@ -126,8 +171,8 @@ function grid28(n, hi, op) { const P = pix28(), a = cell28(0, 0), b = cell28(GC2
   s += '<rect x="' + (a[0] - cw / 2 - 8).toFixed(1) + '" y="' + (a[1] - ch / 2 - 8).toFixed(1) + '" width="' + (cw * GC28 + 16).toFixed(1) + '" height="' + (ch * GR28 + 16).toFixed(1) + '" rx="10" fill="#0B1020" opacity="' + (.55 * op).toFixed(2) + '" stroke="#F4F6FB" stroke-width="5"/>';
   P.forEach((q, k) => { const c = cell28(q.i, q.j), on = k < n; s += '<rect x="' + (c[0] - cw / 2 + 1).toFixed(1) + '" y="' + (c[1] - ch / 2 + 1).toFixed(1) + '" width="' + (cw - 2).toFixed(1) + '" height="' + (ch - 2).toFixed(1) + '" fill="' + (on ? q.c : '#F4F6FB') + '" opacity="' + ((on ? 1 : .08) * op).toFixed(2) + '"' + (k === hi ? ' stroke="#FFE14D" stroke-width="4"' : '') + '/>'; });
   return s; }
-WORLD.p28strahl = function (sc, ev, t, lt) { const ec = ev.echt, ni = ev.nie, ru = ev.rueck, fa = ev.farbe; let s = base28() + shadow28('weich', 1) + palmS28(), h = '';
-  const crown = pj28(PALM28.C[0] - 1.2, PALM28.C[1] + .3, PALM28.C[2]);
+WORLD.p28strahl = function (sc, ev, t, lt) { const ec = ev.echt, ni = ev.nie, ru = ev.rueck, fa = ev.farbe; let s = base28(t) + shadow28('weich', 1) + palmS28(), h = '';
+  s += cat28(t, 0, 0, 0); const crown = pj28(PALM28.C[0] - 1.2, PALM28.C[1] + .3, PALM28.C[2]);
   // Satz 1: ein Lichtteilchen von der Sonne zur Palme, prallt ab, landet im Auge
   if (ec !== undefined && ni === undefined) { const k = cl((ec - .4) / 2.4); s += path28([SUN28, crown, EYE28], '#FFE9A8', k, 7, 1); if (k >= 1) s += '<circle cx="' + EYE28[0] + '" cy="' + EYE28[1] + '" r="' + (18 + 8 * Math.sin(t * 12)).toFixed(1) + '" fill="none" stroke="#FFE9A8" stroke-width="5"/>'; }
   // Satz 2: viele Strahlen prallen in alle Richtungen ab, fast keiner trifft das Auge
@@ -135,17 +180,18 @@ WORLD.p28strahl = function (sc, ev, t, lt) { const ec = ev.echt, ni = ev.nie, ru
       s += path28([SUN28, g, hit ? EYE28 : b], hit ? '#FFE9A8' : '#FFD27A', k * 1.25 - rnd(i + 420) * .25, hit ? 6 : 4, hit ? 1 : .55); }
     h += ''; }
   // Satz 3 und 4: Kamera schickt Strahlen rueckwaerts durch jedes Bildpunkt-Feld, das Gitter fuellt sich mit dem Bild
-  const ck = ru !== undefined ? cl(ru / .5) : 0;
-  if (ru !== undefined) { const N = GC28 * GR28, P = pix28(), sp = fa === undefined ? ru / 3.6 : 1, n = Math.floor(cl(sp) * N); let hi = -1;
+  const ck = ru !== undefined ? 1 : 0, fly = ru !== undefined ? ease(cl(ru / 1)) : 0, cpos = [lerp(-140, CAM28[0], fly), lerp(700, CAM28[1], fly) + 6 * Math.sin(t * 2.4)];
+  if (ru !== undefined) { const N = GC28 * GR28, P = pix28(), sp = fa === undefined ? (ru - 1) / 3 : 1, n = Math.floor(cl(sp) * N); let hi = -1;
     if (fa !== undefined) { const pk = P.findIndex(q => q.w === 'Palme'); hi = pk; }
-    s += grid28(fa !== undefined ? N : n, hi, cl(ru / .4));
-    for (let k = Math.max(0, n - 9); k < Math.min(n + 1, N); k++) { const q = P[k], c = cell28(q.i, q.j), e = tgt28(q.i, q.j); s += ray28(CAM28, c, '#F4F6FB', 1, 3, .7) + ray28(c, e, q.c === '#FFF3C9' ? '#FFE14D' : '#F4F6FB', 1, 3, .5 * (1 - (n - k) / 10)); }
+    s += grid28(fa !== undefined ? N : n, hi, cl((ru - .7) / .4));
+    if (ru > 1) for (let k = Math.max(0, n - 9); k < Math.min(n + 1, N); k++) { const q = P[k], c = cell28(q.i, q.j), e = tgt28(q.i, q.j); s += ray28(CAM28, c, '#F4F6FB', 1, 3, .7) + ray28(c, e, q.c === '#FFF3C9' ? '#FFE14D' : '#F4F6FB', 1, 3, .5 * (1 - (n - k) / 10)); }
     if (fa !== undefined) { const q = P[hi], c = cell28(q.i, q.j), e = tgt28(q.i, q.j), k = cl(fa / .8); s += path28([CAM28, c, e], '#FFE14D', k, 7, 1) + (k >= 1 ? '<circle cx="' + e[0].toFixed(1) + '" cy="' + e[1].toFixed(1) + '" r="' + (16 + 6 * Math.sin(t * 10)).toFixed(1) + '" fill="none" stroke="#FFE14D" stroke-width="6"/>' : ''); } }
-  s += cam28(CAM28[0], CAM28[1] + 6 * Math.sin(t * 2.4), ck, 1);
+  s += cam28(cpos[0], cpos[1], ck, 1);
   h += slot(ev, [['echt', 'Sonne → Ding → Auge'], ['nie', 'Fast alle Strahlen verfehlen dich', 'hot'], ['rueck', 'Raytracing: rückwärts ab Kamera'], ['farbe', 'Erster Treffer = Farbe']]);
   return Wp28(s + shade3(), h + msh28(sc0P28(lt), 1537, 0, 1, 0, 0)); };
 function sc0P28(lt) { return lerp(700, 220, ease(cl(lt / 1.1))); }
-WMASC.p28strahl = (ev, t, lt) => { const x = sc0P28(lt), w = lt < 1.1; if (ev.rueck !== undefined) return stay3([x, 1537], 1, { r: -4, flip: 0 }); return stay3([x, 1537 - (w ? 10 * Math.abs(Math.sin(t * 17)) : 0)], 1, { r: w ? -8 : 2, walk: w ? 1 : 0 }); };
+WMASC.p28strahl = (ev, t, lt) => { const x = sc0P28(lt), w = lt < 1.1; if (ev.rueck !== undefined) return stay3([x, 1537], 1, { r: -4, prop: ev.rueck < 1.6 ? '🕹️' : undefined });
+  if (ev.echt !== undefined && ev.nie === undefined && ev.echt > 2.75 && ev.echt < 4) return stay3([x, 1537], 1, { r: -12 * Math.sin(Math.PI * cl((ev.echt - 2.75) / 1.25)), mood: 'wink' }); return stay3([x, 1537 - (w ? 10 * Math.abs(Math.sin(t * 17)) : 0)], 1, { r: w ? -8 : 2, walk: w ? 1 : 0 }); };
 
 // ---------- Teil 2: der Schatten-Test ----------
 var P1X28 = null, P2P28 = null; // P1: heller Punkt, dessen Strahl zur Sonne sichtbar an der Krone vorbeigeht. P2: Mitte des Kronenschattens. Beide werden gesucht
@@ -153,7 +199,7 @@ function p1P28() { if (P1X28) return P1X28; const pts = PALM28.tr.concat(...PALM
   for (let y = 1440; y <= 1500; y += 10) for (let x = 400; x <= 920; x += 10) { if (lit28(gd28(x, y), 'hart') < 1) continue; const vx = SUN28[0] - x, vy = SUN28[1] - y; let d = 1e9;
     for (const c of pts) { const u = cl(((c[0] - x) * vx + (c[1] - y) * vy) / (vx * vx + vy * vy)); d = Math.min(d, Math.hypot(c[0] - x - u * vx, c[1] - y - u * vy)); } if (d < 45) continue; const sc = Math.hypot(x - 640, y - 1470); if (!best || sc < best[2]) best = [x, y, sc]; }
   return P1X28 = best ? [best[0], best[1]] : [640, 1470]; }
-function p2P28() { if (P2P28) return P2P28; let best = null; for (let y = 1320; y <= 1440; y += 6) for (let x = 360; x <= 760; x += 6) { const g = gd28(x, y); if (!lit28(g, 'hart')) { const d = Math.hypot(x - 720, y - 1330); if (!best || d < best[2]) best = [x, y, d]; } } return P2P28 = best ? [best[0], best[1]] : [560, 1380]; }
+function p2P28() { if (P2P28) return P2P28; const c = catP28(); return P2P28 = [c[0] + 10, c[1] - 6]; let best = null; for (let y = 1320; y <= 1440; y += 6) for (let x = 360; x <= 760; x += 6) { const g = gd28(x, y); if (!lit28(g, 'hart')) { const d = Math.hypot(x - 720, y - 1330); if (!best || d < best[2]) best = [x, y, d]; } } return P2P28 = best ? [best[0], best[1]] : [560, 1380]; }
 // wo der Strahl vom Bodenpunkt zur Sonne endet: an der Sonne oder am ersten Treffer der Palme
 function sray28(p, d) { const g = gd28(p[0], p[1]), D = d || L28, h = block28(g, D); if (h < 0) return { end: SUN28, hit: 0 }; const q = [g[0] + D[0] * h, g[1] + D[1] * h, g[2] + D[2] * h]; return { end: pj28(q[0], q[1], q[2]), hit: 1 }; }
 function pin28(p, col, k) { if (k <= .01) return ''; const e = back(cl(k)); return '<g transform="translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ') scale(' + e.toFixed(3) + ')"><ellipse rx="34" ry="12" fill="none" stroke="' + col + '" stroke-width="6"/><circle r="9" fill="' + col + '"/></g>'; }
@@ -163,11 +209,11 @@ function test28(ev, t) { const zw = ev.zweit, he = ev.hell, we = ev.weg, wc = ev
   if (we !== undefined) { const k = ease(cl((we - .2) / 1)); p = [lerp(p1P28()[0], p2P28()[0], k), lerp(p1P28()[1], p2P28()[1], k)]; scan = cl((we - 1.4) / 1.6); }
   if (wc !== undefined) { p = p2P28(); scan = 1; }
   return { p: p, scan: scan }; }
-WORLD.p28test = function (sc, ev, t, lt) { const zw = ev.zweit, he = ev.hell, we = ev.weg, wc = ev.weich, T = test28(ev, t); let s = base28(), h = '';
+WORLD.p28test = function (sc, ev, t, lt) { const zw = ev.zweit, he = ev.hell, we = ev.weg, wc = ev.weich, T = test28(ev, t); let s = base28(t), h = '';
   // Schatten: erst keiner, dann von der Abtast-Linie gemalt (hart), dann weich
   if (T.scan !== undefined && wc === undefined) { const y = lerp(HZ28 + 60, 1920, T.scan); s += shadow28('hart', 1, y); if (T.scan < 1) { for (let i = 0; i < 9; i++) { const p = [60 + i * 110, y]; if (p[1] < HZ28 + 70) continue; const r = sray28(p); s += ray28(p, r.end, r.hit ? '#FF8A9A' : '#FFE9A8', 1, 3, .55); } s += '<path d="M0 ' + y.toFixed(1) + ' H1080" stroke="' + AC28P + '" stroke-width="6" opacity=".8"/>'; } }
   if (wc !== undefined) { const k = ease(cl((wc - 1.2) / 1.2)); s += shadow28('hart', 1 - k) + shadow28('weich', k); }
-  s += palmS28();
+  s += palmS28() + cat28(t, 0, 0, 0);
   // Strahl von der Kamera zum Treffpunkt und vom Treffpunkt zur Sonne
   const cam = [CAM28[0], CAM28[1] + 6 * Math.sin(t * 2.4)];
   if (zw !== undefined && wc === undefined) { const k1 = cl(zw / .7), r = sray28(T.p); s += ray28(cam, T.p, '#F4F6FB', k1, 4, .8) + pin28(T.p, r.hit ? '#FF5A7A' : '#FFE14D', k1);
@@ -177,12 +223,12 @@ WORLD.p28test = function (sc, ev, t, lt) { const zw = ev.zweit, he = ev.hell, we
     if (we !== undefined && T.scan > 0) s += mark28(T.p, 0, cl(T.scan / .2)); }
   // Satz 4: am Rand des Schattens zwoelf Strahlen zur Sonnenscheibe, manche frei, manche blockiert
   if (wc !== undefined) { const e = edge28(), k = cl(wc / 1.1); let n = 0; SS28.forEach((d, i) => { const r = sray28(e, d), end = r.hit ? r.end : [SUN28[0] + (i % 4 - 1.5) * 26, SUN28[1] + (Math.floor(i / 4) - 1) * 26]; if (!r.hit) n++; s += ray28(e, end, r.hit ? '#FF5A7A' : '#3DFF7A', k * 1.3 - i * .025, 3, .85); });
-    s += pin28(e, '#B9F4FF', k) + chip3(e[0], e[1] + 70, n + ' von 12 frei', 34, '#0B1020', '#F4F6FB', cl((wc - .9) / .3)); }
+    s += pin28(e, '#B9F4FF', k) + chip3(e[0] + 180, e[1], n + ' von 12 frei', 34, '#0B1020', '#F4F6FB', cl((wc - .9) / .3)); }
   s += cam28(cam[0], cam[1], 1, 1);
   h += slot(ev, [['zweit', 'Zweiter Strahl: zur Sonne'], ['hell', 'Frei: die Stelle ist hell'], ['weg', 'Blockiert: Schatten', 'hot'], ['weich', 'Viele Strahlen: weicher Rand']]);
   const X = wxP28(ev, t, lt); return Wp28(s + shade3(), h + msh28(X, 1537, 0, at28(X, 1537, wc !== undefined ? 'weich' : 'hart') * (T.scan !== undefined || wc !== undefined ? 1 : 1), 0, 0)); };
 // Randpunkt: zwischen Kronenschatten und Licht, auf der Hoehe von P2
-var ED28 = null; function edge28() { if (ED28) return ED28; const y = p2P28()[1]; let last = null; for (let x = p2P28()[0]; x < 1000; x += 2) { const l = lit28(gd28(x, y), 'weich'); if (l > .3 && l < .7) return ED28 = [x, y]; if (l >= .7 && !last) last = [x, y]; } return ED28 = last || [700, y]; }
+var ED28 = null; function edge28() { if (ED28) return ED28; const y = 1455; let last = null; for (let x = 420; x < 1000; x += 2) { const l = lit28(gd28(x, y), 'weich'); if (l > .3 && l < .7) return ED28 = [x, y]; if (l >= .7 && !last) last = [x, y]; } return ED28 = last || [700, y]; }
 // Schaltis Platz beim Schatten-Test
 var WX28 = null; function wx28() { if (WX28) return WX28; for (let x = 260; x < 700; x += 10) if (at28(x, 1537, 'hart') < .5) return WX28 = x + 40; return WX28 = 430; }
 function wxP28(ev, t, lt) { return 220; } // Schalti bleibt im Licht und schaut dem Test zu
@@ -202,14 +248,14 @@ function sunview28(k) { if (k <= .01) return ''; const e = back(cl(k)); let s = 
   return s + '</g>'; }
 function board28(k, t) { if (k <= .01) return ''; const e = back(cl(k)); return '<g transform="translate(330 830) scale(' + e.toFixed(3) + ')"><path d="M-90 120 V260 M90 120 V260" stroke="#3A1E2E" stroke-width="14"/><rect x="-150" y="-130" width="300" height="250" rx="20" fill="#0B1020" stroke="#FF6BD6" stroke-width="8"/><rect x="-138" y="-118" width="276" height="226" rx="14" fill="none" stroke="' + AC28P + '" stroke-width="3" opacity="' + (.5 + .5 * Math.sin(t * 6)).toFixed(2) + '"/>'
   + svgT(0, -60, 'GTA 6', 64, '#FFE14D') + svgT(0, 0, 'Raytracing-', 32, '#F4F6FB') + svgT(0, 38, 'Schatten', 32, '#F4F6FB') + svgT(0, 90, 'nur PS5 Pro', 34, '#FF6BD6') + '</g>'; }
-WORLD.p28karte = function (sc, ev, t, lt) { const vi = ev.viel, tr = ev.trick, si = ev.sieht, ro = ev.rock; let s = base28(), h = '';
+WORLD.p28karte = function (sc, ev, t, lt) { const vi = ev.viel, tr = ev.trick, si = ev.sieht, ro = ev.rock; let s = base28(t), h = '';
   // Schatten: weich (Raytracing), beim Trick weg, dann kantig aus der Karte, zum Schluss wieder weich
   let ws = 1, ks = 0; if (tr !== undefined) ws = 1 - cl(tr / .5); if (si !== undefined) { ks = cl((si - 1.6) / .8); } if (ro !== undefined) { ks = 1 - cl((ro - .3) / .8); ws = cl((ro - .3) / .8); }
-  s += shadow28('weich', ws) + shadow28('karte', ks) + palmS28();
+  s += shadow28('weich', ws) + shadow28('karte', ks) + palmS28(); const sun = 1 - cl(ws + ks); s += cat28(t, sun > .5 ? cl((sun - .5) / .25) : 1 - cl((.5 - sun) / .25) - (ws + ks > .99 ? 1 : 0), sun, 0);
   // Satz 1: Strahlen-Gewitter von der Kamera in die Szene und weiter zur Sonne, Rechen-Anzeige laeuft voll
   const cam0 = [CAM28[0], CAM28[1] + 6 * Math.sin(t * 2.4)];
   if (vi !== undefined && tr === undefined) { const n = Math.floor(10 + 60 * cl(vi / 2.5)); for (let i = 0; i < n; i++) { const ph = Math.floor(t * 12 + i * 7) % 97, p = [70 + rnd(ph + i * 13) * 880, 1320 + rnd(ph * 3 + i) * 240], r = sray28(p); s += ray28(cam0, p, '#F4F6FB', 1, 2, .35) + ray28(p, r.end, r.hit ? '#FF5A7A' : '#FFE9A8', 1, 2, .45); }
-    s += meter28(cl(vi / 2.5), t); }
+    s += meter28(cl(vi / 2.5), t); const hk = cl((vi - 1.2) / 1); for (let i = 0; i < 5; i++) { const c = (t * .9 + i / 5) % 1; s += '<circle cx="' + (cam0[0] + 20 * Math.sin(i * 2 + t) + c * 30).toFixed(1) + '" cy="' + (cam0[1] - 50 - c * 120).toFixed(1) + '" r="' + (14 + 26 * c).toFixed(1) + '" fill="#D8D0E8" opacity="' + (hk * .6 * (1 - c)).toFixed(2) + '"/>'; } }
   // Satz 2 und 3: Kamera fliegt zur Sonne, schaut von dort, Blick der Sonne als Karte, dann faellt der Schatten aus der Karte
   let cp = cam0, ck = 1, fl = 1;
   if (tr !== undefined) { const k = ease(cl((tr - .4) / 1.6)); cp = [lerp(cam0[0], SUN28[0] - 10, k), lerp(cam0[1], SUN28[1] + 150, k)]; fl = k > .85 ? 0 : 1; }
@@ -227,7 +273,7 @@ WMASC.p28karte = (ev, t, lt) => { const x = kxP28(ev, t, lt), w = false; const r
   const l = at28(x, 1537); return stay3([x, 1537 - (w ? 10 * Math.abs(Math.sin(t * 17)) : 0)], 1, { r: w ? -8 : 2, walk: w ? 1 : 0, fx: lab28(1 - (1 - l) * ws) }); };
 
 // ---------- Schluss ----------
-WORLD.p28outro = function (sc, ev, t) { return Wp28(base28() + shadow28('weich', 1) + palmS28() + shade3(), msh28(220, 1537, 0, 1, 0, 0)); };
+WORLD.p28outro = function (sc, ev, t) { return Wp28(base28(t) + shadow28('weich', 1) + palmS28() + cat28(t, 0, 0, 0) + shade3(), msh28(220, 1537, 0, 1, 0, 0)); };
 WMASC.p28outro = () => BIG3();
 
 // Kamera (look3) nur auf das Bild anwenden: der Schatten-Teil (HTML mit Schalti-Kopie) enthaelt eigene SVGs
