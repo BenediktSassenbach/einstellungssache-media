@@ -101,6 +101,18 @@ function mascot(m, open, blink, w) {
     top = '<circle cx="212" cy="100" r="62" fill="rgba(155,231,255,.13)" stroke="#fff" stroke-width="6"/><path d="M170 72 A52 52 0 0 1 198 48" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" opacity=".85"/><path d="M252 34 L266 8" stroke="#E8ECF5" stroke-width="5"/><circle cx="268" cy="5" r="7" fill="#FF4D4D"/>';
     hand = '<g transform="translate(6 40)"><path d="M0 0 V-70" stroke="#fff" stroke-width="5" stroke-linecap="round"/><path d="M0 -70 L40 ' + (-60 + 3 * Math.sin(performance_t * 6)) + ' L0 -46 Z" fill="' + A + '" stroke="#0B1020" stroke-width="3" stroke-linejoin="round"/><circle cx="0" cy="0" r="10" fill="#E8ECF5"/></g>';
   }
+  // Kostuem "unterstrom" (Physik P3 Unter Strom): Blitz-Frisur, Gluehbirne ueber dem Kopf, Blitz auf dem Bauch, Hufeisenmagnet in der Hand
+  if (S.kostuem === 'unterstrom') {
+    const fl = .75 + .25 * Math.abs(Math.sin(performance_t * 9)); let d = '';
+    for (const [ang, len] of [[-160, 40], [-130, 54], [-100, 60], [-70, 58], [-40, 52], [-10, 40]]) {
+      const a = ang * Math.PI / 180, x = 212 + Math.cos(a) * 50, y = 100 + Math.sin(a) * 50, ex = x + Math.cos(a) * len, ey = y + Math.sin(a) * len, mx = x + Math.cos(a) * len * .5 + Math.cos(a + 1.4) * 12, my = y + Math.sin(a) * len * .5 + Math.sin(a + 1.4) * 12;
+      d += '<path d="M' + x.toFixed(1) + ' ' + y.toFixed(1) + ' L' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' L' + (x + Math.cos(a) * len * .6).toFixed(1) + ' ' + (y + Math.sin(a) * len * .6).toFixed(1) + ' L' + ex.toFixed(1) + ' ' + ey.toFixed(1) + '" stroke="#FFF5B8" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" fill="none"/>';
+    }
+    hair = d;
+    coat = '<path d="M96 60 L70 104 L92 104 L80 142 L116 92 L94 92 L108 60 Z" fill="#FFD23F" stroke="' + BG + '" stroke-width="4" stroke-linejoin="round"/>';
+    top = '<circle cx="212" cy="-46" r="34" fill="#FFD23F" opacity="' + (.25 * fl).toFixed(2) + '"/><circle cx="212" cy="-50" r="22" fill="#FFF5B8" stroke="#FFD23F" stroke-width="4"/><rect x="202" y="-30" width="20" height="14" rx="3" fill="#C9CFDD"/><path d="M206 -54 L210 -44 L214 -54 L218 -44" stroke="#FFB020" stroke-width="3" fill="none"/><path d="M174 -78 L164 -88 M250 -78 L260 -88 M212 -86 L212 -100 M180 -50 L166 -50 M244 -50 L258 -50" stroke="#FFD23F" stroke-width="4" stroke-linecap="round" opacity="' + fl.toFixed(2) + '"/>';
+    hand = '<g transform="translate(6 40)"><g transform="rotate(-20)"><path d="M-22 -10 L-22 -44 Q-22 -70 0 -70 Q22 -70 22 -44 L22 -10" stroke="#FF4D4D" stroke-width="16" fill="none"/><path d="M-22 -18 V-6 M22 -18 V-6" stroke="#C9CFDD" stroke-width="16"/><path d="M-30 6 l-6 10 M0 10 v12 M30 6 l6 10" stroke="#FFD23F" stroke-width="4" stroke-linecap="round" opacity="' + fl.toFixed(2) + '"/></g><circle cx="0" cy="0" r="9" fill="' + A + '"/></g>';
+  }
   // Kostuem "beobachter" (Bio B3 Tier-Beobachter): Ranger-Hut, Fernglas, ein Vogel auf dem Hut, Blatt auf dem Bauch
   if (S.kostuem === 'beobachter') {
     const bb = 3 * Math.abs(Math.sin(performance_t * 4)), hd = 6 * Math.sin(performance_t * 2.2);
