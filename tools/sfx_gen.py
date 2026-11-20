@@ -91,4 +91,35 @@ def P022H():  # Schalti hoert seine eigene Aufnahme: Bandstopp nach unten (Aufba
         k = int((.32 + .14 * i) * SR); m = int(.05 * SR); tt = np.arange(m) / SR; ch[k:k + m] += np.sin(2 * np.pi * 4200 * tt) * np.exp(-tt * 60)
     save('P022H_1.wav', norm((bonk + .25 * ch) * env(len(t), .003, .3), .42))
 
+def C020H():  # Chili: Zischen, das anschwillt, dann ein weicher Feuerstoss
+    d = .7; t = T(d); x = hp(noise(len(t)), .2) * (t / d) ** 2
+    save('C020H_0.wav', norm(x * env(len(t), .05, .03), .3))
+    d = .9; t = T(d); x = lp(noise(len(t)), .12) * np.exp(-t * 5) + .3 * hp(noise(len(t)), .3) * np.exp(-t * 9)
+    save('C020H_1.wav', norm(x * env(len(t), .005, .3), .42))
+def I022H():  # iPhone: Ausschalt-Ton nach unten, dann leise Bluetooth-Pings
+    d = .5; t = T(d); f = 900 * (1 - .7 * t / d); x = np.sin(2 * np.pi * np.cumsum(f) / SR) * (1 - t / d)
+    save('I022H_0.wav', norm(x * env(len(t), .01, .05), .28))
+    d = 1.0; t = T(d); x = np.zeros(len(t))
+    for i in range(3):
+        k = int((.1 + .28 * i) * SR); m = int(.12 * SR); tt = np.arange(m) / SR; x[k:k + m] += np.sin(2 * np.pi * 1800 * tt) * np.exp(-tt * 30) * (1 - .25 * i)
+    save('I022H_1.wav', norm(x, .3))
+def B017H():  # T. rex: tiefes Grollen, dann geschichtetes Bruellen mit Atem, Spitze unter der Stimme
+    d = .8; g = growl(d, 55, 80, .5); save('B017H_0.wav', norm(lp(g, .2) * env(len(g), .2, .05), .3))
+    d = 1.4; t = T(d); r = growl(d, 120, 70, .9) + .6 * hp(lp(noise(len(t)), .3), .02) * np.exp(-t * 2)
+    save('B017H_1.wav', norm(lp(r, .35) * env(len(t), .04, .6), .45))
+def B023H():  # Kitzeln: Federwisch, dann klappernde Knochen
+    d = .5; t = T(d); x = hp(lp(noise(len(t)), .4), .05) * np.sin(np.pi * t / d)
+    save('B023H_0.wav', norm(x, .25))
+    d = 1.0; t = T(d); x = np.zeros(len(t))
+    for i in range(9):
+        k = int((.04 + .1 * i + .02 * np.sin(i * 3)) * SR); m = int(.03 * SR); tt = np.arange(m) / SR; x[k:k + m] += np.sin(2 * np.pi * (700 + 160 * (i % 3)) * tt) * np.exp(-tt * 120)
+    save('B023H_1.wav', norm(x * env(len(t), .005, .3), .35))
+def B029H():  # Schichten loesen sich: kurzes Rascheln, dann weiche Aufpraller nacheinander
+    d = .4; t = T(d); x = hp(lp(noise(len(t)), .3), .03) * (t / d)
+    save('B029H_0.wav', norm(x * env(len(t), .05, .02), .22))
+    d = 1.6; t = T(d); x = np.zeros(len(t))
+    for i in range(5):
+        k = int((.12 * i + .25) * SR); m = int(.18 * SR); tt = np.arange(m) / SR; x[k:k + m] += np.sin(2 * np.pi * (110 - 8 * i) * tt) * np.exp(-tt * 22) + .3 * lp(noise(m), .1) * np.exp(-tt * 30)
+    save('B029H_1.wav', norm(x * env(len(t), .005, .3), .4))
+
 for a in sys.argv[1:]: globals()[a]()
