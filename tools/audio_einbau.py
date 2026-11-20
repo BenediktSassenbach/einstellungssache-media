@@ -24,8 +24,7 @@ for i in range(1, N + 1):
         if i == 1 and gag is None and m.start() > 0: gag = al['character_start_times_seconds'][m.start()]  # eine Anweisung ganz am Anfang ist die Sprechweise (z. B. [casually, calm and cool]), nicht der Gag
         cut(al, m.start(), m.end())
     for k, v in (S.get('sprich') or {}).items():
-        txt = ''.join(al['characters']); p = txt.find(k)
-        if p >= 0: cut(al, p, p + len(k), v)
+        while k not in v and (p := ''.join(al['characters']).find(k)) >= 0: cut(al, p, p + len(k), v)  # jede Stelle, nicht nur die erste (20.11.2026)
     src = os.path.join(roh, f'{i}.mp3'); dst = os.path.join(A, f'{i}.mp3')
     if i == N and not S.get('ohneSchlusssatz'):  # Schlusssatz anhaengen ("ohneSchlusssatz": true im Skript laesst ihn weg, z. B. wenn das Video mit einem Tanz endet)
         o = os.path.join(root, 'videos', '_outro', 'einstellungssache'); oa = json.load(open(o + '.json', encoding='utf-8-sig'))['alignment']

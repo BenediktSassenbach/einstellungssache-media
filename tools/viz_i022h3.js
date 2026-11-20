@@ -231,7 +231,7 @@ WORLD.i3sicher = function (sc, ev, t, lt) { const fr = ev.frage, sc2 = ev.schlos
     s += '<clipPath id="rg3c"><rect x="0" y="' + (715 * zm).toFixed(0) + '" width="1080" height="' + (1920 - 715 * zm - 790 * zm).toFixed(0) + '" rx="' + (30 * zm).toFixed(0) + '"/></clipPath><g clip-path="url(#rg3c)"><g transform="translate(' + zc[0] + ' ' + zc[1] + ') scale(' + Z.toFixed(3) + ') translate(' + -zc[0] + ' ' + -zc[1] + ')">' + iph3(PI3c[0], PI3c[1] + 10 + 40 * (1 - ease(k)), .9 + .15 * ease(k), { mode: 'power', slide: 0, hint: cl((re - 1) / .4), tog: tog, t: t, glow: .5 });
     if (re > 1.3) { const fx = PI3c[0], fy = PI3c[1] + 42 + 30 * (1 - ease(cl((re - 1.3) / .3))); s += '<circle cx="' + fx + '" cy="' + fy.toFixed(0) + '" r="26" fill="#fff" opacity=".55" stroke="' + S3 + '" stroke-width="3"/>' + (tap > 0 && tap < 1 ? '<circle cx="' + fx + '" cy="' + fy.toFixed(0) + '" r="' + (26 + 60 * tap).toFixed(0) + '" fill="none" stroke="#fff" stroke-width="5" opacity="' + (1 - tap).toFixed(2) + '"/>' : ''); }
     s += '</g></g>' + rain3(t, .7); }
-  return W(s + shade3(), slot(ev, [['frage', 'Nur du kannst ihn lesen', 'hot']])); };
+  const lbO = re === undefined ? 1 : 1 - cl(re / .3); return W(s + shade3(), lbO > 0 ? '<div style="opacity:' + lbO.toFixed(3) + '">' + slot(ev, [['frage', 'Nur du kannst ihn lesen', 'hot']]) + '</div>' : ''); };
 WMASC.i3sicher = (ev, t, lt) => { const fr = ev.frage, sc2 = ev.schloss, re = ev.regler; if (re !== undefined) return stay3([FX3, GY3], 1, { r: 2, mood: 'cool' }); if (sc2 !== undefined) return stay3([FX3, GY3], 1, { r: 0, mood: 'cool' }); const j = fr === undefined ? 0 : Math.sin(Math.PI * cl(fr / .5)); return stay3([FX3, GY3 - 20 * j], 1, { r: 0, mood: 'shock' }); };
 
 // ---------- Schluss ----------
