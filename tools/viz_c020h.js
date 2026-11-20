@@ -27,6 +27,10 @@ function milk20(x, y, k, lab, col) { if (k <= 0) return ''; const e = back(cl(k)
 function fire20(hx, hy, t, k) { if (k <= 0) return ''; let s = '<g opacity="' + cl(k * 2).toFixed(2) + '">'; for (let i = 0; i < 9; i++) { const c = (t * 2.4 + i / 9) % 1, x = hx + 60 + 230 * c * k, y = hy + 20 - 40 * c + 14 * Math.sin(t * 20 + i), r = (18 + 30 * Math.sin(Math.PI * c)) * k; s += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="' + r.toFixed(0) + '" fill="' + (c < .35 ? '#FFE14D' : (c < .7 ? '#FF8A1E' : '#E8282B')) + '" opacity="' + (1 - c * .7).toFixed(2) + '"/>'; } return s + '</g>'; }
 // Kleines Thermometer mit "normal"
 function therm20(x, y, k) { if (k <= 0) return ''; return '<g transform="translate(' + x + ' ' + y + ') scale(' + back(cl(k)).toFixed(3) + ')"><rect x="-14" y="-120" width="28" height="140" rx="14" fill="#F4F6FB" stroke="' + ST20 + '" stroke-width="5"/><rect x="-6" y="-50" width="12" height="62" rx="6" fill="#3DFF7A"/><circle cy="30" r="24" fill="#3DFF7A" stroke="' + ST20 + '" stroke-width="5"/></g>' + chip3(x + 150, y - 40, 'nicht heiß', 28, '#3DFF7A', ST20, k); }
+// Teetasse mit Dampf (Teil 1, echte Hitze)
+function tea20(x, y, t, k) { if (k <= 0) return ''; let s = '<g transform="translate(' + x + ' ' + y + ') scale(' + back(cl(k)).toFixed(3) + ')"><path d="M-50 -80 H50 L42 0 H-42 Z" fill="#F4F6FB" stroke="' + ST20 + '" stroke-width="6"/><path d="M50 -60 q30 0 30 24 q0 22 -34 22" fill="none" stroke="' + ST20 + '" stroke-width="8"/><ellipse cx="0" cy="-78" rx="46" ry="8" fill="#B5652A"/>'; for (let i = 0; i < 3; i++) { const c = (t * .8 + i / 3) % 1; s += '<path d="M' + (-20 + 20 * i) + ' ' + (-100 - 80 * c).toFixed(0) + ' q14 -16 0 -32" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="' + (.8 * (1 - c)).toFixed(2) + '"/>'; } return s + '</g>'; }
+// Oelflasche (Teil 3)
+function oil20(x, y, k) { if (k <= 0) return ''; return '<g transform="translate(' + x + ' ' + y + ') scale(' + back(cl(k)).toFixed(3) + ')"><path d="M-30 0 V-120 Q-30 -150 -12 -160 V-200 H12 V-160 Q30 -150 30 -120 V0 Z" fill="#F2C744" opacity=".85" stroke="' + ST20 + '" stroke-width="6"/><rect x="-14" y="-214" width="28" height="16" rx="4" fill="#3B9B3B" stroke="' + ST20 + '" stroke-width="4"/>' + svgT(0, -60, 'ÖL', 26, ST20) + '</g>'; }
 // ---------- Lupen-Inhalte (Koordinaten -320..320) ----------
 function tongue20(t, o) { let s = '<rect x="-320" y="-320" width="640" height="640" fill="#3A1830"/><path d="M-320 120 Q-160 90 0 110 Q160 130 320 100 V320 H-320 Z" fill="#FF8FA8" stroke="#C85A78" stroke-width="6"/>';
   for (let i = 0; i < 5; i++) { const x = -240 + i * 120, on = o.dock ? cl((o.dock - i * .15) / .4) : 0; s += '<g transform="translate(' + x + ' ' + (108 + 6 * Math.sin(i)) + ') scale(1.8)"><path d="M-26 0 V-40 H-12 V-18 H12 V-40 H26 V0 Z" fill="' + lc('#B05A8A', '#FFE14D', on) + '" stroke="' + ST20 + '" stroke-width="4"/>';
@@ -63,11 +67,12 @@ WMASC.h20hook = (ev, t, lt) => { const wa = ev.wasser, lo = ev.loop; const hop =
   return stay3([FX20, GY20 - 14 * Math.abs(hop)], 1, { r: 6 * hop, mood: lo !== undefined ? 'happy' : 'shock' }); };
 
 // ---------- Teil 1: falscher Alarm ----------
-WORLD.h20alarm = function (sc, ev, t, lt) { const ca = ev.caps, dk = ev.dock, fe = ev.feuer; const [hx, hy] = headH(FX20, GY20); let s = kitchen20(t, { water: .3, noChili: dk !== undefined });
+WORLD.h20alarm = function (sc, ev, t, lt) { const ca = ev.caps, dk = ev.dock, fe = ev.feuer, te = ev.tee; const [hx, hy] = headH(FX20, GY20); let s = kitchen20(t, { water: .3, noChili: dk !== undefined });
   if (ca !== undefined && dk === undefined) s += '<g transform="translate(860 1300) scale(' + (1.8 * back(cl(ca / .4))).toFixed(2) + ') rotate(-20)"><path d="M0 0 Q40 -10 70 20 Q40 10 0 10 Z" fill="#E8282B" stroke="' + ST20 + '" stroke-width="3"/><path d="M0 4 q-14 -6 -18 -20" stroke="#3B9B3B" stroke-width="6" fill="none" stroke-linecap="round"/></g>' + lupeH(600, 905, 230, tongue20(t, { caps: 1, capsK: cl((ca - .6) / .5), label: 'Capsaicin' }), cl((ca - .4) / .4), 860, 1290);
   if (dk !== undefined && fe === undefined) s += lupeH(600, 905, 250, tongue20(t, { caps: 1, dock: cl((dk - .3) / 1.6) * 1.6, label: 'Hitze-Sensoren' }), 1, hx + 40, hy);
-  if (fe !== undefined) s += thinkH(hx + 20, hy - 60, 560, 880, '<path d="M-60 60 Q-90 -20 -30 -70 Q-30 -20 0 -40 Q10 -90 50 -100 Q30 -40 70 0 Q90 40 60 60 Z" fill="#FF8A1E" stroke="' + ST20 + '" stroke-width="5"/>' + svgT(0, 104, 'FEUER!', 34, '#E8282B'), cl(fe / .35)) + therm20(120, 1100, cl((fe - 1.4) / .4));
-  return W(s + shade3(), slot(ev, [['caps', 'Capsaicin aus der Chili'], ['dock', 'Dockt an Hitze-Sensoren', 'hot'], ['feuer', 'Gehirn: Feuer!', 'red']])); };
+  if (te !== undefined) s += tea20(1000, 1470, t, cl(te / .5)) + chip3(790, 1120, 'meldet auch echte Hitze', 28, '#FFE14D', ST20, cl((te - .8) / .3));
+  if (fe !== undefined && te === undefined) s += thinkH(hx + 20, hy - 60, 560, 880, '<path d="M-60 60 Q-90 -20 -30 -70 Q-30 -20 0 -40 Q10 -90 50 -100 Q30 -40 70 0 Q90 40 60 60 Z" fill="#FF8A1E" stroke="' + ST20 + '" stroke-width="5"/>' + svgT(0, 104, 'FEUER!', 34, '#E8282B'), cl(fe / .35)) + therm20(120, 1100, cl((fe - 1.4) / .4));
+  return W(s + shade3(), slot(ev, [['caps', 'Capsaicin aus der Chili'], ['dock', 'Dockt an Hitze-Sensoren', 'hot'], ['feuer', 'Gehirn: Feuer!', 'red'], ['tee', 'Sonst: echte Hitze']])); };
 WMASC.h20alarm = (ev, t, lt) => { const fe = ev.feuer; if (fe !== undefined) return stay3([FX20, GY20], 1, { r: 2, mood: 'cool' }); return stay3([lerp(400, FX20, ease(cl(lt / .8))), GY20], 1, { r: 3 * Math.sin(t * 2), mood: 'happy' }); };
 
 // ---------- Teil 2: Wasser perlt ab ----------
@@ -84,14 +89,15 @@ WMASC.h20wasser = (ev, t, lt) => { const ha = ev.haken, dr = ev.drueber, ei = ev
   return stay3([FX20, GY20], 1, { r: 2 }); };
 
 // ---------- Teil 3: Milch ----------
-WORLD.h20milch = function (sc, ev, t, lt) { const mi = ev.milch, ka = ev.kasein, st = ev.studie; const [hx, hy] = headH(FX20, GY20);
+WORLD.h20milch = function (sc, ev, t, lt) { const mi = ev.milch, ka = ev.kasein, st = ev.studie, oe = ev.oel; const [hx, hy] = headH(FX20, GY20);
   let s = kitchen20(t, { water: .8, noChili: 1, milk: st === undefined && mi !== undefined ? cl((mi - .9) / .4) : 0 });
   if (mi !== undefined && ka === undefined) s += fire20(hx, hy, t, 1 - cl((mi - 1.4) / .6));
   if (ka !== undefined && st === undefined) s += lupeH(600, 905, 250, milkin20(t, { m: cl((ka - .3) / 3.2) }), cl(ka / .4), hx + 40, hy);
-  if (st !== undefined) { s += milk20(640, 1330, cl(st / .4), 'VOLL', '#5CB8FF') + milk20(860, 1330, cl((st - .3) / .4), 'FETTARM', '#9FD6FF'); for (const x of [640, 860]) s += '<g transform="translate(' + x + ' 1000) scale(' + back(cl((st - 1.4) / .4)).toFixed(3) + ')"><circle r="46" fill="#FFE14D" stroke="' + ST20 + '" stroke-width="6"/>' + svgT(0, 14, '1.', 40, ST20) + '</g>'; s += chip3(750, 880, 'Studie 2019, 72 Leute', 28, '#FFE14D', ST20, cl((st - 2.2) / .3)); }
-  return W(s + shade3(), slot(ev, [['milch', 'Was wirklich hilft: Milch', 'hot'], ['kasein', 'Fett + Kasein nehmen es auf'], ['studie', 'Fettarm = Vollmilch', 'hot']])); };
+  if (oe !== undefined) s += oil20(560, 1470, cl(oe / .4)) + chip3(560, 1110, 'wirkt auch, schmeckt nicht', 28, '#F2C744', ST20, cl((oe - .8) / .3));
+  if (st !== undefined && oe === undefined) { s += milk20(640, 1330, cl(st / .4), 'VOLL', '#5CB8FF') + milk20(860, 1330, cl((st - .3) / .4), 'FETTARM', '#9FD6FF'); for (const x of [640, 860]) s += '<g transform="translate(' + x + ' 1000) scale(' + back(cl((st - 1.4) / .4)).toFixed(3) + ')"><circle r="46" fill="#FFE14D" stroke="' + ST20 + '" stroke-width="6"/>' + svgT(0, 14, '1.', 40, ST20) + '</g>'; s += chip3(750, 880, 'Studie 2019, 72 Leute', 28, '#FFE14D', ST20, cl((st - 2.2) / .3)); }
+  return W(s + shade3(), slot(ev, [['milch', 'Was wirklich hilft: Milch', 'hot'], ['kasein', 'Fett + Kasein nehmen es auf'], ['studie', 'Fettarm = Vollmilch', 'hot'], ['oel', 'Öl? Lieber nicht']])); };
 WMASC.h20milch = (ev, t, lt) => { const mi = ev.milch, ka = ev.kasein, st = ev.studie;
-  if (st !== undefined) return stay3([FX20, GY20], 1, { r: 3, mood: 'happy' });
+  if (ev.oel !== undefined) { const w = Math.sin(t * 8) * Math.sin(Math.PI * cl(ev.oel / 1.6)); return stay3([FX20, GY20], 1, { r: 8 * w, mood: 'cool' }); } if (st !== undefined) return stay3([FX20, GY20], 1, { r: 3, mood: 'happy' });
   if (mi !== undefined) { const d = Math.sin(Math.PI * cl((mi - 1.2) / 1.6)); return stay3([FX20, GY20], 1, { r: -14 * d, mood: ka !== undefined ? 'happy' : 'cool', prop: d > .2 && ka === undefined ? '🥛' : undefined }); }
   return stay3([FX20, GY20], 1, { r: 2 }); };
 

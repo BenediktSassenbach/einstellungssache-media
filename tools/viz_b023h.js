@@ -31,7 +31,7 @@ WORLD.h23hook = function (sc, ev, t, lt) { const se = ev.selbst, fr = ev.fremd, 
   let close = ck23(0, -40, 'selbst kitzeln:', 40) + ck23(0, 20, se === undefined || lt < 1.2 ? '…' : 'nichts', 54, '#FFE14D');
   if (fr !== undefined) close = ck23(0, -60, 'selbst: nichts', 34) + ck23(0, 10, 'andere: Lachen', 40, AC23);
   if (lo !== undefined) close = ck23(-40, -20, 'Wie klappt es', 40) + ck23(-40, 40, 'doch?', 54, '#FFE14D') + '<g transform="translate(170 0) scale(' + (1 + .08 * Math.sin(t * 6)).toFixed(2) + ')">' + ck23(0, 30, '?', 120, '#FFE14D') + '</g>';
-  let s = classK(t, { close: close }) + skel23(t, { la: la, wave: fr === undefined ? .55 : 0 });
+  let s = classK(t, { close: close }) + skel23(t, { la: la, wave: fr === undefined ? .55 : 0 }) + (lt > .4 ? ringK(t, SKX, 880, 60) : '');
   if (fr === undefined) s += feather23(SKX + 70 + 6 * Math.sin(t * 9), 900 + 8 * Math.cos(t * 9), -40);
   if (fr !== undefined) { const k = ease(cl(fr / .7)), wg = 10 * Math.sin(t * 12) * cl((fr - .6) / .3); s += stick23(lerp(FX23, 470, k) + 60, 1420, lerp(FX23 + 200, 790, k) + wg, lerp(1300, 1115, k), wg * 2) + haha23(t, la); }
   return W(s + shade3()); };
@@ -42,7 +42,7 @@ WORLD.h23rechnet = function (sc, ev, t, lt) { const vo = ev.vorher, kl = ev.klei
   let close = brain23(kl === undefined ? 0 : cl(kl / .5), t);
   if (vo !== undefined && kl === undefined) close += ck23(0, -120 + 6, 'sagt voraus', 30, '#FFE14D');
   if (da !== undefined) { const d = ease(cl((da - .6) / 1.2)); close = '<g transform="translate(-60 -10) scale(.7)">' + brain23(1, t) + '</g>' + wave23(40, -40, 170, lerp(40, 4, d), t) + ck23(120, 60, d > .5 ? 'gedämpft' : 'Gefühl', 30, '#FFE14D'); }
-  let s = classK(t, { close: close }) + skel23(t, { wave: vo !== undefined && kl === undefined ? .8 : 0 });
+  let s = classK(t, { close: close }) + skel23(t, { wave: vo !== undefined && kl === undefined ? .8 : 0 }) + ringK(t, SKX, 720, 52);
   if (da !== undefined) s += feather23(SKX + 70 + 6 * Math.sin(t * 9), 900, -40);
   return W(s + shade3(), slot(ev, [['vorher', 'Gehirn sagt voraus'], ['klein', 'Vermutlich: Kleinhirn', 'hot'], ['daempf', 'Vorhersage dämpft']])); };
 WMASC.h23rechnet = (ev, t, lt) => { const da = ev.daempf; if (da !== undefined) { const j = Math.sin(Math.PI * cl((da - .4) / .6)); return stay3([FX23, GY23 - 20 * j], 1, { r: 0, mood: 'cool' }); } return stay3([FX23, GY23], 1, { r: 2 * Math.sin(t * 2) }); };
@@ -54,7 +54,7 @@ WORLD.h23fremd = function (sc, ev, t, lt) { const ha = ev.haken, ar = ev.arm, zu
   if (zu !== undefined) close += ck23(-200, 30, 'fremde Hand', 30, '#F4F6FB', 'start') + '<rect x="40" y="8" width="' + (170 * ease(cl(zu / .6))).toFixed(0) + '" height="30" rx="8" fill="#FFE14D"/>';
   if (au !== undefined) close += ck23(0, 90, 'keine Vorhersage', 30, AC23);
   const zk = zu === undefined ? 0 : Math.sin(Math.PI * cl((zu - .5) / .6));
-  let s = classK(t, { close: close }) + skel23(t, { zu: zk, wave: ar !== undefined && zu === undefined ? .3 + .2 * Math.sin(t * 4) : 0 }) + hakenH(ar === undefined ? ha : undefined, t);
+  let s = classK(t, { close: close }) + ringK(t, SKX + 10, 900, 56) + skel23(t, { zu: zk, wave: ar !== undefined && zu === undefined ? .3 + .2 * Math.sin(t * 4) : 0 }) + hakenH(ar === undefined ? ha : undefined, t);
   if (zu !== undefined && au === undefined) { const k = ease(cl(zu / .5)) * (1 - ease(cl((zu - 1) / .6))); if (k > .02) s += stick23(lerp(FX23, 560, k) + 60, 1420, lerp(FX23 + 200, 800, k), lerp(1300, 1060, k), 0); }
   if (zk > .2) s += '<g opacity="' + zk.toFixed(2) + '">' + svgT(SKX + 120, 640, '!', 90, '#FFE14D') + '</g>';
   return W(s + shade3(), slot(ev, [['haken', 'Ziemlich clever', 'red'], ['arm', 'Eigene Berührung: kaum', 'hot'], ['zuck', 'Fremde: du zuckst'], ['auf', 'Ohne Vorhersage fällt es auf', 'hot']])); };
@@ -63,16 +63,17 @@ WMASC.h23fremd = (ev, t, lt) => { const zu = ev.zuck, au = ev.auf;
   return stay3([FX23, GY23], 1, { r: 2 }); };
 
 // ---------- Teil 3: der Roboter ----------
-WORLD.h23robo = function (sc, ev, t, lt) { const tr = ev.trick, ro = ev.robo, de = ev.delay; const k = ro === undefined ? 0 : cl(ro / .6);
+WORLD.h23robo = function (sc, ev, t, lt) { const tr = ev.trick, ro = ev.robo, de = ev.delay, al = ev.allein; const k = ro === undefined ? 0 : cl(ro / .6);
   let close = ck23(0, -30, 'Versuch, London', 34);
   if (de !== undefined) { const d = ease(cl((de - .5) / 2.4)); close = ck23(-120, -50, 'Verzögerung', 28) + ck23(-120, 10, (d * .2).toFixed(2).replace('.', ',') + ' s', 46, '#FFE14D') + ck23(120, -50, 'kitzlig', 28) + '<rect x="90" y="' + (60 - 120 * d).toFixed(0) + '" width="60" height="' + (20 + 120 * d).toFixed(0) + '" rx="8" fill="' + AC23 + '"/>'; }
-  let s = classK(t, { close: close });
-  const la = de === undefined ? 0 : ease(cl((de - .8) / 2));
+  if (al !== undefined) close = ck23(-200, -40, 'selbst', 30, '#F4F6FB', 'start') + '<rect x="-40" y="-62" width="50" height="30" rx="8" fill="#6FC3F0"/>' + ck23(-200, 30, 'Roboter allein', 30, '#F4F6FB', 'start') + '<rect x="40" y="8" width="' + (170 * ease(cl(al / .8))).toFixed(0) + '" height="30" rx="8" fill="#FFE14D"/>';
+  let s = classK(t, { close: close }) + (ro !== undefined ? ringK(t, SKX, 900, 56) : '');
+  const la = de === undefined ? 0 : ease(cl((de - .8) / 2)) * (al === undefined ? 1 : 1);
   s += skel23(t, { la: la });
   if (ro !== undefined) { const delay = de === undefined ? 0 : .2 * ease(cl((de - .5) / 2.4)), mv = Math.sin((t - delay * 3) * 5); const [r1, t1] = robo23(470, 1520, 20 * Math.sin(t * 5), t, 'du bewegst'), [r2, tip] = robo23(720, 1150, -20 + 15 * mv, t, '');
     s += '<g opacity="' + k.toFixed(2) + '"><path d="M510 1530 Q620 1560 690 1160" stroke="#3A4060" stroke-width="6" fill="none"/>' + r1 + r2 + feather23(tip[0], tip[1], 30 + 20 * mv, .7) + '</g>'; }
   if (la > .3) s += haha23(t, la);
-  return W(s + shade3(), slot(ev, [['trick', 'Der Trick vom Anfang', 'hot'], ['robo', 'Roboter dazwischen'], ['delay', 'Mit Verzögerung kitzliger', 'hot']])); };
+  return W(s + shade3(), slot(ev, [['trick', 'Der Trick vom Anfang', 'hot'], ['robo', 'Roboter dazwischen'], ['delay', 'Mit Verzögerung kitzliger', 'hot'], ['allein', 'Selbst: kaum kitzlig']])); };
 WMASC.h23robo = (ev, t, lt) => { const ro = ev.robo; if (ro !== undefined) { const k = ease(cl(ro / .8)); return stay3([FX23 + 40 * k, GY23], 1, { r: 0, mood: 'happy', walk: k > 0 && k < 1 }); } return stay3([FX23, GY23], 1, { r: 2 }); };
 
 // ---------- Schluss ----------

@@ -49,20 +49,22 @@ WMASC.h17hook = (ev, t, lt) => { const st = ev.still, br = ev.brull, lo = ev.loo
   const sk = st === undefined ? cl((lt - .3) / .4) : 1; return stay3([FX17, GY17], 1, { r: 0, mood: 'shock', fx: statue17(sk), nospin: 1 }); };
 
 // ---------- Teil 1: Augen nach vorn ----------
-WORLD.h17augen = function (sc, ev, t, lt) { const vo = ev.vorn, gr = ev.grad, ra = ev.raum; let s = land17(t);
+WORLD.h17augen = function (sc, ev, t, lt) { const vo = ev.vorn, gr = ev.grad, ra = ev.raum, sn = ev.schnauze; let s = land17(t);
   const look = Math.sin(t * .9) * 6; s += rex17(RX17, RY17, 1.05, t, { head: 10 + look });
   if (vo !== undefined && ra === undefined) s += lupeH(560, 860, 230, top17(t, cl(vo / .6), gr === undefined ? 0 : cl((gr - .3) / .6)), cl(vo / .45), RX17 - 150, RY17 - 370);
-  if (ra !== undefined) { const k = cl(ra / .6); for (const e of [[RX17 - 150, RY17 - 372], [RX17 - 140, RY17 - 360]]) s += '<path d="M' + e[0] + ' ' + e[1] + ' L' + (FX17 + 60) + ' ' + (GY17 - 140) + '" stroke="#FFE14D" stroke-width="5" stroke-dasharray="14 10" opacity="' + k.toFixed(2) + '"/>'; s += '<circle cx="' + (FX17 + 60) + '" cy="' + (GY17 - 140) + '" r="' + (80 + 8 * Math.sin(t * 6)).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="6" opacity="' + k.toFixed(2) + '"/>'; }
-  return W(s + fg17(t) + shade3(), slot(ev, [['vorn', 'Augen nach vorn'], ['grad', 'Rund 55° mit beiden Augen', 'hot'], ['raum', 'Sieht auch Stillstehendes', 'hot']])); };
+  if (sn !== undefined) s += chip3(560, 1110, 'schmale Schnauze, freier Blick', 28, '#FFE14D', ST17, cl((sn - .6) / .3)) + '<ellipse cx="' + (RX17 - 205) + '" cy="' + (RY17 - 340) + '" rx="80" ry="44" fill="none" stroke="#FFE14D" stroke-width="6" stroke-dasharray="14 10" opacity="' + cl(sn / .4).toFixed(2) + '"/>';
+  if (ra !== undefined && sn === undefined) { const k = cl(ra / .6); for (const e of [[RX17 - 150, RY17 - 372], [RX17 - 140, RY17 - 360]]) s += '<path d="M' + e[0] + ' ' + e[1] + ' L' + (FX17 + 60) + ' ' + (GY17 - 140) + '" stroke="#FFE14D" stroke-width="5" stroke-dasharray="14 10" opacity="' + k.toFixed(2) + '"/>'; s += '<circle cx="' + (FX17 + 60) + '" cy="' + (GY17 - 140) + '" r="' + (80 + 8 * Math.sin(t * 6)).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="6" opacity="' + k.toFixed(2) + '"/>'; }
+  return W(s + fg17(t) + shade3(), slot(ev, [['vorn', 'Augen nach vorn'], ['grad', 'Rund 55° mit beiden Augen', 'hot'], ['raum', 'Sieht auch Stillstehendes', 'hot'], ['schnauze', 'Schmalere Schnauze']])); };
 WMASC.h17augen = (ev, t, lt) => { const ra = ev.raum; if (ra !== undefined) return stay3([FX17, GY17], 1, { r: 0, mood: 'shock', fx: statue17(cl(ra / .4)) }); return stay3([lerp(170, FX17, ease(cl(lt / .9))), GY17], 1, { r: 2 * Math.sin(t * 2), walk: lt < .9 }); };
 
 // ---------- Teil 2: scharf wie ein Fernglas ----------
-WORLD.h17scharf = function (sc, ev, t, lt) { const ha = ev.haken, dr = ev.dreizehn, km = ev.km; let s = land17(t);
+WORLD.h17scharf = function (sc, ev, t, lt) { const ha = ev.haken, dr = ev.dreizehn, km = ev.km, ad = ev.adler; let s = land17(t);
   s += rex17(RX17, RY17, 1.05, t, { head: km !== undefined ? -14 : 10 + 4 * Math.sin(t) });
   s += hakenH(dr === undefined ? ha : undefined, t);
-  if (dr !== undefined && km === undefined) s += lupeH(560, 860, 230, eye17(t), cl(dr / .45), RX17 - 150, RY17 - 370) + chip3(560, 1135, 'bis zu 13× schärfer (Schätzung)', 28, '#FFE14D', ST17, cl((dr - 1.2) / .3));
-  if (km !== undefined) { const k = cl(km / .5); s += '<g opacity="' + k.toFixed(2) + '"><path d="M' + (RX17 - 250) + ' ' + (RY17 - 335) + ' L790 705" stroke="#FFE14D" stroke-width="5" stroke-dasharray="14 10"/><circle cx="790" cy="705" r="' + (40 + 6 * Math.sin(t * 6)).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="6"/></g>' + chip3(300, 900, 'du: 1,6 km', 30, '#F4F6FB', ST17, cl((km - .6) / .3)) + chip3(800, 620, 'T. rex: rund 6 km', 30, '#FFE14D', ST17, cl((km - 1.6) / .3)); }
-  return W(s + fg17(t) + shade3(), slot(ev, [['haken', 'Jetzt wird es unheimlich', 'red'], ['dreizehn', 'Riesige, scharfe Augen', 'hot'], ['km', 'Sah sehr weit']])); };
+  if (dr !== undefined && km === undefined) s += lupeH(560, 860, 230, eye17(t), cl(dr / .45), RX17 - 150, RY17 - 370) + chip3(560, 1100, 'bis zu 13× schärfer (Schätzung)', 28, '#FFE14D', ST17, cl((dr - 1.2) / .3));
+  if (km !== undefined && ad === undefined) { const k = cl(km / .5); s += '<g opacity="' + k.toFixed(2) + '"><path d="M' + (RX17 - 250) + ' ' + (RY17 - 335) + ' L790 705" stroke="#FFE14D" stroke-width="5" stroke-dasharray="14 10"/><circle cx="790" cy="705" r="' + (40 + 6 * Math.sin(t * 6)).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="6"/></g>' + chip3(300, 900, 'du: 1,6 km', 30, '#F4F6FB', ST17, cl((km - .6) / .3)) + chip3(800, 620, 'T. rex: rund 6 km', 30, '#FFE14D', ST17, cl((km - 1.6) / .3)); }
+  if (ad !== undefined) s += chip3(800, 700, 'Adler: rund 3,6×', 30, '#F4F6FB', ST17, cl((ad - .3) / .3)) + chip3(800, 780, 'T. rex: bis zu 13×', 30, '#FFE14D', ST17, cl((ad - .9) / .3));
+  return W(s + fg17(t) + shade3(), slot(ev, [['haken', 'Jetzt wird es unheimlich', 'red'], ['dreizehn', 'Riesige, scharfe Augen', 'hot'], ['km', 'Sah sehr weit'], ['adler', 'Vergleich: Adler']])); };
 WMASC.h17scharf = (ev, t, lt) => { const ha = ev.haken, km = ev.km; if (km !== undefined) return stay3([FX17, GY17], 1, { r: -6, mood: 'happy' }); if (ha !== undefined) { const j = Math.sin(Math.PI * cl(ha / .5)); return stay3([FX17, GY17 - 30 * j], 1, { r: -6 * j, mood: 'shock' }); } return stay3([FX17, GY17], 1, { r: 2 }); };
 
 // ---------- Teil 3: die Nase ----------

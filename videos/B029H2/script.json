@@ -1,0 +1,165 @@
+{
+ "serie": "Bio",
+ "kostuem": "forscher",
+ "accent": "#A8E63C",
+ "id": "B029H2",
+ "titel": "Wie ist deine Schulter aufgebaut?",
+ "design": "3.3",
+ "gagTag": "[gasps]",
+ "gagDelay": 0,
+ "gagZeile": 1,
+ "quelle": "HOOK-PILOT Schicht fuer Schicht (20.11.2026, Benedikt: Pilot pro Reihe, komplett wie P022H, Grundskript bleibt: Labor-Look, ein Modell, das waechst, Schichten-Anzeige, feste Farben, Zeilenmuster mit 'Schicht eins' bis 'Schicht sechs', jedes Weil als Aufgabe, keine Verletzungen). Folge 4 der Reihenfolge Schicht fuer Schicht: Schulter (B029). Abweichungen nur im Hook-Rahmen: Einstieg mit Frage und Open Loop ('wer es festhaelt'), Rehooks am Anfang von Teil 2 und 3, Schluss ohne drei Merksaetze, nur Aufloesung und Schlusssatz. Fakten: Im Schultergelenk artikuliert der Kopf des Oberarmknochens mit der Gelenkpfanne des Schulterblatts (DocCheck Flexikon, Glenohumeralgelenk). Die Pfanne ist im Vergleich zum Kopf klein und umschliesst ihn nicht vollstaendig (DocCheck Flexikon, Articulatio glenohumeralis). Der Kopf hat eine etwa 3-mal groessere Flaeche als die Pfanne mit Lippe; muskelgesichertes Kugelgelenk; flache Pfanne durch das Labrum ergaenzt; Kapsel schlaff (Habermeyer et al., Trauma und Berufskrankheit 2000, 'Topographie und funktionelle Anatomie des Schultergelenks'), deshalb 'rund dreimal so gross'. Gelenkknorpel ueberzieht die Gelenkflaechen (Lehrbuchwissen, wie B012 und B036). Gelenklippe aus Faserknorpel um die Pfanne, vergroessert die Flaeche (Kenhub, Das Schultergelenk; DocCheck); vertieft die flache Pfanne (DocCheck-Fachartikel 'Schmerzpunkt Schulter'). Kapsel relativ weitlaeufig, duenn und schlaff (DocCheck Flexikon). Bandapparat im Verhaeltnis zur Beanspruchung schwach, Fuehrung durch Baender nur in geringem Umfang (DocCheck Flexikon, Articulatio glenohumeralis). Vier Muskeln der Rotatorenmanschette (Supraspinatus, Infraspinatus, Subscapularis, Teres minor) umschliessen das Gelenk wie eine Manschette und sorgen fuer Bewegung und Stabilitaet (gesundheit.gv.at, Schulter); Pfanne liegt in einem Muskeltrichter der Rotatorenmanschette (Kenhub). Deltamuskel hebt den Arm zur Seite (Kenhub, M. deltoideus). Schultergelenk ist das beweglichste Kugelgelenk des Koerpers (DocCheck; gesundheit.gv.at). Im Bild: Schluesselbein und Schulterhoehe sind zu sehen, werden im Text aber nicht genannt (wie das Wadenbein in B012). Von der Rotatorenmanschette sind von vorn zwei Muskeln zu sehen (Obergraetenmuskel oben, Unterschulterblattmuskel vorn), die anderen zwei liegen hinten; das Schildchen sagt '4 Muskeln'. Bewusst weggelassen: Schleimbeutel, Bizepssehne, Baender einzeln, alles zu Verletzungen. Grenze: Gelenk, nur gesunder Aufbau, kein Wort zu Schmerzen oder Verletzungen. Stand der Recherche: 20.11.2026. FASSUNG v2 (20.11.2026, Benedikt): Design bleibt dem Grundskript treu (keine Hook-Overlays wie Karten, Fragezeichen oder Blitz, Schluss mit drei Merksaetzen wie im Skript), nur Text und Sprechweise folgen dem Hook-Prinzip: Hook im ersten Satz, Themenfrage, Open Loop, Rehooks, Aufloesung des Open Loops in den Merksaetzen. 'Fach nie verstanden? / Gib mir 60 Sekunden.' entfaellt (Hook-Prinzip). Neu in v2 (Benedikt: 'Pfanne' verstehen die meisten nicht): Pfanne wird im Text als flache Mulde erklaert, Einstieg mit Kugel und Mulde statt 'fast keine Pfanne'. Kapsel 'weit und locker' statt 'schlaff' (DocCheck: weitlaeufig, duenn und schlaff).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Wie ist deine *Schulter* aufgebaut?",
+   "emoji": "💪",
+   "world": "h29hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Die Kugel in deiner Schulter liegt nur in einer flachen Mulde. Trotzdem hält sie.",
+     "mood": "shock",
+     "ev": "fast"
+    },
+    {
+     "t": "Wie ist deine Schulter aufgebaut?",
+     "mood": "happy",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, was sie festhält.",
+     "mood": "cool",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Knochen und *Knorpel*",
+   "path": [],
+   "world": "h29a",
+   "pause": 0.35,
+   "lines": [
+    {
+     "t": "Schicht eins: Oberarmkopf und Pfanne am Schulterblatt.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Die Pfanne ist nur eine flache Mulde. Die Kugel ist rund dreimal so groß.",
+     "mood": "shock",
+     "ev": "p1"
+    },
+    {
+     "t": "Schicht zwei: Knorpel, damit beide Flächen glatt gleiten.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Glatt ist es jetzt. Halt gibt das aber noch keinen.",
+     "mood": "cool",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Lippe und *Kapsel*",
+   "path": [],
+   "world": "h29b",
+   "pause": 0.35,
+   "lines": [
+    {
+     "t": "Jetzt wird es tiefer. Schicht drei: die Gelenklippe aus Faserknorpel.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Sie sitzt am Rand und macht die Mulde größer und tiefer.",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "Schicht vier: die Kapsel. Innen schmiert Gelenkflüssigkeit.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "Die Kapsel ist weit und locker. Bänder geben wenig Halt.",
+     "mood": "shock",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Manschette und *Deltamuskel*",
+   "path": [],
+   "world": "h29c",
+   "pause": 0.2,
+   "lines": [
+    {
+     "t": "Jetzt die Antwort vom Anfang. Schicht fünf: die Rotatorenmanschette, vier Muskeln.",
+     "mood": "happy",
+     "ev": "panel"
+    },
+    {
+     "t": "Ihre Sehnen umschließen das Gelenk und halten den Kopf in der Pfanne.",
+     "mood": "cool",
+     "ev": "p1"
+    },
+    {
+     "t": "Schicht sechs: der Deltamuskel. Er hebt den Arm zur Seite.",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "So wird die Schulter dein beweglichstes Kugelgelenk.",
+     "mood": "happy",
+     "ev": "act"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "h29out",
+   "pause": 0.6,
+   "checks": [
+    "Kugel in flacher Mulde",
+    "Lippe macht sie tiefer",
+    "Muskeln halten fest"
+   ],
+   "lines": [
+    {
+     "t": "Also: Große Kugel, flache Mulde,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "die Gelenklippe macht sie tiefer,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und Muskeln halten sie fest.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

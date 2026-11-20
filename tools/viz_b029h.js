@@ -3,7 +3,7 @@
 // Schichten: Knochen (Oberarmkopf, Schulterblatt mit Pfanne, im Bild auch Schulterhoehe und Schluesselbein), Knorpel, Gelenklippe, Kapsel, Rotatorenmanschette, Deltamuskel.
 // Zum Loeschen: diese Datei und videos/B029H.
 const SX29 = 640, SY29 = 905, SZ29 = .86, TX29 = 790;
-const P29 = { scap: 'M-58 -78 Q-90 -112 -150 -122 L-250 -142 C-262 -40 -262 120 -250 236 Q-150 168 -86 96 Q-62 82 -58 66 Q-44 -6 -58 -78 Z',
+const P29 = { scap: 'M-58 -78 Q-78 -100 -96 -104 Q-110 -140 -90 -168 Q-70 -186 -40 -176 Q-30 -168 -44 -160 Q-70 -160 -74 -140 Q-74 -122 -60 -114 L-130 -126 Q-200 -138 -256 -150 C-266 -60 -262 110 -246 238 Q-196 210 -150 150 Q-110 110 -82 92 Q-62 82 -58 66 Q-44 -6 -58 -78 Z',
   acro: 'M-170 -150 Q-70 -232 50 -204 Q98 -194 112 -172 Q84 -158 24 -166 Q-60 -170 -140 -126 Z',
   clav: 'M-300 -250 Q-160 -236 -60 -214 Q10 -200 52 -214 L58 -190 Q10 -176 -66 -190 Q-170 -210 -300 -222 Z',
   hum: 'M40 -97 A92 92 0 1 1 112 52 Q124 104 112 150 L106 290 L46 290 L50 160 Q46 110 2 82 A92 92 0 0 1 40 -97 Z',
@@ -45,18 +45,17 @@ const ring29 = (t, lx, ly, r) => '<circle cx="' + (SX29 + lx * SZ29).toFixed(0) 
 
 // ---------- Einstieg: fertige Schulter, beim Open Loop fallen die Schichten ab ----------
 const FLY29 = [[5, 0, 640], [4, .12, 520], [3, .24, 460], [2, .36, 600], [1, .48, 500]];
-WORLD.h29hook = function (sc, ev, t, lt) { const lo = ev.loop, l = [1, 1, 1, 1, 1, 1]; let fly = '';
-  if (lo !== undefined) FLY29.forEach(([i, t0, lx]) => { const k = cl((lo - .2 - t0) / .55); if (k > 0) l[i] = 0; if (k <= 0) return;
+WORLD.h29hook = function (sc, ev, t, lt) { const V2 = HV2(), Ls = sc.lines, gT = V2 ? Ls[Ls.length - 1].end + .15 : (ev.loop === undefined ? Infinity : Ls[1].start + .2), e = t >= gT ? t - gT : undefined, l = [1, 1, 1, 1, 1, 1]; let fly = '';
+  if (e !== undefined) FLY29.forEach(([i, t0, lx]) => { const k = cl((e - t0) / .55); if (k > 0) l[i] = 0; if (k <= 0) return;
     const x = lerp(SX29, lx, k), y = lerp(SY29, 1492, k * k) - 220 * Math.sin(Math.PI * k) * (1 - k * .3), L = lay29;
     const inner = i === 5 ? L.del(t) : i === 4 ? L.rc() : i === 3 ? L.caps() : i === 2 ? L.lab() : L.cartH() + L.cartP();
     fly += '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') scale(.3)">' + BDEF + HDEF + inner + '</g>'; });
-  const on = lo === undefined ? 6 : 1 + FLY29.filter(([i, t0]) => lo - .2 < t0).length;
+  const on = e === undefined ? 6 : 1 + FLY29.filter(([i, t0]) => e < t0).length;
   let s = laborS(t, Object.assign({}, LAB29, { on: on }));
-  const peel = lo === undefined ? cl((ev.fast === undefined ? 0 : ev.fast - .8) / 1) : 1;
-  s += shoulder29(SX29, SY29, SZ29, t, { l: l, wob: lo === undefined ? 0 : 6 * Math.sin(t * 6) });
-  if (lo === undefined && ev.fast !== undefined) s += ring29(t, -50, -5, 70 + 6 * peel) + SL29(-50, -5, 1060, 'Pfanne', 'Cavitas glenoidalis', (ev.fast - 1) / .4, 760);
+  s += shoulder29(SX29, SY29, SZ29, t, { l: l, wob: e === undefined ? 0 : 6 * Math.sin(t * 6) });
+  const fa = ev.fast; if (e === undefined && fa !== undefined && ev.loop === undefined) s += ring29(t, -50, -5, 76) + SL29(-50, -5, 1060, 'Pfanne', V2 ? 'flache Mulde' : 'Cavitas glenoidalis', (fa - 1) / .4, 760);
   return W(s + fly + shadeS()); };
-WMASC.h29hook = (ev, t, lt) => { const lo = ev.loop; if (lo === undefined) return BIG3(); const e = lo - .2;
+WMASC.h29hook = (ev, t, lt, sc) => { const Ls = sc.lines, gT = HV2() ? Ls[Ls.length - 1].end + .15 : (ev.loop === undefined ? Infinity : Ls[1].start + .2), e = t - gT; if (!(e >= 0)) return BIG3();
   const x = e < .45 ? lerp(220, 150, ease(cl(e / .35))) : e < 1.6 ? 150 : lerp(150, 220, ease(cl((e - 1.6) / .5)));
   return stay3([x, 1537 - (e > .9 && e < 1.25 ? 30 * Math.sin(Math.PI * (e - .9) / .35) : 0)], 1, { r: e < .45 ? -12 : e < 1.6 ? -14 : 0, nospin: 1, mood: 'shock' }); };
 
@@ -84,7 +83,7 @@ WORLD.h29b = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.
 WMASC.h29b = (ev, t) => { const p1 = ev.p1; if (p1 !== undefined && ev.p2 === undefined) { const j = Math.sin(Math.PI * cl((p1 - .4) / .5)); return stay3([220, 1537 - 26 * j], 1, { r: 0, nospin: 1, mood: 'happy' }); } if (ev.act !== undefined) { const w = Math.sin(t * 4) * .6; return stay3([220 + 6 * w, 1537], 1, { r: 6 * w, nospin: 1 }); } return BIG3(); };
 
 // ---------- Teil 3: Manschette und Deltamuskel ----------
-WORLD.h29c = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.p2, a = ev.act; const rc = p === undefined ? 0 : cl((p - 2.2) / 1), dl = p2 === undefined ? 0 : cl((p2 - 1.2) / 1);
+WORLD.h29c = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.p2, a = ev.act; const rc = p === undefined ? 0 : cl((p - 2.6) / 1), dl = p2 === undefined ? 0 : cl((p2 - 1.2) / 1);
   const lift = p2 === undefined ? 0 : 26 * Math.sin(Math.PI * cl((p2 - 2.4) / 2.2)) + (a !== undefined ? 18 * Math.sin(t * 2) * Math.sin(Math.PI * cl(a / 3)) : 0);
   let s = laborS(t, Object.assign({}, LAB29, { on: 4 + rc + dl, cur: p2 !== undefined ? 6 : 5 }));
   s += shoulder29(SX29, SY29, SZ29, t, { l: [1, 1, 1, 1, rc, dl], wob: 0, lift: lift });

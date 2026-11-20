@@ -1,0 +1,165 @@
+{
+ "serie": "Bio",
+ "kostuem": "dinokostuem",
+ "accent": "#A8E63C",
+ "id": "B017H2",
+ "titel": "Sieht dich ein T. rex wirklich nicht, wenn du stillstehst?",
+ "design": "3.3",
+ "gagTag": "[gasps]",
+ "gagDelay": 0,
+ "gagZeile": 1,
+ "sprich": {
+  "T-Rex": "T. rex"
+ },
+ "quelle": "HOOK-PILOT Dinosaurier (20.11.2026, Benedikt: Pilot pro Reihe, komplett wie P022H, Grundskript Dino bleibt). Abweichungen nur im Hook-Rahmen wie P022H. Fakten nach Dino-Regel (verbreitetste belegte Theorie): Stevens 2006, Binocular vision in theropod dinosaurs, Journal of Vertebrate Paleontology 26(2):321-330: T. rex hatte ein binokulares Sichtfeld von rund 55 Grad, breiter als heutige Habichte; Sehschaerfe moeglicherweise bis zu 13-mal so hoch wie beim Menschen, Adler zum Vergleich 3,6-mal (Science News, Jaffe 2006). Grenzentfernung, in der Dinge noch deutlich sind: rund 6 km gegen 1,6 km beim Menschen (Science News Explores 2006). Binokulares Sehen hilft, Dinge raeumlich klarer zu sehen, auch wenn sie stillstehen oder getarnt sind (Science News Explores 2006). Studie angestossen durch die Film-Szene, in der jemand behauptet, der T. rex sehe nur Bewegung (Science News 2006, Gizmodo). Geruch: Zelenitsky, Therrien, Kobayashi 2009, Proc. R. Soc. B: Riechkolben der Tyrannosauriden deutlich groesser als erwartet, T. rex hatte die beste Nase aller untersuchten Raubsaurier (Universitaet Calgary 2008, phys.org). Schaerfe und Entfernung sind Schaetzungen, deshalb 'Forscher schaetzen', 'bis zu' und 'wohl'. Film wird nicht genannt, keine Figuren oder Posen aus dem Film. Stand der Recherche: 20.11.2026. FASSUNG v2 (20.11.2026, Benedikt): Design bleibt dem Grundskript treu (keine Hook-Overlays wie Karten, Fragezeichen oder Blitz, Schluss mit drei Merksaetzen wie im Skript), nur Text und Sprechweise folgen dem Hook-Prinzip: Hook im ersten Satz, Themenfrage, Open Loop, Rehooks, Aufloesung des Open Loops in den Merksaetzen. 'Fach nie verstanden? / Gib mir 60 Sekunden.' entfaellt (Hook-Prinzip). Neu in v2: Schnauze wurde im Lauf der Evolution schmaler, das verbesserte die Sicht (Science News Explores 2006, Bildunterschrift Kent A. Stevens). Adler zum Vergleich 3,6-mal so scharf wie der Mensch (Science News, Jaffe 2006).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Stillstehen vorm *T. rex*?",
+   "emoji": "🦖",
+   "world": "h17hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Du stehst still. Der T. rex sieht dich trotzdem.",
+     "mood": "shock",
+     "ev": "still"
+    },
+    {
+     "t": "Sieht dich ein T. rex wirklich nicht, wenn du stillstehst?",
+     "mood": "cool",
+     "ev": "brull"
+    },
+    {
+     "t": "Am Ende weißt du, warum Stillstehen doppelt nichts bringt.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Augen nach *vorn*",
+   "path": [],
+   "world": "h17augen",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Seine Augen zeigten nach vorn, wie bei einem Greifvogel.",
+     "mood": "happy",
+     "ev": "vorn"
+    },
+    {
+     "t": "Beide Augen sahen zusammen ein Feld von rund 55 Grad, breiter als bei einem Habicht.",
+     "mood": "shock",
+     "ev": "grad"
+    },
+    {
+     "t": "So sah er räumlich und erkannte auch Dinge, die sich nicht bewegen.",
+     "mood": "cool",
+     "ev": "raum"
+    },
+    {
+     "t": "Über Millionen Jahre wurde die Schnauze seiner Vorfahren schmaler. Das machte die Sicht noch besser.",
+     "mood": "happy",
+     "ev": "schnauze"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Scharf wie ein *Fernglas*",
+   "path": [],
+   "world": "h17scharf",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und jetzt wird's unheimlich.",
+     "mood": "cool",
+     "ev": "haken"
+    },
+    {
+     "t": "Forscher schätzen: Er sah bis zu 13-mal schärfer als du.",
+     "mood": "shock",
+     "ev": "dreizehn"
+    },
+    {
+     "t": "Was du nur auf 1,6 Kilometer erkennst, sah er wohl noch auf 6 Kilometer.",
+     "mood": "happy",
+     "ev": "km"
+    },
+    {
+     "t": "Ein Adler sieht zum Vergleich rund 3,6-mal schärfer als du.",
+     "mood": "cool",
+     "ev": "adler"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Die *Nase*",
+   "path": [],
+   "world": "h17nase",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und selbst wenn er gerade wegschaut:",
+     "mood": "cool",
+     "ev": "weg"
+    },
+    {
+     "t": "Der Riechteil seines Gehirns war riesig. Er hatte die beste Nase aller Raubsaurier.",
+     "mood": "happy",
+     "ev": "nase"
+    },
+    {
+     "t": "Er sieht dich also, und er riecht dich.",
+     "mood": "shock",
+     "ev": "schnupper"
+    }
+   ],
+   "quip": "Ich bin ein Stein.",
+   "quipAt": 2
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "h17out",
+   "pause": 0.6,
+   "checks": [
+    "Augen nach vorn",
+    "Sehr scharfer Blick",
+    "Beste Nase"
+   ],
+   "lines": [
+    {
+     "t": "Also: Seine Augen sahen räumlich nach vorn,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "vermutlich viel schärfer als deine,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und seine Nase war die beste aller Raubsaurier.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
