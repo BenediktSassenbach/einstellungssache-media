@@ -126,11 +126,7 @@
    "title": "Ist halt ’ne *Einstellungssache*",
    "world": "h23out",
    "pause": 0.6,
-   "checks": [
-    "Gehirn sagt voraus",
-    "Fremdes fällt auf",
-    "Verzögerung trickst"
-   ],
+   "checks": [],
    "lines": [
     {
      "t": "Also: Dein Gehirn sagt deine eigene Berührung voraus,",

@@ -53,12 +53,12 @@ function think22(hx, hy, bx, by, inner, k) { if (k <= .01) return ''; const e = 
   [[.25, 14], [.5, 22]].forEach(([f, r]) => { s += '<circle cx="' + lerp(hx, bx, f).toFixed(0) + '" cy="' + lerp(hy, by + 130, f).toFixed(0) + '" r="' + r + '" fill="#F4F6FB" stroke="' + ST22 + '" stroke-width="5"/>'; });
   return s + '<g transform="translate(' + bx + ' ' + by + ') scale(' + e.toFixed(3) + ')"><ellipse rx="210" ry="125" fill="#F4F6FB" stroke="' + ST22 + '" stroke-width="7"/>' + inner + '</g></g>'; }
 // Karte "Im Kopf" oder "Aufnahme" mit kleinem Symbol
-function card22(x, y, txt, ic, col, k, hi, dim) { if (k <= 0) return ''; const z = back(cl(k)) * (1 + .08 * (hi || 0)); let s = '<g transform="translate(' + x + ' ' + y + ') scale(' + z.toFixed(3) + ')" opacity="' + (1 - .6 * (dim || 0)).toFixed(2) + '"><rect x="-190" y="-80" width="380" height="160" rx="26" fill="#F4F6FB" stroke="' + (hi ? col : ST22) + '" stroke-width="' + (hi ? 12 : 7) + '"/>';
+function card22(x, y, txt, ic, col, k, hi, dim) { if (k <= 0) return ''; const z = .8 * back(cl(k)) * (1 + .08 * (hi || 0)); y = 700; x = x < 540 ? 270 : 770; hi = (hi || 0) * .5; let s = '<g transform="translate(' + x + ' ' + y + ') scale(' + z.toFixed(3) + ')" opacity="' + (1 - .6 * (dim || 0)).toFixed(2) + '"><rect x="-190" y="-80" width="380" height="160" rx="26" fill="#F4F6FB" stroke="' + (hi ? col : ST22) + '" stroke-width="' + (hi ? 12 : 7) + '"/>';
   if (ic === 'kopf') s += '<path transform="translate(-10 0) scale(.85)" d="M-150 40 Q-160 -50 -100 -60 Q-50 -64 -42 -20 L-30 0 L-44 6 Q-44 40 -70 40 V60 H-150 Z" fill="' + OR22 + '" stroke="' + ST22 + '" stroke-width="5"/>';
   else s += '<rect x="-148" y="-58" width="64" height="112" rx="12" fill="' + ST22 + '"/><rect x="-140" y="-48" width="48" height="92" rx="8" fill="' + AC22 + '"/><circle cx="-116" cy="-2" r="16" fill="#fff"/><path d="M-122 -10 v16 l14 -8 Z" fill="' + ST22 + '"/>';
   s += svgT(-30, 14, txt, 40, ST22, 'start'); if (hi) s += '<circle cx="170" cy="-70" r="34" fill="#3DFF7A" stroke="' + ST22 + '" stroke-width="6"/><path d="M154 -70 l12 12 l20 -24" fill="none" stroke="' + ST22 + '" stroke-width="8" stroke-linecap="round"/>'; return s + '</g>'; }
 // Fragezeichen zwischen den Karten
-const vs22 = (k, t) => k <= 0 ? '' : '<g transform="translate(540 735) scale(' + (back(cl(k)) * (1 + .1 * Math.sin(t * 6))).toFixed(3) + ')"><circle r="54" fill="#FFE14D" stroke="' + ST22 + '" stroke-width="7"/>' + svgT(0, 22, '?', 64, ST22) + '</g>';
+const vs22 = (k, t) => k <= 0 ? '' : '<g transform="translate(520 700) scale(' + (back(cl(k)) * (1 + .1 * Math.sin(t * 6))).toFixed(3) + ')"><circle r="54" fill="#FFE14D" stroke="' + ST22 + '" stroke-width="7"/>' + svgT(0, 22, '?', 64, ST22) + '</g>';
 // ---------- Kopf im Schnitt (Lupe) ----------
 // Profil nach links, lokale Koordinaten um 0,0. a: Luftweg 0..1, b: Knochenweg 0..1, lock: "nur du"
 function skull22(t, a, b, lock, plug) { let s = '<rect x="-320" y="-320" width="640" height="640" fill="#2B2560"/>';
@@ -156,8 +156,8 @@ WMASC.h22test = (ev, t, lt) => { const te = ev.test, dr = ev.droehn, ge = ev.gef
 // ---------- Schluss: Aufloesung, Studie, zurueck zum ersten Bild (Loop) ----------
 WORLD.h22out = function (sc, ev, t, lt) { const fr = ev.frage2, au = ev.auf, st = ev.studie, sv = ev.save; let s = room22(t, { screen: 'memo', memoT: sv === undefined ? lt : 1.2 + (sv || 0) });
   const off = sv === undefined ? 0 : cl(sv / .2);
-  if (fr !== undefined) { const k = cl(fr / .4) * (1 - off), hi = au === undefined ? 0 : ease(cl(au / .5)); s += card22(280, 735, 'Im Kopf', 'kopf', OR22, k, 0, hi) + card22(800, 735, 'Aufnahme', 'auf', AC22, k, hi) + vs22(au === undefined ? cl((fr - .3) / .3) : 1 - cl(au / .3), t); }
-  if (st !== undefined) s += '<g opacity="' + (1 - off).toFixed(2) + '">' + stars22(cl((st - .4) / 1.4), t) + chip3(540, 500, 'Studie 2013, 80 Leute', 28, '#FFE14D', ST22, cl((st - 1.6) / .3)) + '</g>';
+  if (fr !== undefined) { const k = cl(fr / .4) * (1 - off), hi = au === undefined ? 0 : ease(cl(au / .5)); s += card22(280, 735, 'Im Kopf', 'kopf', OR22, k * (st === undefined ? 1 : 1 - cl(st / .4)), 0, hi) + card22(800, 735, 'Aufnahme', 'auf', AC22, k, hi) + vs22(au === undefined ? cl((fr - .3) / .3) : 1 - cl(au / .3), t); }
+  if (st !== undefined) s += '<g opacity="' + (1 - off).toFixed(2) + '">' + chip3(540, 560, 'Studie 2013, 80 Leute', 32, '#FFE14D', ST22, cl((st - .6) / .3)) + '</g>';
   if (sv !== undefined) s += waves22(t, cl(sv / .6), AC22, 1);
   return W(s + shade3()); };
 WMASC.h22out = (ev, t, lt) => { const au = ev.auf, st = ev.studie, sv = ev.save;

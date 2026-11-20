@@ -7,19 +7,20 @@ function kitchen20(t, o) { o = o || {}; let s = '<defs><linearGradient id="wl20"
   // Fliesenspiegel
   for (let y = 980; y < 1340; y += 60) for (let x = 0; x < 1080; x += 60) s += '<rect x="' + x + '" y="' + y + '" width="58" height="58" fill="' + ((x / 60 + y / 60) % 2 ? '#5B4C8E' : '#54467F') + '"/>';
   // Haengeschrank und Fenster
-  s += '<rect x="20" y="560" width="400" height="300" rx="10" fill="#E9E3F5" stroke="' + ST20 + '" stroke-width="7"/><path d="M220 560 V860" stroke="' + ST20 + '" stroke-width="5"/><circle cx="200" cy="800" r="9" fill="' + ST20 + '"/><circle cx="240" cy="800" r="9" fill="' + ST20 + '"/>';
+  if (!o.noCab) s += '<rect x="20" y="700" width="400" height="250" rx="10" fill="#E9E3F5" stroke="' + ST20 + '" stroke-width="7"/><path d="M220 700 V950" stroke="' + ST20 + '" stroke-width="5"/><circle cx="200" cy="900" r="9" fill="' + ST20 + '"/><circle cx="240" cy="900" r="9" fill="' + ST20 + '"/>';
   s += '<rect x="700" y="580" width="330" height="330" rx="10" fill="#0F1844" stroke="' + ST20 + '" stroke-width="8"/><circle cx="960" cy="660" r="30" fill="#FFF3D0"/><circle cx="972" cy="650" r="27" fill="#0F1844"/><path d="M865 580 V910 M700 745 H1030" stroke="' + ST20 + '" stroke-width="8"/>';
   for (let i = 0; i < 8; i++) s += '<circle cx="' + (720 + rnd(i + 3) * 290).toFixed(0) + '" cy="' + (600 + rnd(i + 9) * 130).toFixed(0) + '" r="2.5" fill="#fff" opacity="' + (.4 + .4 * Math.abs(Math.sin(t + i))).toFixed(2) + '"/>';
   // Tisch
   s += '<path d="M0 1380 H1080 V1560 H0 Z" fill="url(#tb20)" stroke="' + ST20 + '" stroke-width="6"/><rect x="0" y="1560" width="1080" height="60" fill="#6E4428" stroke="' + ST20 + '" stroke-width="6"/><rect x="0" y="1620" width="1080" height="300" fill="#2A2246"/>';
   for (let i = 0; i < 5; i++) s += '<path d="M' + (i * 240 + 40) + ' 1390 l-30 160" stroke="#B07746" stroke-width="4" opacity=".6"/>';
-  if (o.milk) s += milk20(740, 1450, o.milk, 'MILCH');
+  if (o.cartons) s += milk20(635, 1440, o.cartons[0] * .8, 'VOLL', '#5CB8FF') + milk20(755, 1440, o.cartons[1] * .8, 'FETTARM', '#9FD6FF');
   // Teller mit Wings und Chili
-  s += '<ellipse cx="860" cy="1470" rx="170" ry="50" fill="#F4F6FB" stroke="' + ST20 + '" stroke-width="6"/><ellipse cx="860" cy="1466" rx="125" ry="32" fill="#E3E8F3"/>';
-  for (let i = 0; i < 4; i++) s += '<g transform="translate(' + (785 + i * 50) + ' ' + (1450 + (i % 2) * 14) + ') rotate(' + (i * 25 - 30) + ')"><ellipse rx="34" ry="20" fill="#C0451E" stroke="' + ST20 + '" stroke-width="4"/><circle cx="-8" cy="-4" r="4" fill="#E87B3A"/></g>';
-  if (!o.noChili) s += '<g transform="translate(900 1415) rotate(-20)"><path d="M0 0 Q40 -10 70 20 Q40 10 0 10 Z" fill="#E8282B" stroke="' + ST20 + '" stroke-width="4"/><path d="M0 4 q-14 -6 -18 -20" stroke="#3B9B3B" stroke-width="7" fill="none" stroke-linecap="round"/></g>';
+  s += '<ellipse cx="830" cy="1470" rx="110" ry="40" fill="#F4F6FB" stroke="' + ST20 + '" stroke-width="6"/><ellipse cx="830" cy="1466" rx="80" ry="24" fill="#E3E8F3"/>';
+  for (let i = 0; i < 4; i++) s += '<g transform="translate(' + (778 + i * 34) + ' ' + (1450 + (i % 2) * 14) + ') rotate(' + (i * 25 - 30) + ')"><ellipse rx="34" ry="20" fill="#C0451E" stroke="' + ST20 + '" stroke-width="4"/><circle cx="-8" cy="-4" r="4" fill="#E87B3A"/></g>';
+  if (!o.noChili) s += '<g transform="translate(860 1418) rotate(-20)"><path d="M0 0 Q40 -10 70 20 Q40 10 0 10 Z" fill="#E8282B" stroke="' + ST20 + '" stroke-width="4"/><path d="M0 4 q-14 -6 -18 -20" stroke="#3B9B3B" stroke-width="7" fill="none" stroke-linecap="round"/></g>';
   // Wasserglas
-  const wl = o.water === undefined ? 1 : o.water; s += '<g transform="translate(560 1470)"><path d="M-46 -150 L-38 0 H38 L46 -150 Z" fill="#9FD6FF" opacity=".25" stroke="#F4F6FB" stroke-width="6"/><path d="M' + (-46 + 8 * (1 - wl)) + ' ' + (-150 * wl + 10) + ' L-38 0 H38 L' + (46 - 8 * (1 - wl)) + ' ' + (-150 * wl + 10) + ' Z" fill="#5CB8FF" opacity=".55"/>' + (o.ice ? '<rect x="-24" y="' + (-150 * wl + 6) + '" width="28" height="28" rx="5" fill="#E8F7FF" stroke="#9FD6FF" stroke-width="3" transform="rotate(12)"/>' : '') + '</g>';
+  const wl = o.water === undefined ? 1 : o.water; if (!(o.milk > 0) && !o.noGlass) s += '<g transform="translate(665 1470)"><path d="M-46 -150 L-38 0 H38 L46 -150 Z" fill="#9FD6FF" opacity=".25" stroke="#F4F6FB" stroke-width="6"/><path d="M' + (-46 + 8 * (1 - wl)) + ' ' + (-150 * wl + 10) + ' L-38 0 H38 L' + (46 - 8 * (1 - wl)) + ' ' + (-150 * wl + 10) + ' Z" fill="#5CB8FF" opacity=".55"/>' + (o.ice ? '<rect x="-24" y="' + (-150 * wl + 6) + '" width="28" height="28" rx="5" fill="#E8F7FF" stroke="#9FD6FF" stroke-width="3" transform="rotate(12)"/>' : '') + '</g>';
+  if (o.milk) s += milk20(665, 1470, o.milk, 'MILCH');
   return s; }
 // Milchtuete
 function milk20(x, y, k, lab, col) { if (k <= 0) return ''; const e = back(cl(k)); return '<g transform="translate(' + x + ' ' + y + ') scale(' + e.toFixed(3) + ')"><path d="M-55 0 V-170 L-30 -210 H30 L55 -170 V0 Z" fill="#F4F6FB" stroke="' + ST20 + '" stroke-width="6"/><path d="M-55 -170 H55" stroke="' + ST20 + '" stroke-width="5"/><rect x="-55" y="-130" width="110" height="60" fill="' + (col || '#5CB8FF') + '"/>' + svgT(0, -90, lab, lab.length > 6 ? 18 : 24, '#fff') + '</g>'; }
@@ -47,8 +48,8 @@ function water20(t, o) { let s = '<rect x="-320" y="-320" width="640" height="64
   if (o.ice) s += '<rect x="-40" y="' + (-200 + 210 * ease(cl(o.ice / .6))).toFixed(0) + '" width="80" height="80" rx="12" fill="#E8F7FF" stroke="#9FD6FF" stroke-width="6" transform="rotate(10)" opacity="' + (1 - cl((o.ice - 1.8) / .5)).toFixed(2) + '"/>';
   return s; }
 function milkin20(t, o) { let s = '<rect x="-320" y="-320" width="640" height="640" fill="#3A1830"/><path d="M-320 120 Q-160 90 0 110 Q160 130 320 100 V320 H-320 Z" fill="#FF8FA8" stroke="#C85A78" stroke-width="6"/>';
-  const m = cl(o.m || 0); for (let i = 0; i < 5; i++) { const x = -240 + i * 120, carry = ease(cl((m - .4 - i * .08) / .5)), y = lerp(80, -260, carry);
-    if (carry < 1) s += caps20(x, y, t, 1, 1.8);
+  const m = cl(o.m || 0); for (let i = 0; i < 5; i++) { const x = -240 + i * 120, carry = ease(cl((m - .4 - i * .08) / .5)), y = lerp(80, -110, carry);
+    s += caps20(x, y, t, 1, 1.8);
     const cx = lerp(x + 60 - 40 * (i % 2), x, ease(cl((m - i * .08) / .4))), cy = lerp(-200, y - 50, ease(cl((m - i * .08) / .4)));
     s += '<g transform="translate(' + cx.toFixed(0) + ' ' + cy.toFixed(0) + ') scale(1.6)"><circle r="' + (i % 2 ? 30 : 34) + '" fill="' + (i % 2 ? '#FFE9A0' : '#F4F6FB') + '" stroke="' + ST20 + '" stroke-width="4" opacity=".92"/>' + (i % 2 ? '' : '<circle cx="-10" cy="-8" r="6" fill="#C9D3E6"/><circle cx="10" cy="6" r="7" fill="#C9D3E6"/>') + '</g>'; }
   s += chip3(-140, 230, 'Kasein', 30, '#F4F6FB', ST20, cl(m * 3)) + chip3(140, 230, 'Fett', 30, '#FFE9A0', ST20, cl(m * 3 - .3));
@@ -90,11 +91,11 @@ WMASC.h20wasser = (ev, t, lt) => { const ha = ev.haken, dr = ev.drueber, ei = ev
 
 // ---------- Teil 3: Milch ----------
 WORLD.h20milch = function (sc, ev, t, lt) { const mi = ev.milch, ka = ev.kasein, st = ev.studie, oe = ev.oel; const [hx, hy] = headH(FX20, GY20);
-  let s = kitchen20(t, { water: .8, noChili: 1, milk: st === undefined && mi !== undefined ? cl((mi - .9) / .4) : 0 });
+  let s = kitchen20(t, { water: .8, noChili: 1, noGlass: mi !== undefined, cartons: st !== undefined && oe === undefined ? [cl(st / .4), cl((st - .3) / .4)] : null, milk: st === undefined && oe === undefined && mi !== undefined ? cl((mi - .9) / .4) : 0 });
   if (mi !== undefined && ka === undefined) s += fire20(hx, hy, t, 1 - cl((mi - 1.4) / .6));
   if (ka !== undefined && st === undefined) s += lupeH(600, 905, 250, milkin20(t, { m: cl((ka - .3) / 3.2) }), cl(ka / .4), hx + 40, hy);
-  if (oe !== undefined) s += oil20(560, 1470, cl(oe / .4)) + chip3(560, 1110, 'wirkt auch, schmeckt nicht', 28, '#F2C744', ST20, cl((oe - .8) / .3));
-  if (st !== undefined && oe === undefined) { s += milk20(640, 1330, cl(st / .4), 'VOLL', '#5CB8FF') + milk20(860, 1330, cl((st - .3) / .4), 'FETTARM', '#9FD6FF'); for (const x of [640, 860]) s += '<g transform="translate(' + x + ' 1000) scale(' + back(cl((st - 1.4) / .4)).toFixed(3) + ')"><circle r="46" fill="#FFE14D" stroke="' + ST20 + '" stroke-width="6"/>' + svgT(0, 14, '1.', 40, ST20) + '</g>'; s += chip3(750, 880, 'Studie 2019, 72 Leute', 28, '#FFE14D', ST20, cl((st - 2.2) / .3)); }
+  if (oe !== undefined) s += oil20(660, 1470, cl(oe / .4)) + chip3(560, 1110, 'wirkt auch, schmeckt nicht', 28, '#F2C744', ST20, cl((oe - .8) / .3));
+  if (st !== undefined && oe === undefined) { for (const x of [635, 755]) s += '<g transform="translate(' + x + ' 1000) scale(' + back(cl((st - 1.4) / .4)).toFixed(3) + ')"><circle r="46" fill="#FFE14D" stroke="' + ST20 + '" stroke-width="6"/>' + svgT(0, 14, '1.', 40, ST20) + '</g>'; s += chip3(685, 880, 'Studie 2019, 72 Leute', 28, '#FFE14D', ST20, cl((st - 2.2) / .3)); }
   return W(s + shade3(), slot(ev, [['milch', 'Was wirklich hilft: Milch', 'hot'], ['kasein', 'Fett + Kasein nehmen es auf'], ['studie', 'Fettarm = Vollmilch', 'hot'], ['oel', 'Öl? Lieber nicht']])); };
 WMASC.h20milch = (ev, t, lt) => { const mi = ev.milch, ka = ev.kasein, st = ev.studie;
   if (ev.oel !== undefined) { const w = Math.sin(t * 8) * Math.sin(Math.PI * cl(ev.oel / 1.6)); return stay3([FX20, GY20], 1, { r: 8 * w, mood: 'cool' }); } if (st !== undefined) return stay3([FX20, GY20], 1, { r: 3, mood: 'happy' });
@@ -103,7 +104,7 @@ WMASC.h20milch = (ev, t, lt) => { const mi = ev.milch, ka = ev.kasein, st = ev.s
 
 // ---------- Schluss ----------
 WORLD.h20out = function (sc, ev, t, lt) { const fr = ev.frage2, au = ev.auf, sv = ev.save; const off = sv === undefined ? 0 : cl(sv / .2);
-  let s = kitchen20(t, { water: sv === undefined ? .8 : 1, noChili: sv === undefined, milk: sv === undefined ? 1 : 1 - cl(sv / .3) });
+  let s = kitchen20(t, { noCab: 1, water: sv === undefined ? .8 : 1, noChili: sv === undefined, milk: sv === undefined ? 1 : 1 - cl(sv / .3) });
   if (fr !== undefined && off < 1) s += '<g opacity="' + (1 - off).toFixed(2) + '">' + loopH(cl(fr / .9), t, ['Wasser', '<path d="M-36 -50 L-28 50 H28 L36 -50 Z" fill="#5CB8FF" stroke="' + ST20 + '" stroke-width="5"/>', '#5CB8FF'], ['Milch', milk20(0, 60, 1, 'MILCH'), AC20], au === undefined ? undefined : 1, au === undefined ? 0 : cl(au / .5)) + '</g>';
   return W(s + shade3()); };
 WMASC.h20out = (ev, t, lt) => stay3([FX20, GY20], 1, { r: 2, mood: ev.save !== undefined ? 'happy' : undefined });

@@ -2,7 +2,7 @@
 // Grundskript Schicht fuer Schicht bleibt: Labor (laborS), Schichten-Anzeige, ein Modell, das waechst, feste Farben, Atlas-Look ueber die Lichtfilter aus viz_schicht.js (HDEF).
 // Schichten: Knochen (Oberarmkopf, Schulterblatt mit Pfanne, im Bild auch Schulterhoehe und Schluesselbein), Knorpel, Gelenklippe, Kapsel, Rotatorenmanschette, Deltamuskel.
 // Zum Loeschen: diese Datei und videos/B029H.
-const SX29 = 640, SY29 = 905, SZ29 = .86, TX29 = 790;
+const SX29 = 640, SY29 = 905, SZ29 = .86, TX29 = 790, TXV2 = 760;
 const P29 = { scap: 'M-58 -78 Q-78 -100 -96 -104 Q-110 -140 -90 -168 Q-70 -186 -40 -176 Q-30 -168 -44 -160 Q-70 -160 -74 -140 Q-74 -122 -60 -114 L-130 -126 Q-200 -138 -256 -150 C-266 -60 -262 110 -246 238 Q-196 210 -150 150 Q-110 110 -82 92 Q-62 82 -58 66 Q-44 -6 -58 -78 Z',
   acro: 'M-170 -150 Q-70 -232 50 -204 Q98 -194 112 -172 Q84 -158 24 -166 Q-60 -170 -140 -126 Z',
   clav: 'M-300 -250 Q-160 -236 -60 -214 Q10 -200 52 -214 L58 -190 Q10 -176 -66 -190 Q-170 -210 -300 -222 Z',
@@ -15,7 +15,8 @@ const P29 = { scap: 'M-58 -78 Q-78 -100 -96 -104 Q-110 -140 -90 -168 Q-70 -186 -
   del: 'M-80 -212 Q50 -248 138 -160 Q194 -70 164 70 Q146 170 118 238 L96 238 Q78 150 64 70 Q36 -50 -74 -168 Z' };
 const ROWS29 = [['Knochen', COLS.bone], ['Knorpel', COLS.cart], ['Gelenklippe', COLS.men], ['Kapsel', COLS.cap], ['Manschette', COLS.mus], ['Deltamuskel', COLS.mus]];
 const LAB29 = { rows: ROWS29, cx: SX29, note: 'Rechte Schulter, Pfanne im Schnitt', w: 340, fs: 29 };
-const SL29 = (lx, ly, ty, de, la, k, tx) => labelL(Math.round(SX29 + lx * SZ29), Math.round(SY29 + ly * SZ29), tx || TX29, ty, de, la, k, 1);
+const SH29 = { Gelenkknorpel: 'Knorpel', Gelenkkapsel: 'Kapsel', 'Gelenkflüssigkeit': 'Flüssigkeit' };
+const SL29 = (lx, ly, ty, de, la, k, tx) => HV2() ? labelL(Math.round(SX29 + lx * SZ29), Math.round(SY29 + ly * SZ29), Math.min(tx || TXV2, TXV2), ty, SH29[de] || de, '', k, 1) : labelL(Math.round(SX29 + lx * SZ29), Math.round(SY29 + ly * SZ29), tx || TX29, ty, de, la, k, 1);
 // Kopf-Bogen (Knorpel), Mitte des Kopfes 40/-5, Radius 92
 const ARC29 = (r, a0, a1) => { const P = a => [40 + r * Math.cos(a * Math.PI / 180), -5 + r * Math.sin(a * Math.PI / 180)]; const [x0, y0] = P(a0), [x1, y1] = P(a1); return 'M' + x0.toFixed(1) + ' ' + y0.toFixed(1) + ' A' + r + ' ' + r + ' 0 0 1 ' + x1.toFixed(1) + ' ' + y1.toFixed(1); };
 const lay29 = {
@@ -84,7 +85,7 @@ WMASC.h29b = (ev, t) => { const p1 = ev.p1; if (p1 !== undefined && ev.p2 === un
 
 // ---------- Teil 3: Manschette und Deltamuskel ----------
 WORLD.h29c = function (sc, ev, t, lt) { const p = ev.panel, p1 = ev.p1, p2 = ev.p2, a = ev.act; const rc = p === undefined ? 0 : cl((p - 2.6) / 1), dl = p2 === undefined ? 0 : cl((p2 - 1.2) / 1);
-  const lift = p2 === undefined ? 0 : 26 * Math.sin(Math.PI * cl((p2 - 2.4) / 2.2)) + (a !== undefined ? 18 * Math.sin(t * 2) * Math.sin(Math.PI * cl(a / 3)) : 0);
+  const lift = p2 === undefined ? 0 : 40 * Math.sin(Math.PI * cl((p2 - 2.0) / 2.2)) + (a !== undefined ? 30 * Math.sin(t * 2.4) * Math.sin(Math.PI * cl(a / 3)) : 0);
   let s = laborS(t, Object.assign({}, LAB29, { on: 4 + rc + dl, cur: p2 !== undefined ? 6 : 5 }));
   s += shoulder29(SX29, SY29, SZ29, t, { l: [1, 1, 1, 1, rc, dl], wob: 0, lift: lift });
   if (p !== undefined && p2 === undefined) s += SL29(-120, -122, 760, 'Manschette', '4 Muskeln, 2 hinten', (p - 2.6) / .35) + (p1 !== undefined ? ring29(t, 40, -5, 110) : '');
@@ -94,7 +95,7 @@ WMASC.h29c = (ev, t) => { const p1 = ev.p1, a = ev.act; if (p1 !== undefined && 
 
 // ---------- Schluss: kein Merksatz-Block, Aufloesung und Schlusssatz ----------
 WORLD.h29out = function (sc, ev, t, lt) { const sv = ev.save; let s = laborS(t, Object.assign({}, LAB29, { noList: 1 }));
-  s += shoulder29(SX29, SY29 + 40 * (sv === undefined ? 0 : ease(cl(sv / .6))), SZ29 * (sv === undefined ? 1 : lerp(1, .8, ease(cl(sv / .6)))), t, { l: [1, 1, 1, 1, 1, 1], lift: 10 * Math.sin(t * 2) });
+  s += shoulder29(SX29, SY29 + 140 * (sv === undefined ? 0 : ease(cl(sv / .6))), SZ29 * (sv === undefined ? 1 : lerp(1, .62, ease(cl(sv / .6)))), t, { l: [1, 1, 1, 1, 1, 1], lift: 10 * Math.sin(t * 2) });
   if (sv === undefined && ev.auf !== undefined) s += ring29(t, -60, -40, 150);
   return W(s + shadeS()); };
 WMASC.h29out = (ev, t) => BIG3();
