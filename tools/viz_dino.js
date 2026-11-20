@@ -227,3 +227,63 @@ function turkeyD(x, y, s, t, o) { o = o || {}; const f = cl(o.fan === undefined 
   for (let i = 0; i < 11; i++) { const a = (-150 + i * 12 + 2 * Math.sin(t * 2 + i)) * Math.PI / 180, L = 70 + 90 * f; g += '<path d="M40 -110 L' + (40 + L * Math.cos(a) * 1.1 - 14).toFixed(1) + ' ' + (-110 + L * Math.sin(a) * 1.1).toFixed(1) + ' Q' + (40 + L * Math.cos(a) * 1.25).toFixed(1) + ' ' + (-110 + L * Math.sin(a) * 1.25).toFixed(1) + ' ' + (40 + L * Math.cos(a) * 1.1 + 14).toFixed(1) + ' ' + (-110 + L * Math.sin(a) * 1.1).toFixed(1) + ' Z" fill="' + (i % 2 ? '#8A5A32' : '#6B4226') + '" stroke="#0B1020" stroke-width="4" stroke-linejoin="round"/><path d="M' + (40 + L * Math.cos(a) * .95).toFixed(1) + ' ' + (-110 + L * Math.sin(a) * .95).toFixed(1) + ' L' + (40 + L * Math.cos(a) * 1.12).toFixed(1) + ' ' + (-110 + L * Math.sin(a) * 1.12).toFixed(1) + '" stroke="#F2E2C0" stroke-width="7" stroke-linecap="round"/>'; }
   g += '</g>';
   return g + hend(x, y, s, t, Object.assign({ c1: '#7A4E2E', c2: '#4E301C', id: 'tk' }, o)).replace(/#FF4D4D/g, '#E03A4A'); }
+
+// Ankylosaurus (B013): gepanzerter Pflanzenfresser auf vier Beinen mit Schwanzkeule. Ursprung an den Fuessen, schaut nach links.
+// o: walk/ph (Laufzyklus), head (Kopf senken in Grad), jaw (0..1), sw (Schwanz-Schwung in Grad, + nach oben), xr (0..1 Roentgenblick in den Schwanz:
+// Stiel aus verhakten Wirbeln, verknoecherte Sehnen, Keule aus verwachsenen Knochenplatten), hurt (0..1 gebrochene, verheilte Flankenstacheln an der Huefte rot markiert),
+// eat (0..1 kaut), pal {a Ruecken, b Bauch, p Platten, k Kiele}, id, flip, op, shadow:0
+function ankyD(x, y, s, t, o) { o = o || {}; const id = 'an' + (o.id || ''), P = Object.assign({ a: '#D9822B', b: '#F6D8A4', p: '#8E4E1E', k: '#F3B562', l: '#B5651D' }, o.pal || {});
+  const K = 'stroke="#0B1020" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"', ph = o.ph || 0, wk = o.walk ? 1 : 0;
+  const br = 3 * Math.sin(t * 1.5 + (o.id ? 1.7 : 0)), hd = (o.head || 0) + 2 * Math.sin(t * 1.05 + (o.id ? 2 : 0)), sw = (o.sw || 0) + 3 * Math.sin(t * 1.2 + (o.id ? 1 : 0)) * (1 + wk), jaw = cl(o.jaw || 0) + (o.eat ? .25 * o.eat * Math.max(0, Math.sin(t * 7)) : 0), xr = cl(o.xr || 0), hu = cl(o.hurt || 0);
+  const blink = ((t * .29 + (o.id ? .5 : 0)) % 1) < .035;
+  let g = '<defs><linearGradient id="' + id + 'g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + P.l + '"/><stop offset=".5" stop-color="' + P.a + '"/><stop offset="1" stop-color="' + P.b + '"/></linearGradient><radialGradient id="' + id + 'pl" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="' + P.k + '"/><stop offset="1" stop-color="' + P.p + '"/></radialGradient></defs>';
+  if (o.shadow !== 0) g += '<ellipse cx="40" cy="6" rx="330" ry="24" fill="#000" opacity=".22"/>';
+  const leg = (hx, far, p, fr) => { const a = wk ? 13 * Math.sin(ph + p) : 0, top = fr ? -170 : -185, w = fr ? 30 : 38; return '<g transform="rotate(' + a.toFixed(1) + ' ' + hx + ' ' + top + ')"><path d="M' + (hx - w) + ' ' + top + ' Q' + (hx - w - 8) + ' -70 ' + (hx - w + 4) + ' -18 Q' + (hx - w) + ' 0 ' + (hx - w + 18) + ' 0 H' + (hx + w + 8) + ' Q' + (hx + w + 18) + ' 0 ' + (hx + w + 10) + ' -18 Q' + (hx + w + 6) + ' -80 ' + (hx + w) + ' ' + top + ' Z" fill="' + (far ? P.p : 'url(#' + id + 'g)') + '" ' + K + '/>' + (far ? '' : '<path d="M' + (hx - w + 14) + ' -4 v-12 M' + (hx + 4) + ' -4 v-12 M' + (hx + w - 6) + ' -4 v-12" stroke="#F4EBD0" stroke-width="8" stroke-linecap="round"/><path d="M' + (hx - w + 8) + ' -96 q' + w + ' 14 ' + (2 * w - 10) + ' 0" stroke="#0B1020" stroke-width="4" fill="none" opacity=".3"/>') + '</g>'; };
+  // Schwanz: weicher Ansatz, dann steifer Stiel, Keule am Ende. Drehpunkt an der Huefte
+  const tail = () => { let q = '<g transform="rotate(' + (-sw).toFixed(1) + ' 220 -200)">';
+    q += '<path d="M200 -262 C300 -250 380 -214 470 -196 L612 -176 L614 -138 L470 -150 C380 -152 300 -150 210 -140 Z" fill="url(#' + id + 'g)" ' + K + '/>';
+    for (let i = 0; i < 6; i++) { const xx = 262 + i * 58, yy = -232 + i * 7 - (i > 3 ? 2 : 0), sz = 15 - i * 1.2; q += '<path d="M' + (xx - sz) + ' ' + (yy + 4) + ' L' + xx + ' ' + (yy - sz * 1.6) + ' L' + (xx + sz) + ' ' + (yy + 4) + ' Z" fill="' + P.k + '" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/>'; }
+    if (xr > 0) { q += '<g opacity="' + xr.toFixed(2) + '"><path d="M200 -262 C300 -250 380 -214 470 -196 L612 -176 L614 -138 L470 -150 C380 -152 300 -150 210 -140 Z" fill="#0E2238" opacity=".78"/>';
+      for (let i = 0; i < 6; i++) { const xx = 232 + i * 40; q += '<rect x="' + xx + '" y="' + (-206 + i * 2.5) + '" width="30" height="24" rx="7" fill="#EAF6FF" stroke="#7FD4FF" stroke-width="3"/>'; }
+      for (let i = 0; i < 5; i++) { const xx = 470 + i * 28; q += '<path d="M' + xx + ' ' + (-178 + i * .7) + ' l26 -3 l10 7 l-10 8 l-26 2 l8 -7 Z" fill="#FFE14D" stroke="#0B1020" stroke-width="3" stroke-linejoin="round"/>'; }
+      for (let j = 0; j < 3; j++) q += '<path d="M' + (440 + j * 8) + ' ' + (-190 + j * 9) + ' L606 ' + (-170 + j * 7) + '" stroke="#FF9F43" stroke-width="3.5" fill="none" stroke-dasharray="18 6" opacity=".95"/>';
+      q += '</g>'; }
+    // Keule: zwei grosse Seitenlappen und ein Endknoten aus verwachsenen Knochenplatten
+    const kk = 'transform="translate(634 -158)"';
+    q += '<g ' + kk + '><ellipse cx="-10" cy="-4" rx="64" ry="46" fill="url(#' + id + 'pl)" stroke="#0B1020" stroke-width="7"/><ellipse cx="44" cy="0" rx="34" ry="30" fill="url(#' + id + 'pl)" stroke="#0B1020" stroke-width="7"/><ellipse cx="-14" cy="-6" rx="30" ry="20" fill="' + P.k + '" opacity=".55"/><path d="M-50 -24 q20 -18 46 -12" stroke="#fff" stroke-width="6" fill="none" opacity=".45" stroke-linecap="round"/>';
+    for (const [cx, cy, r] of [[-40, 18, 7], [-8, 24, 6], [22, 16, 6], [52, -14, 5], [-30, -28, 5]]) q += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + P.p + '" opacity=".7"/>';
+    if (xr > 0) q += '<g opacity="' + xr.toFixed(2) + '"><ellipse cx="-10" cy="-4" rx="64" ry="46" fill="#0E2238" opacity=".72"/><ellipse cx="44" cy="0" rx="34" ry="30" fill="#0E2238" opacity=".72"/><path d="M-62 -6 Q-40 -46 -6 -44 Q26 -40 34 -10 Q60 -22 74 0 Q60 26 30 22 Q0 44 -40 32 Q-70 20 -62 -6 Z" fill="#EAF6FF" stroke="#7FD4FF" stroke-width="4"/><path d="M-30 -30 L-14 16 M8 -36 L2 30 M34 -12 L40 18" stroke="#7FD4FF" stroke-width="3" opacity=".8"/></g>';
+    q += '</g></g>'; return q; };
+  g += leg(-120, 1, 0, 1) + leg(170, 1, Math.PI, 0);
+  g += tail();
+  g += '<g transform="translate(0 ' + (br * .6).toFixed(1) + ')">';
+  // Rumpf: breite, flache Kuppel
+  g += '<path d="M-250 -176 C-250 -280 -120 -340 30 -342 C170 -344 262 -290 270 -200 C276 -132 200 -104 20 -102 C-150 -100 -250 -110 -250 -176 Z" fill="url(#' + id + 'g)" ' + K + '/>';
+  // Knochenplatten in Reihen, mit Kiel und Glanz
+  const rows = [[-322, 8, 30, 22], [-286, 9, 26, 19], [-244, 9, 22, 16], [-206, 8, 18, 13]];
+  rows.forEach(([ry, n, rx2, ry2], r) => { for (let i = 0; i < n; i++) { const f = (i + .5) / n, xx = -205 + f * 440 + (r % 2 ? 14 : 0), yy = ry + 46 * Math.pow(Math.abs(f - .5) * 2, 2) * (r < 2 ? 1 : .5); if (r === 0 && (f < .1 || f > .93)) continue;
+      g += '<ellipse cx="' + xx.toFixed(0) + '" cy="' + yy.toFixed(0) + '" rx="' + rx2 + '" ry="' + ry2 + '" fill="url(#' + id + 'pl)" stroke="#0B1020" stroke-width="4.5"/><path d="M' + (xx - rx2 * .55).toFixed(0) + ' ' + yy.toFixed(0) + ' L' + (xx + rx2 * .55).toFixed(0) + ' ' + (yy - 3).toFixed(0) + '" stroke="' + P.k + '" stroke-width="4" stroke-linecap="round"/><circle cx="' + (xx - rx2 * .35).toFixed(0) + '" cy="' + (yy - ry2 * .4).toFixed(0) + '" r="3.5" fill="#fff" opacity=".55"/>'; } });
+  // Flankenstacheln (unterer Rand), die an der Huefte koennen markiert werden (Zuul)
+  for (let i = 0; i < 9; i++) { const xx = -214 + i * 54, yy = -140 + 10 * Math.pow((i - 4) / 4, 2), hot = hu > 0 && (i === 5 || i === 6 || i === 7), L = hot ? 22 : 34;
+    g += '<path d="M' + (xx - 16) + ' ' + (yy - 8) + ' L' + (xx + 6) + ' ' + (yy + L) + ' L' + (xx + 18) + ' ' + (yy - 10) + ' Z" fill="' + (hot ? '#FF4D6D' : '#F2E2C0') + '" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/>';
+  }
+  g += '<path d="M-220 -132 C-120 -112 80 -110 240 -134" stroke="#fff" stroke-width="6" fill="none" opacity=".28" stroke-linecap="round"/><path d="M-150 -326 C-60 -346 80 -346 160 -326" stroke="#fff" stroke-width="7" fill="none" opacity=".3" stroke-linecap="round"/></g>';
+  g += leg(-160, 0, Math.PI, 1) + leg(130, 0, 0, 0);
+  if (hu > 0) g += '<ellipse cx="110" cy="-128" rx="' + (118 + 6 * Math.sin(t * 4)).toFixed(1) + '" ry="62" fill="#FF4D6D" fill-opacity=".12" stroke="#FF4D6D" stroke-width="7" stroke-dasharray="20 10" opacity="' + hu.toFixed(2) + '"/>';
+  // Hals mit Knochenbaendern und Kopf
+  g += '<g transform="rotate(' + (-hd).toFixed(1) + ' -240 -200)">';
+  g += '<path d="M-232 -262 C-280 -262 -322 -232 -330 -196 L-322 -150 C-290 -132 -252 -134 -232 -140 Z" fill="url(#' + id + 'g)" ' + K + '/>';
+  g += '<path d="M-276 -258 C-292 -226 -292 -176 -278 -142 M-304 -246 C-318 -214 -316 -176 -304 -150" stroke="' + P.p + '" stroke-width="12" fill="none" stroke-linecap="round"/>';
+  // Unterkiefer (klappt auf)
+  g += '<g transform="rotate(' + (-16 * jaw).toFixed(1) + ' -350 -170)"><path d="M-352 -172 L-452 -168 Q-462 -150 -440 -142 L-352 -146 Z" fill="' + P.b + '" ' + K + '/><path d="M-444 -160 L-360 -162" stroke="#0B1020" stroke-width="3" opacity=".4"/></g>';
+  if (jaw > .1) g += '<path d="M-352 -172 L-448 -170 L-440 ' + (-170 + 28 * jaw).toFixed(0) + ' L-356 ' + (-160 + 10 * jaw).toFixed(0) + ' Z" fill="#5A1E2E"/>';
+  g += '<path d="M-326 -236 C-370 -244 -430 -230 -466 -196 L-470 -172 L-350 -168 C-326 -176 -312 -208 -326 -236 Z" fill="url(#' + id + 'g)" ' + K + '/>';
+  g += '<path d="M-466 -196 L-482 -178 L-466 -168 L-448 -176 Z" fill="#E8C16B" ' + K + '/>';
+  g += '<path d="M-334 -236 L-322 -268 L-304 -232 Z M-336 -170 L-312 -150 L-334 -142 Z" fill="#F2E2C0" stroke="#0B1020" stroke-width="5" stroke-linejoin="round"/>';
+  for (const [cx, cy, r] of [[-402, -222, 9], [-372, -230, 10], [-430, -210, 7], [-350, -222, 7]]) g += '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + r + '" ry="' + (r * .7) + '" fill="' + P.p + '" opacity=".75"/>';
+  g += '<circle cx="-452" cy="-190" r="4" fill="#0B1020"/>';
+  g += blink ? '<path d="M-398 -204 q14 8 28 0" stroke="#0B1020" stroke-width="6" fill="none" stroke-linecap="round"/>' : '<circle cx="-384" cy="-204" r="15" fill="#fff" stroke="#0B1020" stroke-width="5"/><circle cx="' + (-388 + (o.look || 0) * 4) + '" cy="' + (-203 + (o.lookY || 0) * 4) + '" r="8" fill="#0B1020"/><circle cx="-391" cy="-207" r="3" fill="#fff"/>';
+  g += '<path d="M-404 -226 q20 -10 40 2" stroke="#0B1020" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="-360" cy="-180" rx="14" ry="8" fill="#FF8FB8" opacity=".45"/>';
+  if (o.eat) g += '<path d="M-470 -168 q-20 -10 -34 4 M-466 -164 q-14 8 -30 18" stroke="#2F9E55" stroke-width="7" fill="none" stroke-linecap="round"/>';
+  g += '</g>';
+  return '<g data-figur="Ankylosaurus" transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') scale(' + (s * (o.flip ? -1 : 1)).toFixed(3) + ' ' + s.toFixed(3) + ')" opacity="' + (o.op === undefined ? 1 : o.op) + '">' + g + '</g>'; }

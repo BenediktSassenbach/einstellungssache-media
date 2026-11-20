@@ -1,0 +1,169 @@
+{
+ "serie": "Informatik",
+ "kostuem": "sunset",
+ "accent": "#7C5CFF",
+ "id": "I030",
+ "titel": "GTA 6 gratis für den PC?",
+ "design": "3.3",
+ "gagTag": "[gasps]",
+ "gagDelay": 0,
+ "quelle": "Skript Videospiel (seit 19.11.2026) und Skript 4. Stumme Demo v1 (20.11.2026). Kostuem S1 Sunset-Hemd. Ort eigens gebaut: Strassenecke bei Sonnenuntergang mit Elektronikladen, Kiosk 'GRATIS GAMES' und Leuchtwand. Keine Figuren, Logos oder Szenen aus dem Spiel; Konsolen als neutrale Formen 'Konsole A/B'. Plattformen: GTA 6 erschien am 19.11.2026 fuer PlayStation 5 und Xbox Series X|S; Rockstar hat weder PC-Version noch Demo, Beta oder Early Access angekuendigt (ESET WeLiveSecurity; ghacks 14.11.2026; Malwarebytes 24.08.2026). Cloud: Xbox Cloud Gaming streamt zum Start nur auf Xbox-Konsolen, nicht auf PCs; 'Every PC download is a scam' (Notebookcheck, GTA-6-Launch-Scams). Warnung: Cynet warnt seit 13.11.2026 vor gefaelschtem GTA-6-PC-Download, der Steam-Passwoerter und Krypto-Daten stiehlt (ghacks 14.11.2026; Notebookcheck). 113-GB-ISO: Fake, ueber 100 GB leerer Inhalt (PC Games 'Fake-Leak zu GTA 6: 113 GB Download verstecken Malware'; Cybernews 'junk data and a virus'); setzt Laufwerk C: auf die Ausnahmeliste von Windows Defender (drohnen.de-Zusammenfassung des Falls). Fallen: Gratis-Codes, angeblicher frueher Zugang (Notebookcheck), Android-Version ist ein Warnzeichen, es gibt keine (PCGH). Schutz: nur ueber offizielle Shops und Handel kaufen; nach einem gestarteten Fake Passwoerter von einem anderen, sauberen Geraet aendern und Zwei-Faktor einschalten (allgemeine Empfehlung der Sicherheitsfirmen, z. B. ESET). Stand der Recherche: 20.11.2026.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "GTA 6 für den *PC*?",
+   "emoji": "🎮",
+   "world": "i30hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Dieser Gratis-Download klaut dein Passwort.",
+     "mood": "shock"
+    },
+    {
+     "t": "Gibt es GTA 6 für den PC?",
+     "mood": "happy",
+     "ev": "frage"
+    },
+    {
+     "t": "Informatik nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "shock",
+     "ev": "gib"
+    },
+    {
+     "t": "Lauf!",
+     "mood": "shock",
+     "ev": "jagd"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Es gibt *keine* PC-Version",
+   "path": [],
+   "world": "i30keinpc",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Erstens: GTA 6 kam am 19. November nur für PlayStation 5 und Xbox Series.",
+     "mood": "happy",
+     "ev": "kons"
+    },
+    {
+     "t": "Eine PC-Version, eine Demo oder einen frühen Zugang hat Rockstar nicht angekündigt.",
+     "mood": "happy",
+     "ev": "angek"
+    },
+    {
+     "t": "Selbst per Cloud läuft es zum Start nur auf Xbox-Konsolen, nicht auf dem PC.",
+     "mood": "happy",
+     "ev": "cloud"
+    },
+    {
+     "t": "Heißt: Jeder PC-Download ist gerade ein Fake.",
+     "mood": "cool",
+     "ev": "fake"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Was im *Download* steckt",
+   "path": [],
+   "world": "i30inhalt",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Zweitens: Sicherheitsforscher warnen seit dem 13. November vor einem falschen PC-Download.",
+     "mood": "shock",
+     "ev": "warn"
+    },
+    {
+     "t": "Er stiehlt zum Beispiel Steam-Passwörter und Daten von Krypto-Konten.",
+     "mood": "shock",
+     "ev": "stiehlt"
+    },
+    {
+     "t": "Eine andere Fake-Datei war 113 Gigabyte groß, davon über 100 Gigabyte leerer Füllstoff.",
+     "mood": "happy",
+     "ev": "gross"
+    },
+    {
+     "t": "Gestartet nimmt sie die ganze Festplatte aus der Prüfung vom Virenschutz.",
+     "mood": "shock",
+     "ev": "aus"
+    }
+   ],
+   "quip": "Na toll.",
+   "quipAt": 3
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "So *schützt* du dich",
+   "path": [],
+   "world": "i30schutz",
+   "pause": 0.6,
+   "lines": [
+    {
+     "t": "Drittens: Kauf nur in den offiziellen Shops von PlayStation und Xbox oder im Handel.",
+     "mood": "happy",
+     "ev": "shop"
+    },
+    {
+     "t": "Gratis-Codes, Beta-Zugang oder eine Android-Version sind Fallen.",
+     "mood": "cool",
+     "ev": "fallen"
+    },
+    {
+     "t": "Schon was gestartet? Von einem anderen Gerät Passwörter ändern und Zwei-Faktor einschalten.",
+     "mood": "happy",
+     "ev": "pw"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i30out",
+   "pause": 0.05,
+   "checks": [
+    "Keine PC-Version",
+    "Downloads klauen Daten",
+    "Nur offizielle Shops"
+   ],
+   "lines": [
+    {
+     "t": "Also: Es gibt keine PC-Version,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "die Downloads klauen Daten,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und gekauft wird nur im offiziellen Shop.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

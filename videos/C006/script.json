@@ -1,0 +1,180 @@
+{
+ "serie": "Chemie",
+ "kostuem": "labor",
+ "accent": "#FF6BD6",
+ "id": "C006",
+ "titel": "Warum taut Salz das Eis?",
+ "design": "3.3",
+ "gagTag": "[gasps]",
+ "gagDelay": 0.3,
+ "quelle": "Skript 4 mit allen Regeln bis 19.11.2026. Stumme Demo v1 (20.11.2026). Kostuem C1 Laborkittel. Ort eigens gebaut: Wohnstrasse am Winterabend mit Streuwagen und vereistem Gehweg. Teil 2 im Wissenschaftsmodus (Teilchen zu klein fuer den Ort). Salz wirkt geloest: Nach dem Streuen entsteht eine Salzloesung mit niedrigerem Schmelzpunkt (chemie.de, Lexikon Streusalz/Auftausalz). Wien spritzt 20-prozentige Kochsalz-Sole, Feuchtsalz wirkt bis etwa -15 Grad (Der Standard, 2024). Gitter und Ionen: Wassermolekuele ordnen sich beim Gefrieren zum Eiskristall; NaCl zerfaellt in Wasser in zwei Ionen (Spektrum, Freistetters Formelwelt; Der Standard). Dynamisches Gleichgewicht an der Eisoberflaeche: Teilchen loesen sich und frieren wieder an; geloeste Teilchen senken die Rate des Anfrierens, das Eis schmilzt (Senese, Frostburg State University, 'Why does salt melt ice?'). Grenzen: Natriumchlorid wirkt von etwa -1 bis -10 Grad, darunter sind Magnesium- und Calciumchlorid wirksamer (Quarks). Tiefste Temperatur fuer fluessige Kochsalzloesung -21,1 Grad, eutektischer Punkt (Senese, Frostburg; Uni Kiel, Phasendiagramm Salzwasser), deshalb 'rund minus 21 Grad'. Unter etwa -9 Grad Belagstemperatur wirkt Salz nur noch sehr langsam (Minnesota LTAP SmartWinterSalt). Privat: In vielen Staedten und Gemeinden ist Streusalz ausdruecklich verboten, Alternativen Sand, Kies, Splitt (Oeko-Test); Schaeden an Baeumen (Quarks), an Pfoten von Hunden (Utopia nach BUND). 'Splitt taut nicht, macht aber griffig': abstumpfendes Streumittel. Stand der Recherche: 20.11.2026.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Salz gegen *Eis*?",
+   "emoji": "🧂",
+   "world": "c6hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Salz ist nicht warm. Trotzdem taut es Eis.",
+     "mood": "shock"
+    },
+    {
+     "t": "Warum taut Salz das Eis?",
+     "mood": "happy",
+     "ev": "frage"
+    },
+    {
+     "t": "Chemie nie verstanden?",
+     "mood": "happy"
+    },
+    {
+     "t": "Gib mir 60 Sekunden.",
+     "mood": "happy",
+     "ev": "gib"
+    },
+    {
+     "t": "Ich lauf hier!",
+     "mood": "shock",
+     "ev": "spray"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Erst *gelöst*",
+   "path": [],
+   "world": "c6geloest",
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Erstens: Salz wirkt erst, wenn es sich in Wasser löst.",
+     "mood": "happy",
+     "ev": "loes"
+    },
+    {
+     "t": "Das Korn löst sich im feuchten Eis, und es entsteht Salzwasser.",
+     "mood": "happy",
+     "ev": "wasser"
+    },
+    {
+     "t": "Viele Städte sprühen deshalb gleich Salzwasser, die sogenannte Sole.",
+     "mood": "cool",
+     "ev": "sole"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Salz *stört*",
+   "path": [],
+   "world": "c6stoer",
+   "labor": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "pause": 0.5,
+   "lines": [
+    {
+     "t": "Zweitens: Wenn Wasser gefriert, ordnen sich seine Teilchen zu einem festen Gitter.",
+     "mood": "happy",
+     "ev": "gitter"
+    },
+    {
+     "t": "Gelöstes Salz zerfällt in Natrium und Chlorid, und die drängen sich dazwischen.",
+     "mood": "shock",
+     "ev": "ionen"
+    },
+    {
+     "t": "Am Eis lösen sich ständig Teilchen und frieren wieder an. Mit Salz frieren weniger an, als sich lösen.",
+     "mood": "happy",
+     "ev": "rand"
+    },
+    {
+     "t": "So schmilzt das Eis, denn Salzwasser gefriert erst unter null Grad.",
+     "mood": "cool",
+     "ev": "warm"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Die *Grenze*",
+   "path": [],
+   "world": "c6grenze",
+   "pause": 0.6,
+   "lines": [
+    {
+     "t": "Drittens: Kochsalz wirkt auf der Straße gut bis etwa minus zehn Grad.",
+     "mood": "happy",
+     "ev": "zehn"
+    },
+    {
+     "t": "Darunter schafft es kaum noch etwas. Ganz Schluss ist bei rund minus 21 Grad.",
+     "mood": "shock",
+     "ev": "einuz"
+    },
+    {
+     "t": "Bei solcher Kälte wirken andere Salze besser, zum Beispiel Calciumchlorid.",
+     "mood": "happy",
+     "ev": "calc"
+    },
+    {
+     "t": "Und vor deiner Haustür? Viele Gemeinden verbieten Streusalz, weil es Bäumen und Hundepfoten schadet.",
+     "mood": "cool",
+     "ev": "verbot"
+    },
+    {
+     "t": "Dann lieber Splitt: Der taut nichts, macht aber griffig.",
+     "mood": "happy",
+     "ev": "splitt"
+    }
+   ],
+   "quip": "Endlich Halt.",
+   "quipAt": 4
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c6out",
+   "pause": 0.05,
+   "checks": [
+    "Wirkt nur gelöst",
+    "Stört das Gefrieren",
+    "Gut bis etwa −10 °C"
+   ],
+   "lines": [
+    {
+     "t": "Also: Salz wirkt nur gelöst,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "es stört das Gefrieren",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und schafft es bis etwa minus zehn Grad.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
