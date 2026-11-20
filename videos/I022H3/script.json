@@ -1,0 +1,162 @@
+{
+ "serie": "Informatik",
+ "kostuem": "hacker",
+ "accent": "#7C5CFF",
+ "id": "I022H3",
+ "titel": "Kann man dein iPhone finden, wenn es aus ist?",
+ "design": "3.3",
+ "gagTag": "[gasps]",
+ "gagDelay": 0,
+ "gagZeile": 1,
+ "quelle": "HOOK-PILOT Informatik (20.11.2026, Benedikt: Pilot pro Reihe, komplett wie P022H). Abweichungen wie P022H. Fakten: Mit eingeschaltetem 'Wo ist?' kann ein iPhone bis zu 24 Stunden nach dem Ausschalten ueber das 'Wo ist?'-Netzwerk gefunden werden (Apple Support, Leitfaden Persoenliche Sicherheit, 'Find My and Location Sharing'). Gilt ab iPhone 11 mit iOS 15, ohne SE-Modelle (Engadget, 'How to find your iPhone even when it's off'), deshalb 'bei neueren iPhones'. Offline sendet das Geraet kurze Bluetooth-Signale, Apple-Geraete in der Naehe erkennen sie und melden den Ort an iCloud (Apple Platform Security, 'Find My security'). Netzwerk aus ueber einer Milliarde Apple-Geraeten (Apple Support 102648, 'How to turn on Find My'). Der Ort wird verschluesselt, der private Schluessel wird nie an Apple gesendet, nur der Besitzer entschluesselt; Apple weiss nicht, wer der Finder ist oder wessen Geraet gefunden wurde (Apple Platform Security, 'Find My security'). Abschalten: beim Ausschalten unter dem Regler auf 'iPhone nach Ausschalten auffindbar' tippen, schaltet die Funktion voruebergehend ab (Apple Support, Leitfaden Persoenliche Sicherheit). Stand der Recherche: 20.11.2026. FASSUNG v2 (20.11.2026, Benedikt): Design bleibt dem Grundskript treu (keine Hook-Overlays wie Karten, Fragezeichen oder Blitz, Schluss mit drei Merksaetzen wie im Skript), nur Text und Sprechweise folgen dem Hook-Prinzip: Hook im ersten Satz, Themenfrage, Open Loop, Rehooks, Aufloesung des Open Loops in den Merksaetzen. 'Fach nie verstanden? / Gib mir 60 Sekunden.' entfaellt (Hook-Prinzip). FASSUNG v3 (20.11.2026, Benedikt: zu wenig passiert, Handy zu klein am Boden, billiger Hintergrund, zu viele Texte, immer nur die Lupe): Text gleich wie v2, Bild neu: grosses iPhone, Nacht mit Bokeh und Regen, pro Teil andere Animation (Ausschalten und Kamerafahrt, Explosionsansicht mit 24-h-Ring und Modellreihe, Stadt von oben und Erdkugel, Verschluesselung mit Schloss und Schluessel, Verpixeln, echter Ausschalt-Bildschirm). Ein Etikett pro Teil. Modellreihe zeigt X und SE durchgestrichen, 11 bis 16 funkend (16e nicht gezeigt, weil nicht geprueft).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "iPhone aus. *Trotzdem* da?",
+   "emoji": "📱",
+   "world": "i3hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Dein iPhone ist aus. Trotzdem verrät es, wo es liegt.",
+     "mood": "shock",
+     "ev": "aus"
+    },
+    {
+     "t": "Kann man ein ausgeschaltetes iPhone finden?",
+     "mood": "cool",
+     "ev": "funk"
+    },
+    {
+     "t": "Am Ende weißt du, wer den Ort sehen kann.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Nicht ganz *aus*",
+   "path": [],
+   "world": "i3aus",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Wenn „Wo ist?“ an ist, sendet dein iPhone nach dem Ausschalten weiter.",
+     "mood": "happy",
+     "ev": "sende"
+    },
+    {
+     "t": "Kurze Bluetooth-Signale, bis zu 24 Stunden lang.",
+     "mood": "shock",
+     "ev": "bt"
+    },
+    {
+     "t": "Das können die meisten iPhones ab dem iPhone 11.",
+     "mood": "cool",
+     "ev": "elf"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Fremde *Helfer*",
+   "path": [],
+   "world": "i3helf",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und jetzt wird's verrückt.",
+     "mood": "cool",
+     "ev": "haken"
+    },
+    {
+     "t": "Dein ausgeschaltetes Handy hat kein Internet. Also helfen fremde Apple-Geräte in der Nähe.",
+     "mood": "happy",
+     "ev": "fremd"
+    },
+    {
+     "t": "Sie fangen das Signal auf und schicken den Ort an Apple.",
+     "mood": "happy",
+     "ev": "melde"
+    },
+    {
+     "t": "Über eine Milliarde Geräte machen da mit.",
+     "mood": "shock",
+     "ev": "mrd"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Wer *sieht* das?",
+   "path": [],
+   "world": "i3sicher",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Aber sieht dann jeder, wo dein Handy ist?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Nein. Der Ort ist verschlüsselt. Nur deine eigenen Geräte können ihn lesen.",
+     "mood": "cool",
+     "ev": "schloss"
+    },
+    {
+     "t": "Apple weiß nicht mal, wer geholfen hat und wessen Handy gefunden wurde.",
+     "mood": "happy",
+     "ev": "anonym"
+    },
+    {
+     "t": "Und wer das nicht will, tippt beim Ausschalten auf den Hinweis unter dem Regler.",
+     "mood": "cool",
+     "ev": "regler"
+    }
+   ],
+   "quip": "Hab dich.",
+   "quipAt": 1
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i3out",
+   "pause": 0.6,
+   "checks": [
+    "Funkt bis zu 24 Stunden",
+    "Fremde Geräte melden",
+    "Lesen kannst nur du"
+   ],
+   "lines": [
+    {
+     "t": "Also: Dein iPhone funkt noch bis zu 24 Stunden,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "fremde Geräte melden den Ort,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und lesen können ihn nur deine Geräte.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

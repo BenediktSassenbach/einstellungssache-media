@@ -1,0 +1,158 @@
+{
+ "serie": "Bio",
+ "kostuem": "skelett",
+ "accent": "#A8E63C",
+ "id": "B023H3",
+ "titel": "Warum kannst du dich nicht selbst kitzeln?",
+ "design": "3.3",
+ "gagTag": "[laughs]",
+ "gagDelay": 0,
+ "gagZeile": 1,
+ "quelle": "HOOK-PILOT Anatomie (20.11.2026, Benedikt: Pilot pro Reihe, komplett wie P022H, Grundskript Anatomie bleibt: Bio-Saal mit Tafel, Schulskelett als Hauptfigur, Grossbild auf der Tafel, Farben, Grenze). Drei Pruefragen: 1. Sucht man das wegen Beschwerden? Nein. 2. Braucht die Antwort 'gesund', 'schaedlich', 'hilft gegen', 'solltest du'? Nein. 3. Aendert jemand danach Essen, Sport, Medikamente oder Arztbesuch? Nein. Kein Rat, kein Trick zum Nachmachen (der Roboterversuch wird nur berichtet). Fakten: Bei einer eigenen Bewegung sagt das Gehirn die Folgen fuer die Sinne voraus und daempft sie damit; das Kleinhirn ist vermutlich an der Vorhersage beteiligt (Blakemore, Wolpert, Frith 2000, Neuroreport 11(11):R11-6, 'Why can't you tickle yourself?'). Wenn der eigene Arm beim Gehen die Seite streift, merkt man es kaum, dieselbe Beruehrung von jemand anderem erschreckt (Britannica, 'Why can't you tickle yourself?'). Versuch am University College London: Teilnehmende bewegten mit der linken Hand einen Roboter, ein zweiter Roboter strich mit Schaumstoff ueber die rechte Handflaeche; mit Verzoegerungen von 0 bis 200 ms stieg die Bewertung 'kitzlig' stetig an (Blakemore, Frith, Wolpert 1999, Journal of Cognitive Neuroscience; Blakemore et al. 1998, Nature Neuroscience). 200 ms = eine fuenftel Sekunde. Stand der Recherche: 20.11.2026. FASSUNG v2 (20.11.2026, Benedikt): Design bleibt dem Grundskript treu (keine Hook-Overlays wie Karten, Fragezeichen oder Blitz, Schluss mit drei Merksaetzen wie im Skript), nur Text und Sprechweise folgen dem Hook-Prinzip: Hook im ersten Satz, Themenfrage, Open Loop, Rehooks, Aufloesung des Open Loops in den Merksaetzen. 'Fach nie verstanden? / Gib mir 60 Sekunden.' entfaellt (Hook-Prinzip). Neu in v2: Selbst erzeugte Beruehrung wurde als deutlich weniger kitzlig bewertet als dieselbe Beruehrung durch den Roboter (Blakemore, Wolpert, Frith 1999/2000). FASSUNG v3 (20.11.2026, Benedikt: zu wenig passiert, zu viele Texte, immer nur die Lupe): Text gleich wie v2, Ort bleibt Bio-Saal mit Tafel und Skelett (Skript Anatomie). Neu: Lachanfall mit klappernden Knochen und Wackelkamera; Kreide-Wellen Gefuehl minus Vorhersage gleich fast nichts (Schaubild, schematisch); laufende Messkurve mit kleinem und grossem Ausschlag (Schaubild); Verzoegerungs-Zeiger bis 0,2 s und Kitzel-Anzeige. Ein Etikett pro Teil.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Selbst *kitzeln*?",
+   "emoji": "🪶",
+   "world": "k3hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Kitzel dich mal selbst. Passiert nichts, oder?",
+     "mood": "cool",
+     "ev": "selbst"
+    },
+    {
+     "t": "Wenn dich jemand anderes kitzelt, lachst du sofort. Warum nicht bei dir?",
+     "mood": "happy",
+     "ev": "fremd"
+    },
+    {
+     "t": "Am Ende weißt du, wie es doch klappt.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Dein Gehirn *rechnet*",
+   "path": [],
+   "world": "k3rechnet",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Bei jeder Bewegung sagt dein Gehirn voraus, wie sie sich anfühlen wird.",
+     "mood": "happy",
+     "ev": "vorher"
+    },
+    {
+     "t": "Beteiligt ist dabei vermutlich das Kleinhirn, hinten unten im Kopf.",
+     "mood": "cool",
+     "ev": "klein"
+    },
+    {
+     "t": "Passt die Vorhersage, dämpft es das Gefühl. Kitzeln? Schon eingeplant.",
+     "mood": "happy",
+     "ev": "daempf"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Fremdes fällt *auf*",
+   "path": [],
+   "world": "k3fremd",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und das ist ziemlich clever.",
+     "mood": "cool",
+     "ev": "haken"
+    },
+    {
+     "t": "Streift dein Arm beim Gehen deine Seite, merkst du es kaum.",
+     "mood": "happy",
+     "ev": "arm"
+    },
+    {
+     "t": "Berührt dich jemand anderes genauso, zuckst du zusammen.",
+     "mood": "shock",
+     "ev": "zuck"
+    },
+    {
+     "t": "Für fremde Berührung gibt es keine Vorhersage. Darum fällt sie auf.",
+     "mood": "cool",
+     "ev": "auf"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Der *Roboter*",
+   "path": [],
+   "world": "k3robo",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und jetzt der Trick vom Anfang.",
+     "mood": "happy",
+     "ev": "trick"
+    },
+    {
+     "t": "In einem Versuch in London kitzelten sich Leute über einen Roboter selbst die Hand.",
+     "mood": "happy",
+     "ev": "robo"
+    },
+    {
+     "t": "Je länger er verzögerte, bis zu einer fünftel Sekunde, desto kitzliger wurde es.",
+     "mood": "shock",
+     "ev": "delay"
+    },
+    {
+     "t": "Ohne Verzögerung fühlte es sich deutlich weniger kitzlig an, als wenn der Roboter von allein kitzelte.",
+     "mood": "cool",
+     "ev": "allein"
+    }
+   ],
+   "quip": "Hihi.",
+   "quipAt": 2
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "h23out",
+   "pause": 0.6,
+   "checks": [],
+   "lines": [
+    {
+     "t": "Also: Dein Gehirn sagt deine eigene Berührung voraus,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "Fremdes fällt auf,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und mit Verzögerung trickst du es aus.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
