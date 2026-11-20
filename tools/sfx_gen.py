@@ -81,4 +81,14 @@ def C021():  # Cola: Sprudeln, das immer staerker wird, dann zischende Fontaene 
         if k + m < len(t): sp[k:k + m] += lp(noise(m), .2) * np.exp(-np.arange(m) / SR * 30) * (1 - i / 7)
     save('C021_1.wav', norm((wh + .7 * sp) * env(len(t), .01, .5), .5))
 
+def P022H():  # Schalti hoert seine eigene Aufnahme: Bandstopp nach unten (Aufbau), dann ein trockenes, tiefes "Bonk" und kurzes Zirpen (Fremdscham)
+    d = .6; t = T(d); f = 520 * (1 - .8 * (t / d) ** 1.5); ph = 2 * np.pi * np.cumsum(f) / SR
+    x = (np.sin(ph) + .4 * np.sin(2 * ph)) * (1 - .6 * t / d) + .15 * hp(noise(len(t)), .3)
+    save('P022H_0.wav', norm(x * env(len(t), .02, .05), .32))
+    d = .9; t = T(d); bonk = np.sin(2 * np.pi * (140 - 60 * t) * t) * np.exp(-t * 14)
+    ch = np.zeros(len(t))
+    for i in range(3):
+        k = int((.32 + .14 * i) * SR); m = int(.05 * SR); tt = np.arange(m) / SR; ch[k:k + m] += np.sin(2 * np.pi * 4200 * tt) * np.exp(-tt * 60)
+    save('P022H_1.wav', norm((bonk + .25 * ch) * env(len(t), .003, .3), .42))
+
 for a in sys.argv[1:]: globals()[a]()

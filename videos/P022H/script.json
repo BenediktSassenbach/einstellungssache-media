@@ -39,7 +39,7 @@
    "title": "Zwei *Wege*",
    "path": [],
    "world": "h22wege",
-   "pause": 0.15,
+   "pause": 0.4,
    "lines": [
     {
      "t": "Wenn du sprichst, hörst du dich doppelt.",
@@ -69,7 +69,7 @@
    "title": "Der *Bass*",
    "path": [],
    "world": "h22bass",
-   "pause": 0.15,
+   "pause": 0.4,
    "lines": [
     {
      "t": "Und jetzt kommt der Haken.",
@@ -99,7 +99,7 @@
    "title": "Teste *es*",
    "path": [],
    "world": "h22test",
-   "pause": 0.15,
+   "pause": 0.4,
    "lines": [
     {
      "t": "Probier's gleich aus: Halt dir die Ohren zu und sag ein langes I.",
@@ -124,7 +124,7 @@
    "type": "outro",
    "title": "Ist halt ’ne *Einstellungssache*",
    "world": "h22out",
-   "pause": 0.05,
+   "pause": 0.6,
    "checks": [],
    "lines": [
     {
@@ -149,5 +149,6 @@
     }
    ]
   }
- ]
+ ],
+ "gagZeile": 1
 }

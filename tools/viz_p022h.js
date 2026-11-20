@@ -127,7 +127,7 @@ WORLD.h22bass = function (sc, ev, t, lt) { const ha = ev.haken, ti = ev.tief, vo
   const bo = ti === undefined ? 0 : ease(cl((ti - .5) / 1.2)) * (mi === undefined ? 1 : 1 - cl(mi / .6));
   let s = room22(t, { screen: vo !== undefined && mi === undefined ? 'memo' : 'eq', boost: bo, thin: 1, memoT: lt });
   const [hx, hy] = head22(300, GY22);
-  if (ha !== undefined && ti === undefined) { const k = 1 - cl((ha - 1.2) / .6); s += '<rect width="1080" height="1920" fill="#fff" opacity="' + (.35 * (1 - cl(ha / .2))).toFixed(2) + '"/>' + '<g transform="translate(140 1335) scale(' + back(cl(ha / .3)).toFixed(3) + ')" opacity="' + k.toFixed(2) + '">' + svgT(0, 0, '?!', 110, '#FFE14D') + '</g>'; }
+  if (ha !== undefined && ti === undefined) { const k = 1 - cl((ha - 1.2) / .6); s += '<rect width="1080" height="1920" fill="#fff" opacity="' + (.35 * (1 - cl(ha / .2))).toFixed(2) + '"/>' + '<g transform="translate(880 1440) scale(' + back(cl(ha / .3)).toFixed(3) + ')" opacity="' + k.toFixed(2) + '">' + svgT(0, 0, '?!', 110, '#FFE14D') + '</g>'; }
   if (vo !== undefined && mi === undefined) { const k = cl(vo / .35); s += think22(hx + 20, hy - 60, 300, 860, wline22(0, -6, 300, 1, t, OR22) + svgT(0, 96, 'tiefer und voller', 30, ST22), k) + waves22(t, k, AC22, 1); }
   if (mi !== undefined) s += lupe22(600, 905, 250, micin22(t, cl((mi - .3) / .8)), cl(mi / .45), PX22, PY22 + 170);
   return W(s + shade3(), slot(ev, [['haken', 'Der Haken', 'red'], ['tief', 'Knochen-Weg: mehr Bass', 'hot'], ['voll', 'Für dich: tiefer, voller'], ['mikro', 'Mikrofon: nur Luft', 'hot']])); };
