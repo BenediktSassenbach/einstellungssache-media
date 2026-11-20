@@ -1,0 +1,55 @@
+{
+ "serie": "Bio",
+ "kostuem": "forscher",
+ "accent": "#A8E63C",
+ "id": "B029H",
+ "titel": "Wie ist deine Schulter aufgebaut?",
+ "design": "3.3",
+ "gagTag": "[gasps]",
+ "gagDelay": 0,
+ "gagZeile": 1,
+ "quelle": "HOOK-PILOT Schicht fuer Schicht (20.11.2026, Benedikt: Pilot pro Reihe, komplett wie P022H, Grundskript bleibt: Labor-Look, ein Modell, das waechst, Schichten-Anzeige, feste Farben, Zeilenmuster mit 'Schicht eins' bis 'Schicht sechs', jedes Weil als Aufgabe, keine Verletzungen). Folge 4 der Reihenfolge Schicht fuer Schicht: Schulter (B029). Abweichungen nur im Hook-Rahmen: Einstieg mit Frage und Open Loop ('wer es festhaelt'), Rehooks am Anfang von Teil 2 und 3, Schluss ohne drei Merksaetze, nur Aufloesung und Schlusssatz. Fakten: Im Schultergelenk artikuliert der Kopf des Oberarmknochens mit der Gelenkpfanne des Schulterblatts (DocCheck Flexikon, Glenohumeralgelenk). Die Pfanne ist im Vergleich zum Kopf klein und umschliesst ihn nicht vollstaendig (DocCheck Flexikon, Articulatio glenohumeralis). Der Kopf hat eine etwa 3-mal groessere Flaeche als die Pfanne mit Lippe; muskelgesichertes Kugelgelenk; flache Pfanne durch das Labrum ergaenzt; Kapsel schlaff (Habermeyer et al., Trauma und Berufskrankheit 2000, 'Topographie und funktionelle Anatomie des Schultergelenks'), deshalb 'rund dreimal so gross'. Gelenkknorpel ueberzieht die Gelenkflaechen (Lehrbuchwissen, wie B012 und B036). Gelenklippe aus Faserknorpel um die Pfanne, vergroessert die Flaeche (Kenhub, Das Schultergelenk; DocCheck); vertieft die flache Pfanne (DocCheck-Fachartikel 'Schmerzpunkt Schulter'). Kapsel relativ weitlaeufig, duenn und schlaff (DocCheck Flexikon). Bandapparat im Verhaeltnis zur Beanspruchung schwach, Fuehrung durch Baender nur in geringem Umfang (DocCheck Flexikon, Articulatio glenohumeralis). Vier Muskeln der Rotatorenmanschette (Supraspinatus, Infraspinatus, Subscapularis, Teres minor) umschliessen das Gelenk wie eine Manschette und sorgen fuer Bewegung und Stabilitaet (gesundheit.gv.at, Schulter); Pfanne liegt in einem Muskeltrichter der Rotatorenmanschette (Kenhub). Deltamuskel hebt den Arm zur Seite (Kenhub, M. deltoideus). Schultergelenk ist das beweglichste Kugelgelenk des Koerpers (DocCheck; gesundheit.gv.at). Im Bild: Schluesselbein und Schulterhoehe sind zu sehen, werden im Text aber nicht genannt (wie das Wadenbein in B012). Von der Rotatorenmanschette sind von vorn zwei Muskeln zu sehen (Obergraetenmuskel oben, Unterschulterblattmuskel vorn), die anderen zwei liegen hinten; das Schildchen sagt '4 Muskeln'. Bewusst weggelassen: Schleimbeutel, Bizepssehne, Baender einzeln, alles zu Verletzungen. Grenze: Gelenk, nur gesunder Aufbau, kein Wort zu Schmerzen oder Verletzungen. Stand der Recherche: 20.11.2026.",
+ "scenes": [
+  {
+   "type": "hook", "title": "Wer hält deine *Schulter*?", "emoji": "💪", "world": "h29hook", "pause": 0.05,
+   "lines": [
+    { "t": "Dein Schultergelenk hat fast keine Pfanne. Trotzdem hält es.", "mood": "shock", "ev": "fast" },
+    { "t": "Am Ende weißt du, wer es festhält.", "mood": "cool", "ev": "loop" }
+   ]
+  },
+  {
+   "type": "tip", "num": "1", "title": "Knochen und *Knorpel*", "path": [], "world": "h29a", "pause": 0.35,
+   "lines": [
+    { "t": "Schicht eins: der Kopf des Oberarmknochens und die Pfanne am Schulterblatt.", "mood": "happy", "ev": "panel" },
+    { "t": "Die Kugel ist rund dreimal so groß wie die flache Pfanne. Sie hat kaum Halt.", "mood": "shock", "ev": "p1" },
+    { "t": "Schicht zwei: Knorpel. Er überzieht beide Flächen, damit sie glatt gleiten.", "mood": "happy", "ev": "p2" },
+    { "t": "Glatt ist es jetzt. Halt gibt das aber noch keinen.", "mood": "cool", "ev": "act" }
+   ]
+  },
+  {
+   "type": "tip", "num": "2", "title": "Lippe und *Kapsel*", "path": [], "world": "h29b", "pause": 0.35,
+   "lines": [
+    { "t": "Jetzt wird es tiefer. Schicht drei: die Gelenklippe, ein Ring aus Faserknorpel.", "mood": "happy", "ev": "panel" },
+    { "t": "Sie vergrößert die flache Pfanne und macht sie tiefer.", "mood": "happy", "ev": "p1" },
+    { "t": "Schicht vier: die Kapsel. Sie schließt das Gelenk ein, innen schmiert Gelenkflüssigkeit.", "mood": "happy", "ev": "p2" },
+    { "t": "Die Kapsel ist weit und schlaff. Bänder geben hier nur wenig Halt.", "mood": "shock", "ev": "act" }
+   ]
+  },
+  {
+   "type": "tip", "num": "3", "title": "Manschette und *Deltamuskel*", "path": [], "world": "h29c", "pause": 0.2,
+   "lines": [
+    { "t": "Jetzt die Antwort vom Anfang. Schicht fünf: vier Muskeln, die Rotatorenmanschette.", "mood": "happy", "ev": "panel" },
+    { "t": "Ihre Sehnen umschließen das Gelenk wie eine Manschette und halten den Kopf in der Pfanne.", "mood": "cool", "ev": "p1" },
+    { "t": "Schicht sechs: der Deltamuskel. Er hebt den Arm zur Seite.", "mood": "happy", "ev": "p2" },
+    { "t": "So wird die Schulter dein beweglichstes Kugelgelenk.", "mood": "happy", "ev": "act" }
+   ]
+  },
+  {
+   "type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "h29out", "pause": 0.6, "checks": [],
+   "lines": [
+    { "t": "Also: Wer hält deine Schulter? Vor allem Muskeln.", "mood": "wink", "ev": "auf" },
+    { "t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save" }
+   ]
+  }
+ ]
+}
