@@ -2,8 +2,8 @@
 // Neubau von B013 (20.11.): Einstieg nach Hook-System, Rehook vor Teil 2 und 3, pro Teil ein Etikett, keine Beschriftungs-Chips.
 // Nutzt alle Helfer aus viz_b013.js (bg13, stump13, any13, lupe13, skin13, log13, axe13, dig13, fg13, cone13, gust13, AX13 ...). Zum Loeschen: diese Datei und videos/B013H.
 // Einstieg: die alte Welt mit neuen Ereignissen (Schwanzhieb ab Bild 1, Fressen bei der Frage, Wusch beim Versprechen).
-WORLD.b13hookH = (sc, ev, t, lt, E) => WORLD.b13hook(sc, { bum: ev.bum, frage: ev.frage, wusch: ev.loop }, t, lt, E);
-WMASC.b13hookH = (ev, t, lt) => { if (ev.frage !== undefined && ev.loop === undefined) { const k = cl(ev.frage / 3.2); return stay3([lerp(200, 330, ease(k)), 1537 - 22 * Math.abs(Math.sin(ev.frage * 4)) * (k < 1 ? 1 : 0)], 1, { r: 14 * Math.sin(ev.frage * 4), mood: 'happy' }); } return WMASC.b13hook({ bum: ev.bum, frage: ev.frage, wusch: ev.loop }, t, lt); };
+WORLD.b13hookH = (sc, ev, t, lt, E) => WORLD.b13hook(sc, { bum: lt, frage: ev.frage, wusch: ev.loop }, t, lt, E); // Hieb ab Bild 1, Treffer bei 0,95 s
+WMASC.b13hookH = (ev, t, lt) => { if (ev.frage !== undefined && ev.loop === undefined) { const k = cl(ev.frage / 3.2); return stay3([lerp(200, 330, ease(k)), 1537 - 22 * Math.abs(Math.sin(ev.frage * 4)) * (k < 1 ? 1 : 0)], 1, { r: 14 * Math.sin(ev.frage * 4), mood: 'happy' }); } return WMASC.b13hook({ bum: lt, frage: ev.frage, wusch: ev.loop }, t, lt); };
 
 // ---------- Teil 1: Panzer ----------
 WORLD.b13panzH = function (sc, ev, t, lt) { const U = urD(t), pz = ev.pz, ha = ev.haut, st = ev.stach, kl = ev.klopf; let s = bg13(U, t) + stump13(930, 1150, 2, t), h = '';
