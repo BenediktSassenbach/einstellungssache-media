@@ -10,10 +10,8 @@ WORLD.b13panzH = function (sc, ev, t, lt) { const U = urD(t), pz = ev.pz, ha = e
   // Zapfen fliegt von Schalti auf den Ruecken, prallt ab, faellt zurueck vor Schalti
   let cone = ''; if (kl !== undefined) { const a = cl(kl / .7), b = cl((kl - .7) / .9); if (a < 1) cone = cone13(lerp(300, 520, a), lerp(1440, 880, a) - 220 * Math.sin(Math.PI * a), a * 540); else if (b < 1) cone = cone13(lerp(520, 330, b), lerp(880, 1500, b) - 260 * Math.sin(Math.PI * b), 540 + b * 400); else cone = cone13(330, 1500, 940); }
   const flinch = kl === undefined ? 0 : Math.sin(Math.PI * cl((kl - .6) / .7));
-  s += any13(AX13, AY13, AS13, t, { head: -4 * flinch, look: flinch > .1 ? 1 : 0, sw: 4 * flinch });
-  if (pz !== undefined && ha === undefined) { const L = [[880, 930], [620, 800], [470, 780], [300, 820], [170, 900]], f = cl((pz - .3) / 2.6) * (L.length - 1), i0 = Math.min(L.length - 2, Math.floor(f)), u = f - i0, gx = lerp(L[i0][0], L[i0 + 1][0], u), gy = lerp(L[i0][1], L[i0 + 1][1], u); for (let k = 0; k < 3; k++) { const c = (t * 1.6 + k / 3) % 1; s += '<circle cx="' + gx.toFixed(0) + '" cy="' + gy.toFixed(0) + '" r="' + (30 + 60 * c).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="6" opacity="' + ((1 - c) * .9).toFixed(2) + '"/>'; } }
+  s += any13(AX13, AY13, AS13, t, { head: -4 * flinch, look: flinch > .1 ? 1 : 0, sw: 4 * flinch, mk: { pz: pz !== undefined && ha === undefined ? cl((pz - .3) / .5) : 0, st: st !== undefined && kl === undefined ? cl(st / .4) : 0 } });
   if (ha !== undefined && st === undefined) s += lupe13(660, 900, 165, '<g transform="scale(.68)">' + skin13(t) + svgT(0, 180, 'Knochenplatte', 32, '#0B1020') + svgT(0, 212, '(Osteoderm)', 24, '#3D4F7A') + '</g>', ease(cl(ha / .5)), 540, 1010);
-  if (st !== undefined) { for (let i = 0; i < 4; i++) { const c = ((st * .7 + i / 4) % 1), x = 300 + 345 * c; s += '<circle cx="' + x.toFixed(0) + '" cy="1020" r="' + (22 + 16 * Math.sin(Math.PI * c)).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="6" opacity="' + (Math.sin(Math.PI * c) * cl(st / .4)).toFixed(2) + '"/>'; } const k = Math.sin(Math.PI * cl(st / 2.4)); if (k > 0) s += '<path d="M330 1220 Q470 1190 620 1220" stroke="#FFE14D" stroke-width="8" fill="none" stroke-dasharray="16 10" opacity="' + k.toFixed(2) + '"/>'; }
   s += cone + fg13(t);
   h += slot(ev, [['pz', 'Panzer aus Knochen', 'hot']]);
   return W(s + shade3(), h); };
@@ -26,12 +24,10 @@ WORLD.b13keulH = function (sc, ev, t, lt) { const U = urD(t), kn = ev.knob, sti 
   let xr = 0; if (kn !== undefined) xr = ease(cl(kn / .6)); const rhK = ev.rehook !== undefined && kn === undefined ? 1 : 0; if (ha !== undefined) xr *= 1 - ease(cl(ha / .4));
   let sw = 0, hit = 0; if (ha !== undefined) { const up = ease(cl((ha - .5) / .6)), dn = cl((ha - 1.1) / .22); sw = 28 * up - 50 * dn * dn; hit = ha > 1.32 ? (ha - 1.32) / .8 : 0; if (ha > 2.3) sw = -22 + 22 * ease(cl((ha - 2.3) / .8)); }
   s += log13(485, 1190, hit);
-  s += any13(TX13, 1130, TS13, t, { sw: sw + 26 * Math.sin(t * 5) * rhK, xr: xr });
+  s += any13(TX13, 1130, TS13, t, { sw: sw + 26 * Math.sin(t * 5) * rhK, xr: xr, mk: { knob: kn !== undefined && sti === undefined ? cl((kn - .6) / .3) : 0, vert: sti !== undefined && ax === undefined ? cl((sti - .3) / .4) : 0, ten: ax !== undefined && ha === undefined ? cl((ax - .2) / .4) : 0 } });
   const cx = TX13 + 634 * TS13, cy = 1130 - 158 * TS13; // Keulen-Mitte
   const hx0 = TX13 + 300 * TS13, hy0 = 1130 - 170 * TS13;
-  if (kn !== undefined && sti === undefined) for (let i = 0; i < 2; i++) { const c = (t * 1.1 + i / 2) % 1; s += '<circle cx="' + cx.toFixed(0) + '" cy="' + cy.toFixed(0) + '" r="' + (60 + 70 * c).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="7" opacity="' + ((1 - c) * cl((kn - .6) / .3)).toFixed(2) + '"/>'; }
-  if (sti !== undefined && ax === undefined) for (let i = 0; i < 5; i++) { const c = cl((sti - .3) / 2.2) * 5 - i; if (c <= 0) continue; const x = lerp(hx0, cx - 70, i / 4), y = lerp(hy0, cy, i / 4); s += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="' + (26 + 6 * Math.sin(t * 6 + i)).toFixed(0) + '" fill="none" stroke="#7FD4FF" stroke-width="6" opacity="' + cl(c).toFixed(2) + '"/>'; }
-  if (ax !== undefined && ha === undefined) { const gl = cl((ax - .2) / 1.2); s += '<path d="M' + hx0.toFixed(0) + ' ' + (hy0 - 24).toFixed(0) + ' L' + lerp(hx0, cx - 70, gl).toFixed(0) + ' ' + (lerp(hy0, cy, gl) - 24).toFixed(0) + '" stroke="#FF9F43" stroke-width="10" stroke-linecap="round" opacity="' + (.5 + .4 * Math.sin(t * 6)).toFixed(2) + '"/>'; s += axe13(cl((ax - 1.4) / .5), cx - 30, cy, TX13 + 300 * TS13, 1130 - 200 * TS13); }
+  if (ax !== undefined && ha === undefined) { s += axe13(cl((ax - 1.4) / .5), cx - 30, cy, TX13 + 300 * TS13, 1130 - 200 * TS13); }
   s += fg13(t);
   h += slot(ev, [['knob', 'Keule und steifer Stiel', 'hot']]);
   return W(s + shade3(), h); };
@@ -47,25 +43,33 @@ WORLD.b13wofH = function (sc, ev, t, lt) { const U = urD(t), ra = ev.raub, fu = 
   let A = bg13(U, t) + stump13(930, 1150, 2, t) + any13(AX13, AY13, AS13, t, { sw: rh3 ? 30 * Math.sin(t * 6) : 0, look: rh3 ? -1 : 0, jaw: rh3 ? .3 : 0 }) + fg13(t);
   // Neue Szene: offene Ebene mit Vulkan, T. rex greift an, beide ganz im Bild
   let K = U.b + volcK13(t) + bg13(U, t);
-  if (ra !== undefined) { const r = ra - .5, inn = ease(cl(r / 1.3)), lunge = Math.sin(Math.PI * cl((r - 1.5) / .8)), swing = Math.sin(Math.PI * cl((r - 1.8) / .6)), hit = cl((r - 2.05) / .5), back = ease(cl((r - 2.1) / .7)), sw2 = Math.sin(Math.PI * cl((r - 3.4) / .6)), hit2 = cl((r - 3.65) / .5);
-    const rx = lerp(1300, 770, inn) - 70 * lunge + 95 * back + 30 * Math.sin(Math.PI * cl((r - 3.5) / .6)), tilt = 10 * Math.sin(Math.PI * cl((r - 2.1) / .9));
-    K += '<g transform="rotate(' + tilt.toFixed(1) + ' ' + rx.toFixed(0) + ' 1150)">' + rexd(rx, 1150, .45, t, { run: inn > 0 && inn < 1 ? 1 : 0, head: 10 - 14 * lunge, jaw: lunge > .2 || (r > 2.6 && r < 3.4) ? .7 : .2, id: 'tk' }) + '</g>';
-    K += any13(300, 1150, .5, t, { sw: 40 * swing + 34 * sw2, look: -1 });
-    [[hit, 2.05], [hit2, 3.65]].forEach(q => { const k = q[0]; if (k > 0 && k < 1) for (let i = 0; i < 6; i++) { const an = i / 6 * 6.28; K += '<line x1="' + (rx - 50 + 30 * Math.cos(an)).toFixed(0) + '" y1="' + (1060 + 30 * Math.sin(an)).toFixed(0) + '" x2="' + (rx - 50 + (40 + 70 * k) * Math.cos(an)).toFixed(0) + '" y2="' + (1060 + (40 + 70 * k) * Math.sin(an)).toFixed(0) + '" stroke="#FFE14D" stroke-width="8" stroke-linecap="round" opacity="' + (1 - k).toFixed(2) + '"/>'; } });
-  } else K += any13(300, 1150, .5, t, {});
+  if (ra !== undefined) { const r = ra - .5;
+    // T. rex kommt von rechts, Ankylosaurus frisst, bemerkt ihn, hebt Kopf und Keule, schlaegt zweimal zu
+    const inn = ease(cl(r / 1.6)), notice = ease(cl((r - .7) / .5)), roar = Math.sin(Math.PI * cl((r - 1.4) / .7)), lunge = Math.sin(Math.PI * cl((r - 2.1) / .7)), ready = ease(cl((r - 1.2) / .6));
+    const sw1 = Math.sin(Math.PI * cl((r - 2.2) / .55)), sw2 = Math.sin(Math.PI * cl((r - 3.6) / .55)), hit1 = cl((r - 2.45) / .5), hit2 = cl((r - 3.85) / .5), back = ease(cl((r - 2.5) / .8)), back2 = ease(cl((r - 3.9) / .8));
+    const rx = lerp(1400, 655, inn) - 150 * lunge + 70 * back + 50 * back2, tilt = 8 * Math.sin(Math.PI * cl((r - 2.5) / .9)) + 8 * Math.sin(Math.PI * cl((r - 3.9) / .9));
+    K += '<g transform="rotate(' + tilt.toFixed(1) + ' ' + rx.toFixed(0) + ' 1150)">' + rexd(rx, 1150, .7, t, { run: inn > 0 && inn < 1 ? 1 : 0, ph: r * 9, head: 6 - 16 * lunge + 8 * (hit1 > 0 && hit1 < 1 ? 1 : 0), jaw: Math.max(roar, lunge > .2 ? .7 : 0, hit1 > 0 && hit1 < 1 ? .5 : 0, .15), id: 'tk' }) + '</g>';
+    K += any13(212, 1150, .38, t, { eat: notice < 1 ? 1 - notice : 0, head: lerp(20, -6, notice), look: notice, sw: 18 * ready + 46 * sw1 + 46 * sw2 - 30 * (sw1 > 0 ? sw1 : 0) * 0 });
+    if (roar > .05) K += roard(rx - 250, 1000, 180, t, roar);
+    [[hit1], [hit2]].forEach(q => { const k = q[0]; if (k > 0 && k < 1) for (let i = 0; i < 6; i++) { const an = i / 6 * 6.28, hx = 482, hy = 1075; K += '<line x1="' + (hx + 24 * Math.cos(an)).toFixed(0) + '" y1="' + (hy + 24 * Math.sin(an)).toFixed(0) + '" x2="' + (hx + (34 + 60 * k) * Math.cos(an)).toFixed(0) + '" y2="' + (hy + (34 + 60 * k) * Math.sin(an)).toFixed(0) + '" stroke="#FFE14D" stroke-width="7" stroke-linecap="round" opacity="' + (1 - k).toFixed(2) + '"/>'; } });
+  } else K += any13(212, 1150, .38, t, { eat: 1, head: 20 });
   K += fg13(t);
   // Grabung
   let D = dig13(t, stc === undefined ? 0 : ease(cl((stc - .6) / .5)));
   '';
   if (fu !== undefined && stc === undefined) { for (let i = 0; i < 6; i++) { const c = (t * 1.1 + i / 6) % 1; D += '<circle cx="' + (300 + 520 * ((i * .37) % 1) + 30 * c).toFixed(0) + '" cy="' + (1060 - 90 * c).toFixed(0) + '" r="' + (8 + 18 * c).toFixed(0) + '" fill="#E8D8B8" opacity="' + (.75 * (1 - c) * cl(fu / .8)).toFixed(2) + '"/>'; } }
-  if (stc !== undefined && stc > .8) { const cr = cl((stc - .8) / .6), he = cl((stc - 2.6) / 1); D += '<path d="M555 975 l14 14 l-10 10 l18 12 l-8 12 l20 10" stroke="' + lc('#FF4D6D', '#3DFF7A', he) + '" stroke-width="' + (8 - 3 * he).toFixed(1) + '" fill="none" stroke-linecap="round" stroke-dasharray="120" stroke-dashoffset="' + (120 * (1 - cr)).toFixed(0) + '"/>'; for (let i = 0; i < 4; i++) { const c = (t * 1.3 + i / 4) % 1; D += '<circle cx="' + (640 + 50 * c + 10 * i).toFixed(0) + '" cy="' + (1040 - 80 * c).toFixed(0) + '" r="' + (6 + 4 * i).toFixed(0) + '" fill="#E8D8B8" opacity="' + (.7 * (1 - c)).toFixed(2) + '"/>'; } } if (stc !== undefined && stc > 1.6) { const c = (t * 1.2) % 1; D += '<circle cx="595" cy="1003" r="' + (60 + 60 * c).toFixed(0) + '" fill="none" stroke="#FF4D6D" stroke-width="6" opacity="' + (1 - c).toFixed(2) + '"/>'; }
+  if (stc !== undefined && stc > .8) { const cr = cl((stc - .8) / .6), he = cl((stc - 2.6) / 1); D += '<path d="M555 975 l14 14 l-10 10 l18 12 l-8 12 l20 10" stroke="' + lc('#FF4D6D', '#3DFF7A', he) + '" stroke-width="' + (8 - 3 * he).toFixed(1) + '" fill="none" stroke-linecap="round" stroke-dasharray="120" stroke-dashoffset="' + (120 * (1 - cr)).toFixed(0) + '"/>'; for (let i = 0; i < 4; i++) { const c = (t * 1.3 + i / 4) % 1; D += '<circle cx="' + (640 + 50 * c + 10 * i).toFixed(0) + '" cy="' + (1040 - 80 * c).toFixed(0) + '" r="' + (6 + 4 * i).toFixed(0) + '" fill="#E8D8B8" opacity="' + (.7 * (1 - c)).toFixed(2) + '"/>'; } } if (stc !== undefined && stc > 1.6) D += '<circle cx="595" cy="1003" r="78" fill="none" stroke="#FF4D6D" stroke-width="7" opacity="' + cl((stc - 1.6) / .4).toFixed(2) + '"/>';
   // Neue Szene: zwei Ankylosaurier stehen Schwanz an Schwanz und schlagen abwechselnd zu, beide ganz im Bild
   let Z = U.b + volcK13(t) + bg13(U, t);
-  if (zw !== undefined) { const z = zw - .5, inn = ease(cl(z / 1.2)), sA = Math.sin(Math.PI * cl((z - 1.3) / .7)) + Math.sin(Math.PI * cl((z - 3.1) / .7)), sB = Math.sin(Math.PI * cl((z - 2.2) / .7)) + Math.sin(Math.PI * cl((z - 4.0) / .7));
-    const bx = lerp(1300, 775, inn), shB = 14 * Math.sin(Math.PI * cl((z - 1.55) / .5)) + 14 * Math.sin(Math.PI * cl((z - 3.35) / .5)), shA = 14 * Math.sin(Math.PI * cl((z - 2.45) / .5)) + 14 * Math.sin(Math.PI * cl((z - 4.25) / .5));
-    Z += '<g transform="translate(' + (2 * (bx + shB)).toFixed(0) + ' 0) scale(-1 1)">' + any13(bx + shB, 1110, .45, t, { pal: PB13, id: 'bl', walk: inn > 0 && inn < 1 ? 1 : 0, ph: zw * 7, sw: 44 * sB }) + '</g>';
-    Z += any13(282 - shA, 1150, .46, t, { sw: 44 * sA, id: 'or' });
-    [1.55, 2.45, 3.35, 4.25].forEach(h0 => { const k = cl((z - h0) / .45); if (k > 0 && k < 1) for (let i = 0; i < 5; i++) Z += '<circle cx="' + (560 + (i - 2) * 26) + '" cy="' + (1050 - 30 * k - (i % 2) * 18) + '" r="' + (12 + 26 * k) + '" fill="#F4EEDC" opacity="' + (.75 * (1 - k)).toFixed(2) + '"/>'; });
+  if (zw !== undefined) { const z = zw - .5;
+    // Das blaue laeuft vorwaerts herein, bleibt stehen, dreht sich um; beide schauen sich an, dann Keule gegen Keule
+    const inn = ease(cl(z / 1.3)), turn = ease(cl((z - 1.4) / .6)), look = ease(cl((z - .6) / .5));
+    const sA = Math.sin(Math.PI * cl((z - 2.2) / .6)) + Math.sin(Math.PI * cl((z - 3.8) / .6)), sB = Math.sin(Math.PI * cl((z - 3.0) / .6)) + Math.sin(Math.PI * cl((z - 4.6) / .6));
+    const bx = lerp(1350, 790, inn), shB = 12 * (Math.sin(Math.PI * cl((z - 2.45) / .5)) + Math.sin(Math.PI * cl((z - 4.05) / .5))), shA = 12 * (Math.sin(Math.PI * cl((z - 3.25) / .5)) + Math.sin(Math.PI * cl((z - 4.85) / .5)));
+    const kx = lerp(1, -1, turn), X = bx + shB;
+    Z += '<g transform="translate(' + X.toFixed(0) + ' 0) scale(' + kx.toFixed(3) + ' 1) translate(' + (-X).toFixed(0) + ' 0)">' + any13(X, 1110, .44, t, { pal: PB13, id: 'bl', walk: inn > 0 && inn < 1 ? 1 : 0, ph: zw * 7, sw: 44 * sB, look: turn > .9 ? -1 : 0 }) + '</g>';
+    Z += any13(282 - shA, 1150, .46, t, { sw: 44 * sA, id: 'or', look: look, head: -4 * look });
+    [2.45, 3.25, 4.05, 4.85].forEach(h0 => { const k = cl((z - h0) / .45); if (k > 0 && k < 1) for (let i = 0; i < 5; i++) Z += '<circle cx="' + (560 + (i - 2) * 26) + '" cy="' + (1050 - 30 * k - (i % 2) * 18) + '" r="' + (12 + 26 * k) + '" fill="#F4EEDC" opacity="' + (.75 * (1 - k)).toFixed(2) + '"/>'; });
   } else Z += any13(282, 1150, .46, t, {});
   Z += fg13(t);
   let s = A; if (ra !== undefined) s = wipe3(A, K, ra, .5, AC13); if (fu !== undefined) s = wipe3(K, D, fu, .5, AC13); if (zw !== undefined) s = wipe3(D, Z, zw, .5, AC13);
