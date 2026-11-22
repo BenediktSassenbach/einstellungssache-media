@@ -1,0 +1,155 @@
+{
+ "serie": "Informatik",
+ "kostuem": "hacker",
+ "accent": "#7C5CFF",
+ "id": "I007H",
+ "titel": "Woran erkennst du einen Fake-Shop?",
+ "design": "3.3",
+ "gagTag": "[gasps]",
+ "gagDelay": 0,
+ "gagZeile": 0,
+ "quelle": "SKRIPT 4 mit Abschnitt 9 (22.11.2026). Stumme Demo v1. Kostuem I1 Hacker. Ort eigens gebaut: Zimmer am Abend vor dem Black Friday. Teil 1 Wissenschaftsmodus (Tunnel), Teil 2 Bildschirm (Kasse), Teil 3 Gegenstand (Siegel) plus die eine Lupe (Adresse). FAKTEN (geprueft 22.11.2026): https und Schloss stehen fuer eine gesicherte Verbindung, sind aber keine Garantie, dass die Seite serioes ist (Verbraucherzentrale Baden-Wuerttemberg, Textkarten Fakeshops); auch Fake-Seiten nutzen verschluesselte Verbindungen (Trusted Shops Blog; Utopia nach BSI: auch Phishing-Seiten nutzen Zertifikate). Oft werden bis zum letzten Bestellschritt mehrere Zahlungsweisen angeboten, bei der Bestellung dann nur noch Vorkasse (verbraucherzentrale.de/fakeshops). Bei Vorkasse an einen Fake-Shop ist das Geld meist unwiederbringlich weg (Oeko-Test). Fake-Shops nutzen erfundene Guetesiegel oder echte (z. B. Trusted Shops) ohne Zertifikat; per Klick aufs Siegel pruefen, ob es mit einem Zertifikat des Siegel-Betreibers verlinkt ist (verbraucherzentrale.de). Fakeshop-Finder der Verbraucherzentrale prueft Shop-Adressen kostenlos (verbraucherzentrale.de/fakeshop). BILD: Adresse mega-deal.example ist erfunden (reservierte Endung .example), kein echter Shop. Ampel in der Lupe ist ein Sinnbild fuer eine Einschaetzung, kein Nachbau des echten Werkzeugs. Kein Logo der Verbraucherzentrale.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Fake-Shop *erkennen*",
+   "emoji": "🛒",
+   "world": "i7Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Dein Schnäppchen ist da. Der Karton ist leer.",
+     "mood": "shock",
+     "ev": "leer"
+    },
+    {
+     "t": "Woran erkennst du einen Fake-Shop?",
+     "mood": "cool",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, welcher Klick dich rettet.",
+     "mood": "cool",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Das *Schloss*",
+   "path": [],
+   "world": "i7Schloss",
+   "labor": [
+    1
+   ],
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: Das Schloss in der Adresszeile heißt nur: Die Verbindung ist verschlüsselt.",
+     "mood": "happy",
+     "ev": "schloss"
+    },
+    {
+     "t": "Es sagt nichts darüber, wer am anderen Ende sitzt. Auch Fake-Shops können es haben.",
+     "mood": "shock",
+     "ev": "tunnel"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Nur *Vorkasse*",
+   "path": [],
+   "world": "i7Kasse",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Jetzt wird's fies.",
+     "mood": "cool",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Oft bieten sie erst viele Zahlarten an. Beim letzten Klick geht nur noch Vorkasse.",
+     "mood": "shock",
+     "ev": "zahl"
+    },
+    {
+     "t": "Bei einem Fake-Shop ist das Geld dann meist weg.",
+     "mood": "shock",
+     "ev": "weg"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Das *Siegel*",
+   "path": [],
+   "world": "i7Siegel",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und jetzt der Klick, der dich rettet.",
+     "mood": "happy",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: Klick auf das Gütesiegel. Ein echtes führt zum Zertifikat beim Siegel-Anbieter.",
+     "mood": "happy",
+     "ev": "siegel"
+    },
+    {
+     "t": "Fake-Shops nutzen erfundene oder geklaute Siegel. Dann führt der Klick ins Leere.",
+     "mood": "shock",
+     "ev": "fake"
+    },
+    {
+     "t": "Und die Verbraucherzentrale prüft Shop-Adressen kostenlos mit dem Fakeshop-Finder.",
+     "mood": "cool",
+     "ev": "finder"
+    }
+   ],
+   "quip": "Erwischt.",
+   "quipAt": 2
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i7Out",
+   "pause": 0.05,
+   "checks": [
+    "Schloss heißt nur verschlüsselt",
+    "Nur Vorkasse? Warnzeichen",
+    "Siegel anklicken"
+   ],
+   "lines": [
+    {
+     "t": "Also: Das Schloss heißt nur verschlüsselt,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "nur Vorkasse ist ein Warnzeichen,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und ein Klick aufs Siegel zeigt, ob es echt ist.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

@@ -47,7 +47,7 @@ function axe13(k, x0, y0, x1, y1) { if (k <= 0) return ''; const e = ease(cl(k))
 function dig13(t, hu) { let s = '<defs><linearGradient id="dg13" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8C99A"/><stop offset="1" stop-color="#B98A5C"/></linearGradient></defs><rect width="1080" height="1920" fill="#9CC9E8"/><path d="M0 560 L180 470 L360 520 L560 430 L760 500 L1080 440 V1920 H0 Z" fill="#C79A6A"/><rect x="0" y="700" width="1080" height="1220" fill="url(#dg13)"/>';
   for (let i = 0; i < 5; i++) s += '<path d="M0 ' + (760 + i * 120) + ' Q540 ' + (740 + i * 120) + ' 1080 ' + (770 + i * 120) + '" stroke="#A97E52" stroke-width="5" fill="none" opacity=".5"/>';
   s += '<rect x="40" y="760" width="1000" height="520" rx="20" fill="#D9B98C" stroke="' + ST13 + '" stroke-width="6"/>';
-  s += any13(560, 1180, .78, 0, { pal: PF13, id: 'fo', shadow: 0, hurt: hu });
+  s += any13(520, 1090, .68, 0, { pal: PF13, id: 'fo', shadow: 0, hurt: hu });
   for (let i = 1; i < 6; i++) s += '<path d="M' + (40 + i * 166) + ' 760 V1280" stroke="#FFF" stroke-width="3" opacity=".7"/>';
   for (let i = 1; i < 3; i++) s += '<path d="M40 ' + (760 + i * 173) + ' H1040" stroke="#FFF" stroke-width="3" opacity=".7"/>';
   s += '<path d="M940 1300 l40 -90 l14 6 l-34 90 Z" fill="#8B5E3C" stroke="' + ST13 + '" stroke-width="4"/><path d="M980 1210 l24 -40 l26 12 l-22 40 Z" fill="#C9CED8" stroke="' + ST13 + '" stroke-width="4"/>';
@@ -57,7 +57,7 @@ function dig13(t, hu) { let s = '<defs><linearGradient id="dg13" x1="0" y1="0" x
 WORLD.b13hook = function (sc, ev, t, lt) { const U = urD(t), bum = ev.bum, fr = ev.frage, dr = ev.dreh, wu = ev.wusch; let s = bg13(U, t);
   // Keule: hoch ausholen (0 bis .7 s), runter auf den Stumpf (.7 bis .95 s)
   let sw = 0, hit = 0; if (bum !== undefined) { const up = ease(cl(bum / .7)), dn = cl((bum - .7) / .25); sw = 45 * up - 75 * dn * dn + 30 * ease(cl((bum - 1.1) / .6)) * (dn >= 1 ? 1 : 0); hit = bum > .95 ? (bum - .95) / .9 : 0; }
-  if (fr !== undefined) sw = 0 + 30 * (1 - ease(cl(fr / .5))) * 0;
+  if (fr !== undefined) sw = 16 * Math.sin(t * 2.6);
   let wsw = 0; if (wu !== undefined) { const a = ease(cl((wu - .3) / .4)), b = ease(cl((wu - .7) / .35)); wsw = 50 * a - 70 * b + 20 * ease(cl((wu - 1.2) / .6)); }
   s += stump13(930, 1150, hit, t);
   const eat = fr !== undefined && wu === undefined ? 1 : 0, look = wu !== undefined ? 1 : 0;

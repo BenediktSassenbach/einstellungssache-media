@@ -1,0 +1,173 @@
+{
+ "serie": "Informatik",
+ "kostuem": "sunset",
+ "accent": "#7C5CFF",
+ "design": "3.3",
+ "gagTag": "[gasps]",
+ "id": "I030H",
+ "titel": "GTA 6 gratis für den PC?",
+ "gagDelay": 0,
+ "gagZeile": 0,
+ "quelle": "Skript Videospiel und Skript 4 Abschnitt 9 (22.11.2026). Stumme Demo v1 des Neubaus I030H (22.11.2026), Fakten am 22.11.2026 erneut geprueft: Cynet-Warnung seit 13.11. (ghacks; Help Net Security: WARDEN Stealer, Steam-Logins, Krypto-Wallets); 113-GB-ISO fast nur leere Daten, nimmt Laufwerk C: per PowerShell aus der Pruefung von Windows Defender (TechRadar; Security Affairs; Cybernews). Kostuem S1 Sunset-Hemd. Ort eigens gebaut: Strassenecke bei Sonnenuntergang mit Elektronikladen, Kiosk 'GRATIS GAMES' und Leuchtwand. Keine Figuren, Logos oder Szenen aus dem Spiel; Konsolen als neutrale Formen 'Konsole A/B'. Plattformen: GTA 6 erschien am 19.11.2026 fuer PlayStation 5 und Xbox Series X|S; Rockstar hat weder PC-Version noch Demo, Beta oder Early Access angekuendigt (ESET WeLiveSecurity; ghacks 14.11.2026; Malwarebytes 24.08.2026). Cloud: Xbox Cloud Gaming streamt zum Start nur auf Xbox-Konsolen, nicht auf PCs; 'Every PC download is a scam' (Notebookcheck, GTA-6-Launch-Scams). Warnung: Cynet warnt seit 13.11.2026 vor gefaelschtem GTA-6-PC-Download, der Steam-Passwoerter und Krypto-Daten stiehlt (ghacks 14.11.2026; Notebookcheck). 113-GB-ISO: Fake, ueber 100 GB leerer Inhalt (PC Games 'Fake-Leak zu GTA 6: 113 GB Download verstecken Malware'; Cybernews 'junk data and a virus'); setzt Laufwerk C: auf die Ausnahmeliste von Windows Defender (drohnen.de-Zusammenfassung des Falls). Fallen: Gratis-Codes, angeblicher frueher Zugang (Notebookcheck), Android-Version ist ein Warnzeichen, es gibt keine (PCGH). Schutz: nur ueber offizielle Shops und Handel kaufen; nach einem gestarteten Fake Passwoerter von einem anderen, sauberen Geraet aendern und Zwei-Faktor einschalten (allgemeine Empfehlung der Sicherheitsfirmen, z. B. ESET). Stand der Recherche: 20.11.2026. Teil 3: Lupe aufs Handy mit Zwei-Faktor ist ein Sinnbild, kein echter Code. Cloud-Satz aus Laengengruenden gestrichen (stimmt, wird nicht gebraucht).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "GTA 6 *gratis*?",
+   "emoji": "🎮",
+   "world": "j3Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Dieser Gratis-Download klaut dein Passwort.",
+     "mood": "shock",
+     "ev": "rauben"
+    },
+    {
+     "t": "Gibt es GTA 6 für den PC?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, was hilft, wenn du schon geklickt hast.",
+     "mood": "angry",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Kein *PC*",
+   "path": [],
+   "world": "j3Kein",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: GTA 6 kam am 19. November nur für PlayStation 5 und Xbox Series.",
+     "mood": "happy",
+     "ev": "kons"
+    },
+    {
+     "t": "Eine PC-Version, eine Demo oder einen frühen Zugang hat Rockstar nicht angekündigt.",
+     "mood": "happy",
+     "ev": "angek"
+    },
+    {
+     "t": "Heißt: Jeder PC-Download ist gerade ein Fake.",
+     "mood": "cool",
+     "ev": "fake"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Was *drinsteckt*",
+   "path": [],
+   "world": "j3Inhalt",
+   "labor": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und jetzt wird's richtig fies.",
+     "mood": "shock",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Forscher warnen seit dem 13. November vor einem falschen PC-Download.",
+     "mood": "cool",
+     "ev": "warn"
+    },
+    {
+     "t": "Er stiehlt zum Beispiel Steam-Passwörter und Daten von Krypto-Konten.",
+     "mood": "shock",
+     "ev": "stiehlt"
+    },
+    {
+     "t": "Eine andere Fake-Datei hatte 113 Gigabyte, fast alles leerer Füllstoff.",
+     "mood": "happy",
+     "ev": "gross"
+    },
+    {
+     "t": "Gestartet nimmt sie das ganze Laufwerk C aus der Prüfung vom Virenschutz.",
+     "mood": "shock",
+     "ev": "aus"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Was *hilft*",
+   "path": [],
+   "world": "j3Schutz",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und was hilft wirklich?",
+     "mood": "cool",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: Kauf nur in den offiziellen Shops oder im Handel.",
+     "mood": "happy",
+     "ev": "shop"
+    },
+    {
+     "t": "Gratis-Codes, Beta-Zugang oder eine Android-Version sind Fallen.",
+     "mood": "cool",
+     "ev": "fallen"
+    },
+    {
+     "t": "Schon was gestartet? Von einem anderen Gerät Passwörter ändern und Zwei-Faktor einschalten.",
+     "mood": "happy",
+     "ev": "pw"
+    }
+   ],
+   "quip": "Tschüss.",
+   "quipAt": 3
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "j3Out",
+   "pause": 0.05,
+   "checks": [
+    "Keine PC-Version",
+    "Downloads klauen Daten",
+    "Geklickt? Passwörter ändern"
+   ],
+   "lines": [
+    {
+     "t": "Also: Es gibt keine PC-Version,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "die Downloads klauen Daten,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und wer geklickt hat, ändert sofort seine Passwörter.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
