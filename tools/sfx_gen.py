@@ -132,4 +132,16 @@ def C006H():  # Streusalz: kurzes Wegrutschen (Quietschen), dann dumpfer Aufpral
     x = .9 * thud + .45 * scrape
     save('C006H_1.wav', norm(x * env(len(t), .002, .5), .45))
 
+def B013H():  # Schwanzkeule: Ausholen mit anschwellendem Luftzug, dann Holz bricht (Krachen, dumpfer Schlag, Splitter)
+    d = .95; t = T(d); w = hp(lp(noise(len(t)), .35), .02) * (t / d) ** 2.2 + .25 * np.sin(2 * np.pi * 55 * t) * (t / d) ** 3
+    save('B013H_0.wav', norm(w * env(len(t), .3, .01), .3))
+    d = 1.6; t = T(d)
+    thud = lp(noise(len(t)), .04) * np.exp(-t * 16) + .9 * np.sin(2 * np.pi * 62 * t) * np.exp(-t * 10)
+    crack = hp(noise(len(t)), .4) * np.exp(-t * 28)
+    spl = np.zeros(len(t))
+    for i in range(7):
+        k = int((.06 + .09 * i + .03 * rng.random()) * SR); m = int(.05 * SR); tt = np.arange(m) / SR; spl[k:k + m] += hp(noise(m), .3) * np.exp(-tt * 60) * (1 - i / 9)
+    x = .9 * thud + .7 * crack + .4 * spl
+    save('B013H_1.wav', norm(x * env(len(t), .002, .4), .45))
+
 for a in sys.argv[1:]: globals()[a]()
