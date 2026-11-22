@@ -111,7 +111,7 @@ function sci6h(t, ev) { const gi = ev.gitter, io = ev.ionen, ra = ev.rand, wa = 
 // beim Versprechen bekommt er eine Ladung Salz ab und wird zurueckgeschoben, wo Koerner landen, tauen kleine Loecher ins Eis.
 const HA6H = 210, HB6H = 760; // Start und Ende der Rutschpartie
 function hookX6h(ev, lt) { const lo = ev.loop; if (lo !== undefined) return lerp(HB6H, 240, ease(cl(lo / 1.3)));
-  if (lt < .45) return lerp(HA6H, 270, lt / .45); return lerp(270, HB6H, 1 - Math.pow(1 - cl((lt - .45) / 2.4), 3)); }
+  if (lt < .45) return lerp(HA6H, 270, lt / .45); return lerp(270, HB6H, 1 - Math.pow(1 - cl((lt - .45) / 3.9), 3)); }
 function holes6h(k, t) { let s = ''; for (let i = 0; i < 9; i++) { const f = cl((k - i * .07) / .5); if (f <= 0) continue; const x = 320 + rnd(i + 41) * 620, y = 1470 + rnd(i + 43) * 200, r = 10 + 26 * ease(f);
     s += '<ellipse cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" rx="' + (r * 1.6).toFixed(1) + '" ry="' + (r * .6).toFixed(1) + '" fill="#4E7FB8" opacity=".7" stroke="#E8F7FF" stroke-width="3"/><rect x="' + (x - 5).toFixed(0) + '" y="' + (y - 5).toFixed(0) + '" width="10" height="10" fill="#fff" opacity="' + (1 - f).toFixed(2) + '"/>'; } return s; }
 WORLD.c6hHook = function (sc, ev, t, lt) { const fr = ev.frage, lo = ev.loop; let s = street6h(t, { noTree: 1 });
@@ -120,7 +120,7 @@ WORLD.c6hHook = function (sc, ev, t, lt) { const fr = ev.frage, lo = ev.loop; le
   s += truck6h(tx, t, fr !== undefined && lo === undefined ? .25 : 0) + tree6h();
   s += bag6h(78, GY6H - 24, 'SALZ', '#E9EEF5', .55);
   // Eissplitter hinter dem Rutschenden, Aufprallstern bei der Landung
-  const x = hookX6h(ev, lt); if (lt > .45 && lt < 3 && lo === undefined) { const sp = 1 - cl((lt - .45) / 2.4); for (let i = 0; i < 14; i++) { const c = (t * 3 + i / 14) % 1; s += '<circle cx="' + (x - 120 - 160 * c + 20 * Math.sin(i * 3)).toFixed(0) + '" cy="' + (GY6H - 10 - 70 * c * (1 - c) * 4 + 10 * Math.sin(i)).toFixed(0) + '" r="' + (3 + 3 * rnd(i)).toFixed(1) + '" fill="#F2FBFF" opacity="' + (sp * (1 - c)).toFixed(2) + '"/>'; }
+  const x = hookX6h(ev, lt); if (lt > .45 && lt < 4.4 && lo === undefined) { const sp = 1 - cl((lt - .45) / 3.9); for (let i = 0; i < 14; i++) { const c = (t * 3 + i / 14) % 1; s += '<circle cx="' + (x - 120 - 160 * c + 20 * Math.sin(i * 3)).toFixed(0) + '" cy="' + (GY6H - 10 - 70 * c * (1 - c) * 4 + 10 * Math.sin(i)).toFixed(0) + '" r="' + (3 + 3 * rnd(i)).toFixed(1) + '" fill="#F2FBFF" opacity="' + (sp * (1 - c)).toFixed(2) + '"/>'; }
     for (let i = 0; i < 3; i++) s += '<path d="M' + (x - 150 - i * 30) + ' ' + (GY6H - 40 - i * 30) + ' h' + (-80 * sp) + '" stroke="#F2FBFF" stroke-width="6" stroke-linecap="round" opacity="' + (.7 * sp).toFixed(2) + '"/>'; }
   const imp = lt - .45; if (imp > 0 && imp < .35 && lo === undefined) { const c = imp / .35; for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; s += '<path d="M' + (270 + Math.cos(a) * 60 * (1 + c)).toFixed(0) + ' ' + (GY6H - 60 + Math.sin(a) * 40 * (1 + c)).toFixed(0) + ' l' + (Math.cos(a) * 40).toFixed(0) + ' ' + (Math.sin(a) * 28).toFixed(0) + '" stroke="#FFE14D" stroke-width="7" stroke-linecap="round" opacity="' + (1 - c).toFixed(2) + '"/>'; } }
   if (lo !== undefined) { const k = Math.sin(Math.PI * cl(lo / 1.5)); for (let i = 0; i < 36; i++) { const c = (t * 1.6 + rnd(i + 21)) % 1, sx = tx + 420, px = sx - (sx - hookX6h(ev, lt) + 60) * c, py = 1110 + (GY6H - 1210) * c + 40 * Math.sin(i) ; s += '<rect x="' + px.toFixed(0) + '" y="' + py.toFixed(0) + '" width="11" height="11" fill="#fff" stroke="#8AA" stroke-width="1.5" transform="rotate(' + (i * 30 + t * 300).toFixed(0) + ' ' + (px + 5).toFixed(0) + ' ' + (py + 5).toFixed(0) + ')" opacity="' + (k * (1 - c * .3)).toFixed(2) + '"/>'; } }
@@ -132,7 +132,7 @@ WMASC.c6hHook = (ev, t, lt) => { const fr = ev.frage, lo = ev.loop, x = hookX6h(
   if (lo !== undefined) { const w = Math.sin(Math.PI * cl(lo / 1.3)); return stay3([x, GY6H], 1, { r: -18 * w, mood: 'shock' }); }
   if (fr !== undefined) { const up = ease(cl(fr / .7)), wob = Math.sin(t * 9) * (1 - cl((fr - .7) / 1)) * up; return rot6h(x, lerp(-630, -720, up) + 10 * wob, 20 * Math.sin(Math.PI * up)); }
   if (lt < .45) { const k = lt / .45; return rot6h(x, -90 * ease(k), 50 * Math.sin(Math.PI * k)); } // faellt ab Bild 0
-  const sp = 1 - Math.pow(1 - cl((lt - .45) / 2.4), 3); return rot6h(x, -90 - 540 * sp, 6 * Math.abs(Math.sin(t * 7)) * (1 - sp)); }; // dreht sich beim Schlittern
+  const sp = 1 - Math.pow(1 - cl((lt - .45) / 3.9), 3); return rot6h(x, -90 - 540 * sp, 6 * Math.abs(Math.sin(t * 7)) * (1 - sp)); }; // dreht sich beim Schlittern
 
 // ---------- Teil 1: Salz wirkt nur geloest (Interaktion im Ort, die eine Lupe) ----------
 const GX6H = 640, GYG6H = 1540; // dort landet das Korn
