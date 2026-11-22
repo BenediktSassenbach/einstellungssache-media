@@ -40,29 +40,35 @@ WMASC.b13keulH = (ev, t, lt) => { const ha = ev.hart;
   return stay3([220, 1537], 1, { r: 2 * Math.sin(t * 2) }); };
 
 // ---------- Teil 3: Wofuer? ----------
+function volcK13(t) { let v = '<path d="M600 1000 L760 800 L800 812 L960 1000 Z" fill="#6B4A6E" opacity=".85"/><path d="M760 800 L800 812 L790 840 L770 836 Z" fill="#FF7A3D"/>'; for (let i = 0; i < 4; i++) { const c = (t * .25 + i / 4) % 1; v += '<circle cx="' + (780 + 30 * Math.sin(c * 6 + i)).toFixed(0) + '" cy="' + (790 - 160 * c).toFixed(0) + '" r="' + (20 + 30 * c).toFixed(0) + '" fill="#8A7C90" opacity="' + (.5 * (1 - c)).toFixed(2) + '"/>'; } return v + '<path d="M0 1000 Q300 960 560 990 Q800 1010 1080 980 L1080 1040 L0 1040 Z" fill="#4FA866" opacity=".6"/>'; }
 WORLD.b13wofH = function (sc, ev, t, lt) { const U = urD(t), ra = ev.raub, fu = ev.fund, stc = ev.stach, zw = ev.zwei, fo = ev.foto; let h = '';
-  // Lichtung mit T. rex
-  let A = bg13(U, t) + stump13(930, 1150, 2, t), sw = 0;
-  if (ra !== undefined) { const inn = ease(cl((ra - .3) / 1.4)), swing = Math.sin(Math.PI * cl((ra - 1.9) / .7)), tu = ease(cl((ra - 4.0) / .4)), out = ease(cl((ra - 4.4) / 1.2)); sw = 34 * swing;
-    const rx = lerp(1500, 1010, inn) + 900 * out; const hop = swing > .5 ? 40 * Math.sin(Math.PI * cl((ra - 2.1) / .4)) : 0;
-    if (rx < 1560) A += rexd(rx, AY13 - hop, .62, t, { run: (inn > 0 && inn < 1) || (out > 0 && out < 1) ? 1 : 0, kx: lerp(1, -1, tu), head: 10, jaw: swing > .3 ? .6 : .2, id: 'tr' }); }
-  const rh3 = ev.rehook !== undefined && ra === undefined; A += any13(AX13, AY13, AS13, t, { sw: sw + (rh3 ? 30 * Math.sin(t * 6) : 0), look: (ra !== undefined && ra < 4.4) || rh3 ? -1 : 0, jaw: rh3 ? .3 : 0 }) + fg13(t);
-  if (ra !== undefined) '';
+  // Lichtung (nur Rehook)
+  const rh3 = ev.rehook !== undefined && ra === undefined;
+  let A = bg13(U, t) + stump13(930, 1150, 2, t) + any13(AX13, AY13, AS13, t, { sw: rh3 ? 30 * Math.sin(t * 6) : 0, look: rh3 ? -1 : 0, jaw: rh3 ? .3 : 0 }) + fg13(t);
+  // Neue Szene: offene Ebene mit Vulkan, T. rex greift an, beide ganz im Bild
+  let K = U.b + volcK13(t) + bg13(U, t);
+  if (ra !== undefined) { const r = ra - .5, inn = ease(cl(r / 1.3)), lunge = Math.sin(Math.PI * cl((r - 1.5) / .8)), swing = Math.sin(Math.PI * cl((r - 1.8) / .6)), hit = cl((r - 2.05) / .5), back = ease(cl((r - 2.1) / .7)), sw2 = Math.sin(Math.PI * cl((r - 3.4) / .6)), hit2 = cl((r - 3.65) / .5);
+    const rx = lerp(1300, 770, inn) - 70 * lunge + 95 * back + 30 * Math.sin(Math.PI * cl((r - 3.5) / .6)), tilt = 10 * Math.sin(Math.PI * cl((r - 2.1) / .9));
+    K += '<g transform="rotate(' + tilt.toFixed(1) + ' ' + rx.toFixed(0) + ' 1150)">' + rexd(rx, 1150, .45, t, { run: inn > 0 && inn < 1 ? 1 : 0, head: 10 - 14 * lunge, jaw: lunge > .2 || (r > 2.6 && r < 3.4) ? .7 : .2, id: 'tk' }) + '</g>';
+    K += any13(300, 1150, .5, t, { sw: 40 * swing + 34 * sw2, look: -1 });
+    [[hit, 2.05], [hit2, 3.65]].forEach(q => { const k = q[0]; if (k > 0 && k < 1) for (let i = 0; i < 6; i++) { const an = i / 6 * 6.28; K += '<line x1="' + (rx - 50 + 30 * Math.cos(an)).toFixed(0) + '" y1="' + (1060 + 30 * Math.sin(an)).toFixed(0) + '" x2="' + (rx - 50 + (40 + 70 * k) * Math.cos(an)).toFixed(0) + '" y2="' + (1060 + (40 + 70 * k) * Math.sin(an)).toFixed(0) + '" stroke="#FFE14D" stroke-width="8" stroke-linecap="round" opacity="' + (1 - k).toFixed(2) + '"/>'; } });
+  } else K += any13(300, 1150, .5, t, {});
+  K += fg13(t);
   // Grabung
   let D = dig13(t, stc === undefined ? 0 : ease(cl((stc - .6) / .5)));
   '';
+  if (fu !== undefined && stc === undefined) { for (let i = 0; i < 6; i++) { const c = (t * 1.1 + i / 6) % 1; D += '<circle cx="' + (300 + 520 * ((i * .37) % 1) + 30 * c).toFixed(0) + '" cy="' + (1060 - 90 * c).toFixed(0) + '" r="' + (8 + 18 * c).toFixed(0) + '" fill="#E8D8B8" opacity="' + (.75 * (1 - c) * cl(fu / .8)).toFixed(2) + '"/>'; } }
   if (stc !== undefined && stc > .8) { const cr = cl((stc - .8) / .6), he = cl((stc - 2.6) / 1); D += '<path d="M555 975 l14 14 l-10 10 l18 12 l-8 12 l20 10" stroke="' + lc('#FF4D6D', '#3DFF7A', he) + '" stroke-width="' + (8 - 3 * he).toFixed(1) + '" fill="none" stroke-linecap="round" stroke-dasharray="120" stroke-dashoffset="' + (120 * (1 - cr)).toFixed(0) + '"/>'; for (let i = 0; i < 4; i++) { const c = (t * 1.3 + i / 4) % 1; D += '<circle cx="' + (640 + 50 * c + 10 * i).toFixed(0) + '" cy="' + (1040 - 80 * c).toFixed(0) + '" r="' + (6 + 4 * i).toFixed(0) + '" fill="#E8D8B8" opacity="' + (.7 * (1 - c)).toFixed(2) + '"/>'; } } if (stc !== undefined && stc > 1.6) { const c = (t * 1.2) % 1; D += '<circle cx="595" cy="1003" r="' + (60 + 60 * c).toFixed(0) + '" fill="none" stroke="#FF4D6D" stroke-width="6" opacity="' + (1 - c).toFixed(2) + '"/>'; }
-  // Zwei Tiere im Streit: das blaue kommt hinten links, Keule trifft die Huefte des vorderen
-  let Z = bg13(U, t) + stump13(930, 1150, 2, t);
-  if (zw !== undefined) { const inn = ease(cl(zw / 1.4)), sws = Math.sin(Math.PI * cl((zw - 1.6) / .8)) + Math.sin(Math.PI * cl((zw - 3.4) / .8)), hitk = Math.max(cl((zw - 1.95) / .5) * (zw < 2.45 ? 1 : 0), cl((zw - 3.75) / .5) * (zw < 4.25 ? 1 : 0)), lv = ease(cl((zw - 4.3) / .9)); const bx = lerp(1700, 1120, inn) + 700 * lv;
-    Z += '<g transform="translate(' + (2 * bx).toFixed(0) + ' 0) scale(-1 1)">' + any13(bx, 1030, .6, t, { pal: PB13, id: 'bl', walk: (inn > 0 && inn < 1) || (lv > 0 && lv < 1) ? 1 : 0, ph: zw * 7, sw: 46 * sws }) + '</g>';
-    const step = 26 * (Math.sin(Math.PI * cl((zw - 2) / .6)) + Math.sin(Math.PI * cl((zw - 3.8) / .6)));
-    Z += any13(AX13 + 90 - step, AY13, AS13, t, { head: -6 * Math.sin(Math.PI * cl((zw - 2) / .8)), sw: -10 * sws });
-    if (hitk > 0 && hitk < 1) for (let i = 0; i < 5; i++) Z += '<circle cx="' + (720 + i * 22 - 44) + '" cy="' + (AY13 - 110 - 30 * hitk - (i % 2) * 20) + '" r="' + (14 + 30 * hitk) + '" fill="#F4EEDC" opacity="' + (.7 * (1 - hitk)).toFixed(2) + '"/>';
-    ''; }
-  else Z += any13(AX13 + 90, AY13, AS13, t, {});
+  // Neue Szene: zwei Ankylosaurier stehen Schwanz an Schwanz und schlagen abwechselnd zu, beide ganz im Bild
+  let Z = U.b + volcK13(t) + bg13(U, t);
+  if (zw !== undefined) { const z = zw - .5, inn = ease(cl(z / 1.2)), sA = Math.sin(Math.PI * cl((z - 1.3) / .7)) + Math.sin(Math.PI * cl((z - 3.1) / .7)), sB = Math.sin(Math.PI * cl((z - 2.2) / .7)) + Math.sin(Math.PI * cl((z - 4.0) / .7));
+    const bx = lerp(1300, 775, inn), shB = 14 * Math.sin(Math.PI * cl((z - 1.55) / .5)) + 14 * Math.sin(Math.PI * cl((z - 3.35) / .5)), shA = 14 * Math.sin(Math.PI * cl((z - 2.45) / .5)) + 14 * Math.sin(Math.PI * cl((z - 4.25) / .5));
+    Z += '<g transform="translate(' + (2 * (bx + shB)).toFixed(0) + ' 0) scale(-1 1)">' + any13(bx + shB, 1110, .45, t, { pal: PB13, id: 'bl', walk: inn > 0 && inn < 1 ? 1 : 0, ph: zw * 7, sw: 44 * sB }) + '</g>';
+    Z += any13(282 - shA, 1150, .46, t, { sw: 44 * sA, id: 'or' });
+    [1.55, 2.45, 3.35, 4.25].forEach(h0 => { const k = cl((z - h0) / .45); if (k > 0 && k < 1) for (let i = 0; i < 5; i++) Z += '<circle cx="' + (560 + (i - 2) * 26) + '" cy="' + (1050 - 30 * k - (i % 2) * 18) + '" r="' + (12 + 26 * k) + '" fill="#F4EEDC" opacity="' + (.75 * (1 - k)).toFixed(2) + '"/>'; });
+  } else Z += any13(282, 1150, .46, t, {});
   Z += fg13(t);
-  let s = A; if (fu !== undefined) s = wipe3(A, D, fu, .5, AC13); if (zw !== undefined) s = wipe3(D, Z, zw, .5, AC13);
+  let s = A; if (ra !== undefined) s = wipe3(A, K, ra, .5, AC13); if (fu !== undefined) s = wipe3(K, D, fu, .5, AC13); if (zw !== undefined) s = wipe3(D, Z, zw, .5, AC13);
   if (fo !== undefined) { const k = ease(cl(fo / .5)); s += '<rect width="1080" height="1920" fill="#02030F" opacity="' + (.55 * k).toFixed(2) + '"/>' + (typeof IMG13 !== 'undefined' ? '<g transform="translate(540 900) scale(' + (.6 + .4 * k).toFixed(3) + ')" opacity="' + k.toFixed(2) + '"><rect x="-430" y="-330" width="860" height="660" rx="26" fill="#F4F6FB"/><image href="' + IMG13 + '" x="-410" y="-310" width="820" height="620" preserveAspectRatio="xMidYMid slice"/>' + chip3(-300, 280, 'KI-Bild', 26, '#0B1020', '#fff', 1) + '</g>' : ''); }
   h += slot(ev, [['raub', 'Gegen wen?', 'hot']]);
   return W(s + shade3(), h); };

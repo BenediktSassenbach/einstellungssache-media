@@ -79,7 +79,7 @@ WMASC.j3Inhalt = (ev, t, lt) => { const rh = ev.rehook, st = ev.stiehlt, au = ev
 
 // ---------- Teil 3: Schutz (Interaktion im Ort, die eine Lupe) ----------
 WORLD.j3Schutz = function (sc, ev, t, lt) { const sh = ev.shop, fa = ev.fallen, pw = ev.pw;
-  let s = streetJ3(t, { scr: pw !== undefined ? 'aus' : (fa !== undefined ? 'aus' : 'dl'), offiziell: sh !== undefined ? 1 : 0, kons: sh === undefined ? 0 : (fa !== undefined ? 1 : cl((sh - 1.4) / .5)) }) + box30(fa === undefined ? 620 : mvJ3(620, 740, (fa - .4) / .5), GYJ3, 1.3, 1);
+  let s = streetJ3(t, { scr: pw !== undefined ? 'aus' : (fa !== undefined ? 'aus' : 'dl'), offiziell: sh !== undefined ? 1 : 0, kons: sh === undefined ? 0 : (fa !== undefined ? 1 : cl((sh - 1.4) / .5)) }) + box30(fa === undefined ? 620 : mvJ3(620, 775, (fa - .4) / .5), GYJ3, 1.3, 1);
   if (sh !== undefined && fa === undefined) { const c = (t * 1.2) % 1; s += '<rect x="20" y="700" width="360" height="48" rx="10" fill="none" stroke="#3DFF7A" stroke-width="' + (8 * (1 - c)).toFixed(1) + '"/>'; }
   if (fa !== undefined && pw === undefined) { s += '<rect x="616" y="552" width="328" height="246" rx="10" fill="#3A0E1E"/>'; ['Gratis-Codes', 'Beta-Zugang', 'Android-Version'].forEach((w, i) => { const k = cl((fa - .3 - i * .5) / .3), x2 = cl((fa - .6 - i * .5) / .25); if (k <= 0) return; s += '<g opacity="' + k.toFixed(2) + '">' + svgT(780, 612 + i * 70, w, 32, '#FFE14D') + '<path d="M650 ' + (600 + i * 70) + ' h' + (220 * x2).toFixed(0) + '" stroke="#FF3B5C" stroke-width="8" stroke-linecap="round"/></g>'; }); }
   if (pw !== undefined) { s += lupeH(540, 910, 190, phoneJ3(t, cl((pw - 2) / .4)), ease(cl(pw / .5)), XHJ3 + 70, GYJ3 - 120);
@@ -92,7 +92,7 @@ WMASC.j3Schutz = (ev, t, lt) => { const rh = ev.rehook, sh = ev.shop, fa = ev.fa
   return stay3([mvJ3(210, XHJ3, lt / .7), GYJ3 - 20 * Math.sin(Math.PI * cl(lt / .7))], 1, { r: 3, mood: 'cool' }); };
 
 // ---------- Schluss ----------
-WORLD.j3Out = function (sc, ev, t, lt) { return W(streetJ3(t, { scr: 'aus', offiziell: 1, kons: 1 }) + box30(740, GYJ3, 1.3, 1) + shade3()); };
+WORLD.j3Out = function (sc, ev, t, lt) { return W(streetJ3(t, { scr: 'aus', offiziell: 1, kons: 1 }) + box30(775, GYJ3, 1.3, 1) + shade3()); };
 WMASC.j3Out = (ev, t, lt) => stay3([XHJ3, GYJ3 - 8 * Math.abs(Math.sin(t * 4)) * (lt < 2 ? 1 : 0)], 1, { r: 2 * Math.sin(t * 2), mood: ev.save !== undefined ? 'happy' : undefined });
 
 ['j3Hook', 'j3Kein', 'j3Inhalt', 'j3Schutz', 'j3Out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, ACJ3); });

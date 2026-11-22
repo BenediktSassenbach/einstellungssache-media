@@ -57,7 +57,7 @@ function dig13(t, hu) { let s = '<defs><linearGradient id="dg13" x1="0" y1="0" x
 WORLD.b13hook = function (sc, ev, t, lt) { const U = urD(t), bum = ev.bum, fr = ev.frage, dr = ev.dreh, wu = ev.wusch; let s = bg13(U, t);
   // Keule: hoch ausholen (0 bis .7 s), runter auf den Stumpf (.7 bis .95 s)
   let sw = 0, hit = 0; if (bum !== undefined) { const up = ease(cl(bum / .7)), dn = cl((bum - .7) / .25); sw = 45 * up - 75 * dn * dn + 30 * ease(cl((bum - 1.1) / .6)) * (dn >= 1 ? 1 : 0); hit = bum > .95 ? (bum - .95) / .9 : 0; }
-  if (fr !== undefined) sw = 16 * Math.sin(t * 2.6);
+  if (fr !== undefined) sw = 30 * Math.sin(t * 2.6);
   let wsw = 0; if (wu !== undefined) { const a = ease(cl((wu - .3) / .4)), b = ease(cl((wu - .7) / .35)); wsw = 50 * a - 70 * b + 20 * ease(cl((wu - 1.2) / .6)); }
   s += stump13(930, 1150, hit, t);
   const eat = fr !== undefined && wu === undefined ? 1 : 0, look = wu !== undefined ? 1 : 0;
