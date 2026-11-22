@@ -122,4 +122,14 @@ def B029H():  # Schichten loesen sich: kurzes Rascheln, dann weiche Aufpraller n
         k = int((.12 * i + .25) * SR); m = int(.18 * SR); tt = np.arange(m) / SR; x[k:k + m] += np.sin(2 * np.pi * (110 - 8 * i) * tt) * np.exp(-tt * 22) + .3 * lp(noise(m), .1) * np.exp(-tt * 30)
     save('B029H_1.wav', norm(x * env(len(t), .005, .3), .4))
 
+def C006H():  # Streusalz: kurzes Wegrutschen (Quietschen), dann dumpfer Aufprall aufs Eis und Schlittern, das ausklingt
+    d = .32; t = T(d); f = np.linspace(900, 1700, len(t)); sq = np.sin(2 * np.pi * np.cumsum(f) / SR) * (1 + .3 * np.sin(2 * np.pi * 40 * t))
+    a = .6 * sq + .4 * hp(noise(len(t)), .3)
+    save('C006H_0.wav', norm(a * env(len(t), .05, .03), .32))
+    d = 2.6; t = T(d)
+    thud = lp(noise(len(t)), .03) * np.exp(-t * 14) + .8 * np.sin(2 * np.pi * 70 * t) * np.exp(-t * 12)
+    scrape = hp(lp(noise(len(t)), .5), .05) * (1 + .5 * np.sin(2 * np.pi * 9 * t)) * np.exp(-t * 1.1) * np.clip(t / .08, 0, 1)
+    x = .9 * thud + .45 * scrape
+    save('C006H_1.wav', norm(x * env(len(t), .002, .5), .45))
+
 for a in sys.argv[1:]: globals()[a]()
