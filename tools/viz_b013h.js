@@ -43,16 +43,35 @@ WORLD.b13wofH = function (sc, ev, t, lt) { const U = urD(t), ra = ev.raub, fu = 
   let A = bg13(U, t) + stump13(930, 1150, 2, t) + any13(AX13, AY13, AS13, t, { sw: rh3 ? 30 * Math.sin(t * 6) : 0, look: rh3 ? -1 : 0, jaw: rh3 ? .3 : 0 }) + fg13(t);
   // Neue Szene: offene Ebene mit Vulkan, T. rex greift an, beide ganz im Bild
   let K = U.b + volcK13(t) + bg13(U, t);
-  if (ra !== undefined) { const r = ra - .5;
-    // T. rex kommt von rechts, Ankylosaurus frisst, bemerkt ihn, hebt Kopf und Keule, schlaegt zweimal zu
-    const inn = ease(cl(r / 1.6)), notice = ease(cl((r - .7) / .5)), roar = Math.sin(Math.PI * cl((r - 1.4) / .7)), lunge = Math.sin(Math.PI * cl((r - 2.1) / .7)), ready = ease(cl((r - 1.2) / .6));
-    const sw1 = Math.sin(Math.PI * cl((r - 2.2) / .55)), sw2 = Math.sin(Math.PI * cl((r - 3.6) / .55)), hit1 = cl((r - 2.45) / .5), hit2 = cl((r - 3.85) / .5), back = ease(cl((r - 2.5) / .8)), back2 = ease(cl((r - 3.9) / .8));
-    const rx = lerp(1400, 655, inn) - 150 * lunge + 70 * back + 50 * back2, tilt = 8 * Math.sin(Math.PI * cl((r - 2.5) / .9)) + 8 * Math.sin(Math.PI * cl((r - 3.9) / .9));
-    K += '<g transform="rotate(' + tilt.toFixed(1) + ' ' + rx.toFixed(0) + ' 1150)">' + rexd(rx, 1150, .7, t, { run: inn > 0 && inn < 1 ? 1 : 0, ph: r * 9, head: 6 - 16 * lunge + 8 * (hit1 > 0 && hit1 < 1 ? 1 : 0), jaw: Math.max(roar, lunge > .2 ? .7 : 0, hit1 > 0 && hit1 < 1 ? .5 : 0, .15), id: 'tk' }) + '</g>';
-    K += any13(212, 1150, .38, t, { eat: notice < 1 ? 1 - notice : 0, head: lerp(20, -6, notice), look: notice, sw: 18 * ready + 46 * sw1 + 46 * sw2 - 30 * (sw1 > 0 ? sw1 : 0) * 0 });
-    if (roar > .05) K += roard(rx - 250, 1000, 180, t, roar);
-    [[hit1], [hit2]].forEach(q => { const k = q[0]; if (k > 0 && k < 1) for (let i = 0; i < 6; i++) { const an = i / 6 * 6.28, hx = 482, hy = 1075; K += '<line x1="' + (hx + 24 * Math.cos(an)).toFixed(0) + '" y1="' + (hy + 24 * Math.sin(an)).toFixed(0) + '" x2="' + (hx + (34 + 60 * k) * Math.cos(an)).toFixed(0) + '" y2="' + (hy + (34 + 60 * k) * Math.sin(an)).toFixed(0) + '" stroke="#FFE14D" stroke-width="7" stroke-linecap="round" opacity="' + (1 - k).toFixed(2) + '"/>'; } });
-  } else K += any13(212, 1150, .38, t, { eat: 1, head: 20 });
+  if (ra !== undefined) { const r = ra - .5, AXK = 300, SK = .4;
+    // Ablauf wie in echt: T. rex pirscht sich an, Ankylosaurus bemerkt ihn, dreht ihm das Hinterteil zu und duckt sich,
+    // T. rex beisst auf den Panzer, Keule holt aus und trifft das Schienbein, T. rex knickt ein, zweiter Versuch, zweiter Treffer, Abstand.
+    const inn = ease(cl(r / 1.5)), notice = ease(cl((r - .5) / .4)), turn = ease(cl((r - 1.0) / .6)), crouch = ease(cl((r - 1.4) / .4));
+    const roar = Math.sin(Math.PI * cl((r - 1.3) / .7)), lun1 = Math.sin(Math.PI * cl((r - 2.0) / .55)), lun2 = Math.sin(Math.PI * cl((r - 3.4) / .5));
+    const wind = (a0, a1) => ease(cl((r - a0) / (a1 - a0))), sweep = (a0, a1) => cl((r - a0) / (a1 - a0));
+    let sw = 14 * crouch;
+    const w1 = wind(1.85, 2.2), s1 = sweep(2.2, 2.36), w2 = wind(3.25, 3.6), s2 = sweep(3.6, 3.76);
+    if (r < 2.2) sw += 30 * w1; else if (r < 2.36) sw += 30 - 52 * s1 * s1; else if (r < 3.25) sw += -22 + 22 * ease(cl((r - 2.36) / .5)); 
+    if (r >= 3.25 && r < 3.6) sw += 30 * w2; else if (r >= 3.6 && r < 3.76) sw += 30 - 52 * s2 * s2; else if (r >= 3.76) sw += -22 + 22 * ease(cl((r - 3.76) / .5)) + 6 * Math.sin(t * 1.6) * cl((r - 4.3) / .5);
+    const hit1 = cl((r - 2.33) / .7), hit2 = cl((r - 3.73) / .7), st1 = Math.sin(Math.PI * cl((r - 2.33) / .8)), st2 = Math.sin(Math.PI * cl((r - 3.73) / .9));
+    const L1 = ease(cl((r - 2.0) / .3)) * (1 - ease(cl((r - 2.36) / .6))), L2 = ease(cl((r - 3.4) / .3)) * (1 - ease(cl((r - 3.76) / .7)));
+    const rx = lerp(1350, 700, inn) + 40 * ease(cl((r - 2.36) / .6)) + 30 * ease(cl((r - 3.76) / .7)) - 92 * L1 - 130 * L2;
+    const lean = 14 * st1 + 16 * st2, hop = 22 * st1 + 26 * st2;
+    const shake = (k) => k > 0 && k < .35 ? (1 - k / .35) : 0, shk = Math.max(shake(hit1), shake(hit2));
+    let R = '<g transform="translate(' + (12 * shk * Math.sin(t * 90)).toFixed(1) + ' ' + (8 * shk * Math.cos(t * 77)).toFixed(1) + ')">';
+    R += '<g transform="rotate(' + lean.toFixed(1) + ' ' + (rx + 150).toFixed(0) + ' 1150) translate(0 ' + (-hop).toFixed(1) + ')">' + rexd(rx, 1150, .7, t, { run: inn > 0 && inn < 1 ? 1 : 0, ph: r * 6, head: (inn < 1 ? 12 : 4) + 20 * Math.max(L1, L2) - 22 * Math.max(st1, st2), jaw: Math.max(roar, Math.max(L1, L2) > .3 ? .8 : 0, Math.max(st1, st2) * .9, .12), id: 'tk' }) + '</g>';
+    if (roar > .05) R += roard(rx - 200, 960, 190, t, roar);
+    // Ankylosaurus: schaut zuerst nach rechts, dreht sich um (Schwanz zum T. rex), duckt sich
+    const kx = lerp(-1, 1, turn), cy = 1150 + 6 * crouch;
+    R += '<g transform="translate(' + AXK + ' ' + cy + ') scale(' + kx.toFixed(3) + ' ' + (1 - .05 * crouch).toFixed(3) + ') translate(' + (-AXK) + ' ' + (-cy) + ')">' + any13(AXK, cy, SK, t, { eat: notice < 1 ? 1 - notice : 0, head: lerp(20, -4, notice) + 10 * crouch, look: turn > .5 ? 0 : notice, sw: sw }) + '</g>';
+    if (turn > .05 && turn < .95) for (let i = 0; i < 4; i++) R += '<circle cx="' + (AXK - 120 + i * 80) + '" cy="' + (1150 - 10 - 20 * turn) + '" r="' + (14 + 20 * turn) + '" fill="#E8D8B8" opacity="' + (.5 * Math.sin(Math.PI * turn)).toFixed(2) + '"/>';
+    // Schwungspur der Keule (Drehpunkt Huefte 220/-200, Keule 634/-158)
+    const club = (a) => { const an = -a * Math.PI / 180, dx = 414, dy = 42; return [AXK + SK * (220 + dx * Math.cos(an) - dy * Math.sin(an)), cy + SK * (-200 + dx * Math.sin(an) + dy * Math.cos(an))]; };
+    [[s1, 2.2, 2.6], [s2, 3.6, 4.0]].forEach(q => { if (r > q[1] && r < q[2]) { const fade = 1 - cl((r - q[1] - .16) / .24); let d = ''; for (let i = 0; i <= 8; i++) { const P = club(14 + 30 - 52 * Math.pow(q[0] * i / 8, 2)); d += (i ? ' L' : 'M') + P[0].toFixed(0) + ' ' + P[1].toFixed(0); } R += '<path d="' + d + '" stroke="#FFF6DF" stroke-width="26" stroke-linecap="round" fill="none" opacity="' + (.45 * fade).toFixed(2) + '"/>'; } });
+    // Treffer am Schienbein des T. rex: Sterne und Staub
+    [hit1, hit2].forEach(k => { if (k > 0 && k < .6) { const HP = club(-8), hx = HP[0] + 30, hy = HP[1] + 10, e = k / .6; for (let i = 0; i < 7; i++) { const an = i / 7 * 6.28; R += '<line x1="' + (hx + 20 * Math.cos(an)).toFixed(0) + '" y1="' + (hy + 20 * Math.sin(an)).toFixed(0) + '" x2="' + (hx + (34 + 70 * e) * Math.cos(an)).toFixed(0) + '" y2="' + (hy + (34 + 70 * e) * Math.sin(an)).toFixed(0) + '" stroke="#FFE14D" stroke-width="8" stroke-linecap="round" opacity="' + (1 - e).toFixed(2) + '"/>'; } for (let i = 0; i < 4; i++) R += '<circle cx="' + (rx + 60 + i * 50) + '" cy="' + (1145 - 30 * e) + '" r="' + (12 + 26 * e) + '" fill="#E8D8B8" opacity="' + (.6 * (1 - e)).toFixed(2) + '"/>'; } });
+    K += R + '</g>';
+  } else K += '<g transform="translate(300 1150) scale(-1 1) translate(-300 -1150)">' + any13(300, 1150, .4, t, { eat: 1, head: 20 }) + '</g>';
   K += fg13(t);
   // Grabung
   let D = dig13(t, stc === undefined ? 0 : ease(cl((stc - .6) / .5)));
