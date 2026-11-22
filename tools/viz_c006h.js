@@ -5,7 +5,7 @@
 //   Teil 2: Wissenschaftsmodus (Eisgitter, Ionen, Teilchen loesen sich und frieren an), Schalti unten links auf dem Boden.
 //   Teil 3: Gegenstand: grosses Strassenthermometer an der Laterne, Frost kriecht zurueck, Verbotsschild, Schalti streut Splitt.
 // Nutzt lupeH (viz_hook.js), fuse33, lab33, lab33dots (viz_v33.js), slot (viz_p002.js). Zum Loeschen: diese Datei und videos/C006H.
-var AC6H = '#FF6BD6', ST6H = '#0B1020', GY6H = 1537, XH6H = 300, XL6H = 200;
+var AC6H = '#FF6BD6', ST6H = '#0B1020', GY6H = 1537, XH6H = 300, XL6H = 240;
 const mv6h = (a, b, k) => lerp(a, b, ease(cl(k)));
 
 // ---------- Der Ort: Wohnstrasse am Winterabend ----------
@@ -36,18 +36,19 @@ function street6h(t, o) { o = o || {}; let s = '<defs><linearGradient id="sk6h" 
   s += '<path d="M120 1480 q120 -14 240 -2 M640 1520 q120 -10 220 4" stroke="#fff" stroke-width="7" fill="none" opacity=".7" stroke-linecap="round"/>';
   // Laterne links (mit Halterung fuer das Thermometer), Baum rechts
   s += '<rect x="58" y="560" width="22" height="660" fill="#2A3048" stroke="' + ST6H + '" stroke-width="4"/><path d="M40 560 h58 l-10 -40 h-38 Z" fill="#2A3048" stroke="' + ST6H + '" stroke-width="4"/><circle cx="69" cy="545" r="16" fill="#FFE9A8"/><circle cx="69" cy="560" r="120" fill="#FFE9A8" opacity=".12"/>';
-  s += '<path d="M972 1220 L980 860 M980 960 L1030 880 M978 920 L930 840 M980 1020 L1040 960" stroke="#4A3626" stroke-width="18" stroke-linecap="round"/><path d="M1020 878 q14 -10 22 0 M920 840 q12 -8 20 2" stroke="#F4F8FF" stroke-width="8" stroke-linecap="round"/><ellipse cx="972" cy="1222" rx="44" ry="10" fill="#5A4636" opacity=".6"/>';
+  if (!o.noTree) s += tree6h();
   return s; }
 
+const tree6h = () => '<path d="M972 1220 L980 860 M980 960 L1030 880 M978 920 L930 840 M980 1020 L1040 960" stroke="#4A3626" stroke-width="18" stroke-linecap="round"/><path d="M1020 878 q14 -10 22 0 M920 840 q12 -8 20 2" stroke="#F4F8FF" stroke-width="8" stroke-linecap="round"/><ellipse cx="972" cy="1222" rx="44" ry="10" fill="#5A4636" opacity=".6"/>';
 // Strassenthermometer, mit zwei Armen an der Laterne verschraubt. v: Gradzahl, k: Einblenden
 function therm6h(v, k) { if (k <= 0) return ''; const e = back(cl(k)); const ob = cl(k * 2).toFixed(2); let s = '<g opacity="' + ob + '"><path d="M78 800 H150 M78 940 H150" stroke="#C9CFDC" stroke-width="12" stroke-linecap="round"/><path d="M78 800 H150 M78 940 H150" stroke="' + ST6H + '" stroke-width="3" fill="none" opacity=".6"/><rect x="52" y="788" width="34" height="24" rx="6" fill="#C9CFDC" stroke="' + ST6H + '" stroke-width="4"/><rect x="52" y="928" width="34" height="24" rx="6" fill="#C9CFDC" stroke="' + ST6H + '" stroke-width="4"/></g><g transform="translate(158 880) scale(' + (e * .85).toFixed(3) + ')"><rect x="-10" y="-180" width="170" height="370" rx="24" fill="#F4F6FB" stroke="' + ST6H + '" stroke-width="6"/>';
   for (let i = 0; i <= 6; i++) { const y = -150 + i * 45; s += '<path d="M60 ' + y + ' h' + (i % 2 ? 14 : 26) + '" stroke="' + ST6H + '" stroke-width="4"/>'; }
   s += svgT(122, -140, '+10', 30, ST6H) + svgT(122, -50, '0', 30, ST6H) + svgT(122, 40, '−10', 30, ST6H) + svgT(122, 130, '−20', 30, ST6H);
   const top = -150 + (10 - Math.max(-22, Math.min(10, v))) * 9, col = v < -10 ? '#5C8BFF' : '#FF4D6D';
   s += '<rect x="34" y="-160" width="20" height="310" rx="10" fill="#DDE3EE" stroke="' + ST6H + '" stroke-width="3"/><rect x="37" y="' + top.toFixed(1) + '" width="14" height="' + (150 - top).toFixed(1) + '" rx="7" fill="' + col + '"/><circle cx="44" cy="158" r="24" fill="' + col + '" stroke="' + ST6H + '" stroke-width="4"/>';
-  s += '<rect x="-10" y="200" width="170" height="64" rx="16" fill="' + ST6H + '" stroke="#F4F6FB" stroke-width="4"/>' + svgT(75, 246, (v > 0.4 ? '+' : (v < -0.4 ? '−' : '')) + Math.abs(Math.round(v)) + ' °C', 38, v < -10 ? '#9FC2FF' : '#FFB4C0') + '</g>'; return s; }
+  s += '<rect x="-10" y="200" width="170" height="64" rx="16" fill="' + ST6H + '" stroke="#F4F6FB" stroke-width="4"/>' + svgT(75, 250, (v > 0.4 ? '+' : (v < -0.4 ? '−' : '')) + Math.abs(Math.round(v)) + ' °C', 50, v < -10 ? '#9FC2FF' : '#FFB4C0') + '</g>'; return s; }
 // Streuwagen (faehrt nach links), k: Salz fliegt, sole: Spruehbalken
-function truck6h(x, t, k, sole) { const y = 1150; let s = '<g transform="translate(' + x.toFixed(0) + ' ' + y + ')">';
+function truck6h(x, t, k, sole) { const y = 1112; let s = '<g transform="translate(' + x.toFixed(0) + ' ' + y + ')">';
   s += '<ellipse cx="160" cy="6" rx="260" ry="16" fill="#000" opacity=".25"/>';
   s += '<path d="M-70 -40 V-170 Q-70 -200 -40 -200 H60 L100 -120 V-40 Z" fill="#FF8A1E" stroke="' + ST6H + '" stroke-width="6" stroke-linejoin="round"/><path d="M-50 -180 H42 L76 -120 H-50 Z" fill="#9FD6FF" stroke="' + ST6H + '" stroke-width="5"/>';
   s += '<rect x="100" y="-190" width="300" height="150" rx="10" fill="#E9EEF5" stroke="' + ST6H + '" stroke-width="6"/><path d="M110 -190 L150 -230 H360 L400 -190 Z" fill="#DCE4EE" stroke="' + ST6H + '" stroke-width="5"/>';
@@ -74,7 +75,7 @@ function grain6h(m, t) { let s = '<rect x="-320" y="-320" width="640" height="64
 // Sack (steht auf dem Gehweg)
 const bag6h = (x, y, lab, col, z) => '<g transform="translate(' + x + ' ' + y + ') scale(' + (z || 1) + ')"><ellipse cx="0" cy="4" rx="70" ry="10" fill="#000" opacity=".25"/><path d="M-60 -150 Q-70 -170 -40 -172 H40 Q70 -170 60 -150 L66 0 Q0 12 -66 0 Z" fill="' + col + '" stroke="' + ST6H + '" stroke-width="6"/><rect x="-56" y="-116" width="112" height="66" rx="8" fill="#fff" stroke="' + ST6H + '" stroke-width="4"/>' + svgT(0, -70, lab, 30, ST6H) + '</g>';
 // Verbotsschild auf einem Pfosten am Gehweg: durchgestrichener Salzsack
-function sign6h(k) { if (k <= 0) return ''; return '<g transform="translate(900 1440) scale(1)" opacity="' + cl(k).toFixed(2) + '"><ellipse cx="0" cy="4" rx="30" ry="7" fill="#000" opacity=".25"/><rect x="-7" y="-150" width="14" height="154" fill="#9AA0AE" stroke="' + ST6H + '" stroke-width="4"/><circle cy="-200" r="62" fill="#fff" stroke="#E8384F" stroke-width="12"/>' + [[-22, -186], [6, -194], [-6, -168], [22, -172]].map(([x, y]) => '<rect x="' + (x - 12) + '" y="' + (y - 12) + '" width="24" height="24" fill="#fff" stroke="' + ST6H + '" stroke-width="4" transform="rotate(15 ' + x + ' ' + y + ')"/>').join('') + '<path d="M-40 -240 L40 -160" stroke="#E8384F" stroke-width="12" stroke-linecap="round"/></g>'; }
+function sign6h(k) { if (k <= 0) return ''; return '<g transform="translate(820 1470) scale(1)" opacity="' + cl(k).toFixed(2) + '"><ellipse cx="0" cy="4" rx="30" ry="7" fill="#000" opacity=".25"/><rect x="-7" y="-100" width="14" height="104" fill="#9AA0AE" stroke="' + ST6H + '" stroke-width="4"/><circle cy="-150" r="62" fill="#fff" stroke="#E8384F" stroke-width="12"/>' + [[-22, -136], [6, -144], [-6, -118], [22, -122]].map(([x, y]) => '<rect x="' + (x - 12) + '" y="' + (y - 12) + '" width="24" height="24" fill="#fff" stroke="' + ST6H + '" stroke-width="4" transform="rotate(15 ' + x + ' ' + y + ')"/>').join('') + '<path d="M-40 -190 L40 -110" stroke="#E8384F" stroke-width="12" stroke-linecap="round"/></g>'; }
 function paws6h(k) { let s = ''; for (let i = 0; i < 5; i++) { const op = cl((k - i * .18) / .2); if (op <= 0) continue; s += '<g opacity="' + op.toFixed(2) + '" transform="translate(' + (520 + i * 80) + ' ' + (1640 - i * 22 + (i % 2) * 26) + ') rotate(' + (i * 6 - 18) + ')"><ellipse rx="15" ry="12" fill="#5A4636"/><circle cx="-13" cy="-17" r="6" fill="#5A4636"/><circle cx="0" cy="-22" r="6" fill="#5A4636"/><circle cx="13" cy="-17" r="6" fill="#5A4636"/><circle r="26" fill="none" stroke="#FF4D6D" stroke-width="4" opacity=".7"/></g>'; } return s; }
 // Splitt fliegt aus Schaltis Schaufel in Boegen auf das Eis
 function grit6h(k, sx, sy) { let s = ''; for (let i = 0; i < 46; i++) { const f = cl((k - rnd(i + 11) * .55) / .45); if (f <= 0) continue; const tx = 200 + rnd(i + 2) * 820, ty = 1460 + rnd(i + 8) * 230, e = ease(f), x = lerp(sx, tx, e), y = lerp(sy, ty, e) - 160 * Math.sin(Math.PI * f);
@@ -82,41 +83,71 @@ function grit6h(k, sx, sy) { let s = ''; for (let i = 0; i < 46; i++) { const f 
 
 // ---------- Teilchen (Wissenschaftsmodus) ----------
 function h2o6h(x, y, a, z, op) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + a.toFixed(0) + ') scale(' + (z || 1) + ')" opacity="' + (op === undefined ? 1 : op).toFixed(2) + '"><circle cx="-16" cy="12" r="10" fill="#F4F6FB" stroke="' + ST6H + '" stroke-width="3"/><circle cx="16" cy="12" r="10" fill="#F4F6FB" stroke="' + ST6H + '" stroke-width="3"/><circle r="17" fill="#FF5A6E" stroke="' + ST6H + '" stroke-width="3"/></g>'; }
-function ion6h(x, y, na, op) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')" opacity="' + op.toFixed(2) + '"><circle r="' + (na ? 21 : 29) + '" fill="' + (na ? '#B57BFF' : '#3DFF7A') + '" stroke="' + ST6H + '" stroke-width="4"/>' + svgT(0, na ? 9 : 11, na ? '+' : '−', na ? 30 : 36, ST6H) + '</g>'; }
+function ion6h(x, y, na, op) { return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')" opacity="' + op.toFixed(2) + '"><circle r="' + (na ? 21 : 29) + '" fill="' + (na ? '#D9BFFF' : '#3DFF7A') + '" stroke="' + ST6H + '" stroke-width="4"/>' + svgT(0, na ? 7 : 8, na ? 'Na⁺' : 'Cl⁻', na ? 17 : 20, ST6H) + '</g>'; }
 // Gitter aus Wassermolekuelen (gefroren), oben fluessiges Wasser, Ionen dazwischen. Pfeile: gelb loesen sich, blau frieren an
-function sci6h(t, ev) { const gi = ev.gitter, io = ev.ionen, ra = ev.rand, wa = ev.warm; let s = '<defs><marker id="ar6h" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#FFE14D"/></marker><marker id="ab6h" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#5CE1FF"/></marker></defs>';
-  const cx = 560, top = 600, rows = 3, cols = 6, dx = 140, dy = 92;
+function sci6h(t, ev) { const gi = ev.gitter, io = ev.ionen, ra = ev.rand, wa = ev.warm; let s = '<defs><marker id="ar6h" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse"><path d="M0 0 L6 3 L0 6 Z" fill="#FFE14D"/></marker><marker id="ab6h" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse"><path d="M0 0 L6 3 L0 6 Z" fill="#5CE1FF"/></marker></defs>';
+  const cx = 520, top = 600, rows = 3, cols = 6, dx = 124, dy = 86;
   const grow = gi === undefined ? 0 : ease(cl(gi / 2));
   const meltK = ra === undefined ? 0 : cl((ra - 1.5) / 3) + (wa !== undefined ? .3 + .5 * cl(wa / 2) : 0);
-  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) { const x = cx - (cols - 1) * dx / 2 + c * dx + (r % 2 ? dx / 2 : 0), y = top + 360 + r * dy, idx = r * cols + c, show = cl(grow * rows * cols - idx * .9);
-    const gone = (r === 0 && meltK > c / cols) || (r === 1 && meltK > 1 + c / cols * .4) ? 1 : 0; if (show <= 0 || gone) continue; s += h2o6h(x, y + 3 * Math.sin(t * 3 + idx), (idx * 37) % 360, 1.3, show);
-    if (c < cols - 1 && show > .5) s += '<path d="M' + (x + 22) + ' ' + y + ' H' + (x + dx - 22) + '" stroke="#5CE1FF" stroke-width="3" stroke-dasharray="6 6" opacity=".7"/>'; }
-  for (let i = 0; i < 7; i++) { const x = 240 + rnd(i + 7) * 640 + 40 * Math.sin(t * 1.3 + i), y = top + 90 + rnd(i + 3) * 170 + 24 * Math.cos(t * 1.1 + i * 2); s += h2o6h(x, y, t * 60 + i * 40, 1.25, cl(grow * 2)); }
-  if (io !== undefined) { const k = ease(cl(io / 1)); for (let i = 0; i < 6; i++) { const x = 270 + i * 120 + 30 * Math.sin(t * 1.5 + i), y = lerp(top + 100, top + 150 + (i % 2) * 110, k) + 18 * Math.sin(t * 2 + i); s += ion6h(x, y, i % 2 === 0, k); } }
-  if (ra !== undefined) { const pulse = (t * .9) % 1; for (let c = 0; c < 5; c++) { const x = 330 + c * 120; s += '<path d="M' + x + ' ' + (top + 360 - 40 * pulse) + ' l0 -60" stroke="#FFE14D" stroke-width="6" marker-end="url(#ar6h)" opacity="' + (1 - pulse).toFixed(2) + '"/>'; if (c % 2 === 0) s += '<path d="M' + (x + 40) + ' ' + (top + 250 + 30 * pulse) + ' l0 50" stroke="#5CE1FF" stroke-width="5" marker-end="url(#ab6h)" opacity="' + ((1 - pulse) * .6).toFixed(2) + '"/>'; } }
+  const io2 = io === undefined ? 0 : ease(cl(io / 1.2)), pops = [];
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) { const x0 = cx - (cols - 1) * dx / 2 + c * dx + (r % 2 ? dx / 2 : 0), y0 = top + 320 + r * dy, idx = r * cols + c;
+    const arr = gi === undefined ? 0 : cl((gi - .15 - idx * .09) / .5); if (arr <= 0) continue; // fliegt von oben an seinen Platz
+    const gone = (r === 0 && meltK > c / cols) || (r === 1 && meltK > 1 + c / cols * .4); if (gone) { continue; }
+    const push = r === 0 ? io2 * 10 * Math.sin(c * 2.1 + t * 5) : 0, sx = 240 + rnd(idx + 50) * 640, sy = top + 60 + rnd(idx + 51) * 120, e = ease(arr);
+    const x = lerp(sx, x0, e) + push, y = lerp(sy, y0, e) + (arr >= 1 ? 3 * Math.sin(t * 3 + idx) : 0);
+    s += h2o6h(x, y, lerp(t * 120 + idx * 40, (idx * 37) % 360, e), 1.3, 1);
+    const fl = (gi || 0) - .65 - idx * .09; if (fl > 0 && fl < .3) s += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="' + (20 + 50 * fl / .3).toFixed(0) + '" fill="none" stroke="#5CE1FF" stroke-width="' + (6 * (1 - fl / .3)).toFixed(1) + '"/>';
+    if (c < cols - 1 && arr >= 1) s += '<path d="M' + (x0 + 22) + ' ' + y0 + ' H' + (x0 + dx - 22) + '" stroke="#5CE1FF" stroke-width="3" stroke-dasharray="6 6" opacity=".7"/>'; }
+  for (let i = 0; i < 7; i++) { const x = 240 + rnd(i + 7) * 640 + 40 * Math.sin(t * 1.3 + i), y = top + 90 + rnd(i + 3) * 170 + 24 * Math.cos(t * 1.1 + i * 2); s += h2o6h(x, y, t * 60 + i * 40, 1.25, cl((gi || 0) * 2)); }
+  if (io !== undefined) for (let i = 0; i < 6; i++) { const f = cl((io - i * .12) / .8), x = 270 + i * 120 + 30 * Math.sin(t * 1.5 + i) * f, yT = top + 150 + (i % 2) * 110, y = lerp(top + 100, yT, ease(f)) + 18 * Math.sin(t * 2 + i) * f;
+    s += ion6h(x, y, i % 2 === 0, cl(f * 3)); if (f > .9 && f < 1) s += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="46" fill="none" stroke="' + (i % 2 === 0 ? '#B57BFF' : '#3DFF7A') + '" stroke-width="5"/>'; }
+  if (ra !== undefined || wa !== undefined) { const N = 6; for (let j = 0; j < N; j++) { const c = (t * .55 + j / N) % 1, x = 300 + j * 100 + 20 * Math.sin(j * 3); // Teilchen springen aus dem Gitter nach oben
+      s += h2o6h(x + 30 * Math.sin(c * 6 + j), top + 310 - 200 * c, t * 200 + j * 50, 1.2, (1 - c) * .95) + '<path d="M' + x + ' ' + (top + 380 - 200 * c) + ' v40" stroke="#FFE14D" stroke-width="6" marker-start="url(#ar6h)" opacity="' + ((1 - c) * .8).toFixed(2) + '"/>'; }
+    const c2 = (t * .3) % 1; s += h2o6h(820, top + 180 + 160 * c2, t * 90, 1.2, Math.sin(Math.PI * c2)) + '<path d="M820 ' + (top + 130 + 160 * c2) + ' v-40" stroke="#5CE1FF" stroke-width="6" marker-start="url(#ab6h)" opacity="' + Math.sin(Math.PI * c2).toFixed(2) + '"/>'; }
   return s; }
 
 // ---------- Einstieg ----------
-WORLD.c6hHook = function (sc, ev, t, lt) { const fr = ev.frage, lo = ev.loop; let s = street6h(t);
-  const tx = fr === undefined ? 1500 : lerp(1500, -900, cl(fr / 5.4)); // faehrt durch und verschwindet links
-  s += truck6h(tx, t, fr !== undefined ? .6 : 0);
-  if (lo !== undefined) s += spray6h(Math.sin(Math.PI * cl(lo / 1.6)), t);
+// Einstieg: ab Bild 1 rutscht Schalti aus, faellt auf den Ruecken und schlittert uebers Eis. Der Streuwagen bremst neben ihm,
+// beim Versprechen bekommt er eine Ladung Salz ab und wird zurueckgeschoben, wo Koerner landen, tauen kleine Loecher ins Eis.
+const HA6H = 210, HB6H = 760; // Start und Ende der Rutschpartie
+function hookX6h(ev, lt) { const lo = ev.loop; if (lo !== undefined) return lerp(HB6H, 240, ease(cl(lo / 1.3)));
+  if (lt < .45) return lerp(HA6H, 270, lt / .45); return lerp(270, HB6H, 1 - Math.pow(1 - cl((lt - .45) / 2.4), 3)); }
+function holes6h(k, t) { let s = ''; for (let i = 0; i < 9; i++) { const f = cl((k - i * .07) / .5); if (f <= 0) continue; const x = 320 + rnd(i + 41) * 620, y = 1470 + rnd(i + 43) * 200, r = 10 + 26 * ease(f);
+    s += '<ellipse cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" rx="' + (r * 1.6).toFixed(1) + '" ry="' + (r * .6).toFixed(1) + '" fill="#4E7FB8" opacity=".7" stroke="#E8F7FF" stroke-width="3"/><rect x="' + (x - 5).toFixed(0) + '" y="' + (y - 5).toFixed(0) + '" width="10" height="10" fill="#fff" opacity="' + (1 - f).toFixed(2) + '"/>'; } return s; }
+WORLD.c6hHook = function (sc, ev, t, lt) { const fr = ev.frage, lo = ev.loop; let s = street6h(t, { noTree: 1 });
+  let tx = lerp(1700, 1500, cl((lt - 1) / .8)); if (fr !== undefined) tx = lerp(1500, 360, ease(cl(fr / 2.2))); if (lo !== undefined) tx = lerp(360, -1000, cl((lo - 1.4) / 1.4) ** 1.6);
+  if (lo !== undefined) s += holes6h(cl((lo - .5) / 1.6), t);
+  s += truck6h(tx, t, fr !== undefined && lo === undefined ? .25 : 0) + tree6h();
+  s += bag6h(78, GY6H - 24, 'SALZ', '#E9EEF5', .55);
+  // Eissplitter hinter dem Rutschenden, Aufprallstern bei der Landung
+  const x = hookX6h(ev, lt); if (lt > .45 && lt < 3 && lo === undefined) { const sp = 1 - cl((lt - .45) / 2.4); for (let i = 0; i < 14; i++) { const c = (t * 3 + i / 14) % 1; s += '<circle cx="' + (x - 120 - 160 * c + 20 * Math.sin(i * 3)).toFixed(0) + '" cy="' + (GY6H - 10 - 70 * c * (1 - c) * 4 + 10 * Math.sin(i)).toFixed(0) + '" r="' + (3 + 3 * rnd(i)).toFixed(1) + '" fill="#F2FBFF" opacity="' + (sp * (1 - c)).toFixed(2) + '"/>'; }
+    for (let i = 0; i < 3; i++) s += '<path d="M' + (x - 150 - i * 30) + ' ' + (GY6H - 40 - i * 30) + ' h' + (-80 * sp) + '" stroke="#F2FBFF" stroke-width="6" stroke-linecap="round" opacity="' + (.7 * sp).toFixed(2) + '"/>'; }
+  const imp = lt - .45; if (imp > 0 && imp < .35 && lo === undefined) { const c = imp / .35; for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; s += '<path d="M' + (270 + Math.cos(a) * 60 * (1 + c)).toFixed(0) + ' ' + (GY6H - 60 + Math.sin(a) * 40 * (1 + c)).toFixed(0) + ' l' + (Math.cos(a) * 40).toFixed(0) + ' ' + (Math.sin(a) * 28).toFixed(0) + '" stroke="#FFE14D" stroke-width="7" stroke-linecap="round" opacity="' + (1 - c).toFixed(2) + '"/>'; } }
+  if (lo !== undefined) { const k = Math.sin(Math.PI * cl(lo / 1.5)); for (let i = 0; i < 36; i++) { const c = (t * 1.6 + rnd(i + 21)) % 1, sx = tx + 420, px = sx - (sx - hookX6h(ev, lt) + 60) * c, py = 1110 + (GY6H - 1210) * c + 40 * Math.sin(i) ; s += '<rect x="' + px.toFixed(0) + '" y="' + py.toFixed(0) + '" width="11" height="11" fill="#fff" stroke="#8AA" stroke-width="1.5" transform="rotate(' + (i * 30 + t * 300).toFixed(0) + ' ' + (px + 5).toFixed(0) + ' ' + (py + 5).toFixed(0) + ')" opacity="' + (k * (1 - c * .3)).toFixed(2) + '"/>'; } }
   return W(s + shade3()); };
-WMASC.c6hHook = (ev, t, lt) => { const lo = ev.loop;
-  if (lo !== undefined) { const k = ease(cl(lo / .9)), w = Math.sin(Math.PI * cl(lo / 1.4)); return stay3([lerp(XH6H, 240, k), GY6H], 1, { r: -20 * w + 4, mood: 'shock' }); }
-  const sl = Math.sin(t * 3.2), fade = 1 - .5 * cl((ev.frage || 0) / 1.5); // rutscht ab dem ersten Bild
-  return stay3([XH6H + 60 * sl * fade, GY6H], 1, { r: 22 * sl * fade, mood: 'shock' }); };
+// Drehung um die Koerpermitte (die Pipeline dreht um die Fuesse): Fuesse so setzen, dass die Mitte ueber dem Eis bleibt
+function rot6h(cx, r, lift, mood) { const a = r * Math.PI / 180, cy = GY6H - 100 * Math.abs(Math.cos(a)) - 60 * Math.abs(Math.sin(a)) - (lift || 0);
+  return stay3([cx - 100 * Math.sin(a), cy + 100 * Math.cos(a)], 1, { r: r, mood: mood || 'shock' }); }
+WMASC.c6hHook = (ev, t, lt) => { const fr = ev.frage, lo = ev.loop, x = hookX6h(ev, lt);
+  if (lo !== undefined) { const w = Math.sin(Math.PI * cl(lo / 1.3)); return stay3([x, GY6H], 1, { r: -18 * w, mood: 'shock' }); }
+  if (fr !== undefined) { const up = ease(cl(fr / .7)), wob = Math.sin(t * 9) * (1 - cl((fr - .7) / 1)) * up; return rot6h(x, lerp(-630, -720, up) + 10 * wob, 20 * Math.sin(Math.PI * up)); }
+  if (lt < .45) { const k = lt / .45; return rot6h(x, -90 * ease(k), 50 * Math.sin(Math.PI * k)); } // faellt ab Bild 0
+  const sp = 1 - Math.pow(1 - cl((lt - .45) / 2.4), 3); return rot6h(x, -90 - 540 * sp, 6 * Math.abs(Math.sin(t * 7)) * (1 - sp)); }; // dreht sich beim Schlittern
 
 // ---------- Teil 1: Salz wirkt nur geloest (Interaktion im Ort, die eine Lupe) ----------
 const GX6H = 640, GYG6H = 1540; // dort landet das Korn
 WORLD.c6hGeloest = function (sc, ev, t, lt) { const lo = ev.loes, wa = ev.wasser, so = ev.sole;
-  const wet = so === undefined ? 0 : cl((so - 1) / 1.5); let s = street6h(t, { melt: wet * .5, wet: wet });
+  const wet = 0; let s = street6h(t, { melt: so === undefined ? 0 : .3 * cl(so / 2), noTree: 1 }) + holes6h(1, t); // Loecher aus dem Einstieg bleiben
   s += bag6h(78, GY6H - 24, 'SALZ', '#E9EEF5', .55);
-  if (lo !== undefined && so === undefined) { const a = cl((lo - .9) / .7); // Korn fliegt aus dem Sack ueber Schalti aufs Eis
-    if (a > 0) { const gx = lerp(110, GX6H, a), gy = lerp(1380, GYG6H, a) - 220 * Math.sin(Math.PI * a); s += '<rect x="' + (gx - 9).toFixed(0) + '" y="' + (gy - 9).toFixed(0) + '" width="18" height="18" fill="#fff" stroke="#7FA8C8" stroke-width="3" transform="rotate(' + (a * 400).toFixed(0) + ' ' + gx.toFixed(0) + ' ' + gy.toFixed(0) + ')"/>';
-      if (a >= 1) { const c = (t * 1.2) % 1; s += '<circle cx="' + GX6H + '" cy="' + GYG6H + '" r="' + (14 + 40 * c).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="5" opacity="' + (1 - c).toFixed(2) + '"/>'; } } }
+  if (lo !== undefined) { const G = [[GX6H, GYG6H], [470, 1500], [560, 1620], [760, 1490], [840, 1600], [960, 1540]]; // Handvoll Koerner, jedes taut ein Loch
+    G.forEach(([gx0, gy0], i) => { const a = cl((lo - .9 - i * .06) / .7); if (a <= 0) return; const gx = lerp(110, gx0, a), gy = lerp(1380, gy0, a) - 240 * Math.sin(Math.PI * a);
+      if (a < 1) s += '<rect x="' + (gx - 9).toFixed(0) + '" y="' + (gy - 9).toFixed(0) + '" width="18" height="18" fill="#fff" stroke="#7FA8C8" stroke-width="3" transform="rotate(' + (a * 400).toFixed(0) + ' ' + gx.toFixed(0) + ' ' + gy.toFixed(0) + ')"/>';
+      else { const g = so !== undefined ? 1 : cl((lo - 1.6 - i * .06) / (wa === undefined ? 2.5 : 1)) + (wa !== undefined ? cl(wa / 4) : 0), r = 8 + 30 * ease(cl(g)), c = (t * 1.1 + i * .3) % 1;
+        s += '<ellipse cx="' + gx0 + '" cy="' + gy0 + '" rx="' + (r * 1.6).toFixed(1) + '" ry="' + (r * .6).toFixed(1) + '" fill="#3E6FA8" opacity=".75" stroke="#E8F7FF" stroke-width="3"/><ellipse cx="' + gx0 + '" cy="' + gy0 + '" rx="' + (r * 1.6 + 40 * c).toFixed(1) + '" ry="' + (r * .6 + 14 * c).toFixed(1) + '" fill="none" stroke="#E8F7FF" stroke-width="3" opacity="' + (.8 * (1 - c)).toFixed(2) + '"/>';
+        if (g < 1) s += '<rect x="' + (gx0 - 8) + '" y="' + (gy0 - 8) + '" width="' + (16 * (1 - g * .8)).toFixed(1) + '" height="' + (16 * (1 - g * .8)).toFixed(1) + '" fill="#fff" stroke="#7FA8C8" stroke-width="2"/>'; } }); }
   if (wa !== undefined && so === undefined) s += lupeH(540, 900, 220, grain6h(cl((wa - .4) / 3), t), ease(cl(wa / .5)), GX6H, GYG6H - 20);
-  if (so !== undefined) s += truck6h(lerp(1350, 420, ease(cl(so / 2.2))), t, cl(so / .5), 1);
+  if (so !== undefined) { const tx = lerp(1150, -900, cl(so / 4.2)); s += '<rect x="' + Math.max(0, tx + 120).toFixed(0) + '" y="1030" width="1080" height="180" fill="#5E7FA8" opacity=".4"/>' + truck6h(tx, t, 1, 1); }
+  s += tree6h();
   return W(s + shade3(), slot(ev, [['loes', 'Wirkt erst gelöst', 'hot'], ['wasser', 'Es entsteht Salzwasser'], ['sole', 'Streudienst sprüht Sole']])); };
 WMASC.c6hGeloest = (ev, t, lt) => { const lo = ev.loes, so = ev.sole;
   if (so !== undefined) { const j = Math.sin(Math.PI * cl((so - 1.6) / .6)); return stay3([XH6H - 40 * ease(cl((so - 1.6) / .6)), GY6H - 24 * j], 1, { r: -10 * j, mood: j > .2 ? 'shock' : 'happy' }); }
@@ -124,8 +155,8 @@ WMASC.c6hGeloest = (ev, t, lt) => { const lo = ev.loes, so = ev.sole;
   return stay3([mv6h(240, XH6H, lt / .8), GY6H - 20 * Math.sin(Math.PI * cl(lt / .8))], 1, { r: 3 }); };
 
 // ---------- Teil 2: Salz stoert das Gefrieren (Wissenschaftsmodus, nur hier) ----------
-WORLD.c6hStoer = function (sc, ev, t, lt) { const bg = fuse33(street6h(t, { melt: .3, wet: 1 }) + bag6h(78, GY6H - 24, 'SALZ', '#E9EEF5', .55), sc, t, lt); const m = lab33(sc, t);
-  let s = bg; if (ev.rehook !== undefined && ev.gitter === undefined) { const c = (t * .8) % 1; s += '<ellipse cx="' + GX6H + '" cy="' + GYG6H + '" rx="' + (40 + 120 * c).toFixed(0) + '" ry="' + (10 + 30 * c).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="5" opacity="' + (1 - c).toFixed(2) + '"/>'; }
+WORLD.c6hStoer = function (sc, ev, t, lt) { const bg = fuse33(street6h(t, { melt: .3, wet: 1 }) + holes6h(1, t) + [[GX6H, GYG6H], [470, 1500], [560, 1620], [760, 1490], [840, 1600], [960, 1540]].map(([x, y]) => '<ellipse cx="' + x + '" cy="' + y + '" rx="61" ry="23" fill="#3E6FA8" opacity=".75" stroke="#E8F7FF" stroke-width="3"/>').join(''), sc, t, lt); const m = lab33(sc, t);
+  let s = bg + '<g opacity="' + (1 - m).toFixed(3) + '">' + bag6h(78, GY6H - 24, 'SALZ', '#E9EEF5', .55) + '</g>'; if (ev.rehook !== undefined && ev.gitter === undefined) { const c = (t * .8) % 1; s += '<ellipse cx="' + GX6H + '" cy="' + GYG6H + '" rx="' + (40 + 120 * c).toFixed(0) + '" ry="' + (10 + 30 * c).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="5" opacity="' + (1 - c).toFixed(2) + '"/>'; }
   return W(s + '<g opacity="' + m.toFixed(3) + '">' + lab33dots() + sci6h(t, ev) + '</g>' + shade3(), slot(ev, [['gitter', 'Eis = festes Gitter'], ['ionen', 'Salz zerfällt in Ionen', 'hot'], ['rand', 'Weniger frieren an'], ['warm', 'Gefriert erst unter 0 °C', 'hot']])); };
 WMASC.c6hStoer = (ev, t, lt) => { const rh = ev.rehook, ra = ev.rand, wa = ev.warm;
   if (wa !== undefined) { const b = Math.sin(Math.PI * cl((wa - .6) / .8)); return stay3([XL6H, GY6H - 40 * b], 1, { r: 6 * b, mood: 'happy' }); }
@@ -135,11 +166,18 @@ WMASC.c6hStoer = (ev, t, lt) => { const rh = ev.rehook, ra = ev.rand, wa = ev.wa
 
 // ---------- Teil 3: Die Grenze (Thermometer an der Laterne, Frost, Splitt) ----------
 WORLD.c6hGrenze = function (sc, ev, t, lt) { const rh = ev.rehook, zt = ev.zehn, ei = ev.einuz, ve = ev.verbot, sp = ev.splitt; let v = -2;
-  if (rh !== undefined) v = lerp(-2, -4, ease(cl(rh / 1.5))); if (zt !== undefined) v = lerp(-4, -10, ease(cl(zt / 2))); if (ei !== undefined) v = lerp(-10, -21, ease(cl(ei / 3)));
-  if (ve !== undefined) v = lerp(-21, -4, ease(cl(ve / 1.2)));
-  const frz = ei !== undefined && ve === undefined ? ease(cl((ei - .8) / 2.4)) : 0;
+  if (rh !== undefined) v = lerp(-2, -8, ease(cl(rh / 1.6))); if (zt !== undefined) v = lerp(-8, -10, ease(cl(zt / 1.5))); if (ei !== undefined) v = lerp(-10, -21, ease(cl(ei / 1.2)));
+  const frz = ve !== undefined ? 0 : (ei !== undefined ? .35 + .65 * ease(cl((ei - .8) / 2.4)) : (zt !== undefined ? .35 * cl((zt - .8) / 3) : 0));
   let s = street6h(t, { melt: ve === undefined ? 1 : 1 - ease(cl(ve / 1)), frz: frz, wet: 1 - (ve !== undefined ? 1 : 0) });
-  s += therm6h(v, rh === undefined ? 0 : cl(rh / .5) * (ve === undefined ? 1 : 1 - cl((ve - .8) / .5)));
+  const cold = rh === undefined ? 0 : Math.max(.45 * cl(rh / .6), cl((10 - v) / 28)) * (ve === undefined ? 1 : 1 - cl(ve / 1)); // je kaelter, desto mehr Schnee und Atem
+  for (let i = 0; i < 55; i++) { const c = (t * (.12 + .06 * rnd(i + 60)) + rnd(i + 61)) % 1, x = rnd(i + 62) * 1080 + 30 * Math.sin(t + i); if (rnd(i + 63) < cold) s += '<circle cx="' + x.toFixed(0) + '" cy="' + (680 + 1000 * c).toFixed(0) + '" r="' + (6 + 6 * rnd(i + 64)).toFixed(1) + '" fill="#fff" opacity=".85"/>'; }
+  if (cold > .2 && sp === undefined) for (let j = 0; j < 2; j++) { const c = (t * .7 + j * .5) % 1; s += '<circle cx="' + (XH6H + 90 + 70 * c).toFixed(0) + '" cy="' + (GY6H - 150 - 30 * c).toFixed(0) + '" r="' + (12 + 26 * c).toFixed(0) + '" fill="#EAF2FF" opacity="' + (.6 * (1 - c) * cold).toFixed(2) + '"/>'; }
+  const fz = ei === undefined || ve !== undefined ? (ve !== undefined ? 1 - cl(ve / .6) : 0) : cl((ei - 1.5) / 1.2); // Eis friert um Schaltis Fuesse
+  if (fz > 0 && sp === undefined) s += '<path d="M' + (XH6H - 90) + ' ' + (GY6H + 8) + ' l14 ' + (-46 * fz).toFixed(0) + ' l30 10 l20 ' + (-30 * fz).toFixed(0) + ' l40 6 l26 ' + (-40 * fz).toFixed(0) + ' l30 14 l10 ' + (40 * fz).toFixed(0) + ' Z" fill="#CFEFFF" opacity=".85" stroke="#F2FBFF" stroke-width="4"/>';
+  s += therm6h(v, rh === undefined ? 0 : cl(rh / .5) * (ve === undefined ? 1 : 1 - cl(ve / .5)));
+  if (zt !== undefined && ve === undefined) { const a = cl((zt - .9) / .6), gx = lerp(110, 700, a), gy = lerp(1380, 1580, a) - 220 * Math.sin(Math.PI * a); // Korn bleibt bei der Kaelte einfach liegen
+    s += '<rect x="' + (gx - 9).toFixed(0) + '" y="' + (gy - 9).toFixed(0) + '" width="18" height="18" fill="#fff" stroke="#7FA8C8" stroke-width="3"/>'; if (a >= 1) { const c = (t * .9) % 1; s += '<circle cx="700" cy="1580" r="' + (16 + 30 * c).toFixed(0) + '" fill="none" stroke="#F2FBFF" stroke-width="4" stroke-dasharray="6 6" opacity="' + (1 - c).toFixed(2) + '"/>'; } }
+  if (ve !== undefined && sp === undefined) { const c = (t * 1.1) % 1; s += '<ellipse cx="972" cy="1222" rx="' + (50 + 50 * c).toFixed(0) + '" ry="' + (12 + 12 * c).toFixed(0) + '" fill="none" stroke="#FF4D6D" stroke-width="5" opacity="' + ((1 - c) * cl((ve - 1.2) / .4)).toFixed(2) + '"/>'; }
   if (ve !== undefined && sp === undefined) s += sign6h(cl((ve - .3) / .5)) + paws6h(cl((ve - 1.6) / 1.4));
   const sk = sp === undefined ? 0 : cl((sp - .3) / 1.8); if (sk > 0) s += grit6h(sk, XH6H + 70, GY6H - 120);
   const sw6 = sp === undefined ? 0 : ease(cl(sp / .5)); // Salzsack rutscht nach links raus, Splittsack kommt herein
@@ -150,11 +188,12 @@ WMASC.c6hGrenze = (ev, t, lt) => { const rh = ev.rehook, ei = ev.einuz, sp = ev.
   if (sp !== undefined) { const sw = Math.sin(t * 7) * cl((sp - .3) / .3) * (1 - cl((sp - 2.1) / .3)), st = Math.abs(Math.sin(Math.PI * cl((sp - 2.4) / 1.2) * 2)); return stay3([XH6H, GY6H - 14 * st], 1, { r: 14 * sw, mood: 'happy' }); }
   if (ve !== undefined) return stay3([XH6H, GY6H], 1, { r: 3 * Math.sin(t * 2), mood: 'cool' });
   if (ei !== undefined) { const sh = Math.sin(t * 40) * cl((ei - 1.2) / .6); return stay3([XH6H + 3 * sh, GY6H], 1, { r: 2 * sh, mood: 'shock' }); }
+  if (ev.zehn !== undefined) { const z = ev.zehn, bend = Math.sin(Math.PI * cl((z - .2) / .6)), th = Math.sin(Math.PI * cl((z - .8) / .35)); return stay3([XH6H - 40 * bend, GY6H - 14 * th], 1, { r: -16 * bend + 20 * th, mood: z > 2 ? 'shock' : 'happy' }); }
   if (rh !== undefined) return stay3([mv6h(XL6H, XH6H, lt / .8), GY6H - 30 * Math.sin(Math.PI * cl(lt / .8))], 1, { r: 3, mood: 'shock' });
   return stay3([XH6H, GY6H], 1, { r: 2 }); };
 
 // ---------- Schluss ----------
 WORLD.c6hOut = function (sc, ev, t, lt) { return W(street6h(t, { melt: 0 }) + grit6h(1, 0, 0) + bag6h(78, GY6H - 24, 'SPLITT', '#B4A48C', .55) + shade3()); };
-WMASC.c6hOut = (ev, t, lt) => stay3([XH6H, GY6H], 1, { r: 2 * Math.sin(t * 2), mood: ev.save !== undefined ? 'happy' : undefined });
+WMASC.c6hOut = (ev, t, lt) => stay3([XH6H + 120 * Math.sin(Math.PI * cl(lt / 6)), GY6H - 8 * Math.abs(Math.sin(t * 7)) * (lt < 6 ? 1 : 0)], 1, { flip: lt > 3 && lt < 6 ? 1 : 0, r: 2 * Math.sin(t * 2), mood: ev.save !== undefined ? 'happy' : undefined });
 
 ['c6hHook', 'c6hGeloest', 'c6hStoer', 'c6hGrenze', 'c6hOut'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC6H); });
