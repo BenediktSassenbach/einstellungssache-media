@@ -195,5 +195,13 @@ def I027():  # Verschluesselt: Schloss rastet ein (Klick), dann tiefes Zuschnapp
     d = .15; t = T(d); save('I027_0.wav', norm(hp(noise(len(t)), .4) * np.exp(-t * 60), .2))
     d = .9; t = T(d); x = np.sin(2 * np.pi * 85 * t) * np.exp(-t * 14) + .35 * np.sin(2 * np.pi * 1500 * t) * np.exp(-(t - .25).clip(0) * 8) * (t > .25)
     save('I027_1.wav', norm(x * env(len(t), .003, .3), .32))
+def I030H():  # Paket faellt: kurzer Pfeifton nach unten, dann dumpfer Karton-Aufprall mit Rascheln und ein kurzes Hupf-Geraeusch
+    d = .35; t = T(d); f = np.linspace(1400, 500, len(t)); w = np.sin(2 * np.pi * np.cumsum(f) / SR) * .5 + .3 * hp(noise(len(t)), .2) * (t / d)
+    save('I030H_0.wav', norm(w * env(len(t), .05, .01), .25))
+    d = 1.4; t = T(d)
+    thud = lp(noise(len(t)), .05) * np.exp(-t * 18) + .8 * np.sin(2 * np.pi * 90 * t) * np.exp(-t * 14)
+    rus = hp(lp(noise(len(t)), .4), .05) * np.exp(-t * 6) * .5
+    k = int(.45 * SR); m = int(.25 * SR); tt = np.arange(m) / SR; boing = np.zeros(len(t)); boing[k:k + m] = np.sin(2 * np.pi * np.cumsum(np.linspace(300, 700, m)) / SR) * np.exp(-tt * 10) * .5
+    save('I030H_1.wav', norm((thud + rus + boing) * env(len(t), .002, .3), .42))
 
 for a in sys.argv[1:]: globals()[a]()
