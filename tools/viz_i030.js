@@ -4,18 +4,21 @@
 // Keine Figuren, Logos oder Szenen aus dem Spiel. Nur Erklaerung und Schutz.
 // Zum Loeschen: diese Datei und videos/I030.
 var AC30 = '#7C5CFF', ST30 = '#0B1020', GY30 = 1537;
-function city30(t, o) { o = o || {}; let s = '<defs><linearGradient id="sk30" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3B1E6E"/><stop offset=".45" stop-color="#E0527A"/><stop offset=".8" stop-color="#FFB25C"/><stop offset="1" stop-color="#FFD98A"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#sk30)"/>';
+function city30(t, o) { o = o || {}; let s = ''; if (!o.noSky) { s += '<defs><linearGradient id="sk30" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3B1E6E"/><stop offset=".45" stop-color="#E0527A"/><stop offset=".8" stop-color="#FFB25C"/><stop offset="1" stop-color="#FFD98A"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#sk30)"/>';
   s += '<circle cx="560" cy="760" r="120" fill="#FFE9A8" opacity=".9"/><circle cx="560" cy="760" r="200" fill="#FFE9A8" opacity=".18"/>';
   // Skyline hinten
   for (let i = 0; i < 9; i++) { const x = i * 130 - 30, h = 220 + rnd(i + 4) * 260; s += '<rect x="' + x + '" y="' + (900 - h) + '" width="120" height="' + h + '" fill="#6A2E6E" opacity=".75"/>'; for (let k = 0; k < 4; k++) s += '<rect x="' + (x + 18 + (k % 2) * 50) + '" y="' + (920 - h + 40 + Math.floor(k / 2) * 70) + '" width="26" height="30" fill="#FFC86B" opacity="' + ((Math.floor(t * .3 + i + k) % 3) ? .55 : .15) + '"/>'; }
   // Palmen
   for (const [px, ph] of [[300, 420], [800, 380]]) { s += '<path d="M' + px + ' 1020 Q' + (px + 14) + ' ' + (1020 - ph / 2) + ' ' + (px + 6) + ' ' + (1020 - ph) + '" stroke="#3A1E3E" stroke-width="16" fill="none"/>'; for (let j = 0; j < 6; j++) { const a = (-170 + j * 32 + 4 * Math.sin(t * 1.2 + j)) * Math.PI / 180; s += '<path d="M' + (px + 6) + ' ' + (1020 - ph) + ' q' + (Math.cos(a) * 80).toFixed(0) + ' ' + (Math.sin(a) * 80 - 30).toFixed(0) + ' ' + (Math.cos(a) * 150).toFixed(0) + ' ' + (Math.sin(a) * 150 + 20).toFixed(0) + '" stroke="#3A1E3E" stroke-width="12" fill="none" stroke-linecap="round"/>'; } }
+  }
   // Haus links: Elektronikladen mit Schaufenster
   s += '<rect x="-20" y="560" width="440" height="520" fill="#2E8C8C" stroke="' + ST30 + '" stroke-width="6"/><path d="M-20 560 H420 V600 H-20 Z" fill="#F4E3C8" stroke="' + ST30 + '" stroke-width="5"/>';
   s += '<rect x="20" y="700" width="360" height="48" rx="10" fill="#1B1E3A" stroke="' + ST30 + '" stroke-width="5"/>' + svgT(200, 735, o.sign !== undefined ? o.sign : (o.offiziell ? 'OFFIZIELLER STORE' : 'ELEKTRONIK'), 30, o.offiziell ? '#3DFF7A' : '#5CE1FF');
   s += '<rect x="30" y="752" width="340" height="238" fill="#BFE9FF" stroke="' + ST30 + '" stroke-width="6"/><path d="M60 772 L140 980 M180 772 L250 980" stroke="#fff" stroke-width="10" opacity=".35"/>';
+  // Regal im Schaufenster mit Spielehuellen (ohne Logos), damit es nicht leer ist
+  if (o.noSky) { s += '<rect x="40" y="944" width="320" height="12" fill="#6A4A3A" stroke="' + ST30 + '" stroke-width="3"/><rect x="40" y="846" width="320" height="10" fill="#6A4A3A" stroke="' + ST30 + '" stroke-width="3"/>'; ['#FF5A7A', '#5CE1FF', '#FFD23F', '#7C5CFF', '#3DFF7A', '#FF9A3D', '#F4F6FB', '#FF6BD6'].forEach((c, i) => { const x = 52 + i * 38; s += '<rect x="' + x + '" y="' + (i % 3 ? 900 : 894) + '" width="30" height="' + (i % 3 ? 44 : 50) + '" rx="3" fill="' + c + '" stroke="' + ST30 + '" stroke-width="3"/><rect x="' + (x + 5) + '" y="' + (i % 3 ? 908 : 902) + '" width="20" height="14" fill="#fff" opacity=".45"/>'; s += '<rect x="' + (x + 2) + '" y="' + (800 + (i % 2) * 6) + '" width="26" height="' + (46 - (i % 2) * 6) + '" rx="3" fill="' + c + '" opacity=".85" stroke="' + ST30 + '" stroke-width="3"/>'; }); }
   // Konsolen im Schaufenster (eigene Formen, keine Marken)
-  const cK = o.kons || 0; if (cK > 0) { const e = back(cl(cK)); s += '<g transform="translate(120 960) scale(' + e.toFixed(3) + ')"><path d="M-30 0 Q-40 -140 0 -170 Q40 -140 30 0 Z" fill="#F4F6FB" stroke="' + ST30 + '" stroke-width="5"/><path d="M-6 -150 V-10" stroke="#1B1E3A" stroke-width="10"/>' + svgT(0, 36, 'PS5', 28, ST30) + '</g><g transform="translate(280 960) scale(' + e.toFixed(3) + ')"><rect x="-44" y="-150" width="88" height="150" rx="8" fill="#1B1E3A" stroke="' + ST30 + '" stroke-width="5"/><circle cx="0" cy="-130" r="10" fill="#3DFF7A"/>' + svgT(0, 36, 'Xbox', 28, ST30) + '</g>'; }
+  const cK = o.kons || 0; if (cK > 0) { const e = back(cl(cK)); s += '<g transform="translate(120 934) scale(' + e.toFixed(3) + ')"><path d="M-30 0 Q-40 -140 0 -170 Q40 -140 30 0 Z" fill="#F4F6FB" stroke="' + ST30 + '" stroke-width="5"/><path d="M-6 -150 V-10" stroke="#1B1E3A" stroke-width="10"/>' + svgT(0, 36, 'PS5', 28, ST30) + '</g><g transform="translate(280 934) scale(' + e.toFixed(3) + ')"><rect x="-44" y="-150" width="88" height="150" rx="8" fill="#1B1E3A" stroke="' + ST30 + '" stroke-width="5"/><circle cx="0" cy="-130" r="10" fill="#3DFF7A"/>' + svgT(0, 36, 'Xbox', 28, ST30) + '</g>'; }
   if (o.pc) { const k = cl(o.pc); s += '<g opacity="' + k.toFixed(2) + '" transform="translate(200 870)"><rect x="-70" y="-60" width="140" height="90" rx="6" fill="#2A3560" stroke="' + ST30 + '" stroke-width="5"/><path d="M0 30 v24 M-30 56 h60" stroke="' + ST30 + '" stroke-width="6"/><circle r="44" fill="none" stroke="#FF4D6D" stroke-width="9"/><path d="M-30 -30 L30 30" stroke="#FF4D6D" stroke-width="9"/></g>'; }
   // Haus rechts mit Leuchtwand (o.rx verschiebt Haus, Leuchtwand und Kiosk waagrecht)
   s += '<g transform="translate(' + (o.rx || 0) + ' 0)">';
@@ -29,9 +32,9 @@ function city30(t, o) { o = o || {}; let s = '<defs><linearGradient id="sk30" x1
   for (let i = 0; i < 4; i++) s += box30(720 + i * 80, 1070 - (i % 2) * 0, .6, 0);
   s += '</g>';
   // Gehweg
-  s += '<rect x="0" y="1080" width="1080" height="840" fill="#C98A6A"/><path d="M0 1080 H1080" stroke="#FFE1C4" stroke-width="12"/>';
-  for (let i = 0; i < 7; i++) s += '<path d="M' + (i * 180 - 60) + ' 1086 L' + (i * 180 - 160) + ' 1920" stroke="#B07658" stroke-width="5"/>';
-  s += '<path d="M0 1390 H1080" stroke="#B07658" stroke-width="5"/>';
+  if (!o.noGround) s += '<rect x="0" y="1080" width="1080" height="840" fill="#C98A6A"/><path d="M0 1080 H1080" stroke="#FFE1C4" stroke-width="12"/>';
+  if (!o.noGround) for (let i = 0; i < 7; i++) s += '<path d="M' + (i * 180 - 60) + ' 1086 L' + (i * 180 - 160) + ' 1920" stroke="#B07658" stroke-width="5"/>';
+  if (!o.noGround) s += '<path d="M0 1390 H1080" stroke="#B07658" stroke-width="5"/>';
   return s; }
 // Inhalt der Leuchtwand
 function screen30(kind, t, o) { let s = '<g transform="translate(870 675) scale(.82)"><clipPath id="sc30"><rect x="-190" y="-140" width="380" height="280" rx="8"/></clipPath><g clip-path="url(#sc30)"><rect x="-190" y="-140" width="380" height="280" fill="#1B2050"/>';

@@ -13,9 +13,36 @@ function propsJ3(t) { let s = '';
   s += '<g transform="translate(975 1500)"><ellipse cx="0" cy="4" rx="46" ry="10" fill="#000" opacity=".25"/><path d="M-36 -110 h72 l-8 110 h-56 Z" fill="#3A8C6E" stroke="' + STJ3 + '" stroke-width="5"/><rect x="-42" y="-122" width="84" height="16" rx="6" fill="#2E6E56" stroke="' + STJ3 + '" stroke-width="5"/></g>'; // Muelleimer
   s += '<g transform="translate(1050 1430)"><ellipse cx="0" cy="4" rx="40" ry="9" fill="#000" opacity=".25"/><rect x="-20" y="-80" width="40" height="80" rx="10" fill="#E8384F" stroke="' + STJ3 + '" stroke-width="5"/><rect x="-34" y="-62" width="68" height="16" rx="6" fill="#C42A3E" stroke="' + STJ3 + '" stroke-width="4"/><circle cy="-92" r="16" fill="#E8384F" stroke="' + STJ3 + '" stroke-width="5"/></g>'; // Hydrant
   // Laterne entfernt (Mast lief durch den Untertitel)
+  s += '<g transform="translate(700 1660)"><ellipse rx="60" ry="10" fill="#E8A07A" opacity=".5"/></g>'; [[540, 1600], [820, 1640], [150, 1660]].forEach((q, i) => { s += '<path d="M' + q[0] + ' ' + q[1] + ' q12 -10 22 0 q-10 8 -22 0 Z" fill="' + ['#8AC46A', '#E8A040', '#6AA85A'][i] + '" opacity=".8"/>'; }); // Blaetter auf dem Gehweg
   s += '<ellipse cx="300" cy="1720" rx="180" ry="26" fill="#E8A07A" opacity=".55"/><ellipse cx="300" cy="1720" rx="140" ry="16" fill="#FFD2A8" opacity=".35"/>'; // Pfuetze mit Abendlicht
   return s; }
-function streetJ3(t, o) { return city30(t, Object.assign({ rx: -90 }, o)) + lifeJ3(t) + propsJ3(t); }
+function skyJ3(t) { const keep = SUN26; SUN26 = [480, 480]; const s = sky26(t); SUN26 = keep; return s; }
+function facadeJ3(t) { let s = '';
+  // Haus rechts (mit rx -90: x 550 bis 1010): Art-deco-Krone, Fenster mit Licht, Lichtkante zur Sonne
+  s += '<path d="M640 380 V350 H700 V325 H860 V350 H920 V380 Z" fill="#9A3A5E" stroke="#0B1020" stroke-width="5"/><rect x="760" y="300" width="40" height="25" fill="#9A3A5E" stroke="#0B1020" stroke-width="4"/>';
+  s += '<path d="M550 400 H1010 M550 530 H1010" stroke="#FFD3A8" stroke-width="6" opacity=".7"/>';
+  [590, 700, 810, 920].forEach((x, i) => { const on = Math.floor(t * .35 + rnd(i + 40) * 7) % 3 !== 0; s += '<rect x="' + x + '" y="420" width="64" height="90" rx="6" fill="' + (on ? '#FFE2A8' : '#3A2A6A') + '" stroke="#0B1020" stroke-width="4"/><path d="M' + (x + 8) + ' 428 l20 0 l-14 40 Z" fill="#fff" opacity=".3"/><path d="M' + (x + 32) + ' 420 V510" stroke="#0B1020" stroke-width="3"/>'; });
+  s += '<rect x="550" y="300" width="460" height="780" fill="url(#k26R)" opacity=".7"/>';
+  // Laden links: Zierstreifen und Lichtkante
+  s += '<rect x="-20" y="600" width="440" height="8" fill="#FFD3A8" opacity=".8"/><rect x="-20" y="560" width="440" height="520" fill="url(#k26L)" opacity=".6"/>';
+  // Palmen hinter der Strasse zwischen den Haeusern und rechts
+  [[485, 520], [1050, 560]].forEach(q => { s += '<g transform="translate(' + q[0] + ' 1080) scale(.75) translate(' + (-q[0]) + ' ' + (-GY26) + ')">' + palm26(q[0], q[1], t, 1) + '</g>'; });
+  return s; }
+function groundJ3(t) { let s = '<rect x="0" y="1080" width="1080" height="220" fill="#4A2A52"/><rect x="0" y="1080" width="1080" height="10" fill="#F7D2B8" opacity=".7"/>';
+  for (let i = 0; i < 8; i++) s += '<rect x="' + (i * 160 - 40) + '" y="1186" width="80" height="8" fill="#F7D2B8" opacity=".5"/>';
+  // Autos: hinten nach links, vorn nach rechts
+  for (let c = 0; c < 4; c++) { const far = c % 2 === 0, sp = far ? 210 + 40 * c : 260 + 30 * c, x = far ? 1350 - ((t * sp + c * 700) % 1800) : ((t * sp + c * 650) % 1800) - 300, y = far ? 1176 : 1280, col = ['#5CE1FF', '#FFD23F', '#FF5A7A', '#7C5CFF'][c];
+    s += '<ellipse cx="' + x.toFixed(1) + '" cy="' + (y + 3) + '" rx="' + (far ? 80 : 96) + '" ry="8" fill="#000" opacity=".3"/><g transform="translate(' + x.toFixed(1) + ' ' + y + ')">' + carP28(far ? 160 : 190, far ? 66 : 80, col, far ? -1 : 1) + '</g>'; }
+  // Gehweg vorn mit Fugen und Bordstein
+  s += '<defs><linearGradient id="gwJ3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E7A687"/><stop offset="1" stop-color="#B9705A"/></linearGradient></defs><rect x="0" y="1300" width="1080" height="620" fill="url(#gwJ3)"/><rect x="0" y="1300" width="1080" height="16" fill="#FFE1C4"/>';
+  for (let i = 0; i < 9; i++) s += '<path d="M' + (i * 150 - 60) + ' 1316 L' + (i * 190 - 230) + ' 1920" stroke="#A9644E" stroke-width="4" opacity=".6"/>';
+  for (const y of [1400, 1530, 1700]) s += '<path d="M0 ' + y + ' H1080" stroke="#A9644E" stroke-width="4" opacity=".6"/>';
+  // Leute auf dem hinteren Gehweg vor den Laeden (weit weg von Schalti), feste Abstaende, kommen vom Rand
+  for (let c = 0; c < 4; c++) { const dir = c % 2 ? -1 : 1, sp = 44, sx = dir > 0 ? ((t * sp + (c >> 1) * 760) % 1520) - 220 : 1300 - ((t * sp + (c >> 1) * 760 + 380) % 1520); if (sx < -60 || sx > 1140) continue;
+    const h = 78, ph = t * 6 + c, sw = Math.sin(ph) * h * .14, y = 1076 + (c % 2) * 4, col = ['#5CE1FF', '#FF6BD6', '#FFE14D', '#3DFF7A'][c], skin = ['#F2C9A0', '#C68A62', '#8A5A3A', '#F2C9A0'][c];
+    s += '<g><ellipse cx="' + sx.toFixed(1) + '" cy="' + y + '" rx="18" ry="4" fill="#2A1440" opacity=".3"/><g transform="translate(' + sx.toFixed(1) + ' ' + (y - Math.abs(Math.cos(ph)) * 2).toFixed(1) + ') scale(' + dir + ',1)"><path d="M0 ' + (-h * .47) + ' l' + sw.toFixed(1) + ' ' + (h * .47) + ' M0 ' + (-h * .47) + ' l' + (-sw).toFixed(1) + ' ' + (h * .47) + '" stroke="#2A2050" stroke-width="8" stroke-linecap="round"/><path d="M-10 ' + (-h * .45) + ' l2 -28 q8 -5 16 0 l2 28 Z" fill="' + col + '"/><path d="M0 ' + (-h * .78) + ' l' + (sw * .8).toFixed(1) + ' ' + (h * .3) + '" stroke="' + skin + '" stroke-width="5" stroke-linecap="round"/><circle cy="' + (-h * .88) + '" r="8" fill="' + skin + '"/><path d="M-8 ' + (-h * .88) + ' a8 8 0 0 1 16 0 Z" fill="#2A1430"/></g></g>'; }
+  return s; }
+function streetJ3(t, o) { return skyJ3(t) + city30(t, Object.assign({ rx: -90, noSky: 1, noGround: 1 }, o)) + facadeJ3(t) + groundJ3(t) + lifeJ3(t) + propsJ3(t) + dust28(t); }
 
 // rotes Kreuz ueber dem PC im Schaufenster
 const crossJ3 = (k) => k <= 0 ? '' : '<g opacity="' + cl(k * 2).toFixed(2) + '" transform="translate(200 870) scale(' + back(cl(k)).toFixed(3) + ')"><path d="M-60 -60 L60 60 M60 -60 L-60 60" stroke="#FF3B5C" stroke-width="18" stroke-linecap="round"/></g>';
@@ -31,9 +58,9 @@ function fileJ3(t, ev) { const wa = ev.warn, st = ev.stiehlt, gr = ev.gross, au 
       if (st !== undefined) { for (let i = 0; i < 3; i++) { const f = cl((st - .3 - i * .35) / .6); if (f <= 0 || f >= 1) continue; s += (i === 1 ? coin30 : key30)(lerp(300 + i * 60, 680, ease(f)), lerp(860, 1040, ease(f)) - 80 * Math.sin(Math.PI * f), i * 40); } } } }
   else { // Laufwerk C mit Schutzschild, das zur Seite geschoben wird
     const k = ease(cl(au / .5)), push = ease(cl((au - 1.4) / .8)); s += '<g opacity="' + k.toFixed(2) + '"><rect x="300" y="820" width="480" height="260" rx="24" fill="#2A3560" stroke="#F4F6FB" stroke-width="6"/>' + svgT(540, 970, 'C:', 90, '#F4F6FB') + '</g>';
-    const sx = lerp(540, 940, push), sop = 1 - .6 * push; s += '<g transform="translate(' + sx.toFixed(0) + ' 760) rotate(' + (30 * push).toFixed(0) + ')" opacity="' + sop.toFixed(2) + '"><path d="M0 -90 L80 -60 V10 Q80 70 0 100 Q-80 70 -80 10 V-60 Z" fill="#2ECC71" stroke="#F4F6FB" stroke-width="6"/><path d="M-30 0 l22 24 l40 -46" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round"/></g>';
+    const sx = lerp(540, 1300, push), sop = 1; s += '<g transform="translate(' + sx.toFixed(0) + ' 760) rotate(' + (70 * push).toFixed(0) + ')" opacity="' + sop.toFixed(2) + '"><path d="M0 -90 L80 -60 V10 Q80 70 0 100 Q-80 70 -80 10 V-60 Z" fill="#2ECC71" stroke="#F4F6FB" stroke-width="6"/><path d="M-30 0 l22 24 l40 -46" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round"/></g>';
     if (push < .1) { const c = (t * .9) % 1; s += '<rect x="300" y="' + (820 + 260 * c).toFixed(0) + '" width="480" height="8" fill="#2ECC71" opacity=".6"/>'; }
-    if (push > .5) { const vk = cl((au - 2) / .8); s += '<g opacity="' + (1 - cl((vk - .7) / .3)).toFixed(2) + '">' + virus30(lerp(120, 330, vk), 1000, .8, t, { run: 1, dir: 1 }) + '</g>'; } }
+    if (push > .5) { const vk = cl((au - 2) / .8); s += '<g opacity="' + (1 - cl((vk - .7) / .3)).toFixed(2) + '">' + virus30(lerp(120, 330, vk), 1000, .8, t, { run: 1, dir: 1 }) + '</g>'; const inf = cl((au - 2.6) / .6); if (inf > 0) s += '<rect x="300" y="820" width="480" height="260" rx="24" fill="#7C3AED" opacity="' + (.55 * inf).toFixed(2) + '"/>' + svgT(540, 1050, 'infiziert', 36, '#F4F6FB').replace('<text', '<text opacity="' + inf.toFixed(2) + '"'); } }
   return s; }
 
 // ---------- Einstieg ----------
@@ -57,8 +84,8 @@ WORLD.j3Kein = function (sc, ev, t, lt) { const ko = ev.kons, an = ev.angek, cg 
   const scr = cg !== undefined && fk === undefined ? 'cloud' : (an !== undefined || ko !== undefined ? 'plat' : 'dl');
   let s = streetJ3(t, { scr: scr, kons: ko === undefined ? 0 : cl((ko - .4) / .5) * (fk === undefined ? 1 : 1 - cl(fk / .3)), lst: an === undefined ? 0 : cl((an - .2) / 2), pc: fk === undefined ? 0 : cl(fk / .4) }) + box30(620, GYJ3, 1.3, 1);
   if (fk !== undefined) s += crossJ3(cl((fk - .8) / .4));
-  if (ko !== undefined && an === undefined) { const c = (t * 1.3) % 1; s += '<rect x="30" y="752" width="340" height="238" fill="none" stroke="#FFE14D" stroke-width="' + (10 * (1 - c)).toFixed(1) + '"/>'; for (let i = 0; i < 2; i++) s += '<circle cx="' + (i ? 280 : 120) + '" cy="' + (i ? 830 : 800) + '" r="' + (10 + 6 * Math.sin(t * 6 + i * 2)).toFixed(1) + '" fill="#3DFF7A" opacity=".7"/>'; }
-  if ((an !== undefined || ko !== undefined) && cg === undefined) { const c = (t * 1.4) % 1; s += '<rect x="612" y="548" width="336" height="254" rx="12" fill="none" stroke="#FFE14D" stroke-width="' + (8 * (1 - c)).toFixed(1) + '"/>'; }
+  if (ko !== undefined && an === undefined) { s += '<rect x="24" y="746" width="352" height="250" fill="none" stroke="#FFE14D" stroke-width="8" opacity="' + cl((ko - .6) / .4).toFixed(2) + '"/>'; }
+  if ((an !== undefined || ko !== undefined) && cg === undefined) s += '<rect x="606" y="542" width="348" height="266" rx="14" fill="none" stroke="#FFE14D" stroke-width="8" opacity="' + cl(((an !== undefined ? an : ko) - .2) / .4).toFixed(2) + '"/>';
   return W(s + shade3(), slot(ev, [['kons', 'Nur PS5 und Xbox Series'], ['angek', 'Keine PC-Version', 'hot'], ['cloud', 'Cloud: nur auf Xbox-Konsolen'], ['fake', 'PC-Download = Fake', 'hot']])); };
 WMASC.j3Kein = (ev, t, lt) => { const ko = ev.kons, an = ev.angek, fk = ev.fake;
   if (fk !== undefined) { const knock = Math.abs(Math.sin(t * 10)) * cl((fk - .3) / .2) * (1 - cl((fk - 1.2) / .2)); return stay3([300, GYJ3], 1, { r: 14 * knock, mood: 'cool' }); }
@@ -68,7 +95,7 @@ WMASC.j3Kein = (ev, t, lt) => { const ko = ev.kons, an = ev.angek, fk = ev.fake;
 
 // ---------- Teil 2: was im Fake steckt (Wissenschaftsmodus, nur hier) ----------
 WORLD.j3Inhalt = function (sc, ev, t, lt) { const bg = fuse33(streetJ3(t, { scr: 'warn' }) + box30(620, GYJ3, 1.3, 1), sc, t, lt); const m = lab33(sc, t);
-  let s = bg; if (ev.rehook !== undefined && ev.warn === undefined) { const c = (t * 2) % 1; s += '<rect x="612" y="548" width="336" height="254" rx="12" fill="#FF3B5C" opacity="' + (.35 * (1 - c)).toFixed(2) + '"/>'; }
+  let s = bg; if (ev.rehook !== undefined && ev.warn === undefined) { s += '<rect x="612" y="548" width="336" height="254" rx="12" fill="#FF3B5C" opacity="' + (.25 * cl(ev.rehook / .4)).toFixed(2) + '"/>'; }
   if (m > .01) s += '<g opacity="' + m.toFixed(3) + '">' + lab33dots() + '<g transform="translate(540 925) scale(.93) translate(-540 -890)">' + fileJ3(t, ev) + '</g></g>';
   return W(s + shade3(), slot(ev, [['warn', 'Warnung seit 13. November'], ['stiehlt', 'Klaut Passwörter und Krypto', 'hot'], ['gross', '113 GB, fast nur Füllstoff'], ['aus', 'Virenschutz ausgehebelt', 'hot']])); };
 WMASC.j3Inhalt = (ev, t, lt) => { const rh = ev.rehook, st = ev.stiehlt, au = ev.aus;
@@ -96,3 +123,4 @@ WORLD.j3Out = function (sc, ev, t, lt) { return W(streetJ3(t, { scr: 'aus', offi
 WMASC.j3Out = (ev, t, lt) => stay3([XHJ3, GYJ3 - 8 * Math.abs(Math.sin(t * 4)) * (lt < 2 ? 1 : 0)], 1, { r: 2 * Math.sin(t * 2), mood: ev.save !== undefined ? 'happy' : undefined });
 
 ['j3Hook', 'j3Kein', 'j3Inhalt', 'j3Schutz', 'j3Out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, ACJ3); });
+['j3Hook', 'j3Kein', 'j3Inhalt', 'j3Schutz', 'j3Out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => inner(sc, ev, t, lt, E) + W('<g transform="translate(' + (480 - SUN26[0]) * 0 + ' 0)">' + warm26() + '</g>' + grain28(t)); });
