@@ -28,7 +28,16 @@ S.scenes.forEach((sc, si) => {
   t += sc.pause !== undefined ? sc.pause : (sc.type === 'outro' ? 1.6 : 0.45); // "pause" im Skript: laengere Atempause nach der Szene (z. B. um ueber 60 s zu kommen)
   t = Math.round(t * FPS) / FPS; sc.end = t;
 });
-S.total = t;
+S.total = t; S.fps = FPS;
+// Animations-Pilot: Mund folgt der echten Lautstaerke. Huelle pro Bild (RMS), normiert auf das 95. Perzentil der Szene
+if (zeiten && S.anim === 'neu') S.scenes.forEach((sc, i) => {
+  const mp3 = path.join(path.dirname(scriptPath), 'audio', (i + 1) + '.mp3'); if (!fs.existsSync(mp3)) return;
+  const raw = execFileSync('ffmpeg', ['-v', 'error', '-i', mp3, '-ac', '1', '-ar', '16000', '-f', 's16le', '-'], { maxBuffer: 1 << 28 });
+  const n = raw.length >> 1, per = 16000 / FPS, rms = [];
+  for (let f = 0; f * per < n; f++) { let q = 0, c = 0; for (let j = Math.floor(f * per); j < Math.min(n, Math.floor((f + 1) * per)); j++) { const x = raw.readInt16LE(j * 2) / 32768; q += x * x; c++; } rms.push(c ? Math.sqrt(q / c) : 0); }
+  const ref = [...rms].sort((a, b) => a - b)[Math.floor(rms.length * 0.95)] || 1; let prev = 0;
+  sc.env = rms.map(r => { const x = Math.min(1, Math.pow(r / ref, 0.7)); prev = x > prev ? x : prev * 0.55 + x * 0.45; return +prev.toFixed(2); }); // schnell auf, etwas langsamer zu
+});
 
 // ---- Seite: CSS und Zeichencode liegen in video_page.css und video_page.js
 const page = '<!doctype html><meta charset="utf-8"><style>' + fs.readFileSync(path.join(__dirname, 'video_page.css'), 'utf8') + '</style><body>'

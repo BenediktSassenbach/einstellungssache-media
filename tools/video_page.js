@@ -12,6 +12,17 @@ const rnd = i => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x 
 
 let performance_t = 0;
 function mascot(m, open, blink, w) {
+  let out = mascotRaw(m, open, blink, w);
+  if (gazeX || gazeY) out = out.replace(/<circle cx="(\d+(?:\.\d+)?)" cy="(\d+(?:\.\d+)?)" r="([4-7](?:\.\d+)?)" fill="#0B1020"\/>/g, (z, x, y, r) => (+x > 180 && +x < 250 && +y > 80 && +y < 112) ? '<circle cx="' + (+x + gazeX).toFixed(1) + '" cy="' + (+y + gazeY).toFixed(1) + '" r="' + r + '" fill="#0B1020"/>' : z);
+  if (armLag) { const ex = (6 - armLag * 0.5).toFixed(1), ey = (40 + armLag).toFixed(1); out = out.split('M40 86 Q10 70 6 40').join('M40 86 Q10 ' + (70 + armLag * 0.5).toFixed(1) + ' ' + ex + ' ' + ey).split('cx="6" cy="38"').join('cx="' + ex + '" cy="' + (+ey - 2).toFixed(1) + '"'); }
+  return out;
+}
+// Animations-Pilot: Blinzel-Zeiten (zufaellig, aber fest pro Video), Blick und Nachschwingen des Arms
+const BLINKS = (() => { const b = []; let x = 0.9, i = 0; const end = S.scenes[S.scenes.length - 1].end; while (x < end) { b.push(x); if (rnd(900 + i) < 0.2) b.push(x + 0.24); x += 2 + 3.5 * rnd(700 + i); i++; } for (const sc of S.scenes) b.push(sc.start + 0.18); return b; })();
+const blinkNow = t => BLINKS.some(b => t >= b && t < b + 0.12);
+let gazeX = 0, gazeY = 0, armLag = 0;
+const NEU = S.anim === 'neu'; // neue Animationen nur mit "anim": "neu" im Skript (Skript 1 ab 25.11.2026, Testfassungen)
+function mascotRaw(m, open, blink, w) {
   const arcs = '<path d="M181 96 Q194 106 207 96" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M217 96 Q230 106 243 96" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>';
   const eyes = {
     happy: '<circle cx="194" cy="94" r="14" fill="#fff"/><circle cx="230" cy="94" r="14" fill="#fff"/><circle cx="197" cy="96" r="6.5" fill="' + BG + '"/><circle cx="233" cy="96" r="6.5" fill="' + BG + '"/>',
@@ -448,7 +459,7 @@ function draw(t) {
   // Emoji-Sticker pro Satz
   let popHtml = '';
   const P = last.pop; const showPop = P && tl > 0.1 && t < last.end + 0.28 && !(sc.type === 'outro' && last.ev === 'follow');
-  const popAt = pos => { const k = cl((tl - 0.1) / 0.3), o = cl((last.end + 0.28 - t) / 0.16); return '<div class="popx" style="' + pos + ';transform:scale(' + (back(k) * o) + ') rotate(' + (7 * Math.sin(t * 5)) + 'deg)"><span style="transform:translateY(' + (-8 * Math.abs(Math.sin(t * 6))) + 'px)">' + P[0] + '</span>' + (P[1] ? '<em>' + esc(P[1]) + '</em>' : '') + '</div>'; };
+  const popAt = pos => { const k = cl((tl - 0.1) / 0.3), o = cl((last.end + 0.28 - t) / 0.16); return '<div class="popx" style="' + pos + ';opacity:' + (NEU ? (cl(k * 4) * o).toFixed(3) : 1) + ';transform:scale(' + (NEU ? (0.72 + 0.28 * back(k)) * (0.85 + 0.15 * o) : back(k) * o) + ') rotate(' + (NEU ? 3 * Math.sin(t * 2.6) : 7 * Math.sin(t * 5)) + 'deg)"><span style="transform:translateY(' + (NEU ? -5 * Math.abs(Math.sin(t * 4)) : -8 * Math.abs(Math.sin(t * 6))) + 'px)">' + P[0] + '</span>' + (P[1] ? '<em>' + esc(P[1]) + '</em>' : '') + '</div>'; };
 
   let h = ''; const k0 = lt / 0.45;
   if (sc.type === 'hook') {
@@ -456,18 +467,18 @@ function draw(t) {
       const k = cl((lt - 0.05 - i * 0.07) / 0.22); const m = /\*/.test(w); const x = esc(w.replace(/\*/g, ''));
       const tail = (x.match(/[.,!?]+$/) || [''])[0], core = tail ? x.slice(0, -tail.length) : x;
       const inner = m ? (E('mark') ? '<b style="transform:rotate(-2deg) scale(' + (1 + 0.35 * (1 - ease(ev.mark / 0.4))) + ')">' + core + '</b>' + tail : x) : x;
-      return '<span style="display:inline-block;opacity:' + cl(k * 3) + ';transform:scale(' + (0.4 + 0.6 * back(k)) + ')">' + inner + '</span>';
+      return '<span style="display:inline-block;opacity:' + cl(k * 3) + ';transform:scale(' + (NEU ? 0.7 + 0.3 * back(k) : 0.4 + 0.6 * back(k)) + ')">' + inner + '</span>';
     }).join(' ') + '</h1>';
     if (sc.world) {} else if (!sc.emoji) { // Akku-Visual aus V001
       const dr = ev.drain === undefined ? 100 : Math.round(100 - 88 * ease(ev.drain / 1.5)); const low = dr <= 25;
       const col = dr > 40 ? '#F4F6FB' : (dr > 20 ? A : '#FF5A5A');
       h += '<div style="position:absolute;left:0;top:340px;display:flex;align-items:center;gap:30px;' + rise(k0 - 0.3) + (low ? 'transform:translate(' + (Math.sin(t * 55) * 5) + 'px,' + (Math.cos(t * 47) * 3) + 'px);' : '') + '"><svg width="380" height="180" viewBox="0 0 420 200" style="' + (low ? 'filter:drop-shadow(0 0 ' + (14 + 12 * Math.sin(t * 9)) + 'px #FF5A5A)' : '') + '"><rect x="6" y="6" width="370" height="188" rx="44" fill="none" stroke="#F4F6FB" stroke-width="12"/><rect x="386" y="66" width="26" height="68" rx="10" fill="#F4F6FB"/><rect x="28" y="28" width="' + (326 * dr / 100) + '" height="144" rx="26" fill="' + col + '"/></svg><div style="font-size:136px;font-weight:900;letter-spacing:-.04em;color:' + col + ';transform:scale(' + (low ? 1 + 0.05 * Math.sin(t * 10) : 1) + ')">' + dr + ' %</div></div>';
-      if (E('sticker')) h += '<div class="stick" style="left:0;top:580px;font-size:50px;' + pop(E('sticker'), 'left center') + 'rotate:' + (-4 + 2 * Math.sin(t * 6)) + 'deg">' + esc(sc.sticker) + ' 👇</div>';
+      if (E('sticker')) h += '<div class="stick" style="left:0;top:580px;font-size:50px;' + pop(E('sticker'), 'left center') + 'rotate:' + (NEU ? -4 + 1 * Math.sin(t * 3) : -4 + 2 * Math.sin(t * 6)) + 'deg">' + esc(sc.sticker) + ' 👇</div>';
     } else {
       const kc = cl((lt - 0.4) / 0.4), mk = ev.mark === undefined ? 0 : ev.mark;
-      h += '<div class="hcard" style="left:0;top:345px;opacity:' + cl(kc * 3) + ';transform:scale(' + (back(kc) * (1 + 0.08 * Math.sin(t * 3.4))) + ') rotate(' + (6 * Math.sin(t * 2.3) + (mk < 0.5 ? 25 * Math.sin(mk * 30) * (1 - mk / 0.5) : 0)) + 'deg)"><span style="transform:translateY(' + (-10 * Math.abs(Math.sin(t * 3))) + 'px)">' + sc.emoji + '</span>' + (sc.tap ? ring(125, 110, (lt % 0.9) / 0.6) + ring(125, 110, ((lt + .3) % 0.9) / 0.6) + '<span class="fing" style="left:104px;top:110px;font-size:110px;transform:scale(' + ((lt % 0.9) < 0.14 ? 0.82 : 1) + ')">👆</span>' : '') + '</div>';
+      h += '<div class="hcard" style="left:0;top:345px;opacity:' + cl(kc * 3) + ';transform:scale(' + (back(kc) * (1 + (NEU ? 0.025 : 0.08) * Math.sin(t * 3.4))) + ') rotate(' + ((NEU ? 2.5 * Math.sin(t * 1.6) : 6 * Math.sin(t * 2.3)) + (mk < 0.5 ? 25 * Math.sin(mk * 30) * (1 - mk / 0.5) : 0)) + 'deg)"><span style="transform:translateY(' + (-10 * Math.abs(Math.sin(t * 3))) + 'px)">' + sc.emoji + '</span>' + (sc.tap ? ring(125, 110, (lt % 0.9) / 0.6) + ring(125, 110, ((lt + .3) % 0.9) / 0.6) + '<span class="fing" style="left:104px;top:110px;font-size:110px;transform:scale(' + ((lt % 0.9) < 0.14 ? 0.82 : 1) + ')">👆</span>' : '') + '</div>';
       h += confetti(ev.mark, 125, 470, 20);
-      if (E('sticker')) h += '<div class="stick" style="left:300px;top:420px;font-size:50px;' + pop(E('sticker'), 'left center') + 'rotate:' + (-4 + 2 * Math.sin(t * 6)) + 'deg">' + esc(sc.sticker) + ' 👇</div>';
+      if (E('sticker')) h += '<div class="stick" style="left:300px;top:420px;font-size:50px;' + pop(E('sticker'), 'left center') + 'rotate:' + (NEU ? -4 + 1 * Math.sin(t * 3) : -4 + 2 * Math.sin(t * 6)) + 'deg">' + esc(sc.sticker) + ' 👇</div>';
     }
     if (showPop) h += popAt('right:0;top:560px');
   }
@@ -498,7 +509,7 @@ function draw(t) {
   }
   const stage = document.getElementById('stage'); stage.innerHTML = h;
   // Bild-Impuls bei jedem Satz, Wackler beim Einschlag der Nummer
-  let shx = 0, shy = 0; if (sc.type === 'tip' && lt > 0.45 && lt < 0.85) { const d = 1 - (lt - 0.45) / 0.4; shx = Math.sin(lt * 95) * 12 * d; shy = Math.cos(lt * 75) * 9 * d; }
+  let shx = 0, shy = 0; if (sc.type === 'tip' && lt > 0.45 && lt < 0.85) { const d = 1 - (lt - 0.45) / 0.4; shx = NEU ? Math.sin(lt * 50.3) * 12 * d * d : Math.sin(lt * 95) * 12 * d; shy = NEU ? Math.cos(lt * 44) * 9 * d * d : Math.cos(lt * 75) * 9 * d; }
   stage.style.transform = 'translate(' + shx + 'px,' + shy + 'px) scale(' + (1 + 0.03 * (1 - ease(tl / 0.3)) + 0.01 * cl(tl / 3)) + ')';
   // Untertitel
   let c = '', talking = false;
@@ -510,17 +521,27 @@ function draw(t) {
   }
   document.getElementById('cap').innerHTML = c;
   // Schalti: spricht, wippt, dreht sich bei den Hoehepunkten
-  const open = talking ? cl(0.15 + 0.55 * Math.abs(Math.sin(t * 17.3)) + 0.3 * Math.abs(Math.sin(t * 6.1 + 1))) : 0;
-  const blink = (t % 3.4) < 0.12; const mood = last.mood || 'happy';
+  const envi = NEU && sc.env ? Math.floor((t - sc.audioAt) * (S.fps || 30)) : -1;
+  const open = NEU && sc.env ? (envi >= 0 && envi < sc.env.length && sc.env[envi] > 0.1 ? cl(0.12 + 0.88 * sc.env[envi]) : 0)
+    : (talking ? cl(0.15 + 0.55 * Math.abs(Math.sin(t * 17.3)) + 0.3 * Math.abs(Math.sin(t * 6.1 + 1))) : 0);
+  const blink = NEU ? blinkNow(t) : (t % 3.4) < 0.12; const mood = last.mood || 'happy';
   let spin = 0, jump = 0;
-  for (const n of ['act', 'mark', 'save']) { const e = ev[n]; if (e !== undefined && e < 0.55) { spin = 360 * ease(e / 0.55); jump = Math.sin(Math.PI * e / 0.55) * 40; } } // weniger Saltos: nicht mehr bei Sticker und act2
+  let sqx = 1, sqy = 1; armLag = 0;
+  if (!NEU) { for (const n of ['act', 'mark', 'save']) { const e = ev[n]; if (e !== undefined && e < 0.55) { spin = 360 * ease(e / 0.55); jump = Math.sin(Math.PI * e / 0.55) * 40; } } } else
+  for (const n of ['act', 'mark', 'save']) { const e = ev[n]; if (e !== undefined && e < 0.7) { // Ducken 0,1 s, Sprung 0,5 s, Landung 0,1 s
+    if (e < 0.1) { const k = ease(e / 0.1); sqy = 1 - 0.1 * k; sqx = 1 + 0.06 * k; }
+    else if (e < 0.6) { const p = (e - 0.1) / 0.5; spin = 360 * ease(p); jump = Math.sin(Math.PI * p) * 40; sqy = 1 + 0.05 * Math.sin(Math.PI * p); sqx = 1 - 0.03 * Math.sin(Math.PI * p); armLag = 14 * Math.cos(Math.PI * p); }
+    else { const q = Math.sin(Math.PI * (e - 0.6) / 0.1); sqy = 1 - 0.08 * q; sqx = 1 + 0.05 * q; armLag = -6 * q; } } } // weniger Saltos: nicht mehr bei Sticker und act2
+  // Blick: kurz zum Bild, wenn dort etwas passiert (nur ohne Vollbild-Welt)
+  { let ga = 99; for (const k in ev) ga = Math.min(ga, ev[k]); const g = (sc.world || !NEU) ? 0 : cl(ga / 0.15) * (1 - cl((ga - 1.2) / 0.4)); gazeX = 3 * g; gazeY = -3 * g; }
   performance_t = t; const m = document.getElementById('masc'); m.innerHTML = mascot(mood, open, blink, 300);
-  m.style.transform = 'translate(' + (Math.sin(t * 1.1) * 10) + 'px,' + (Math.sin(t * 2.6) * 7 - (talking ? open * 5 : 0) - jump) + 'px) rotate(' + (Math.sin(t * 1.7) * 3 + spin) + 'deg)';
+  const ia = !NEU ? 1 : line ? 0.35 + 0.65 * cl(Math.min(t - line.start, line.end - t) / 0.35) : 0.35; // Ruhe in Sprechpausen
+  m.style.transform = 'translate(' + (Math.sin(t * 1.1) * (NEU ? 6 : 10) * ia) + 'px,' + (Math.sin(t * 2.6) * (NEU ? 4 : 7) * ia - (talking ? open * 5 : 0) - jump + (1 - sqy) * 115) + 'px) rotate(' + (Math.sin(t * 1.7) * (NEU ? 2 : 3) * ia + spin) + 'deg)' + (NEU ? ' scale(' + sqx.toFixed(3) + ',' + sqy.toFixed(3) + ')' : '');
   // Pilot P005: Schalti bewegt sich durch die Welt und haelt Requisiten
   const pose = sc.world && typeof WMASC !== 'undefined' && WMASC[sc.world] ? WMASC[sc.world](ev, t, lt, sc) : null;
   if (pose) { if (pose.nospin) { spin = 0; jump = 0; } /* Folge schaltet den Standard-Salto ab und spielt eigene Aktionen */ const s0 = pose.s, hop = pose.walk ? Math.abs(Math.sin(t * 11)) * 22 * s0 : 0;
     m.style.left = (pose.f[0] - 150) + 'px'; m.style.top = (pose.f[1] - 225) + 'px'; m.style.transformOrigin = '50% 100%';
-    m.style.transform = 'translate(0px,' + (-hop - jump * (s0 >= .8 ? .35 : s0) + Math.sin(t * 2.6) * 4) + 'px) rotate(' + ((pose.r || 0) + spin + Math.sin(t * 1.7) * 3) + 'deg) scale(' + (pose.flip ? -s0 : s0) + ',' + s0 + ')';
+    m.style.transform = 'translate(0px,' + (-hop - jump * (s0 >= .8 ? .35 : s0) + Math.sin(t * 2.6) * 4) + 'px) rotate(' + ((pose.r || 0) + spin + Math.sin(t * 1.7) * 3) + 'deg) scale(' + (pose.flip ? -s0 : s0) * (NEU ? sqx : 1) + ',' + s0 * (NEU ? sqy : 1) + ')';
     if (pose.mood) m.innerHTML = mascot(pose.mood, open, blink, 300); /* C009: Folge setzt die Mimik mitten im Satz */
     if (pose.cry > 0) { const k = cl(pose.cry); let d = ''; for (const sg of [-1, 1]) { const ex = sg < 0 ? 186 : 230; for (let i = 0; i < 7; i++) { const c = (t * 1.5 + i / 7 + (sg > 0 ? .07 : 0)) % 1, x = ex + sg * 150 * c * k, y = 104 - 150 * k * c + 330 * k * c * c; d += '<ellipse cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" rx="' + (6 + 5 * c).toFixed(1) + '" ry="' + (9 + 6 * c).toFixed(1) + '" fill="#7FD3FF" stroke="#0B1020" stroke-width="3" opacity="' + (k * (1 - .45 * c)).toFixed(2) + '"/>'; } }
       m.innerHTML += '<svg width="300" height="300" viewBox="0 0 300 300" style="position:absolute;left:0;top:0;overflow:visible">' + d + '</svg>'; } /* C009: Traenen in zwei Boegen */
@@ -532,5 +553,5 @@ function draw(t) {
   m.style.filter = pose && pose.fx ? pose.fx : ''; /* v6: Cartoon-Effekte (Russ, Stromschlag, Farbe) */
   const b = document.getElementById('bub'); const q = sc.quip;
   if (pose && pose.s >= .8) { b.style.left = '440px'; b.style.top = '1360px'; } else if (pose) { b.style.left = '120px'; b.style.top = '1340px'; } /* Sprechblase unten im freien Bereich */ else { b.style.left = ''; b.style.top = ''; } const qs = sc.lines[Math.min(sc.quipAt || 1, sc.lines.length - 1)].start;
-  if (q && t >= qs) { b.style.display = 'block'; b.textContent = q; b.style.transform = 'rotate(' + (3 + 2 * Math.sin(t * 4)) + 'deg) scale(' + (0.5 + 0.5 * back((t - qs) / 0.35)) + ')'; b.style.opacity = cl((t - qs) / 0.15); } else b.style.display = 'none';
+  if (q && t >= qs) { b.style.display = 'block'; b.textContent = q; b.style.transform = 'rotate(' + (NEU ? 3 + 0.8 * Math.sin(t * 2.2) : 3 + 2 * Math.sin(t * 4)) + 'deg) scale(' + (0.5 + 0.5 * back((t - qs) / 0.35)) + ')'; b.style.opacity = cl((t - qs) / 0.15); } else b.style.display = 'none';
 }
