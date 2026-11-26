@@ -5,7 +5,7 @@
 # - haengt den Schlusssatz aus videos/_outro an die letzte Szene, ruft zeiten.py auf
 # - mischt in Szene 1 die Soundeffekte videos/_sfx/<ID>_0.wav (endet am Einschlag) und <ID>_1.wav (beginnt am Einschlag),
 #   Stimme nach dem Einschlag leicht gedaempft. "gagDelay" im Skript = Sekunden zwischen Gag-Beginn und Einschlag.
-#   "gagZeile" im Skript: Index der Einstiegszeile, die am Gag beginnt (Standard -1 = Nachsatz). Weitere Anweisungen in Szene 1 (z. B. [angry]) zaehlen nicht als Gag.
+#   "gagZeile" im Skript: Index der Einstiegszeile, die am Gag beginnt (Standard -1 = Nachsatz). Bei gagZeile 0 darf der Gag direkt hinter der Sprechweise am Anfang stehen. Weitere Anweisungen in Szene 1 (z. B. [angry]) zaehlen nicht als Gag.
 import json, os, re, subprocess, sys
 d, roh = sys.argv[1], sys.argv[2]; S = json.load(open(os.path.join(d, 'script.json'), encoding='utf8')); sid = sys.argv[3] if len(sys.argv) > 3 else S['id']
 A = os.path.join(d, 'audio'); os.makedirs(A, exist_ok=True); N = len(S['scenes']); root = os.path.dirname(os.path.dirname(os.path.abspath(d)))
@@ -22,6 +22,8 @@ for i in range(1, N + 1):
         txt = ''.join(al['characters']); m = re.search(r'(\[[^\]]*\] ?)+', txt)
         if not m: break
         if i == 1 and gag is None and m.start() > 0: gag = al['character_start_times_seconds'][m.start()]  # eine Anweisung ganz am Anfang ist die Sprechweise (z. B. [casually, calm and cool]), nicht der Gag
+        elif i == 1 and gag is None and S.get('gagZeile', -1) == 0 and len(t := list(re.finditer(r'\[[^\]]*\]', m.group()))) > 1:
+            gag = al['character_start_times_seconds'][m.start() + t[1].start()]  # gagZeile 0: Sprechweise und Gag stehen direkt hintereinander am Anfang ([casually, calm and cool] [gasps]); Gag = zweite Anweisung (26.11.2026)
         cut(al, m.start(), m.end())
     for k, v in (S.get('sprich') or {}).items():
         while k not in v and (p := ''.join(al['characters']).find(k)) >= 0: cut(al, p, p + len(k), v)  # jede Stelle, nicht nur die erste (20.11.2026)

@@ -105,7 +105,8 @@ function ff(a) { return new Promise((res, rej) => { const p = spawn('ffmpeg', a,
   if (zeiten) { // Szenen-Audios an ihre Startzeit setzen und mischen
     const ins = [], fl = []; S.scenes.forEach((sc, i) => { ins.push('-i', path.join(adir, (i + 1) + '.mp3')); fl.push('[' + (i + 1) + ':a]adelay=' + Math.round(sc.audioAt * 1000) + ':all=1[a' + i + ']'); });
     const fc = fl.join(';') + ';' + S.scenes.map((_, i) => '[a' + i + ']').join('') + 'amix=inputs=' + S.scenes.length + ':normalize=0,apad[a]';
-    execFileSync('ffmpeg', ['-y', '-i', stumm, ...ins, '-filter_complex', fc, '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-ar', '44100', '-shortest', ziel], { stdio: 'ignore' });
+    // '-ac 2': ffmpeg 9.1 haengt beim AAC-Kodieren von Mono-Ton mit 192 kbit/s an manchen Stellen endlos (26.11.2026), in Stereo nicht
+    execFileSync('ffmpeg', ['-y', '-i', stumm, ...ins, '-filter_complex', fc, '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-ac', '2', '-b:a', '192k', '-ar', '44100', '-shortest', ziel], { stdio: 'ignore' });
   } else fs.copyFileSync(stumm, ziel);
   console.log('fertig', ziel);
 })();
