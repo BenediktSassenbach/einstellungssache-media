@@ -1,0 +1,265 @@
+{
+ "id": "V008",
+ "titel": "Notfallpass vor dem Skifahren",
+ "accent": "#5CE1A0",
+ "anim": "neu",
+ "quelle": "V-Reihe (Aufbau wie V007) mit Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Nur TikTok (Regel: keine iPhone-Tipps auf YouTube). FAKTEN (26.11.2026, Apple Support): Notfallpass in der App Health einrichten: Health oeffnen, auf dein Bild tippen, dann auf Notfallpass; unter Notfallkontakte auf Notfallkontakt hinzufuegen tippen; nach einem Notruf informiert das iPhone deine Notfallkontakte mit einer Nachricht und sendet deinen aktuellen Standort (wenn verfuegbar); unter Bearbeiten, nach unten scrollen, Im Sperrzustand zeigen und Notruf aktivieren; Ersthelfende sehen den Notfallpass im Sperrbildschirm ueber Notfall auf dem Codebildschirm und dann Notfallpass (Apple, iPhone-Benutzerhandbuch 'Notfallpass einrichten und anzeigen'; Apple Support 105072 'Deinen Notfallpass in der Health-App auf dem iPhone einrichten'). Keine Gesundheitsratschlaege, nur die Funktion. Faktencheck durch eigenen Agenten (26.11.2026, Apple Support 105072 und 102262, englisches Handbuch): Schalter Notruf bzw. Waehrend eines Notrufs teilen entfernt (automatisches Teilen nur USA und Kanada, Name je nach iOS-Version), Panel nur mit belegten Feldern, 'bekommt' zu 'schickt dein iPhone', 'das Wichtigste' zu 'deine Angaben'. VOR DEM POSTEN: Menuenamen am eigenen iPhone gegenpruefen. Pruefer-Runde 26.11.2026: Doppel 3 Schritte und Blase Ohne Code entfernt, Zitat mit geschuetzten Leerzeichen, Hook-Zeile gekuerzt. Offen in der Pipeline (alle V-Videos): Sticker rechts bis x 950, Tipp-Zustand dunkel, Panel-Schrift 24-33 px.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "*Notfallpass* vor dem Skifahren",
+   "emoji": "🎿",
+   "sticker": "3 Schritte",
+   "lines": [
+    {
+     "t": "Du fährst bald Ski oder Snowboard?",
+     "mood": "happy",
+     "pop": [
+      "🎿",
+      ""
+     ]
+    },
+    {
+     "t": "Dann richte vorher deinen Notfallpass ein.",
+     "mood": "shock",
+     "ev": "mark",
+     "pop": [
+      "🆘",
+      "Notfallpass"
+     ]
+    },
+    {
+     "t": "Drei Schritte, und Helfer sehen deine Angaben.",
+     "mood": "happy",
+     "ev": "sticker",
+     "pop": [
+      "📋",
+      ""
+     ]
+    },
+    {
+     "t": "Ich bin Schalti, so geht es.",
+     "mood": "happy",
+     "pop": [
+      "👋",
+      "Schalti"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Notfallpass anlegen",
+   "path": [
+    "Health",
+    "Dein Bild",
+    "Notfallpass"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Notfallpass",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "Allergien"
+     },
+     {
+      "t": "Medikamente"
+     },
+     {
+      "t": "Notfallkontakte",
+      "hot": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Erstens: Leg deinen Notfallpass an.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🆘",
+      ""
+     ]
+    },
+    {
+     "t": "Öffne die App Health,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "tippe auf dein Bild",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und dann auf Notfallpass.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Trag dort ein, was Helfer wissen sollen.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "✍️",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Notfallkontakt hinzufügen",
+   "path": [
+    "Notfallpass",
+    "Bearbeiten",
+    "Notfallkontakte"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Notfallkontakte",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "Notfallkontakt hinzufügen",
+      "hot": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Zweitens: Füg einen Notfallkontakt hinzu.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "👥",
+      ""
+     ]
+    },
+    {
+     "t": "Tippe im Notfallpass",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "auf Bearbeiten",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und unter Notfallkontakte auf „Notfallkontakt hinzufügen“.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Nach einem Notruf schickt dein iPhone dieser Person eine Nachricht, wenn möglich mit deinem Standort.",
+     "mood": "shock",
+     "ev": "act",
+     "pop": [
+      "📍",
+      "Standort"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Auf dem Sperrbildschirm zeigen",
+   "path": [
+    "Notfallpass",
+    "Bearbeiten",
+    "Nach unten"
+   ],
+   "panel": {
+    "kind": "list",
+    "title": "Notfallpass",
+    "tag": "So sieht es aus",
+    "rows": [
+     {
+      "t": "Im Sperrzustand zeigen",
+      "sw": 0,
+      "flip": true
+     }
+    ]
+   },
+   "lines": [
+    {
+     "t": "Drittens: Zeig ihn auf dem Sperrbildschirm.",
+     "mood": "happy",
+     "ev": "panel",
+     "pop": [
+      "🔒",
+      ""
+     ]
+    },
+    {
+     "t": "Öffne wieder den Notfallpass,",
+     "mood": "happy",
+     "ev": "p1"
+    },
+    {
+     "t": "tippe auf Bearbeiten",
+     "mood": "happy",
+     "ev": "p2"
+    },
+    {
+     "t": "und scroll nach unten.",
+     "mood": "happy",
+     "ev": "p3"
+    },
+    {
+     "t": "Schalte „Im Sperrzustand zeigen“ ein.",
+     "mood": "cool",
+     "ev": "act",
+     "pop": [
+      "✅",
+      ""
+     ]
+    },
+    {
+     "t": "Dann sehen Helfer ihn über „Notfall“ auf dem Codebildschirm, ohne deinen Code.",
+     "mood": "wink",
+     "pop": [
+      "🔓",
+      ""
+     ]
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "checks": [
+    "Notfallpass anlegen",
+    "Notfallkontakt eintragen",
+    "Im Sperrzustand zeigen"
+   ],
+   "lines": [
+    {
+     "t": "Also: Notfallpass anlegen,",
+     "mood": "happy",
+     "ev": "c1"
+    },
+    {
+     "t": "Notfallkontakt eintragen",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und im Sperrzustand zeigen.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

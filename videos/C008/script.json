@@ -1,0 +1,166 @@
+{
+ "serie": "Chemie",
+ "kostuem": "labor",
+ "accent": "#FF6BD6",
+ "design": "3.3",
+ "anim": "neu",
+ "gagTag": "[gasps]",
+ "id": "C008",
+ "titel": "Was brennt bei einer Kerze eigentlich?",
+ "gagDelay": 0,
+ "gagZeile": 0,
+ "quelle": "SKRIPT 4 mit Abschnitt 9 und Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Kostuem C1 Laborkittel. Ort eigens gebaut: Kerzenstand auf dem Weihnachtsmarkt am Abend, grosse Stumpenkerze auf der Theke, Regale mit Kerzen, Lichter, Schnee. Pro Teil eine andere Hauptdarstellung: Teil 1 Interaktion mit der einen Lupe (Wachs schmilzt, Docht saugt), Teil 2 Wissenschaftsmodus (Flamme im Schnitt: Dampf, Sauerstoff), Teil 3 Gegenstand (Ausblasen, Streichholz im Rauch). FAKTEN (26.11.2026): Docht allein glimmt, brennt aber nicht; festes Wachs schmilzt, brennt nicht; Wachsgase brennen; Beweis: Streichholz an eine gerade erloschene Kerze, Entzuendung ohne den Docht zu beruehren (Wikibooks, Anorganische Chemie fuer Schueler, 'Warum brennt eine Kerze?'). Die Waerme macht das Wachs am Docht fluessig, der Docht nimmt das fluessige Wachs auf und leitet es zur Flamme, wo es zu Dampf wird; der Wachsdampf verbrennt zusammen mit Luft; beim Ausblasen steigt ein Teil des gasfoermigen Wachses unverbrannt auf; haelt man ein brennendes Streichholz in den aufsteigenden Rauch, springt die Flamme zum Docht zurueck (Die Welt, 'Wissenschaft fuer Kinder: Das Wachs-Geheimnis', 2008). Kapillaritaet des Dochtes (Michael Faraday, Naturgeschichte einer Kerze, Erste Vorlesung). Faktencheck durch eigenen Agenten (26.11.2026, Gegenquellen Uni Wien Chemiedidaktik 'Was brennt bei einer Kerze', schule-bw.de Kerze, RSC 'The chemistry of candles', NSTA 'Combustion and the jumping flame', ORF-Experimentkarte, Spektrum 'Advent, Advent'): 'direkt unter dem Docht' zu 'am Docht', 'saugt' zu 'zieht', Docht 'glimmt nur kurz und verkohlt', Leuchten durch gluehenden Russ ergaenzt, Rauch = unverbrannter Wachsdampf sichtbar als weisser Rauch, 'gleich danach' und 'laeuft zurueck'. BILD: Teilchen und Pfeile sind Erklaerbilder. Kein Aufruf zum Nachmachen.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Was *brennt*?",
+   "emoji": "🕯️",
+   "world": "c8Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Festes Wachs brennt gar nicht.",
+     "mood": "shock",
+     "ev": "fest"
+    },
+    {
+     "t": "Was brennt bei einer Kerze eigentlich?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, wie Rauch eine Kerze anzündet.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Erst *flüssig*",
+   "path": [],
+   "world": "c8Fluessig",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: Die Flamme schmilzt das Wachs am Docht.",
+     "mood": "happy",
+     "ev": "schmilz"
+    },
+    {
+     "t": "Der Docht zieht das flüssige Wachs nach oben, wie ein Schwamm.",
+     "mood": "shock",
+     "ev": "saug"
+    },
+    {
+     "t": "Allein glimmt der Docht nur kurz und verkohlt. Er braucht das Wachs.",
+     "mood": "cool",
+     "ev": "allein"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Dann *Gas*",
+   "path": [],
+   "world": "c8Gas",
+   "labor": [
+    1,
+    2,
+    3
+   ],
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und jetzt kommt der eigentliche Trick.",
+     "mood": "happy",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Oben am Docht wird das flüssige Wachs so heiß, dass es zu Dampf wird.",
+     "mood": "happy",
+     "ev": "dampf"
+    },
+    {
+     "t": "Erst dieser Wachsdampf brennt, zusammen mit Sauerstoff aus der Luft.",
+     "mood": "shock",
+     "ev": "brennt"
+    },
+    {
+     "t": "Die Flamme ist also brennendes Wachsgas. Glühender Ruß lässt sie leuchten.",
+     "mood": "cool",
+     "ev": "gas"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Der *Rauch*",
+   "path": [],
+   "world": "c8Rauch",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und das zeigt ein kleiner Zaubertrick.",
+     "mood": "shock",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: Pustet man die Kerze aus, steigt unverbrannter Wachsdampf auf, sichtbar als weißer Rauch.",
+     "mood": "happy",
+     "ev": "aus"
+    },
+    {
+     "t": "Hält man gleich danach eine Flamme in den Rauch, läuft sie zurück zum Docht.",
+     "mood": "shock",
+     "ev": "spring"
+    },
+    {
+     "t": "Die Kerze brennt wieder, ohne dass der Docht berührt wurde.",
+     "mood": "cool",
+     "ev": "wieder"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c8Out",
+   "pause": 0.05,
+   "checks": [
+    "Wachs schmilzt",
+    "Wachsdampf brennt",
+    "Rauch zündet"
+   ],
+   "lines": [
+    {
+     "t": "Also: Die Flamme schmilzt das Wachs,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "der Docht holt es hoch",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und erst der Wachsdampf brennt.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

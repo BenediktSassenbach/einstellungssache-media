@@ -1,0 +1,166 @@
+{
+ "serie": "Informatik",
+ "kostuem": "hacker",
+ "accent": "#7C5CFF",
+ "design": "3.3",
+ "anim": "neu",
+ "gagTag": "[gasps]",
+ "id": "I009",
+ "titel": "Woher weiß deine Musik-App, was du hören willst?",
+ "gagDelay": 0,
+ "gagZeile": 0,
+ "quelle": "SKRIPT 4 mit Abschnitt 9 und Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Kostuem I1 Hacker-Hoodie. Ort eigens gebaut: Bushaltestelle am Winterabend mit grossem digitalem Werbebildschirm, der die Musik-App zeigt (eigene Gestaltung, kein Logo). Pro Teil eine andere Hauptdarstellung: Teil 1 Bildschirm (Skippen, Geschmacksprofil waechst), Teil 2 Wissenschaftsmodus (viele Hoerer und Songs als Netz), Teil 3 Bildschirm mit Playlist (Redaktion, Label-Song mit Muenze). FAKTEN (26.11.2026): Aktionen wie Suche, Anhoeren, Skippen oder Speichern beeinflussen die Interpretation des Geschmacks, das Geschmacksprofil; wer eine bestimmte Kuenstlerin hoert, bekommt womoeglich weitere Titel; Algorithmen beruecksichtigen Trends und Gewohnheiten vieler Nutzer, wenn viele mit einem Ergebnis interagieren, wird es wahrscheinlich anderen empfohlen, die nach Aehnlichem suchen; Systeme beruecksichtigen Merkmale des Inhalts wie Genre und Veroeffentlichungsdatum; manche Empfehlungen beruhen auf redaktioneller Zusammenstellung durch Musikredakteure; mit dem Discovery Mode koennen Kuenstler und Labels angeben, welche Songs fuer sie Prioritaet haben, die Information geht an die Algorithmen personalisierter Musiksessions, Spotify berechnet dafuer eine Provision auf die Streams, die Songs werden wahrscheinlicher empfohlen, ohne Garantie, in redaktionellen Playlists ist er nicht aktiv (Spotify, Center fuer Sicherheit und Datenschutz, 'Empfehlungen auf Spotify verstehen', Stand 23.10.2026). Kollaboratives Filtern allgemein: Nutzer mit aehnlichem Geschmack bekommen aehnliche Empfehlungen (IBM, 'What is collaborative filtering?'; Wikipedia 'Collaborative filtering'). Discovery Mode laut Spotify for Artists auch in Deutschland, Beta, Provision 30 Prozent auf Streams im Discovery-Mode-Kontext. Faktencheck durch eigenen Agenten (26.11.2026): 'Jeder Skip' zu 'Ein Skip', 'kommt mehr' zu 'kommen womoeglich mehr', Aehnlichkeits-Satz als allgemeines Prinzip, 'Kuenstler und Labels', 'Prioritaet', 'wahrscheinlicher', Spotify als Beispiel. BILD: Netz aus Hoerern und Songs ist ein Erklaerbild.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Woher *weiß* sie das?",
+   "emoji": "🎧",
+   "world": "i9Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Ein Skip verrät deiner Musik-App etwas.",
+     "mood": "shock",
+     "ev": "skip"
+    },
+    {
+     "t": "Woher weiß sie, was du hören willst?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, wer sonst noch mitredet.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Dein *Geschmack*",
+   "path": [],
+   "world": "i9Profil",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: Die App merkt sich, was du suchst, hörst, skippst und speicherst.",
+     "mood": "happy",
+     "ev": "merk"
+    },
+    {
+     "t": "Bei Spotify heißt das dein Geschmacksprofil.",
+     "mood": "cool",
+     "ev": "profil"
+    },
+    {
+     "t": "Hörst du eine Band oft, kommen womöglich mehr Songs von ihr.",
+     "mood": "happy",
+     "ev": "mehr"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Die *anderen*",
+   "path": [],
+   "world": "i9Andere",
+   "labor": [
+    1,
+    2,
+    3
+   ],
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Aber du bist nicht allein.",
+     "mood": "happy",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Die App achtet auch darauf, was viele andere tun.",
+     "mood": "happy",
+     "ev": "viele"
+    },
+    {
+     "t": "Solche Systeme empfehlen einen Song, den viele hören, oft auch Leuten mit ähnlichem Geschmack.",
+     "mood": "shock",
+     "ev": "aehnlich"
+    },
+    {
+     "t": "Dazu kommen Infos über den Song selbst, wie Genre oder Erscheinungsdatum.",
+     "mood": "cool",
+     "ev": "info"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Wer *mitredet*",
+   "path": [],
+   "world": "i9Mit",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und dann redet noch jemand mit.",
+     "mood": "shock",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: Manche Playlists stellt eine Redaktion zusammen, also Menschen.",
+     "mood": "happy",
+     "ev": "redaktion"
+    },
+    {
+     "t": "Und bei Spotify können Künstler und Labels Songs als Priorität markieren. Dafür nimmt Spotify eine Provision auf die Streams.",
+     "mood": "shock",
+     "ev": "label"
+    },
+    {
+     "t": "Dann werden diese Songs wahrscheinlicher empfohlen, aber ohne Garantie.",
+     "mood": "cool",
+     "ev": "eher"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i9Out",
+   "pause": 0.05,
+   "checks": [
+    "Dein Verhalten zählt",
+    "Andere hören mit",
+    "Redaktion und Labels"
+   ],
+   "lines": [
+    {
+     "t": "Also: Dein Hören und Skippen zählt,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "was andere hören, zählt mit",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und bei Spotify reden auch Redaktion und Labels mit.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
