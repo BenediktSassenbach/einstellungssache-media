@@ -1,0 +1,160 @@
+{
+ "serie": "Bio",
+ "kostuem": "skelett",
+ "accent": "#A8E63C",
+ "anim": "neu",
+ "gagTag": "[gasps]",
+ "id": "B019",
+ "titel": "Warum zitterst du, wenn dir kalt ist?",
+ "gagDelay": 0.1,
+ "gagZeile": 0,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum *zitterst* du?",
+   "emoji": "🥶",
+   "world": "b19Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Dir wird kalt, und irgendwann zitterst du.",
+     "mood": "shock",
+     "ev": "kalt"
+    },
+    {
+     "t": "Warum zitterst du, wenn dir kalt ist?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, wie Zittern dich wärmt.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Dein *Thermostat*",
+   "path": [],
+   "world": "b19Thermo",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: In deiner Haut sitzen Fühler für Temperatur.",
+     "mood": "happy",
+     "ev": "fuehl"
+    },
+    {
+     "t": "Sie melden die Kälte an dein Gehirn, an den Hypothalamus. Auch innen messen Fühler mit.",
+     "mood": "happy",
+     "ev": "melden"
+    },
+    {
+     "t": "Er sorgt dafür, dass es in dir drin bei etwa 37 Grad bleibt.",
+     "mood": "cool",
+     "ev": "soll"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Erst *sparen*",
+   "path": [],
+   "world": "b19Spar",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Aber was macht er mit der Meldung?",
+     "mood": "happy",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Die Blutgefäße in deiner Haut werden enger.",
+     "mood": "happy",
+     "ev": "eng"
+    },
+    {
+     "t": "So fließt weniger warmes Blut nach außen, und weniger Wärme geht verloren.",
+     "mood": "happy",
+     "ev": "weniger"
+    },
+    {
+     "t": "Deshalb kühlen Hände und Füße bei Kälte aus.",
+     "mood": "cool",
+     "ev": "haende"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Dann *zittern*",
+   "path": [],
+   "world": "b19Zitter",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Reicht das nicht, legt dein Körper nach.",
+     "mood": "shock",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: Deine Muskeln ziehen sich unwillkürlich immer wieder kurz zusammen.",
+     "mood": "happy",
+     "ev": "zuck"
+    },
+    {
+     "t": "Dabei kommt keine gezielte Bewegung heraus, aber die Muskelarbeit macht Wärme.",
+     "mood": "happy",
+     "ev": "waerme"
+    },
+    {
+     "t": "Bei starkem Zittern bildet dein Körper ein Mehrfaches an Wärme.",
+     "mood": "cool",
+     "ev": "mehr"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "b19Out",
+   "pause": 0.05,
+   "checks": [
+    "Fühler melden Kälte",
+    "Hautgefäße sparen Wärme",
+    "Zittern macht Wärme"
+   ],
+   "lines": [
+    {
+     "t": "Also: Fühler melden die Kälte,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "enge Hautgefäße sparen Wärme",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und zitternde Muskeln heizen nach.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ],
+ "quelle": "SKRIPT ANATOMIE (Hook-System, Erstens/Zweitens/Drittens mit Rehook) und Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Kostuem B4 Skelett-Anzug. Ort: Bio-Saal mit Tafel. Hauptfigur: Schulskelett auf dem Podest, zittert mit. Farben wie B009: Muskel #E8665A, Nerv #FFE14D, Blutgefaess #E8384F, Kaelte-Fuehler Blau. PRUEFFRAGEN: 1 Sucht jemand das Video wegen Beschwerden? Nein, Kaeltezittern ist ein normaler Vorgang. 2 Braucht die Antwort 'gesund', 'schaedlich', 'hilft gegen', 'solltest du'? Nein. 3 Aendert jemand danach Essen, Sport, Medikamente oder Arztbesuch? Nein. Kein Rat zum Anziehen oder Aufwaermen. Bewusst weggelassen: Fieber und Schuettelfrost (Krankheit), Unterkuehlung, braunes Fettgewebe, Schilddruesenhormone, Gaensehaut (eigenes Video B009), Muskeltonus vor dem Zittern. FAKTEN (26.11.2026): Thermoregulation haelt die Koerperkerntemperatur bei etwa 37 Grad; Thermorezeptoren der Haut (freie Nervenendigungen) melden ueber das Rueckenmark zum Hypothalamus, dem Regelzentrum der Koerpertemperatur; Kerntemperatur ist die wichtigste Rueckmeldung, die Haut eine zusaetzliche (DocCheck Flexikon 'Thermoregulation'). Bei Kaelte: periphere Vasokonstriktion ueber den Sympathikus, Durchblutung der Extremitaeten und Waermeverlust ueber die Koerperoberflaeche werden gedrosselt; Muskeltonus steigt zuerst, bei staerkerer Abkuehlung folgt rhythmisches Kaeltezittern, ausgeloest ueber den hinteren Hypothalamus; die erhoehte Muskelaktivitaet fuehrt durch Energiewandlung zu mehr Waermefreisetzung (DocCheck 'Thermoregulation'; medi-karriere 'Thermorezeptoren': Hypothalamus aktiviert Zittern und Vasokonstriktion). Extremitaeten bilden die Koerperschale, ihre Temperatur liegt meist unter der Kerntemperatur (DocCheck). Koerperkerntemperatur normal 36,5 bis 37,4 Grad (Pharmazeutische Zeitung 'Was Kaelte mit dem Koerper macht'). Faktencheck durch eigenen Agenten (26.11.2026; DocCheck 'Thermoregulation' und 'Temperaturregulation', Spektrum Lexikon 'Zittern', PubMed 31045297, PMC11412341 Zittern ohne aeussere Arbeit, PMC3098654 Muskelenergie wird teils Waerme, National Academies 'Nutritional Needs in Cold' Kap. 15 Stoffwechsel bei Zittern bis etwa das Vier- bis Fuenffache): 'ploetzlich zittert alles' zu 'irgendwann zitterst du' (Muskeltonus steigt zuerst), Fuehler im Inneren ergaenzt (Kerntemperatur wichtigste Rueckmeldung), 'schnell kuehl' zu 'kuehlen aus', 'zweiter Schritt' zu 'legt dein Koerper nach', 'an und wieder ab' zu 'ziehen sich unwillkuerlich immer wieder kurz zusammen' (kein 'abwechselnd', Gegenspieler nicht belegt), 'bewegst dich kaum' zu 'keine gezielte Bewegung', Zaehneklappern gestrichen (nur Gesundheitsportale als Beleg), dafuer 'ein Mehrfaches an Waerme', Schluss 'enge Hautgefaesse'. Bild: Muskel zuckt rhythmisch, Thermometer 37 Grad am Koerperinneren. Pruefer-Runde 26.11.2026: Ringe auf Brust, Unterarm, Kopf, Hand und Oberschenkel, 37 Grad neben dem Thermometer, Waerme-Balken frei, Knochen beschriftet, Tafelschrift groesser, Muskel schon zu Beginn von Teil 3 sichtbar, Nerv endet am Hypothalamus."
+}
