@@ -144,4 +144,14 @@ def B013H():  # Schwanzkeule: Ausholen mit anschwellendem Luftzug, dann Holz bri
     x = .9 * thud + .7 * crack + .4 * spl
     save('B013H_1.wav', norm(x * env(len(t), .002, .4), .45))
 
+def P017():  # Lichterkette: Kerze wird gedreht (knirschende Klicks, schneller werdend), dann Klick und Abschalten (tiefes Ploppen, Brummen faellt ab)
+    d = 1.05; t = T(d); x = np.zeros(len(t))
+    for i in range(9):
+        k = int((.05 + .11 * i - .004 * i * i) * SR); m = int(.03 * SR); tt = np.arange(m) / SR; x[k:k + m] += hp(noise(m), .4) * np.exp(-tt * 120) * (.4 + .06 * i)
+    save('P017_0.wav', norm(x * env(len(t), .01, .02), .25))
+    d = 1.2; t = T(d); click = np.zeros(len(t)); m = int(.02 * SR); click[:m] = hp(noise(m), .5) * np.exp(-np.arange(m) / SR * 200)
+    hum = np.sin(2 * np.pi * np.cumsum(100 * (1 - .6 * t / d)) / SR) * np.exp(-t * 3) * .5
+    pop = np.sin(2 * np.pi * 70 * t) * np.exp(-t * 18)
+    save('P017_1.wav', norm((click + .8 * pop + hum) * env(len(t), .002, .3), .35))
+
 for a in sys.argv[1:]: globals()[a]()

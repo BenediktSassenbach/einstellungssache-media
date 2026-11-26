@@ -1,0 +1,163 @@
+{
+ "serie": "Bio",
+ "kostuem": "dinoforscher",
+ "accent": "#A8E63C",
+ "anim": "neu",
+ "gagTag": "[gasps]",
+ "id": "B014",
+ "titel": "Haben Dinosaurier jemals Schnee gesehen?",
+ "gagDelay": 0,
+ "gagZeile": 0,
+ "quelle": "DINO-SKRIPT mit Hook-Fassung v3 und Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Kostuem B1 Dino-Forscher. Ort eigens gebaut: Flussebene im Norden von Alaska vor rund 70 Millionen Jahren mit Nadelbaeumen, im Sommer gruen, im Winter verschneit. Tyrannosaurier als gezeichnete Figur rexd (eigene Zeichnung, gemeint ist ein Tyrannosaurier, keine bestimmte Art), Babys als kleine rexd. DINO-REGEL: verbreitetste belegte Theorie, ohne Einschraenkung erzaehlt. FAKTEN (26.11.2026): Dinosaurier lebten vor rund 70 Millionen Jahren in der Arktis (Prince Creek Formation, Norden von Alaska); fast alle Arten arktischer Dinosaurier, von kleinen vogelaehnlichen Tieren bis zu riesigen Tyrannosauriern, vermehrten sich dort und blieben wahrscheinlich das ganze Jahr; winzige Zaehne und Knochen von Babys (kurz vor oder nach dem Schluepfen) von sieben Arten, manche nicht groesser als ein Stecknadelkopf; Brutzeit drei bis sechs Monate, die Jungen waeren im Herbst zu jung zum Wegziehen gewesen; arktische Winter mit vier Monaten Dunkelheit, Frost, Schnee und wenig frischem Futter, im Sommer 24 Stunden Sonne (University of Alaska Fairbanks, 'Research team discovers Arctic dinosaur nursery', 24.6.2021). Bis zu etwa 120 Tage durchgehende Winterdunkelheit, Jahresmittel 6,3 Grad, Frost im Winter mit gelegentlichem Schneefall (Druckenmiller u. a. 2021, Current Biology 31, 'Nesting at extreme polar latitudes by non-avian dinosaurs'). Bewusst weggelassen: Winterschlaf kleiner Arten (nur Vermutung), Warmbluetigkeit. Faktencheck durch eigenen Agenten (26.11.2026, Gegenquellen FSU 'Snowed in', Science News, Wikipedia Nanuqsaurus): korrigiert 'Der Boden fror' zu 'Es fror', 'kleinen Raubsaurier' zu 'kleinen, vogelaehnlichen Dino'. Keine Art genannt (Nanuqsaurus umstritten), keine Aussage zu Federn oder Schuppen, keine Groessengleichsetzung mit T. rex, kein Nest behauptet. BILD: Schneefall und Sonnenlauf sind Erklaerbilder, die Lupe zeigt eine Stecknadel als Groessenvergleich.",
+ "sprich": {
+  "Tyrannosaurier": "Tyrannosaurier"
+ },
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Dinos im *Schnee*?",
+   "emoji": "❄️",
+   "world": "b14Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Ein Tyrannosaurier im Schnee. Gab es wirklich.",
+     "mood": "shock",
+     "ev": "stapf"
+    },
+    {
+     "t": "Haben Dinosaurier jemals Schnee gesehen?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, wo ihre Babys schlüpften.",
+     "mood": "shock",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Dinos in *Alaska*",
+   "path": [],
+   "world": "b14Alaska",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: Vor rund 70 Millionen Jahren lebten Dinosaurier im Norden von Alaska.",
+     "mood": "happy",
+     "ev": "alaska"
+    },
+    {
+     "t": "Dort gab es Winter mit rund vier Monaten Dunkelheit, Frost und Schnee.",
+     "mood": "shock",
+     "ev": "winter"
+    },
+    {
+     "t": "Und auch Tyrannosaurier lebten dort.",
+     "mood": "happy",
+     "ev": "rex"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Licht und *Dunkel*",
+   "path": [],
+   "world": "b14Licht",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Jetzt kommt der Teil, der überrascht.",
+     "mood": "happy",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Im Sommer ging die Sonne dort gar nicht unter.",
+     "mood": "happy",
+     "ev": "sommer"
+    },
+    {
+     "t": "Im Winter blieb sie monatelang weg, und es gab kaum frisches Futter.",
+     "mood": "shock",
+     "ev": "dunkel"
+    },
+    {
+     "t": "Es fror, und manchmal schneite es.",
+     "mood": "cool",
+     "ev": "schnee"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Die *Babys*",
+   "path": [],
+   "world": "b14Babys",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und dann fanden Forscher winzige Zähne.",
+     "mood": "shock",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: Im Gestein lagen Zähne und Knochen von Dino-Babys, manche kaum größer als ein Stecknadelkopf.",
+     "mood": "happy",
+     "ev": "zahn"
+    },
+    {
+     "t": "Sie stammen von fast allen Dino-Arten dort, vom kleinen, vogelähnlichen Dino bis zum Tyrannosaurier.",
+     "mood": "happy",
+     "ev": "arten"
+    },
+    {
+     "t": "Vor dem Winter waren die Babys zu klein, um weit wegzuziehen. Also blieben die Dinos dort, auch im Schnee.",
+     "mood": "cool",
+     "ev": "blieben"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "b14Out",
+   "pause": 0.05,
+   "checks": [
+    "Dinos lebten in Alaska",
+    "Winter mit Schnee",
+    "Babys schlüpften dort"
+   ],
+   "lines": [
+    {
+     "t": "Also: Dinosaurier lebten im Norden von Alaska,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "dort gab es Winter mit Schnee",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und ihre Babys schlüpften gleich dort.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

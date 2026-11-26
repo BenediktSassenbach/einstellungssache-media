@@ -5,7 +5,7 @@
 //   Teil 2: Wissenschaftsmodus (Schaltbild, 230 V teilen sich auf 10 Kerzen, falsche Ersatzkerze flackert).
 //   Teil 3: die eine Lupe (Gluehdraht und Nebenwiderstand in der Kerze), Kette bleibt an, andere werden heiss, Stecker ziehen.
 // Nutzt lupeH (viz_hook.js), fuse33, lab33, lab33dots (viz_v33.js), slot, svgT, bolt (viz_p002.js). Zum Loeschen: diese Datei und videos/P017.
-var AC17 = '#5CE1FF', ST17 = '#0B1020', GY17 = 1537, XT17 = 455, XH17 = 340, XL17 = 300; // Plaetze rechts der Kommode
+var AC17 = '#5CE1FF', ST17 = '#0B1020', GY17 = 1537, XT17 = 455, XH17 = 340, XL17 = 345; // Plaetze rechts der Kommode
 const mv17 = (a, b, k) => lerp(a, b, ease(cl(k)));
 // Schrift wie svgT, aber mit Ersatzschrift (Inter Display fehlt nicht auf jedem Rechner, sonst faellt SVG auf eine Serifenschrift zurueck)
 const txt17 = (x, y, s, size, col) => '<text x="' + x + '" y="' + y + '" text-anchor="middle" font-size="' + size + '" font-weight="900" fill="' + (col || '#fff') + '" font-family="Inter Display, Inter, Arial, sans-serif">' + s + '</text>';
@@ -153,7 +153,7 @@ function sci17(t, ev) { const te = ev.teil, ze = ev.zehn, er = ev.ersatz; let s 
   return s; }
 WORLD.p17Teil = function (sc, ev, t, lt) { const rh = ev.rehook; const tw0 = rh === undefined ? 26 : 26 * (1 - ease(cl((rh - .1) / .6))), on = rh === undefined ? 0 : cl((rh - .7) / .15);
   const bg = fuse33(scene17(t, { on: on, tw0: tw0 }), sc, t, lt); const m = lab33(sc, t);
-  return W(bg + '<g opacity="' + m.toFixed(3) + '">' + lab33dots() + sci17(t, ev) + '</g>' + shade3(), slot(ev, [['teil', '230 V werden geteilt'], ['ersatz', 'Gleiche Volt- und Watt-Zahl', 'hot']])); };
+  return W(bg + '<g opacity="' + m.toFixed(3) + '"><rect x="110" y="690" width="860" height="460" rx="30" fill="#05071A" opacity=".55"/>' + lab33dots() + sci17(t, ev) + '</g>' + shade3(), /* dunkle Flaeche hinter dem Schaltbild, damit Fenster und Baum nicht wie Draehte wirken */ slot(ev, [['teil', '230 V werden geteilt'], ['ersatz', 'Gleiche Volt- und Watt-Zahl', 'hot']])); };
 WMASC.p17Teil = (ev, t, lt) => { const rh = ev.rehook, te = ev.teil, ze = ev.zehn, er = ev.ersatz;
   if (er !== undefined) { const n = Math.sin(Math.PI * cl((er - 2.9) / .6)); return stay3([XL17, GY17 - 18 * n], 1, { r: 3 * Math.sin(t * 2) + 6 * n, mood: er > 1 && er < 2.5 ? 'shock' : 'cool' }); }
   if (ze !== undefined) { const j = Math.sin(Math.PI * cl((ze - 1.4) / .6)); return stay3([XL17, GY17 - 30 * j], 1, { r: -8 * j, mood: 'shock' }); }
