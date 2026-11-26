@@ -154,4 +154,46 @@ def P017():  # Lichterkette: Kerze wird gedreht (knirschende Klicks, schneller w
     pop = np.sin(2 * np.pi * 70 * t) * np.exp(-t * 18)
     save('P017_1.wav', norm((click + .8 * pop + hum) * env(len(t), .002, .3), .35))
 
+# --- Gag-Geraeusche der 10 Videos vom 26.11.2026 (neue Werkzeuge) ---
+def wind_(d, peak): t = T(d); x = lp(noise(len(t)), .06) * (.5 + .5 * np.sin(np.pi * t / d)); return norm(hp(x, .002) * env(len(t), .1, .2), peak)
+def clicks_(d, n, f, dec, step):
+    t = T(d); x = np.zeros(len(t))
+    for i in range(n):
+        k = int((.03 + step * i) * SR); m = int(.04 * SR)
+        if k + m < len(x): tt = np.arange(m) / SR; x[k:k + m] += np.sin(2 * np.pi * (f + 120 * (i % 3)) * tt) * np.exp(-tt * dec)
+    return x
+def C007():  # Teig geht auf: leises Ofenbrummen, dann weiche Plopps und ein heller Ding
+    d = .4; t = T(d); save('C007_0.wav', norm(np.sin(2 * np.pi * 90 * t) * env(len(t), .2, .05), .15))
+    d = 1.2; t = T(d); x = clicks_(d, 4, 180, 40, .14) * .8 + .5 * np.sin(2 * np.pi * 1320 * t) * np.exp(-(t - .7).clip(0) * 6) * (t > .7)
+    save('C007_1.wav', norm(x * env(len(t), .005, .3), .32))
+def B009():  # Gaensehaut: Windstoss, dann kurzes Bibbern
+    save('B009_0.wav', wind_(.5, .25))
+    d = .9; save('B009_1.wav', norm(clicks_(d, 8, 600, 140, .09) * env(len(T(d)), .005, .3) + .4 * wind_(d, .2), .3))
+def B014():  # Dino im Schnee: Knirschen im Schnee, dann tiefes Grollen
+    d = .4; t = T(d); x = np.zeros(len(t))
+    for i in range(3): k = int((.05 + .12 * i) * SR); m = int(.08 * SR); x[k:k + m] += hp(noise(m), .3) * np.exp(-np.arange(m) / SR * 40)
+    save('B014_0.wav', norm(x, .2))
+    d = 1.0; g = growl(d, 60, 75, .5); save('B014_1.wav', norm(lp(g, .2) * env(len(g), .05, .4), .35))
+def I031():  # Menschenmenge: schnelle Schritte, dann knapp ausweichen (Wusch)
+    d = .45; t = T(d); x = np.zeros(len(t))
+    for i in range(6): k = int((.02 + .07 * i) * SR); m = int(.03 * SR); x[k:k + m] += lp(noise(m), .3) * np.exp(-np.arange(m) / SR * 90)
+    save('I031_0.wav', norm(x, .2))
+    d = .7; t = T(d); x = hp(lp(noise(len(t)), .25), .02) * np.sin(np.pi * t / d) ** 2
+    save('I031_1.wav', norm(x * env(len(t), .01, .2), .28))
+def C008():  # Kerze: Streichholz anreissen, dann leises Fauchen und Zischen am Wachs
+    d = .3; t = T(d); save('C008_0.wav', norm(hp(noise(len(t)), .2) * np.exp(-t * 8) * env(len(t), .01, .05), .25))
+    d = 1.1; t = T(d); x = lp(noise(len(t)), .12) * np.exp(-t * 2.5) + .3 * hp(noise(len(t)), .5) * np.exp(-t * 4)
+    save('C008_1.wav', norm(x * env(len(t), .02, .4), .3))
+def I009():  # Musik-App: Tipp auf Skip, dann Wisch zum naechsten Song
+    d = .12; t = T(d); save('I009_0.wav', norm(np.sin(2 * np.pi * 1800 * t) * np.exp(-t * 80), .22))
+    d = .6; t = T(d); x = hp(lp(noise(len(t)), .35), .05) * np.sin(np.pi * t / d)
+    save('I009_1.wav', norm(x * env(len(t), .01, .15), .25))
+def B019():  # Zittern: Windstoss, dann klappernde Knochen des Skeletts
+    save('B019_0.wav', wind_(.5, .25))
+    d = 1.0; save('B019_1.wav', norm(clicks_(d, 10, 700, 120, .085) * env(len(T(d)), .005, .3), .33))
+def I027():  # Verschluesselt: Schloss rastet ein (Klick), dann tiefes Zuschnappen und leises Ping
+    d = .15; t = T(d); save('I027_0.wav', norm(hp(noise(len(t)), .4) * np.exp(-t * 60), .2))
+    d = .9; t = T(d); x = np.sin(2 * np.pi * 85 * t) * np.exp(-t * 14) + .35 * np.sin(2 * np.pi * 1500 * t) * np.exp(-(t - .25).clip(0) * 8) * (t > .25)
+    save('I027_1.wav', norm(x * env(len(t), .003, .3), .32))
+
 for a in sys.argv[1:]: globals()[a]()

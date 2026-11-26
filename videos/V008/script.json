@@ -3,7 +3,7 @@
  "titel": "Notfallpass vor dem Skifahren",
  "accent": "#5CE1A0",
  "anim": "neu",
- "quelle": "V-Reihe (Aufbau wie V007) mit Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Nur TikTok (Regel: keine iPhone-Tipps auf YouTube). FAKTEN (26.11.2026, Apple Support): Notfallpass in der App Health einrichten: Health oeffnen, auf dein Bild tippen, dann auf Notfallpass; unter Notfallkontakte auf Notfallkontakt hinzufuegen tippen; nach einem Notruf informiert das iPhone deine Notfallkontakte mit einer Nachricht und sendet deinen aktuellen Standort (wenn verfuegbar); unter Bearbeiten, nach unten scrollen, Im Sperrzustand zeigen und Notruf aktivieren; Ersthelfende sehen den Notfallpass im Sperrbildschirm ueber Notfall auf dem Codebildschirm und dann Notfallpass (Apple, iPhone-Benutzerhandbuch 'Notfallpass einrichten und anzeigen'; Apple Support 105072 'Deinen Notfallpass in der Health-App auf dem iPhone einrichten'). Keine Gesundheitsratschlaege, nur die Funktion. Faktencheck durch eigenen Agenten (26.11.2026, Apple Support 105072 und 102262, englisches Handbuch): Schalter Notruf bzw. Waehrend eines Notrufs teilen entfernt (automatisches Teilen nur USA und Kanada, Name je nach iOS-Version), Panel nur mit belegten Feldern, 'bekommt' zu 'schickt dein iPhone', 'das Wichtigste' zu 'deine Angaben'. VOR DEM POSTEN: Menuenamen am eigenen iPhone gegenpruefen. Pruefer-Runde 26.11.2026: Doppel 3 Schritte und Blase Ohne Code entfernt, Zitat mit geschuetzten Leerzeichen, Hook-Zeile gekuerzt. Offen in der Pipeline (alle V-Videos): Sticker rechts bis x 950, Tipp-Zustand dunkel, Panel-Schrift 24-33 px.",
+ "quelle": "V-Reihe (Aufbau wie V007) mit Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Nur TikTok (Regel: keine iPhone-Tipps auf YouTube). FAKTEN (26.11.2026, Apple Support): Notfallpass in der App Health einrichten: Health oeffnen, auf dein Bild tippen, dann auf Notfallpass; unter Notfallkontakte auf Notfallkontakt hinzufuegen tippen; nach einem Notruf informiert das iPhone deine Notfallkontakte mit einer Nachricht und sendet deinen aktuellen Standort (wenn verfuegbar); unter Bearbeiten, nach unten scrollen, Im Sperrzustand zeigen und Notruf aktivieren; Ersthelfende sehen den Notfallpass im Sperrbildschirm ueber Notfall auf dem Codebildschirm und dann Notfallpass (Apple, iPhone-Benutzerhandbuch 'Notfallpass einrichten und anzeigen'; Apple Support 105072 'Deinen Notfallpass in der Health-App auf dem iPhone einrichten'). Keine Gesundheitsratschlaege, nur die Funktion. Faktencheck durch eigenen Agenten (26.11.2026, Apple Support 105072 und 102262, englisches Handbuch): Schalter Notruf bzw. Waehrend eines Notrufs teilen entfernt (automatisches Teilen nur USA und Kanada, Name je nach iOS-Version), Panel nur mit belegten Feldern, 'bekommt' zu 'schickt dein iPhone', 'das Wichtigste' zu 'deine Angaben'. VOR DEM POSTEN: Menuenamen am eigenen iPhone gegenpruefen. Pruefer-Runde 26.11.2026: Doppel 3 Schritte und Blase Ohne Code entfernt, Zitat mit geschuetzten Leerzeichen, Hook-Zeile gekuerzt. Offen in der Pipeline (alle V-Videos): Sticker rechts bis x 950, Tipp-Zustand dunkel, Panel-Schrift 24-33 px. Zweiter Faktencheck vor der Stimme (26.11.2026, eigener Agent): \"Nach einem Notruf schickt dein iPhone dieser Person eine Nachricht, wenn möglich mit deinem Standort.\" zu \"Nach einem Notruf kann dein iPhone dieser Person eine Nachricht schicken, wenn möglich mit deinem Standort.\"; \"und unter Notfallkontakte auf „Notfallkontakt hinzufügen“.\" zu \"und füge unter Notfallkontakte einen Kontakt hinzu.\". Apple Support 105072 nennt in neueren iOS-Versionen einen Plus-Knopf neben Notfallkontakt, deshalb neutral \"fuege einen Kontakt hinzu\" und Panel \"+ Notfallkontakt\".",
  "scenes": [
   {
    "type": "hook",
@@ -124,7 +124,7 @@
     "tag": "So sieht es aus",
     "rows": [
      {
-      "t": "Notfallkontakt hinzufügen",
+      "t": "+ Notfallkontakt",
       "hot": true
      }
     ]
@@ -150,12 +150,12 @@
      "ev": "p2"
     },
     {
-     "t": "und unter Notfallkontakte auf „Notfallkontakt hinzufügen“.",
+     "t": "und füge unter Notfallkontakte einen Kontakt hinzu.",
      "mood": "happy",
      "ev": "p3"
     },
     {
-     "t": "Nach einem Notruf schickt dein iPhone dieser Person eine Nachricht, wenn möglich mit deinem Standort.",
+     "t": "Nach einem Notruf kann dein iPhone dieser Person eine Nachricht schicken, wenn möglich mit deinem Standort.",
      "mood": "shock",
      "ev": "act",
      "pop": [
