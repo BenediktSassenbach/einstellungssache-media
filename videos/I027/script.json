@@ -1,0 +1,166 @@
+{
+ "serie": "Informatik",
+ "kostuem": "hacker",
+ "accent": "#2EE6A0",
+ "design": "3.3",
+ "anim": "neu",
+ "gagTag": "[gasps]",
+ "id": "I027",
+ "titel": "Wie erkennt WhatsApp Spam und Betrug, ohne deine Chats zu lesen?",
+ "gagDelay": 0,
+ "gagZeile": 0,
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Spam *erkennen* ohne Mitlesen?",
+   "emoji": "🔒",
+   "world": "i27Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Deine privaten Chats sind verschlüsselt. Nicht mal WhatsApp kann sie lesen.",
+     "mood": "shock",
+     "ev": "schloss"
+    },
+    {
+     "t": "Wie erkennt WhatsApp dann Spam und Betrug?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, wofür dein Melden-Knopf gut ist.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Das *Verhalten*",
+   "path": [],
+   "world": "i27Verhalten",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: WhatsApp liest deine privaten Chats nicht mit, sondern achtet vor allem aufs Verhalten der Konten.",
+     "mood": "happy",
+     "ev": "verh"
+    },
+    {
+     "t": "Verschickt ein Konto in kurzer Zeit auffällig viele Nachrichten, kann das auffallen.",
+     "mood": "shock",
+     "ev": "masse"
+    },
+    {
+     "t": "Dazu kommen Angaben wie Profil und Gruppeninfos.",
+     "mood": "cool",
+     "ev": "profil"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Die *Maschine*",
+   "path": [],
+   "world": "i27Maschine",
+   "labor": [
+    1,
+    2,
+    3
+   ],
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Aber wer entscheidet?",
+     "mood": "happy",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Ein lernendes System bewertet die Signale automatisch.",
+     "mood": "happy",
+     "ev": "ml"
+    },
+    {
+     "t": "Ist ein Verstoß sehr wahrscheinlich, entscheidet es selbst. Sonst prüft ein Mensch.",
+     "mood": "shock",
+     "ev": "mensch"
+    },
+    {
+     "t": "Aus jeder Entscheidung lernt das System dazu.",
+     "mood": "cool",
+     "ev": "lernt"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Dein *Melden*",
+   "path": [],
+   "world": "i27Melden",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und jetzt kommst du ins Spiel.",
+     "mood": "shock",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: Meldest du einen Kontakt, bekommt WhatsApp bis zu fünf seiner letzten Nachrichten an dich.",
+     "mood": "happy",
+     "ev": "meld"
+    },
+    {
+     "t": "Von deinen privaten Chats sieht WhatsApp nur diese. Der Rest bleibt verschlüsselt.",
+     "mood": "shock",
+     "ev": "nur"
+    },
+    {
+     "t": "So helfen Meldungen, Spam- und Betrugskonten zu finden.",
+     "mood": "cool",
+     "ev": "hilft"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i27Out",
+   "pause": 0.05,
+   "checks": [
+    "Verhalten und Profil",
+    "System und Mensch prüfen",
+    "Deine Meldung hilft"
+   ],
+   "lines": [
+    {
+     "t": "Also: Verhalten und Profil zählen,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "System und Mensch prüfen",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und deine Meldung hilft mit.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ],
+ "quelle": "SKRIPT 4 mit Abschnitt 9 und Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Kostuem I1 Hacker-Hoodie. Ort eigens gebaut: naechtliches Brief-Verteilzentrum, Nachrichten als versiegelte Umschlaege mit Schloss auf einem Band (eigene Gestaltung, kein Logo, keine echten Chats). Teil 1 Band und Konten, Teil 2 Wissenschaftsmodus (Signale, Bewertung, Weiche Sperre oder Mensch), Teil 3 Handy mit Melden-Knopf. FAKTEN (26.11.2026): WhatsApp Messaging Guidelines (Stand 23.09.2026): persoenliche Nachrichten sind standardmaessig Ende-zu-Ende verschluesselt, niemand, auch nicht WhatsApp, kann sie sehen; WhatsApp handelt auf Grundlage begrenzter Informationen, darunter grundlegende Konto-, Gruppen- und Community-Profilinfos sowie von anderen Nutzern gemeldete Nachrichten; automatisierte Verarbeitung entscheidet selbst, wo Kontoverhalten oder gemeldeter Inhalt sehr wahrscheinlich gegen die Regeln verstoesst, sonst leitet sie an menschliche Pruefteams weiter, die final entscheiden; die automatisierten Systeme lernen aus jeder Entscheidung; Betrug und Spam umfassen wiederholten unerwuenschten Kontakt. WhatsApp-FAQ 'How to use WhatsApp responsibly': WhatsApp nutzt maschinelles Lernen und Meldungen von Nutzern, um Konten zu erkennen und zu sperren, die unerwuenschte automatisierte Nachrichten senden. Melden teilt die neuesten Nachrichten eines Chats mit WhatsApp (WhatsApp-Stellungnahme laut morungexpress/beebom). Nur Informatik-Funktion, kein Rat zu Betrugsmaschen. Faktencheck durch eigenen Agenten (26.11.2026; Messaging Guidelines, whatsapp.com/privacyquestions, Datenschutzrichtlinie EWR, TNW und TechCrunch zum Whitepaper 'Stopping Abuse', WhatsApp-FAQ 414631957536067 laut Suchtreffern): 'privat' ergaenzt (Profilbild, Info, Gruppen- und Community-Namen sind WhatsApp bekannt), 'vor allem' Verhalten, 'massenhaft an Fremde' zu 'auffaellig viele Nachrichten' (Menge und Tempo als Signal belegt, Empfaengerbezug nicht), 'sperrt selbst' zu 'entscheidet das System selbst' (Guidelines: highly likely), Melden: 'bis zu fuenf der letzten Nachrichten' des gemeldeten Kontakts statt 'dein Handy schickt die letzten Nachrichten', 'Nur diese kann WhatsApp pruefen' auf private Chats eingeschraenkt, Betrug als Regelverstoss laut Guidelines ('fraud or spam'), Schluss ohne 'nicht der Inhalt'. VOR DEM POSTEN: 'bis zu fuenf' im WhatsApp-Hilfebereich (faq.whatsapp.com/414631957536067) gegenlesen. Pruefer-Runde 26.11.2026: Weiche erst System, dann Mensch passend zum Satz, fuenf offene Umschlaege am Prueftisch mit Zaehler 5, Prueftisch ueber dem Band, Empfaenger hoeher, Warnlampe groesser, Auge gross auf dem Umschlag, Netz-Schrift groesser, Panel deckend, Profilkarte mit Gruppen, Melde-Zaehler groesser."
+}
