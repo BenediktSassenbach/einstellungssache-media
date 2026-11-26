@@ -1,0 +1,160 @@
+{
+ "serie": "Bio",
+ "kostuem": "skelett",
+ "accent": "#A8E63C",
+ "anim": "neu",
+ "gagTag": "[gasps]",
+ "id": "B009",
+ "titel": "Warum bekommst du Gänsehaut?",
+ "gagDelay": 0.1,
+ "gagZeile": 0,
+ "quelle": "SKRIPT ANATOMIE (Hook-System, Erstens/Zweitens/Drittens mit Rehook) und Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Kostuem B4 Skelett-Anzug. Ort: Bio-Saal mit Tafel. Hauptfigur: Arm-Modell aus Haut auf dem Podest (Haut und Haare werden gezeigt, kein echtes Foto). Neue feste Farben: Haut #F2C9A0, Muskel #E8665A (rot), Nerv #FFE14D (gelb), Kreide-Hinweis 'rot = Muskel' beim ersten Auftreten. PRUEFFRAGEN: 1 Sucht jemand das Video wegen Beschwerden? Nein, Gaensehaut ist ein normaler Vorgang. 2 Braucht die Antwort 'gesund', 'schaedlich', 'hilft gegen', 'solltest du'? Nein. 3 Aendert jemand danach Essen, Sport, Medikamente oder Arztbesuch? Nein. Bewusst weggelassen: Gaensehaut durch Gefuehle, Musik, Angst (Psyche ist laut Skript Anatomie tabu), Talgdruesen (stimmt, wird nicht gebraucht), Aufplustern bei Tieren zur Drohung. FAKTEN (26.11.2026): Musculi arrectores pilorum sind winzige glatte Muskeln in der Haut, an jedem einzelnen Haarbalg setzt ein Buendel an; Funktion: bei Kaelte die Haare aufrichten (Gaensehaut); innerviert durch den Sympathikus (DocCheck Flexikon, Musculus arrector pili). Kleine Muskeln aus glatter Muskulatur am Rand der Haare, Innervation unwillkuerlich durch sympathische Nervenfasern; sie richten das Haar auf, die dabei entstehende Hautstruktur heisst Gaensehaut; Sinn bei Kaelte: mehr eingeschlossene Luft erhoeht die Waermedaemmung; beim Menschen hat der Mechanismus wegen der geringen Haardichte kaum einen Effekt (Wikipedia, Musculus arrector pili, nach Geyer, Anatomie fuer die Tiermedizin, 2008). Faktencheck durch eigenen Agenten (26.11.2026, Gegenquellen Elsevier Anatomy 'Arrector muscle of hair': kein Muskel an Wimpern, Augenbrauen, Nasenhaaren u. a., der Muskel hebt die Haut am Haaraustritt und zieht sie am Ansatz ein; Kamberov u. a. 2018, PMC6289065: Menschen haben etwa so viele Follikel wie Schimpansen, aber meist feine Vellushaare): korrigiert 'an den Haaren' zu 'an vielen Haaren', Hubbel-Mechanismus, 'zu wenige Haare' zu 'zu fein und zu kurz', 'das ganze Fell' zu 'das Fell'. BILD: Querschnitt der Haut, Nervensignal und Fell sind Erklaerbilder.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Gänse*haut*?",
+   "emoji": "🥶",
+   "world": "b9Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Ein kalter Windstoß, und zack: Gänsehaut.",
+     "mood": "shock",
+     "ev": "wind"
+    },
+    {
+     "t": "Warum bekommst du Gänsehaut?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, warum sie bei dir kaum etwas bringt.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Winzige *Muskeln*",
+   "path": [],
+   "world": "b9Muskel",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: An vielen Haaren in deiner Haut sitzen winzige Muskeln, die Haaraufrichter.",
+     "mood": "happy",
+     "ev": "muskel"
+    },
+    {
+     "t": "Wird dir kalt, ziehen sie sich zusammen und stellen die Haare auf.",
+     "mood": "shock",
+     "ev": "zieh"
+    },
+    {
+     "t": "Dabei zieht der Muskel an der Haut, und es entstehen kleine Hubbel.",
+     "mood": "happy",
+     "ev": "hubbel"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Von *allein*",
+   "path": [],
+   "world": "b9Nerv",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Aber wer gibt eigentlich den Befehl?",
+     "mood": "happy",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Du entscheidest das nicht selbst.",
+     "mood": "cool",
+     "ev": "selbst"
+    },
+    {
+     "t": "Das Signal kommt von einem Teil deines Nervensystems, dem Sympathikus.",
+     "mood": "happy",
+     "ev": "signal"
+    },
+    {
+     "t": "Deshalb passiert Gänsehaut ganz von allein.",
+     "mood": "shock",
+     "ev": "allein"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Zu feine *Haare*",
+   "path": [],
+   "world": "b9Fell",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und jetzt kommt der Haken.",
+     "mood": "shock",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: Bei Tieren mit dichtem Fell stellt sich das Fell auf.",
+     "mood": "happy",
+     "ev": "fell"
+    },
+    {
+     "t": "Zwischen den Haaren bleibt mehr Luft, und die hält die Wärme besser.",
+     "mood": "happy",
+     "ev": "luft"
+    },
+    {
+     "t": "Deine Haare sind dafür zu fein und zu kurz. Bei dir bringt es kaum etwas.",
+     "mood": "cool",
+     "ev": "mensch"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "b9Out",
+   "pause": 0.05,
+   "checks": [
+    "Winzige Muskeln",
+    "Signal kommt von allein",
+    "Bei dir kaum Wirkung"
+   ],
+   "lines": [
+    {
+     "t": "Also: Winzige Muskeln stellen die Haare auf,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "das Signal kommt von allein",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und bei dir bringt es kaum etwas.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Bio verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

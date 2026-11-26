@@ -1,0 +1,171 @@
+{
+ "serie": "Chemie",
+ "kostuem": "labor",
+ "accent": "#FF6BD6",
+ "design": "3.3",
+ "anim": "neu",
+ "gagTag": "[gasps]",
+ "id": "C007",
+ "titel": "Warum geht Plätzchenteig im Ofen auf?",
+ "gagDelay": 0.1,
+ "gagZeile": 0,
+ "quelle": "SKRIPT 4 mit Abschnitt 9 und Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Kostuem C1 Laborkittel. Ort eigens gebaut: Kueche am Adventsnachmittag mit Einbau-Backofen (Plaetzchen im Sichtfenster), Arbeitsplatte mit Teigschuessel, Backpulver-Tuetchen und Hirschhornsalz-Dose, Fenster mit Schnee. Pro Teil eine andere Hauptdarstellung: Teil 1 Interaktion mit der einen Lupe (Backpulver in den Teig, Blaeschen), Teil 2 Wissenschaftsmodus (Wasser wird Dampf, Poren dehnen sich), Teil 3 Backofen mit Lebkuchen und Dose (Zerfall, Geruch). FAKTEN (26.11.2026): Chemische Backtriebmittel entwickeln beim Backen Kohlendioxid, das den Teig lockert, vor allem fuer Ruehr- und Muerbeteige ohne Gehzeit; Backpulver ist eine fertige Mischung aus Natron, einem Saeurebildner und einem Trennmittel; Natron loest sich mit Wasser und Waerme, das Gas entsteht, es braucht eine saure Zutat; Hirschhornsalz ist fuer kompakte, schwere Teige, diese werden locker und elastisch, gehen aber nicht auf, deshalb fuer flache Gebaecke wie Spekulatius, Printen, Lebkuchen; es zersetzt sich durch die Backhitze in Wasserdampf, Kohlendioxid und Ammoniak, die aus dem Gebaeck entweichen; zurueckbleibende Reste geben einen etwas laugigen Geschmack, typisch fuer Lebkuchen (Bundeszentrum fuer Ernaehrung, 'Was machen eigentlich Natron, Backpulver, Hirschhornsalz und Co.?'). Backpulver ist meist Natriumhydrogencarbonat plus Saeuerungsmittel; Hirschhornsalz (Ammoniumbicarbonat) fuer Flachgebaecke wie Muerbteig oder Lebkuchen, spaltet sich in Ammoniak, Kohlenstoffdioxid und Wasser; physikalische Lockerung: bei jedem Backvorgang verdampft das Wasser im Teig teilweise, dehnt sich aus und lockert den Teig (Wikipedia, Triebmittel). Faktencheck durch eigenen Agenten (26.11.2026, Gegenquellen chemie.de Triebmittel und Backpulver, test.de Hirschhornsalz und Pottasche, apotheken-umschau, kuechenfibel, utopia): korrigiert 'Ein Rest' zu 'Zurueckbleibende Reste', 'komisch' zu 'stechend', 'drueckt auseinander' zu 'dehnt aus'. BILD: Teilchen in Lupe und Wissenschaftsmodus sind Erklaerbilder.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Plätzchen *wachsen*?",
+   "emoji": "🍪",
+   "world": "c7Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Viele Plätzchen wachsen im Ofen. Ganz ohne Hefe.",
+     "mood": "shock",
+     "ev": "guck"
+    },
+    {
+     "t": "Warum geht Plätzchenteig im Ofen auf?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, was nach Ammoniak riecht.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Ein *Gas*",
+   "path": [],
+   "world": "c7Gas",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: In vielen Plätzchenteigen steckt Backpulver, Natron plus eine Säure.",
+     "mood": "happy",
+     "ev": "bp"
+    },
+    {
+     "t": "Mit Wasser und Wärme reagieren die beiden. Dabei entsteht Kohlendioxid, ein Gas.",
+     "mood": "shock",
+     "ev": "gas"
+    },
+    {
+     "t": "Das Gas bildet Bläschen im Teig. Er wird lockerer und größer.",
+     "mood": "happy",
+     "ev": "locker"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Der *Dampf*",
+   "path": [],
+   "world": "c7Dampf",
+   "labor": [
+    1,
+    2,
+    3
+   ],
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Doch das Gas ist nicht allein.",
+     "mood": "happy",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Im Ofen verdampft ein Teil des Wassers im Teig.",
+     "mood": "happy",
+     "ev": "dampf"
+    },
+    {
+     "t": "Dampf braucht viel mehr Platz als Wasser. Er dehnt die Bläschen aus.",
+     "mood": "shock",
+     "ev": "platz"
+    },
+    {
+     "t": "Das passiert bei jedem Backen, auch ohne Backpulver.",
+     "mood": "cool",
+     "ev": "immer"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Der *Geruch*",
+   "path": [],
+   "world": "c7Geruch",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und dann riecht es plötzlich stechend.",
+     "mood": "shock",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: In Lebkuchen steckt oft Hirschhornsalz.",
+     "mood": "happy",
+     "ev": "hirsch"
+    },
+    {
+     "t": "In der Ofenhitze zerfällt es in Wasserdampf, Kohlendioxid und Ammoniak.",
+     "mood": "shock",
+     "ev": "zerfall"
+    },
+    {
+     "t": "Das lockert schwere Teige, aber sie bleiben flach.",
+     "mood": "cool",
+     "ev": "flach"
+    },
+    {
+     "t": "Das Ammoniak entweicht. Zurückbleibende Reste schmecken leicht laugig, typisch Lebkuchen.",
+     "mood": "happy",
+     "ev": "laugig"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "c7Out",
+   "pause": 0.05,
+   "checks": [
+    "Backpulver bildet Gas",
+    "Dampf lockert mit",
+    "Hirschhornsalz für Lebkuchen"
+   ],
+   "lines": [
+    {
+     "t": "Also: Backpulver bildet Gas,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "Dampf lockert mit",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und Hirschhornsalz lockert Lebkuchen.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
