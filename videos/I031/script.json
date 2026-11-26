@@ -1,0 +1,161 @@
+{
+ "serie": "Informatik",
+ "kostuem": "sunset",
+ "accent": "#7C5CFF",
+ "design": "3.3",
+ "anim": "neu",
+ "gagTag": "[gasps]",
+ "id": "I031",
+ "titel": "Wie bewegt ein Spiel so viele Leute?",
+ "gagDelay": 0,
+ "gagZeile": 0,
+ "quelle": "SKRIPT VIDEOSPIEL mit Skript 4 Abschnitt 9 und Abschnitt Neue Werkzeuge (26.11.2026). Stumme Demo v1 (26.11.2026). Kostuem S1 Sunset-Hemd. Ort eigens gebaut: Strandpromenade einer Kuestenstadt bei Sonnenuntergang (eigener Stil, keine Orte, Figuren oder Logos aus einem Spiel). Ueber GTA 6 wird nichts behauptet, erklaert wird die allgemeine Technik. Pro Teil eine andere Hauptdarstellung: Teil 1 Draufsicht durch die Drohne (Navigationsnetz), Teil 2 Interaktion am Ort (Schalti als Hindernis, Ausweich-Kraefte), Teil 3 Perspektive mit Ringen um die Kamera (nah genau, weit weg einfach). FAKTEN (26.11.2026): Mass Avoidance ist ein kraftbasiertes Ausweichsystem, die berechnete Kraft lenkt eine Figur von anderen weg (Epic Games, Unreal Engine Dokumentation 'Mass Avoidance Overview'). MassEntity ist ein datenorientiertes Rahmenwerk fuer viele Einheiten, Daten wie Position, Geschwindigkeit und LOD-Stufe, Berechnungen zur Detailstufe (LOD) (Epic Games, 'Overview of Mass Entity'). Navigation fuer Menschenmengen ueber ZoneGraph oder NavMesh (Epic Developer Community, 'Designing Scalable Crowds with Mass AI'). Figuren in der Ferne als einfache Agenten ohne Ausweichen, die Kosten fast null (Studio-Blog StraySpark, nur Beispiel). Faktencheck durch eigenen Agenten (26.11.2026, Gegenquellen Wikipedia Navigation mesh, UNC ORCA, Reynolds Steering Behaviors, Epic 'Overview of Mass Gameplay' mit LOD-Stufen High/Medium/Low/Off): 'Die Leute laufen' zu 'Oft laufen die Leute' (auch Wegegraphen wie ZoneGraph kommen vor), 'sanft' gestrichen und 'oft' ergaenzt (ORCA ist geschwindigkeitsbasiert), 'direkt vor dir' zu 'die du gerade siehst'. BILD: Netz, Kraftpfeile und Ringe sind Erklaerbilder; die Zahl der Leute im Bild ist frei gewaehlt.",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "So viele *Leute*?",
+   "emoji": "🚶",
+   "world": "i31Hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Eine volle Spielstadt, und kaum einer rempelt.",
+     "mood": "shock",
+     "ev": "menge"
+    },
+    {
+     "t": "Wie bewegt ein Spiel so viele Leute?",
+     "mood": "shock",
+     "ev": "frage"
+    },
+    {
+     "t": "Am Ende weißt du, wo das Spiel spart.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Die *Karte*",
+   "path": [],
+   "world": "i31Karte",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: Oft laufen die Leute auf einer unsichtbaren Karte, dem Navigationsnetz.",
+     "mood": "happy",
+     "ev": "netz"
+    },
+    {
+     "t": "Es zeigt, wo man gehen kann: Gehweg ja, Hauswand nein.",
+     "mood": "cool",
+     "ev": "gehen"
+    },
+    {
+     "t": "Darauf sucht jede Figur ihren Weg zum Ziel.",
+     "mood": "happy",
+     "ev": "weg"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "*Ausweichen*",
+   "path": [],
+   "world": "i31Aus",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Und dann wird es eng.",
+     "mood": "shock",
+     "ev": "rehook"
+    },
+    {
+     "t": "Zweitens: Jede Figur achtet auf die Leute direkt um sich herum.",
+     "mood": "happy",
+     "ev": "nah"
+    },
+    {
+     "t": "Kommt ihr jemand zu nah, schiebt oft eine Kraft sie zur Seite.",
+     "mood": "shock",
+     "ev": "kraft"
+    },
+    {
+     "t": "So weichen alle aus, ohne dass jemand die ganze Menge plant.",
+     "mood": "cool",
+     "ev": "alle"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Clever *sparen*",
+   "path": [],
+   "world": "i31Spar",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Aber wie schafft die Konsole das alles?",
+     "mood": "happy",
+     "ev": "rehook"
+    },
+    {
+     "t": "Drittens: Leute in deiner Nähe werden genau berechnet.",
+     "mood": "happy",
+     "ev": "genau"
+    },
+    {
+     "t": "Weiter weg rechnet das Spiel mit weniger Details.",
+     "mood": "shock",
+     "ev": "weniger"
+    },
+    {
+     "t": "So bleibt Rechenzeit für die Leute, die du gerade siehst.",
+     "mood": "cool",
+     "ev": "rest"
+    }
+   ]
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "i31Out",
+   "pause": 0.05,
+   "checks": [
+    "Unsichtbare Karte",
+    "Ausweichen per Kraft",
+    "Weit weg wird gespart"
+   ],
+   "lines": [
+    {
+     "t": "Also: Oft laufen die Leute auf einer unsichtbaren Karte,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "eine Kraft lässt sie ausweichen",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und weit weg wird gespart.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Informatik verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}
