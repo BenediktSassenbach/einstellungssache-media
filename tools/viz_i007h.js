@@ -88,7 +88,7 @@ WORLD.i7Hook = function (sc, ev, t, lt) { const fr = ev.frage, lo = ev.loop;
   let s = roomI7(t, { scr: shopI7(t, fr !== undefined) });
   const wob = lt > 2.6 ? 7 * Math.sin(t * 7) * (.6 + .4 * Math.sin(t * 1.3)) : 0; s += '<g transform="rotate(' + wob.toFixed(2) + ' ' + BXI7 + ' ' + GYI7 + ')">' + boxI7(BXI7, open, cl(chomp), t) + '</g>';
   if (lt < .8) for (let i = 0; i < 6; i++) { const c = cl((lt - i * .05) / .6); s += '<rect x="' + (BXI7 - 30 + 120 * c * Math.cos(i)).toFixed(0) + '" y="' + (GYI7 - 160 - 120 * c + 200 * c * c).toFixed(0) + '" width="14" height="6" fill="#E8D6A8" opacity="' + (1 - c).toFixed(2) + '"/>'; }
-  if (lt > 2.6) { const q = cl((lt - 2.6) / 2.2), px = lerp(SCXI7 - 200, SCXI7 + 130, ease(q)), py = lerp(SCYI7 + 120, SCYI7 + 20, ease(q)), clk = lt > 4.9 && lt < 5.3 ? .85 : 1; s += '<g transform="translate(' + px.toFixed(0) + ' ' + py.toFixed(0) + ') scale(' + (1.4 * clk) + ')"><path d="M0 0 l0 46 l12 -12 l14 26 l10 -5 l-13 -25 l18 -2 Z" fill="#fff" stroke="' + STI7 + '" stroke-width="4"/></g>'; }
+  if (lt > 2.6) { const q = cl((lt - 2.6) / 2.2), px = lerp(SCXI7 - 200, SCXI7 + 160, ease(q)), py = lerp(SCYI7 + 120, SCYI7 - 30, ease(q)), clk = lt > 4.9 && lt < 5.3 ? .85 : 1; s += '<g transform="translate(' + px.toFixed(0) + ' ' + py.toFixed(0) + ') scale(' + (1.4 * clk) + ')"><path d="M0 0 l0 46 l12 -12 l14 26 l10 -5 l-13 -25 l18 -2 Z" fill="#fff" stroke="' + STI7 + '" stroke-width="4"/></g>'; }
   if (lo !== undefined) { const c = (t * 1.2) % 1; s += '<circle cx="' + (SCXI7 + 120) + '" cy="' + (SCYI7) + '" r="' + (70 + 40 * c).toFixed(0) + '" fill="none" stroke="#FF3B5C" stroke-width="6" opacity="' + (1 - c).toFixed(2) + '"/>'; }
   return W(s + shade3()); };
 WMASC.i7Hook = (ev, t, lt) => { const fr = ev.frage, lo = ev.loop;
@@ -105,7 +105,7 @@ WORLD.i7Schloss = function (sc, ev, t, lt) { const sl = ev.schloss, tu = ev.tunn
   return W(s + shade3(), slot(ev, [['schloss', 'Schloss = verschlüsselt'], ['tunnel', 'Sagt nichts über den Händler', 'hot']])); };
 WMASC.i7Schloss = (ev, t, lt) => { const sl = ev.schloss, tu = ev.tunnel;
   if (tu !== undefined) { const j = Math.sin(Math.PI * cl((tu - 1.6) / .6)); return stay3([XHI7 - 20, GYI7 - 30 * j], 1, { r: -8 * j, mood: tu > 1.7 ? 'shock' : 'happy' }); }
-  const reach = sl === undefined ? 0 : Math.sin(Math.PI * cl((sl - .3) / 1.2)); return stay3([mvI7(XHI7, 330, sl === undefined ? lt / .6 : 1), GYI7 - 18 * reach], 1, { r: 14 * reach, mood: 'happy' }); };
+  const reach = sl === undefined ? 0 : Math.sin(Math.PI * cl((sl - .3) / 1.2)); return stay3([mvI7(XHI7, 300, sl === undefined ? lt / .6 : 1), GYI7 - 18 * reach], 1, { r: 14 * reach, mood: 'happy' }); };
 
 // ---------- Teil 2: Vorkasse (Bildschirm) ----------
 WORLD.i7Kasse = function (sc, ev, t, lt) { const rh = ev.rehook, za = ev.zahl, we = ev.weg;
@@ -114,9 +114,9 @@ WORLD.i7Kasse = function (sc, ev, t, lt) { const rh = ev.rehook, za = ev.zahl, w
   if (we !== undefined) { s += moneyI7(cl(we / 2.2), t); }
   return W(s + shade3(), slot(ev, [['zahl', 'Am Ende nur Vorkasse', 'hot'], ['weg', 'Geld meist weg', 'red']])); };
 WMASC.i7Kasse = (ev, t, lt) => { const rh = ev.rehook, za = ev.zahl, we = ev.weg;
-  if (we !== undefined) { const j = Math.abs(Math.sin(t * 6)) * cl(we / .3) * (1 - cl((we - 2) / .4)); return stay3([mvI7(330, 250, we / 1), GYI7 - 22 * j], 1, { r: -14 * j, mood: 'shock' }); }
-  if (za !== undefined) { const tap = Math.abs(Math.sin(Math.PI * cl((za - 3.2) / .4))); return stay3([330, GYI7 - 20 * tap], 1, { r: 16 * tap, mood: za > 1.4 ? 'shock' : 'happy' }); }
-  return stay3([mvI7(XHI7 - 20, 330, lt / .8), GYI7 - 26 * Math.sin(Math.PI * cl(lt / .8))], 1, { r: 3, mood: 'cool' }); };
+  if (we !== undefined) { const j = Math.abs(Math.sin(t * 6)) * cl(we / .3) * (1 - cl((we - 2) / .4)); return stay3([mvI7(300, 250, we / 1), GYI7 - 22 * j], 1, { r: -14 * j, mood: 'shock' }); }
+  if (za !== undefined) { const tap = Math.abs(Math.sin(Math.PI * cl((za - 3.2) / .4))); return stay3([300, GYI7 - 20 * tap], 1, { r: 16 * tap, mood: za > 1.4 ? 'shock' : 'happy' }); }
+  return stay3([mvI7(XHI7 - 20, 300, lt / .8), GYI7 - 26 * Math.sin(Math.PI * cl(lt / .8))], 1, { r: 3, mood: 'cool' }); };
 
 // ---------- Teil 3: Siegel und Fakeshop-Finder (Gegenstand, die eine Lupe) ----------
 function lupeUrlI7(t, k) { return '<rect x="-320" y="-320" width="640" height="640" fill="#F4F6FB"/><rect x="-280" y="-80" width="560" height="80" rx="40" fill="#fff" stroke="#B8C0D4" stroke-width="5"/>' + svgT(-240, -26, 'mega-deal.example', 46, '#3A4060', 'start') + (k > .5 ? '<path d="M-240 14 H' + (-240 + 480 * cl((k - .5) * 1.2)).toFixed(0) + '" stroke="#FF3B5C" stroke-width="8" stroke-linecap="round"/><circle cx="-90" cy="120" r="' + (44 + 22 * ((t * 1.5) % 1)).toFixed(0) + '" fill="none" stroke="#FF3B5C" stroke-width="6" opacity="' + (1 - (t * 1.5) % 1).toFixed(2) + '"/>' : '') + '<g transform="translate(0 120)"><rect x="-150" y="-60" width="300" height="120" rx="20" fill="' + STI7 + '"/>' + ['#FF3B5C', '#FFB020', '#2ECC71'].map((c, i) => '<circle cx="' + (-90 + i * 90) + '" cy="0" r="38" fill="' + c + '" opacity="' + (i === 0 ? (k > .5 ? .35 + .65 * Math.abs(Math.sin(t * 5)) : .25) : (k > .5 ? .2 : .25 + .5 * Math.abs(Math.sin(t * 6 + i)))).toFixed(2) + '"/>').join('') + '</g>'; }
@@ -129,8 +129,8 @@ WORLD.i7Siegel = function (sc, ev, t, lt) { const rh = ev.rehook, si = ev.siegel
 WMASC.i7Siegel = (ev, t, lt) => { const rh = ev.rehook, si = ev.siegel, fk = ev.fake, fi = ev.finder;
   if (fi !== undefined) return stay3([XHI7, GYI7 - 22 * Math.abs(Math.sin(Math.PI * cl((fi - 1.6) / .5)))], 1, { r: 3, mood: fi > 1.8 ? 'cool' : 'happy' });
   if (fk !== undefined) { const tap = Math.sin(Math.PI * cl((fk - 1.2) / .5)); return stay3([lerp(360, 250, cl(fk / .6)), GYI7 - 10 * tap], 1, { r: 8 * tap, mood: fk > 2 ? 'shock' : 'happy' }); }
-  if (si !== undefined) { const tap = Math.sin(Math.PI * cl((si - 1.2) / .5)); return stay3([mvI7(330, 360, si / .8), GYI7 - 10 * tap], 1, { r: 18 * tap, mood: 'happy' }); }
-  return stay3([mvI7(250, 330, lt / .8), GYI7 - 24 * Math.sin(Math.PI * cl(lt / .8))], 1, { r: 3, mood: 'cool' }); };
+  if (si !== undefined) { const tap = Math.sin(Math.PI * cl((si - 1.2) / .5)); return stay3([mvI7(300, 360, si / .8), GYI7 - 10 * tap], 1, { r: 18 * tap, mood: 'happy' }); }
+  return stay3([mvI7(250, 300, lt / .8), GYI7 - 24 * Math.sin(Math.PI * cl(lt / .8))], 1, { r: 3, mood: 'cool' }); };
 
 // ---------- Schluss ----------
 function outIconI7(ev, t, lt) { const off = cl(lt / .5); let s = '<rect x="-234" y="-150" width="468" height="290" fill="#0E1238"/>'; if (off < 1) s += '<rect x="-234" y="' + (-150 * (1 - off) - 2).toFixed(0) + '" width="468" height="' + (290 * (1 - off) + 4).toFixed(0) + '" fill="#F4F6FB" opacity="' + (1 - off).toFixed(2) + '"/>';

@@ -27,6 +27,7 @@ const rex04 = (t, o) => rexd(RX04, RY04, .62, t, Object.assign({ id: 'b4r' }, o 
 // ---------- Einstieg ----------
 WORLD.b4Hook = function (sc, ev, t, lt) { const fr = ev.frage, lo = ev.loop; const q = cl(lt / 1.4), fl = lt > 1.1 && lt < 1.8 ? Math.sin(Math.PI * cl((lt - 1.1) / .7)) : 0;
   let s = land04(t, { dk: fr !== undefined ? .2 * ease(cl(fr / 1)) : 0 });
+  if (lt > 1.4) { const g = ease(cl((lt - 1.4) / 4)); for (let i = 0; i < 5; i++) s += '<ellipse cx="' + (200 + i * 40 + 10 * Math.sin(t + i)).toFixed(0) + '" cy="' + (900 - 220 * g - i * 30 * g).toFixed(0) + '" rx="' + (60 + 120 * g).toFixed(0) + '" ry="' + (40 + 70 * g).toFixed(0) + '" fill="#8A7A6A" opacity="' + (.55 * (1 - .4 * g)).toFixed(2) + '"/>'; }
   const look = lt < 3 ? -18 * ease(cl(lt / .5)) : 0;
   s += tri04(t, { head: look }) + rex04(t, { head: look * 1.4 });
   if (q < 1) { const x = lerp(980, 260, ease(q)), y = lerp(320, 900, ease(q)); s += '<path d="M' + x.toFixed(0) + ' ' + y.toFixed(0) + ' L' + (x + 300).toFixed(0) + ' ' + (y - 240).toFixed(0) + '" stroke="#FFB020" stroke-width="36" stroke-linecap="round" opacity=".45"/><path d="M' + x.toFixed(0) + ' ' + y.toFixed(0) + ' L' + (x + 260).toFixed(0) + ' ' + (y - 208).toFixed(0) + '" stroke="#FFF1B8" stroke-width="12" stroke-linecap="round"/><circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="30" fill="#FFF6D8"/>'; }
@@ -40,14 +41,14 @@ WMASC.b4Hook = (ev, t, lt) => { const fr = ev.frage, lo = ev.loop;
 
 // ---------- Teil 1: Der Einschlag ----------
 function map04(t, k) { let s = '<rect x="-320" y="-320" width="640" height="640" fill="#2F6FA8"/>';
-  s += '<path d="M-320 -320 H40 Q20 -200 -40 -140 Q-120 -40 -60 80 Q20 160 120 120 Q180 60 160 -20 Q220 -80 300 -60 Q320 -200 320 -320 Z" fill="#9CC46A" stroke="' + ST04 + '" stroke-width="5"/>';
-  s += '<path d="M-60 80 Q-20 40 40 60 Q60 120 20 150 Q-40 140 -60 80 Z" fill="#B8D46A" stroke="' + ST04 + '" stroke-width="4"/>';
-  s += svgT(-170, -140, 'Mexiko', 44, ST04) + svgT(0, 230, 'Halbinsel Yucatán', 38, '#F4F6FB') + svgT(170, -190, 'Skizze', 28, '#DCE6FA');
-  const r = 40 + 30 * cl(k); s += '<circle cx="10" cy="90" r="' + r.toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="8"/><circle cx="10" cy="90" r="' + (r * .5).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="4" stroke-dasharray="8 6"/>';
+  // Skizze: Festland Mexiko links und unten um den Golf, Halbinsel Yucatan ragt rechts nach Norden. Krater an der Nordkueste.
+  s += '<path d="M-320 320 L-320 -320 L-220 -320 Q-260 -150 -180 -20 Q-100 110 20 120 L40 40 Q140 10 250 30 Q285 150 300 320 Z" fill="#9CC46A" stroke="' + ST04 + '" stroke-width="5"/>';
+  s += svgT(-140, 190, 'Mexiko', 44, ST04) + svgT(150, 140, 'Yucatán', 40, ST04) + svgT(-40, -150, 'Golf von Mexiko', 34, '#DCE6FA') + svgT(150, -230, 'Skizze', 28, '#DCE6FA');
+  const r = 40 + 30 * cl(k); s += '<circle cx="110" cy="26" r="' + r.toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="8"/><circle cx="110" cy="26" r="' + (r * .5).toFixed(0) + '" fill="none" stroke="#FFE14D" stroke-width="4" stroke-dasharray="8 6"/>';
   return s; }
-function size04(k) { let s = '<rect x="-320" y="-320" width="640" height="640" fill="#14204A"/>'; const base = 160, px = 30; // 1 km = 30 px
-  s += '<path d="M-260 ' + base + ' L-150 ' + (base - 8.8 * px) + ' L-40 ' + base + ' Z" fill="#8A9AB8" stroke="' + ST04 + '" stroke-width="4"/><path d="M-150 ' + (base - 8.8 * px) + ' l-30 50 h60 Z" fill="#F4F6FB"/>' + svgT(-150, base + 48, 'Everest 8,8 km', 32, '#F4F6FB');
-  const r = 5 * px * cl(k) + 1; s += '<circle cx="150" cy="' + (base - r) + '" r="' + r.toFixed(0) + '" fill="#8A6A4A" stroke="' + ST04 + '" stroke-width="5"/>' + svgT(150, base + 48, 'rund 10 km', 32, '#FFB020');
+function size04(k) { let s = '<rect x="-320" y="-320" width="640" height="640" fill="#14204A"/>'; const base = 120, px = 30; // 1 km = 30 px
+  s += '<path d="M-260 ' + base + ' L-150 ' + (base - 8.8 * px) + ' L-40 ' + base + ' Z" fill="#8A9AB8" stroke="' + ST04 + '" stroke-width="4"/><path d="M-150 ' + (base - 8.8 * px) + ' l-30 50 h60 Z" fill="#F4F6FB"/>' + svgT(-130, base + 46, 'Everest 8,8 km', 30, '#F4F6FB');
+  const r = 5 * px * cl(k) + 1; s += '<circle cx="150" cy="' + (base - r) + '" r="' + r.toFixed(0) + '" fill="#8A6A4A" stroke="' + ST04 + '" stroke-width="5"/>' + svgT(140, base + 46, 'rund 10 km', 30, '#FFB020');
   s += '<path d="M-300 ' + base + ' H300" stroke="#F4F6FB" stroke-width="4"/>';
   return s; }
 WORLD.b4Ein = function (sc, ev, t, lt) { const ei = ev.ein, gr = ev.gross, kr = ev.krater; let s = land04(t) + tri04(t) + rex04(t);
@@ -65,7 +66,7 @@ WORLD.b4Winter = function (sc, ev, t, lt) { const du = ev.dunkel, pf = ev.pflanz
   const dk = du === undefined ? 0 : ease(cl(du / 2)), wi = pf === undefined ? 0 : ease(cl(pf / 2.5));
   let s = land04(t, { dk: dk, wi: wi }) + tri04(t, { head: 20 * wi }) + rex04(t, { head: 10 * wi });
   s += ash04(t, dk);
-  if (pf !== undefined) { const k = ease(cl(pf / .5)); s += '<g opacity="' + k.toFixed(2) + '">' + thermo(940, 380, 220, .8 - .6 * wi, '#5CE1FF') + '</g>'; }
+  if (pf !== undefined) { const k = ease(cl(pf / .5)); s += '<g opacity="' + k.toFixed(2) + '">' + thermo(860, 380, 220, .8 - .6 * wi, '#5CE1FF') + '</g>'; }
   if (ke !== undefined) { const k = ease(cl(ke / .5)), a = cl((ke - .6) / .5), b = cl((ke - 1.6) / .5);
     s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.35 * k).toFixed(2) + '"/>';
     s += '<g opacity="' + k.toFixed(2) + '"><rect x="90" y="700" width="230" height="110" rx="20" fill="#7A6A3A" stroke="#F4F6FB" stroke-width="5"/>' + svgT(205, 770, 'Pflanzen', 36, '#F4F6FB') + '</g>';
@@ -90,7 +91,7 @@ function trap04(t) { let s = '<defs><linearGradient id="vs04" x1="0" y1="0" x2="
     s += '<path d="M' + x + ' 1040 Q' + (x + 40) + ' 1120 ' + (x - 20) + ' 1180" stroke="#FF6B2A" stroke-width="' + (18 + 4 * Math.sin(t * 3 + i)).toFixed(0) + '" fill="none" stroke-linecap="round" opacity=".9"/>'; }
   for (let i = 0; i < 5; i++) s += '<path d="M' + (420 + i * 110) + ' ' + (1380 + 30 * (i % 2)) + ' l40 30 l-20 40" stroke="#FF8A3D" stroke-width="6" fill="none" opacity="' + (.5 + .3 * Math.sin(t * 2 + i)).toFixed(2) + '"/>';
   return s; }
-function window04(t, k) { let s = '<rect width="1080" height="1920" fill="#F2E6D0"/><rect x="0" y="1300" width="1080" height="620" fill="#C9A27A" stroke="' + ST04 + '" stroke-width="5"/>';
+function window04(t, k) { let s = '<rect width="1080" height="1920" fill="#3A2E4A"/><rect x="0" y="1300" width="1080" height="620" fill="#C9A27A" stroke="' + ST04 + '" stroke-width="5"/>';
   s += '<rect x="200" y="640" width="680" height="620" rx="10" fill="#8FD0FF" stroke="' + ST04 + '" stroke-width="8"/><path d="M540 640 V1260 M200 950 H880" stroke="#F4F6FB" stroke-width="18"/><rect x="170" y="1250" width="740" height="40" rx="8" fill="#F4F6FB" stroke="' + ST04 + '" stroke-width="5"/>';
   s += '<path d="M200 820 Q400 780 560 850 T880 820" stroke="#5A3A26" stroke-width="16" fill="none"/>';
   if (k < 1) s += birdd(lerp(1000, 660, ease(cl(k))), lerp(700, 800, ease(cl(k))), .5, t, { col: '#C9541E', id: 'w4' });
@@ -98,7 +99,7 @@ function window04(t, k) { let s = '<rect width="1080" height="1920" fill="#F2E6D
   return s; }
 WORLD.b4Vulkan = function (sc, ev, t, lt) { const vu = ev.vulkan, st = ev.stoss, vo = ev.vogel; let s;
   if (vo !== undefined) s = window04(t, cl(vo / 1.4));
-  else if (vu !== undefined || st !== undefined) { s = trap04(t); if (st !== undefined) { const k = ease(cl(st / .5)); s += '<g opacity="' + k.toFixed(2) + '"><rect x="330" y="1290" width="290" height="120" rx="20" fill="#3A2A30" stroke="#F4F6FB" stroke-width="5"/>' + svgT(475, 1346, 'Vulkane:', 36, '#FFB020') + svgT(475, 1388, 'Klima belastet', 32, '#F4F6FB') + '<rect x="640" y="1290" width="290" height="120" rx="20" fill="#3A2A30" stroke="#F4F6FB" stroke-width="5"/>' + svgT(785, 1346, 'Asteroid:', 36, '#FFE14D') + svgT(785, 1388, 'Todesstoß', 32, '#F4F6FB') + '</g>'; } }
+  else if (vu !== undefined || st !== undefined) { s = trap04(t); if (st !== undefined) { const k = ease(cl(st / .5)); s += '<g opacity="' + k.toFixed(2) + '"><rect x="330" y="690" width="290" height="120" rx="20" fill="#3A2A30" stroke="#F4F6FB" stroke-width="5"/>' + svgT(475, 746, 'Vulkane:', 36, '#FFB020') + svgT(475, 788, 'Klima belastet', 32, '#F4F6FB') + '<rect x="640" y="690" width="290" height="120" rx="20" fill="#3A2A30" stroke="#F4F6FB" stroke-width="5"/>' + svgT(785, 746, 'Asteroid:', 36, '#FFE14D') + svgT(785, 788, 'Todesstoß', 32, '#F4F6FB') + '</g>'; } }
   else s = land04(t, { dk: .5, wi: .6 }) + tri04(t, { head: 20 }) + ash04(t, .4);
   return W(s + shade3(), slot(ev, [['vulkan', 'Dekkan-Trapps, Indien'], ['stoss', 'Nach heutigem Stand: Asteroid', 'hot'], ['vogel', 'Vögel sind Dinosaurier']])); };
 WMASC.b4Vulkan = (ev, t, lt) => { const vo = ev.vogel, st = ev.stoss;
@@ -107,7 +108,7 @@ WMASC.b4Vulkan = (ev, t, lt) => { const vo = ev.vogel, st = ev.stoss;
   return stay3([220, 1537], 1, { r: ev.vulkan !== undefined ? -6 : 3 * Math.sin(t * 2), mood: ev.vulkan !== undefined ? 'shock' : 'happy' }); };
 
 // ---------- Schluss ----------
-WORLD.b4Out = function (sc, ev, t, lt) { const k = ease(cl(lt / .6)); return W(window04(t, 1) + '<defs><linearGradient id="od04" x1="0" y1="0" x2="0" y2="1"><stop offset=".25" stop-color="#05071A" stop-opacity=".7"/><stop offset=".62" stop-color="#05071A" stop-opacity="0"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#od04)" opacity="' + k.toFixed(2) + '"/>' + shade3()); };
+WORLD.b4Out = function (sc, ev, t, lt) { const k = ease(cl(lt / .6)); return W(window04(t, 1) + '<defs><linearGradient id="od04" x1="0" y1="0" x2="0" y2="1"><stop offset=".32" stop-color="#05071A" stop-opacity=".92"/><stop offset=".64" stop-color="#05071A" stop-opacity="0"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#od04)" opacity="' + k.toFixed(2) + '"/>' + shade3()); };
 WMASC.b4Out = (ev, t, lt) => stay3([220 + 50 * Math.sin(Math.PI * cl((lt - 1) / 5)), 1537 - 8 * Math.abs(Math.sin(t * 7)) * (lt > 1 && lt < 6 ? 1 : 0)], 1, { r: 2 * Math.sin(t * 2), mood: ev.save !== undefined ? 'happy' : undefined });
 
 ['b4Hook', 'b4Ein', 'b4Winter', 'b4Vulkan', 'b4Out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, '#A8E63C'); });

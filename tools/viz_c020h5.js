@@ -97,7 +97,7 @@ WORLD.c5hook = function (sc, ev, t, lt) { const wa = ev.wasser, lo = ev.loop; co
   const fk = lt < .12 ? 0 : (lo === undefined ? cl((lt - .12) / .12) : 1 - cl((lo - .3) / .8));
   s += fire20(hx, hy, t, fk * (wa === undefined ? 1 : .8));
   if (lt < .4) { const ck = ease(cl(lt / .1)); s += chili5c(lerp(PAN5C + 20, hx + 24, ck), lerp(T5C - 70, hy + 10, ck), .55 * (1 - cl((lt - .1) / .2)), -10); }
-  if (ev.brenn !== undefined && wa === undefined) s += therm20(620, 1000, cl((ev.brenn - 1.4) / .4));
+  if (ev.brenn !== undefined && wa === undefined) s += therm20(540, 1000, cl((ev.brenn - 1.4) / .4));
   return W(s + shade3()); };
 WMASC.c5hook = (ev, t, lt) => { const wa = ev.wasser, lo = ev.loop;
   const shake = 6 * Math.sin(t * 38) * cl((lt - .12) / .1) * (lo === undefined ? 1 : 1 - cl(lo / .5));

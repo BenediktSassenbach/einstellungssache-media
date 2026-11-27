@@ -3,7 +3,7 @@
 // Einstieg: Bildschirm springt von Rauschen auf ein Rentier mit Muetze. Teil 1: Training am Bildschirm (Bild wird Schritt fuer Schritt verrauscht, dann zurueck).
 // Teil 2: Wissenschaftsmodus (Satz wird zu Zahlen, Rauschen wird in Schritten zum Bild, Zahlen lenken). Teil 3: gedruckte Karte mit sechs Fingern, die eine Lupe (kleine, halb verdeckte Haende).
 // Rauschen als Pixelraster, Bilder sind einfache Zeichnungen. Nutzt lupeH, fuse33, lab33, lab33dots, slot, stay3, look3. Zum Loeschen: diese Datei und videos/I012.
-var AC12 = '#7C5CFF', ST12 = '#0B1020', XC12 = 820, GC12 = 1140, XF12 = 270, GF12 = 1537;
+var AC12 = '#7C5CFF', ST12 = '#0B1020', XC12 = 790, GC12 = 1140, XF12 = 270, GF12 = 1537;
 const mv12 = (a, b, k) => lerp(a, b, ease(cl(k)));
 
 // Rauschen: n x n Pixel im Feld (x,y,w), Staerke a 0..1 ueber Bild (img in gleicher Groesse), seed
@@ -39,8 +39,8 @@ const deerIn12 = (legs) => '<rect width="340" height="340" fill="#DCEBFF"/><rect
 
 // ---------- Einstieg ----------
 WORLD.i12Hook = function (sc, ev, t, lt) { const fr = ev.frage, lo = ev.loop; let s = room12(t);
-  const a = 1 - cl((lt - .3) / 1.2); s += mon12(deerIn12(lo !== undefined && lo > .6 ? 6 : 4) + noise12(0, 0, 340, a, t, 3));
-  if (lo !== undefined && lo > .6) { const k = ease(cl((lo - .6) / .3)); s += '<g opacity="' + k.toFixed(2) + '"><circle cx="310" cy="1005" r="72" fill="none" stroke="#E8384F" stroke-width="8"/></g>'; }
+  const a = 1 - cl((lt - .3) / 1.2); s += mon12(deerIn12(4) + noise12(0, 0, 340, a, t, 3));
+  if (lo !== undefined && lo > .6) { const k = back(cl((lo - .6) / .4)); s += '<g transform="translate(630 800) scale(' + (.8 * k).toFixed(3) + ')"><rect x="-110" y="-130" width="220" height="250" rx="16" fill="#F4F6FB" stroke="' + ST12 + '" stroke-width="6"/>' + hand12(0, 40, .8, 6) + svgT(0, -90, '6 Finger?', 34, '#E8384F') + '</g>'; }
   return W(s + shade3()); };
 WMASC.i12Hook = (ev, t, lt) => { const fr = ev.frage, lo = ev.loop;
   if (lo !== undefined) { const j = Math.sin(Math.PI * cl((lo - .6) / .6)); return stay3([XC12, GC12 - 20 * Math.max(0, j)], 1, { r: -8 * Math.max(0, j), mood: lo > .6 ? 'shock' : 'happy' }); }
@@ -52,7 +52,7 @@ WORLD.i12Train = function (sc, ev, t, lt) { const tr = ev.train, nu = ev.nur, le
   let a = 0, step = 0; if (tr !== undefined) a = .55 * cl((tr - .5) / 3.5); if (nu !== undefined) a = .55 + .45 * cl(nu / 1.2); if (le !== undefined) a = 1 - cl((le - .5) / 3.2);
   step = Math.round(a * 1000);
   s += mon12(house12(170, 170, 1.2) + noise12(0, 0, 340, a, t, 11));
-  if (tr !== undefined) s += '<rect x="170" y="1070" width="340" height="44" rx="10" fill="#1A1A2A"/>' + svgT(340, 1102, 'Rauschen ' + Math.round(a * 100) + ' %', 28, '#C9B8F0');
+  if (tr !== undefined) s += '<rect x="170" y="1070" width="340" height="44" rx="10" fill="#1A1A2A"/>' + svgT(340, 1104, 'Rauschen ' + Math.round(a * 100) + ' %', 36, '#F4F6FB');
   if (le !== undefined) { const k = ease(cl(le / .5)); s += '<g opacity="' + k.toFixed(2) + '"><path d="M560 840 Q640 760 560 680" stroke="#3CCB7F" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M544 690 l16 -14 l10 20" fill="none" stroke="#3CCB7F" stroke-width="8" stroke-linecap="round"/>' + svgT(600, 900, 'zurück', 30, '#3CCB7F') + '</g>'; }
   return W(s + shade3(), slot(ev, [['train', 'Training: Rauschen drauf'], ['nur', 'Nur noch Rauschen', 'hot'], ['lern', 'Rauschen herausrechnen']])); };
 WMASC.i12Train = (ev, t, lt) => { const nu = ev.nur; if (nu !== undefined && ev.lern === undefined) { const j = Math.sin(Math.PI * cl(nu / .7)); return stay3([XC12, GC12 - 20 * j], 1, { r: -10 * j, mood: 'shock' }); }
@@ -60,9 +60,9 @@ WMASC.i12Train = (ev, t, lt) => { const nu = ev.nur; if (nu !== undefined && ev.
 
 // ---------- Teil 2: Der Satz lenkt (Wissenschaftsmodus) ----------
 function sci12(t, ev) { const za = ev.zahl, st = ev.start, le = ev.lenk; let s = '';
-  s += '<rect x="200" y="660" width="680" height="90" rx="20" fill="#F4F6FB"/>' + svgT(540, 718, '„Rentier mit roter Mütze“', 36, ST12);
-  if (za !== undefined) { const k = cl(za / 1); s += '<path d="M540 760 v50" stroke="#C9B8F0" stroke-width="8"/><path d="M526 798 l14 16 l14 -16" fill="none" stroke="#C9B8F0" stroke-width="8"/>';
-    const N = ['0,12', '−0,8', '1,3', '0,4', '−0,2', '0,9']; N.forEach((n, i) => { if (k * 6 > i) s += '<rect x="' + (210 + i * 112) + '" y="830" width="100" height="60" rx="12" fill="#7C5CFF" stroke="#F4F6FB" stroke-width="3"/>' + svgT(260 + i * 112, 872, n, 28, '#F4F6FB'); }); }
+  s += '<rect x="200" y="690" width="680" height="90" rx="20" fill="#F4F6FB"/>' + svgT(540, 750, '„Rentier mit roter Mütze“', 44, ST12);
+  if (za !== undefined) { const k = cl(za / 1); s += '<path d="M540 785 v35" stroke="#C9B8F0" stroke-width="8"/><path d="M526 806 l14 14 l14 -14" fill="none" stroke="#C9B8F0" stroke-width="8"/>';
+    const N = ['0,12', '−0,8', '1,3', '…']; N.forEach((n, i) => { if (k * 4 > i) s += '<rect x="' + (215 + i * 165) + '" y="832" width="150" height="70" rx="14" fill="#7C5CFF" stroke="#F4F6FB" stroke-width="4"/>' + svgT(290 + i * 165, 881, n, 40, '#F4F6FB'); }); }
   if (st !== undefined) { const P = [[220, 1, 0], [440, .66, 1], [660, .33, 2]], prog = le === undefined ? 0 : cl(le / 3);
     P.forEach(([x, a, i]) => { const show = i === 0 ? cl(st / .5) : cl((prog * 3 - (i - 1))); if (show <= 0) return; s += '<g opacity="' + show.toFixed(2) + '"><rect x="' + (x - 6) + '" y="954" width="212" height="212" rx="10" fill="#1A1A2A"/><svg x="' + x + '" y="960" width="200" height="200" viewBox="0 0 340 340">' + deerIn12(4) + noise12(0, 0, 340, a, t * .3, 20 + i, 12) + '</svg></g>';
       if (i > 0 && show > 0) s += '<path d="M' + (x - 22) + ' 1060 h-8" stroke="#F4F6FB" stroke-width="6"/>'; });
@@ -81,11 +81,9 @@ function hand12(cx, cy, z, n) { let s = '<g transform="translate(' + cx + ' ' + 
 function photo12() { let s = '<rect x="-320" y="-320" width="640" height="640" fill="#F4E8D8"/><circle cx="0" cy="-60" r="110" fill="#F2C29A" stroke="' + ST12 + '" stroke-width="5"/><rect x="-170" y="60" width="340" height="300" rx="60" fill="#5C8BFF" stroke="' + ST12 + '" stroke-width="5"/>';
   s += '<rect x="60" y="80" width="90" height="110" rx="12" fill="#F4F6FB" stroke="' + ST12 + '" stroke-width="5"/><path d="M150 110 q34 20 0 50" stroke="' + ST12 + '" stroke-width="6" fill="none"/><path d="M40 110 q20 -10 30 10 v40 q-20 10 -30 -10 Z" fill="#F2C29A" stroke="' + ST12 + '" stroke-width="4"/>';
   s += '<circle cx="40" cy="130" r="50" fill="none" stroke="#FFE14D" stroke-width="8" stroke-dasharray="14 8"/>'; return s; }
-WORLD.i12Hand = function (sc, ev, t, lt) { const mu = ev.muster, kl = ev.klein, fi = ev.finger; let s = room12(t) + mon12(deerIn12(4));
-  // Karte kommt aus dem Drucker
-  const out = cl(lt / 1.2); s += '<g transform="translate(645 ' + lerp(1050, 1000, ease(out)).toFixed(0) + ')"><rect x="-70" y="-' + (110 * out).toFixed(0) + '" width="140" height="' + (110 * out).toFixed(0) + '" fill="#F4F6FB" stroke="' + ST12 + '" stroke-width="3"/></g>';
-  if (kl !== undefined && fi === undefined) { const k = ease(cl(kl / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.45 * k).toFixed(2) + '"/>' + lupeH(470, 860, 210, photo12(), k, 645, 950); }
-  if (fi !== undefined) { const k = ease(cl(fi / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.45 * k).toFixed(2) + '"/><g opacity="' + k.toFixed(2) + '"><rect x="230" y="660" width="480" height="420" rx="16" fill="#F4F6FB" stroke="' + ST12 + '" stroke-width="6"/>' + hand12(470, 920, 1.3, 6) + svgT(470, 726, '6 Finger?', 44, '#E8384F') + '</g>'; }
+WORLD.i12Hand = function (sc, ev, t, lt) { const mu = ev.muster, kl = ev.klein, fi = ev.finger; let s = room12(t) + (kl === undefined && fi === undefined ? mon12(deerIn12(4)) : '');
+  if (kl !== undefined && fi === undefined) { const k = ease(cl(kl / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.45 * k).toFixed(2) + '"/>' + lupeH(390, 880, 220, photo12(), k); }
+  if (fi !== undefined) { const k = ease(cl(fi / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.45 * k).toFixed(2) + '"/><g opacity="' + k.toFixed(2) + '"><rect x="150" y="660" width="440" height="420" rx="16" fill="#F4F6FB" stroke="' + ST12 + '" stroke-width="6"/>' + hand12(370, 930, 1.3, 6) + svgT(370, 726, '6 Finger?', 44, '#E8384F') + '</g>'; }
   return W(s + shade3(), slot(ev, [['muster', 'Muster statt Körperbau'], ['klein', 'Hände: klein, verdeckt', 'hot'], ['finger', 'Zu viele Finger']])); };
 WMASC.i12Hand = (ev, t, lt) => { const rh = ev.rehook, fi = ev.finger;
   if (fi !== undefined) { const j = Math.sin(Math.PI * cl((fi - .3) / .7)); return stay3([XC12, GC12 - 30 * j], 1, { r: -10 * j, mood: 'shock' }); }
@@ -93,7 +91,7 @@ WMASC.i12Hand = (ev, t, lt) => { const rh = ev.rehook, fi = ev.finger;
   return stay3([XC12, GC12], 1, { r: 3 * Math.sin(t * 2), mood: ev.klein !== undefined ? 'cool' : 'happy' }); };
 
 // ---------- Schluss ----------
-WORLD.i12Out = function (sc, ev, t, lt) { const k = ease(cl(lt / .6)); return W(room12(t) + mon12(deerIn12(4)) + '<defs><linearGradient id="od12" x1="0" y1="0" x2="0" y2="1"><stop offset=".25" stop-color="#05071A" stop-opacity=".7"/><stop offset=".62" stop-color="#05071A" stop-opacity="0"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#od12)" opacity="' + k.toFixed(2) + '"/>' + shade3()); };
+WORLD.i12Out = function (sc, ev, t, lt) { const k = ease(cl(lt / .6)); return W(room12(t) + mon12(deerIn12(4)) + '<defs><linearGradient id="od12" x1="0" y1="0" x2="0" y2="1"><stop offset=".32" stop-color="#05071A" stop-opacity=".92"/><stop offset=".64" stop-color="#05071A" stop-opacity="0"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#od12)" opacity="' + k.toFixed(2) + '"/>' + shade3()); };
 WMASC.i12Out = (ev, t, lt) => stay3([XC12 + 30 * Math.sin(Math.PI * cl((lt - 1) / 5)), GC12 - 8 * Math.abs(Math.sin(t * 7)) * (lt > 1 && lt < 6 ? 1 : 0)], 1, { r: 2 * Math.sin(t * 2), mood: ev.save !== undefined ? 'happy' : undefined });
 
 ['i12Hook', 'i12Train', 'i12Satz', 'i12Hand', 'i12Out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC12); });

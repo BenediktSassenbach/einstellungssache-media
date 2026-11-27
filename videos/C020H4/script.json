@@ -1,0 +1,162 @@
+{
+ "serie": "Chemie",
+ "kostuem": "labor",
+ "accent": "#FF6BD6",
+ "id": "C020H4",
+ "titel": "Warum hilft Wasser kaum gegen scharfes Essen?",
+ "design": "3.3",
+ "gagTag": "[gasps]",
+ "gagDelay": 0,
+ "gagZeile": 1,
+ "quelle": "HOOK-PILOT Chemie (20.11.2026, Benedikt: Pilot pro Reihe, komplett wie P022H). Abweichungen von Skript 4 wie P022H: kein 'Chemie nie verstanden? / Gib mir 60 Sekunden.', Rehooks statt 'Erstens', Open Loop, keine Zusammenfassung, Loop-Ende. Fakten: Capsaicin ist der Hauptstoff der Schaerfe; es erhitzt den Mund nicht, sondern Rezeptoren melden dem Gehirn Hitze (The Conversation, Eldridge 2024, 'Why doesn't water help with spicy food?'). Capsaicin bindet an TRPV1, einen Schmerzrezeptor, der auch heisse Dinge meldet (Britannica, 'The science behind spicy foods'). Capsaicin ist hydrophob und mischt sich kaum mit Wasser, deshalb spuelt Wasser es schlecht weg; Eiswasser lindert nur kurz (The Conversation 2024). Milch: Fett und das Eiweiss Kasein nehmen Capsaicin auf (The Conversation 2024; Cleveland Clinic 2021). Studie Nolden, Lenart, Hayes 2019, Physiology and Behavior 208:112557, Penn State, 72 Personen: Milch am besten, Vollmilch und fettarme Milch gleich gut, Eiweiss vermutlich wichtiger als Fett. Alle Getraenke senkten das Brennen etwas, deshalb 'Wasser hilft kaum' statt 'hilft nicht'. Stand der Recherche: 20.11.2026. FASSUNG v2 (20.11.2026, Benedikt): Design bleibt dem Grundskript treu (keine Hook-Overlays wie Karten, Fragezeichen oder Blitz, Schluss mit drei Merksaetzen wie im Skript), nur Text und Sprechweise folgen dem Hook-Prinzip: Hook im ersten Satz, Themenfrage, Open Loop, Rehooks, Aufloesung des Open Loops in den Merksaetzen. 'Fach nie verstanden? / Gib mir 60 Sekunden.' entfaellt (Hook-Prinzip). Neu in v2: Sensor TRPV1 meldet auch echte heisse Dinge wie kochendes Wasser oder heisses Essen (Britannica, 'The science behind spicy foods'). Ein Schluck Oel waere wohl wirksam, aber nicht schmackhaft (The Conversation, Eldridge 2024). | H4 (21.11.2026): Skript-4-Fassung, nur der Einstieg nach dem Hook-System. Fakten unverändert aus H2, Text nur umgestellt (Erstens/Zweitens/Drittens, kein Rehook).",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Warum hilft Wasser *kaum*?",
+   "emoji": "🌶️",
+   "world": "h20hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "Dein Mund brennt. Dabei ist er gar nicht heiß.",
+     "mood": "shock",
+     "ev": "brenn"
+    },
+    {
+     "t": "Warum hilft Wasser kaum gegen Scharfes?",
+     "mood": "cool",
+     "ev": "wasser"
+    },
+    {
+     "t": "Am Ende weißt du, was wirklich löscht.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Falscher *Alarm*",
+   "path": [],
+   "world": "h20alarm",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: Schuld ist ein Stoff aus der Chili, Capsaicin.",
+     "mood": "happy",
+     "ev": "caps"
+    },
+    {
+     "t": "Er dockt in deinem Mund an Sensoren an, die eigentlich Hitze melden.",
+     "mood": "shock",
+     "ev": "dock"
+    },
+    {
+     "t": "Dein Gehirn denkt: Feuer. Dabei hat sich nichts erhitzt.",
+     "mood": "cool",
+     "ev": "feuer"
+    },
+    {
+     "t": "Derselbe Sensor meldet sonst echte Hitze, zum Beispiel heißen Tee.",
+     "mood": "happy",
+     "ev": "tee"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Wasser *perlt ab*",
+   "path": [],
+   "world": "h20wasser",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Zweitens: Capsaicin ist wie Fett. Es mischt sich kaum mit Wasser.",
+     "mood": "happy",
+     "ev": "fett"
+    },
+    {
+     "t": "Das Wasser läuft drüber, das Capsaicin bleibt hängen.",
+     "mood": "shock",
+     "ev": "drueber"
+    },
+    {
+     "t": "Eiswasser kühlt nur kurz. Danach brennt es weiter.",
+     "mood": "cool",
+     "ev": "eis"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Was *löscht*",
+   "path": [],
+   "world": "h20milch",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Drittens: Was hilft also wirklich? Milch.",
+     "mood": "happy",
+     "ev": "milch"
+    },
+    {
+     "t": "Ihr Fett und ihr Eiweiß Kasein nehmen das Capsaicin auf, und du schluckst es runter.",
+     "mood": "happy",
+     "ev": "kasein"
+    },
+    {
+     "t": "In einer Studie wirkte Milch am besten, fettarme genauso gut wie Vollmilch.",
+     "mood": "cool",
+     "ev": "studie"
+    },
+    {
+     "t": "Ein Schluck Öl würde auch helfen, schmeckt aber keinem.",
+     "mood": "cool",
+     "ev": "oel"
+    }
+   ],
+   "quip": "Endlich.",
+   "quipAt": 1
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "h20out",
+   "pause": 0.6,
+   "checks": [
+    "Falscher Hitze-Alarm",
+    "Wasser spült kaum weg",
+    "Milch löscht am besten"
+   ],
+   "lines": [
+    {
+     "t": "Also: Das Feuer ist nur ein falscher Alarm,",
+     "mood": "cool",
+     "ev": "c1"
+    },
+    {
+     "t": "Wasser spült das Capsaicin kaum weg,",
+     "mood": "happy",
+     "ev": "c2"
+    },
+    {
+     "t": "und Milch löscht am besten.",
+     "mood": "cool",
+     "ev": "c3"
+    },
+    {
+     "t": "Chemie verstehen?",
+     "mood": "happy"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "mood": "wink",
+     "ev": "save"
+    }
+   ]
+  }
+ ]
+}

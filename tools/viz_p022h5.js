@@ -74,9 +74,9 @@ WORLD.p5bass = function (sc, ev, t, lt) { const ti = ev.tief, vo = ev.voll, mi =
     const fl = cl((mi - 1) / .15) * (1 - cl((mi - 1.2) / .3)); if (fl > 0) s += '<rect x="422" y="831" width="456" height="273" rx="20" fill="#fff" opacity="' + (.5 * fl).toFixed(2) + '"/>'; }
   return W(s + shade3(), slot(ev, [['tief', 'Knochen-Weg: mehr Bass', 'hot'], ['voll', 'Für dich: tiefer, voller'], ['mikro', 'Mikrofon: nur Luft', 'hot']])); };
 WMASC.p5bass = (ev, t, lt) => { const ti = ev.tief, vo = ev.voll, mi = ev.mikro;
-  if (mi !== undefined) return stay3([X5P - 80 * ease(cl(mi / .5)), GY5P], 1, { r: 3 * Math.sin(t * 6) * cl((mi - .6) / .3), mood: 'cool' });
-  if (vo !== undefined) { const p = Math.sin(Math.PI * cl(vo / 1.6)); return stay3([X5P, GY5P], 1 + .08 * p, { r: -3, mood: 'happy' }); }
-  return stay3([X5P, GY5P], 1, { r: ti === undefined ? 2 : 3 * Math.sin(t * 6) * cl(ti / .5), mood: 'happy' }); };
+  if (mi !== undefined) return stay3([X5P - 60 - 60 * ease(cl(mi / .5)), GY5P], 1, { r: 3 * Math.sin(t * 6) * cl((mi - .6) / .3), mood: 'cool' });
+  if (vo !== undefined) { const p = Math.sin(Math.PI * cl(vo / 1.6)); return stay3([X5P - 60, GY5P], 1 + .08 * p, { r: -3, mood: 'happy' }); }
+  return stay3([lerp(X5P, X5P - 60, ease(cl(lt / .5))), GY5P], 1, { r: ti === undefined ? 2 : 3 * Math.sin(t * 6) * cl(ti / .5), mood: 'happy' }); };
 
 // ---------- Teil 3: Ohr-Modell auf dem Schreibtisch, Schalti steckt den Stoepsel rein ----------
 // Modell im Schnitt: Ohrmuschel links, Gehoergang, Trommelfell, Schnecke. Knochenschall kommt von unten (orange).
@@ -107,7 +107,7 @@ WORLD.p5test = function (sc, ev, t, lt) { const te = ev.test, dr = ev.droehn, ge
   return W(s + shade3(), slot(ev, [['test', 'Ohren zu, langes I'], ['droehn', 'Dumpf, dröhnend, lauter', 'hot'], ['gefangen', 'Schall bleibt im Ohr', 'hot']])); };
 WMASC.p5test = (ev, t, lt) => { const dr = ev.droehn, ge = ev.gefangen, te = ev.test;
   const sh = dr !== undefined && ge === undefined ? Math.sin(t * 30) * cl(dr / .4) * (1 - cl((dr - 2.4) / .4)) : 0, push = te === undefined ? 0 : Math.sin(Math.PI * cl((te - 1.5) / .7));
-  return stay3([lerp(X5P - 80, XT5P, ease(cl(lt / .6))) + 4 * sh, GY5P - 50 * push], 1, { r: 12 * push + 3 * sh, mood: dr !== undefined ? 'shock' : (te !== undefined && te > 2.6 ? 'shock' : 'happy') }); };
+  return stay3([lerp(X5P - 120, XT5P, ease(cl(lt / .6))) + 4 * sh, GY5P - 50 * push], 1, { r: 12 * push + 3 * sh, mood: dr !== undefined ? 'shock' : (te !== undefined && te > 2.6 ? 'shock' : 'happy') }); };
 
 // ---------- Schluss: Ringlicht kommt zurueck, beim Schlusssatz klein nach rechts ----------
 WORLD.p5out = function (sc, ev, t, lt) { const sv = ev.save; const back5 = 1 - ease(cl((lt - .3) / .8)); const rk = sv !== undefined ? ease(cl(sv / .5)) : 0;

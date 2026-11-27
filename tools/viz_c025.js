@@ -4,7 +4,7 @@
 // Teil 2: Wissenschaftsmodus (Riechrezeptor wie ein Handschuh, eine Form loest ein staerkeres Signal aus). Teil 3: Minzblatt und Kuemmelbrot, Punkteraster 8 von 100, Medaille 2026 (ohne Logo).
 // Carvon als vereinfachte Skizze: Sechsring, Sauerstoff, Seitengruppe mit Keil. Kein echtes Strukturbild im Massstab. Nutzt lupeH, fuse33, lab33, lab33dots, slot, stay3, look3.
 // Zum Loeschen: diese Datei und videos/C025.
-var AC25 = '#FF6BD6', ST25 = '#0B1020', XC25 = 800, GC25 = 1140, XF25 = 270, GF25 = 1537, MINT25 = '#3CCB7F', KUE25 = '#C9944A';
+var AC25 = '#FF6BD6', ST25 = '#0B1020', XC25 = 790, GC25 = 1140, XF25 = 270, GF25 = 1537, MINT25 = '#3CCB7F', KUE25 = '#C9944A';
 const mv25 = (a, b, k) => lerp(a, b, ease(cl(k)));
 
 // ---------- Ort: Kraeuterladen ----------
@@ -53,7 +53,7 @@ WORLD.c25Hook = function (sc, ev, t, lt) { const fr = ev.frage, lo = ev.loop; le
   const tipB = lt < 2.4 ? -18 * Math.sin(Math.PI * cl(lt / 2.4)) : 0;
   s += vial25(380, 1128, 'A', {}) + vial25(600, 1128, 'B', { tip: tipB });
   s += cloud25(380, 960, 'mint', cl((lt - .2) / .5) * (lo !== undefined ? 1 : .9), t) + cloud25(600, 960, 'kue', cl((lt - .1) / .4), t);
-  if (fr !== undefined) { const k = ease(cl(fr / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.5 * k).toFixed(2) + '"/><g opacity="' + k.toFixed(2) + '">' + mol25(300, 900, .85, 1, MINT25, 0) + mol25(660, 900, .85, -1, KUE25, 0) + svgT(480, 925, '=', 90, '#F4F6FB') + '</g>'; }
+  if (fr !== undefined) { const k = ease(cl(fr / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.72 * k).toFixed(2) + '"/><g opacity="' + k.toFixed(2) + '">' + mol25(280, 880, .9, 1, MINT25, 0) + mol25(640, 880, .9, -1, KUE25, 0) + svgT(460, 905, '=', 90, '#F4F6FB') + '</g>'; }
   return W(s + shade3()); };
 WMASC.c25Hook = (ev, t, lt) => { const fr = ev.frage, lo = ev.loop;
   if (lo !== undefined) { const j = Math.sin(Math.PI * cl(lo / .7)); return stay3([XC25 + 40, GC25 - 20 * j], 1, { r: 6 * j, mood: 'happy' }); }
@@ -62,14 +62,14 @@ WMASC.c25Hook = (ev, t, lt) => { const fr = ev.frage, lo = ev.loop;
 
 // ---------- Teil 1: Wie deine Haende ----------
 WORLD.c25Hand = function (sc, ev, t, lt) { const zw = ev.zwei, dr = ev.dreh, ch = ev.chiral; let s = shop25(t);
-  const k = ease(cl(lt / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.35 * k).toFixed(2) + '"/>';
-  s += glove25(300, 1100, .9, 1, '#5CE1FF', 0);
+  const k = ease(cl(lt / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.6 * k).toFixed(2) + '"/>';
+  s += glove25(260, 1100, .9, 1, '#5CE1FF', 0);
   // rechter Handschuh und rechtes Molekuel drehen sich beim Versuch, aufeinanderzupassen
-  let gx = 600, rot = 0, mx = 620, flip = 0;
-  if (dr !== undefined) { const q = cl(dr / 3.2); gx = lerp(600, 330, Math.sin(Math.PI * cl(q * 1.6)) * .8); rot = 360 * ease(q); mx = lerp(620, 410, Math.sin(Math.PI * cl(q * 1.6)) * .8); }
+  let gx = 540, rot = 0, mx = 560, flip = 0;
+  if (dr !== undefined) { const q = cl(dr / 3.2); gx = lerp(540, 300, Math.sin(Math.PI * cl(q * 1.6)) * .8); rot = 360 * ease(q); mx = lerp(560, 380, Math.sin(Math.PI * cl(q * 1.6)) * .8); }
   s += glove25(gx, 1100, .9, -1, '#FF9E5A', rot);
-  if (zw !== undefined) { const m = ease(cl(zw / .6)); s += '<g opacity="' + m.toFixed(2) + '">' + mol25(330, 820, .9, 1, MINT25, 0) + mol25(mx, 820, .9, -1, KUE25, rot * .5) + '<path d="M475 700 V940" stroke="#F4F6FB" stroke-width="5" stroke-dasharray="14 10" opacity=".7"/></g>' + (dr === undefined ? svgT(330, 968, 'Minze', 32, MINT25) + svgT(620, 968, 'Kümmel', 32, KUE25) : ''); }
-  if (dr !== undefined && dr > 1.2 && dr < 3.4) { const x = cl((dr - 1.2) / .3); s += '<g opacity="' + x.toFixed(2) + '"><circle cx="470" cy="1000" r="46" fill="#E8384F" stroke="#fff" stroke-width="6"/><path d="M450 980 l40 40 M490 980 l-40 40" stroke="#fff" stroke-width="9" stroke-linecap="round"/></g>'; }
+  if (zw !== undefined) { const m = ease(cl(zw / .6)); s += '<g opacity="' + m.toFixed(2) + '">' + mol25(280, 800, .9, 1, MINT25, 0) + mol25(mx, 800, .9, -1, KUE25, rot * .5) + '<path d="M420 680 V920" stroke="#F4F6FB" stroke-width="5" stroke-dasharray="14 10" opacity=".7"/></g>' + (dr === undefined ? '<rect x="200" y="930" width="160" height="48" rx="10" fill="#05071A"/><rect x="440" y="930" width="180" height="48" rx="10" fill="#05071A"/>' + svgT(280, 966, 'Minze', 36, MINT25) + svgT(530, 966, 'Kümmel', 36, KUE25) : ''); }
+  if (dr !== undefined && dr > 1.2 && dr < 3.4) { const x = cl((dr - 1.2) / .3); s += '<g opacity="' + x.toFixed(2) + '"><circle cx="420" cy="1000" r="46" fill="#E8384F" stroke="#fff" stroke-width="6"/><path d="M400 980 l40 40 M440 980 l-40 40" stroke="#fff" stroke-width="9" stroke-linecap="round"/></g>'; }
   return W(s + shade3(), slot(ev, [['zwei', 'Zwei Formen: Carvon'], ['dreh', 'Spiegelbilder passen nie', 'hot'], ['chiral', 'chiral = händig']])); };
 WMASC.c25Hand = (ev, t, lt) => { const dr = ev.dreh, ch = ev.chiral;
   if (ch !== undefined) { const j = Math.sin(Math.PI * cl(ch / .8)); return stay3([XC25 + 20, GC25 - 26 * j], 1, { r: 8 * j, mood: 'cool' }); }
@@ -98,10 +98,10 @@ WMASC.c25Nase = (ev, t, lt) => { const pa = ev.pass; if (pa !== undefined && pa 
 // ---------- Teil 3: Nicht jeder riecht's ----------
 function dots25(k, t) { let s = '<rect x="-300" y="-300" width="600" height="600" fill="#12182E"/>'; for (let i = 0; i < 100; i++) { const r = Math.floor(i / 10), c = i % 10, grey = [7, 23, 38, 44, 59, 66, 81, 95].includes(i), on = cl(k * 3 - i / 40);
     s += '<circle cx="' + (-225 + c * 50) + '" cy="' + (-225 + r * 50) + '" r="17" fill="' + (grey ? '#5A6278' : MINT25) + '" opacity="' + on.toFixed(2) + '"/>'; } return s; }
-function medal25(x, y, k, t) { if (!(k > 0)) return ''; const e = back(cl(k)); return '<g transform="translate(' + x + ' ' + y + ') scale(' + e.toFixed(3) + ')"><path d="M-40 -150 L-70 -260 H-20 L0 -170 L20 -260 H70 L40 -150 Z" fill="#5C8BFF" stroke="' + ST25 + '" stroke-width="4"/><circle r="110" fill="#E8B44C" stroke="' + ST25 + '" stroke-width="6"/><circle r="90" fill="none" stroke="#FFE7A8" stroke-width="4"/>' + mol25(-36, 14, .26, 1, MINT25, 0) + mol25(36, 14, .26, -1, KUE25, 0) + svgT(0, -40, '2026', 34, ST25) + '</g>'; }
+function medal25(x, y, k, t) { if (!(k > 0)) return ''; const e = back(cl(k)); return '<g transform="translate(' + x + ' ' + y + ') scale(' + e.toFixed(3) + ')"><circle r="110" fill="#E8B44C" stroke="' + ST25 + '" stroke-width="6"/><circle r="90" fill="none" stroke="#FFE7A8" stroke-width="4"/>' + mol25(-36, 14, .26, 1, MINT25, 0) + mol25(36, 14, .26, -1, KUE25, 0) + svgT(0, -40, '2026', 34, ST25) + '</g>'; }
 WORLD.c25Nicht = function (sc, ev, t, lt) { const wo = ev.wo, ri = ev.riech, no = ev.nobel; let s = shop25(t);
   if (wo === undefined) s += vial25(380, 1128, 'A') + vial25(600, 1128, 'B');
-  if (wo !== undefined) { const a = ease(cl(wo / .5)), b = ease(cl((wo - .8) / .5));
+  if (wo !== undefined && ri === undefined) { const a = ease(cl(wo / .5)), b = ease(cl((wo - .8) / .5));
     s += '<g opacity="' + a.toFixed(2) + '"><ellipse cx="380" cy="1050" rx="70" ry="36" transform="rotate(-20 380 1050)" fill="' + MINT25 + '" stroke="' + ST25 + '" stroke-width="4"/><path d="M325 1070 L435 1030" stroke="#1F6A3A" stroke-width="4"/></g>';
     s += '<g opacity="' + b.toFixed(2) + '" transform="translate(600 1040)"><path d="M-80 30 Q-90 -50 0 -56 Q90 -50 80 30 Z" fill="#C9944A" stroke="' + ST25 + '" stroke-width="5"/>' + [[-40, -20], [0, -30], [36, -10], [-10, 10], [44, 20]].map(([x, y]) => '<ellipse cx="' + x + '" cy="' + y + '" rx="4" ry="10" fill="#5A3A1A"/>').join('') + '</g>'; }
   if (ri !== undefined && no === undefined) { const k = ease(cl(ri / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.45 * k).toFixed(2) + '"/>' + lupeH(470, 860, 200, dots25(cl((ri - .2) / 1.2), t), k, 380, 1000); }
@@ -114,7 +114,7 @@ WMASC.c25Nicht = (ev, t, lt) => { const rh = ev.rehook, ri = ev.riech, no = ev.n
   return stay3([XC25, GC25], 1, { r: 3 * Math.sin(t * 2), mood: 'happy' }); };
 
 // ---------- Schluss ----------
-WORLD.c25Out = function (sc, ev, t, lt) { const k = ease(cl(lt / .6)); return W(shop25(t) + vial25(380, 1128, 'A') + vial25(600, 1128, 'B') + '<defs><linearGradient id="od25" x1="0" y1="0" x2="0" y2="1"><stop offset=".25" stop-color="#05071A" stop-opacity=".7"/><stop offset=".62" stop-color="#05071A" stop-opacity="0"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#od25)" opacity="' + k.toFixed(2) + '"/>' + shade3()); };
+WORLD.c25Out = function (sc, ev, t, lt) { const k = ease(cl(lt / .6)); return W(shop25(t) + vial25(380, 1128, 'A') + vial25(600, 1128, 'B') + '<defs><linearGradient id="od25" x1="0" y1="0" x2="0" y2="1"><stop offset=".32" stop-color="#05071A" stop-opacity=".92"/><stop offset=".64" stop-color="#05071A" stop-opacity="0"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#od25)" opacity="' + k.toFixed(2) + '"/>' + shade3()); };
 WMASC.c25Out = (ev, t, lt) => stay3([XC25 + 30 * Math.sin(Math.PI * cl((lt - 1) / 5)), GC25 - 8 * Math.abs(Math.sin(t * 7)) * (lt > 1 && lt < 6 ? 1 : 0)], 1, { r: 2 * Math.sin(t * 2), mood: ev.save !== undefined ? 'happy' : undefined });
 
 ['c25Hook', 'c25Hand', 'c25Nase', 'c25Nicht', 'c25Out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC25); });
