@@ -1,0 +1,31 @@
+{
+ "serie": "Physik", "kostuem": "professor", "accent": "#5CE1FF", "design": "3.3", "anim": "neu", "gagTag": "[gasps]", "id": "P015",
+ "titel": "Warum hörst du den Knall erst nach dem Licht?", "gagDelay": 0, "gagZeile": 0,
+ "quelle": "SKRIPT 4 mit Abschnitt 9 und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Kostuem P1 Professor. Ort eigens gebaut: Balkon in der Silvesternacht mit Stadt und Fernsehturm. Teil 1 die eine Lupe (Licht laeuft in einer Sekunde mehr als 7-mal um die Erde), Teil 2 Wissenschaftsmodus (Druckwelle aus Luftteilchen, Tempo-Balken), Teil 3 Gegenstand Stoppuhr und Entfernungsband. Nur Erklaerung, keine Anleitung zu Feuerwerk. FAKTEN (27.11.2026): Lichtgeschwindigkeit rund 300.000 km/s (299.792 km/s, Definition SI); Erdumfang rund 40.000 km, also rund 7,5 Runden pro Sekunde; Schall ist eine Druckwelle in der Luft; Schallgeschwindigkeit in Luft rund 343 m/s bei 20 Grad, rund 331 m/s bei 0 Grad (LEIFIphysik, Britannica Sound), deshalb in der Winternacht 'rund 330 m pro Sekunde'; Verhaeltnis 299.792.458 / 331 = rund 906.000, also 'fast 1 Million Mal'; Faustregel rund 3 Sekunden pro Kilometer (auch Gewitterregel, DWD). Nicht gesagt: genaue Meterzahl, Schall 'im Vakuum'.",
+ "scenes": [
+  {"type": "hook", "title": "Erst *Licht*, dann Knall?", "emoji": "🎆", "world": "p15Hook", "pause": 0.05, "lines": [
+   {"t": "Die Rakete leuchtet sofort, aber der Knall kommt erst später.", "mood": "shock", "ev": "fest"},
+   {"t": "Warum hörst du den Knall erst nach dem Licht?", "mood": "shock", "ev": "frage"},
+   {"t": "Am Ende kannst du ausrechnen, wie weit das Feuerwerk weg ist.", "mood": "happy", "ev": "loop"}]},
+  {"type": "tip", "num": "1", "title": "Licht ist *schnell*", "path": [], "world": "p15Licht", "pause": 0.4, "lines": [
+   {"t": "Erstens: Licht schafft rund 300.000 Kilometer pro Sekunde.", "mood": "happy", "ev": "schnell"},
+   {"t": "Bei ein paar hundert Metern ist es praktisch sofort bei dir.", "mood": "cool", "ev": "sofort"},
+   {"t": "In einer Sekunde käme es mehr als siebenmal um die ganze Erde.", "mood": "shock", "ev": "rund"}]},
+  {"type": "tip", "num": "2", "title": "Schall ist *lahm*", "path": [], "world": "p15Schall", "labor": [1, 2, 3], "pause": 0.4, "lines": [
+   {"t": "Und der Knall ist viel langsamer.", "mood": "happy", "ev": "rehook"},
+   {"t": "Zweitens: Schall ist eine Druckwelle, die von Luftteilchen zu Luftteilchen weitergeschoben wird.", "mood": "happy", "ev": "druck"},
+   {"t": "In kalter Winterluft schafft er nur rund 330 Meter pro Sekunde.", "mood": "shock", "ev": "lahm"},
+   {"t": "Licht ist damit fast eine Million Mal schneller.", "mood": "cool", "ev": "million"}]},
+  {"type": "tip", "num": "3", "title": "Selbst *messen*", "path": [], "world": "p15Mess", "pause": 0.4, "lines": [
+   {"t": "Und daraus wird ein Trick.", "mood": "shock", "ev": "rehook"},
+   {"t": "Drittens: Zähl die Sekunden vom Aufleuchten bis zum Knall.", "mood": "happy", "ev": "zaehl"},
+   {"t": "Drei Sekunden heißt: Die Rakete ist rund einen Kilometer weg.", "mood": "shock", "ev": "drei"},
+   {"t": "Eine Sekunde sind etwa 330 Meter.", "mood": "cool", "ev": "eins"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "p15Out", "pause": 0.05, "checks": ["Licht: sofort da", "Schall: rund 330 m/s", "3 Sekunden ≈ 1 km"], "lines": [
+   {"t": "Also: Das Licht ist praktisch sofort bei dir,", "mood": "cool", "ev": "c1"},
+   {"t": "der Schall braucht für jeden Kilometer rund drei Sekunden", "mood": "happy", "ev": "c2"},
+   {"t": "und so zählst du an Silvester einfach mit.", "mood": "cool", "ev": "c3"},
+   {"t": "Physik verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}

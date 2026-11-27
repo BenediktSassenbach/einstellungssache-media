@@ -1,0 +1,31 @@
+{
+ "serie": "Bio", "kostuem": "skelett", "accent": "#A8E63C", "anim": "neu", "gagTag": "[gasps]", "id": "B020",
+ "titel": "Warum siehst du im Dunkeln keine Farben?", "gagDelay": 0, "gagZeile": 0,
+ "quelle": "SKRIPT ANATOMIE (Hook-System, Erstens/Zweitens/Drittens mit Rehook) und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Kostuem B4 Skelett-Anzug. Ort: Bio-Saal mit Tafel, Licht wird gedimmt. Hauptfigur: Schulskelett auf dem Podest. Grossbild: Rose wird grau, Auge im Schnitt, Netzhaut mit Staebchen und Zapfen (schematisch, nicht massstabsgetreu), Lichtregler, Blickmitte ohne Staebchen, Stern direkt und daneben. PRUEFFRAGEN: 1 Sucht jemand das Video wegen Beschwerden? Nein, Farbsehen im Dunkeln ist normal. 2 Braucht die Antwort 'gesund', 'schaedlich', 'hilft gegen', 'solltest du'? Nein. 3 Aendert jemand danach Essen, Sport, Medikamente oder Arztbesuch? Nein. Der Trick 'knapp daneben schauen' ist ein Beobachtungstipp fuer Sterne, kein Gesundheitsrat. Bewusst weggelassen: Nachtblindheit, Vitamin A, Krankheiten der Netzhaut. FAKTEN (27.11.2026): Netzhaut mit zwei Sorten Lichtsinneszellen, rund 120 Millionen Staebchen und rund 6 Millionen Zapfen (TU Dortmund 110 bis 120 Mio.; Spektrum Lexikon der Biologie; Britannica Retina); Zapfen fuer Farbsehen, drei Sorten, brauchen mehr Licht; Staebchen sehr lichtempfindlich, nur ein Sehfarbstoff (Rhodopsin), darum kein Farbsehen in der Daemmerung und nachts (skotopisches Sehen); Netzhautgrube (Fovea) in der Blickmitte enthaelt nur Zapfen, darum sieht man schwache Sterne besser, wenn man knapp daneben schaut (indirektes Sehen; Britannica, NASA Science). Wintersonnenwende 21.12.2026 um 21:50 MEZ, laengste Nacht des Jahres auf der Nordhalbkugel.",
+ "scenes": [
+  {"type": "hook", "title": "Nachts *farblos*?", "emoji": "🌹", "world": "b20Hook", "pause": 0.05, "lines": [
+   {"t": "Nachts ist eine rote Rose für deine Augen einfach grau.", "mood": "shock", "ev": "fest"},
+   {"t": "Warum siehst du im Dunkeln keine Farben?", "mood": "shock", "ev": "frage"},
+   {"t": "Am Ende weißt du, warum du schwache Sterne besser siehst, wenn du knapp daneben schaust.", "mood": "happy", "ev": "loop"}]},
+  {"type": "tip", "num": "1", "title": "Zwei *Sorten* Sehzellen", "path": [], "world": "b20Zellen", "pause": 0.4, "lines": [
+   {"t": "Erstens: Hinten im Auge, in der Netzhaut, sitzen zwei Sorten Sehzellen.", "mood": "happy", "ev": "zwei"},
+   {"t": "Rund 120 Millionen Stäbchen und nur rund 6 Millionen Zapfen.", "mood": "shock", "ev": "zahl"},
+   {"t": "Die Zapfen sehen Farben, die Stäbchen nur hell und dunkel.", "mood": "cool", "ev": "farbe"}]},
+  {"type": "tip", "num": "2", "title": "Zapfen brauchen *Licht*", "path": [], "world": "b20Licht", "pause": 0.4, "lines": [
+   {"t": "Aber warum fällt die Farbe nachts weg?", "mood": "happy", "ev": "rehook"},
+   {"t": "Zweitens: Zapfen brauchen viel Licht. Im Dunkeln reicht es ihnen nicht mehr.", "mood": "happy", "ev": "licht"},
+   {"t": "Dann arbeiten fast nur noch die Stäbchen, und die gibt es nur in einer Sorte.", "mood": "shock", "ev": "staebchen"},
+   {"t": "Ohne Vergleich keine Farbe. Darum siehst du nachts alles in Grautönen.", "mood": "cool", "ev": "grau"}]},
+  {"type": "tip", "num": "3", "title": "Knapp *daneben*", "path": [], "world": "b20Daneben", "pause": 0.4, "lines": [
+   {"t": "Und genau hier wird es seltsam.", "mood": "shock", "ev": "rehook"},
+   {"t": "Drittens: In der Mitte deines Blicks sitzen nur Zapfen, keine Stäbchen.", "mood": "happy", "ev": "mitte"},
+   {"t": "Schaust du einen schwachen Stern direkt an, verschwindet er deshalb fast.", "mood": "shock", "ev": "direkt"},
+   {"t": "Schau knapp daneben, dann treffen ihn die Stäbchen, und er taucht wieder auf.", "mood": "cool", "ev": "daneben"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "b20Out", "pause": 0.05, "checks": ["Zapfen: Farbe, viel Licht", "Stäbchen: nur grau", "Sterne: knapp daneben"], "lines": [
+   {"t": "Also: Farbe sehen nur die Zapfen, und die brauchen Licht,", "mood": "cool", "ev": "c1"},
+   {"t": "nachts übernehmen die Stäbchen in Grau", "mood": "happy", "ev": "c2"},
+   {"t": "und in der längsten Nacht am 21. Dezember schaust du bei Sternen knapp daneben.", "mood": "cool", "ev": "c3"},
+   {"t": "Bio verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}

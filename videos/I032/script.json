@@ -1,0 +1,31 @@
+{
+ "serie": "Informatik", "kostuem": "sunset", "accent": "#7C5CFF", "design": "3.3", "anim": "neu", "gagTag": "[gasps]", "id": "I032",
+ "titel": "Wie macht ein Spiel Wasser, das echt aussieht?", "gagDelay": 0, "gagZeile": 0,
+ "quelle": "SKRIPT VIDEOSPIEL mit Skript 4 Abschnitt 9 und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Kostuem S1 Sunset-Hemd. Ort eigens gebaut: Holzsteg einer Marina bei Sonnenuntergang mit Bootshaus im Art-deco-Stil, Boot, Boje, Skyline im Dunst (eigener Stil, keine Orte, Figuren oder Logos aus einem Spiel). Ueber GTA 6 wird nichts behauptet: Rockstar hat die Technik hinter dem Wasser nicht bestaetigt, Geruechte (Zahl der Entwickler, Kosten) sind ausdruecklich nicht verwendet. Erklaert wird die allgemeine Technik. Teil 1 Drahtgitter direkt auf dem Wasser und Tafel auf dem Steg, Teil 2 die eine Lupe, Teil 3 Blickstrahlen aus Schaltis Augen. FAKTEN (27.11.2026): Wasseroberflaechen in Echtzeit sind ein Netz aus Dreiecken, dessen Punkte mit mehreren uebereinandergelegten Wellen (Sinus- bzw. Gerstner-Wellen) oder per FFT verschoben werden (NVIDIA GPU Gems Kapitel 1, Finch 2004, Effective Water Simulation from Physical Models; Tessendorf 2001, Simulating Ocean Water); feine Details kommen aus Normal-Maps, die nur die Richtung fuer die Lichtberechnung aendern, nicht die Geometrie (GPU Gems Kapitel 1; Learn OpenGL, Normal Mapping); Fresnel-Effekt: Wasser spiegelt bei flachem Blickwinkel fast vollstaendig, senkrecht von oben nur rund 2 Prozent (Fresnel-Gleichungen, Brechzahl 1,33: ((1,33-1)/(1,33+1))^2 = rund 0,02; Schlick-Naeherung in Echtzeitgrafik). Faktencheck 27.11.2026 (eigener Agent): 'bewegt' statt 'hebt und senkt' (Gerstner-Wellen verschieben auch seitlich), 'ins Wasser hinein' statt 'bis zum Grund'. Uebertreibung im Bild: Gitter und Wellen deutlich groeber als in einem echten Spiel, damit man sie sieht.",
+ "scenes": [
+  {"type": "hook", "title": "Echtes *Wasser*?", "emoji": "🌊", "world": "i32Hook", "pause": 0.05, "lines": [
+   {"t": "Wasser im Spiel ist eigentlich ein Netz aus Dreiecken.", "mood": "shock", "ev": "fest"},
+   {"t": "Wie macht ein Spiel Wasser, das echt aussieht?", "mood": "shock", "ev": "frage"},
+   {"t": "Am Ende weißt du, warum Wasser in der Ferne wie ein Spiegel glänzt.", "mood": "happy", "ev": "loop"}]},
+  {"type": "tip", "num": "1", "title": "Netz und *Wellen*", "path": [], "world": "i32Netz", "pause": 0.4, "lines": [
+   {"t": "Erstens: Die Wasseroberfläche ist ein Netz aus vielen kleinen Dreiecken.", "mood": "happy", "ev": "netz"},
+   {"t": "Das Spiel bewegt die Punkte mit mehreren Wellen, die übereinandergelegt werden.", "mood": "cool", "ev": "welle"},
+   {"t": "Zusammen sieht das aus wie unruhiges, echtes Meer.", "mood": "happy", "ev": "echt"}]},
+  {"type": "tip", "num": "2", "title": "Falsche *Kräusel*", "path": [], "world": "i32Map", "pause": 0.4, "lines": [
+   {"t": "Aber für winzige Wellen bräuchte man viel zu viele Dreiecke.", "mood": "happy", "ev": "rehook"},
+   {"t": "Zweitens: Dafür nimmt das Spiel ein Bild, eine sogenannte Normal-Map.", "mood": "happy", "ev": "karte"},
+   {"t": "Sie verbiegt nur das Licht. Die Fläche selbst bleibt flach.", "mood": "shock", "ev": "licht"},
+   {"t": "So glitzert das Wasser voller Details, ohne viel mehr zu rechnen.", "mood": "cool", "ev": "spar"}]},
+  {"type": "tip", "num": "3", "title": "Der *Blickwinkel*", "path": [], "world": "i32Fres", "pause": 0.4, "lines": [
+   {"t": "Und jetzt kommt der Teil mit dem Spiegel.", "mood": "shock", "ev": "rehook"},
+   {"t": "Drittens: Schaust du flach übers Wasser, spiegelt es fast wie ein Spiegel.", "mood": "happy", "ev": "flach"},
+   {"t": "Schaust du steil nach unten, spiegelt es nur rund zwei Prozent, und du siehst ins Wasser hinein.", "mood": "shock", "ev": "steil"},
+   {"t": "Das heißt Fresnel-Effekt, und gute Spiele rechnen ihn mit.", "mood": "cool", "ev": "fresnel"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "i32Out", "pause": 0.05, "checks": ["Netz aus Dreiecken", "Kräusel aus einem Bild", "Flach: es spiegelt"], "lines": [
+   {"t": "Also: Spielwasser ist ein Netz mit übereinandergelegten Wellen,", "mood": "cool", "ev": "c1"},
+   {"t": "die feinen Kräusel kommen aus einem Bild", "mood": "happy", "ev": "c2"},
+   {"t": "und je flacher du schaust, desto mehr spiegelt es.", "mood": "cool", "ev": "c3"},
+   {"t": "Informatik verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}

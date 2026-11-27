@@ -1,0 +1,31 @@
+{
+ "serie": "Chemie", "kostuem": "labor", "accent": "#FF6BD6", "design": "3.3", "anim": "neu", "gagTag": "[gasps]", "id": "C012",
+ "titel": "Warum leuchtet Feuerwerk bunt?", "gagDelay": 0, "gagZeile": 0,
+ "quelle": "SKRIPT 4 mit Abschnitt 9 und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Kostuem Labor. Ort eigens gebaut: Holzsteg an einem See in der Silvesternacht, Feuerwerk spiegelt sich. Teil 1 die eine Lupe (Leuchtkugel mit Metallsalzen) und Farbkarten, Teil 2 Wissenschaftsmodus (Energietreppe, Elektron springt hoch und faellt mit Licht zurueck), Teil 3 Thermometer und verblassendes Blau. Nur Erklaerung, keine Anleitung, keine Mengen, keine Bauteile. FAKTEN (27.11.2026): Farben stammen von Metallsalzen in den Leuchtkugeln (Sternen); Strontium rot, Barium gruen, Kupfer blau, Natrium gelb (TUeV Nord, PBS NOVA, Imperial College London); Hitze regt Elektronen der Metallatome auf hoehere Energiestufen an, beim Zurueckfallen wird Licht einer festen Wellenlaenge abgegeben (Atomemission, Flammenfaerbung; Imperial College, Britannica Flame test); Blau gilt als die schwierigste Farbe, weil die Kupferverbindungen bei zu hoher Temperatur zerfallen und das Blau dann blass wird (LMU Muenchen, Klapoetke; NOVA). Faktencheck 27.11.2026 (eigener Agent): Licht kommt vor allem von kleinen Molekuelen wie SrCl, BaCl, CuCl, darum 'Metallteilchen' statt 'Metallatome'. Nicht gesagt: Herstellung, Mischungen, Mengen.",
+ "scenes": [
+  {"type": "hook", "title": "Warum ist Feuerwerk *bunt*?", "emoji": "🎆", "world": "c12Hook", "pause": 0.05, "lines": [
+   {"t": "Die Farben im Feuerwerk kommen von Metallen.", "mood": "shock", "ev": "fest"},
+   {"t": "Warum leuchtet Feuerwerk bunt?", "mood": "shock", "ev": "frage"},
+   {"t": "Am Ende weißt du, warum Blau die schwierigste Farbe ist.", "mood": "happy", "ev": "loop"}]},
+  {"type": "tip", "num": "1", "title": "Metall macht *Farbe*", "path": [], "world": "c12Metall", "pause": 0.4, "lines": [
+   {"t": "Erstens: In den Leuchtkugeln einer Rakete stecken Metallsalze.", "mood": "happy", "ev": "salz"},
+   {"t": "Strontium leuchtet rot, Barium grün.", "mood": "shock", "ev": "rotgruen"},
+   {"t": "Kupfer leuchtet blau und Natrium gelb.", "mood": "cool", "ev": "blaugelb"}]},
+  {"type": "tip", "num": "2", "title": "Elektronen *springen*", "path": [], "world": "c12Spring", "labor": [1, 2, 3], "pause": 0.4, "lines": [
+   {"t": "Aber warum gerade diese Farben?", "mood": "happy", "ev": "rehook"},
+   {"t": "Zweitens: Die Hitze hebt Elektronen in den Metallteilchen auf eine höhere Energiestufe.", "mood": "happy", "ev": "hitze"},
+   {"t": "Fallen sie zurück, geben sie die Energie als Licht ab.", "mood": "shock", "ev": "zurueck"},
+   {"t": "Jedes Metall hat feste Stufen, darum hat es eine feste Farbe.", "mood": "cool", "ev": "fest"}]},
+  {"type": "tip", "num": "3", "title": "Blau ist *schwer*", "path": [], "world": "c12Blau", "pause": 0.4, "lines": [
+   {"t": "Und eine Farbe ist besonders knifflig.", "mood": "shock", "ev": "rehook"},
+   {"t": "Drittens: Für Blau braucht man Kupferverbindungen.", "mood": "happy", "ev": "kupfer"},
+   {"t": "Wird es zu heiß, zerfallen sie, und das Blau wird blass.", "mood": "shock", "ev": "heiss"},
+   {"t": "Darum gilt ein kräftiges Blau als die schwierigste Farbe.", "mood": "cool", "ev": "schwer"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "c12Out", "pause": 0.05, "checks": ["Metallsalze machen Farbe", "Elektronen fallen: Licht", "Blau ist am schwersten"], "lines": [
+   {"t": "Also: Die Farbe kommt vom Metall,", "mood": "cool", "ev": "c1"},
+   {"t": "springende Elektronen machen das Licht", "mood": "happy", "ev": "c2"},
+   {"t": "und ein sattes Blau ist die Königsdisziplin.", "mood": "cool", "ev": "c3"},
+   {"t": "Chemie verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}

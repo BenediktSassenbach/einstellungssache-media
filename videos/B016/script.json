@@ -1,0 +1,31 @@
+{
+ "serie": "Bio", "kostuem": "dinoforscher", "accent": "#A8E63C", "anim": "neu", "gagTag": "[gasps]", "id": "B016",
+ "titel": "Warum war ein Tag für die Dinos kürzer?", "gagDelay": 0, "gagZeile": 0,
+ "quelle": "Dino-Skript und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Kostuem B1 Dino-Forscher. Ort eigens gebaut: Lagune am Meer der spaeten Kreidezeit mit Rudisten-Riff, Triceratops am Strand. Teil 1 Uhr und Kalenderkarte, Teil 2 die eine Lupe (Querschnitt der Muschel mit Tagesschichten, schematisch), Teil 3 Erde-Mond-Skizze (nicht massstabsgetreu) und Supermond. FAKTEN (27.11.2026): vor rund 70 Millionen Jahren dauerte ein Tag rund 23,5 Stunden, ein Jahr hatte rund 372 Tage (de Winter et al. 2020, Paleoceanography and Paleoclimatology, AGU; Pressemitteilung AGU/VUB); Grundlage ist die fossile Rudisten-Muschel Torreites sanchezi aus der spaeten Kreidezeit (Oman), die taeglich Wachstumsschichten anlegte; Rudisten sind Muscheln; die Gezeitenreibung durch den Mond bremst die Erdrotation, der Mond entfernt sich rund 3,8 cm pro Jahr (NASA, Lunar Laser Ranging); Vollmond am 24.12.2026 um 02:28 MEZ ist der erdnaechste Vollmond 2026 (Supermond, rund 356.740 km). Faktencheck 27.11.2026 (eigener Agent): Schichten wurden per Laser chemisch gemessen (Utrecht/VUB); Vollmond 02:28 MEZ, darum 'in der Nacht zum 24. Dezember'; 'siebenmal mehr pro Jahr' statt 'siebenmal oefter'. Nicht gesagt: genaue Minutenzahl, dass Dinos das gemerkt haetten.",
+ "scenes": [
+  {"type": "hook", "title": "Der Tag war *kürzer*?", "emoji": "🦕", "world": "b16Hook", "pause": 0.05, "lines": [
+   {"t": "Bei den Dinos dauerte ein Tag keine 24 Stunden.", "mood": "shock", "ev": "fest"},
+   {"t": "Warum war ein Tag für die Dinos kürzer?", "mood": "shock", "ev": "frage"},
+   {"t": "Am Ende weißt du, was der Mond damit zu tun hat.", "mood": "happy", "ev": "loop"}]},
+  {"type": "tip", "num": "1", "title": "Nur *23,5* Stunden", "path": [], "world": "b16Kurz", "pause": 0.4, "lines": [
+   {"t": "Erstens: Vor rund 70 Millionen Jahren dauerte ein Tag nur etwa 23,5 Stunden.", "mood": "happy", "ev": "kurz"},
+   {"t": "Ein Jahr war gleich lang, hatte aber rund 372 Tage.", "mood": "shock", "ev": "jahr"},
+   {"t": "Pro Jahr ging die Sonne also rund siebenmal mehr auf als heute.", "mood": "cool", "ev": "oefter"}]},
+  {"type": "tip", "num": "2", "title": "Die *Muschel* zählt", "path": [], "world": "b16Muschel", "pause": 0.4, "lines": [
+   {"t": "Aber woher weiß man das?", "mood": "happy", "ev": "rehook"},
+   {"t": "Zweitens: Forscher haben eine fossile Muschel aus der Kreidezeit untersucht.", "mood": "happy", "ev": "muschel"},
+   {"t": "Sie wuchs jeden Tag um eine feine Schicht, wie ein Tagebuch in der Schale.", "mood": "shock", "ev": "schicht"},
+   {"t": "Mit einem Laser fanden die Forscher pro Jahr rund 372 solcher Tagesschichten.", "mood": "cool", "ev": "zaehl"}]},
+  {"type": "tip", "num": "3", "title": "Der *Mond* bremst", "path": [], "world": "b16Mond", "pause": 0.4, "lines": [
+   {"t": "Und schuld daran ist der Mond.", "mood": "shock", "ev": "rehook"},
+   {"t": "Drittens: Seine Gezeiten bremsen die Drehung der Erde ganz langsam ab.", "mood": "happy", "ev": "gezeit"},
+   {"t": "Dabei rückt der Mond jedes Jahr rund 3,8 Zentimeter weiter weg.", "mood": "shock", "ev": "weg"},
+   {"t": "In der Nacht zum 24. Dezember siehst du ihn trotzdem als größten Vollmond des Jahres.", "mood": "cool", "ev": "super"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "b16Out", "pause": 0.05, "checks": ["Tag: rund 23,5 Stunden", "Muschel zählt die Tage", "Mond bremst die Erde"], "lines": [
+   {"t": "Also: Bei den Dinos war ein Tag rund eine halbe Stunde kürzer,", "mood": "cool", "ev": "c1"},
+   {"t": "eine Muschel hat die Tage mitgezählt", "mood": "happy", "ev": "c2"},
+   {"t": "und der Mond bremst die Erde bis heute.", "mood": "cool", "ev": "c3"},
+   {"t": "Bio verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}
