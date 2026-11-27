@@ -2,7 +2,9 @@
 // Genutzt von viz_c020h.js, viz_i022h.js, viz_b017h.js, viz_b023h.js und der Schicht-fuer-Schicht-Folge. Zum Loeschen: mit diesen Dateien.
 var STH = '#0B1020';
 // v2 (20.11.2026, Benedikt: Design bleibt dem Grundskript treu): bei Skripten mit ID auf 'H2' gibt es keine Hook-Overlays (Karten, Fragezeichen, Blitz)
-const HV2 = () => typeof S !== 'undefined' && /H[23]$/.test(S.id);
+const HV2 = () => typeof S !== 'undefined' && /H[234]$/.test(S.id);
+// H4 (21.11.2026): Skript-4-Fassung, nur der Einstieg nach Hook-System: Aktion ab dem ersten Bild
+const HV4 = () => typeof S !== 'undefined' && /H4$/.test(S.id);
 // Schaltis Kopfmitte bei Fusspunkt fx, fy und Groesse 1
 const headH = (fx, fy) => [fx + 58, fy - 127];
 // Lupe: inner in Koordinaten -320..320, wird auf Radius r skaliert. hx, hy: Punkt, auf den die gestrichelte Linie zeigt

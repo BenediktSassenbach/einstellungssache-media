@@ -23,11 +23,13 @@ function room22(t, o) { o = o || {}; let s = '<defs><linearGradient id="wl22" x1
   for (let i = 0; i < 7; i++) s += '<path d="M0 ' + (1460 + i * 70) + ' H1080" stroke="#3E241A" stroke-width="3" opacity=".5"/>';
   s += '<ellipse cx="470" cy="1640" rx="420" ry="90" fill="#5C4A9A" opacity=".75"/><ellipse cx="470" cy="1640" rx="380" ry="72" fill="none" stroke="#8F7FD0" stroke-width="5" stroke-dasharray="14 12"/>';
   // Stativ, Ringlicht, Handy
+  const rdy = o.ringT || ''; if (rdy) s += '<g transform="' + rdy + '">';
   const lt = o.light === undefined ? 1 : o.light;
   s += '<g stroke="' + ST22 + '" stroke-width="7" stroke-linecap="round"><path d="M' + PX22 + ' 1150 L' + (PX22 - 120) + ' 1600 M' + PX22 + ' 1150 L' + (PX22 + 120) + ' 1600 M' + PX22 + ' 1150 L' + PX22 + ' 1620"/></g><g stroke="#3A4060" stroke-width="4" stroke-linecap="round"><path d="M' + PX22 + ' 1150 L' + (PX22 - 120) + ' 1600 M' + PX22 + ' 1150 L' + (PX22 + 120) + ' 1600 M' + PX22 + ' 1150 L' + PX22 + ' 1620"/></g>';
   s += '<circle cx="' + PX22 + '" cy="' + PY22 + '" r="300" fill="url(#rl22)" opacity="' + lt.toFixed(2) + '"/><circle cx="' + PX22 + '" cy="' + PY22 + '" r="232" fill="none" stroke="' + ST22 + '" stroke-width="46"/><circle cx="' + PX22 + '" cy="' + PY22 + '" r="232" fill="none" stroke="' + lc('#8A8FA8', '#FFF6E0', lt) + '" stroke-width="32"/>';
   s += '<path d="M' + PX22 + ' 1128 V1155" stroke="' + ST22 + '" stroke-width="16"/>';
   s += phone22(o.screen || 'memo', t, o) ;
+  if (rdy) s += '</g>';
   return s; }
 // Handy mit Bildschirm. mode: memo (Aufnahme spielt), eq (Equalizer), meter (Lautstaerke)
 function phone22(mode, t, o) { const x = PX22 - 120, y = PY22 - 185, w = 240, h = 370; let s = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="34" fill="' + ST22 + '" stroke="#F4F6FB" stroke-width="8"/><rect x="' + (x + 14) + '" y="' + (y + 14) + '" width="' + (w - 28) + '" height="' + (h - 28) + '" rx="24" fill="#141C3C"/>';
@@ -105,7 +107,7 @@ WORLD.h22hook = function (sc, ev, t, lt) { const pl = ev.play, ko = ev.kopf, lo 
   s += waves22(t, lo === undefined ? 1 : 1 - cl(lo / .6), AC22, 1);
   const [hx, hy] = head22(260, GY22);
   if (ko !== undefined) { const k = lo === undefined ? cl(ko / .35) : 1 - cl(lo / .4); s += think22(hx + 20, hy - 60, 300, 860, wline22(0, -6, 300, 1, t, OR22) + svgT(0, 96, 'so hörst du dich', 30, ST22), k); }
-  if (lo !== undefined) { s += card22(280, 735, 'Im Kopf', 'kopf', OR22, cl((lo - .2) / .4)) + card22(800, 735, 'Aufnahme', 'auf', AC22, cl((lo - .5) / .4)) + vs22(cl((lo - .9) / .3), t); }
+  if (lo !== undefined && !HV4()) { s += card22(280, 735, 'Im Kopf', 'kopf', OR22, cl((lo - .2) / .4)) + card22(800, 735, 'Aufnahme', 'auf', AC22, cl((lo - .5) / .4)) + vs22(cl((lo - .9) / .3), t); }
   return W(s + shade3()); };
 WMASC.h22hook = (ev, t, lt) => { const pl = ev.play, ko = ev.kopf;
   if (ko !== undefined) return stay3([lerp(230, 260, ease(cl(ko / .6))), GY22], 1, { r: 2 * Math.sin(t * 2), mood: 'cool' });
@@ -154,11 +156,11 @@ WMASC.h22test = (ev, t, lt) => { const te = ev.test, dr = ev.droehn, ge = ev.gef
   return stay3([300, GY22], 1, { r: 2 }); };
 
 // ---------- Schluss: Aufloesung, Studie, zurueck zum ersten Bild (Loop) ----------
-WORLD.h22out = function (sc, ev, t, lt) { const fr = ev.frage2, au = ev.auf, st = ev.studie, sv = ev.save; let s = room22(t, { screen: 'memo', memoT: sv === undefined ? lt : 1.2 + (sv || 0) });
+WORLD.h22out = function (sc, ev, t, lt) { const fr = ev.frage2, au = ev.auf, st = ev.studie, sv = ev.save; const rk = HV4() && sv !== undefined ? ease(cl(sv / .5)) : 0, rT = rk > 0 ? 'translate(' + (640 + 250 * rk).toFixed(1) + ' 1620) scale(' + (1 - .3 * rk).toFixed(3) + ') translate(-640 -1620)' : ''; let s = room22(t, { screen: 'memo', memoT: sv === undefined ? lt : 1.2 + (sv || 0), ringT: rT });
   const off = sv === undefined ? 0 : cl(sv / .2);
   if (fr !== undefined) { const k = cl(fr / .4) * (1 - off), hi = au === undefined ? 0 : ease(cl(au / .5)); s += card22(280, 735, 'Im Kopf', 'kopf', OR22, k * (st === undefined ? 1 : 1 - cl(st / .4)), 0, hi) + card22(800, 735, 'Aufnahme', 'auf', AC22, k, hi) + vs22(au === undefined ? cl((fr - .3) / .3) : 1 - cl(au / .3), t); }
   if (st !== undefined) s += '<g opacity="' + (1 - off).toFixed(2) + '">' + chip3(540, 560, 'Studie 2013, 80 Leute', 32, '#FFE14D', ST22, cl((st - .6) / .3)) + '</g>';
-  if (sv !== undefined) s += waves22(t, cl(sv / .6), AC22, 1);
+  if (sv !== undefined) s += '<g transform="' + rT + '">' + waves22(t, cl(sv / .6), AC22, 1) + '</g>';
   return W(s + shade3()); };
 WMASC.h22out = (ev, t, lt) => { const au = ev.auf, st = ev.studie, sv = ev.save;
   if (sv !== undefined) return stay3([lerp(300, 260, ease(cl(sv / .8))), GY22], 1, { r: 0, mood: 'happy' });
