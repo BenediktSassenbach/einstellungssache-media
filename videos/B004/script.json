@@ -1,0 +1,31 @@
+{
+ "serie": "Bio", "kostuem": "dinoforscher", "accent": "#A8E63C", "anim": "neu", "gagTag": "[gasps]", "id": "B004",
+ "titel": "Was hat die Dinosaurier wirklich ausgelöscht?", "gagDelay": 0, "gagZeile": 0,
+ "quelle": "Dino-Skript und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Kostuem B1 Dino-Forscher. Ort eigens gebaut: Flussebene am Ende der Kreidezeit; Teil 3 neue Szene Dekkan-Trapps und Fenster mit Vogel. Dino-Regel: verbreitetste belegte Theorie. FAKTEN (27.11.2026): Asteroid mit rund 10 bis 15 km Durchmesser, Einschlag vor 66 Mio. Jahren auf der Halbinsel Yucatan (Natural History Museum London, How an asteroid caused the extinction of the dinosaurs); Krater Chicxulub: NHM rund 150 km, Nature Reviews Earth and Environment 2022 rund 200 km, deshalb 'ueber 150 km'; rund drei Viertel aller Arten starben aus (Review 2022, NHM); Staub, Russ aus Braenden und Sulfat-Aerosole verdunkelten den Himmel und kuehlten die Erde (Review 2022); feiner Gesteinsstaub unterbrach die Photosynthese laut Simulationsstudie fast zwei Jahre (Senel u. a., Nature Geoscience 2023, VUB); Dekkan-Trapps belasteten das Leben schon vorher, Hauptanteil der Gase lange vor dem Einschlag (NHM; Hull u. a., Science 2020, Yale); Voegel sind ueberlebende Dinosaurier (NHM). Everest 8,8 km. BILD: Karte ist eine Skizze, Groessenvergleich massstabsgerecht (1 km = 30 px). Keine genaue Zahl fuer Krater oder Asteroid ohne 'rund'/'ueber'. Faktencheck 27.11.2026 (eigener Agent; VUB/Senel 2023 rund 620 Tage, connectsci): keine Korrektur.",
+ "scenes": [
+  {"type": "hook", "title": "Was hat sie *ausgelöscht*?", "emoji": "☄️", "world": "b4Hook", "pause": 0.05, "lines": [
+   {"t": "Rund zehn Kilometer Stein, und drei Viertel aller Arten waren weg.", "mood": "shock", "ev": "bang"},
+   {"t": "Was hat die Dinosaurier wirklich ausgelöscht?", "mood": "shock", "ev": "frage"},
+   {"t": "Am Ende weißt du, warum vielleicht einer vor deinem Fenster sitzt.", "mood": "happy", "ev": "loop"}]},
+  {"type": "tip", "num": "1", "title": "Der *Einschlag*", "path": [], "world": "b4Ein", "pause": 0.4, "lines": [
+   {"t": "Erstens: Vor rund 66 Millionen Jahren schlug ein Asteroid auf der Halbinsel Yucatán in Mexiko ein.", "mood": "happy", "ev": "ein"},
+   {"t": "Er war rund 10 bis 15 Kilometer groß. Größer als der Mount Everest hoch ist.", "mood": "shock", "ev": "gross"},
+   {"t": "Sein Krater heißt Chicxulub und ist über 150 Kilometer breit.", "mood": "cool", "ev": "krater"}]},
+  {"type": "tip", "num": "2", "title": "Der lange *Winter*", "path": [], "world": "b4Winter", "pause": 0.4, "lines": [
+   {"t": "Doch der Einschlag war erst der Anfang.", "mood": "shock", "ev": "rehook"},
+   {"t": "Zweitens: Staub, Ruß aus riesigen Bränden und Schwefel verdunkelten den Himmel.", "mood": "happy", "ev": "dunkel"},
+   {"t": "Es wurde kalt. Laut einer Studie konnten Pflanzen fast zwei Jahre lang kaum Photosynthese machen.", "mood": "shock", "ev": "pflanz"},
+   {"t": "Ohne Pflanzen fehlte den Pflanzenfressern das Futter, und dann auch ihren Jägern.", "mood": "cool", "ev": "kette"}]},
+  {"type": "tip", "num": "3", "title": "Und die *Vulkane*?", "path": [], "world": "b4Vulkan", "pause": 0.4, "lines": [
+   {"t": "Aber es gab noch einen Verdächtigen.", "mood": "shock", "ev": "rehook"},
+   {"t": "Drittens: In Indien brachen damals riesige Vulkane aus, die Dekkan-Trapps.", "mood": "happy", "ev": "vulkan"},
+   {"t": "Sie belasteten das Klima schon vorher. Den Todesstoß gab nach heutigem Stand aber der Asteroid.", "mood": "cool", "ev": "stoss"},
+   {"t": "Und nicht alle Dinosaurier starben aus: Vögel sind Dinosaurier, die überlebt haben.", "mood": "happy", "ev": "vogel"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "b4Out", "pause": 0.05, "checks": ["Asteroid in Mexiko", "Langer, dunkler Winter", "Vögel überlebten"], "lines": [
+   {"t": "Also: Ein Asteroid schlug in Mexiko ein,", "mood": "cool", "ev": "c1"},
+   {"t": "danach wurde es lange dunkel und kalt", "mood": "happy", "ev": "c2"},
+   {"t": "und nur die Vögel unter den Dinos überlebten.", "mood": "cool", "ev": "c3"},
+   {"t": "Bio verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}

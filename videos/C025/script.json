@@ -1,0 +1,31 @@
+{
+ "serie": "Chemie", "kostuem": "molekuel", "accent": "#FF6BD6", "design": "3.3", "anim": "neu", "gagTag": "[gasps]", "id": "C025",
+ "titel": "Warum riecht dasselbe Molekül nach Minze und nach Kümmel?", "gagDelay": 0, "gagZeile": 0,
+ "quelle": "SKRIPT 4 mit Abschnitt 9 und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Kostuem C3 Molekuel-Antenne. Ort eigens gebaut: Kraeuter- und Teeladen am Abend. Teil 1 Gegenstand (Handschuhe und Molekuele), Teil 2 Wissenschaftsmodus (Riechrezeptor), Teil 3 Gegenstand plus die eine Lupe (Punkteraster). FAKTEN (27.11.2026): (R)-Carvon riecht nach Gruener Minze, (S)-Carvon nach Kuemmel; Enantiomere, Spiegelbilder, nicht zur Deckung zu bringen, chiral wie linke und rechte Hand; einige Riechrezeptoren sind selbst chiral und reagieren auf eine Spiegelform staerker (LibreTexts, Stereoisomerism and Smell; UCLA Illustrated Glossary Carvone). Rezeptor OR1A1 unterscheidet die Carvone, rund 8 Prozent der Menschen riechen (R)-(-)-Carvon nicht (Cell. Mol. Life Sci. 2017, Leibniz-LSB TUM). Chemie-Nobelpreis 2026 an Henri B. Kagan und Kenso Soai fuer nichtlineare Effekte und Autokatalyse in der asymmetrischen Synthese, Verleihung 10.12.2026 in Stockholm (nobelprize.org). Keine Verbindung zwischen Carvon und der Nobel-Arbeit behauptet. BILD: Carvon als vereinfachte Skizze, Handschuh als Sinnbild. Medaille ohne Logo. Faktencheck 27.11.2026 (eigener Agent; nobelprize.org, Chemistry World, CMLS 2017): Frage um nur gespiegelt ergaenzt, Rezeptoren sind als Proteine haendig, manche reagieren staerker.",
+ "scenes": [
+  {"type": "hook", "title": "Minze oder *Kümmel*?", "emoji": "🌿", "world": "c25Hook", "pause": 0.05, "lines": [
+   {"t": "Gleiche Atome. Das eine riecht nach Minze, das andere nach Kümmel.", "mood": "shock", "ev": "fest"},
+   {"t": "Warum riecht dasselbe Molekül, nur gespiegelt, so verschieden?", "mood": "shock", "ev": "frage"},
+   {"t": "Am Ende weißt du, warum manche die Minze gar nicht riechen.", "mood": "happy", "ev": "loop"}]},
+  {"type": "tip", "num": "1", "title": "Wie deine *Hände*", "path": [], "world": "c25Hand", "pause": 0.4, "lines": [
+   {"t": "Erstens: Das Molekül heißt Carvon. Es gibt zwei Formen, gebaut wie linke und rechte Hand.", "mood": "happy", "ev": "zwei"},
+   {"t": "Sie sind Spiegelbilder. Egal wie du sie drehst, sie passen nie genau aufeinander.", "mood": "shock", "ev": "dreh"},
+   {"t": "Chemiker nennen das chiral, also händig.", "mood": "cool", "ev": "chiral"}]},
+  {"type": "tip", "num": "2", "title": "Die *Nase*", "path": [], "world": "c25Nase", "labor": [1, 2, 3], "pause": 0.4, "lines": [
+   {"t": "Und jetzt kommt deine Nase ins Spiel.", "mood": "happy", "ev": "rehook"},
+   {"t": "Zweitens: Die Riechrezeptoren in deiner Nase sind selbst händig gebaut.", "mood": "happy", "ev": "rez"},
+   {"t": "Wie bei einem Handschuh reagieren manche auf die eine Form stärker als auf die andere.", "mood": "shock", "ev": "pass"},
+   {"t": "So meldet dein Gehirn einmal Minze und einmal Kümmel.", "mood": "cool", "ev": "meld"}]},
+  {"type": "tip", "num": "3", "title": "Nicht *jeder* riecht's", "path": [], "world": "c25Nicht", "pause": 0.4, "lines": [
+   {"t": "Aber nicht jede Nase macht mit.", "mood": "shock", "ev": "rehook"},
+   {"t": "Drittens: Die Minz-Form steckt in Grüner Minze, die Kümmel-Form im Kümmel.", "mood": "happy", "ev": "wo"},
+   {"t": "Rund acht von hundert Menschen können die Minz-Form gar nicht riechen.", "mood": "shock", "ev": "riech"},
+   {"t": "Und der Chemie-Nobelpreis 2026 geht an Forschung dazu, wie man gezielt eine der beiden Spiegelformen herstellt.", "mood": "cool", "ev": "nobel"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "c25Out", "pause": 0.05, "checks": ["Spiegelbild-Paar", "Händige Nase", "Nicht jeder riecht Minze"], "lines": [
+   {"t": "Also: Carvon gibt es als Spiegelbild-Paar,", "mood": "cool", "ev": "c1"},
+   {"t": "deine Nase unterscheidet die beiden", "mood": "happy", "ev": "c2"},
+   {"t": "und manche riechen die Minze gar nicht.", "mood": "cool", "ev": "c3"},
+   {"t": "Chemie verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}

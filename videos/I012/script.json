@@ -1,0 +1,31 @@
+{
+ "serie": "Informatik", "kostuem": "roboter", "accent": "#7C5CFF", "design": "3.3", "anim": "neu", "gagTag": "[gasps]", "id": "I012",
+ "titel": "Wie macht KI aus einem Satz ein Bild?", "gagDelay": 0, "gagZeile": 0,
+ "quelle": "SKRIPT 4 mit Abschnitt 9 und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Kostuem I3 Retro-Roboter. Ort eigens gebaut: Schreibtisch am Winterabend mit Bildschirm und Drucker. Teil 1 Bildschirm, Teil 2 Wissenschaftsmodus, Teil 3 Gegenstand (Karte) plus die eine Lupe. FAKTEN (27.11.2026): Diffusionsmodelle: beim Training wird einem Bild in vielen kleinen Schritten Rauschen hinzugefuegt, bis nur Rauschen bleibt; das Modell lernt, das Rauschen vorherzusagen und schrittweise zu entfernen; neue Bilder entstehen aus reinem Zufallsrauschen; ein Text-Encoder wie CLIP macht aus dem Satz eine Zahlenreihe (Embedding), die das Entrauschen lenkt (IBM Think, Diffusion models; Ho u. a. 2020, DDPM, arXiv 2006.11239; Stable Diffusion v1-4 Modellkarte, Hugging Face, CLIP ViT-L/14). Haende: in Trainingsbildern oft klein, halb verdeckt oder haltend, Modelle lernen Muster statt Anatomie (The Conversation 2023); Modellkarte nennt Schwaechen bei Personen. Vorsichtig: 'oft', 'vor allem aeltere'. Nicht gesagt: Collage aus Internetbildern. BILD: Zahlen der Zahlenreihe sind Beispielwerte, Bilder sind Zeichnungen. Faktencheck 27.11.2026 (eigener Agent; DDPM, Modellkarte): keine Korrektur.",
+ "scenes": [
+  {"type": "hook", "title": "Satz zu *Bild*?", "emoji": "🦌", "world": "i12Hook", "pause": 0.05, "lines": [
+   {"t": "Dieses Rentier war eben noch reines Rauschen.", "mood": "shock", "ev": "rausch"},
+   {"t": "Wie macht KI aus einem Satz ein Bild?", "mood": "shock", "ev": "frage"},
+   {"t": "Am Ende weißt du, warum Hände so oft schiefgehen.", "mood": "happy", "ev": "loop"}]},
+  {"type": "tip", "num": "1", "title": "Erst *kaputt* machen", "path": [], "world": "i12Train", "pause": 0.4, "lines": [
+   {"t": "Erstens: Beim Training wird über echte Bilder Schritt für Schritt Rauschen gelegt,", "mood": "happy", "ev": "train"},
+   {"t": "bis nur noch Rauschen übrig ist.", "mood": "shock", "ev": "nur"},
+   {"t": "Die KI lernt, dieses Rauschen Stück für Stück wieder herauszurechnen.", "mood": "cool", "ev": "lern"}]},
+  {"type": "tip", "num": "2", "title": "Der *Satz* lenkt", "path": [], "world": "i12Satz", "labor": [1, 2, 3], "pause": 0.4, "lines": [
+   {"t": "Und jetzt kommt dein Satz dazu.", "mood": "happy", "ev": "rehook"},
+   {"t": "Zweitens: Ein Text-Encoder, zum Beispiel CLIP, macht aus deinem Satz eine Reihe von Zahlen.", "mood": "happy", "ev": "zahl"},
+   {"t": "Ein neues Bild startet als reines Zufallsrauschen.", "mood": "shock", "ev": "start"},
+   {"t": "Bei jedem Schritt entfernt die KI etwas Rauschen, und die Zahlen lenken, wohin es geht.", "mood": "cool", "ev": "lenk"}]},
+  {"type": "tip", "num": "3", "title": "Warum *Hände*?", "path": [], "world": "i12Hand", "pause": 0.4, "lines": [
+   {"t": "Aber manchmal geht's daneben.", "mood": "shock", "ev": "rehook"},
+   {"t": "Drittens: Die KI lernt Muster aus Bildern, aber nicht, wie eine Hand gebaut ist.", "mood": "happy", "ev": "muster"},
+   {"t": "Auf Fotos sind Hände oft klein, halb verdeckt oder halten etwas fest.", "mood": "cool", "ev": "klein"},
+   {"t": "Deshalb hatten vor allem ältere Bild-KIs oft zu viele oder zu wenige Finger.", "mood": "shock", "ev": "finger"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "i12Out", "pause": 0.05, "checks": ["Rauschen entfernen", "Satz lenkt", "Hände sind schwer"], "lines": [
+   {"t": "Also: Die KI lernt, Rauschen zu entfernen,", "mood": "cool", "ev": "c1"},
+   {"t": "dein Satz lenkt jeden Schritt", "mood": "happy", "ev": "c2"},
+   {"t": "und bei Händen fehlt ihr oft der Bauplan.", "mood": "cool", "ev": "c3"},
+   {"t": "Informatik verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}

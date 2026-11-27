@@ -1,0 +1,33 @@
+{
+ "serie": "Bio", "kostuem": "forscher", "accent": "#A8E63C", "id": "B027", "anim": "neu",
+ "titel": "Schicht für Schicht: Wie ist deine Hand aufgebaut?", "gagTag": "[gasps] [startled]", "gagDelay": 0.9,
+ "quelle": "Skript Schicht fuer Schicht und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Rechte Hand, Handflaeche, Schema. FAKTEN (27.11.2026): 27 Knochen je Hand: 8 Handwurzelknochen (Ossa carpi), 5 Mittelhandknochen (Ossa metacarpi), 14 Fingerknochen (Phalanges), Daumen 2, sonst je 3 (AMBOSS Hand; LibreTexts Medicine 7.6C); Gelenkknorpel (Cartilago articularis) an den Gelenkflaechen; Seitenbaender (Ligg. collateralia) stabilisieren die Fingergelenke (AMBOSS); Beugesehnen in der Handflaeche, Strecksehnen ueber den Handruecken, gleiten in Sehnenscheiden; Muskelbaeuche der langen Finger-Beuger und -Strecker liegen im Unterarm, Bewegungen der Hand groesstenteils von Unterarmmuskeln (AMBOSS; InformedHealth, How do hands work); kleine Handmuskeln: Daumenballen (Thenar), Kleinfingerballen (Hypothenar), Mm. lumbricales, Mm. interossei (AMBOSS); Papillar- bzw. Hautleisten an Handflaeche und Fusssohle (DocCheck Flexikon Papillarleiste); dauerhafte Merkmale des Fingerabdrucks stehen ab etwa der 16. Schwangerschaftswoche fest (DermNet, Fingerprints). Nicht gesagt: 'kein Muskel in den Fingern', Sesambein-Zahl. BILD: Schema, Baender nur an den Fingergelenken gezeigt. Faktencheck 27.11.2026 (eigener Agent; Cleveland Clinic rund 34 Muskeln, etwa die Haelfte in der Hand; Kenhub: Griffkraft aus dem Unterarm): Einstieg 'die meisten' zu 'die kraeftigsten Muskeln'.",
+ "scenes": [
+  {"type": "hook", "title": "*Hand*: Schicht für Schicht", "emoji": "✋", "world": "h27hand", "pause": 0.3, "lines": [
+   {"t": "Du bewegst deine Finger, aber die kräftigsten Muskeln dafür sitzen im Unterarm.", "mood": "cool"},
+   {"t": "Wie ist deine Hand aufgebaut?", "mood": "happy", "ev": "mark"},
+   {"t": "Bio nie verstanden?", "mood": "happy"},
+   {"t": "Gib mir 60 Sekunden.", "mood": "wink", "ev": "sticker"}]},
+  {"type": "tip", "num": "1", "title": "Knochen und Knorpel", "path": [], "world": "b27a", "pause": 0.35, "lines": [
+   {"t": "Schicht eins: die Knochen. Jede Hand hat 27 davon.", "mood": "happy", "ev": "panel"},
+   {"t": "Acht in der Handwurzel, fünf in der Mittelhand und vierzehn in den Fingern.", "mood": "shock", "ev": "p1"},
+   {"t": "Schicht zwei: der Gelenkknorpel. Er überzieht die Knochenenden in den Gelenken.", "mood": "happy", "ev": "p2"},
+   {"t": "Er ist glatt, damit die Knochen im Gelenk gut gleiten.", "mood": "cool", "ev": "act"}]},
+  {"type": "tip", "num": "2", "title": "Bänder und Sehnen", "path": [], "world": "b27b", "pause": 0.35, "lines": [
+   {"t": "Schicht drei: die Bänder. Sie halten die Knochen an den Gelenken zusammen.", "mood": "happy", "ev": "panel"},
+   {"t": "Seitenbänder machen jedes Fingergelenk stabil.", "mood": "cool", "ev": "p1"},
+   {"t": "Schicht vier: die Sehnen. Beugesehnen in der Handfläche, Strecksehnen auf dem Handrücken.", "mood": "happy", "ev": "p2"},
+   {"t": "Sie gleiten in Sehnenscheiden. Ihre Muskeln sitzen größtenteils im Unterarm.", "mood": "shock", "ev": "act"}]},
+  {"type": "tip", "num": "3", "title": "Handmuskeln und Haut", "path": [], "world": "b27c", "pause": 0.2, "lines": [
+   {"t": "Schicht fünf: die kleinen Handmuskeln, zum Beispiel im Daumenballen.", "mood": "happy", "ev": "panel"},
+   {"t": "Sie helfen bei feinen Bewegungen, etwa beim Greifen mit dem Daumen.", "mood": "cool", "ev": "p1"},
+   {"t": "Schicht sechs: die Haut. An der Handfläche hat sie feine Leisten.", "mood": "happy", "ev": "p2"},
+   {"t": "Sie bilden deinen Fingerabdruck, und der stand schon fest, bevor du geboren wurdest.", "mood": "shock", "ev": "act"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "b27out", "pause": 0.05, "checks": ["Knochen und Knorpel", "Bänder und Sehnen", "Handmuskeln und Haut"], "lines": [
+   {"t": "Also: innen Knochen und Knorpel,", "mood": "happy", "ev": "c1"},
+   {"t": "dann Bänder und Sehnen,", "mood": "happy", "ev": "c2"},
+   {"t": "außen Handmuskeln und Haut.", "mood": "happy", "ev": "c3"},
+   {"t": "Bio verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}

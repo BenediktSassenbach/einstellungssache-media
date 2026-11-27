@@ -1,0 +1,31 @@
+{
+ "serie": "Physik", "kostuem": "astronaut", "accent": "#5CE1FF", "design": "3.3", "anim": "neu", "gagTag": "[gasps]", "id": "P010",
+ "titel": "Was ist eine Sternschnuppe wirklich?", "gagDelay": 0, "gagZeile": 0,
+ "quelle": "SKRIPT 4 mit Abschnitt 9 und Abschnitt Neue Werkzeuge. Stumme Demo v1 (27.11.2026). Kostuem P2 Astronaut. Ort eigens gebaut: verschneiter Huegel in einer Winternacht. Teil 1 die eine Lupe (Koernchen und Erbse, nicht massstabsgetreu), Teil 2 Wissenschaftsmodus (Luftschichten), Teil 3 Gegenstand (Kalenderzettel) und Lupe (Bahn von Phaethon). FAKTEN (27.11.2026): typische sichtbare Sternschnuppe von einem Teilchen so gross wie ein Sandkorn, Meteoroiden 11,2 bis 72 km/s, Aufleuchten ab rund 100 km, viele erloeschen oberhalb 80 km (Britannica, Meteor); Material der Stroeme meist zwischen Sandkorn und Erbse, Geminiden vom Asteroiden 3200 Phaethon (NASA Science, Meteors and Meteorites Facts); Teilchen presst die Luft vor sich zusammen, erhitzt sich, verdampft, Teilchen und Luft werden ionisiert und leuchten (ESA, How shooting stars and satellites turn heat into light; Britannica); Geminiden aktiv 4. bis 17.12.2026, Maximum 13./14.12., Mond rund 15 bis 20 Prozent (IMO Meteor Shower Calendar 2026; IGN Spanien: Maximum 14.12. tagsueber, breit). Nicht gesagt: 'nicht Reibung', 'Sterne fallen'. Faktencheck 27.11.2026 (eigener Agent; IMO, Star Walk, IGN): Schluss eindeutig Nacht zum 14. Dezember.",
+ "scenes": [
+  {"type": "hook", "title": "Was ist eine *Sternschnuppe*?", "emoji": "🌠", "world": "p10Hook", "pause": 0.05, "lines": [
+   {"t": "Eine Sternschnuppe kommt oft von einem Körnchen, kaum größer als Sand.", "mood": "shock", "ev": "fest"},
+   {"t": "Was ist eine Sternschnuppe wirklich?", "mood": "shock", "ev": "frage"},
+   {"t": "Am Ende weißt du, in welcher Nacht du besonders viele siehst.", "mood": "happy", "ev": "loop"}]},
+  {"type": "tip", "num": "1", "title": "Kein *Stern*", "path": [], "world": "p10Korn", "pause": 0.4, "lines": [
+   {"t": "Erstens: Eine Sternschnuppe ist kein Stern, sondern ein Körnchen aus dem All.", "mood": "happy", "ev": "korn"},
+   {"t": "Meist ist es so groß wie ein Sandkorn, manchmal wie eine Erbse.", "mood": "shock", "ev": "groesse"},
+   {"t": "Es trifft mit 11 bis 72 Kilometern pro Sekunde auf unsere Luft.", "mood": "cool", "ev": "rast"}]},
+  {"type": "tip", "num": "2", "title": "Warum es *leuchtet*", "path": [], "world": "p10Leucht", "labor": [1, 2, 3], "pause": 0.4, "lines": [
+   {"t": "Und dann wird es richtig heiß.", "mood": "happy", "ev": "rehook"},
+   {"t": "Zweitens: Das Körnchen presst die Luft vor sich so stark zusammen, dass es sich extrem aufheizt.", "mood": "happy", "ev": "press"},
+   {"t": "Es verdampft, und Körnchen und Luft fangen an zu leuchten.", "mood": "shock", "ev": "leucht"},
+   {"t": "Das passiert in rund 80 bis 100 Kilometern Höhe. Ein Sandkorn verglüht dabei ganz.", "mood": "cool", "ev": "hoch"}]},
+  {"type": "tip", "num": "3", "title": "Die *Geminiden*", "path": [], "world": "p10Gem", "pause": 0.4, "lines": [
+   {"t": "Und im Dezember kommen besonders viele.", "mood": "shock", "ev": "rehook"},
+   {"t": "Drittens: Vom 4. bis 17. Dezember fliegt die Erde durch die Staubspur der Geminiden.", "mood": "happy", "ev": "spur"},
+   {"t": "Ihre Körnchen stammen vom Asteroiden Phaethon, nicht wie meist von einem Kometen.", "mood": "shock", "ev": "phaet"},
+   {"t": "Die meisten siehst du in der Nacht vom 13. auf den 14. Dezember, und der Mond stört kaum.", "mood": "cool", "ev": "nacht"}]},
+  {"type": "outro", "title": "Ist halt ’ne *Einstellungssache*", "world": "p10Out", "pause": 0.05, "checks": ["Körnchen aus dem All", "Presst die Luft, verglüht", "13./14. Dezember"], "lines": [
+   {"t": "Also: Eine Sternschnuppe ist ein Körnchen aus dem All,", "mood": "cool", "ev": "c1"},
+   {"t": "es presst die Luft und verglüht hoch oben", "mood": "happy", "ev": "c2"},
+   {"t": "und in der Nacht zum 14. Dezember siehst du besonders viele.", "mood": "cool", "ev": "c3"},
+   {"t": "Physik verstehen?", "mood": "happy"},
+   {"t": "Ist halt ’ne Einstellungssache.", "mood": "wink", "ev": "save"}]}
+ ]
+}

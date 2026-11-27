@@ -8,7 +8,7 @@
  "gagTag": "[gasps]",
  "gagDelay": 0,
  "gagZeile": 0,
- "quelle": "SKRIPT 4 mit Abschnitt 9 (22.11.2026). Stumme Demo v1. Kostuem I1 Hacker. Ort eigens gebaut: Zimmer am Abend vor dem Black Friday. Teil 1 Wissenschaftsmodus (Tunnel), Teil 2 Bildschirm (Kasse), Teil 3 Gegenstand (Siegel) plus die eine Lupe (Adresse). FAKTEN (geprueft 22.11.2026): https und Schloss stehen fuer eine gesicherte Verbindung, sind aber keine Garantie, dass die Seite serioes ist (Verbraucherzentrale Baden-Wuerttemberg, Textkarten Fakeshops); auch Fake-Seiten nutzen verschluesselte Verbindungen (Trusted Shops Blog; Utopia nach BSI: auch Phishing-Seiten nutzen Zertifikate). Oft werden bis zum letzten Bestellschritt mehrere Zahlungsweisen angeboten, bei der Bestellung dann nur noch Vorkasse (verbraucherzentrale.de/fakeshops). Bei Vorkasse an einen Fake-Shop ist das Geld meist unwiederbringlich weg (Oeko-Test). Fake-Shops nutzen erfundene Guetesiegel oder echte (z. B. Trusted Shops) ohne Zertifikat; per Klick aufs Siegel pruefen, ob es mit einem Zertifikat des Siegel-Betreibers verlinkt ist (verbraucherzentrale.de). Fakeshop-Finder der Verbraucherzentrale prueft Shop-Adressen kostenlos (verbraucherzentrale.de/fakeshop). BILD: Adresse mega-deal.example ist erfunden (reservierte Endung .example), kein echter Shop. Ampel in der Lupe ist ein Sinnbild fuer eine Einschaetzung, kein Nachbau des echten Werkzeugs. Kein Logo der Verbraucherzentrale.",
+ "quelle": "SKRIPT 4 mit Abschnitt 9 (22.11.2026). Stumme Demo v1. Kostuem I1 Hacker. Ort eigens gebaut: Zimmer am Abend vor dem Black Friday. Teil 1 Wissenschaftsmodus (Tunnel), Teil 2 Bildschirm (Kasse), Teil 3 Gegenstand (Siegel) plus die eine Lupe (Adresse). FAKTEN (geprueft 22.11.2026): https und Schloss stehen fuer eine gesicherte Verbindung, sind aber keine Garantie, dass die Seite serioes ist (Verbraucherzentrale Baden-Wuerttemberg, Textkarten Fakeshops); auch Fake-Seiten nutzen verschluesselte Verbindungen (Trusted Shops Blog; Utopia nach BSI: auch Phishing-Seiten nutzen Zertifikate). Oft werden bis zum letzten Bestellschritt mehrere Zahlungsweisen angeboten, bei der Bestellung dann nur noch Vorkasse (verbraucherzentrale.de/fakeshops). Bei Vorkasse an einen Fake-Shop ist das Geld meist unwiederbringlich weg (Oeko-Test). Fake-Shops nutzen erfundene Guetesiegel oder echte (z. B. Trusted Shops) ohne Zertifikat; per Klick aufs Siegel pruefen, ob es mit einem Zertifikat des Siegel-Betreibers verlinkt ist (verbraucherzentrale.de). Fakeshop-Finder der Verbraucherzentrale prueft Shop-Adressen kostenlos (verbraucherzentrale.de/fakeshop). BILD: Adresse mega-deal.example ist erfunden (reservierte Endung .example), kein echter Shop. Ampel in der Lupe ist ein Sinnbild fuer eine Einschaetzung, kein Nachbau des echten Werkzeugs. Kein Logo der Verbraucherzentrale. Faktencheck 27.11.2026 (eigener Agent): keine Korrektur; Quelle Schloss: VZ Baden-Wuerttemberg und Utopia nach BSI, nicht die Hauptseite verbraucherzentrale.de/fakeshops.",
  "scenes": [
   {
    "type": "hook",
@@ -110,9 +110,7 @@
      "mood": "cool",
      "ev": "finder"
     }
-   ],
-   "quip": "Erst prüfen.",
-   "quipAt": 3
+   ]
   },
   {
    "type": "outro",
@@ -151,5 +149,6 @@
     }
    ]
   }
- ]
+ ],
+ "anim": "neu"
 }

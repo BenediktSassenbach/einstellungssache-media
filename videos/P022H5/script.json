@@ -1,0 +1,158 @@
+{
+ "serie": "Physik",
+ "kostuem": "professor",
+ "accent": "#5CE1FF",
+ "id": "P022H5",
+ "titel": "Warum klingt deine Stimme auf Aufnahmen so fremd?",
+ "design": "3.3",
+ "gagTag": "[deadpan]",
+ "gagDelay": 0,
+ "quelle": "HOOK-TEST (20.11.2026, Benedikt: Hook am Anfang, Zuschauer halten). Bewusste Abweichungen von Skript 4: kein 'Physik nie verstanden? / Gib mir 60 Sekunden.', kein 'Erstens/Zweitens/Drittens', Hook ab Bild 1 (Aufnahme laeuft schon), Open Loop ('Am Ende weisst du, welche Stimme die echte ist'), Rehooks am Anfang jedes Teils, Mitmach-Teil, keine Zusammenfassung, letztes Bild wie erstes Bild (Loop). Fakten: Zwei Wege zum eigenen Ohr, Luftleitung ueber Aussen- und Mittelohr und Knochenleitung direkt durch die Knochen des Kopfes ins Innenohr; bei einer Aufnahme faellt der Knochenweg weg, man hoert nur den Luftanteil (Scientific American, 'Why does my voice sound different when it is recorded'; WHYY mit dem Audiologen/Psychoakustiker im Beitrag 'Why do our recorded voices sound strange to us?'). Unterschied ist vor allem eine Verstaerkung der tiefen Toene durch den Knochenweg, die andere nicht bekommen (WHYY; Popular Science mit Ben Hornsby, Audiologe: 'lower frequency from the bone vibrations ... rich and full'). Mikrofon nimmt nur Luftschall auf (Scientific American). Okklusionseffekt: Gehoergang mit dem Finger verschliessen und ein langes I sagen, die eigene Stimme klingt droehnend und dumpf und meist lauter, tiefe Anteile werden verstaerkt (Denk und Kersten, DEGA Akustik Journal 03/2025, 'Der Okklusionseffekt oder Warum klingt meine Stimme komisch, wenn der Gehoergang verschlossen ist'). Studie: Hughes und Harrison 2013, Perception 42(9), 941-949, 80 Teilnehmende bewerteten Stimmaufnahmen, ohne zu wissen, dass die eigene dabei war; sie bewerteten die eigene Stimme attraktiver, als sie die Stimmen der anderen bewerteten, und attraktiver, als andere sie bewerteten. Abgegrenzt: Die Aufnahme ist naeher an dem, was andere hoeren, nicht exakt gleich (Mikrofon und Lautsprecher faerben den Klang), deshalb 'viel naeher dran'. Stand der Recherche: 20.11.2026. | H4 (21.11.2026): Skript-4-Fassung, nur der Einstieg nach dem Hook-System. Fakten aus H unverändert, Studie entfällt, Schluss mit drei Merksätzen. | H5: neu gebaut, Teil 1 Wissenschaftsmodus (Kopf im Schnitt), Teil 2 Monitor und Standmikro, Teil 3 Schalti groß auf dem Schreibtisch, keine Lupe. Faktencheck 27.11.2026 (eigener Agent, DEGA Akustik Journal 03/2025): \"bleibt in deinem Ohr gefangen\" zu \"kann nicht mehr aus dem Ohr entweichen\".",
+ "scenes": [
+  {
+   "type": "hook",
+   "title": "Deine Stimme klingt *fremd*?",
+   "emoji": "🎙️",
+   "world": "p5hook",
+   "pause": 0.05,
+   "lines": [
+    {
+     "t": "So klingst du für alle anderen.",
+     "mood": "shock",
+     "ev": "play"
+    },
+    {
+     "t": "Nur für dich nicht.",
+     "mood": "cool",
+     "ev": "kopf"
+    },
+    {
+     "t": "Am Ende weißt du, welche Stimme die echte ist.",
+     "mood": "happy",
+     "ev": "loop"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "1",
+   "title": "Zwei *Wege*",
+   "path": [],
+   "world": "p5wege",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Erstens: Wenn du sprichst, hörst du dich doppelt.",
+     "mood": "shock",
+     "ev": "doppelt"
+    },
+    {
+     "t": "Einmal kommt der Schall durch die Luft in dein Ohr.",
+     "mood": "happy",
+     "ev": "luft"
+    },
+    {
+     "t": "Und einmal direkt durch die Knochen deines Kopfes ins Innenohr.",
+     "mood": "shock",
+     "ev": "knochen"
+    },
+    {
+     "t": "Diesen zweiten Weg hört nur einer: du.",
+     "mood": "cool",
+     "ev": "nur"
+    }
+   ],
+   "labor": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "2",
+   "title": "Der *Bass*",
+   "path": [],
+   "world": "p5bass",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Zweitens: Der Weg durch die Knochen verstärkt vor allem die tiefen Töne.",
+     "mood": "happy",
+     "ev": "tief"
+    },
+    {
+     "t": "Deshalb klingst du für dich selbst tiefer und voller.",
+     "mood": "happy",
+     "ev": "voll"
+    },
+    {
+     "t": "Ein Mikrofon hat keinen Schädel. Es hört nur den Weg durch die Luft.",
+     "mood": "cool",
+     "ev": "mikro"
+    }
+   ]
+  },
+  {
+   "type": "tip",
+   "num": "3",
+   "title": "Teste *es*",
+   "path": [],
+   "world": "p5test",
+   "pause": 0.4,
+   "lines": [
+    {
+     "t": "Drittens: Probier's gleich aus. Halt dir die Ohren zu und sag ein langes I.",
+     "mood": "happy",
+     "ev": "test"
+    },
+    {
+     "t": "Klingt dumpf und dröhnend, meist sogar lauter?",
+     "mood": "shock",
+     "ev": "droehn"
+    },
+    {
+     "t": "Jetzt kann der Schall aus den Knochen nicht mehr aus dem Ohr entweichen.",
+     "mood": "cool",
+     "ev": "gefangen"
+    }
+   ],
+   "quip": "Iiiiiiii!",
+   "quipAt": 0
+  },
+  {
+   "type": "outro",
+   "title": "Ist halt ’ne *Einstellungssache*",
+   "world": "p5out",
+   "pause": 0.6,
+   "checks": [
+    "Du hörst dich doppelt",
+    "Knochen machen tiefer",
+    "Die Aufnahme ist näher dran"
+   ],
+   "lines": [
+    {
+     "t": "Also: Du hörst dich über Luft und Knochen,",
+     "ev": "c1"
+    },
+    {
+     "t": "die Knochen machen deine Stimme tiefer,",
+     "ev": "c2"
+    },
+    {
+     "t": "und die Aufnahme kommt dem nahe, was alle anderen hören.",
+     "ev": "c3"
+    },
+    {
+     "t": "Physik verstehen?"
+    },
+    {
+     "t": "Ist halt ’ne Einstellungssache.",
+     "ev": "save"
+    }
+   ]
+  }
+ ],
+ "gagZeile": 1,
+ "anim": "neu"
+}

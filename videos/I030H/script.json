@@ -8,7 +8,7 @@
  "titel": "GTA 6 gratis für den PC?",
  "gagDelay": 0,
  "gagZeile": 0,
- "quelle": "Skript Videospiel und Skript 4 Abschnitt 9 (22.11.2026). Stumme Demo v1 des Neubaus I030H (22.11.2026), Fakten am 22.11.2026 erneut geprueft: Cynet-Warnung seit 13.11. (ghacks; Help Net Security: WARDEN Stealer, Steam-Logins, Krypto-Wallets); 113-GB-ISO fast nur leere Daten, nimmt Laufwerk C: per PowerShell aus der Pruefung von Windows Defender (TechRadar; Security Affairs; Cybernews). Kostuem S1 Sunset-Hemd. Ort eigens gebaut: Strassenecke bei Sonnenuntergang mit Elektronikladen, Kiosk 'GRATIS GAMES' und Leuchtwand. Keine Figuren, Logos oder Szenen aus dem Spiel; Konsolen als neutrale Formen 'Konsole A/B'. Plattformen: GTA 6 erschien am 19.11.2026 fuer PlayStation 5 und Xbox Series X|S; Rockstar hat weder PC-Version noch Demo, Beta oder Early Access angekuendigt (ESET WeLiveSecurity; ghacks 14.11.2026; Malwarebytes 24.08.2026). Cloud: Xbox Cloud Gaming streamt zum Start nur auf Xbox-Konsolen, nicht auf PCs; 'Every PC download is a scam' (Notebookcheck, GTA-6-Launch-Scams). Warnung: Cynet warnt seit 13.11.2026 vor gefaelschtem GTA-6-PC-Download, der Steam-Passwoerter und Krypto-Daten stiehlt (ghacks 14.11.2026; Notebookcheck). 113-GB-ISO: Fake, ueber 100 GB leerer Inhalt (PC Games 'Fake-Leak zu GTA 6: 113 GB Download verstecken Malware'; Cybernews 'junk data and a virus'); setzt Laufwerk C: auf die Ausnahmeliste von Windows Defender (drohnen.de-Zusammenfassung des Falls). Fallen: Gratis-Codes, angeblicher frueher Zugang (Notebookcheck), Android-Version ist ein Warnzeichen, es gibt keine (PCGH). Schutz: nur ueber offizielle Shops und Handel kaufen; nach einem gestarteten Fake Passwoerter von einem anderen, sauberen Geraet aendern und Zwei-Faktor einschalten (allgemeine Empfehlung der Sicherheitsfirmen, z. B. ESET). Stand der Recherche: 20.11.2026. Teil 3: Lupe aufs Handy mit Zwei-Faktor ist ein Sinnbild, kein echter Code. Cloud-Satz aus Laengengruenden gestrichen (stimmt, wird nicht gebraucht).",
+ "quelle": "Skript Videospiel und Skript 4 Abschnitt 9 (22.11.2026). Stumme Demo v1 des Neubaus I030H (22.11.2026), Fakten am 22.11.2026 erneut geprueft: Cynet-Warnung seit 13.11. (ghacks; Help Net Security: WARDEN Stealer, Steam-Logins, Krypto-Wallets); 113-GB-ISO fast nur leere Daten, nimmt Laufwerk C: per PowerShell aus der Pruefung von Windows Defender (TechRadar; Security Affairs; Cybernews). Kostuem S1 Sunset-Hemd. Ort eigens gebaut: Strassenecke bei Sonnenuntergang mit Elektronikladen, Kiosk 'GRATIS GAMES' und Leuchtwand. Keine Figuren, Logos oder Szenen aus dem Spiel; Konsolen als neutrale Formen 'Konsole A/B'. Plattformen: GTA 6 erschien am 19.11.2026 fuer PlayStation 5 und Xbox Series X|S; Rockstar hat weder PC-Version noch Demo, Beta oder Early Access angekuendigt (ESET WeLiveSecurity; ghacks 14.11.2026; Malwarebytes 24.08.2026). Cloud: Xbox Cloud Gaming streamt zum Start nur auf Xbox-Konsolen, nicht auf PCs; 'Every PC download is a scam' (Notebookcheck, GTA-6-Launch-Scams). Warnung: Cynet warnt seit 13.11.2026 vor gefaelschtem GTA-6-PC-Download, der Steam-Passwoerter und Krypto-Daten stiehlt (ghacks 14.11.2026; Notebookcheck). 113-GB-ISO: Fake, ueber 100 GB leerer Inhalt (PC Games 'Fake-Leak zu GTA 6: 113 GB Download verstecken Malware'; Cybernews 'junk data and a virus'); setzt Laufwerk C: auf die Ausnahmeliste von Windows Defender (drohnen.de-Zusammenfassung des Falls). Fallen: Gratis-Codes, angeblicher frueher Zugang (Notebookcheck), Android-Version ist ein Warnzeichen, es gibt keine (PCGH). Schutz: nur ueber offizielle Shops und Handel kaufen; nach einem gestarteten Fake Passwoerter von einem anderen, sauberen Geraet aendern und Zwei-Faktor einschalten (allgemeine Empfehlung der Sicherheitsfirmen, z. B. ESET). Stand der Recherche: 20.11.2026. Teil 3: Lupe aufs Handy mit Zwei-Faktor ist ein Sinnbild, kein echter Code. Cloud-Satz aus Laengengruenden gestrichen (stimmt, wird nicht gebraucht). Faktencheck 27.11.2026 (eigener Agent; Security Affairs, Help Net Security, TechRadar, shattered.io 25.11.: weiter keine PC-Version angekuendigt): \"nimmt Laufwerk C aus der Pruefung\" zu \"versucht, ... zu nehmen\" (Befehl im zerlegten Code gefunden, Wirkung nicht bestaetigt). Bild: C: zeigt nur Ausnahme-Versuch.",
  "scenes": [
   {
    "type": "hook",
@@ -94,7 +94,7 @@
      "ev": "gross"
     },
     {
-     "t": "Gestartet nimmt sie das ganze Laufwerk C aus der Prüfung vom Virenschutz.",
+     "t": "Gestartet versucht sie, das ganze Laufwerk C aus der Prüfung vom Virenschutz zu nehmen.",
      "mood": "shock",
      "ev": "aus"
     }
@@ -169,5 +169,6 @@
     }
    ]
   }
- ]
+ ],
+ "anim": "neu"
 }
