@@ -23,7 +23,6 @@ function balc15(t, o) { o = o || {}; let s = '<defs><linearGradient id="sk15" x1
   s += '<path d="M0 940 Q270 990 540 940 T1080 940" fill="none" stroke="#2A2A3A" stroke-width="3"/>'; for (let i = 0; i < 16; i++) { const x = 30 + i * 68; s += '<circle cx="' + x + '" cy="' + (958 - 18 * Math.cos((x % 540) / 540 * Math.PI * 2)).toFixed(0) + '" r="7" fill="' + ['#FFD23F', '#FF6B8A', '#5CE1FF'][i % 3] + '" opacity="' + (.7 + .3 * Math.sin(t * 3 + i)).toFixed(2) + '"/>'; }
   s += '<defs><linearGradient id="fl15" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A3F66"/><stop offset="1" stop-color="#1A1E3A"/></linearGradient></defs><rect x="0" y="1560" width="1080" height="360" fill="url(#fl15)"/>';
   // Blumenkasten links und Stuhl
-  s += '<rect x="60" y="1084" width="220" height="56" rx="8" fill="#A85A3A" stroke="' + ST15 + '" stroke-width="4"/>'; for (let i = 0; i < 5; i++) s += '<path d="M' + (90 + i * 40) + ' 1084 q-8 -40 6 -70" stroke="#3A7A4A" stroke-width="8" fill="none" stroke-linecap="round"/>';
   if (o.fl > 0) s += '<rect width="1080" height="1920" fill="#FFE9C0" opacity="' + (.18 * cl(o.fl)).toFixed(2) + '"/>';
   return s; }
 // Knall-Ringe bei (x,y), k 0..1
@@ -49,8 +48,8 @@ function earth15(t, k) { let s = '<rect x="-320" y="-320" width="640" height="64
   s += '<circle cx="' + (215 * Math.cos(a - Math.PI / 2)).toFixed(0) + '" cy="' + (215 * Math.sin(a - Math.PI / 2)).toFixed(0) + '" r="16" fill="#FFF6C8"/><circle cx="' + (215 * Math.cos(a - Math.PI / 2)).toFixed(0) + '" cy="' + (215 * Math.sin(a - Math.PI / 2)).toFixed(0) + '" r="34" fill="#FFF6C8" opacity=".3"/>';
   return s; }
 WORLD.p15Licht = function (sc, ev, t, lt) { const sc1 = ev.schnell, so = ev.sofort, ru = ev.rund; let s = balc15(t) + burst15(520, 780, lt % 2.6, '#FFD23F', 100);
-    if (so !== undefined && ru === undefined) { const c = cl(so / .5); s += '<path d="M520 780 L' + lerp(520, XC15 - 40, c).toFixed(0) + ' ' + lerp(780, GC15 - 140, c).toFixed(0) + '" stroke="#FFF6C8" stroke-width="10" stroke-linecap="round" opacity=".9"/>'; }
-  if (ru !== undefined) { const k = ease(cl(ru / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.45 * k).toFixed(2) + '"/>' + lupeH(430, 870, 200, earth15(t, cl((ru - .4) / 2.2)), k) + '<g opacity="' + k.toFixed(2) + '"><rect x="280" y="1086" width="300" height="66" rx="14" fill="#05071A"/>' + svgT(430, 1132, Math.min(7.5, 7.5 * cl((ru - .4) / 2.2)).toFixed(1).replace('.', ',') + ' Runden', 42, '#FFE14D') + '</g>'; }
+    if (so !== undefined && ru === undefined) { const c = cl(so / .5); s += '<path d="M520 780 L' + lerp(520, XC15 - 90, c).toFixed(0) + ' ' + lerp(780, GC15 - 175, c).toFixed(0) + '" stroke="#FFF6C8" stroke-width="10" stroke-linecap="round" opacity=".9"/>'; }
+  if (ru !== undefined) { const k = ease(cl(ru / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.45 * k).toFixed(2) + '"/>' + lupeH(400, 800, 170, earth15(t, cl((ru - .4) / 2.2)), k) + '<g opacity="' + k.toFixed(2) + '"><rect x="250" y="1016" width="300" height="66" rx="14" fill="#05071A"/>' + svgT(400, 1062, Math.min(7.5, 7.5 * cl((ru - .4) / 2.2)).toFixed(1).replace('.', ',') + ' Runden', 42, '#FFE14D') + '</g>'; }
   return W(s + shade3(), slot(ev, [['schnell', 'Licht: rund 300.000 km/s'], ['sofort', 'Praktisch sofort da', 'hot'], ['rund', 'Mehr als 7-mal um die Erde']])); };
 WMASC.p15Licht = (ev, t, lt) => { const so = ev.sofort; if (so !== undefined && ev.rund === undefined) { const j = Math.sin(Math.PI * cl(so / .5)); return stay3([XC15, GC15 - 20 * j], 1, { r: -10 * j, mood: 'shock' }); }
   return stay3([mv15(XC15 + 20, XC15, lt / .5), GC15], 1, { r: 3 * Math.sin(t * 2), mood: ev.rund !== undefined ? 'happy' : 'cool' }); };
@@ -58,9 +57,9 @@ WMASC.p15Licht = (ev, t, lt) => { const so = ev.sofort; if (so !== undefined && 
 // ---------- Teil 2: Schall ist langsam (Wissenschaftsmodus) ----------
 function sci15(t, ev) { const dr = ev.druck, la = ev.lahm, mi = ev.million; let s = '';
   if (dr !== undefined && mi === undefined) { const k = cl(dr / .5); // Luftteilchen, Druckwelle laeuft nach rechts
-    for (let r = 0; r < 6; r++) for (let i = 0; i < 18; i++) { const x0 = 200 + i * 40, wx = (t * 140) % 720, d = x0 - 200 - wx, push = 22 * Math.exp(-(d * d) / 2400) * Math.sign(-d || 1); s += '<circle cx="' + (x0 + push).toFixed(0) + '" cy="' + (720 + r * 46) + '" r="9" fill="#9FC2FF" opacity="' + (k * .9).toFixed(2) + '"/>'; }
+    for (let r = 0; r < 6; r++) for (let i = 0; i < 18; i++) { const x0 = 200 + i * 40, wx = (t * 140) % 720, d = x0 - 200 - wx, push = 38 * Math.exp(-(d * d) / 1600) * Math.sign(-d || 1); s += '<circle cx="' + (x0 + push).toFixed(0) + '" cy="' + (720 + r * 46) + '" r="9" fill="#9FC2FF" opacity="' + (k * .9).toFixed(2) + '"/>'; }
     s += svgT(540, 1030, 'Druckwelle in der Luft', 36, '#F4F6FB'); }
-  if (la !== undefined && mi === undefined) { const k = cl(la / .6); s += '<g opacity="' + k.toFixed(2) + '"><rect x="200" y="1070" width="680" height="64" rx="14" fill="#1A2048" stroke="#F4F6FB" stroke-width="3"/>' + svgT(540, 1114, 'Schall: rund 330 m pro Sekunde', 34, '#FFE14D') + '</g>'; }
+  
   if (mi !== undefined) { const k = ease(cl(mi / .8)); s += '<rect x="180" y="640" width="720" height="460" rx="20" fill="#05071A" opacity="' + (.85 * k).toFixed(2) + '"/>';
     s += '<g opacity="' + k.toFixed(2) + '">' + svgT(250, 740, 'Licht', 40, '#FFF6C8', 'start') + '<rect x="250" y="760" width="' + (600 * k).toFixed(0) + '" height="50" rx="10" fill="#FFF6C8"/>' + svgT(250, 900, 'Schall', 40, '#FFE14D', 'start') + '<rect x="250" y="920" width="6" height="50" fill="#FFE14D"/>' + svgT(280, 960, 'winzig', 34, '#FFE14D', 'start') + svgT(540, 1060, 'fast 1 Million Mal schneller', 38, '#F4F6FB') + '</g>'; }
   return s; }
@@ -71,9 +70,9 @@ WMASC.p15Schall = (ev, t, lt) => { const la = ev.lahm; if (la !== undefined && e
   const k = cl(lt / .35); return stay3([lerp(XC15, XF15, ease(k)), lerp(GC15, GF15, k * k)], 1, { r: 10 * Math.sin(Math.PI * k), mood: 'happy' }); };
 
 // ---------- Teil 3: Selbst messen ----------
-function watch15(x, y, sec, k) { if (!(k > 0)) return ''; const e = back(cl(k)), a = sec / 60 * Math.PI * 2 * 5; return '<g transform="translate(' + x + ' ' + y + ') scale(' + e.toFixed(3) + ')"><rect x="-20" y="-150" width="40" height="30" rx="6" fill="#C9CFDB" stroke="' + ST15 + '" stroke-width="4"/><circle r="130" fill="#F4F6FB" stroke="' + ST15 + '" stroke-width="8"/><path d="M0 0 L' + (90 * Math.sin(a)).toFixed(0) + ' ' + (-90 * Math.cos(a)).toFixed(0) + '" stroke="#E8384F" stroke-width="8" stroke-linecap="round"/><circle r="10" fill="' + ST15 + '"/>' + svgT(0, 70, Math.floor(sec) + ' s', 50, ST15) + '</g>'; }
+function watch15(x, y, sec, k) { if (!(k > 0)) return ''; const e = back(cl(k)), a = sec / 60 * Math.PI * 2 * 5; return '<g transform="translate(' + x + ' ' + y + ') scale(' + (.8 * e).toFixed(3) + ')"><rect x="-20" y="-150" width="40" height="30" rx="6" fill="#C9CFDB" stroke="' + ST15 + '" stroke-width="4"/><circle r="130" fill="#F4F6FB" stroke="' + ST15 + '" stroke-width="8"/><path d="M0 0 L' + (90 * Math.sin(a)).toFixed(0) + ' ' + (-90 * Math.cos(a)).toFixed(0) + '" stroke="#E8384F" stroke-width="8" stroke-linecap="round"/><circle r="10" fill="' + ST15 + '"/>' + svgT(0, 70, Math.floor(sec) + ' s', 50, ST15) + '</g>'; }
 WORLD.p15Mess = function (sc, ev, t, lt) { const za = ev.zaehl, dr = ev.drei, ei = ev.eins; let s = balc15(t);
-  if (za !== undefined && dr === undefined) { s += burst15(300, 760, za - .2, '#FF6BD6', 140); s += watch15(560, 880, Math.min(3, Math.max(0, za - .2)), cl(za / .4)); s += bang15(XC15 - 40, GC15 - 150, cl((za - 3.2) / .8)); }
+  if (za !== undefined && dr === undefined) { s += burst15(300, 760, za - .2, '#FF6BD6', 140); s += watch15(400, 800, Math.min(3, Math.max(0, za - .2)), cl(za / .4)); s += bang15(XC15 - 40, GC15 - 150, cl((za - 3.2) / .8)); }
   if (dr !== undefined && ei === undefined) { const k = ease(cl(dr / .5)); s += '<g opacity="' + k.toFixed(2) + '"><rect x="90" y="650" width="830" height="230" rx="20" fill="#05071A" opacity=".85"/><path d="M150 790 H860" stroke="#F4F6FB" stroke-width="8"/><path d="M150 770 v40 M860 770 v40" stroke="#F4F6FB" stroke-width="8"/>' + svgT(505, 750, '3 Sekunden', 44, '#FFE14D') + svgT(505, 850, 'rund 1 Kilometer', 44, '#F4F6FB') + '</g>'; }
   if (ei !== undefined) { const k = ease(cl(ei / .5)); s += '<g opacity="' + k.toFixed(2) + '"><rect x="90" y="650" width="830" height="230" rx="20" fill="#05071A" opacity=".85"/><path d="M150 790 H387" stroke="#F4F6FB" stroke-width="8"/><path d="M150 770 v40 M387 770 v40" stroke="#F4F6FB" stroke-width="8"/>' + svgT(505, 750, '1 Sekunde', 44, '#FFE14D') + svgT(505, 850, 'rund 330 Meter', 44, '#F4F6FB') + '</g>'; }
   return W(s + shade3(), slot(ev, [['zaehl', 'Sekunden zählen'], ['drei', '3 s ≈ 1 km', 'hot'], ['eins', '1 s ≈ 330 m']])); };
@@ -85,6 +84,6 @@ WMASC.p15Mess = (ev, t, lt) => { const rh = ev.rehook, za = ev.zaehl, ei = ev.ei
 
 // ---------- Schluss ----------
 WORLD.p15Out = function (sc, ev, t, lt) { const k = ease(cl(lt / .6)); return W(balc15(t) + burst15(400, 820, (lt % 2.4), '#5CE1FF', 120) + '<defs><linearGradient id="od15" x1="0" y1="0" x2="0" y2="1"><stop offset=".32" stop-color="#05071A" stop-opacity=".92"/><stop offset=".64" stop-color="#05071A" stop-opacity="0"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#od15)" opacity="' + k.toFixed(2) + '"/>' + shade3()); };
-WMASC.p15Out = (ev, t, lt) => stay3([XC15 + 30 * Math.sin(Math.PI * cl((lt - 1) / 5)), GC15 - 8 * Math.abs(Math.sin(t * 7)) * (lt > 1 && lt < 6 ? 1 : 0)], 1, { r: 2 * Math.sin(t * 2), mood: ev.save !== undefined ? 'happy' : undefined });
+WMASC.p15Out = (ev, t, lt) => stay3([XC15 - 40 * Math.sin(Math.PI * cl((lt - 1) / 5)), GC15 - 8 * Math.abs(Math.sin(t * 7)) * (lt > 1 && lt < 6 ? 1 : 0)], 1, { r: 2 * Math.sin(t * 2), mood: ev.save !== undefined ? 'happy' : undefined });
 
 ['p15Hook', 'p15Licht', 'p15Schall', 'p15Mess', 'p15Out'].forEach(n => { const inner = WORLD[n]; WORLD[n] = (sc, ev, t, lt, E) => look3(inner(sc, ev, t, lt, E), sc, t, lt, AC15); });

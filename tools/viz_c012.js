@@ -19,7 +19,8 @@ function lake12(t, bursts) { bursts = bursts || []; let b = ''; bursts.forEach(q
   // Steg rechts
   s += '<path d="M600 1140 L1080 1140 L1080 1170 L600 1170 Z" fill="#8A5A3A" stroke="' + ST12c + '" stroke-width="5"/>'; for (let i = 0; i < 8; i++) s += '<path d="M' + (610 + i * 60) + ' 1142 v26" stroke="#5E3A22" stroke-width="3"/>';
   [640, 820, 1000].forEach(x => s += '<rect x="' + (x - 10) + '" y="1170" width="20" height="240" fill="#6A4228" stroke="' + ST12c + '" stroke-width="4"/>');
-  s += '<rect x="940" y="1040" width="14" height="100" fill="#6A4228" stroke="' + ST12c + '" stroke-width="3"/><circle cx="947" cy="1030" r="18" fill="#FFD27A" opacity="' + (.8 + .2 * Math.sin(t * 4)).toFixed(2) + '"/><circle cx="947" cy="1030" r="40" fill="#FFD27A" opacity=".2"/>';
+  s += '<g><rect x="105" y="1528" width="330" height="34" rx="6" fill="#8A5A3A" stroke="' + ST12c + '" stroke-width="5"/>' + [150, 230, 310, 390].map(x => '<path d="M' + x + ' 1530 v30" stroke="#5E3A22" stroke-width="3"/>').join('') + '<path d="M90 1570 q40 10 80 0 t80 0 t80 0 t80 0 t60 0" stroke="#8FA0E0" stroke-width="3" fill="none" opacity=".4"/></g>';
+  s += '<rect x="870" y="1040" width="14" height="100" fill="#6A4228" stroke="' + ST12c + '" stroke-width="3"/><circle cx="877" cy="1030" r="18" fill="#FFD27A" opacity="' + (.8 + .2 * Math.sin(t * 4)).toFixed(2) + '"/><circle cx="877" cy="1030" r="40" fill="#FFD27A" opacity=".2"/>';
   return s; }
 function card12(x, y, el, farbe, col, k) { if (!(k > 0)) return ''; const e = back(cl(k)); return '<g transform="translate(' + x + ' ' + y + ') scale(' + e.toFixed(3) + ')"><rect x="-120" y="-44" width="240" height="88" rx="16" fill="#0B0F2A" stroke="' + col + '" stroke-width="5"/>' + svgT(0, -6, el, 32, '#F4F6FB') + svgT(0, 30, farbe, 30, col) + '</g>'; }
 
@@ -39,12 +40,12 @@ function ball12(t) { let s = '<rect x="-320" y="-320" width="640" height="640" f
   const cs = [COL12.rot, COL12.gruen, COL12.blau, COL12.gelb]; for (let i = 0; i < 46; i++) { const a = rnd(i + 740) * Math.PI * 2, r = 170 * Math.sqrt(rnd(i + 741)); s += '<rect x="' + (Math.cos(a) * r - 9).toFixed(0) + '" y="' + (Math.sin(a) * r - 9).toFixed(0) + '" width="18" height="18" rx="3" transform="rotate(' + (rnd(i) * 90).toFixed(0) + ' ' + (Math.cos(a) * r).toFixed(0) + ' ' + (Math.sin(a) * r).toFixed(0) + ')" fill="' + cs[i % 4] + '"/>'; }
   s += '<rect x="-170" y="232" width="340" height="62" rx="14" fill="#05071A"/>' + svgT(0, 276, 'Metallsalze', 40, '#F4F6FB'); return s; }
 WORLD.c12Metall = function (sc, ev, t, lt) { const sa = ev.salz, rg = ev.rotgruen, bg = ev.blaugelb; let B = [];
-  if (rg !== undefined) B = [[290, 760, rg - .1, COL12.rot, 90], [560, 760, rg - .7, COL12.gruen, 90]];
-  if (bg !== undefined) B = [[290, 760, bg - .1, COL12.blau, 90], [560, 760, bg - .7, COL12.gelb, 90]];
+  if (rg !== undefined) B = [[230, 760, rg - .1, COL12.rot, 90], [480, 760, rg - .7, COL12.gruen, 90]];
+  if (bg !== undefined) B = [[230, 760, bg - .1, COL12.blau, 90], [480, 760, bg - .7, COL12.gelb, 90]];
   let s = lake12(t, B);
-  if (sa !== undefined && rg === undefined) { const k = ease(cl(sa / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.45 * k).toFixed(2) + '"/>' + lupeH(420, 860, 210, ball12(t), k); }
-  if (rg !== undefined && bg === undefined) s += card12(290, 920, 'Strontium', 'rot', COL12.rot, rg / .5) + card12(560, 920, 'Barium', 'grün', COL12.gruen, (rg - .7) / .5);
-  if (bg !== undefined) s += card12(290, 920, 'Kupfer', 'blau', COL12.blau, bg / .5) + card12(560, 920, 'Natrium', 'gelb', COL12.gelb, (bg - .7) / .5);
+  if (sa !== undefined && rg === undefined) { const k = ease(cl(sa / .5)); s += '<rect width="1080" height="1920" fill="#05071A" opacity="' + (.45 * k).toFixed(2) + '"/>' + lupeH(370, 850, 195, ball12(t), k); }
+  if (rg !== undefined && bg === undefined) s += card12(230, 920, 'Strontium', 'rot', COL12.rot, rg / .5) + card12(480, 920, 'Barium', 'grün', COL12.gruen, (rg - .7) / .5);
+  if (bg !== undefined) s += card12(230, 920, 'Kupfer', 'blau', COL12.blau, bg / .5) + card12(480, 920, 'Natrium', 'gelb', COL12.gelb, (bg - .7) / .5);
   return W(s + shade3(), slot(ev, [['salz', 'Metallsalze in der Kugel'], ['rotgruen', 'Jedes Metall: eigene Farbe', 'hot'], ['blaugelb', 'Kupfer blau, Natrium gelb']])); };
 WMASC.c12Metall = (ev, t, lt) => { const rg = ev.rotgruen, bg = ev.blaugelb; const q = bg !== undefined ? bg : rg;
   if (q !== undefined) { const j = Math.sin(Math.PI * cl((q - .1) / .6)); return stay3([XC12C, GC12C - 26 * Math.max(0, j)], 1, { r: -6 * j, mood: 'happy' }); }
@@ -53,14 +54,14 @@ WMASC.c12Metall = (ev, t, lt) => { const rg = ev.rotgruen, bg = ev.blaugelb; con
 // ---------- Teil 2: Elektronen springen (Wissenschaftsmodus) ----------
 // Energietreppe bei (x,y): Stufen h, Elektron springt hoch (up 0..1) und faellt (dn 0..1), Licht in col
 function stairs12(x, y, top, up, dn, col, lab) { let s = '<path d="M' + (x - 110) + ' ' + y + ' H' + (x + 110) + '" stroke="#F4F6FB" stroke-width="6"/><path d="M' + (x - 110) + ' ' + (y - top) + ' H' + (x + 110) + '" stroke="#F4F6FB" stroke-width="6" stroke-dasharray="14 8"/>';
-  s += svgT(x, y + 50, lab, 30, '#F4F6FB');
+  s += svgT(x, y + 64, lab, 30, '#F4F6FB');
   const ey = up < 1 ? lerp(y, y - top, ease(cl(up))) : lerp(y - top, y, ease(cl(dn)));
   s += '<circle cx="' + x + '" cy="' + (ey - 14).toFixed(0) + '" r="14" fill="#5CE1FF" stroke="#F4F6FB" stroke-width="3"/>';
   if (dn > .3) { const k = cl((dn - .3) / .7); let w = 'M' + (x + 30) + ' ' + (y - top / 2); for (let i = 0; i < 4; i++) w += ' q12 -18 24 0 q12 18 24 0'; s += '<path d="' + w + '" fill="none" stroke="' + col + '" stroke-width="7" opacity="' + k.toFixed(2) + '" transform="translate(' + (20 * k).toFixed(0) + ' 0)"/>'; }
   return s; }
 function sci12c(t, ev) { const hi = ev.hitze, zu = ev.zurueck, fe = ev.fest; let s = '';
-  if (hi !== undefined && fe === undefined) { const up = cl((hi - .2) / .8), dn = zu !== undefined ? cl((zu - .2) / .8) : 0; s += '<rect x="230" y="660" width="620" height="420" rx="20" fill="#05071A" opacity=".8"/>' + stairs12(450, 980, 200, up, dn, COL12.gruen, 'Elektron im Metallteilchen');
-    s += '<g transform="translate(262 1040)"><path d="M0 0 q-20 -40 0 -80 q10 30 20 10 q16 30 0 70 Z" fill="#FF8A3D" opacity="' + (.6 + .4 * Math.sin(t * 9)).toFixed(2) + '"/></g>' + svgT(450, 720, zu !== undefined ? 'zurück → Licht' : 'Hitze → hoch', 40, zu !== undefined ? COL12.gruen : '#FF8A3D'); }
+  if (hi !== undefined && fe === undefined) { const up = cl((hi - 1.4) / 1), dn = zu !== undefined ? cl((zu - .2) / .8) : 0; s += '<rect x="230" y="660" width="620" height="420" rx="20" fill="#05071A" opacity=".8"/>' + stairs12(450, 980, 200, up, dn, COL12.gruen, 'Elektron im Metallteilchen');
+    s += '<g transform="translate(250 990)"><path d="M0 0 q-20 -40 0 -80 q10 30 20 10 q16 30 0 70 Z" fill="#FF8A3D" opacity="' + (.6 + .4 * Math.sin(t * 9)).toFixed(2) + '"/></g>' + svgT(450, 720, zu !== undefined ? 'zurück → Licht' : 'Hitze → hoch', 40, zu !== undefined ? COL12.gruen : '#FF8A3D'); }
   if (fe !== undefined) { const k = ease(cl(fe / .5)), c = (fe * .8) % 1.6; s += '<rect x="170" y="640" width="740" height="460" rx="20" fill="#05071A" opacity="' + (.85 * k).toFixed(2) + '"/><g opacity="' + k.toFixed(2) + '">' + stairs12(300, 1000, 110, cl(c / .4), cl((c - .5) / .6), COL12.rot, 'Strontium') + stairs12(640, 1000, 250, cl(c / .4), cl((c - .5) / .6), COL12.blau, 'Kupfer') + '</g>'; }
   return s; }
 WORLD.c12Spring = function (sc, ev, t, lt) { const bg = fuse33(lake12(t), sc, t, lt); const m = lab33(sc, t);
@@ -72,11 +73,11 @@ WMASC.c12Spring = (ev, t, lt) => { const zu = ev.zurueck; if (zu !== undefined &
 // ---------- Teil 3: Blau ist schwer ----------
 function therm12(x, y, lvl, k) { if (!(k > 0)) return ''; const e = back(cl(k)), h = 260 * lvl; return '<g transform="translate(' + x + ' ' + y + ') scale(' + e.toFixed(3) + ')"><rect x="-26" y="-300" width="52" height="300" rx="26" fill="#F4F6FB" stroke="' + ST12c + '" stroke-width="5"/><rect x="-12" y="' + (-20 - h).toFixed(0) + '" width="24" height="' + (h + 20).toFixed(0) + '" fill="#FF3B4E"/><circle r="44" fill="#FF3B4E" stroke="' + ST12c + '" stroke-width="5"/></g>'; }
 WORLD.c12Blau = function (sc, ev, t, lt) { const ku = ev.kupfer, he = ev.heiss, sw = ev.schwer; let B = [];
-  if (ku !== undefined && he === undefined) B = [[440, 780, ku % 2.2, COL12.blau, 110]];
+  if (he === undefined) B = [[440, 780, (ku !== undefined ? ku : lt) % 2.2, COL12.blau, 110]];
   if (he !== undefined && sw === undefined) B = [[440, 780, he % 2.2, he > 1 ? '#B8C8F0' : COL12.blau, 110, he > 1]];
   let s = lake12(t, B);
-  if (he !== undefined && sw === undefined) { s += therm12(170, 1040, cl(he / 1.2), cl(he / .4)); const k = cl((he - 1) / .4); s += '<g opacity="' + k.toFixed(2) + '"><rect x="250" y="900" width="340" height="70" rx="14" fill="#05071A"/>' + svgT(420, 948, 'Blau wird blass', 38, '#B8C8F0') + '</g>'; }
-  if (sw !== undefined) { const k = back(cl(sw / .5)); s += '<g transform="translate(420 800) scale(' + k.toFixed(3) + ')"><rect x="-260" y="-120" width="520" height="240" rx="22" fill="#05071A" stroke="' + COL12.blau + '" stroke-width="6"/><g transform="translate(-150 0)">' + [-1, 0, 1].map(i => '<circle cx="' + (i * 40) + '" cy="0" r="30" fill="' + [COL12.rot, COL12.gruen, COL12.blau][i + 1] + '" opacity="' + (i === 1 ? 1 : .5) + '"/>').join('') + '</g>' + svgT(90, -12, 'Blau:', 40, '#F4F6FB') + svgT(90, 40, 'am schwierigsten', 34, COL12.blau) + '</g>'; }
+  if (he !== undefined && sw === undefined) { s += '<rect x="100" y="690" width="140" height="410" rx="20" fill="#05071A" opacity="' + (.75 * cl(he / .4)).toFixed(2) + '"/>' + therm12(170, 1040, cl(he / 1.2), cl(he / .4)); const k = cl((he - 1) / .4); s += '<g opacity="' + k.toFixed(2) + '"><rect x="200" y="880" width="340" height="70" rx="14" fill="#05071A"/>' + svgT(370, 928, 'Blau wird blass', 38, '#B8C8F0') + '</g>'; }
+  if (sw !== undefined) { const k = back(cl(sw / .5)); s += '<g transform="translate(380 790) scale(' + k.toFixed(3) + ')"><rect x="-260" y="-120" width="520" height="240" rx="22" fill="#05071A" stroke="' + COL12.blau + '" stroke-width="6"/><g transform="translate(-150 0)">' + [-1, 0, 1].map(i => '<circle cx="' + (i * 40) + '" cy="0" r="30" fill="' + [COL12.rot, COL12.gruen, COL12.blau][i + 1] + '" opacity="' + (i === 1 ? 1 : .5) + '"/>').join('') + '</g>' + svgT(90, -12, 'Blau:', 40, '#F4F6FB') + svgT(90, 40, 'am schwierigsten', 34, COL12.blau) + '</g>'; }
   return W(s + shade3(), slot(ev, [['kupfer', 'Blau braucht Kupfer'], ['heiss', 'Zu heiß: Blau verblasst', 'hot'], ['schwer', 'Schwierigste Farbe']])); };
 WMASC.c12Blau = (ev, t, lt) => { const rh = ev.rehook, he = ev.heiss;
   if (he !== undefined && ev.schwer === undefined) { const j = Math.sin(Math.PI * cl((he - 1) / .6)); return stay3([XC12C, GC12C - 20 * Math.max(0, j)], 1, { r: 8 * j, mood: he > 1 ? 'shock' : 'cool' }); }
